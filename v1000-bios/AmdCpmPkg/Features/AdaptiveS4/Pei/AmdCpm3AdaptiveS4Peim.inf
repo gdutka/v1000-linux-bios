@@ -1,0 +1,48 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AmdCpmAdaptiveS4Peim
+  FILE_GUID             = 8519ED6D-228A-4A7D-A9E3-6E24D94FE22F
+  MODULE_TYPE           = PEIM
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = AmdCpmAdaptiveS4PeimEntryPoint
+
+[Sources.common]
+  AmdCpmAdaptiveS4Peim.c
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[BuildOptions]
+  *_*_*_CC_FLAGS = -DAGESA_V9
+
+[LibraryClasses]
+  BaseLib
+  PeimEntryPoint
+  AmdCpmBaseLib
+  AmdBaseLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gAmdCpmTablePpiGuid
+  gAmdCpmGpioInitFinishedPpiGuid
+  gBootTimeRecordPpiGuid
+  gPeiLastS3RestorePointPpiGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[Depex]
+  TRUE

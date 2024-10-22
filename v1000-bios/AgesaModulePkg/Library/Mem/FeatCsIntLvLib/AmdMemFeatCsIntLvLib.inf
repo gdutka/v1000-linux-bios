@@ -1,0 +1,30 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemFeatCsIntLvLib
+  FILE_GUID                      = CDCA711D-44E8-4d63-89CB-4B84F186B0C7
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemFeatCsIntLvLib
+
+[sources.common]
+  mfcsi.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+
+[Ppis]
+
+[Pcd]
+
+
+

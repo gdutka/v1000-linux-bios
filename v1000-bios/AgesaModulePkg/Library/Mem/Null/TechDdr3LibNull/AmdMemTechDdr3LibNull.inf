@@ -1,0 +1,34 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemTechDdr3Lib
+  FILE_GUID                      = 9B3E2BEE-32BA-4c02-A517-E25B1135DAB1
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemTechDdr3Lib
+
+[sources.common]
+  mt3.c
+  mtlrdimm3.c
+  mtot3.c
+  mtrci3.c
+  mtsdi3.c
+  mtspd3.c
+  mttecc3.c
+  mttwl3.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+
+[Pcd]
+
+

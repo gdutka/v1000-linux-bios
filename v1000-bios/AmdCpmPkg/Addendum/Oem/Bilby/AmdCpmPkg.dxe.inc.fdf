@@ -1,0 +1,39 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+INF RuleOverride = ACPITABLE AmdCpmPkg/Kernel/Asl/AmdCpm3InitAsl.inf
+INF AmdCpmPkg/Kernel/Dxe/AmdCpm3InitDxe.inf
+INF AmdCpmPkg/Kernel/Smm/AmdCpm3InitSmm.inf
+
+INF RuleOverride = ACPITABLE AmdCpmPkg/Features/AcpPowerGating/Asl/AmdCpmAcpPowerGatingAsl.inf
+INF AmdCpmPkg/Features/AcpPowerGating/Dxe/AmdCpmAcpPowerGatingDxe.inf
+#INF RuleOverride = ACPITABLE AmdCpmPkg/Features/DisplayFeature/Asl/DGpuD3Cold/AmdCpm3DGpuD3ColdAsl.inf
+#INF RuleOverride = ACPITABLE AmdCpmPkg/Features/DisplayFeature/Asl/DisplayFeatureI/AmdCpm3DisplayFeatureIAsl.inf
+#INF RuleOverride = ACPITABLE AmdCpmPkg/Features/DisplayFeature/Asl/DisplayFeatureI2/AmdCpm3DisplayFeatureI2Asl.inf
+#INF RuleOverride = ACPITABLE AmdCpmPkg/Features/DisplayFeature/Asl/DisplayFeatureNoI/AmdCpm3DisplayFeatureNoIAsl.inf
+#INF RuleOverride = ACPITABLE AmdCpmPkg/Features/DisplayFeature/Asl/DisplayFeatureD/AmdCpm3DisplayFeatureDAsl.inf
+#INF RuleOverride = ACPITABLE AmdCpmPkg/Features/DisplayFeature/Asl/DisplayFeatureD2/AmdCpm3DisplayFeatureD2Asl.inf
+#INF RuleOverride = ACPITABLE AmdCpmPkg/Features/DisplayFeature/Asl/MxmOverT/AmdCpm3DisplayFeatureMxmOverTAsl.inf
+#INF RuleOverride = ACPITABLE AmdCpmPkg/Features/DisplayFeature/Asl/DisplayConnectEvent/AmdCpm3DisplayFeatureDisplayConnectEventAsl.inf
+#INF AmdCpmPkg/Features/DisplayFeature/Dxe/AmdCpm3DisplayFeatureDxe.inf
+#INF AmdCpmPkg/Features/DisplayFeature/Smm/AmdCpm3DisplayFeatureSmm.inf
+INF RuleOverride = ACPITABLE AmdCpmPkg/Features/PcieInit/Asl/ExpressCard/AmdCpmExpressCardAsl.inf
+INF AmdCpmPkg/Features/PcieInit/Dxe/AmdCpm3PcieInitDxe.inf
+INF AmdCpmPkg/Features/GpioInit/Dxe/AmdCpm3GpioInitDxe.inf
+INF AmdCpmPkg/Features/GpioInit/Smm/AmdCpm3GpioInitSmm.inf
+#INF RuleOverride = ACPITABLE AmdCpmPkg/Features/Ucsi/Asl/AmdCpm3UcsiAsl.inf
+#INF AmdCpmPkg/Features/Ucsi/Dxe/AmdCpm3UcsiDxe.inf
+
+INF AmdCpmPkg/Addendum/Oem/Bilby/Features/I2cMaster/Dxe/AmdI2cMasterDxe.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Features/xGbEI2cMaster/xGbEI2cMasterDxe.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Devices/Pca9535a/Dxe/Pca9535aDxe.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Devices/Pca9545a/Dxe/Pca9545aDxe.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Dxe/PspPlatformDriver/PspPlatform.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Dxe/AmdPbsSetupDxe/AmdPbsSetupDxe.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Dxe/AmdCpmOemInitDxe/AmdCpmOemInitDxe.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Dxe/AmdXgbeWorkaround/AmdXgbeWorkaround.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Dxe/FanPolicyDxe/FanPolicyDxe.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Smm/AmdCpmOemSmm.inf

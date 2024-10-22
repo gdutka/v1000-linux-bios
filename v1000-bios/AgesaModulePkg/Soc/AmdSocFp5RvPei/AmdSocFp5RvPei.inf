@@ -1,0 +1,78 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdSocFp5RvPei
+  FILE_GUID                      = 01C827C2-7765-42E9-B31C-E03E89A09113
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdSocFp5RvPeiInit
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/AgesaModuleMemPkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  DebugLib
+  AmdSocBaseLib
+  AmdIdsHookLib
+  SocCmnIdsHookRvLibPei
+  PeiSocLogicalIdServicesLib
+  PeiSocBistLoggingLib
+  FabricResourceInitLib
+  CcxSetMmioCfgBaseLib
+
+[sources]
+  AmdSocFp5RvPei.c
+  AmdSocFp5RvPei.h
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gAmdErrorLogDepexPpiGuid         #PRODUCED
+  #FCH
+  gAmdFchSandstoneDepexPpiGuid     #PRODUCED
+  gAmdFchSSSmbusDepexPpiGuid       #PRODUCED
+  #PSP
+  gAmdPspPeiV2DepexPpiGuid         #PRODUCED
+  #Memory
+  gAmdMemAm4PeimZpDepexPpiGuid     #PRODUCED
+  gAmdMemPeimDepexPpiGuid          #PRODUCED
+  gAmdMemChanXLatZpDepexPpiGuid    #PRODUCED
+  gAmdMemSmbiosV2RvPpiGuid         #PRODUCED
+  gAmdMemoryPeiHobRvDepexPpiGuid   #PRODUCED
+  gAmdMemRestoreDepexPpiGuid       #PRODUCED
+  #NBIO
+  gAmdNbioRVEarlyPhaseDepexPpiGuid #PRODUCED
+  gAmdNbioBaseRVPeiDepexPpiGuid    #PRODUCED
+  gAmdNbioSmuV10PeiDepexPpiGuid    #PRODUCED
+  gAmdNbioPcieRVPeiDepexPpiGuid    #PRODUCED
+  gAmdNbioIOMMUZPPeiDepexPpiGuid   #PRODUCED
+  #CCX
+  gAmdCcxZenRvDepexPpiGuid         #PRODUCED
+  #DF
+  gAmdFabricRvDepexPpiGuid         #PRODUCED
+  #Agesa PCD configuration
+  gAmdPcdInitReadyPpiGuid          #PRODUCED
+  gAmdSocAgesaGroupIdentificationPpiGuid #CONSUMED
+  gAmdCcxPeiInitCompletePpiGuid    # CONSUMED
+  gApobZpRvPeiDepexPpiGuid   # CONSUMED
+
+[Depex]
+  TRUE
+

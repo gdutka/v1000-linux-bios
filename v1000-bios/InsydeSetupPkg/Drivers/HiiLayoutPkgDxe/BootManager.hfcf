@@ -1,0 +1,140 @@
+/** @file
+  Layout and hot key definitions for Boot Manager
+
+;******************************************************************************
+;* Copyright (c) 2018, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+#define BOOT_MANAGER_FORMSET_GUID   {0x847bc3fe, 0xb974, 0x446d, 0x94, 0x49, 0x5a, 0xd5, 0x41, 0x2e, 0x99, 0x3b}
+
+style .LtdeBootManagerScreen                property {color : lightgray; background-color : black     ;} endstyle;
+style .LtdeBootManagerTitle                 property {color : white    ; background-color : blue      ;} endstyle;
+style .LtdeBootManagerSetupPage             property {color : blue     ; background-color : lightgray ;} endstyle;
+style .LtdeBootManagerSetupPage :highlight  property {color : white    ;                               } endstyle;
+style .LtdeBootManagerSetupPage :grayout    property {color : black    ;                               } endstyle;
+style .LtdeBootManagerSetupPage :selectable property {color : blue     ;                               } endstyle;
+style .LtdeBootManagerSetupPage :focus      property {color : white    ;                               } endstyle;
+style .LtdeBootManagerHelpText              property {color : blue     ; background-color : lightgray ;} endstyle;
+style .LtdeBootManagerHelpText  :highlight  property {color : white    ;                               } endstyle;
+style .LtdeBootManagerHelpText  :grayout    property {color : black    ;                               } endstyle;
+style .LtdeBootManagerHelpText  :selectable property {color : blue     ; background-color : lightgray ;} endstyle;
+style .LtdeBootManagerHelpText  :focus      property {color : blue     ; background-color : lightgray ;} endstyle;
+style .LtdeBootManagerHotkey                property {color : lightgray; background-color : blue      ;} endstyle;
+style .LtdeBootManagerHotkey    :highlight  property {color : white    ;                               } endstyle;
+style .LtdeBootManagerHotkey    :grayout    property {color : darkgray ;                               } endstyle;
+style .LtdeBootManagerHotkey    :selectable property {color : blue     ;                               } endstyle;
+style .LtdeBootManagerHotkey    :focus      property {color : white    ;                               } endstyle;
+style .LtdeBootManagerQuestion              property {color : lightgray; background-color : blue      ;} endstyle;
+style .LtdeBootManagerQuestion  :help       property {color : blue     ; background-color : lightgray ;} endstyle;
+style .LtdeBootManagerQuestion  :highlight  property {color : white    ;                               } endstyle;
+style .LtdeBootManagerQuestion  :grayout    property {color : darkgray ;                               } endstyle;
+style .LtdeBootManagerQuestion  :selectable property {color : lightgray;                               } endstyle;
+style .LtdeBootManagerQuestion  :focus      property {color : white    ; background-color : cyan      ;} endstyle;
+style .LtdeBootManagerQuestion  :disabled   property {color : black    ; background-color : lightgray ;} endstyle;
+style .LtdeBootManagerQuestion  :enabled    property {color : white    ; background-color : black     ;} endstyle;
+
+style .LtdeBootManagerScreen    panel property {visibility : hidden ; left :  0%; top :  0em; right :  0%; bottom :  1em;                    } endstyle;
+style .LtdeBootManagerTitle     panel property {visibility : visible; left :  0%; top :  0em; right :  0%; bottom : -2em; border-width : 1em;} endstyle;
+style .LtdeBootManagerSetupPage panel property {visibility : visible; left : 1em; top :  4em; right : 33%; bottom :  6em;                    } endstyle;
+style .LtdeBootManagerHelpText  panel property {visibility : visible; left : 67%; top :  4em; right : 1em; bottom :  6em;                    } endstyle;
+style .LtdeBootManagerHotkey    panel property {visibility : visible; left :  0%; top : -4em; right :  0%; bottom :  1em; border-width : 1em;} endstyle;
+style .LtdeBootManagerQuestion  panel property {visibility : hidden ; left :  0%; top :  0em; right :  0%; bottom :   0%; border-width : 1em;} endstyle;
+
+layout
+  layoutid          = BOOT_MANAGER_LAYOUT_ID,
+  displayengineguid = DISPLAY_ENGINE_LOCAL_TEXT_GUID;
+
+  panel panelid = SCREEN_PANEL_ID    , paneltype = H2O_PANEL_TYPE_SCREEN         ; style = .LtdeBootManagerScreen   ; endpanel;
+  panel panelid = TITLE_PANEL_ID     , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LtdeBootManagerTitle    ; endpanel;
+  panel panelid = SETUP_PAGE_PANEL_ID, paneltype = H2O_PANEL_TYPE_SETUP_PAGE     ; style = .LtdeBootManagerSetupPage; endpanel;
+  panel panelid = HOTKEY_PANEL_ID    , paneltype = H2O_PANEL_TYPE_HOTKEY         ; style = .LtdeBootManagerHotkey   ; endpanel;
+  panel panelid = HELP_TEXT_PANEL_ID , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LtdeBootManagerHelpText ; endpanel;
+  panel panelid = QUESTION_PANEL_ID  , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LtdeBootManagerQuestion ; endpanel;
+endlayout;
+
+vfr
+  formset
+    guid   = BOOT_MANAGER_FORMSET_GUID;
+    layout = BOOT_MANAGER_LAYOUT_ID;
+
+    hotkey hotkeyid = 0x301;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SHOW_HELP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SHOW_HELP,
+           style    = .H2OHotKeyShowHelp;
+    endhotkey;
+    hotkey hotkeyid = 0x302;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_DISCARD_EXIT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_DISCARD_AND_EXIT,
+           style    = .H2OHotKeyDiscardAndExit;
+    endhotkey;
+    hotkey hotkeyid = 0x303;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_ITEM,
+           group    = 1,
+           style    = .H2OHotKeySelectPreviousItem;
+    endhotkey;
+    hotkey hotkeyid = 0x304;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_NEXT_ITEM,
+           group    = 1,
+           style    = .H2OHotKeySelectNextItem;
+    endhotkey;
+#if FeaturePcdGet(PcdH2OBootMgrChangeBootOrderSupported)
+    hotkey hotkeyid = 0x305;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_PREVIOUS_VALUE_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           group    = 3,
+           action   = H2O_HOT_KEY_ACTION_CALLBACK,
+           actionvalue = BOOLEAN(FALSE),
+           style    = .H2OHotKeyShiftDown;
+    endhotkey;
+    hotkey hotkeyid = 0x306;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_NEXT_VALUE_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           group    = 3,
+           action   = H2O_HOT_KEY_ACTION_CALLBACK,
+           actionvalue = BOOLEAN(TRUE),
+           style    = .H2OHotKeyShiftUp;
+    endhotkey;
+    hotkey hotkeyid = 0x308;
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_PREVIOUS_VALUE_HIDDEN_KEY_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_CALLBACK,
+           actionvalue = BOOLEAN(FALSE),
+           style    = .H2OHotKeyShiftDownHiddenKey;
+    endhotkey;
+    hotkey hotkeyid = 0x309;
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_NEXT_VALUE_HIDDEN_KEY_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_CALLBACK,
+           actionvalue = BOOLEAN(TRUE),
+           style    = .H2OHotKeyShiftUpHiddenKey;
+    endhotkey;
+#endif
+    hotkey hotkeyid = 0x307;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_ENTER),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_ENTER_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_ENTER_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_ENTER,
+           style    = .H2OHotKeyEnter;
+    endhotkey;
+  endformset;
+endvfr;
+

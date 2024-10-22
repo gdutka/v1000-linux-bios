@@ -1,0 +1,22 @@
+//
+// Auto-generated file for BuildPspDirectory
+//
+BIOS_IMAGE  INPUT_FILE=Gardenia.fd, FIXFV_BASE=0x70000, FIXFV_SIZE=0x10000, DYNFV_BASE=0x80000, DYNFV_SIZE=0xa0000, RTM_SIZE=0x200000
+
+PSP_ENTRY TYPE=0, FILE=AmdPubKeyCZ.bin
+PSP_ENTRY TYPE=1, FILE=PspBootLoader_prod_CZ.sbin
+PSP_ENTRY TYPE=8, FILE=SmuFirmwareCZ.sbin
+PSP_ENTRY TYPE=3, FILE=PspRecoveryBootLoader_prod_CZ.sbin
+PSP_ENTRY TYPE=5, FILE=RtmPubSignedCZ.key
+PSP_ENTRY TYPE=7, FILE=RTMSignature.bin, SIZE=0x100
+PSP_ENTRY TYPE=2, FILE=PspSecureOs_prod_CZ.csbin
+PSP_ENTRY TYPE=4, FILE=PspNvramCZ.bin, Address=0x60000
+PSP_ENTRY TYPE=9, FILE=PspSecureDebugCZ.Key
+#set VALUE = 0 to disable the Secure Debug Unlock feature 
+PSP_ENTRY TYPE=0xb, VALUE=0x1
+PSP_ENTRY TYPE=0xc, FILE=PspTrustlets_prod_CZ.cbin
+PSP_ENTRY TYPE=0xd, FILE=TrustletKey_prod_CZ.sbin
+PSP_ENTRY TYPE=0x10, FILE=PspAgesaS3Resume_prod_CZ.csbin
+PSP_ENTRY TYPE=0x12, FILE=SmuFirmware2_prod_CZ.sbin
+PSP_ENTRY TYPE=0x5F, FILE=SmuScsCZ.bin
+PSP_ENTRY TYPE=0x1A, FILE=PspNvramS3_CZ.bin, Address=0x5fb018

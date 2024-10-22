@@ -1,0 +1,119 @@
+/** @file
+
+;*******************************************************************************
+;* Copyright (c) 2013, Insyde Software Corporation. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;*******************************************************************************
+*/
+
+//
+// Statements that include other files
+//
+#include "Wdrt.h"
+
+//
+// Watchdog Resource Table
+//
+EFI_ACPI_WATCHDOG_RESOURCE_1_0_TABLE Wdrt = {
+  {EFI_ACPI_3_0_WATCHDOG_RESOURCE_TABLE_SIGNATURE,
+  sizeof (EFI_ACPI_WATCHDOG_RESOURCE_1_0_TABLE),
+  EFI_ACPI_3_0_WDRT_RESOURCE_TABLE_REVISION,
+
+  //
+  // Checksum will be updated at runtime
+  //
+  0x00,
+
+  //
+  // It is expected that these values will be programmed at runtime
+  //
+  {' ', ' ', ' ', ' ', ' ', ' '},
+  0,
+  0,
+  0,
+  0},
+
+  //
+  // Control Register Address (GAS Form)
+  //
+  //
+  // Hudson-2/3 WDT resouce type is system memory but not system I/O
+  //
+  {0x00,
+  0x20,
+  0x00,
+  0x03,
+  //
+  // Offset address is unknown
+  //
+  0000},
+
+  //
+  // Count Register Address (GAS Form)
+  //
+  {0x00,
+  0x20,
+  0x00,
+  0x03,
+  //
+  // Offset address is unknown
+  //
+  0000},
+  //
+  // PciDeviceId
+  //
+  0xFFFF,
+  //
+  // PciVenderId
+  //
+  0xFFFF,
+  //
+  // PciBusNumber
+  //
+  0x00,
+  //
+  // PciDeviceNumber
+  //
+  0x00,
+  //
+  // PciFunctionNumber
+  //
+  0x00,
+  //
+  // PciSegment
+  //
+  0x0,
+  //
+  // MaxCount
+  //
+  1023,
+  //
+  // Units
+  //
+  0x0
+};
+
+#ifdef __GNUC__
+VOID*
+ReferenceAcpiTable (
+ VOID
+ )
+
+{
+ return (VOID*)&Wdrt;
+}
+#else
+VOID
+main (
+ VOID
+ )
+
+{
+  return;
+}
+#endif

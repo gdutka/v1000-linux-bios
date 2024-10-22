@@ -1,0 +1,55 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CbsSetupDxeZP
+  FILE_GUID                      = A5E369C8-ABF9-4B43-B212-FF1BFD35666D
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = CbsSetupDxeInit
+
+[Sources]
+  CbsSetupDxe.c
+  CbsSetupDxe.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  HiiLib
+  PrintLib
+  UefiLib
+  CbsSetupLib
+  AmdPspBaseLibV2
+  AmdPspApobLib
+  ApobCommonServiceLib
+
+[Guids]
+  gEfiIfrTianoGuid                              ## CONSUMES ## Guid
+  gCbsSystemConfigurationGuid                   ## PRODUCES
+
+[Protocols]
+  gEfiHiiStringProtocolGuid                     ## CONSUMES
+  gEfiHiiConfigRoutingProtocolGuid              ## CONSUMES
+  gEfiHiiConfigAccessProtocolGuid               ## PRODUCES
+  gEfiHiiDatabaseProtocolGuid                   ## CONSUMES
+  gCbsSetupProtocolGuid                         ## CONSUMES
+
+[Depex]
+  gEfiHiiDatabaseProtocolGuid AND gEfiVariableArchProtocolGuid AND gEfiVariableWriteArchProtocolGuid
+

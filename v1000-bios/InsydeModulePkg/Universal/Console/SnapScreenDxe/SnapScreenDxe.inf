@@ -1,0 +1,76 @@
+## @file
+#
+#  SnapScree driver for capature screen image to BMP file.
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SnapScreenDxe
+  FILE_GUID                      = FA82AC30-EA3B-4fdc-9D90-C2FDFFCAFBE4
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = SnapScreenEntryPoint
+
+[Sources]
+  SnapScreen.c
+  SnapLib.c
+  SnapBmp.c
+  SnapWin.c
+  SnapDialog.c
+  SnapConOut.c
+  SnapTextOutHook.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiLib
+  BaseMemoryLib
+  UefiDriverEntryPoint
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  PrintLib
+  OemGraphicsLib
+  ConsoleLib
+  VariableLib
+
+[Guids]
+  gEfiFileInfoGuid
+  gEfiGenericVariableGuid
+  gEfiGlobalVariableGuid
+  gEfiFileSystemInfoGuid
+  gEfiDiskInfoIdeInterfaceGuid
+  gEfiDiskInfoScsiInterfaceGuid
+  gEfiDiskInfoUsbInterfaceGuid
+  gEfiDiskInfoAhciInterfaceGuid
+
+[Protocols]
+  gEfiSimpleFileSystemProtocolGuid
+  gEfiSimpleTextOutProtocolGuid
+  gEfiGraphicsOutputProtocolGuid
+  gEfiConsoleControlProtocolGuid
+  gEfiGraphicsOutputProtocolGuid
+  gEfiSimpleTextInputExProtocolGuid
+  gEfiSimpleTextInputExProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiDiskInfoProtocolGuid
+  gEfiBlockIoProtocolGuid
+  gEfiLoadedImageProtocolGuid
+  #gSnapScreenDriverGuid                 #Produce
+
+[Depex]
+  TRUE
+  

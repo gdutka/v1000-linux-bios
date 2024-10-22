@@ -1,0 +1,31 @@
+/** @file
+  HTTP boot configuration related functions.
+
+;******************************************************************************
+;* Copyright (c) 2019 - 2019, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+#include "HttpBootConfigNVDataStruc.h"
+
+formset 
+  guid  = HTTP_BOOT_CONFIG_LINK_FORM_GUID,
+  title = STRING_TOKEN(STR_HTTP_BOOT_CONFIG_FORM_TITLE),
+  help  = STRING_TOKEN(STR_HTTP_BOOT_CONFIG_FORM_HELP),
+  classguid = HTTP_BOOT_CONFIG_LINK_FORM_GUID,
+
+  form formid = FORMID_MAIN_FORM,
+    title = STRING_TOKEN(STR_HTTP_BOOT_CONFIG_FORM_TITLE);
+    subtitle text = STRING_TOKEN (STR_HTTP_BOOT_CONFIG_FORM_HELP);
+
+    label HTTP_BOOT_DEVICE_LIST_START_ID;
+    label HTTP_BOOT_DEVICE_LIST_END_ID;
+  endform;
+
+endformset;

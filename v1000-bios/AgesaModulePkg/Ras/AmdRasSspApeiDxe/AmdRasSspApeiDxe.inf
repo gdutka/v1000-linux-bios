@@ -1,0 +1,53 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdRasSspApeiDxe
+  FILE_GUID                      = 573A445F-4FB6-C2D3-2CC0-5B9C772CFB94
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdRasSspApeiDxeInit
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleRasPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiDriverEntryPoint
+  DebugLib
+  RasSspBaseLib
+
+[sources]
+  AmdRasSspApeiDxe.c
+  AmdRasSspApeiDxe.h
+
+[Guids]
+  gEfiEventReadyToBootGuid
+
+[Protocols]
+  gEfiAcpiTableProtocolGuid                 #CONSUMED
+  gEfiAcpiSdtProtocolGuid                   #CONSUMED
+  gEfiMpServiceProtocolGuid                 #CONSUMED
+  gAmdRasInitDataProtocolGuid               #CONSUMED
+  gAmdRasApei2ProtocolGuid                  #PRODUCED
+  gAmdFabricSspDepexProtocolGuid             #CONSUMED
+
+[Depex]
+  gEfiAcpiTableProtocolGuid AND
+  gEfiAcpiSdtProtocolGuid AND
+  gEfiMpServiceProtocolGuid AND
+  gAmdRasInitDataProtocolGuid AND
+  gAmdFabricSspDepexProtocolGuid AND
+  gAmdRasSspDepexProtocolGuid
+
+

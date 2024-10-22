@@ -1,0 +1,73 @@
+#image IMAGE_FORM_HALO                    "Images/formhalo.png"
+#image IMAGE_MENU_BACKGROUND_NORMAL       "Images/MenuBkgNormal.png"
+!if gH2OSetupTokenSpaceGuid.PcdH2OLmdeMultiLayout == 0
+#image IMAGE_MENU_BACKGROUND_HOT          "Images/MenuBkgHot.png"
+!endif
+#image IMAGE_HOTKEY_SHOW_HELP             "Images/HotkeyShowHelp.png"
+#image IMAGE_HOTKEY_SELECT_ITEM_UP        "Images/HotkeySelectItemUp.png"
+#image IMAGE_HOTKEY_SELECT_ITEM_DOWN      "Images/HotkeySelectItemDown.png"
+#image IMAGE_HOTKEY_SELECT_MENU_UP        "Images/HotkeySelectMenuUp.png"
+#image IMAGE_HOTKEY_SELECT_MENU_DOWN      "Images/HotkeySelectMenuDown.png"
+#image IMAGE_HOTKEY_MODIFY_VALUE_UP       "Images/HotKeyModifyValueUp.png"
+#image IMAGE_HOTKEY_MODIFY_VALUE_DOWN     "Images/HotKeyModifyValueDown.png"
+#image IMAGE_HOTKEY_LOAD_DEFAULT          "Images/HotKeyLoadDefault.png"
+#image IMAGE_HOTKEY_SAVE_AND_EXIT         "Images/HotKeySaveAndExit.png"
+#image IMAGE_HOTKEY_ENTER                 "Images/HotkeyEnter.png"
+#image IMAGE_HOTKEY_DISCARD_EXIT          "Images/HotKeyDiscardExit.png"
+!if gH2OSetupTokenSpaceGuid.PcdH2OLmdeMultiLayout == 0
+#image IMAGE_OWNER_DRAW_INSYDE            "Images/OwnerDrawInsyde.png"
+#image IMAGE_OWNER_DRAW_INSYDE_H2O        "Images/OwnerDrawInsydeH2O.png"
+!endif
+!if gH2OSetupTokenSpaceGuid.PcdH2OLmdeMultiLayout == 0
+#image IMAGE_OWNER_DRAW_SEPARATOR         "Images/OwnerDrawSeparator.png"
+#image IMAGE_OWNER_DRAW_TEMPERATURE       "Images/OwnerDrawTemperature.png"
+#image IMAGE_OWNER_DRAW_TIME              "Images/OwnerDrawTime.png"
+!endif
+#image IMAGE_DIALOG_SEPARATOR             "Images/DialogSeparator.png"
+#image IMAGE_DIALOG_BUTTON_DOWN           "Images/DialogButtonDown.png"
+#image IMAGE_DIALOG_BUTTON_UP             "Images/DialogButtonUp.png"
+#image IMAGE_DIALOG_SELECTED_ICON         "Images/DialogSelectedIcon.png"
+#image IMAGE_DIALOG_SORT_ICON             "Images/DialogSortIcon.png"
+!if gH2OSetupTokenSpaceGuid.PcdH2OLmdeMultiLayout == 0
+#image IMAGE_SCROLLBAR_THUMB              "Images/ScrollbarThumb.png"
+#image IMAGE_SCROLLBAR_BACKGROUND         "Images/ScrollbarBackground.png"
+!endif
+#image IMAGE_SETUP_MENU_TEXT_OP_BKG       "Images/SetupMenuTextOpBkg.png"
+#image IMAGE_FORM_TITLE_BKG               "Images/FormTitleBkg.png"
+#image IMAGE_OPTION_BKG                   "Images/OptionBkg.png"
+!if gH2OSetupTokenSpaceGuid.PcdH2OLmdeMultiLayout == 0
+#image IMAGE_OWNER_DRAW_BKG               "Images/OwnerDrawBkg.png"
+#image IMAGE_CHECK_BOX_BKG                "Images/CheckBoxBkg.png"
+#image IMAGE_CHECK_BOX_BORDER             "Images/CheckBoxBorder.png"
+#image IMAGE_CHECK_BOX_BUTTON             "Images/CheckBoxButton.png"
+!endif
+
+//
+// Multi Layout
+//
+!if gH2OSetupTokenSpaceGuid.PcdH2OLmdeMultiLayout == 1
+#image IMAGE_BKG                          "MultiLayout/MultiLayout1Images/Bg.jpg"
+#image IMAGE_DIALOG_BKG                   "MultiLayout/MultiLayout1Images/DialogBkg.png"
+#image IMAGE_FT_BORDER                    "MultiLayout/MultiLayout1Images/FormTitle_border.png"
+#image IMAGE_HT_BORDER                    "MultiLayout/MultiLayout1Images/HelpPanel_Border.png"
+#image IMAGE_HT_SEPARATOR                 "MultiLayout/MultiLayout1Images/HelpPanel_Separator.png"
+#image IMAGE_SM_BORDER                    "MultiLayout/MultiLayout1Images/SetupMenu_border.png"
+#image IMAGE_SP_SELECTED_BKG              "MultiLayout/MultiLayout1Images/SetupPage_selected_bg.png"
+#image IMAGE_SP_TRIANGLE                  "MultiLayout/MultiLayout1Images/SetupPage_triangle.png"
+
+#image IMAGE_MENU_BACKGROUND_HOT          "MultiLayout/MultiLayout1Images/MenuBkgHot.png"
+#image IMAGE_CHECK_BOX_BKG                "MultiLayout/MultiLayout1Images/CheckBoxBkg.png"
+#image IMAGE_CHECK_BOX_BORDER             "MultiLayout/MultiLayout1Images/CheckBoxBorder.png"
+#image IMAGE_CHECK_BOX_BUTTON             "MultiLayout/MultiLayout1Images/CheckBoxButton.png"
+#image IMAGE_OWNER_DRAW_INSYDE            "MultiLayout/MultiLayout1Images/OwnerDrawInsyde.png"
+#image IMAGE_OWNER_DRAW_INSYDE_H2O        "MultiLayout/MultiLayout1Images/OwnerDrawInsydeH2O.png"
+#image IMAGE_OWNER_DRAW_SEPARATOR         "MultiLayout/MultiLayout1Images/OwnerDrawSeparator.png"
+#image IMAGE_OWNER_DRAW_TEMPERATURE       "MultiLayout/MultiLayout1Images/OwnerDrawTemperature.png"
+#image IMAGE_OWNER_DRAW_TIME              "MultiLayout/MultiLayout1Images/OwnerDrawTime.png"
+
+#image IMAGE_SCROLLBAR_THUMB              "MultiLayout/MultiLayout1Images/ScrollbarThumb.png"
+#image IMAGE_SCROLLBAR_BACKGROUND         "MultiLayout/MultiLayout1Images/ScrollbarBackground.png"
+
+#image IMAGE_OWNER_DRAW_BKG               "MultiLayout/MultiLayout1Images/OwnerDrawBkg.png"
+!endif
+

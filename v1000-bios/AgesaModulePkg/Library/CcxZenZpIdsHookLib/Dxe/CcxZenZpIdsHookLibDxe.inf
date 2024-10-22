@@ -1,0 +1,65 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = CcxZenZpIdsHookLibDxe
+  FILE_GUID                      = B6F68B8D-350A-4B94-8A90-4B71F85F8F61
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CcxZenZpIdsHookLibDxe
+
+[Sources.common]
+  CcxZenZpIdsHookLibDxe.c
+  CcxZenZpIdsSyncMsr.c
+  CcxZenZpIdsSyncMsr.h
+  CcxZenZpIdsCustomPstates.c
+  CcxZenZpIdsCustomPstates.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+  BaseMemoryLib
+  AmdIdsDebugPrintLib
+  CcxRolesLib
+  AmdPspApobLib
+  CcxPstatesLib
+  BaseCoreLogicalIdLib
+  CcxMpServicesLib
+  CcxIdsCustomPstatesLib
+
+[Guids]
+
+[Protocols]
+  gEfiMpServiceProtocolGuid #CONSUME
+  gAmdFabricTopologyServices2ProtocolGuid #CONSUME
+  gAmdCoreTopologyServicesProtocolGuid   #CONSUME
+  gAmdNbioSmuServicesProtocolGuid        #CONSUME
+  gEfiSmmControl2ProtocolGuid #CONSUME
+
+[Ppis]
+
+[FeaturePcd]
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdOcDisable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxP0Setting
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxP0Fid
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxP0Did
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxP0Vid
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+

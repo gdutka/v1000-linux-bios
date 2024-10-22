@@ -1,0 +1,71 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdFabricRvDxe
+  FILE_GUID                      = 25075106-F537-4BD4-AFA5-CFF0E6F3B2A6
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdFabricRvDxeInit
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses.common.DXE_DRIVER]
+  BaseLib
+  UefiLib
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  BaseFabricTopologyLib
+  DxeFabricTopologyServices2Lib
+  FabricRegisterAccLib
+  AmdIdsHookLib
+  FabricIdsHookRvLibDxe
+  FabricResourceReportToGcdLib
+  BaseCoreLogicalIdLib
+  AmdHeapLib
+  DxeFabricResourceManagerServicesLib
+
+[sources]
+  AmdFabricRvDxe.c
+  FabricAcpiSlit.c
+  FabricAcpiCdit.c
+  FabricAcpiDistanceInfo.c
+  FabricAcpiDomainInfo.c
+  FabricAcpiDomainInfo.h
+  FabricAcpiSrat.c
+  FabricAcpiCrat.c
+  FabricAcpiTable.h
+  FabricPiePwrMgmt.c
+  FabricPiePwrMgmt.h
+  FabricReadyToBoot.c
+  FabricReadyToBoot.h
+
+[Guids]
+  gEfiEventReadyToBootGuid
+
+[Protocols]
+  gAmdFabricTopologyServices2ProtocolGuid      # PRODUCED
+  gAmdFabricResourceManagerServicesProtocolGuid # PRODUCED
+  gAmdFabricNumaServicesProtocolGuid           # PRODUCED
+  gAmdFabricAcpiSlitServicesProtocolGuid       # PRODUCED
+  gAmdFabricAcpiSratServicesProtocolGuid       # PRODUCED
+  gAmdFabricAcpiCditServicesProtocolGuid       # PRODUCED
+  gAmdFabricAcpiCratServicesProtocolGuid       # PRODUCED
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCStateMode
+
+[Depex]
+  gAmdFabricRvDepexProtocolGuid
+

@@ -1,0 +1,103 @@
+## @file
+#  Provides ACPI metholds for TPM 2.0 support
+#
+#  This driver implements TPM 2.0 definition block in ACPI table and 
+#  registers SMI callback functions for Tcg2 physical presence and 
+#  MemoryClear to handle the requests from ACPI method.
+#
+#  Caution: This module requires additional review when modified.
+#  This driver will have external input - variable and ACPINvs data in SMM mode.
+#  This external input must be validated carefully to avoid security issue.
+#
+#******************************************************************************
+#* Copyright (c) 2015, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+# Copyright (c) 2015, Intel Corporation. All rights reserved.<BR>
+# This program and the accompanying materials
+# are licensed and made available under the terms and conditions of the BSD License
+# which accompanies this distribution. The full text of the license may be found at
+# http://opensource.org/licenses/bsd-license.php
+# THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+# WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = fTPMTcg2Smm
+  MODULE_UNI_FILE                = Tcg2Smm.uni
+  FILE_GUID                      = 2B872B22-6C11-4dfd-994A-96BC13920A43
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InitializeTcgSmm
+
+[Sources]
+  Tcg2Smm.h
+  fTPMTcg2Smm.c
+  fTpm2.asl
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  UefiBootServicesTableLib
+  DebugLib
+  DxeServicesLib
+#  Tpm2TisCommLib
+  TpmMeasurementLib
+#  Tpm2DeviceLib
+  Tcg2PpVendorLib  
+  VariableLib
+  AmdPspCommonLib
+  AmdPspFtpmLib
+  UefiLib
+
+[Guids]
+  ## SOMETIMES_PRODUCES ## Variable:L"MemoryOverwriteRequestControl"
+  ## SOMETIMES_CONSUMES ## Variable:L"MemoryOverwriteRequestControl"  
+  gEfiMemoryOverwriteControlDataGuid
+  gEfiTpmDeviceInstanceTpm20FtpmGuid
+  gEfiTcg2PhysicalPresenceGuid
+
+[Protocols]
+  gEfiSmmSwDispatch2ProtocolGuid                                ## CONSUMES
+  gEfiSmmVariableProtocolGuid                                   ## CONSUMES
+  gEfiAcpiTableProtocolGuid                                     ## CONSUMES
+
+[Pcd]
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpmInstanceGuid              ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId            ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId       ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision      ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId        ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorRevision  ## SOMETIMES_CONSUMES
+  gChipsetPkgTokenSpaceGuid.PcdTpmType
+  gInsydeTokenSpaceGuid.PcdSoftwareSmiPort
+
+[Depex]
+  gEfiAcpiTableProtocolGuid AND
+  gEfiSmmSwDispatch2ProtocolGuid AND
+  gEfiSmmVariableProtocolGuid AND
+  gEfiTcg2ProtocolGuid AND
+  gEfiPciEnumerationCompleteProtocolGuid
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  Tcg2SmmExtra.uni  

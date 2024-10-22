@@ -1,0 +1,51 @@
+## @file
+# Device Manager driver
+#
+#******************************************************************************
+#* Copyright (c) 2015 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DeviceManagerDxe
+  FILE_GUID                      = E4ED28FD-13C1-40c4-B55A-C5260771A2CF
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DeviceManagerEntry
+
+[Sources]
+  DeviceManagerDxe.h
+  DeviceManagerDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DebugLib
+  GenericBdsLib
+  GenericUtilityLib
+  HiiExLib
+  PcdLib
+
+[Guids]
+  gDeviceManagerFormSetGuid
+
+[Protocols]
+  gEfiFormBrowser2ProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiLoadFileProtocolGuid
+
+[Depex]
+  TRUE
+

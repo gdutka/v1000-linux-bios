@@ -1,0 +1,22 @@
+## @file
+#  Platform Package Flash Description File
+#
+#******************************************************************************
+#* Copyright (c) 2016, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[FV.DXEFV]
+!if gH2OUvePkgTokenSpaceGuid.PcdH2OUveSupported
+INF $(INSYDE_H2OUVE_PKG)/ConfigUtility/H2OUveConfigUtilDxe/H2OUveConfigUtilDxe.inf
+!if gH2OUvePkgTokenSpaceGuid.PcdH2OUveSampleFormSupported
+INF $(INSYDE_H2OUVE_PKG)/ConfigUtility/H2OUveSampleFormUtility/H2OUveSampleFormUtil.inf
+!endif
+INF $(INSYDE_H2OUVE_PKG)/VariableEditDxe/VariableEditDxe.inf
+INF $(INSYDE_H2OUVE_PKG)/VariableEditSmm/VariableEditSmm.inf
+!endif

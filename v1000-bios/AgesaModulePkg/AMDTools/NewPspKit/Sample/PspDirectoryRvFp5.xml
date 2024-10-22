@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<DIRS AddressMode="0">
+    <!-- Tag: "PSP_DIR"  Specify the entries belong to PSP Directory -->
+    <!-- Attribute SIZE: -->
+    <!-- If "Size" attribute has been declared, it will be used to specify the whole size reserve for PSP entries, tool will automatically calculate the address for child "IMAGE_ENTRY"-->
+
+    <!-- Tag: "BIOS_DIR"  Specify the entries belong to BIOS Directory, the difference between BIOS and PSP directory,is the "Destination" filed only valid for BIOS directory -->
+    <!-- Attribute SIZE: -->
+    <!-- If "Size" attribute has been declared, it will be used to specify the whole size reserve for PSP entries, tool will automatically calculate the address for child "IMAGE_ENTRY"-->
+    <!-- If "Size" attribute has NOT been declared explicitly, the "address" should be declared in all child "IMAGE_ENTRY"s -->
+  <PSP_DIR Base= "0x00060000" Size="0xF0000" SpiBlockSize="0x1000">
+    <!-- AMD Public Key -->
+    <IMAGE_ENTRY Type="0x00" File="AmdPubKeyRV.bin"/>
+    <!-- PSP Boot Loader firmware -->
+    <IMAGE_ENTRY Type="0x01" File="PspBootLoader_prod_RV.sbin"/>
+    <!-- PSP Secure OS firmware -->
+    <IMAGE_ENTRY Type="0x02" File="psp_os_combined_prod_RV.sbin"/>
+    <!-- PSP Non Volatile data -->
+    <IMAGE_ENTRY Type="0x04" File="PspNvramRV.bin"/>
+    <!-- SMU offchip firmware -->
+    <IMAGE_ENTRY Type="0x08" File="SmuFirmwareRV.csbin"/>
+    <!-- AMD Secure Debug Key -->
+    <IMAGE_ENTRY Type="0x09" File="RavenSecureDebug_PublicKey.bin"/>
+    <VALUE_ENTRY Type="0x0B" Value="0x1"/>
+    <!-- PSP boot-loaded trustlet binaries -->
+<!--    <IMAGE_ENTRY Type="0x0C" File="PspTrustlets_prod_ZP.cbin"/> -->
+    <!-- Trustlet public key signed with AMD key -->
+<!--    <IMAGE_ENTRY Type="0x0D" File="ZeppelinTrustlet.tkn"/> -->
+    <!-- SMU offchip firmware 2-->
+    <IMAGE_ENTRY Type="0x12" File="SmuFirmware2RV.csbin"/>
+    <!-- PSP secure unlock debug image -->
+   <IMAGE_ENTRY Type="0x13" File="secure_unlock_prod_RV.sbin"/>
+    <!-- HW IP configuration file -->
+<!--    <IMAGE_ENTRY Type="0x20" File="PspIpConfigZP.bin"/> -->
+    <!-- Wrapped iKEK -->
+    <IMAGE_ENTRY Type="0x21" File="PspIkekRV.bin"/>
+    <!-- Token unlock Data -->
+    <IMAGE_ENTRY Type="0x22" File="SecureEmptyToken.bin"/>
+    <!-- Entry to load security gasket binary -->
+   <IMAGE_ENTRY Type="0x24" File="security_policy_RV1_FP5_AM4.sbin"/>
+    <!-- Entry to load security gasket binary -->
+   <IMAGE_ENTRY Type="0x124" File="security_policy_RV2_FP5_AM4.sbin"/>
+    <!-- MP2 SFI firmware -->
+    <IMAGE_ENTRY Type="0x25" File="MP2FW.sbin"/>
+    <!-- AMD-TEE OS -->
+    <IMAGE_ENTRY Type="0x28" File="drv_sys_prod_RV.sbin"/>
+    <!-- PSP AGESA Bootloaders -->
+    <IMAGE_ENTRY Type="0x30" File="AgesaBootloader0_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x31" File="AgesaBootloader1_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x32" File="AgesaBootloader2_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x33" File="AgesaBootloader3_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x34" File="AgesaBootloader4_prod_RV.csbin"/>
+  </PSP_DIR>
+
+  <BIOS_DIR Base= "0x00150000" Size="0x20000" SpiBlockSize="0x1000">
+    <!-- Refer to BIOS guide for detail requirement of each Type -->
+    <!-- All definition is same as PSP_DIR except Destination -->
+    <!-- Attribute Destination:(Optional)-->
+    <!-- Destination: Used to specify the destination memory address PSP FW need copy to -->
+    <IMAGE_ENTRY Type="0x05" File="RtmPubSignedRV.key"/>
+    <!-- The RTMSignature.bin is NOT ready when generate Header with "BD" command, Use explicit "Size" to avoid open file fail  -->
+    <!-- <IMAGE_ENTRY Type="0x07" File="RTMSignature.bin" Size="0x100"/> -->
+
+    <!-- Agesa PSP Customization Block (PSP Agesa variable) NVRAM (APCB)-->
+    <IMAGE_ENTRY Type="0x60" File="APCB_RV_D4.bin" Size="0x2000"/>
+
+    <!-- APOB will be filled @0x04000000 which specify by the Destination -->
+    <POINT_ENTRY Type="0x61" Address="0" Size="0" Destination="0x04000000"/>
+
+    <!-- FV_RECOVERY will copy to Temp Memory 0x01000000 as specified by the Destination, also will
+        authenticate due the ResetImage Flag set to 1 -->
+    <POINT_ENTRY Address="0x600000L" Destination="0x01E00000" Size="0x200000" Type="0x62">
+      <TypeAttrib Copy="0x1" ReadOnly="0x0" RegionType="0x0" ResetImage="0x1"/>
+    </POINT_ENTRY>
+
+    <!-- MICROCODE PATCH -->
+    <IMAGE_ENTRY Type="0x66" Instance="0x00" File="UcodePatch_RV_B0.bin" />
+    <IMAGE_ENTRY Type="0x66" Instance="0x01" File="UcodePatch_RV_A0.bin" />
+
+    <!-- APPB PMU Firmware -->
+    <IMAGE_ENTRY Type="0x64" Instance="0x01" File="Appb_Rv_1D_Ddr4_Udimm_Imem.csbin" />
+    <IMAGE_ENTRY Type="0x65" Instance="0x01" File="Appb_Rv_1D_Ddr4_Udimm_Dmem.csbin" />
+    <IMAGE_ENTRY Type="0x64" Instance="0x04" File="Appb_Rv_2D_Ddr4_Imem.csbin" />
+    <IMAGE_ENTRY Type="0x65" Instance="0x04" File="Appb_Rv_2D_Ddr4_Dmem.csbin" />
+  </BIOS_DIR>
+</DIRS>

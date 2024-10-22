@@ -1,0 +1,62 @@
+## @file
+# Insyde H2OUve package Declaration file
+#
+#******************************************************************************
+#* Copyright (c) 2016, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = InsydeH2OUvePkg
+  PACKAGE_GUID                   = EA733427-E666-4619-9B3E-1F5BAEC76EDA
+  PACKAGE_VERSION                = 0.1
+
+[Includes]
+  Include
+
+[Guids]
+  # Include/Guid/H2OUvePkgTokenSpace.h
+  gH2OUvePkgTokenSpaceGuid               = { 0xc00f1398, 0x8f7d, 0x44d0, { 0x9b, 0xad, 0x29, 0xd8, 0x1c, 0x8b, 0x13, 0x7d } }
+
+  # Include/Guid/VariableEdit.h
+  gH2OUveGuid                            = {0x97d2f285, 0xb16b, 0x46d6, {0x8a, 0xab, 0x34, 0x1a, 0x84, 0xa6, 0xe6, 0x34}}
+
+  gH2OUveFormsetGuid                     = { 0xd1d7208f, 0x84ec, 0x411a, { 0x9b, 0xed, 0x98, 0xe0, 0x0, 0xba, 0x74, 0x95 }}
+  gH2OUveVarstoreGuid                    = { 0xef0849b6, 0xfad0, 0x40e9, { 0x91, 0x7, 0x97, 0x4a, 0xeb, 0x87, 0x87, 0xa2 }}
+
+  gH2OUveSampleFormVarstoreGuid          = { 0x58ace6de, 0x505f, 0x4bec, { 0xb8, 0x8e, 0x92, 0xe3, 0x54, 0x73, 0x63, 0xf1 }}
+  gH2OUveSampleFormGuid                  = { 0x9139e3cb, 0x4eee, 0x43fc, { 0x80, 0x25, 0xe3, 0x58, 0xdc, 0x94, 0x7d, 0x93 }}
+
+[PcdsFeatureFlag]
+  gH2OUvePkgTokenSpaceGuid.PcdH2OUveSupported|TRUE|BOOLEAN|0x20000004
+  gH2OUvePkgTokenSpaceGuid.PcdH2OUveSampleFormSupported|FALSE|BOOLEAN|0x20000003
+
+[PcdsFixedAtBuild, PcdsDynamicEx]
+  gH2OUvePkgTokenSpaceGuid.PcdH2OUveIhisiRegisterTable|{0,0,0}|VOID*|0x20000001
+  gH2OUvePkgTokenSpaceGuid.PcdH2OUveClassGuid|{0}|VOID*|0x20000002
+
+[PcdsFixedAtBuild]
+  #
+  # This PCD is used to switch the timing of creating SCU data.
+  # For debug using.
+  #
+  gH2OUvePkgTokenSpaceGuid.PcdH2OUveGetScuDataAtEndOfBdsBootSelection|TRUE|BOOLEAN|0x20000005
+
+  #
+  #
+  # Set the security level that allows access to IHISI 52h, the value is defined as follows
+  # BIT1 - IHISI_AUTH_NONE
+  # BIT2 - IHISI_AUTH_POST_ONLY
+  # BIT3 - IHISI_AUTH_DXE_ONLY
+  # BIT4 - IHISI_AUTH_SECURE_ENVIRONMENT
+  # BIT5 - IHISI_AUTH_PASSWORD
+  # BIT6 - IHISI_AUTH_SECURE_BOOT_DISABLED
+  #
+  gH2OUvePkgTokenSpaceGuid.PcdH2oUveSecurityLevelAllowed|0x7C|UINT32|0x20000006

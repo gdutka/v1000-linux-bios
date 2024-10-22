@@ -1,0 +1,58 @@
+## @file
+#  Component description file for NVM Express Host Controller Driver Module.
+#
+#******************************************************************************
+#* Copyright (c) 2023, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+## @file
+#  NVM Express Host Controller Module.
+#
+#  NvmExpressDxe driver is used to manage non-volatile memory subsystem which follows
+#  NVM Express specification.
+#
+#  Copyright (c) 2013 - 2021, Intel Corporation. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = NvmExpressDxe
+  FILE_GUID                      = 5BE3BDF4-53CF-46a3-A6A9-73C34A6E5EE3
+  MODULE_TYPE                    = COMBINED_SMM_DXE
+  BINARY_VERSION                 = 01.08.07.0209.00
+
+[Binaries.Ia32]
+  PE32|Ia32/NvmExpressDxe.efi|*
+
+[Binaries.X64]
+  PE32|X64/NvmExpressDxe.efi|*
+
+[Binaries.Arm]
+  PE32|Arm/NvmExpressDxe.efi|*
+
+[Binaries.Aarch64]
+  PE32|Aarch64/NvmExpressDxe.efi|*
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdH2OSataIgnoredDeviceList
+  gH2OIgnoreDeviceListTokenSpaceGuid
+  gInsydeTokenSpaceGuid.PcdH2OIommuMapping
+  
+
+[Depex]
+  <SMM_DEPEX>
+   gH2ONvmeDxeReadyProtocolGuid AND
+   gEfiSmmSxDispatch2ProtocolGuid

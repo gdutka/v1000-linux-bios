@@ -1,0 +1,34 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = NbioIdsHookSspLibPei
+  FILE_GUID                      = 333BADCC-ECA5-443f-B35F-7B00D5B6D336
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = NbioIdsHookSspLibPei|PEIM
+
+[Sources.common]
+  NbioIdsHookSspLibPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+
+[LibraryClasses]
+  PcdLib
+  AmdBaseLib
+  AmdIdsDebugPrintLib
+
+[Pcd]
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+

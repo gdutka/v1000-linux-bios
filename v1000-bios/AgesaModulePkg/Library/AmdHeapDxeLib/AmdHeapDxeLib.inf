@@ -1,0 +1,40 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdHeapDxeLib
+  FILE_GUID                      = C08458A7-77E0-4848-B31B-A5A27D5EB500
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdHeapLib|DXE_CORE DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SAL_DRIVER DXE_SMM_DRIVER SMM_CORE UEFI_APPLICATION UEFI_DRIVER 
+  CONSTRUCTOR                    = AmdHeapDxeLibConstructor
+
+
+[Sources]
+  AmdHeapDxeLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  BaseLib
+  AmdBaseLib
+  IdsLib
+  HobLib
+
+[Pcd]
+
+[Protocols]
+  gAmdHeapHeaderProtocolGuid
+
+[Guids]
+  gAmdHeapHobGuid
+

@@ -1,0 +1,33 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FchInitHookLib
+  FILE_GUID                      = c7da2770-e0a1-4522-8dd4-7f5c9e6ca4dd
+  MODULE_TYPE                    = PEIM
+  LIBRARY_CLASS                  = FchInitHookLibPei
+
+[Sources.Ia32]
+  FchInitHookLibPei.c
+
+[Sources.X64]
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+
+[LibraryClasses]
+  PcdLib
+
+[Protocols]
+
+[Guids]
+
+[Pcd]
+
+[Depex]

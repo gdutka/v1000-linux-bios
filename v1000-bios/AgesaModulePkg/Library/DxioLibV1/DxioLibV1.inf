@@ -1,0 +1,59 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxioLibV1
+  FILE_GUID                      = F70F741A-5DCC-4180-B360-EDFFB7624110
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DxioLibV1
+
+
+[Sources]
+  DxioLibV1.c
+  DxioAncDataV1.c
+  DxioAncDataV1.h
+  PTSecondlyDetectingWorkaround.c
+  PTSecondlyDetectingWorkaround.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  PcdLib
+  PrintLib
+  BaseLib
+  DebugPrintErrorLevelLib
+  IdsLib
+  AmdBaseLib
+  NbioRegisterAccLib
+  OemGpioResetControlLib
+  PeiServicesLib
+##Todo
+#S3SaveState
+#heapManager
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdDxioMajorRevision
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdDxioMinorRevision
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSkipPspMessage
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTPortID
+
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPcieDxioTimingControlEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPCIELinkResetToTrainingTime
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPCIELinkReceiverDetectionPolling
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPCIELinkL0Polling
+
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPCIeExactMatchEnable
+

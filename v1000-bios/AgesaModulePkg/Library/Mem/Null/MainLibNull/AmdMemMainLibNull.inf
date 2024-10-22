@@ -1,0 +1,48 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemMainLibNull
+  FILE_GUID                      = 810686F7-9A16-4fe7-960F-36BF7C8A6AF2
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemMainLib
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  mdef.c
+  merrhdl.c
+  minit.c
+  mm.c
+  mmAggressor.c
+  mmConditionalPso.c
+  mmEcc.c
+  mmExcludeDimm.c
+  mmflow.c
+  mmLvDdr3.c
+  mmLvDdr4.c
+  mmMemClr.c
+  mmMemRestore.c
+  mmNodeInterleave.c
+  mmOnlineSpare.c
+  mmUmaAlloc.c
+  muc.c
+  S3.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  
+[Pcd]
+
+

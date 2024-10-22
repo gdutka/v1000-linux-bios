@@ -1,0 +1,34 @@
+## @file
+#  Component description file for Console Redirection Service Manager driver.
+#
+#******************************************************************************
+#* Copyright (c) 2013-2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+
+[Defines]
+  INF_VERSION          = 0x00010005
+  BASE_NAME            = CrSrvManagerDxe
+  FILE_GUID            = 9B87D64B-E159-4663-AF15-13981EF099C7
+  MODULE_TYPE          = DXE_DRIVER
+  BINARY_VERSION       = 05.31.50.1219.00
+
+
+
+[Binaries.X64]
+  PE32|X64/CrSrvManagerDxe.efi
+  
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeCrPkg/InsydeCrPkg.dec
+[Depex]
+  TRUE

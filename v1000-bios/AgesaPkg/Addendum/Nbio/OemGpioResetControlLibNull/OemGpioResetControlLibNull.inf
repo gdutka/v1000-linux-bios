@@ -1,0 +1,29 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = OemGpioResetControlLibNull
+  FILE_GUID                      = 335E51EC-3FB3-445a-90B2-CA80D9E83C0E
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = OemGpioResetControlLib
+
+[Sources]
+  OemGpioResetControlLibNull.c
+
+[Packages]
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  OemGpioResetControlLib
+
+[Ppis]
+
+[Depex]
+  TRUE
+

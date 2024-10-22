@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FabricPstatesUnbLib
+  FILE_GUID                      = DAD1A50E-84D6-4a71-A360-3A92391D220E
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = FabricPstatesLib
+
+[Sources]
+  FabricPstatesUnbLib.c
+  FabricPstatesUnbLib.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  IdsLib
+  AmdHeapLib
+  PciLib
+  PcdLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFabricPstateSupport
+
+[Depex]
+

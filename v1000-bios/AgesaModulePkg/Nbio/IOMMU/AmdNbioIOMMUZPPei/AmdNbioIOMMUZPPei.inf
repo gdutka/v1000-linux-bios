@@ -1,0 +1,59 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdNbioIOMMUZPPei
+  FILE_GUID                      = C59716EE-2D90-4b1d-9C36-16523E105689
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdNbioIOMMUZPPeiEntry
+
+[Sources]
+  AmdNbioIOMMUZPPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+  PeimEntryPoint
+  PeiServicesLib
+  GnbCommonLib
+  PcdLib
+  HobLib
+  BaseMemoryLib
+  NbioHandleLib
+  GnbRegisterAccZpLib
+  NbioRegisterAccLib
+  FabricResourceManagerLib
+  GnbPciLib
+  GnbLib
+  GnbPciAccLib
+
+[Guids]
+  gGnbNbioBaseZPHobInfoGuid
+  gGnbPcieHobInfoGuid
+  gAmdMemoryInfoHobGuid
+
+[Ppis]
+  gAmdNbioBaseServicesZpPpiGuid
+  gAmdNbioPcieServicesPpiGuid
+  gAmdMemoryInfoHobPpiGuid
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIommuMMIOAddressReservedEnable
+
+[Depex]
+  gAmdNbioIOMMUZPPeiDepexPpiGuid AND
+  gAmdFabricTopologyServices2PpiGuid
+
+

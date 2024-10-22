@@ -1,0 +1,39 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxeSocLogicalIdServicesLib
+  FILE_GUID                      = 5F158C00-88B6-47cd-95BE-47A1CE65F6E6
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DxeSocLogicalIdServicesLib
+
+[Sources]
+  SocLogicalIdServicesDxe.c
+  SocLogicalIdServicesDxe.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+
+[LibraryClasses]
+  BaseFabricTopologyLib
+  BaseCoreLogicalIdLib
+  BaseSocketLogicalIdLib
+
+[Guids]
+
+[Protocols]
+  gAmdSocLogicalIdProtocolGuid # PRODUCED
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+

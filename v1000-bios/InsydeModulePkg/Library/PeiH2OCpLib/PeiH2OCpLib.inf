@@ -1,0 +1,36 @@
+## @file
+#  Component description file for the PEI H2O check point library.
+#
+#******************************************************************************
+#* Copyright (c) 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiH2OCpLib
+  FILE_GUID                      = 0D9AEC44-1662-466e-A64E-93DC2A5ECF23
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = H2OCpLib|PEIM PEI_CORE
+
+[Sources]
+  PeiH2OCpLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  PeiServicesLib
+  HobLib

@@ -1,0 +1,2299 @@
+//
+// Format
+//
+format {
+
+  align-content                          : keyword { flex-start, flex-end, center, space-between, space-around, stretch };
+  align-items                            : keyword { flex-start, flex-end, center, stretch };
+  background-image                       : token;
+  background-position                    : string;
+  background-repeat                      : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  background-size                        : string;
+  border-bottom                          : size;
+  border-left                            : size;
+  border-right                           : size;
+  border-shadow                          : keyword { center };
+  border-style                           : keyword { none, solid, dotted, dashed, double, groove, ridge, inset, outset, hidden };
+  border-top                             : size;
+  control-type                           : string;
+  flex-direction                         : keyword { none, row, column };
+  flex-wrap                              : keyword { none, nowrap, wrap };
+  font-family                            : string;
+  font-size                              : size;
+  justify-content                        : keyword { flex-start, flex-end, center, space-between, space-around };
+  linear-gradient                        : keyword { none, direction-left, direction-right, direction-top, direction-bottom, color-start, color-stop, color-end };
+  margin                                 : size;
+  margin-bottom                          : size;
+  margin-left                            : size;
+  margin-right                           : size;
+  margin-top                             : size;
+  order                                  : string;
+  padding                                : size;
+  padding-bottom                         : size;
+  padding-left                           : size;
+  padding-right                          : size;
+  padding-top                            : size;
+  position                               : keyword { fixed, static, absolute, relative };
+  text-align                             : keyword { left, right, center, justify };
+  z-index                                : size;
+
+  //
+  // Question
+  //
+  pop-up-form-id                         : id;
+  pop-up-formset-id                      : string;
+
+  //
+  // Sub-elements
+  //
+  container-alias                        : string;
+  container-align-content                : keyword { flex-start, flex-end, center, space-between, space-around, stretch };
+  container-align-items                  : keyword { flex-start, flex-end, center, stretch };
+  container-background-color             : color;
+  container-background-image             : token;
+  container-background-position          : string;
+  container-background-repeat            : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  container-background-size              : string;
+  container-bottom                       : coord;
+  container-color                        : color;
+  container-display                      : keyword { none, inline, block, flex };
+  container-flex-direction               : keyword { none, row, column };
+  container-flex-wrap                    : keyword { none, nowrap, wrap };
+  container-height                       : size;
+  container-justify-content              : keyword { flex-start, flex-end, center, space-between, space-around };
+  container-left                         : coord;
+  container-margin                       : size;
+  container-margin-bottom                : size;
+  container-margin-left                  : size;
+  container-margin-right                 : size;
+  container-margin-top                   : size;
+  container-position                     : keyword { fixed, static, relative, absolute };
+  container-right                        : coord;
+  container-text-align                   : keyword { left, center, right, justify };
+  container-top                          : coord;
+  container-visibility                   : keyword { visible, hidden, inherit };
+  container-width                        : size;
+
+  form-image-alias                       : string;
+  form-image-background-color            : color;
+  form-image-background-image            : token;
+  form-image-background-position         : string;
+  form-image-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  form-image-background-size             : string;
+  form-image-bottom                      : coord;
+  form-image-color                       : color;
+  form-image-display                     : keyword { none, inline, block, flex };
+  form-image-filter                      : keyword { none, brightness, grayscale };
+  form-image-height                      : size;
+  form-image-left                        : coord;
+  form-image-margin                      : size;
+  form-image-margin-bottom               : size;
+  form-image-margin-left                 : size;
+  form-image-margin-right                : size;
+  form-image-margin-top                  : size;
+  form-image-position                    : keyword { fixed, static, relative, absolute };
+  form-image-right                       : coord;
+  form-image-text-align                  : keyword { left, center, right, justify };
+  form-image-token                       : token;
+  form-image-top                         : coord;
+  form-image-visibility                  : keyword { visible, hidden, inherit };
+  form-image-width                       : size;
+  form-image-z-index                     : size;
+
+  form-title-alias                       : string;
+  form-title-background-color            : color;
+  form-title-background-image            : token;
+  form-title-background-position         : string;
+  form-title-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  form-title-background-size             : string;
+  form-title-bottom                      : coord;
+  form-title-color                       : color;
+  form-title-display                     : keyword { none, inline, block, flex };
+  form-title-font-family                 : string;
+  form-title-font-size                   : size;
+  form-title-height                      : size;
+  form-title-left                        : coord;
+  form-title-margin                      : size;
+  form-title-margin-bottom               : size;
+  form-title-margin-left                 : size;
+  form-title-margin-right                : size;
+  form-title-margin-top                  : size;
+  form-title-position                    : keyword { fixed, static, relative, absolute };
+  form-title-right                       : coord;
+  form-title-text-align                  : keyword { left, center, right, justify };
+  form-title-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  form-title-token                       : token;
+  form-title-top                         : coord;
+  form-title-visibility                  : keyword { visible, hidden, inherit };
+  form-title-width                       : size;
+  form-title-z-index                     : size;
+
+  formset-help-alias                       : string;
+  formset-help-background-color            : color;
+  formset-help-background-image            : token;
+  formset-help-background-position         : string;
+  formset-help-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  formset-help-background-size             : string;
+  formset-help-bottom                      : coord;
+  formset-help-color                       : color;
+  formset-help-display                     : keyword { none, inline, block, flex };
+  formset-help-font-family                 : string;
+  formset-help-font-size                   : size;
+  formset-help-height                      : size;
+  formset-help-left                        : coord;
+  formset-help-margin                      : size;
+  formset-help-margin-bottom               : size;
+  formset-help-margin-left                 : size;
+  formset-help-margin-right                : size;
+  formset-help-margin-top                  : size;
+  formset-help-position                    : keyword { fixed, static, relative, absolute };
+  formset-help-right                       : coord;
+  formset-help-text-align                  : keyword { left, center, right, justify };
+  formset-help-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  formset-help-token                       : token;
+  formset-help-top                         : coord;
+  formset-help-visibility                  : keyword { visible, hidden, inherit };
+  formset-help-width                       : size;
+  formset-help-z-index                     : size;
+
+  formset-help-image-alias                       : string;
+  formset-help-image-background-color            : color;
+  formset-help-image-background-image            : token;
+  formset-help-image-background-position         : string;
+  formset-help-image-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  formset-help-image-background-size             : string;
+  formset-help-image-bottom                      : coord;
+  formset-help-image-color                       : color;
+  formset-help-image-display                     : keyword { none, inline, block, flex };
+  formset-help-image-filter                      : keyword { none, brightness, grayscale };
+  formset-help-image-height                      : size;
+  formset-help-image-left                        : coord;
+  formset-help-image-margin                      : size;
+  formset-help-image-margin-bottom               : size;
+  formset-help-image-margin-left                 : size;
+  formset-help-image-margin-right                : size;
+  formset-help-image-margin-top                  : size;
+  formset-help-image-position                    : keyword { fixed, static, relative, absolute };
+  formset-help-image-right                       : coord;
+  formset-help-image-text-align                  : keyword { left, center, right, justify };
+  formset-help-image-token                       : token;
+  formset-help-image-top                         : coord;
+  formset-help-image-visibility                  : keyword { visible, hidden, inherit };
+  formset-help-image-width                       : size;
+  formset-help-image-z-index                     : size;
+
+  formset-image-alias                       : string;
+  formset-image-background-color            : color;
+  formset-image-background-image            : token;
+  formset-image-background-position         : string;
+  formset-image-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  formset-image-background-size             : string;
+  formset-image-bottom                      : coord;
+  formset-image-color                       : color;
+  formset-image-display                     : keyword { none, inline, block, flex };
+  formset-image-filter                      : keyword { none, brightness, grayscale };
+  formset-image-height                      : size;
+  formset-image-left                        : coord;
+  formset-image-margin                      : size;
+  formset-image-margin-bottom               : size;
+  formset-image-margin-left                 : size;
+  formset-image-margin-right                : size;
+  formset-image-margin-top                  : size;
+  formset-image-position                    : keyword { fixed, static, relative, absolute };
+  formset-image-right                       : coord;
+  formset-image-text-align                  : keyword { left, center, right, justify };
+  formset-image-token                       : token;
+  formset-image-top                         : coord;
+  formset-image-visibility                  : keyword { visible, hidden, inherit };
+  formset-image-width                       : size;
+  formset-image-z-index                     : size;
+
+  formset-title-alias                       : string;
+  formset-title-background-color            : color;
+  formset-title-background-image            : token;
+  formset-title-background-position         : string;
+  formset-title-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  formset-title-background-size             : string;
+  formset-title-bottom                      : coord;
+  formset-title-color                       : color;
+  formset-title-display                     : keyword { none, inline, block, flex };
+  formset-title-font-family                 : string;
+  formset-title-font-size                   : size;
+  formset-title-height                      : size;
+  formset-title-left                        : coord;
+  formset-title-margin                      : size;
+  formset-title-margin-bottom               : size;
+  formset-title-margin-left                 : size;
+  formset-title-margin-right                : size;
+  formset-title-margin-top                  : size;
+  formset-title-position                    : keyword { fixed, static, relative, absolute };
+  formset-title-right                       : coord;
+  formset-title-text-align                  : keyword { left, center, right, justify };
+  formset-title-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  formset-title-token                       : token;
+  formset-title-top                         : coord;
+  formset-title-visibility                  : keyword { visible, hidden, inherit };
+  formset-title-width                       : size;
+  formset-title-z-index                     : size;
+
+  help-alias                       : string;
+  help-background-color            : color;
+  help-background-image            : token;
+  help-background-position         : string;
+  help-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  help-background-size             : string;
+  help-bottom                      : coord;
+  help-color                       : color;
+  help-display                     : keyword { none, inline, block, flex };
+  help-font-family                 : string;
+  help-font-size                   : size;
+  help-height                      : size;
+  help-left                        : coord;
+  help-margin                      : size;
+  help-margin-bottom               : size;
+  help-margin-left                 : size;
+  help-margin-right                : size;
+  help-margin-top                  : size;
+  help-position                    : keyword { fixed, static, relative, absolute };
+  help-right                       : coord;
+  help-text-align                  : keyword { left, center, right, justify };
+  help-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  help-token                       : token;
+  help-top                         : coord;
+  help-visibility                  : keyword { visible, hidden, inherit };
+  help-width                       : size;
+  help-z-index                     : size;
+
+  help-image-alias                       : string;
+  help-image-background-color            : color;
+  help-image-background-image            : token;
+  help-image-background-position         : string;
+  help-image-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  help-image-background-size             : string;
+  help-image-bottom                      : coord;
+  help-image-color                       : color;
+  help-image-display                     : keyword { none, inline, block, flex };
+  help-image-filter                      : keyword { none, brightness, grayscale };
+  help-image-height                      : size;
+  help-image-left                        : coord;
+  help-image-margin                      : size;
+  help-image-margin-bottom               : size;
+  help-image-margin-left                 : size;
+  help-image-margin-right                : size;
+  help-image-margin-top                  : size;
+  help-image-position                    : keyword { fixed, static, relative, absolute };
+  help-image-right                       : coord;
+  help-image-text-align                  : keyword { left, center, right, justify };
+  help-image-token                       : token;
+  help-image-top                         : coord;
+  help-image-visibility                  : keyword { visible, hidden, inherit };
+  help-image-width                       : size;
+  help-image-z-index                     : size;
+
+  image-alias                       : string;
+  image-background-color            : color;
+  image-background-image            : token;
+  image-background-position         : string;
+  image-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  image-background-size             : string;
+  image-bottom                      : coord;
+  image-color                       : color;
+  image-display                     : keyword { none, inline, block, flex };
+  image-filter                      : keyword { none, brightness, grayscale };
+  image-height                      : size;
+  image-left                        : coord;
+  image-margin                      : size;
+  image-margin-bottom               : size;
+  image-margin-left                 : size;
+  image-margin-right                : size;
+  image-margin-top                  : size;
+  image-position                    : keyword { fixed, static, relative, absolute };
+  image-right                       : coord;
+  image-text-align                  : keyword { left, center, right, justify };
+  image-token                       : token;
+  image-top                         : coord;
+  image-visibility                  : keyword { visible, hidden, inherit };
+  image-width                       : size;
+  image-z-index                     : size;
+
+  img0                             : string;
+  img0-alias                       : string;
+  img0-background-color            : color;
+  img0-background-image            : token;
+  img0-background-position         : string;
+  img0-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  img0-background-size             : string;
+  img0-bottom                      : coord;
+  img0-color                       : color;
+  img0-display                     : keyword { none, inline, block, flex };
+  img0-filter                      : keyword { none, brightness, grayscale };
+  img0-height                      : size;
+  img0-left                        : coord;
+  img0-margin                      : size;
+  img0-margin-bottom               : size;
+  img0-margin-left                 : size;
+  img0-margin-right                : size;
+  img0-margin-top                  : size;
+  img0-position                    : keyword { fixed, static, relative, absolute };
+  img0-right                       : coord;
+  img0-text-align                  : keyword { left, center, right, justify };
+  img0-token                       : token;
+  img0-top                         : coord;
+  img0-visibility                  : keyword { visible, hidden, inherit };
+  img0-width                       : size;
+  img0-z-index                     : size;
+
+  img1                             : string;
+  img1-alias                       : string;
+  img1-background-color            : color;
+  img1-background-image            : token;
+  img1-background-position         : string;
+  img1-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  img1-background-size             : string;
+  img1-bottom                      : coord;
+  img1-color                       : color;
+  img1-display                     : keyword { none, inline, block, flex };
+  img1-filter                      : keyword { none, brightness, grayscale };
+  img1-height                      : size;
+  img1-left                        : coord;
+  img1-margin                      : size;
+  img1-margin-bottom               : size;
+  img1-margin-left                 : size;
+  img1-margin-right                : size;
+  img1-margin-top                  : size;
+  img1-position                    : keyword { fixed, static, relative, absolute };
+  img1-right                       : coord;
+  img1-text-align                  : keyword { left, center, right, justify };
+  img1-token                       : token;
+  img1-top                         : coord;
+  img1-visibility                  : keyword { visible, hidden, inherit };
+  img1-width                       : size;
+  img1-z-index                     : size;
+
+  img2                             : string;
+  img2-alias                       : string;
+  img2-background-color            : color;
+  img2-background-image            : token;
+  img2-background-position         : string;
+  img2-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  img2-background-size             : string;
+  img2-bottom                      : coord;
+  img2-color                       : color;
+  img2-display                     : keyword { none, inline, block, flex };
+  img2-filter                      : keyword { none, brightness, grayscale };
+  img2-height                      : size;
+  img2-left                        : coord;
+  img2-margin                      : size;
+  img2-margin-bottom               : size;
+  img2-margin-left                 : size;
+  img2-margin-right                : size;
+  img2-margin-top                  : size;
+  img2-position                    : keyword { fixed, static, relative, absolute };
+  img2-right                       : coord;
+  img2-text-align                  : keyword { left, center, right, justify };
+  img2-token                       : token;
+  img2-top                         : coord;
+  img2-visibility                  : keyword { visible, hidden, inherit };
+  img2-width                       : size;
+  img2-z-index                     : size;
+
+  img3                             : string;
+  img3-alias                       : string;
+  img3-background-color            : color;
+  img3-background-image            : token;
+  img3-background-position         : string;
+  img3-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  img3-background-size             : string;
+  img3-bottom                      : coord;
+  img3-color                       : color;
+  img3-display                     : keyword { none, inline, block, flex };
+  img3-filter                      : keyword { none, brightness, grayscale };
+  img3-height                      : size;
+  img3-left                        : coord;
+  img3-margin                      : size;
+  img3-margin-bottom               : size;
+  img3-margin-left                 : size;
+  img3-margin-right                : size;
+  img3-margin-top                  : size;
+  img3-position                    : keyword { fixed, static, relative, absolute };
+  img3-right                       : coord;
+  img3-text-align                  : keyword { left, center, right, justify };
+  img3-token                       : token;
+  img3-top                         : coord;
+  img3-visibility                  : keyword { visible, hidden, inherit };
+  img3-width                       : size;
+  img3-z-index                     : size;
+
+  img4                             : string;
+  img4-alias                       : string;
+  img4-background-color            : color;
+  img4-background-image            : token;
+  img4-background-position         : string;
+  img4-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  img4-background-size             : string;
+  img4-bottom                      : coord;
+  img4-color                       : color;
+  img4-display                     : keyword { none, inline, block, flex };
+  img4-filter                      : keyword { none, brightness, grayscale };
+  img4-height                      : size;
+  img4-left                        : coord;
+  img4-margin                      : size;
+  img4-margin-bottom               : size;
+  img4-margin-left                 : size;
+  img4-margin-right                : size;
+  img4-margin-top                  : size;
+  img4-position                    : keyword { fixed, static, relative, absolute };
+  img4-right                       : coord;
+  img4-text-align                  : keyword { left, center, right, justify };
+  img4-token                       : token;
+  img4-top                         : coord;
+  img4-visibility                  : keyword { visible, hidden, inherit };
+  img4-width                       : size;
+  img4-z-index                     : size;
+
+  img5                             : string;
+  img5-alias                       : string;
+  img5-background-color            : color;
+  img5-background-image            : token;
+  img5-background-position         : string;
+  img5-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  img5-background-size             : string;
+  img5-bottom                      : coord;
+  img5-color                       : color;
+  img5-display                     : keyword { none, inline, block, flex };
+  img5-filter                      : keyword { none, brightness, grayscale };
+  img5-height                      : size;
+  img5-left                        : coord;
+  img5-margin                      : size;
+  img5-margin-bottom               : size;
+  img5-margin-left                 : size;
+  img5-margin-right                : size;
+  img5-margin-top                  : size;
+  img5-position                    : keyword { fixed, static, relative, absolute };
+  img5-right                       : coord;
+  img5-text-align                  : keyword { left, center, right, justify };
+  img5-token                       : token;
+  img5-top                         : coord;
+  img5-visibility                  : keyword { visible, hidden, inherit };
+  img5-width                       : size;
+  img5-z-index                     : size;
+
+  img6                             : string;
+  img6-alias                       : string;
+  img6-background-color            : color;
+  img6-background-image            : token;
+  img6-background-position         : string;
+  img6-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  img6-background-size             : string;
+  img6-bottom                      : coord;
+  img6-color                       : color;
+  img6-display                     : keyword { none, inline, block, flex };
+  img6-filter                      : keyword { none, brightness, grayscale };
+  img6-height                      : size;
+  img6-left                        : coord;
+  img6-margin                      : size;
+  img6-margin-bottom               : size;
+  img6-margin-left                 : size;
+  img6-margin-right                : size;
+  img6-margin-top                  : size;
+  img6-position                    : keyword { fixed, static, relative, absolute };
+  img6-right                       : coord;
+  img6-text-align                  : keyword { left, center, right, justify };
+  img6-token                       : token;
+  img6-top                         : coord;
+  img6-visibility                  : keyword { visible, hidden, inherit };
+  img6-width                       : size;
+  img6-z-index                     : size;
+
+  img7                             : string;
+  img7-alias                       : string;
+  img7-background-color            : color;
+  img7-background-image            : token;
+  img7-background-position         : string;
+  img7-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  img7-background-size             : string;
+  img7-bottom                      : coord;
+  img7-color                       : color;
+  img7-display                     : keyword { none, inline, block, flex };
+  img7-filter                      : keyword { none, brightness, grayscale };
+  img7-height                      : size;
+  img7-left                        : coord;
+  img7-margin                      : size;
+  img7-margin-bottom               : size;
+  img7-margin-left                 : size;
+  img7-margin-right                : size;
+  img7-margin-top                  : size;
+  img7-position                    : keyword { fixed, static, relative, absolute };
+  img7-right                       : coord;
+  img7-text-align                  : keyword { left, center, right, justify };
+  img7-token                       : token;
+  img7-top                         : coord;
+  img7-visibility                  : keyword { visible, hidden, inherit };
+  img7-width                       : size;
+  img7-z-index                     : size;
+
+  img8                             : string;
+  img8-alias                       : string;
+  img8-background-color            : color;
+  img8-background-image            : token;
+  img8-background-position         : string;
+  img8-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  img8-background-size             : string;
+  img8-bottom                      : coord;
+  img8-color                       : color;
+  img8-display                     : keyword { none, inline, block, flex };
+  img8-filter                      : keyword { none, brightness, grayscale };
+  img8-height                      : size;
+  img8-left                        : coord;
+  img8-margin                      : size;
+  img8-margin-bottom               : size;
+  img8-margin-left                 : size;
+  img8-margin-right                : size;
+  img8-margin-top                  : size;
+  img8-position                    : keyword { fixed, static, relative, absolute };
+  img8-right                       : coord;
+  img8-text-align                  : keyword { left, center, right, justify };
+  img8-token                       : token;
+  img8-top                         : coord;
+  img8-visibility                  : keyword { visible, hidden, inherit };
+  img8-width                       : size;
+  img8-z-index                     : size;
+
+  img9                             : string;
+  img9-alias                       : string;
+  img9-background-color            : color;
+  img9-background-image            : token;
+  img9-background-position         : string;
+  img9-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  img9-background-size             : string;
+  img9-bottom                      : coord;
+  img9-color                       : color;
+  img9-display                     : keyword { none, inline, block, flex };
+  img9-filter                      : keyword { none, brightness, grayscale };
+  img9-height                      : size;
+  img9-left                        : coord;
+  img9-margin                      : size;
+  img9-margin-bottom               : size;
+  img9-margin-left                 : size;
+  img9-margin-right                : size;
+  img9-margin-top                  : size;
+  img9-position                    : keyword { fixed, static, relative, absolute };
+  img9-right                       : coord;
+  img9-text-align                  : keyword { left, center, right, justify };
+  img9-token                       : token;
+  img9-top                         : coord;
+  img9-visibility                  : keyword { visible, hidden, inherit };
+  img9-width                       : size;
+  img9-z-index                     : size;
+
+  prompt-alias                       : string;
+  prompt-background-color            : color;
+  prompt-background-image            : token;
+  prompt-background-position         : string;
+  prompt-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  prompt-background-size             : string;
+  prompt-bottom                      : coord;
+  prompt-color                       : color;
+  prompt-display                     : keyword { none, inline, block, flex };
+  prompt-font-family                 : string;
+  prompt-font-size                   : size;
+  prompt-height                      : size;
+  prompt-left                        : coord;
+  prompt-margin                      : size;
+  prompt-margin-bottom               : size;
+  prompt-margin-left                 : size;
+  prompt-margin-right                : size;
+  prompt-margin-top                  : size;
+  prompt-position                    : keyword { fixed, static, relative, absolute };
+  prompt-right                       : coord;
+  prompt-text-align                  : keyword { left, center, right, justify };
+  prompt-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  prompt-token                       : token;
+  prompt-top                         : coord;
+  prompt-visibility                  : keyword { visible, hidden, inherit };
+  prompt-width                       : size;
+  prompt-z-index                     : size;
+
+  str0-alias                       : string;
+  str0-background-color            : color;
+  str0-background-image            : token;
+  str0-background-position         : string;
+  str0-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  str0-background-size             : string;
+  str0-bottom                      : coord;
+  str0-color                       : color;
+  str0-display                     : keyword { none, inline, block, flex };
+  str0-font-family                 : string;
+  str0-font-size                   : size;
+  str0-height                      : size;
+  str0-left                        : coord;
+  str0-margin                      : size;
+  str0-margin-bottom               : size;
+  str0-margin-left                 : size;
+  str0-margin-right                : size;
+  str0-margin-top                  : size;
+  str0-position                    : keyword { fixed, static, relative, absolute };
+  str0-right                       : coord;
+  str0-text-align                  : keyword { left, center, right, justify };
+  str0-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  str0-token                       : token;
+  str0-top                         : coord;
+  str0-visibility                  : keyword { visible, hidden, inherit };
+  str0-width                       : size;
+  str0-z-index                     : size;
+
+  str1-alias                       : string;
+  str1-background-color            : color;
+  str1-background-image            : token;
+  str1-background-position         : string;
+  str1-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  str1-background-size             : string;
+  str1-bottom                      : coord;
+  str1-color                       : color;
+  str1-display                     : keyword { none, inline, block, flex };
+  str1-font-family                 : string;
+  str1-font-size                   : size;
+  str1-height                      : size;
+  str1-left                        : coord;
+  str1-margin                      : size;
+  str1-margin-bottom               : size;
+  str1-margin-left                 : size;
+  str1-margin-right                : size;
+  str1-margin-top                  : size;
+  str1-position                    : keyword { fixed, static, relative, absolute };
+  str1-right                       : coord;
+  str1-text-align                  : keyword { left, center, right, justify };
+  str1-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  str1-token                       : token;
+  str1-top                         : coord;
+  str1-visibility                  : keyword { visible, hidden, inherit };
+  str1-width                       : size;
+  str1-z-index                     : size;
+
+  str2-alias                       : string;
+  str2-background-color            : color;
+  str2-background-image            : token;
+  str2-background-position         : string;
+  str2-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  str2-background-size             : string;
+  str2-bottom                      : coord;
+  str2-color                       : color;
+  str2-display                     : keyword { none, inline, block, flex };
+  str2-font-family                 : string;
+  str2-font-size                   : size;
+  str2-height                      : size;
+  str2-left                        : coord;
+  str2-margin                      : size;
+  str2-margin-bottom               : size;
+  str2-margin-left                 : size;
+  str2-margin-right                : size;
+  str2-margin-top                  : size;
+  str2-position                    : keyword { fixed, static, relative, absolute };
+  str2-right                       : coord;
+  str2-text-align                  : keyword { left, center, right, justify };
+  str2-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  str2-token                       : token;
+  str2-top                         : coord;
+  str2-visibility                  : keyword { visible, hidden, inherit };
+  str2-width                       : size;
+  str2-z-index                     : size;
+
+  str3-alias                       : string;
+  str3-background-color            : color;
+  str3-background-image            : token;
+  str3-background-position         : string;
+  str3-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  str3-background-size             : string;
+  str3-bottom                      : coord;
+  str3-color                       : color;
+  str3-display                     : keyword { none, inline, block, flex };
+  str3-font-family                 : string;
+  str3-font-size                   : size;
+  str3-height                      : size;
+  str3-left                        : coord;
+  str3-margin                      : size;
+  str3-margin-bottom               : size;
+  str3-margin-left                 : size;
+  str3-margin-right                : size;
+  str3-margin-top                  : size;
+  str3-position                    : keyword { fixed, static, relative, absolute };
+  str3-right                       : coord;
+  str3-text-align                  : keyword { left, center, right, justify };
+  str3-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  str3-token                       : token;
+  str3-top                         : coord;
+  str3-visibility                  : keyword { visible, hidden, inherit };
+  str3-width                       : size;
+  str3-z-index                     : size;
+
+  str4-alias                       : string;
+  str4-background-color            : color;
+  str4-background-image            : token;
+  str4-background-position         : string;
+  str4-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  str4-background-size             : string;
+  str4-bottom                      : coord;
+  str4-color                       : color;
+  str4-display                     : keyword { none, inline, block, flex };
+  str4-font-family                 : string;
+  str4-font-size                   : size;
+  str4-height                      : size;
+  str4-left                        : coord;
+  str4-margin                      : size;
+  str4-margin-bottom               : size;
+  str4-margin-left                 : size;
+  str4-margin-right                : size;
+  str4-margin-top                  : size;
+  str4-position                    : keyword { fixed, static, relative, absolute };
+  str4-right                       : coord;
+  str4-text-align                  : keyword { left, center, right, justify };
+  str4-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  str4-token                       : token;
+  str4-top                         : coord;
+  str4-visibility                  : keyword { visible, hidden, inherit };
+  str4-width                       : size;
+  str4-z-index                     : size;
+
+  str5-alias                       : string;
+  str5-background-color            : color;
+  str5-background-image            : token;
+  str5-background-position         : string;
+  str5-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  str5-background-size             : string;
+  str5-bottom                      : coord;
+  str5-color                       : color;
+  str5-display                     : keyword { none, inline, block, flex };
+  str5-font-family                 : string;
+  str5-font-size                   : size;
+  str5-height                      : size;
+  str5-left                        : coord;
+  str5-margin                      : size;
+  str5-margin-bottom               : size;
+  str5-margin-left                 : size;
+  str5-margin-right                : size;
+  str5-margin-top                  : size;
+  str5-position                    : keyword { fixed, static, relative, absolute };
+  str5-right                       : coord;
+  str5-text-align                  : keyword { left, center, right, justify };
+  str5-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  str5-token                       : token;
+  str5-top                         : coord;
+  str5-visibility                  : keyword { visible, hidden, inherit };
+  str5-width                       : size;
+  str5-z-index                     : size;
+
+  str6-alias                       : string;
+  str6-background-color            : color;
+  str6-background-image            : token;
+  str6-background-position         : string;
+  str6-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  str6-background-size             : string;
+  str6-bottom                      : coord;
+  str6-color                       : color;
+  str6-display                     : keyword { none, inline, block, flex };
+  str6-font-family                 : string;
+  str6-font-size                   : size;
+  str6-height                      : size;
+  str6-left                        : coord;
+  str6-margin                      : size;
+  str6-margin-bottom               : size;
+  str6-margin-left                 : size;
+  str6-margin-right                : size;
+  str6-margin-top                  : size;
+  str6-position                    : keyword { fixed, static, relative, absolute };
+  str6-right                       : coord;
+  str6-text-align                  : keyword { left, center, right, justify };
+  str6-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  str6-token                       : token;
+  str6-top                         : coord;
+  str6-visibility                  : keyword { visible, hidden, inherit };
+  str6-width                       : size;
+  str6-z-index                     : size;
+
+  str7-alias                       : string;
+  str7-background-color            : color;
+  str7-background-image            : token;
+  str7-background-position         : string;
+  str7-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  str7-background-size             : string;
+  str7-bottom                      : coord;
+  str7-color                       : color;
+  str7-display                     : keyword { none, inline, block, flex };
+  str7-font-family                 : string;
+  str7-font-size                   : size;
+  str7-height                      : size;
+  str7-left                        : coord;
+  str7-margin                      : size;
+  str7-margin-bottom               : size;
+  str7-margin-left                 : size;
+  str7-margin-right                : size;
+  str7-margin-top                  : size;
+  str7-position                    : keyword { fixed, static, relative, absolute };
+  str7-right                       : coord;
+  str7-text-align                  : keyword { left, center, right, justify };
+  str7-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  str7-token                       : token;
+  str7-top                         : coord;
+  str7-visibility                  : keyword { visible, hidden, inherit };
+  str7-width                       : size;
+  str7-z-index                     : size;
+
+  str8-alias                       : string;
+  str8-background-color            : color;
+  str8-background-image            : token;
+  str8-background-position         : string;
+  str8-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  str8-background-size             : string;
+  str8-bottom                      : coord;
+  str8-color                       : color;
+  str8-display                     : keyword { none, inline, block, flex };
+  str8-font-family                 : string;
+  str8-font-size                   : size;
+  str8-height                      : size;
+  str8-left                        : coord;
+  str8-margin                      : size;
+  str8-margin-bottom               : size;
+  str8-margin-left                 : size;
+  str8-margin-right                : size;
+  str8-margin-top                  : size;
+  str8-position                    : keyword { fixed, static, relative, absolute };
+  str8-right                       : coord;
+  str8-text-align                  : keyword { left, center, right, justify };
+  str8-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  str8-token                       : token;
+  str8-top                         : coord;
+  str8-visibility                  : keyword { visible, hidden, inherit };
+  str8-width                       : size;
+  str8-z-index                     : size;
+
+  str9-alias                       : string;
+  str9-background-color            : color;
+  str9-background-image            : token;
+  str9-background-position         : string;
+  str9-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  str9-background-size             : string;
+  str9-bottom                      : coord;
+  str9-color                       : color;
+  str9-display                     : keyword { none, inline, block, flex };
+  str9-font-family                 : string;
+  str9-font-size                   : size;
+  str9-height                      : size;
+  str9-left                        : coord;
+  str9-margin                      : size;
+  str9-margin-bottom               : size;
+  str9-margin-left                 : size;
+  str9-margin-right                : size;
+  str9-margin-top                  : size;
+  str9-position                    : keyword { fixed, static, relative, absolute };
+  str9-right                       : coord;
+  str9-text-align                  : keyword { left, center, right, justify };
+  str9-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  str9-token                       : token;
+  str9-top                         : coord;
+  str9-visibility                  : keyword { visible, hidden, inherit };
+  str9-width                       : size;
+  str9-z-index                     : size;
+
+  text2-alias                       : string;
+  text2-background-color            : color;
+  text2-background-image            : token;
+  text2-background-position         : string;
+  text2-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  text2-background-size             : string;
+  text2-bottom                      : coord;
+  text2-color                       : color;
+  text2-display                     : keyword { none, inline, block, flex };
+  text2-font-family                 : string;
+  text2-font-size                   : size;
+  text2-height                      : size;
+  text2-left                        : coord;
+  text2-margin                      : size;
+  text2-margin-bottom               : size;
+  text2-margin-left                 : size;
+  text2-margin-right                : size;
+  text2-margin-top                  : size;
+  text2-position                    : keyword { fixed, static, relative, absolute };
+  text2-right                       : coord;
+  text2-text-align                  : keyword { left, center, right, justify };
+  text2-text-control                : keyword { none, nowrap, ellipsis, wrap };
+  text2-token                       : token;
+  text2-top                         : coord;
+  text2-visibility                  : keyword { visible, hidden, inherit };
+  text2-width                       : size;
+  text2-z-index                     : size;
+
+  value-alias                            : string;
+  value-background-color                 : color;
+  value-background-image                 : token;
+  value-background-position              : string;
+  value-background-repeat                : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  value-background-size                  : string;
+  value-bottom                           : coord;
+  value-color                            : color;
+  value-display                          : keyword { none, inline, block, flex };
+  value-enable                           : boolean;
+  value-filter                           : keyword { none, dark, gray, brightness };
+  value-font-family                      : string;
+  value-font-size                        : size;
+  value-height                           : size;
+  value-left                             : coord;
+  value-position                         : keyword { fixed, static, relative, absolute };
+  value-right                            : coord;
+  value-text-align                       : keyword { left, center, right, justify };
+  value-token                            : coord;
+  value-top                              : coord;
+  value-visibility                       : keyword { visible, hidden, inherit };
+  value-width                            : size;
+  value-z-index                          : size;
+  value-margin-bottom                    : size;
+  value-margin-left                      : size;
+  value-margin-right                     : size;
+  value-margin-top                       : size;
+  value-text-control                     : keyword { none, nowrap, ellipsis, wrap };
+
+  value-image-alias                       : string;
+  value-image-background-color            : color;
+  value-image-background-image            : token;
+  value-image-background-position         : string;
+  value-image-background-repeat           : keyword { no-repeat, repeat, repeat-y, repeat-x };
+  value-image-background-size             : string;
+  value-image-bottom                      : coord;
+  value-image-color                       : color;
+  value-image-display                     : keyword { none, inline, block, flex };
+  value-image-filter                      : keyword { none, brightness, grayscale };
+  value-image-height                      : size;
+  value-image-left                        : coord;
+  value-image-margin                      : size;
+  value-image-margin-bottom               : size;
+  value-image-margin-left                 : size;
+  value-image-margin-right                : size;
+  value-image-margin-top                  : size;
+  value-image-position                    : keyword { fixed, static, relative, absolute };
+  value-image-right                       : coord;
+  value-image-text-align                  : keyword { left, center, right, justify };
+  value-image-token                       : token;
+  value-image-top                         : coord;
+  value-image-visibility                  : keyword { visible, hidden, inherit };
+  value-image-width                       : size;
+  value-image-z-index                     : size;
+}
+
+//
+// LMDE
+//
+style
+  .LmdeScreen panel
+  property {
+    position         : absolute;
+    z-index          : 0;
+
+    display          : block;
+    overflow-x       : hidden;
+    overflow-y       : hidden;
+
+    color            : lightgray;
+    background-color : black;
+  }
+endstyle;
+
+style
+  .LmdeOwnerDraw panel
+  property {
+    position         : absolute;
+    z-index          : H2O_PANEL_TYPE_OWNER_DRAW;
+
+    display          : block;
+    overflow-x       : hidden;
+    overflow-y       : hidden;
+
+    background-color : 0xFF111111;
+    background-image : IMAGE_TOKEN(IMAGE_OWNER_DRAW_BKG);
+    background-size  : 100%,100%;
+  }
+endstyle;
+
+style
+  .LmdeTitle panel
+  property {
+    position                      : absolute;
+    z-index                       : 4;
+
+    display                       : flex;
+    flex-direction                : row;
+    align-items                   : center;
+    justify-content               : flex-start;
+
+    overflow-x                    : hidden;
+    overflow-y                    : hidden;
+
+    background-color              : 0xFF333333;
+    background-image              : IMAGE_TOKEN(IMAGE_FORM_TITLE_BKG);
+    background-size               : 100%,100%;
+
+    order                         : formset-image, formset-title, str0, form-title;
+
+    formset-image-margin-left     : 30px;
+    formset-image-width           : 39px;
+    formset-image-height          : 39px;
+    formset-image-background-size : 100%,100%;
+
+    formset-title-margin-left     : 10px;
+    formset-title-width           : auto;
+    formset-title-height          : 39px;
+    formset-title-color           : 0xFFFFFFFF;
+    formset-title-font-size       : 30px;
+    formset-title-font-family     : ttf;
+    formset-title-text-control    : nowrap;
+
+    str0-margin-left              : 10px;
+    str0-width                    : auto;
+    str0-height                   : 39px;
+    str0-token                    : STRING_TOKEN(STR_FORM_TITLE_NEXT_STRING);
+    str0-color                    : 0xFFFFFFFF;
+    str0-font-size                : 30px;
+    str0-font-family              : ttf;
+    str0-text-control             : nowrap;
+
+    form-title-left               : 10px;
+    form-title-width              : auto;
+    form-title-height             : 39px;
+    form-title-color              : 0xFFFFFFFF;
+    form-title-font-size          : 30px;
+    form-title-font-family        : ttf;
+    form-title-text-control       : ellipsis;
+  }
+endstyle;
+
+style
+  .LmdeSetupMenu panel
+  property {
+    position         : absolute;
+    z-index          : H2O_PANEL_TYPE_SETUP_MENU;
+
+    display          : block;
+    overflow-x       : hidden;
+    overflow-y       : hidden;
+
+    background-color : 0xFF989898;
+    background-image : IMAGE_TOKEN(IMAGE_FORM_TITLE_BKG);
+    background-size  : 100%,100%;
+  }
+endstyle;
+
+style
+  .LmdeSetupMenu button
+  property {
+    height                        : 110px;
+
+    display                       : flex;
+    flex-direction                : column;
+    align-items                   : center;
+    justify-content               : center;
+
+    background-image              : IMAGE_TOKEN(IMAGE_MENU_BACKGROUND_NORMAL);
+    background-size               : 100%,100%;
+
+    order                         : formset-image,formset-title;
+
+    formset-image-width           : 60%;
+    formset-image-height          : 60%;
+    formset-image-z-index         : 2;
+    formset-image-background-size : 100%,100%;
+    formset-image-filter          : brightness;//(600%);
+
+    formset-title-z-index         : 3;
+    formset-title-color           : 0xFFDDDDDD;
+    formset-title-font-size       : 20px;
+    formset-title-font-family     : ttf;
+  }
+endstyle;
+
+style
+  .LmdeSetupMenu button :focus
+  property {
+    border-style         : solid;
+    border-color         : red;
+    border-width         : 2px;
+    formset-image-filter : none;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage panel
+  property {
+    position               : absolute;
+    z-index                : H2O_PANEL_TYPE_SETUP_PAGE;
+
+    display                : block;
+    overflow-x             : hidden;
+    overflow-y             : auto;
+
+    background-color       : 0xFF333333;
+    background-image       : IMAGE_TOKEN(IMAGE_SETUP_MENU_TEXT_OP_BKG);
+    background-size        : 100%,100%;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage checkbox
+  property {
+    height                       : 70;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    overflow-x                   : hidden;
+    overflow-y                   : hidden;
+
+    background-image             : IMAGE_TOKEN(IMAGE_OPTION_BKG);
+    background-size              : 100%,100%;
+
+    order                        : prompt,value;
+
+    prompt-margin-left           : 50px;
+    prompt-width                 : 250px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF666666;
+    prompt-font-size             : 20px;
+    prompt-text-control          : ellipsis;
+
+    value-margin-right           : 50px;
+    value-width                  : 120px;
+    value-height                 : 40px;
+    value-color                  : white;
+    value-font-size              : 14px;
+    value-background-color       : 0xFFDD4465;
+    value-z-index                : 2;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage checkbox :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage checkbox :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage date
+  property {
+    height                       : 70;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    background-image             : IMAGE_TOKEN(IMAGE_OPTION_BKG);
+    background-size              : 100%,100%;
+
+    order                        : prompt,value,str0;
+
+    prompt-margin-left           : 50px;
+    prompt-width                 : 250px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF666666;
+    prompt-font-size             : 20px;
+    prompt-text-control          : ellipsis;
+
+    value-margin-right           : 10px;
+    value-width                  : 200px;
+    value-height                 : 30px;
+    value-z-index                : 2;
+    value-color                  : 0xFF666666;
+    value-font-size              : 20px;
+    value-text-align             : right;
+    value-text-control           : ellipsis;
+
+    str0-margin-right            : 20px;
+    str0-width                   : 30px;
+    str0-height                  : 30px;
+    str0-z-index                 : 3;
+    str0-color                   : 0xFF666666;
+    str0-font-size               : 20px;
+    str0-text-control            : ellipsis;
+
+    //pop-up-formset-id
+    //pop-up-form-id
+  }
+endstyle;
+
+style
+  .LmdeSetupPage date :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage date :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage time
+  property {
+    height                       : 70;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    background-image             : IMAGE_TOKEN(IMAGE_OPTION_BKG);
+    background-size              : 100%,100%;
+
+    order                        : prompt,value,str0;
+
+    prompt-margin-left           : 50px;
+    prompt-width                 : 250px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF666666;
+    prompt-font-size             : 20px;
+    prompt-text-control          : ellipsis;
+
+    value-margin-right           : 10px;
+    value-width                  : 200px;
+    value-height                 : 30px;
+    value-z-index                : 2;
+    value-color                  : 0xFF666666;
+    value-font-size              : 20px;
+    value-text-align             : right;
+    value-text-control           : ellipsis;
+
+    str0-margin-right            : 20px;
+    str0-width                   : 30px;
+    str0-height                  : 30px;
+    str0-z-index                 : 3;
+    str0-color                   : 0xFF666666;
+    str0-font-size               : 20px;
+    str0-text-control            : ellipsis;
+
+    //pop-up-formset-id
+    //pop-up-form-id
+  }
+endstyle;
+
+style
+  .LmdeSetupPage time :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage time :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage goto
+  property {
+    height                       : 70;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    background-image             : IMAGE_TOKEN(IMAGE_OPTION_BKG);
+    background-size              : 100%,100%;
+
+    order                        : image,prompt;
+
+    image-margin-left            : 10px;
+    image-width                  : 24px;
+    image-height                 : 24px;
+    image-background-size        : 100%,100%;
+
+    prompt-margin-left           : 10px;
+    prompt-width                 : 250px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF666666;
+    prompt-font-size             : 20px;
+    prompt-text-control          : ellipsis;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage goto :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage goto :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage password
+  property {
+    height                       : 70;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    background-image             : IMAGE_TOKEN(IMAGE_OPTION_BKG);
+    background-size              : 100%,100%;
+
+    order                        : image,prompt;
+
+    image-margin-left            : 10px;
+    image-width                  : 24px;
+    image-height                 : 24px;
+    image-background-size        : 100%,100%;
+
+    prompt-margin-left           : 10px;
+    prompt-width                 : 250px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF666666;
+    prompt-font-size             : 20px;
+    prompt-text-control          : ellipsis;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage password :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage password :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage string
+  property {
+    height                       : 70;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    background-image             : IMAGE_TOKEN(IMAGE_OPTION_BKG);
+    background-size              : 100%,100%;
+
+    order                        : image,prompt;
+
+    image-margin-left            : 10px;
+    image-width                  : 24px;
+    image-height                 : 24px;
+    image-background-size        : 100%,100%;
+
+    prompt-margin-left           : 10px;
+    prompt-width                 : 250px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF666666;
+    prompt-font-size             : 20px;
+    prompt-text-control          : ellipsis;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage string :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage string :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage action
+  property {
+    height                       : 70;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    background-image             : IMAGE_TOKEN(IMAGE_OPTION_BKG);
+    background-size              : 100%,100%;
+
+    order                        : image,prompt;
+
+    image-margin-left            : 10px;
+    image-width                  : 24px;
+    image-height                 : 24px;
+    image-background-size        : 100%,100%;
+
+    prompt-margin-left           : 10px;
+    prompt-width                 : 250px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF666666;
+    prompt-font-size             : 20px;
+    prompt-text-control          : ellipsis;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage action :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage action :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage resetbutton
+  property {
+    height                       : 70;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    background-image             : IMAGE_TOKEN(IMAGE_OPTION_BKG);
+    background-size              : 100%,100%;
+
+    order                        : image,prompt;
+
+    image-margin-left            : 10px;
+    image-width                  : 24px;
+    image-height                 : 24px;
+    image-background-size        : 100%,100%;
+
+    prompt-margin-left           : 10px;
+    prompt-width                 : 250px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF666666;
+    prompt-font-size             : 20px;
+    prompt-text-control          : ellipsis;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage resetbutton :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage resetbutton :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage orderedlist
+  property {
+    height                       : 70;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    background-image             : IMAGE_TOKEN(IMAGE_OPTION_BKG);
+    background-size              : 100%,100%;
+
+    order                        : image,prompt;
+
+    image-margin-left            : 10px;
+    image-width                  : 24px;
+    image-height                 : 24px;
+    image-background-size        : 100%,100%;
+
+    prompt-margin-left           : 10px;
+    prompt-width                 : 250px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF666666;
+    prompt-font-size             : 20px;
+    prompt-text-control          : ellipsis;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage orderedlist :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage orderedlist :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage numeric
+  property {
+    height                       : 70;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    background-image             : IMAGE_TOKEN(IMAGE_OPTION_BKG);
+    background-size              : 100%,100%;
+
+
+    order                        : prompt,value,str0;
+
+    prompt-margin-left           : 50px;
+    prompt-width                 : 250px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF666666;
+    prompt-font-size             : 20px;
+    prompt-text-control          : ellipsis;
+
+    value-margin-right           : 10px;
+    value-width                  : 200px;
+    value-height                 : 30px;
+    value-z-index                : 2;
+    value-color                  : 0xFF666666;
+    value-font-size              : 20px;
+    value-text-align             : right;
+    value-text-control           : ellipsis;
+
+    str0-margin-right            : 20px;
+    str0-width                   : 30px;
+    str0-height                  : 30px;
+    str0-z-index                 : 3;
+    str0-color                   : 0xFF666666;
+    str0-font-size               : 20px;
+    str0-text-control            : ellipsis;
+    str0-token                   : STRING_TOKEN(STR_VALUE_END_CONTINUE_STRING);
+
+    //pop-up-formset-id
+    //pop-up-form-id
+  }
+endstyle;
+
+style
+  .LmdeSetupPage numeric :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage numeric :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage oneof
+  property {
+    height                       : 70;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    background-image             : IMAGE_TOKEN(IMAGE_OPTION_BKG);
+    background-size              : 100%,100%;
+
+    order                        : prompt,value,str0;
+
+    prompt-margin-left           : 50px;
+    prompt-width                 : 250px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF666666;
+    prompt-font-size             : 20px;
+    prompt-text-control          : ellipsis;
+
+    value-margin-right           : 10px;
+    value-width                  : 200px;
+    value-height                 : 30px;
+    value-z-index                : 2;
+    value-color                  : 0xFF666666;
+    value-font-size              : 20px;
+    value-text-align             : right;
+    value-text-control           : ellipsis;
+
+    str0-margin-right            : 20px;
+    str0-width                   : 30px;
+    str0-height                  : 30px;
+    str0-z-index                 : 3;
+    str0-color                   : 0xFF666666;
+    str0-font-size               : 20px;
+    str0-text-control            : ellipsis;
+    str0-token                   : STRING_TOKEN(STR_VALUE_END_CONTINUE_STRING);
+
+    //pop-up-formset-id
+    //pop-up-form-id
+  }
+endstyle;
+
+style
+  .LmdeSetupPage oneof :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage oneof :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage subtitle
+  property {
+    height                       : 35;
+
+    display                      : flex;
+    flex-direction               : row;
+    align-items                  : center;
+    justify-content              : flex-start;
+
+    background-image             : IMAGE_TOKEN(IMAGE_SETUP_MENU_TEXT_OP_BKG);
+
+    order                        : prompt;
+
+    prompt-margin-left           : 20px;
+    prompt-width                 : 400px;
+    prompt-height                : 30px;
+    prompt-z-index               : 1;
+    prompt-color                 : 0xFF4D4D4D;
+    prompt-font-size             : 16px;
+    prompt-text-control          : ellipsis;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage text
+  property {
+    height                       : 35;
+
+    display                      : block;
+    overflow-y                   : hidden;
+    overflow-x                   : hidden;
+
+    order                        : img0,img1,img2,prompt,text2;
+
+    img0-position                : absolute;
+    img0-left                    : 0%;
+    img0-top                     : 0%;
+    img0-width                   : 50%;
+    img0-height                  : 100%;
+    img0-background-image        : IMAGE_TOKEN(IMAGE_SETUP_MENU_TEXT_OP_BKG);
+    img0-background-size         : 100%,100%;
+    img0-z-index                 : 0;
+
+    img1-position                : absolute;
+    img1-left                    : 50%;
+    img1-top                     : 0%;
+    img1-width                   : 50%;
+    img1-height                  : 100%;
+    img1-background-image        : IMAGE_TOKEN(IMAGE_SETUP_MENU_TEXT_OP_BKG);
+    img1-background-size         : 100%,100%;
+    img1-z-index                 : 1;
+
+    img2-position                : absolute;
+    img2-left                    : 10px;
+    img2-top                     : 12px;
+    img2-width                   : 8px;
+    img2-height                  : 8px;
+    img2-background-color        : 0xFF4D4D4D;
+    img2-z-index                 : 2;
+
+    prompt-position              : absolute;
+    prompt-left                  : 24px;
+    prompt-top                   : 8px;
+    prompt-width                 : 40%;
+    prompt-height                : 30px;
+    prompt-z-index               : 3;
+    prompt-color                 : 0xFF4D4D4D;
+    prompt-font-size             : 15px;
+    prompt-text-control          : ellipsis;
+
+    text2-position               : absolute;
+    text2-left                   : 55%;
+    text2-top                    : 8px;
+    text2-width                  : 40%;
+    text2-height                 : 30px;
+    text2-z-index                : 4;
+    text2-color                  : 0xFF4D4D4D;
+    text2-font-size              : 15px;
+    text2-text-control           : ellipsis;
+    text2-text-align			 : center;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage text :focus
+  property {
+    border-style                 : solid;
+    border-color                 : red;
+    border-width                 : 2px;
+  }
+endstyle;
+
+style
+  .LmdeSetupPage text :grayout
+  property {
+    color : darkgray;
+  }
+endstyle;
+
+style
+  .LmdeHelpText panel
+  property {
+    position                      : absolute;
+    z-index                       : 5;
+
+    display                       : block;
+    overflow-x                    : hidden;
+    overflow-y                    : auto;
+
+    background-color              : 0xFFFDFDFD;
+
+    order                         : formset-image, prompt, help, formset-help-image;
+
+    formset-image-position        : absolute;
+    formset-image-right           : 7%;
+    formset-image-top             : 5%;
+    formset-image-width           : 50px;
+    formset-image-height          : 50px;
+    formset-image-z-index         : 5;
+    formset-image-background-size : 100%, 100%;
+
+    prompt-position               : absolute;
+    prompt-left                   : 7%;
+    prompt-top                    : 5%;
+    prompt-right                  : 18%;
+    prompt-bottom                 : 80%;
+    prompt-z-index                : 3;
+    prompt-color                  : 0xFF268FB0;
+    prompt-font-size              : 29px;
+    prompt-text-control           : wrap;
+
+    help-position                 : absolute;
+    help-left                     : 7%;
+    help-top                      : 21%;
+    help-right                    : 7%;
+    help-bottom                   : 5%;
+    help-z-index                  : 2;
+    help-color                    : 0xFF666666;
+    help-font-size                : 19px;
+    help-text-control             : wrap;
+
+    formset-help-image-position                 : absolute;
+    formset-help-image-left                     : 5%;
+    formset-help-image-top                      : 50%;
+    formset-help-image-right                    : 25%;
+    formset-help-image-bottom                   : 5%;
+    formset-help-image-z-index                  : 1;
+    formset-help-image-background-size          : 100%,100%;
+    formset-help-image-filter                   : grayscale;//(100%);
+  }
+endstyle;
+
+style
+  .LmdeHotkey panel
+  property {
+    position         : absolute;
+    z-index          : H2O_PANEL_TYPE_HOTKEY;
+
+    display          : flex;
+    flex-direction   : row;
+    align-items      : center;
+    justify-content  : space-around;
+
+    overflow-x       : auto;
+    overflow-y       : hidden;
+
+    background-color : 0xFF333333;
+    background-image : IMAGE_TOKEN(IMAGE_OWNER_DRAW_BKG);
+    background-size  : 100%,100%;
+  }
+endstyle;
+
+style
+  .LmdeHotkey group
+  property {
+    display         : flex;
+    flex-direction  : column;
+    align-items     : center;
+    justify-content : center;
+
+    order           : container,prompt;
+
+    container-width           : auto;
+    container-height          : auto;
+    container-display         : flex;
+    container-flex-direction  : row;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    prompt-margin-top      : 5px;
+    prompt-color           : gray;
+    prompt-font-size       : 15px;
+    prompt-text-align      : center;
+    prompt-text-control    : wrap;
+  }
+endstyle;
+
+style
+  .LmdeHotkey group :focus
+  property {
+    color : white;
+  }
+endstyle;
+
+style
+  .LmdeDialog panel
+  property {
+    visibility       : hidden;
+
+    position         : absolute;
+    left             : 65%;
+    top              : 23%;
+    right            : 0%;
+    bottom           : 13%;
+    z-index          : 100;
+
+    display          : block;
+    overflow-x       : hidden;
+    overflow-y       : auto;
+
+    background-color : 0xFFFDFDFD;
+  }
+endstyle;
+
+style
+  .LmdeDialog panel :help
+  property {
+    left : 12%;
+  }
+endstyle;
+
+//
+// Hotkey
+//
+style
+  .H2OHotKeyShowHelp hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image,help;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeyDiscardAndExit hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image,help;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeySelectPreviousItem hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeySelectNextItem hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeyEnter hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image,help;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeySelectPreviousMenu hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeySelectNextMenu hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeyModifyPreviousValue hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeyModifyNextValue hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeyLoadDefault hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image,help;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeyLoadDefaultCallback hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image,help;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeySaveAndExit hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image,help;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeySaveAndExitCallback hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image,help;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeySave hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image,help;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeyShiftDown hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+
+style
+  .H2OHotKeyShiftUp hotkey
+  property {
+    width               : auto;
+
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    justify-content     : space-between;
+
+    order               : image;
+
+    image-width         : 47px;
+    image-height        : 47px;
+
+    help-margin-top   : 5px;
+    help-color        : gray;
+    help-font-size    : 15px;
+    help-text-control : wrap;
+  }
+endstyle;
+

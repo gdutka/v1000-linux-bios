@@ -1,0 +1,125 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdNbioBaseRVPei
+  FILE_GUID                      = F95754C4-784D-4155-A05E-5C0AE2559FF8
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdNbioBaseRVPeiEntry
+
+[Sources]
+  AmdNbioBaseRVPei.c
+  PcieComplexDataRV.c
+  PcieComplexDataRV.h
+  NbioTablesRV.c
+  NbioTablesRV.h
+  GnbIommuTablesRV.c
+  NbioTopMemRV.c
+  NbioRASControlRV.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+  IdsLib
+  PeimEntryPoint
+  PeiServicesLib
+  GnbCommonLib
+  PcdLib
+  HobLib
+  BaseMemoryLib
+  NbioHandleLib
+  PcieConfigLib
+  GnbRegisterAccZpLib
+  NbioRegisterAccLib
+  AmdIdsHookLib
+  NbioIdsHookRVLib
+  FabricResourceManagerLib
+  SmnAccessLib
+  NbioSmuV10Lib
+  IoLib
+
+[Guids]
+  gGnbNbioBaseZPHobInfoGuid
+  gGnbPcieHobInfoGuid
+  gAmdMemoryInfoHobGuid
+
+[Ppis]
+  gAmdNbioBaseServicesZpPpiGuid
+  gAmdNbioPcieServicesPpiGuid
+  gAmdMemoryInfoHobPpiGuid    #CONSUMED
+  gAmdSocLogicalIdPpiGuid
+#  gAmdNbioDebugServicesPpiGuid
+#  gAmdNbioBaseServicesPpiGuid
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdIommuL1ClockGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdIommuL2ClockGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgScsSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgUmaSteering
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdGmcPowerGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgGmcClockGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgOrbDynWakeEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgOrbClockGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIocLclkClockGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgBapmSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgDcTdpEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgGnbNumDisplayStreamPipes
+  #Gnb RV Build Options
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdIOHCClkGatingSupport
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgIommuSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgChubClockGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgAcpClockGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgAxgDisable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPcieHwInitPwerGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSpgClockGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgAcgAzClockGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIommuL1MemPowerGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIommuL2MemPowerGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgOrbTxMemPowerGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgOrbRxMemPowerGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSstunlClkGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgParityErrorConfiguration
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSpgMemPowerGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgAcgAzMemPowerGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgBifMemPowerGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSDMAMemPowerGatingEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPcieTxpwrInOff
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPcieRxpwrInOff
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSmuDeterminismAmbient
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgBTCEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPSIEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgGnbIoapicAddress
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgACSEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdNbioPoisonConsumption
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdNbioRASControl
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdNbioAudioSelect
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgAzaliaEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPcieAriSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIgpuContorl     #0: disable , 1: enable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIOMMUDynamicPgEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIOMMUL2MemoryPGEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIohcNonPCIBarInitSmu
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIohcNonPCIBarInitDbg
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIohcNonPCIBarInitFastReg
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIohcNonPCIBarInitFastRegCtl
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdIOHCPgEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdShubclkDpmControl
+
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdDmaDsXgbeEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdDmaDsUsb1Enable
+
+[Depex]
+  gAmdNbioBaseRVPeiDepexPpiGuid AND gAmdSocLogicalIdPpiGuid
+
+

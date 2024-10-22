@@ -1,0 +1,37 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdHeapPeiLib
+  FILE_GUID                      = 0D1113AE-4F0F-4C19-BE8B-CCEDF9BF3CB4
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdHeapLib
+
+
+[Sources]
+  AmdHeapPeiLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  BaseLib
+  AmdBaseLib
+  IdsLib
+  PeiServicesLib
+  HobLib
+
+[Pcd]
+
+[Guids]
+  gAmdHeapHobGuid
+

@@ -1,0 +1,222 @@
+/** @file
+
+;******************************************************************************
+;* Copyright (c) 2015, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+//
+// Define this to include compiler fail-cases in the code
+//
+#include "ChipsetSetupConfig.h"
+//
+//          Form 4: Power Menu
+//
+
+formset
+  guid     = FORMSET_ID_GUID_POWER,
+  title    = STRING_TOKEN(STR_POWER_TITLE),
+  help     = STRING_TOKEN(STR_BLANK_STRING),
+  classguid = SETUP_UTILITY_FORMSET_CLASS_GUID,
+  class    = SETUP_UTILITY_CLASS,
+  subclass = EFI_USER_ACCESS_THREE,
+#if defined(SETUP_IMAGE_SUPPORT) && FeaturePcdGet(PcdH2OFormBrowserLocalMetroDESupported)
+  image     = IMAGE_TOKEN (IMAGE_POWER);
+#endif
+
+  varstore CHIPSET_CONFIGURATION,            // This is the data structure type
+    varid = CONFIGURATION_VARSTORE_ID,      // Optional VarStore ID
+    name  = SystemConfig,                    // Define referenced name in vfr
+    guid  = SYSTEM_CONFIGURATION_GUID;      // GUID of this buffer storage
+
+  form
+    formid = ROOT_FORM_ID,
+
+    title = STRING_TOKEN(STR_POWER_TITLE);
+
+    subtitle
+      text = STRING_TOKEN(STR_BLANK_STRING);
+
+//[-start-190704-IB06070040-remove]//
+//    goto 0x40,
+//      prompt = STRING_TOKEN(STR_CPU_CONTROL_STRING),
+//#if defined(SETUP_IMAGE_SUPPORT) && FeaturePcdGet(PcdH2OFormBrowserLocalMetroDESupported)
+//      help = STRING_TOKEN(STR_CPU_CONTROL_HELP),
+//      image = IMAGE_TOKEN (IMAGE_CPU_CONTROL),;
+//#else
+//      help = STRING_TOKEN(STR_CPU_CONTROL_HELP);
+//#endif
+//
+//    subtitle
+//      text = STRING_TOKEN(STR_BLANK_STRING);
+//[-end-190704-IB06070040-remove]//
+
+    grayoutif
+      ideqval SystemConfig.UserAccessLevel == 2
+      AND
+      ideqval SystemConfig.SetUserPass == 1;
+    suppressif
+      ideqvallist SystemConfig.DisableAcpiS1 == 0 1;
+    oneof
+      varid       = SystemConfig.DisableAcpiS1,
+      prompt      = STRING_TOKEN(STR_DISABLE_ACPI_S1_STRING),
+      help        = STRING_TOKEN(STR_DISABLE_ACPI_SX_HELP),
+      option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = DEFAULT;
+      option text = STRING_TOKEN(STR_ENABLED_TEXT),   value = 1, flags = 0;
+    endoneof;
+    endif;
+
+    suppressif ideqval SystemConfig.WakeOnPME == 0;
+    oneof
+      varid       = SystemConfig.DisableAcpiS3,
+      questionid  = KEY_S3_SUPPORT,
+      prompt      = STRING_TOKEN(STR_DISABLE_ACPI_S3_STRING),
+      help        = STRING_TOKEN(STR_DISABLE_ACPI_SX_HELP),
+      option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = INTERACTIVE;
+      option text = STRING_TOKEN(STR_ENABLED_TEXT),   value = 1, flags = INTERACTIVE|DEFAULT;
+    endoneof;
+    endif;
+
+    endif;
+
+    grayoutif
+      ideqval SystemConfig.UserAccessLevel == 2
+      AND
+      ideqval SystemConfig.SetUserPass == 1;
+// Add Thermal control option
+    oneof
+      varid       = SystemConfig.ThermalFanControl,
+      prompt      = STRING_TOKEN(STR_THERMAL_CTL_FAN_STRING),
+      help        = STRING_TOKEN(STR_THERMAL_CTL_FAN_HELP),
+      option text = STRING_TOKEN(STR_AUTO_TEXT),    value = 0, flags = 0;
+      option text = STRING_TOKEN(STR_DISABLED_TEXT),     value = 1, flags = DEFAULT;
+    endoneof;
+
+    oneof
+      varid       = SystemConfig.WakeOnPME,
+      prompt      = STRING_TOKEN(STR_WAKE_ON_PME_STRING),
+      help        = STRING_TOKEN(STR_WAKE_ON_PME_HELP),
+      option text = STRING_TOKEN(STR_DISABLED_TEXT),    value = 0, flags = 0;
+      option text = STRING_TOKEN(STR_ENABLED_TEXT),     value = 1, flags = DEFAULT;
+    endoneof;
+
+    oneof
+      varid       = SystemConfig.WakeOnS5,
+      prompt      = STRING_TOKEN(STR_WAKE_ON_S5_STRING),
+      help        = STRING_TOKEN(STR_WAKE_ON_S5_HELP),
+      option text = STRING_TOKEN(STR_DISABLED_TEXT),            value = 0, flags = DEFAULT;
+      option text = STRING_TOKEN(STR_WAKE_BY_EVERY_DAY_TEXT),   value = 1, flags = 0;
+      option text = STRING_TOKEN(STR_WAKE_BY_DAY_OF_MONTH_TEXT),value = 2, flags = 0;
+    endoneof;
+
+    endif;
+
+    //
+    // hide option when Disable
+    //
+    grayoutif
+      ideqval SystemConfig.UserAccessLevel == 2
+      AND
+      ideqval SystemConfig.SetUserPass == 1;
+    suppressif
+      ideqval SystemConfig.WakeOnS5 == 0;
+
+     time
+       varid = SystemConfig.WakeOnS5Time,
+       prompt = STRING_TOKEN(STR_WAKE_ON_S5_TIME_PROMPT),
+       help = STRING_TOKEN(STR_TIME_HELP),
+       flags = STORAGE_NORMAL,
+       default = 00:00:00,
+     endtime;
+    endif;
+    endif;
+
+    grayoutif
+      ideqval SystemConfig.UserAccessLevel == 2
+      AND
+      ideqval SystemConfig.SetUserPass == 1;
+    suppressif
+      ideqvallist SystemConfig.WakeOnS5 == 0 1;
+
+      numeric
+        varid       = SystemConfig.WakeOnS5DayOfMonth,
+        prompt      = STRING_TOKEN(STR_WAKE_DAY_OF_MONTH_PROMPT),
+        help        = STRING_TOKEN(STR_DATE_DAY_HELP),
+        minimum     = 1,
+        maximum     = 31,
+        step        = 1,
+        default     = 1,
+      endnumeric;
+    endif;
+    endif;
+
+
+    grayoutif
+      ideqval SystemConfig.UserAccessLevel == 2
+      AND
+      ideqval SystemConfig.SetUserPass == 1;
+      oneof
+        varid       = SystemConfig.S5LongRunTest,
+        prompt      = STRING_TOKEN(STR_S5_LONG_RUN_TEST_STRING),
+        help        = STRING_TOKEN(STR_S5_LONG_RUN_TEST_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT),    value = 0, flags = DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),     value = 1, flags = 0;
+      endoneof;
+    endif;
+
+    subtitle
+      text = STRING_TOKEN(STR_BLANK_STRING);
+
+    link;
+
+  endform;
+
+    //
+    //  Form 0x40: Advanced CPU Control
+    //
+    form
+      formid = 0x40, title = STRING_TOKEN(STR_CPU_CONTROL_STRING);
+
+      subtitle  text = STRING_TOKEN(STR_CPU_CONTROL_STRING);
+      subtitle  text = STRING_TOKEN(STR_BLANK_STRING);
+
+      grayoutif
+      ideqval SystemConfig.UserAccessLevel == 2
+      AND
+      ideqval SystemConfig.SetUserPass == 1;
+      oneof
+        varid       = SystemConfig.PowerNowControl,
+        prompt      = STRING_TOKEN(STR_IST_CONFIGURATION_STRING),
+        help        = STRING_TOKEN(STR_IST_CONFIGURATION_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT),        value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),         value = 1, flags = DEFAULT;
+      endoneof;
+      endif;
+
+      grayoutif
+      ideqval SystemConfig.UserAccessLevel == 2
+      AND
+      ideqval SystemConfig.SetUserPass == 1;
+
+        oneof
+          varid       = SystemConfig.MpSupport,
+          questionid  = KEY_MP_SUPPORT,
+          prompt      = STRING_TOKEN(STR_HT_SUPPORT_STRING),
+          help        = STRING_TOKEN(STR_HT_SUPPORT_HELP),
+          option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_AUTO_TEXT),      value = 1, flags = DEFAULT | INTERACTIVE;
+        endoneof;
+      endif;
+
+    subtitle
+      text = STRING_TOKEN(STR_BLANK_STRING);
+
+    endform;
+
+endformset;

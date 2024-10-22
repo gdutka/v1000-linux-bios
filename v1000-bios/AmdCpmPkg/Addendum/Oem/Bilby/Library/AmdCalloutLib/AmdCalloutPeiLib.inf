@@ -1,0 +1,43 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdCalloutLib
+  FILE_GUID                      = A8FEA621-B381-4c06-9E9D-0897EF78BD78
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdCalloutLib|PEIM
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  IdsLib
+#  AmdMemServicesLib
+  PeiServicesTablePointerLib
+
+[Sources]
+  AgesaReadSpdNull.c
+  AgesaHookBeforeDramInit.c
+  AgesaHookBeforeExitSelfRefresh.c
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gAmdPlatformDimmSpdPpiGuid                  #Consume
+
+[Pcd]
+
+[Depex]
+  gAmdPlatformDimmSpdPpiGuid

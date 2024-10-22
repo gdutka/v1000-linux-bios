@@ -1,0 +1,38 @@
+## @file
+#  The PostCodeConfigLib instance
+#
+#******************************************************************************
+#* Copyright (c) 2016, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = PostCodeConfigLib
+  FILE_GUID                 = 7991AAD6-6E72-4e50-B0C3-8A3DE4079725
+  MODULE_TYPE               = BASE
+  VERSION_STRING            = 1.0
+  LIBRARY_CLASS             = PostCodeConfigLib
+
+[Sources]
+  PostCodeConfigLib.c
+
+[Sources.Ia32]
+  Ia32/IdtHandlerConfig.c
+
+[Sources.X64]
+  X64/IdtHandlerConfig.c
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydePostCodePkg/InsydePostCodePkg.dec
+  
+[LibraryClasses]  
+  BaseLib
+  

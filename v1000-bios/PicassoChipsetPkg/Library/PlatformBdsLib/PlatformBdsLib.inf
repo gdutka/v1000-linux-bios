@@ -1,0 +1,145 @@
+
+## @file
+#  PlatformBdsLib
+#
+#******************************************************************************
+#* Copyright (c) 2016 - 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+##
+#
+#  Provide NULL implementation for PlatformBdsLib library class interfaces which
+#  should be implemented by OEM.
+#
+#  Copyright (c) 2007 - 2010, Intel Corporation. All rights reserved.<BR>
+#  This program and the accompanying materials
+#  are licensed and made available under the terms and conditions of the BSD License
+#  which accompanies this distribution.  The full text of the license may be found at
+#  http://opensource.org/licenses/bsd-license.php
+#
+#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformBdsLib
+  FILE_GUID                      = 143B5044-7C1B-4904-9778-EA16F1F3D554
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PlatformBdsLib|DXE_DRIVER
+  CONSTRUCTOR                    = PlatformBdsLibConstructor
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  Strings.uni
+  BootDevicesDisplayStrings.uni
+  BdsPlatform.h
+
+  BdsPlatform.c
+  PlatformData.c
+  OemHotKey.c
+  OemBootDisplayDevice.c
+  BootDevicesDisplay.c
+  VideoOutputPortSelection.c
+  String.c
+
+[Packages]
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AMD64ArchFamilyCpuPkg/AMD64ArchFamilyCpuPkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  $(CPM_PKG_PATH)/$(CPM_PKG_DEC).dec
+
+[LibraryClasses]
+  BaseLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  DxeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  PcdLib
+  GenericBdsLib
+  GenericUtilityLib
+  UefiLib
+  HiiLib
+  ReportStatusCodeLib
+  PrintLib
+  PerformanceLib
+  HobLib
+  DevicePathLib
+  OemGraphicsLib
+  IoLib
+  PostCodeLib
+  DxeOemSvcKernelLibDefault
+  H2OCpLib
+  AmdPbsConfigLib
+  KernelConfigLib
+  ChipsetConfigLib
+  PciSegmentLib
+
+[Guids]
+  gFrontPageFormSetGuid
+  gEfiIfrTianoGuid
+  gBootMaintFormSetGuid
+  gFileExploreFormSetGuid
+  gEfiGlobalVariableGuid
+  gEfiGenericVariableGuid
+  gEfiCapsuleVendorGuid
+  gEfiRecoveryFileAddressGuid
+  gEfiHtBistHobGuid
+  gH2OBdsCpDisplayBeforeGuid
+
+[Protocols]
+#  gEfiLegacyRegionProtocolGuid
+  gEfiLegacyRegion2ProtocolGuid
+  gEfiLegacyBiosProtocolGuid
+  gEfiHiiConfigAccessProtocolGuid
+  gEfiGraphicsOutputProtocolGuid
+  gEfiBootLogoProtocolGuid
+  gEfiPciIoProtocolGuid
+  gEfiOEMBadgingSupportProtocolGuid
+  gEfiUgaSplashProtocolGuid
+  gEfiConsoleControlProtocolGuid
+  gEfiSimpleTextInputExProtocolGuid
+  gH2ODialogProtocolGuid
+  gConsoleRedirectionServiceProtocolGuid
+  gCRBdsHookProtocolGuid
+  gAllPciIoPrtclsInstlFinishedProtocolGuid
+#   gAmdSimpleSltProtocolGuid
+  gEfiMpServiceProtocolGuid
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdBootLogoOnlyEnable
+  gInsydeTokenSpaceGuid.PcdFrontPageSupported
+  gInsydeTokenSpaceGuid.PcdUseFastCrisisRecovery
+  gInsydeTokenSpaceGuid.PcdH2OFormBrowserLocalMetroDESupported
+  gInsydeTokenSpaceGuid.PcdH2OSecureBootSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpDisplayBeforeSupported
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultPlatformLangCodes
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultPlatformLang
+  gInsydeTokenSpaceGuid.PcdPortNumberMapTable
+  gInsydeTokenSpaceGuid.PcdH2ODebugPort
+  gChipsetPkgTokenSpaceGuid.PcdBdsReoveryLongRun
+#[-start-190529-IB06070029-add]#
+  gChipsetPkgTokenSpaceGuid.PcdPciExpressSize
+#[-end-190529-IB06070029-add]#
+

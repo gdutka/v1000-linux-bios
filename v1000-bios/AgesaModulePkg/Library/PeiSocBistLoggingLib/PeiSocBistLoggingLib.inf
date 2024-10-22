@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiSocBistLoggingLib
+  FILE_GUID                      = 2D31AAE9-E675-4360-A9B7-BC41F93C6ECD
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PeiSocBistLoggingLib
+
+[Sources]
+  SocBistLoggingLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  PeiSocBistLib
+  AmdErrorLogLib
+  IdsLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gAmdFabricTopologyServices2PpiGuid #CONSUMED
+  gAmdCoreTopologyServicesPpiGuid   #CONSUMED
+  gAmdErrorLogPpiGuid               #CONSUMED
+
+[Pcd]
+
+[Depex]

@@ -1,0 +1,194 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: NBIO
+ * @e \$Revision: 281175 $   @e \$Date: 2013-12-18 01:53:00 -0600 (Wed, 18 Dec 2013) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+DefinitionBlock (
+  "ALIB.aml",
+  "SSDT",
+  2,
+  "AMD",
+  "ALIB",
+  0x2
+  )
+{
+  Scope(\_SB) {
+    //-----------------------------------------------------------------
+    // Transfer data
+    //-----------------------------------------------------------------
+    Name (PcieBaseAddress, 0xffffffff)
+    //-----------------------------------------------------------------
+    Name (ADBG, Buffer (256) {})
+    //-----------------------------------------------------------------
+    // Transfer data block
+    //-----------------------------------------------------------------
+    include ("DataBlock.asl")
+    //-----------------------------------------------------------------
+    // ALIB interface
+    //-----------------------------------------------------------------
+    include ("Alib.asl")
+    //-----------------------------------------------------------------
+    // Hotplug API
+    //-----------------------------------------------------------------
+    External(\_SB.ALIC,  MethodObj)
+    include ("Hotplug.asl")
+    //-----------------------------------------------------------------
+    // ACDC objects
+    //-----------------------------------------------------------------
+    include ("Acdc.asl")
+    //-----------------------------------------------------------------
+    // PSPP objects
+    //-----------------------------------------------------------------
+    include ("Pspp.asl")
+    //-----------------------------------------------------------------
+    // SMN Registers
+    //-----------------------------------------------------------------
+    include ("SmnRegistersRV.asl")
+    //-----------------------------------------------------------------
+    // NBIO services
+    //-----------------------------------------------------------------
+    include ("NbioPcieRV.asl")
+    include ("NbioRV.asl")
+    include ("NbioDPTCiRV.asl")
+    //-----------------------------------------------------------------
+    // PCIe topology
+    //-----------------------------------------------------------------
+    include ("PcieTopologyRV.asl")
+    include ("NbioAPlusARV.asl")
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  PTS event handler
+   *
+   *  This function should be called from PTS
+   */
+    Name (varBapmStatus, ON)
+    Name (varSwNbPstateLoDis, 0)
+
+    Method (APTS, 1) {
+      if (LEqual (Arg0, 3)) {
+        //
+        //  Put PSPP to sleep
+        //
+        //procPsppSleep (Arg0)
+        //
+        // Put BAPM to sleep
+        //
+        //procBapmManage (OFF)
+        //
+        // Prepare Mem pstate
+        //
+        //Store (procMemePSManage (OFF), varSwNbPstateLoDis)
+      }
+
+    }
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  WAKE event handler
+   *
+   *  This function should be called from WAK
+   */
+    Method (AWAK, 1) {
+      procAPlusAFeature ()
+      if (LEqual (Arg0, 3)) {
+        //
+        //  Wake PSPP
+        //
+        //procPsppWake (Arg0)
+        //
+        // Wake Mem PS
+        //
+        //if (LEqual (varSwNbPstateLoDis, 0)) {
+        //  procMemePSManage (ON)
+        //}
+      }
+    }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  PCIe Port initialize for device Entry/Exit to D3
+   *
+   *  This function should be called from CS/WS
+   *
+   *  Arg0 - Buffer
+   *         CreateWordField(Arg0, 0, StructureSize2)     // Structure size field(2Byte)
+   *         CreateField(Arg0, 16, 3, FunctionNumber)     // func field
+   *         CreateField(Arg0, 19, 5, DeviceNumber)       // dev field
+   *         CreateByteField(Arg0, 3, BusNumber)          // bus field
+   *         CreateByteField(Arg0, 4, PortPMField)        // 1=Enter_L23, 0=Exit from RC port
+   */
+    Method (APPM, 1) {
+      Store (DerefOf (Index (Arg0, 4)), Local0)
+      Store (DerefOf (Index (Arg0, 2)), Local1)
+      procNbioPCIePowerManagement (Local0, Local1)
+    }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  AC/DC change event handler
+   *
+   *
+   */
+    Method (procAcDcChangeEvent, 0) {
+      //
+      // Notify AC/DC state to SMU
+      //
+      Store (Buffer (24) {}, Local7)             // Local7 as an input buffer and passed to procGnbSmuServiceReq
+      CreateDWordField (Local7, 0,  varSmuArg0)
+      CreateDWordField (Local7, 4,  varSmuArg1)
+      CreateDWordField (Local7, 8,  varSmuArg2)
+      CreateDWordField (Local7, 12, varSmuArg3)
+      CreateDWordField (Local7, 16, varSmuArg4)
+      CreateDWordField (Local7, 20, varSmuArg5)
+      Store (0, varSmuArg0)
+      Store (0, varSmuArg1)
+      Store (0, varSmuArg2)
+      Store (0, varSmuArg3)
+      Store (0, varSmuArg4)
+      Store (0, varSmuArg5)
+
+      if (LEqual (AcDc, AC)) {
+        ALIB_DEBUG (" AC Mode")
+        ALIB_DEBUG (" Send SMC_MSG_PowerSourceAC(0x18) to SMU")
+        procSmuServiceReq (0x18, Local7)
+      } else {
+        ALIB_DEBUG (" DC Mode")
+        ALIB_DEBUG (" Send SMC_MSG_PowerSourceDC(0x19) to SMU")
+        procSmuServiceReq (0x19, Local7)
+      }
+    }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  PCIe speed change event handler
+   *
+   *  AC/DC state can be recovered from AcDc.
+   *
+   *  Arg0 - Target PCIe speed, Arg0 - Current link speed
+   */
+    Method (procPcieSpeedChangeEvent, 2) {
+
+    }
+
+  } //End of Scope(\_SB)
+
+}   //End of DefinitionBlock
+
+

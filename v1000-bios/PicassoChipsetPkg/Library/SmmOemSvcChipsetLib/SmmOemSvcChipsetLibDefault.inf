@@ -1,0 +1,33 @@
+## @file
+#  Component description file for SMM OEM Services Chipset Lib Default instance.
+#
+#******************************************************************************
+#* Copyright (c) 2015, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SmmOemSvcChipsetLibDefault
+  FILE_GUID                      = 4D53955F-8566-466a-BBE4-6466ADD7D29D
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = SmmOemSvcChipsetLibDefault|DXE_SMM_DRIVER SMM_CORE
+
+[Sources]
+  OemSvcIhisiOemHook.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  $(PROJECT_PKG)/Project.dec
+
+[LibraryClasses]
+  SmmOemSvcChipsetLib

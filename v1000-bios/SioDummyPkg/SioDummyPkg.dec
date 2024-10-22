@@ -1,0 +1,127 @@
+## @file
+#
+#  Platform Package Declaration file
+#
+#******************************************************************************
+#* Copyright 2017 Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corp.
+#*
+#******************************************************************************
+
+[Defines]
+  DEC_SPECIFICATION    = 0x00010005
+  PACKAGE_NAME         = SioDummyPkg
+  PACKAGE_GUID         = B0CECEA7-9DCA-1413-177E-C7F6545169C4
+  PACKAGE_VERSION      = 00.00.02.0021
+
+[Includes]
+  Include
+  Override/InsydeModulePkg/Include
+
+[LibraryClasses]
+  IoDecodeLib|Include/Library/IoDecodeLib.h
+  SioDummyPrivateLib|Include/Library/SioDummyPrivateLib.h
+
+[Protocols]
+  gH2OSioInstancePrivateInfoProtocolGuid = { 0x3e06b922, 0x9ad1, 0x4784, {0x81, 0xf5, 0x89, 0xb1, 0x78, 0x47, 0x15, 0xa6} }
+  gH2OSioIsaAcpiInitializedProtocolGuid  = { 0x41b4d617, 0x701e, 0x4ab7, {0xa0, 0x19, 0x5b, 0x9b, 0x1c, 0x2f, 0x26, 0xd1} }
+  gH2OSioIsaPnp303DeviceProtocolGuid     = { 0x92ff2801, 0x4092, 0x4305, {0xb4, 0xaa, 0xb9, 0x84, 0xdd, 0xa2, 0xc2, 0xdb} }
+  gH2OSioIsaPnp401DeviceProtocolGuid     = { 0x06d5c6e6, 0xd3c1, 0x4782, {0xb8, 0x88, 0xa3, 0x32, 0x77, 0x1f, 0x6a, 0x23} }
+  gH2OSioIsaPnp501DeviceProtocolGuid     = { 0x405e8d30, 0x44ce, 0x4d72, {0xa4, 0xaf, 0x4e, 0xc0, 0x49, 0x57, 0x61, 0x5c} }
+  gH2OSioIsaPnp510DeviceProtocolGuid     = { 0x6c8abc99, 0x3aa2, 0x44e0, {0xab, 0x80, 0xe2, 0xa9, 0xce, 0x3a, 0x5b, 0x4b} }
+  gH2OSioIsaPnp604DeviceProtocolGuid     = { 0xe1ee93fb, 0x482f, 0x452f, {0xab, 0x95, 0x58, 0x13, 0x6b, 0x25, 0x65, 0xc6} }
+  gH2OSioIsaPnpB02fDeviceProtocolGuid    = { 0x47269fb0, 0xa190, 0x4398, {0xa4, 0x3e, 0xca, 0xa8, 0xb2, 0x3a, 0x21, 0x64} }
+  gH2OSioIsaPnpF03DeviceProtocolGuid     = { 0x79a20561, 0x9100, 0x40ab, {0x9d, 0xcf, 0x19, 0xbb, 0x7c, 0xcf, 0xce, 0xc7} }
+  gH2OIsaDeviceProtocolGuid              = { 0x25744fe3, 0x604a, 0x4c51, {0x91, 0x2f, 0xdb, 0x2f, 0x91, 0xd3, 0xa1, 0xa5} }
+  gEfiIsaAcpiProtocolGuid                = { 0x64a892dc, 0x5561, 0x4536, {0x92, 0xc7, 0x79, 0x9b, 0xfc, 0x18, 0x33, 0x55} }
+
+#
+# [Error.gSioGuid]
+#   0x80000001 | Invalid value provided.
+#   0x80000002 | Reserved bits must be set to zero.
+#
+
+[PcdsFeatureFlag]
+  ## Super I/O Supported
+  # FALSE: Not to support this Super I/O
+  # TRUE : Support this Super I/O
+  # @Prompt Super I/O Supported
+  gSioGuid.PcdH2OSioDummySupported|FALSE|BOOLEAN|0x07E00000
+
+  ## Super I/O Chip 1 Supported
+  # FALSE: Not to initialize Devices in Super I/O chip 1
+  # TRUE : Initialize Devices in Super I/O chip 1
+  # @Prompt Super I/O Chip 1 Supported
+  gSioGuid.PcdH2OSioDummyChip1Supported|FALSE|BOOLEAN|0x07E00001
+
+  ## Chip1 Early Pei Supported
+  # FALSE: Don't initialize UART Port 1 and UART Port 2 at very early in PEI
+  # TRUE : Initialize UART port 1 and UART port 2 at very early in PEI
+  # @Prompt Early Pei Supported
+  gSioGuid.PcdH2OSioDummyChip1EarlyPeiSupported|FALSE|BOOLEAN|0x37E00002
+
+[PcdsFixedAtBuild]
+  ## UART Port 1 Supported
+  # FALSE: Not to initialize UART Port 1 in Super I/O chip 1
+  # TRUE : Initialize UART Port 1 in Super I/O chip 1
+  # @Prompt UART Port 1 Supported
+  gSioGuid.PcdH2OSioDummyChip1Uart1Supported|FALSE|BOOLEAN|0x07E00003
+
+  ## UART Port 1 Device I/O Base
+  #  Value: 0000h - FFFFh
+  # @Prompt UART Port 1 Device I/O Base
+  gSioGuid.PcdH2OSioDummyChip1Uart1Base|0x03F8|UINT16|0x07E00004
+
+  ## UART Port 1 Device I/O Irq Number
+  #  Value: 00h - FFh
+  # @Prompt UART Port 1 Device I/O Irq Number
+  gSioGuid.PcdH2OSioDummyChip1Uart1Irq|0x04|UINT8|0x07E00005
+
+  ## UART Port 2 Supported
+  # FALSE: Not to initialize UART Port 2 in Super I/O chip 1
+  # TRUE : Initialize UART Port 2 in Super I/O chip 1
+  # @Prompt UART Port 2 Supported
+  gSioGuid.PcdH2OSioDummyChip1Uart2Supported|FALSE|BOOLEAN|0x07E00006
+
+  ## UART Port 2 Device I/O Base
+  #  Value: 0000h - FFFFh
+  # @Prompt UART Port 2 Device I/O Base
+  gSioGuid.PcdH2OSioDummyChip1Uart2Base|0x02F8|UINT16|0x07E00007
+
+  ## UART Port 2 Device I/O Irq Number
+  #  Value: 00h - FFh
+  # @Prompt UART Port 1 Device I/O Irq Number
+  gSioGuid.PcdH2OSioDummyChip1Uart2Irq|0x03|UINT8|0x07E00008
+
+  ## Keyboard Controller Supported
+  # FALSE: Not to initialize Keyboard Controller in Super I/O chip 1
+  # TRUE : Initialize Keyboard Controller in Super I/O chip 1
+  # @Prompt Keyboard Controller Supported
+  gSioGuid.PcdH2OSioDummyChip1KbcSupported|FALSE|BOOLEAN|0x07E00009
+
+[PcdsFixedAtBuild, PcdsPatchableInModule, PcdsDynamic, PcdsDynamicEx]
+  ## ISA Device UID Customized Setting
+  #  # Type | DI | UID
+  #  #------------------------------------------------------------------
+  #                                  #    Type           |      DI       |     C.R. (UID)    |  OS (UID)  |
+  #    0x02, 0x01, UINT16(0xFFFF), \ # SioParallelDev    | DevInstance1  | ----------Auto Config--------- |
+  #    0x03, 0x01, UINT16(0x00),   \ # SioUartDev        | DevInstance1  | COM1              |   COM1     |
+  #    0x03, 0x02, UINT16(0x01),   \ # SioUartDev        | DevInstance2  | COM2              |   COM2     |
+  #    0x03, 0x03, UINT16(0x02),   \ # SioUartDev        | DevInstance3  | ISA_UART (COM3)   |   COM3     |
+  #    0x03, 0x04, UINT16(0x03),   \ # SioUartDev        | DevInstance4  | ISA_UART (COM4)   |   COM4     |
+  #    0x03, 0x05, UINT16(0x04),   \ # SioUartDev        | DevInstance5  | ISA_UART (COM5)   |   COM5     |
+  #    0x03, 0x06, UINT16(0x05),   \ # SioUartDev        | DevInstance6  | ISA_UART (COM6)   |   COM6     |
+  #    0x04, 0x01, UINT16(0xFFFF), \ # SioInfraredDev    | DevInstance1  | ----------Auto Config--------- |
+  #    0x04, 0x02, UINT16(0xFFFF)  \ # SioInfraredDev    | DevInstance2  | ----------Auto Config--------- |
+  # @Prompt ISA Device UID Customized Setting
+  # @PcdTypeStruct SIO_PCD_ISA_DEVICE_UID {\
+  #                  UINT8   LogicalDeviceType; \
+  #                  UINT8   DeviceInstance; \
+  #                  UINT16  DeviceUid; \
+  #                  }
+  # @PcdValueType SIO_PCD_ISA_DEVICE_UID[]
+  gSioGuid.PcdH2OSioDummyChip1IsaDeviceUid|{0}|VOID*|0x07E0000A

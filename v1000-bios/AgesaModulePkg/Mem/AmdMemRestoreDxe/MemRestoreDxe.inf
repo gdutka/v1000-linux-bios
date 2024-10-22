@@ -1,0 +1,44 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemRestoreDxe
+  FILE_GUID                      = 95DE95F8-A215-48c3-814A-40F07B925D24
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DxeAmdMemRestoreEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleMemPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  UefiDriverEntryPoint
+  AmdBaseLib
+  IdsLib
+  AmdHeapLib
+  MemRestoreLib
+
+[Sources]
+  MemRestoreDxe.h
+  MemRestoreDxe.c
+
+[Guids]
+  gEfiEventReadyToBootGuid
+
+[Protocols]
+  gEfiSmbiosProtocolGuid                 #CONSUME
+
+[Pcd]
+
+[Depex]
+  gAmdMemRestoreDepexProtocolGuid
+

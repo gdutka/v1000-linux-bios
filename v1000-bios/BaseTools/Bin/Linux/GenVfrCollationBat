@@ -1,0 +1,27 @@
+#!/bin/bash
+pushd $1
+
+#
+# Create VfrList.txt which contains all of *.lst file from VfrCompiler
+#
+if [ -f VfrList.txt ]; then
+  rm VfrList.txt
+fi
+
+if [ -d VfrFile ]; then
+  for entry in "VfrFile"/*
+  do
+    echo ${entry##*/} >> VfrFile.txt
+  done
+  mv VfrFile.txt VfrFile/VfrFile.txt
+fi
+
+if [ -f TotalVfrFile.var ]; then
+  rm TotalVfrFile.var
+fi
+
+if [ -d VfrFile ]; then
+    cat VfrFile/*.ii > TotalVfrFile.var
+    
+fi
+popd 

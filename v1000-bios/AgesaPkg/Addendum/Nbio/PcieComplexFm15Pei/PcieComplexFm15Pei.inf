@@ -1,0 +1,30 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PcieComplexFm15Pei
+  FILE_GUID                      = 7176141E-B9A2-4dc6-B963-07AB22AFE1A7
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = PcieComplexFm15PeiEntry
+
+[Sources]
+  PcieComplexFm15Pei.c
+
+[Packages]
+  AgesaPkg/Package.dec
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+
+[Ppis]
+  gAmdNbioPcieComplexFm15PpiGuid    #Produced
+
+[Depex]
+TRUE
+

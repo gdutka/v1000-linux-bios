@@ -1,0 +1,60 @@
+## @file
+#  Component description file for InstallSdevDxe module.
+#
+#******************************************************************************
+#* Copyright (c) 2018 - 2020, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = InstallSdevDxe
+  FILE_GUID                      = 3C887050-42C8-4958-A08E-495D910CF515
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InstallSdevDxeEntryPoint
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Sources]
+  InstallSdevDxe.c
+  InstallSdevDxe.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DxeServicesLib
+  BaseLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  UefiLib
+  UefiBootServicesTableLib
+  H2OCpLib
+  DebugLib
+
+[Guids]
+  gH2OBdsCpUpdateAcpiSdevGuid
+
+[Protocols]
+  gEfiAcpiTableProtocolGuid
+  gEfiAcpiSupportProtocolGuid
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdH2OAcpiSdevData
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpUpdateAcpiSdevSupported
+
+[Depex]
+  TRUE

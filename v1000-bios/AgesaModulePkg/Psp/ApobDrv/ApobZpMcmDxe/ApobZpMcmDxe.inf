@@ -1,0 +1,46 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ApobZpMcmDxe
+  FILE_GUID                      = 25824060-FAFF-487A-8D9C-D505D713F709
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = ApobZpMcmDxeDriverEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  BaseMemoryLib
+  AmdBaseLib
+  IdsLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  DxeServicesTableLib
+  ApobZpMcmLib
+
+[Sources]
+  ApobZpMcmDxe.c
+
+[Guids]
+
+
+[Protocols]
+  gApobCommonServiceProtocolGuid  #publish
+
+[Pcd]
+
+[Depex]
+  gApobZpMcmDxeDepexProtocolGuid
+

@@ -1,0 +1,46 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ApobDummyDxe
+  FILE_GUID                      = 32F93C9E-83A0-4EE4-B66B-C704615D9895
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = ApobDummyDxeDriverEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  BaseMemoryLib
+  AmdBaseLib
+  IdsLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  DxeServicesTableLib
+  ApobDummyLib
+
+[Sources]
+  ApobDummyDxe.c
+
+[Guids]
+
+
+[Protocols]
+  gApobCommonServiceProtocolGuid  #publish
+
+[Pcd]
+
+[Depex]
+  gApobDummyDxeDepexProtocolGuid
+

@@ -1,0 +1,24 @@
+## @file
+#  Platform Package Flash Description File
+#
+#*******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#*******************************************************************************
+
+[FV.RECOVERYFV]
+INF AMD64ArchFamilyCpuPkg/SecCore/SecCore.inf
+INF AMD64ArchFamilyCpuPkg/CpuPei/CpuPei.inf
+INF AMD64ArchFamilyCpuPkg/PiSmmCommunication/PiSmmCommunicationPei.inf
+
+[FV.DXEFV]
+INF AMD64ArchFamilyCpuPkg/CpuArchDxe/CpuArchDxe.inf
+INF AMD64ArchFamilyCpuPkg/CpuMpDxe/CpuMpDxe.inf
+INF AMD64ArchFamilyCpuPkg/PiSmmCpuDxeSmm/PiSmmCpuDxeSmm.inf
+INF AMD64ArchFamilyCpuPkg/PiSmmCommunication/PiSmmCommunicationSmm.inf
+

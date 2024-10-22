@@ -1,0 +1,58 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2017-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION               = 0x00010006
+  BASE_NAME                 = AmdCpmOemSmm
+  FILE_GUID                 = B9B0F38D-1F27-4F46-9F44-42D694729882
+  MODULE_TYPE               = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION  = 0x0001000A
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = AmdCpmOemSmmEntryPoint
+
+[Sources.common]
+  AmdCpmOemSmm.c
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  UefiDriverEntryPoint
+  AmdCpmBaseLib
+  SmmServicesTableLib
+  IoLib
+
+[Guids]
+  gAmdPbsSystemConfigurationGuid
+
+[Protocols]
+  gEfiSmmBase2ProtocolGuid
+  gEfiSmmSxDispatch2ProtocolGuid
+  gAmdCpmTableSmmProtocolGuid
+  gEfiSmmVariableProtocolGuid            #CONSUMED
+  gEfiSmmPowerButtonDispatch2ProtocolGuid
+
+[Ppis]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+
+[Pcd]
+
+[Depex]
+  gAmdCpmTableSmmProtocolGuid
+  AND
+  gEfiSmmBase2ProtocolGuid
+  AND
+  gEfiSmmSxDispatch2ProtocolGuid

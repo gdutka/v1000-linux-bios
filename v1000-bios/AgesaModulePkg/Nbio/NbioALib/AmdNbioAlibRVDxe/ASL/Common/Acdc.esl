@@ -1,0 +1,40 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: NBIO
+ * @e \$Revision: 61089 $   @e \$Date: 2011-10-31 10:31:02 -0700 (Mon, 31 Oct 2011) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+
+Name (AcDc, AC)
+Name (DockUndock, DOCKED)
+
+Method (procAcDc, 1) {
+  Store (Arg0, AcDc)
+  ALIB_DEBUG (Concatenate (" Ac/Dc state changed to: ", ToHexString (Arg0), ADBG))
+  procAcDcChangeEvent ()
+}
+
+Method (procDockUndock, 1) {
+  Store (Arg0, DockUndock)
+  ALIB_DEBUG (Concatenate (" Dock state changed to: ", ToHexString (Arg0), ADBG))
+}
+
+Method (procBBBManage, 5) {
+  ALIB_DEBUG (" BBB Manage")
+}

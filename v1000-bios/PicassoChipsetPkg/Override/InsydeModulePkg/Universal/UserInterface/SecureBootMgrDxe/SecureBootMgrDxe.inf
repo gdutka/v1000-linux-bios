@@ -1,0 +1,110 @@
+## @file
+# Secure Boot Manager driver
+#
+#******************************************************************************
+#* Copyright (c) 2015 - 2020, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SecureBootMgrDxe
+  FILE_GUID                      = 5F53F1DE-E647-425d-8B59-2DDEE19E8C76
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = SecureBootMgrEntry
+
+[Sources]
+  SecureBootMgrDxeImage.idf
+  SecureBootMgrStrings.uni
+  SecureBootMgrVfr.vfr
+  SecureBootMgr.c
+  SecureBootVar.c
+  SecureBootMisc.c
+  EnrollHash.c
+
+[Sources.IA32]
+  ia32/CallSmmSecureBoot.nasm
+
+[Sources.X64]
+  x64/CallSmmSecureBoot.nasm
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiLib
+  BaseLib
+  DevicePathLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  DebugLib
+  HiiLib
+  PcdLib
+  GenericBdsLib
+  GenericUtilityLib
+  H2OCpLib
+  VariableLib
+
+[Guids]
+  gEfiGenericVariableGuid
+  gEfiIfrTianoGuid
+  gEfiCertSha1Guid
+  gEfiCertSha256Guid
+  gEfiCertSha512Guid
+  gEfiCertPkcs7Guid
+  gEfiHashAlgorithmMD5Guid
+  gEfiHashAlgorithmSha1Guid
+  gEfiHashAlgorithmSha224Guid
+  gEfiHashAlgorithmSha256Guid
+  gEfiHashAlgorithmSha384Guid
+  gEfiHashAlgorithmSha512Guid
+  gH2OBdsCpInitGuid
+  gEfiCertX509Guid
+  gEfiCertX509Sha256Guid
+  gEfiCertX509Sha384Guid
+  gEfiCertX509Sha512Guid
+  gEfiCertRsa2048Guid
+  gEfiImageSecurityDatabaseGuid
+  gZeroGuid
+
+[Protocols]
+  gEfiBlockIoProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+  gEfiHiiConfigAccessProtocolGuid
+  gEfiHiiConfigRoutingProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiFormBrowser2ProtocolGuid
+  gEfiLoadFileProtocolGuid
+  gEfiSmmBase2ProtocolGuid
+  gEfiFormBrowserExProtocolGuid
+  gCryptoServicesProtocolGuid
+  gEfiNonVolatileVariableProtocolGuid
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OFormBrowserLocalMetroDESupported
+  gInsydeTokenSpaceGuid.PcdBackupSecureBootSettingsSupported
+  gInsydeTokenSpaceGuid.PcdUpdateSecureBootVariablesSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpInitSupported
+  gInsydeTokenSpaceGuid.PcdH2OSecureBootDisableSupported
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdSoftwareSmiPort
+  gInsydeTokenSpaceGuid.PcdH2OCustomizedSecureBootSupported
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+  MSFT:*_*_*_VFRPP_FLAGS = /FI$(MODULE_NAME)IdfDefs.h
+  GCC:*_*_*_VFRPP_FLAGS  = --include $(DEST_DIR_DEBUG)/$(MODULE_NAME)IdfDefs.h

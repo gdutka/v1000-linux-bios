@@ -1,0 +1,40 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = GnbHeapPeiLib
+  FILE_GUID                      = 81F31E37-E77E-4163-82D6-E4CC5F9CBBB1
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = GnbHeapLib|PEIM PEI_CORE SEC
+
+
+[Sources]
+  GnbHeapPeiLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  PcdLib
+  PrintLib
+  BaseLib
+  DebugPrintErrorLevelLib
+  AmdBaseLib
+  IdsLib
+  PeiServicesLib
+  HobLib
+  AmdHeapLib
+
+[Pcd]
+
+

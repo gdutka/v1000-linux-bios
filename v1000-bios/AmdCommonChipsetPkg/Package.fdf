@@ -1,0 +1,27 @@
+## @file
+#  Platform Package Flash Description File
+#
+#*******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#*******************************************************************************
+
+[FV.RECOVERYFV]
+INF AmdCommonChipsetPkg/InstallVerbTablePei/InstallVerbTablePei.inf
+INF AmdCommonChipsetPkg/SpdDataReadPei/SpdDataReadPei.inf
+#INF AmdCommonChipsetPkg/SpeakerPei/LegacySpeakerPei.inf
+
+[FV.DXEFV]
+INF AmdCommonChipsetPkg/SmartTimerDxe/SmartTimerDxe.inf
+INF AmdCommonChipsetPkg/InstallVerbTableDxe/InstallVerbTableDxe.inf
+!if gAmdCommonChipsetPkgTokenSpaceGuid.PcdMemoryContextSaveRestoreSupport
+INF AmdCommonChipsetPkg/AmdMemContextSaveRestoreDxe/AmdMemContextSaveRestoreDxe.inf
+!endif
+INF AmdCommonChipsetPkg/SaveSpdToRomDxe/SaveSpdToRomDxe.inf
+#INF AmdCommonChipsetPkg/SpeakerDxe/LegacySpeakerDxe.inf
+INF AmdCommonChipsetPkg/SetSsidSvidDxe/SetSsidSvidDxe.inf

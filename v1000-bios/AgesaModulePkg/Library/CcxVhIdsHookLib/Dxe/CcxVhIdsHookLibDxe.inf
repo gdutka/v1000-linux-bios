@@ -1,0 +1,65 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = CcxVhIdsHookLibDxe
+  FILE_GUID                      = 6565E2E8-AE73-4f32-8194-9210A18B3C81
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CcxVhIdsHookLibDxe
+
+[Sources.common]
+  CcxVhIdsHookLibDxe.c
+  CcxVhIdsSyncMsr.c
+  CcxVhIdsSyncMsr.h
+  CcxVhIdsCustomPstates.c
+  CcxVhIdsCustomPstates.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+  BaseMemoryLib
+  AmdIdsDebugPrintLib
+  CcxRolesLib
+  AmdPspApobLib
+  CcxPstatesLib
+  BaseCoreLogicalIdLib
+  CcxMpServicesLib
+  CcxIdsCustomPstatesLib
+
+[Guids]
+
+[Protocols]
+  gEfiMpServiceProtocolGuid #CONSUME
+  gAmdFabricTopologyServices2ProtocolGuid #CONSUME
+  gAmdCoreTopologyServicesV2ProtocolGuid #CONSUME
+  gAmdNbioSmuServicesProtocolGuid        #CONSUME
+  gEfiSmmControl2ProtocolGuid #CONSUME
+
+[Ppis]
+
+[FeaturePcd]
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdOcDisable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxP0Setting
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxP0Fid
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxP0Did
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxP0Vid
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+

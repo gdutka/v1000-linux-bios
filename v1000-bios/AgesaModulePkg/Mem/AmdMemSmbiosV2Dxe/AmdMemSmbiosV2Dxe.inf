@@ -1,0 +1,42 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemSmbiosV2RvDxe
+  FILE_GUID                      = EA7BF2CC-F154-4cc4-A725-6382C701FBFE
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DxeAmdMemSmbiosV2Entry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleMemPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  UefiDriverEntryPoint
+  AmdBaseLib
+  IdsLib
+  AmdHeapLib
+
+[Sources]
+  AmdMemSmbiosV2Dxe.h
+  AmdMemSmbiosV2Dxe.c
+
+[Guids]
+
+[Protocols]
+  gAmdMemSmbiosServicesProtocolGuid       #PRODUCED
+
+[Pcd]
+
+[Depex]
+  gAmdMemSmbiosV2DepexProtocolGuid
+

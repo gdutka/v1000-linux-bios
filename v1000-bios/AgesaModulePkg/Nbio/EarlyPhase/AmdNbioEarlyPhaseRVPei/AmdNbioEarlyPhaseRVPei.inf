@@ -1,0 +1,56 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdNbioEarlyPhaseRVPei
+  FILE_GUID                      = 52dfcf2e-5be5-4376-bc22-14f788a4a425
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdNbioEarlyPhaseRVPeiEntry
+
+[Sources]
+  AmdNbioEarlyPhaseRVPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+  IdsLib
+  PeimEntryPoint
+  PeiServicesLib
+  GnbCommonLib
+  PcdLib
+  HobLib
+  BaseMemoryLib
+  NbioHandleLib
+  PcieConfigLib
+  GnbRegisterAccZpLib
+  NbioRegisterAccLib
+  AmdIdsHookLib
+  NbioIdsHookRVLib
+  FabricResourceManagerLib
+  SmnAccessLib
+  NbioSmuV10Lib
+
+[Guids]
+
+[Ppis]
+  gAmdSocLogicalIdPpiGuid
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdGetRVFamilyOPN
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPCIeExactMatchEnable
+
+[Depex]
+  gAmdNbioRVEarlyPhaseDepexPpiGuid
+
+

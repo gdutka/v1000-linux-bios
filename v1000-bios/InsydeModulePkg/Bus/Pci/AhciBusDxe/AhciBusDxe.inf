@@ -1,0 +1,48 @@
+## @file
+#  Component description file for AHCI controller Driver module.
+#
+#******************************************************************************
+#* Copyright (c) 2022, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AhciBusDxe
+  FILE_GUID                      = 3ACC966D-8E33-45c6-B4FE-62724BCD15A9
+  MODULE_TYPE                    = COMBINED_SMM_DXE
+  BINARY_VERSION                 = 02.11.38.0914.00
+
+[Binaries.Ia32]
+  PE32|Ia32/AhciBusDxe.efi|*
+  ASL |Ia32/Ahci.aml
+
+[Binaries.X64]
+  PE32|X64/AhciBusDxe.efi|*
+  ASL |X64/Ahci.aml
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdPortNumberMapTable
+  gInsydeTokenSpaceGuid.PcdH2OAhciMultiplierSupported
+  gInsydeTokenSpaceGuid.PcdH2OSataFreezeLockSupported
+  gInsydeTokenSpaceGuid.PcdH2OSataIgnoredDeviceList
+  gInsydeTokenSpaceGuid.PcdH2OSataFreezeLockRetryLimit
+  gInsydeTokenSpaceGuid.PcdH2OSataLimitNegotiationSpeed  
+  gInsydeTokenSpaceGuid.PcdH2OSataFreezeLockInS3Resume
+  gH2OIgnoreDeviceListTokenSpaceGuid    
+  gInsydeTokenSpaceGuid.PcdH2OIommuMapping
+  
+[Depex]
+  <SMM_DEPEX>
+   gH2OAtaDxeReadyProtocolGuid AND
+   gEfiSmmSxDispatch2ProtocolGuid

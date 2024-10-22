@@ -1,0 +1,81 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = NbioIdsHookRVLib
+  FILE_GUID                      = 7998F298-52B4-4730-AE97-FE9432FA567E
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = NbioIdsHookRVLib
+
+[Sources.common]
+  NbioIdsHookRVLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  AmdIdsDebugPrintLib
+  PcdLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[FeaturePcd]
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgSystemConfiguration
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgIommuSupport
+
+  #Fan table control
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdForceFanPwmEn
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdForceFanPwm
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableOverride
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableHysteresis
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempLow
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempMed
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempHigh
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempCritical
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmLow
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmMed
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmHigh
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmFreq
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePolarity
+
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFastPptLimit
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSlowPptLimit
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSlowPptTimeConstant
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdVrmMaximumCurrentLimit
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdVrmSocMaximumCurrentLimit
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdVrmCurrentLimit
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdVrmSocCurrentLimit
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSmuFeatureControlDefines
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSmuFeatureControlDefinesExt
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgThermCtlLimit
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIgpuContorl
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocGfxClockFrequency
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocGfxCoreVid
+
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocPPTLimit
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocTDCLimit
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocEDCLimit
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocPBOLimitScalar
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocTjMax
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocSocTDCLimit
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocSocEDCLimit
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+

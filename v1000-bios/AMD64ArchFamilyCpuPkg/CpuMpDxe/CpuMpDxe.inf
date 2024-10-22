@@ -1,0 +1,171 @@
+## @file
+#
+# Component description file for CPU MP DXE Driver.
+#
+#******************************************************************************
+#* Copyright (c) 2013 - 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CpuMpDxe
+  FILE_GUID                      = 40BEAB40-CECE-4909-B133-20A413AE19E9
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = MultiProcessorInitialize
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+#  Create Event Guid C Name:  Event Type: EVENT_TYPE_PERIODIC_TIMER
+#
+#  HOB Guid C Name: gEfiHtBistHobGuid Hob Type: GUID_EXTENSION
+#
+
+[Sources]
+  Setting.c
+  SelectLfp.c
+  ProgramBeforeReset.h
+  ProgramBeforeReset.c
+  ProcessorConfig.c
+  MpService.h
+  MpService.c
+  MpCommon.h
+  MpCommon.c
+  Microcode.h
+  Microcode.c
+  MchkInit.h
+  MchkInit.c
+  Lbr.h
+  Lbr.c
+  Feature.h
+  DataCollection.c
+  Cpu.h
+  XApic.c
+  XApic.h
+  Analysis.c
+  SVM.c
+  SVM.h
+  Strings.uni
+
+[Sources.Ia32]
+#[-start-240426-IB18160212-modify-]#
+#  IA32/MpFuncs.asm
+#  IA32/CpuAsm.asm
+  IA32/MpFuncs.nasm
+  IA32/CpuAsm.nasm
+#[end-240426-IB18160212-modify]#
+  IA32/AsmInclude.inc
+  IA32/ArchSpecificDef.h
+  IA32/ArchSpecific.c
+
+[Sources.X64]
+#[-start-240426-IB18160212-modify-]#
+#  X64/MpFuncs.asm
+#  X64/CpuAsm.asm
+  X64/MpFuncs.nasm
+  X64/CpuAsm.nasm
+#[end-240426-IB18160212-modify]#
+  X64/AsmInclude.inc
+  X64/ArchSpecificDef.h
+  X64/ArchSpecific.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AMD64ArchFamilyCpuPkg/AMD64ArchFamilyCpuPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  TimerLib
+  DxeServicesTableLib
+  CpuConfigLib
+  CpuLib
+  IoLib
+  PcdLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  UefiDriverEntryPoint
+  ReportStatusCodeLib
+  BaseMemoryLib
+  HiiLib
+  HobLib
+  UefiLib
+  DebugLib
+  BaseLib
+  SynchronizationLib
+  UefiCpuLib
+  MtrrLib
+  S3BootScriptLib
+  DebugAgentLib
+  LocalApicLib
+  PrintLib
+
+[Guids]
+  gEfiHtBistHobGuid                             # ALWAYS_CONSUMED
+  gEfiEventExitBootServicesGuid                 # ALWAYS_CONSUMED
+  gIdleLoopEventGuid                            # ALWAYS_CONSUMED
+
+[Protocols]
+  gEfiMpServiceProtocolGuid                     # PROTOCOL ALWAYS_PRODUCED
+  gEfiCpuArchProtocolGuid                       # PROTOCOL ALWAYS_CONSUMED
+  gEfiGenericMemTestProtocolGuid                ## SOMETIMES_CONSUMES
+  gEfiLegacyBiosProtocolGuid                    ## SOMETIMES_CONSUMES
+  gEfiSmmConfigurationProtocolGuid              # PROTOCOL ALWAYS_CONSUMED
+  gEfiTimerArchProtocolGuid                     # PROTOCOL ALWAYS_CONSUMED
+  gEfiTcgProtocolGuid                           ## SOMETIMES_CONSUMES
+
+[FeaturePcd]
+  gEfiCpuTokenSpaceGuid.PcdCpuLbrFlag
+  gEfiCpuTokenSpaceGuid.PcdCpuSelectLfpAsBspFlag
+  gEfiCpuTokenSpaceGuid.PcdCpuMachineCheckFlag
+  gEfiCpuTokenSpaceGuid.PcdCpuMicrocodeUpdateFlag
+
+[FixedPcd]
+  gEfiCpuTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber
+  gEfiCpuTokenSpaceGuid.PcdCpuApLoopMode
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuLocalApicBaseAddress
+
+[Pcd]
+  gEfiCpuTokenSpaceGuid.PcdCpuSocketName
+  gEfiCpuTokenSpaceGuid.PcdCpuSerialNumber
+  gEfiCpuTokenSpaceGuid.PcdCpuAssetTag
+  gEfiCpuTokenSpaceGuid.PcdCpuPartNumber
+  gEfiCpuTokenSpaceGuid.PcdPlatformType
+  gEfiCpuTokenSpaceGuid.PcdPlatformCpuFrequencyLists
+  gEfiCpuTokenSpaceGuid.PcdPlatformCpuMaxFsbFrequency
+  gEfiCpuTokenSpaceGuid.PcdPlatformCpuMaxCoreFrequency
+  gEfiCpuTokenSpaceGuid.PcdCpuApStackSize
+  gEfiCpuTokenSpaceGuid.PcdCpuApInitTimeOutInMicroSeconds
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureSetting
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureCapability
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureUserConfiguration
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureSettingEx1
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureCapabilityEx1
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureUserConfigurationEx1
+  gEfiCpuTokenSpaceGuid.PcdCpuConfigContextBuffer
+  gEfiCpuTokenSpaceGuid.PcdCpuCallbackSignal
+  gEfiCpuTokenSpaceGuid.PcdIsPowerOnReset
+  gEfiCpuTokenSpaceGuid.PcdCpuPageTableAddress
+  gEfiCpuTokenSpaceGuid.PcdCpuMtrrTableAddress
+  gEfiCpuTokenSpaceGuid.PcdCpuS3DataAddress
+  gEfiCpuTokenSpaceGuid.PcdSVMEnable
+  gEfiCpuTokenSpaceGuid.PcdSVMLock
+#  gEfiCpuTokenSpaceGuid.PcdCpuAcpiLvl2Addr
+#  gEfiCpuTokenSpaceGuid.PcdCpuPackageCStateLimit
+  gEfiIntelFrameworkModulePkgTokenSpaceGuid.PcdEbdaReservedMemorySize
+
+[Depex]
+  gEfiTimerArchProtocolGuid AND gAmdMpServicesPreReqProtocolGuid
+

@@ -1,0 +1,46 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdNbioBaseRVDxe
+  FILE_GUID                      = D4F90895-A60B-4E97-B446-2855246F8930
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdNbioBaseRVDxeEntry
+
+[Sources]
+  AmdNbioBaseRVDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  IdsLib
+  UefiLib
+  HobLib
+
+[Guids]
+  gGnbNbioBaseZPHobInfoGuid
+  gEfiHobListGuid
+
+[Protocols]
+  gAmdNbioDebugServicesProtocolGuid
+  gAmdIGpuAcpiCratServicesProtocolGuid
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIgpuContorl
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgIommuSupport
+
+[Depex]
+  gAmdNbioBaseRVDxeDepexProtocolGuid
+

@@ -1,0 +1,68 @@
+## @file
+#  Component description file for SpiLockSmi module
+#
+#******************************************************************************
+#* Copyright (c) 2015 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#*******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SpiLockSmi
+  FILE_GUID                      = BC05DC37-9DA0-4050-9728-F34DDB01E301
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = SpiLockSmiInit
+
+[Sources]
+  SpiLockSmi.c
+  SpiLockSmi.h
+  SpiLockSmiSecureFlashSupport.c
+
+[Packages]
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+
+[LibraryClasses]
+  DebugLib
+  HobLib
+  IoLib
+  PcdLib
+  PciLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  SmmServicesTableLib
+  VariableLib
+
+[Guids]
+  gSecureFlashInfoGuid
+  gEfiHobListGuid
+
+[Protocols]
+  gEfiSmmBase2ProtocolGuid
+  gEfiSmmControl2ProtocolGuid
+  gFchSmmSwDispatch2ProtocolGuid
+  gEfiSpiLockSmiProtocolGuid 
+  gEfiBiosRegionLockProtocolGuid
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdSecureFlashSupported
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid AND
+  gEfiSmmControl2ProtocolGuid AND
+  gFchSmmSwDispatch2ProtocolGuid AND
+  gEfiSmmConfigurationProtocolGuid AND
+  gEfiSmmVariableProtocolGuid
+

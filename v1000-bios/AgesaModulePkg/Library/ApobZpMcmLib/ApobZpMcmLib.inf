@@ -1,0 +1,38 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = ApobZpMcmLib
+  FILE_GUID                      = 75968E38-7575-45EB-8B84-7A69543850B6
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ApobZpMcmLib
+
+[Sources.common]
+  ApobZpMcmLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  HobLib
+  PcdLib
+  MemoryAllocationLib
+  AmdPspApobLib
+
+[Guids]
+
+[Protocols]
+
+
+[Ppis]
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspApcbRecoveryEnable

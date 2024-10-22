@@ -1,0 +1,42 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemTechLib
+  FILE_GUID                      = 588A7E00-3F01-4ece-8FCE-0E17DB57AD9C
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemTechLib
+
+[Sources]
+  mt.c
+  mthdi.c
+  mttdimbt.c
+  mttecc.c
+  mttEdgeDetect.c
+  mttEdgeDetect.h
+  mtthrc.c
+  mtthrcSeedTrain.c
+  mttml.c
+  mttoptsrc.c
+  mttRdDqs2DEyeRimSearch.c
+  mttRdDqs2DTraining.c
+  mttsrc.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+
+[Pcd]
+
+
+
+

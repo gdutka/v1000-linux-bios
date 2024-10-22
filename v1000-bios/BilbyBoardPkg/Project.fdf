@@ -1,0 +1,662 @@
+## @file
+#  Platform Package Flash Description File
+#
+#******************************************************************************
+#* Copyright (c) 2015 - 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+!import BaseTools/Conf/PackageBase.fdf
+!import MdeModulePkg/Package.fdf
+!import UefiCpuPkg/Package.fdf
+# !import PerformancePkg/Package.fdf
+#!import CryptoPkg/Package.fdf
+!import SecurityPkg/Package.fdf
+!import PcAtChipsetPkg/Package.fdf
+!import AMD64ArchFamilyCpuPkg/Package.fdf
+!import FatPkg/Package.fdf
+!import ShellBinPkg/Package.fdf
+#!import EdkShellBinPkg/Package.fdf
+!import ShellPkg/Package.fdf
+# !import EdkCompatibilityPkg/Package.fdf
+!import InsydeOemServicesPkg/Package.fdf
+!import InsydeModulePkg/Package.fdf
+!import InsydeSetupPkg/Package.fdf
+!import InsydeNetworkPkg/Package.fdf
+!import InsydeFlashDevicePkg/Package.fdf
+!import AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmPkg.fdf
+!import PicassoChipsetPkg/Package.fdf
+!import AgesaModulePkgConfig/AgesaModuleFp5RvPkg.fdf
+!import SioDummyPkg/Package.fdf
+!import AmdPspFeaturePkg/Package.fdf
+!import AmdCommonChipsetPkg/Package.fdf
+#[-start-140609-IB13080004-add]#
+#!import InsydeMediaPlayerPkg/Package.fdf
+#[-end-140609-IB13080004-add]#
+!import InsydeCrPkg/Package.fdf
+!import SegFeaturePkg/Package.fdf
+!import InsydeH2OUvePkg/Package.fdf
+#[-start-240426-IB18160212-add-]#
+!import InsydePostCodePkg/Package.fdf
+#[-end-240426-IB18160212-add-]#
+
+[Defines]
+
+#
+# Flash Layout definitions
+#
+
+DEFINE FLASH_REGION_FV_RECOVERY_OFFSET                              = 0
+DEFINE FLASH_REGION_FV_RECOVERY_SIZE                                = 0x00300000
+
+!if $(RAVEN_16M) == YES
+DEFINE FLASH_BASE                                                   = 0xFF000000
+DEFINE FLASH_SIZE                                                   = 0x00D00000
+!else
+DEFINE FLASH_BASE                                                   = 0xFF800000
+DEFINE FLASH_SIZE                                                   = 0x00740000
+!endif
+
+DEFINE BLOCK_SIZE                                                   = 0x00001000
+DEFINE NUM_BLOCKS                                                   = $(FLASH_SIZE)/$(BLOCK_SIZE)
+
+DEFINE PEI_FLASH_BASE                                               = 0x09B00000
+DEFINE PEI_FLASH_SIZE                                               = 0x00300000
+DEFINE PEI_BLOCK_SIZE                                               = 0x00001000
+DEFINE PEI_NUM_BLOCKS                                               = $(PEI_FLASH_SIZE)/$(PEI_BLOCK_SIZE)
+
+!if $(MULTI_CONFIG_SUPPORT) == YES
+  DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_SIZE    = 0x00004000
+!else
+  DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_SIZE    = 0x00000000
+!endif
+
+DEFINE FLASH_REGION_FVEC_OFFSET                                     = 0x00000000
+DEFINE FLASH_REGION_FVEC_SIZE                                       = 0x00020000
+
+DEFINE FLASH_REGION_FVSIG_OFFSET                                    = $(FLASH_REGION_FVEC_OFFSET)+$(FLASH_REGION_FVEC_SIZE)                   #0x00020000
+DEFINE FLASH_REGION_FVSIG_SIZE                                      = 0x00001000
+
+DEFINE FLASH_REGION_FVEC2_OFFSET                                    = $(FLASH_REGION_FVSIG_OFFSET)+$(FLASH_REGION_FVSIG_SIZE)                 #0x00021000
+DEFINE FLASH_REGION_FVEC2_SIZE                                      = 0x00000000
+
+DEFINE FLASH_REGION_PSP_NVRAM_RV_OFFSET                             = $(FLASH_REGION_FVEC2_OFFSET)+$(FLASH_REGION_FVEC2_SIZE)                 #0x0021000
+DEFINE FLASH_REGION_PSP_NVRAM_RV_SIZE                               = 0x20000
+
+DEFINE FLASH_REGION_USBFIRMWARE_OFFSET                              = $(FLASH_REGION_PSP_NVRAM_RV_OFFSET)+$(FLASH_REGION_PSP_NVRAM_RV_SIZE)   #0x00041000
+DEFINE FLASH_REGION_USBFIRMWARE_SIZE                                = 0x00020000
+
+DEFINE FLASH_REGION_FVBVM_OFFSET                                    = $(FLASH_REGION_USBFIRMWARE_OFFSET)+$(FLASH_REGION_USBFIRMWARE_SIZE)     #0x00061000
+DEFINE FLASH_REGION_FVBVM_SIZE                                      = 0x00002000
+
+DEFINE FLASH_REGION_PSPDIR_LV1_OFFSET                               = $(FLASH_REGION_FVBVM_OFFSET)+$(FLASH_REGION_FVBVM_SIZE)                 #0x00063000
+DEFINE FLASH_REGION_PSPDIR_LV1_SIZE                                 = 0xC3000
+
+DEFINE FLASH_REGION_BIOSDIR_LV1_OFFSET                              = $(FLASH_REGION_PSPDIR_LV1_OFFSET)+$(FLASH_REGION_PSPDIR_LV1_SIZE)       #0x00126000
+DEFINE FLASH_REGION_BIOSDIR_LV1_SIZE                                = 0x18000
+
+DEFINE FLASH_REGION_PSPDIR_LV2_OFFSET                               = $(FLASH_REGION_BIOSDIR_LV1_OFFSET)+$(FLASH_REGION_BIOSDIR_LV1_SIZE)     #0x0013E000
+
+!if $(RAVEN_16M) == YES
+DEFINE FLASH_REGION_PSPDIR_LV2_SIZE                                 = 0x322000                                                                #0x00460000
+!else
+DEFINE FLASH_REGION_PSPDIR_LV2_SIZE                                 = 0x147000                                                                #0x00285000
+!endif
+
+DEFINE FLASH_REGION_BIOSDIR_LV2_OFFSET                              = $(FLASH_REGION_PSPDIR_LV2_OFFSET)+$(FLASH_REGION_PSPDIR_LV2_SIZE)       #0x00285000 for 8M SPI, #0x00460000 for 16M SPI
+DEFINE FLASH_REGION_BIOSDIR_LV2_SIZE                                = 0x2B000
+
+#
+#  To adjust FVMAIN space and add new FVMAINRESERVE space.
+#  The RESERVE space just to reduce FVMAIN space size, so that it's able to speed up Dxe IPL.
+#  If FVMAIN size is not enough to build. Move the RESERVE size to FVMAIN.
+#
+#  |               |      |               |
+#  +---------------+      +---------------+
+#  | FVMAIN        |      | FVMAIN        |
+#  |               |      |               |
+#  |               | ==>  |               |
+#  |               |      +---------------+
+#  |               |      | FVMAIN REVERSE|
+#  |               |      |               |
+#  +---------------+      +---------------+
+#  |               |      |               |
+#
+DEFINE FLASH_REGION_FVMAIN_OFFSET                                   = $(FLASH_REGION_BIOSDIR_LV2_OFFSET)+$(FLASH_REGION_BIOSDIR_LV2_SIZE)     #0x002B0000 for 8M SPI #0x0048B000 for 16M SPI
+
+!if $(RAVEN_16M) == YES
+DEFINE FLASH_REGION_FVMAIN_SIZE                                     = 0x003B0000
+!else
+DEFINE FLASH_REGION_FVMAIN_SIZE                                     = 0x00380000
+!endif
+
+DEFINE FLASH_REGION_FVMAINRESERVE_OFFSET                            = $(FLASH_REGION_FVMAIN_OFFSET)+$(FLASH_REGION_FVMAIN_SIZE)               #0x000630000 for 8M SPI # 0x0083B000 for 16M SPI
+
+!if $(UNSIGNED_FV_SUPPORT) == NO
+!if $(RAVEN_16M) == YES
+DEFINE FLASH_REGION_FVMAINRESERVE_SIZE                              = 0x0044A000 - $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_SIZE)
+!else
+DEFINE FLASH_REGION_FVMAINRESERVE_SIZE                              = 0x00095000 - $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_SIZE)
+!endif
+
+DEFINE FLASH_REGION_FVUNSIGNED_OFFSET                               = $(FLASH_REGION_FVMAINRESERVE_OFFSET)                                    #0x000630000 for 8M SPI # 0x0083B000 for 16M SPI
+!else
+#
+# The region size is customized by the project owner.
+# The default size is 64K.
+#
+!if $(RAVEN_16M) == YES
+DEFINE FLASH_REGION_FVMAINRESERVE_SIZE                              = 0x00449000 - $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_SIZE)
+!else
+DEFINE FLASH_REGION_FVMAINRESERVE_SIZE                              = 0x00094000 - $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_SIZE)
+!endif
+
+DEFINE FLASH_REGION_FVUNSIGNED_OFFSET                               = $(FLASH_REGION_FVMAINRESERVE_OFFSET)+$(FLASH_REGION_FVMAINRESERVE_SIZE) #0x006D4000 for 8M SPI # 0x00C84000 for 16M SPI
+DEFINE FLASH_REGION_FVUNSIGNED_SIZE                                 = 0x00001000
+!endif
+
+
+!if $(UNSIGNED_FV_SUPPORT) == NO
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_OEM_DMI_STORE_OFFSET  = $(FLASH_REGION_FVMAINRESERVE_OFFSET)+$(FLASH_REGION_FVMAINRESERVE_SIZE) #0x006D5000 for 8M SPI # 0x00C85000 for 16M SPI
+!else
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_OEM_DMI_STORE_OFFSET  = $(FLASH_REGION_FVUNSIGNED_OFFSET)+$(FLASH_REGION_FVUNSIGNED_SIZE)       #0x006D5000 for 8M SPI # 0x00C85000 for 16M SPI
+!endif
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_OEM_DMI_STORE_SIZE    = 0x00001000
+# Flash Region Layout Info
+DEFINE FLASH_REGION_FLASH_DEVICE_MAP_OFFSET                         = $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_OEM_DMI_STORE_OFFSET)+$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_OEM_DMI_STORE_SIZE) #0x006D6000 for 8M SPI # 0x00C86000 for 16M SPI
+DEFINE FLASH_REGION_FLASH_DEVICE_MAP_SIZE                           = 0x0001000
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_MICROCODE_OFFSET      = $(FLASH_REGION_FLASH_DEVICE_MAP_OFFSET)+$(FLASH_REGION_FLASH_DEVICE_MAP_SIZE)                                               #0x006D7000 for 8M SPI # 0x00C87000 for 16M SPI
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_MICROCODE_SIZE        = 0x00001000
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_GPNVFV_OFFSET         = $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_MICROCODE_OFFSET)+$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_MICROCODE_SIZE)         #0x006D8000 for 8M SPI # 0x00C88000 for 16M SPI
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_GPNVFV_SIZE           = 0x00001000
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_BVDT_OFFSET        = $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_GPNVFV_OFFSET)+$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_GPNVFV_SIZE)               #0x006D9000 for 8M SPI # 0x00C89000 for 16M SPI
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_BVDT_SIZE          = 0x00001000
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_MSDM_DATA_OFFSET   = $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_BVDT_OFFSET)+$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_BVDT_SIZE)             #0x006DA000 for 8M SPI # 0x00C8A000 for 16M SPI
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_MSDM_DATA_SIZE     = 0x00001000
+
+DEFINE FLASH_REGION_NVSTORAGE_SUBREGION_NV_VARIABLE_STORE_OFFSET    = $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_MSDM_DATA_OFFSET)+$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_MSDM_DATA_SIZE)   #0x006DB000 for 8M SPI # 0x00C8B000 for 16M SPI
+DEFINE FLASH_REGION_NVSTORAGE_SUBREGION_NV_VARIABLE_STORE_SIZE      = 0x00025000
+DEFINE FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_WORKING_OFFSET       = $(FLASH_REGION_NVSTORAGE_SUBREGION_NV_VARIABLE_STORE_OFFSET)+$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_VARIABLE_STORE_SIZE)     #0x00700000 for 8M SPI # 0x00CB0000 for 16M SPI
+DEFINE FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_WORKING_SIZE         = 0x00001000
+DEFINE FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_SPARE_OFFSET         = $(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_WORKING_OFFSET)+$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_WORKING_SIZE)           #0x00701000 for 8M SPI # 0x00CB1000 for 16M SPI
+DEFINE FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_SPARE_SIZE           = 0x00026000
+DEFINE FLASH_REGION_NVSTORAGE_SUBREGION_NV_FACTORY_COPY_OFFSET      = $(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_SPARE_OFFSET)+$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_SPARE_SIZE)               #0x00727000 for 8M SPI # 0x00CD7000 for 16M SPI
+DEFINE FLASH_REGION_NVSTORAGE_SUBREGION_NV_FACTORY_COPY_SIZE        = 0x00004000
+
+DEFINE FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_OFFSET    = $(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FACTORY_COPY_OFFSET)+$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FACTORY_COPY_SIZE)         #0X0072B000 for 8M SPI # 0x00CDB000 for 16M SPI
+
+DEFINE FLASH_REGION_MCT_DATA_STORE_OFFSET                           = $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_OFFSET)+$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_SIZE)     #0X0072B000 for 8M SPI # 0x00CDB000 for 16M SPI
+DEFINE FLASH_REGION_MCT_DATA_STORE_SIZE                             = 0x00003000
+DEFINE FLASH_REGION_SPD_DATA_STORE_OFFSET                           = $(FLASH_REGION_MCT_DATA_STORE_OFFSET)+$(FLASH_REGION_MCT_DATA_STORE_SIZE)                                                   #0x0072E000 for 8M SPI # 0x00CDE000 for 16M SPI
+DEFINE FLASH_REGION_SPD_DATA_STORE_SIZE                             = 0x00001000
+
+!if $(UNSIGNED_FV_SUPPORT) == YES
+  DEFINE FLASH_REGION_FVUNSIGNED_TOTAL_SIZE                         = $(FLASH_REGION_FVUNSIGNED_SIZE) + $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_OEM_DMI_STORE_SIZE)+ $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_MSDM_DATA_SIZE) + $(FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_SIZE)
+!endif
+
+#
+# WARNING:
+# Preserve variable defaults region for variable defaults feature.
+#
+DEFINE FLASH_REGION_FV_VARIABLE_DEFAULTS_OFFSET                     = $(FLASH_REGION_SPD_DATA_STORE_OFFSET)+$(FLASH_REGION_SPD_DATA_STORE_SIZE)                                                   #0x0072F000 for 8M SPI # 0x00CDF000 for 16M SPI
+DEFINE FLASH_REGION_FV_VARIABLE_DEFAULTS_SIZE                       = 0x00020000
+
+DEFINE FLASH_REGION_FVMAIN_HASH_OFFSET                              = $(FLASH_REGION_FV_VARIABLE_DEFAULTS_OFFSET)+$(FLASH_REGION_FV_VARIABLE_DEFAULTS_SIZE)                                       #0x0074F000 for 8M SPI # 0x00CFF000 for 16M SPI
+DEFINE FLASH_REGION_FVMAIN_HASH_SIZE                                = 0x00001000
+
+
+################################################################################
+#
+# FD Section
+# The [FD] Section is made up of the definition statements and a
+# description of what goes into  the Flash Device Image.  Each FD section
+# defines one flash "device" image.  A flash device image may be one of
+# the following: Removable media bootable image (like a boot floppy
+# image,) an Option ROM image (that would be "flashed" into an add-in
+# card,) a System "Flash"  image (that would be burned into a system's
+# flash) or an Update ("Capsule") image that will be used to update and
+# existing system flash.
+#
+################################################################################
+
+[FD.Bilby]
+BaseAddress   = $(FLASH_BASE) | gInsydeTokenSpaceGuid.PcdFlashAreaBaseAddress     #The base address of the FLASH Device.
+#Size          = $(FLASH_SIZE) | gInsydeTokenSpaceGuid.PcdFlashAreaSize            #The size in bytes of the FLASH Device
+!if $(RAVEN_16M) == YES
+SET gInsydeTokenSpaceGuid.PcdFlashAreaSize        = 0x1000000
+!else
+SET gInsydeTokenSpaceGuid.PcdFlashAreaSize        = 0x800000
+!endif
+Size          = $(FLASH_SIZE)
+ErasePolarity = 1
+BlockSize     = $(BLOCK_SIZE)
+NumBlocks     = $(NUM_BLOCKS)                                                     # Size = NumBlocks x BlockSize
+################################################################################
+#
+# Following are lists of FD Region layout which correspond to the locations of different
+# images within the flash device.
+#
+# Regions must be defined in ascending order and may not overlap.
+#
+# A Layout Region start with a eight digit hex offset (leading "0x" required) followed by
+# the pipe "|" character, followed by the size of the region, also in hex with the leading
+# "0x" characters. Like:
+# Offset|Size
+# PcdOffsetCName|PcdSizeCName
+# <Optional keyword "RegionType =  region-type-guid | region-id | attributes" >
+# <FV, DATA, or FILE>
+#
+################################################################################
+$(FLASH_REGION_FVSIG_OFFSET)|$(FLASH_REGION_FVSIG_SIZE)
+gChipsetPkgTokenSpaceGuid.PcdFlashFvSigBase|gChipsetPkgTokenSpaceGuid.PcdFlashFvSigSize
+FILE = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/FV/OemRomSig.fv
+
+$(FLASH_REGION_PSP_NVRAM_RV_OFFSET)|$(FLASH_REGION_PSP_NVRAM_RV_SIZE)
+gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspNvRamBase|gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspNvRamSize
+FILE = AgesaModulePkg/Firmwares/RV/PspNvramRV.bin
+
+$(FLASH_REGION_USBFIRMWARE_OFFSET)|$(FLASH_REGION_USBFIRMWARE_SIZE)
+gChipsetPkgTokenSpaceGuid.PcdFlashUsbFirmwareBase|gChipsetPkgTokenSpaceGuid.PcdFlashUsbFirmwareSize
+FILE = AgesaModulePkg/FchBinaries/Kern/Rom/Xhc/KernXhc.rom
+
+#!if gPlatformPkgTokenSpaceGuid.PcdBvmSupport
+#$(FLASH_REGION_FVBVM_OFFSET)|$(FLASH_REGION_FVBVM_SIZE)
+#gPlatformPkgTokenSpaceGuid.PcdFlashFvBvmBase|gPlatformPkgTokenSpaceGuid.PcdFlashFvBvmSize
+#FILE = $(PROJECT_PKG)/Binary/BVM/Bvm.bin
+#!endif
+
+$(FLASH_REGION_PSPDIR_LV1_OFFSET)|$(FLASH_REGION_PSPDIR_LV1_SIZE)
+gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspDirBase|gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspDirSize
+
+$(FLASH_REGION_BIOSDIR_LV1_OFFSET)|$(FLASH_REGION_BIOSDIR_LV1_SIZE)
+gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVBiosDirBase|gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVBiosDirSize
+
+$(FLASH_REGION_FVMAIN_OFFSET)|$(FLASH_REGION_FVMAIN_SIZE)
+gInsydeTokenSpaceGuid.PcdFlashFvMainBase|gInsydeTokenSpaceGuid.PcdFlashFvMainSize
+#
+# "RegionType =  region-type-guid | region-id | attributes " is a keyword to assign value to FDM entry.
+# This file format (FDM) is used for Flash Device Map regions, which describe the layout of a Flash Device (.fd) image.
+# The layout information consists of a header and then an array of flash device region entries.
+# Each flash device region entry describes the region type, the region identifier, the region offset (relative to the start of the image) and the size of the region.
+#
+# region-type-guid          GUID that specify region type
+# region-id                 For Firmware Volume : Please assign GUID to identify DXE FV
+#
+# attributes                If H2O_FLASH_DEVICE_MAP_ENTRY_ATTRIB_MUTABLE (bit 0) is set,
+#                           the region contents can be updated without updating the corresponding Hash value.
+#
+#                           If If H2O_FLASH_DEVICE_MAP_ENTRY_ATTRIB_IGNORE  (bit 1) is set,
+#                           the region contents should be ignored.
+#
+# NOTICE :  1. Please assign GUID gH2OFlashMapRegionDxeFvGuid to DXE FV
+#           2. Please assign PEI FV to gH2OFlashMapRegionBootFvGuid region type
+#           3. Default attribute is set to H2O_FLASH_DEVICE_MAP_ENTRY_ATTRIB_MUTABLE.
+#
+RegionType = gH2OFlashMapRegionFvGuid | gH2OFlashMapRegionDxeFvGuid
+
+FV = FVMAIN_COMPACT
+
+$(FLASH_REGION_FVMAINRESERVE_OFFSET)|$(FLASH_REGION_FVMAINRESERVE_SIZE)
+gPlatformPkgTokenSpaceGuid.PcdFlashFvMainReserveBase|gPlatformPkgTokenSpaceGuid.PcdFlashFvMainReserveSize
+
+!if $(UNSIGNED_FV_SUPPORT) == YES
+$(FLASH_REGION_FVUNSIGNED_OFFSET)|$(FLASH_REGION_FVUNSIGNED_SIZE)
+gInsydeTokenSpaceGuid.PcdFlashUnsignedFvRegionBase|gInsydeTokenSpaceGuid.PcdFlashUnsignedFvRegionSize
+RegionType = gH2OFlashMapRegionFvGuid | gH2OFlashMapRegionUnsignedFvGuid
+#Unsigned FV
+FV = UNSIGNEDFV
+SET gInsydeTokenSpaceGuid.PcdEndOfFlashUnsignedFvRegionOffset = $(FLASH_REGION_FVUNSIGNED_OFFSET) + $(FLASH_REGION_FVUNSIGNED_TOTAL_SIZE) - 1
+SET gInsydeTokenSpaceGuid.PcdEndOfFlashUnsignedFvRegionTotalSize = $(FLASH_REGION_FVUNSIGNED_TOTAL_SIZE)
+!endif
+
+$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_OEM_DMI_STORE_OFFSET)|$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_OEM_DMI_STORE_SIZE)
+gInsydeTokenSpaceGuid.PcdFlashNvStorageDmiBase|gInsydeTokenSpaceGuid.PcdFlashNvStorageDmiSize
+RegionType = gH2OFlashMapRegionSmbiosUpdateGuid
+DATA = {
+  0x24, 0x44, 0x4D, 0x49        # $DMI
+}
+
+$(FLASH_REGION_FLASH_DEVICE_MAP_OFFSET)|$(FLASH_REGION_FLASH_DEVICE_MAP_SIZE)
+gInsydeTokenSpaceGuid.PcdH2OFlashDeviceMapStart|gInsydeTokenSpaceGuid.PcdH2OFlashDeviceMapSize
+RegionType = gH2OFlashMapRegionFlashMapGuid
+FILE = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/FV/BILBY.fdm
+
+$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_BVDT_OFFSET)|$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_BVDT_SIZE)
+gInsydeTokenSpaceGuid.PcdFlashNvStorageBvdtBase|gInsydeTokenSpaceGuid.PcdFlashNvStorageBvdtSize
+RegionType = gH2OFlashMapRegionBvdtGuid
+FILE = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/FV/Bvdt.bin
+
+$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_MSDM_DATA_OFFSET)|$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_NV_MSDM_DATA_SIZE)
+gInsydeTokenSpaceGuid.PcdFlashNvStorageMsdmDataBase|gInsydeTokenSpaceGuid.PcdFlashNvStorageMsdmDataSize
+RegionType = gH2OFlashMapRegionMsdmGuid
+
+$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_VARIABLE_STORE_OFFSET)|$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_VARIABLE_STORE_SIZE)
+gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase|gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize
+RegionType = gH2OFlashMapRegionVarGuid
+FILE = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/FV/NvStore.bin
+
+$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_WORKING_OFFSET)|$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_WORKING_SIZE)
+gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase|gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize
+RegionType = gH2OFlashMapRegionFtwStateGuid
+#NV_FTW_WORKING
+FILE = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/FV/FtwWork.bin
+
+$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_SPARE_OFFSET)|$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FTW_SPARE_SIZE)
+gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase|gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
+RegionType = gH2OFlashMapRegionFtwBackupGuid
+
+$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FACTORY_COPY_OFFSET)|$(FLASH_REGION_NVSTORAGE_SUBREGION_NV_FACTORY_COPY_SIZE)
+gInsydeTokenSpaceGuid.PcdFlashNvStorageFactoryCopyBase|gInsydeTokenSpaceGuid.PcdFlashNvStorageFactoryCopySize
+RegionType = gH2OFlashMapRegionVarDefaultGuid | gH2OFlashMapRegionFactoryCopyGuid
+!if gInsydeTokenSpaceGuid.PcdH2OSecureBootSupported
+FILE = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/FV/FactoryCopy.bin
+!endif
+
+!if $(MULTI_CONFIG_SUPPORT) == YES
+$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_OFFSET)|$(FLASH_REGION_NV_COMMON_STORE_SUBREGION_MULTICONFIG_SIZE)
+gInsydeTokenSpaceGuid.PcdFlashNvStorageMultiConfigBase|gInsydeTokenSpaceGuid.PcdFlashNvStorageMultiConfigSize
+RegionType = gH2OFlashMapRegionMultiConfigGuid
+FILE = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/FV/MultiConfig.bin
+!endif
+
+$(FLASH_REGION_MCT_DATA_STORE_OFFSET)|$(FLASH_REGION_MCT_DATA_STORE_SIZE)
+gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashMctDataStoreBase|gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashMctDataStoreSize
+
+$(FLASH_REGION_SPD_DATA_STORE_OFFSET)|$(FLASH_REGION_SPD_DATA_STORE_SIZE)
+gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashSpdDataStoreBase|gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashSpdDataStoreSize
+
+$(FLASH_REGION_FV_VARIABLE_DEFAULTS_OFFSET)|$(FLASH_REGION_FV_VARIABLE_DEFAULTS_SIZE)
+gInsydeTokenSpaceGuid.PcdFlashNvStorageVariableDefaultsBase|gInsydeTokenSpaceGuid.PcdFlashNvStorageVariableDefaultsSize
+RegionType = gH2OFlashMapRegionVarDefaultGuid
+FILE = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/FV/VarDefault.varrc
+
+$(FLASH_REGION_FVMAIN_HASH_OFFSET)|$(FLASH_REGION_FVMAIN_HASH_SIZE)
+gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashFvMainHashBase|gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashFvMainHashSize
+
+
+
+[FD.BilbyPei]
+BaseAddress   = $(PEI_FLASH_BASE) | gChipsetPkgTokenSpaceGuid.PcdFlashAreaPeiBaseAddress     #The base address of the FLASH Device.
+Size          = $(PEI_FLASH_SIZE) | gChipsetPkgTokenSpaceGuid.PcdFlashAreaPeiSize    #The size in bytes of the FLASH Device
+ErasePolarity = 1
+BlockSize     = $(PEI_BLOCK_SIZE)
+NumBlocks     = $(PEI_NUM_BLOCKS)
+
+SET gInsydeTokenSpaceGuid.PcdFlashFvRecoveryBase = $(PEI_FLASH_BASE)
+SET gInsydeTokenSpaceGuid.PcdFlashFvRecoverySize = $(PEI_FLASH_SIZE)
+
+$(FLASH_REGION_FV_RECOVERY_OFFSET)|$(FLASH_REGION_FV_RECOVERY_SIZE)
+gChipsetPkgTokenSpaceGuid.PcdBootFirmwareVolumeBase|gChipsetPkgTokenSpaceGuid.PcdBootFirmwareVolumeSize
+#
+# "RegionType =  region-type-guid | region-id | attributes " is a keyword to assign value to FDM entry.
+# This file format (FDM) is used for Flash Device Map regions, which describe the layout of a Flash Device (.fd) image.
+# The layout information consists of a header and then an array of flash device region entries.
+# Each flash device region entry describes the region type, the region identifier, the region offset (relative to the start of the image) and the size of the region.
+#
+# region-type-guid          GUID that specify region type
+# region-id                 For Firmware Volume : Please assign GUID to identify DXE FV
+#
+# attributes                If H2O_FLASH_DEVICE_MAP_ENTRY_ATTRIB_MUTABLE (bit 0) is set,
+#                           the region contents can be updated without updating the corresponding Hash value.
+#
+#                           If If H2O_FLASH_DEVICE_MAP_ENTRY_ATTRIB_IGNORE  (bit 1) is set,
+#                           the region contents should be ignored.
+#
+# NOTICE :  1. Please assign GUID gH2OFlashMapRegionDxeFvGuid to DXE FV
+#           2. Please assign PEI FV to gH2OFlashMapRegionBootFvGuid region type
+#           3. Default attribute is set to H2O_FLASH_DEVICE_MAP_ENTRY_ATTRIB_MUTABLE.
+#
+RegionType = gH2OFlashMapRegionBootFvGuid
+#FvRecovery
+FV = RECOVERYFV
+
+################################################################################
+#
+# START FIRMWARE VOLUME SECTIONS
+#
+################################################################################
+
+[FV.RECOVERYFV]
+!include AmdCbsPkg/Library/Family/0x17/RV/External/CbsRaven.pei.inc.fdf
+
+!if gAmdCommonChipsetPkgTokenSpaceGuid.PcdMemoryContextSaveRestoreSupport
+  INF AmdCommonChipsetPkg/AmdMemContextSaveRestorePei/AmdMemContextSaveRestorePei.inf
+!endif
+
+!disable INF AMD64ArchFamilyCpuPkg/PiSmmCommunication/PiSmmCommunicationPei.inf
+INF AMD64ArchFamilyCpuPkg/PiSmmCommunication/PiSmmCommunicationPei.inf
+
+FILE FREEFORM = 98E145D7-1BDC-4636-ABCF-7CBCEF7B668D {
+  SECTION RAW = $(CHIPSET_PKG)/Binary/LegacyVideoRom/RavenGenericVbios.bin
+}
+
+FILE FREEFORM = 1CCF76B2-E536-4069-98C4-F129FEEAB610 {
+  SECTION RAW = $(CHIPSET_PKG)/Binary/LegacyVideoRom/Raven2GenericVbios.bin
+}
+
+!if $(USE_FAST_CRISIS_RECOVERY) == NO
+  INF $(CHIPSET_PKG)/GfxInitPei/GfxInitPei.inf
+
+  FILE FREEFORM = 7CE1ED80-F762-4218-8270-F7133706EB36 {
+    SECTION RAW = $(CHIPSET_PKG)/GfxInitPei/Logo/Insyde.bmp
+  }
+
+  FILE PEIM = F922DD8D-400C-43f6-951B-93673D73601F {
+    SECTION PEI_DEPEX = $(CHIPSET_PKG)/Binary/UefiGop/AmdIA32GenericGop.depex
+    SECTION PE32 = $(CHIPSET_PKG)/Binary/UefiGop/AmdIa32GenericGop.efi
+  }
+!endif
+
+#[-start-220714-IB14860813-remove]#
+##[-start-181114-IB06070004-add]#
+#!if $(INSYDE_DEBUGGER) == YES and $(H2O_DDT_DEBUG_IO) == Com
+#  !disable InsydeModulePkg/H2ODebug/$(H2O_DDT_DEBUG_IO)DebugIoPei/$(H2O_DDT_DEBUG_IO)DebugIoPei.inf
+#  INF APRIORI=0xC000 $(PROJECT_PKG)/Override/InsydeModulePkg/H2ODebug/$(H2O_DDT_DEBUG_IO)DebugIoPei/$(H2O_DDT_DEBUG_IO)DebugIoPei.inf
+#!endif
+##[-end-181114-IB06070004-add]#
+#[-end-220714-IB14860813-remove]#
+#[-start-231031-IB19090060-add]#
+#
+# Force the Pcd module run as early as possible, because some of modules need PCD services.
+#
+!disable INF APRIORI MdeModulePkg/Universal/PCD/Pei/Pcd.inf
+INF APRIORI=0xC005 MdeModulePkg/Universal/PCD/Pei/Pcd.inf
+#
+# Force the VariablePei module run as early as possible, because some of modules need Variable services.
+#
+!disable INF InsydeModulePkg/Universal/Variable/VariablePei/VariablePei.inf
+INF APRIORI=0xC005 InsydeModulePkg/Universal/Variable/VariablePei/VariablePei.inf
+#[-end-231031-IB19090060-add]#
+
+[FV.BACKUPFV]
+#[-start-220714-IB14860813-remove]#
+##[-start-190725-IB06070044-add]#
+#!if gInsydeTokenSpaceGuid.PcdH2ONvmeSupported
+#  !disable INF RuleOverride=LzmaCompress InsydeModulePkg/Bus/Pci/NvmExpressPei/NvmExpressPei.inf
+#  INF RuleOverride=LzmaCompress $(PROJECT_PKG)/Override/InsydeModulePkg/Bus/Pci/NvmExpressPei/NvmExpressPei.inf
+#!endif
+##[-end-190725-IB06070044-add]#
+#
+##[-start-191115-IB06070063-add]#
+#!if gInsydeTokenSpaceGuid.PcdH2OUsbPeiSupported
+#  !disable InsydeModulePkg/Bus/Pci/XhciPei/XhciPei.inf
+#  INF RuleOverride=LzmaCompress $(PROJECT_PKG)/Override/InsydeModulePkg/Bus/Pci/XhciPei/XhciPei.inf
+#!endif
+##[-end-191115-IB06070063-add]#
+#[-end-220714-IB14860813-remove]#
+
+################################################################################
+
+[FV.DXEFV]
+!if $(AMD_APP_INSTEAD_EFI_SHELL_SUPPORT) == YES
+  INF EmulationToolsPkg/EmuLinuxLoader/EmuLinuxLoader.inf
+!endif
+!include AmdCbsPkg/Library/Family/0x17/RV/External/CbsRaven.dxe.inc.fdf
+
+
+  #
+  # Renesas Xhci Firmware
+  #
+  FILE FREEFORM = PCD (gPlatformPkgTokenSpaceGuid.PcdXhciFirmware) {
+      SECTION RAW = $(PROJECT_PKG)/Binary/XhciFirmware/XhciFirmware.bin
+  }
+
+  #
+  # BCM5762
+  #
+  FILE FREEFORM = PCD (gPlatformPkgTokenSpaceGuid.PcdBcm5762PxeRom) {
+   SECTION RAW = $(PROJECT_PKG)/Binary/Bcm5762/PxeRom/b57pxee.lom
+  }
+  INF RuleOverride=BINARY $(PROJECT_PKG)/Binary/Bcm5762/PxeUefi/Bcm5762UndiX64.inf
+
+  #
+  # RTL8111
+  #
+  FILE FREEFORM = PCD (gPlatformPkgTokenSpaceGuid.PcdRTL8111PxeRom) {
+   SECTION RAW = $(PROJECT_PKG)/Binary/RtkLan/LegacyPxeROM/rtegpxe.bin
+  }
+
+!if gPlatformPkgTokenSpaceGuid.PcdRtkUsbLanSupport == 1
+  #
+  # RTL 8153 LAN
+  #
+  #On XHCI controller
+  FILE FREEFORM =  PCD (gPlatformPkgTokenSpaceGuid.PcdRtl8153OnXhciRom) {
+   SECTION RAW = $(PROJECT_PKG)/Binary/RTL8153/RTL8153x.rom
+ }
+#  #On EHCI controller
+#  FILE FREEFORM =  PCD (gPlatformPkgTokenSpaceGuid.PcdRtl8153OnEhciRom) {
+#   SECTION RAW = $(PROJECT_PKG)/Binary/RTL8153/RTL8153e.rom
+# }
+  INF RuleOverride=BINARY $(PROJECT_PKG)/Binary/RtkUsbUndiDxe/RtkUsbUndiDxe.inf
+!else
+  INF RuleOverride=BINARY $(PROJECT_PKG)/Binary/RtkLan/RtkUndiDxe/RtkUndiDxe.inf
+!endif
+
+#[-start-220714-IB14860813-remove]#
+#!if gInsydeTokenSpaceGuid.PcdH2OUsbSupported
+#!if gInsydeTokenSpaceGuid.PcdH2OCsmSupported
+#  !disable INF InsydeModulePkg/Csm/UsbLegacySmm/UsbLegacySmm.inf
+#  INF $(PROJECT_PKG)/Override/InsydeModulePkg/Csm/UsbLegacySmm/UsbLegacySmm.inf
+#!endif
+#!endif
+##[-start-181114-IB06070004-add]#
+#!if $(INSYDE_DEBUGGER) == YES and $(H2O_DDT_DEBUG_IO) == Com
+#  !disable InsydeModulePkg/H2ODebug/$(H2O_DDT_DEBUG_IO)DebugIoDxe/$(H2O_DDT_DEBUG_IO)DebugIoDxe.inf
+#  INF  APRIORI=0xC000 $(PROJECT_PKG)/Override/InsydeModulePkg/H2ODebug/$(H2O_DDT_DEBUG_IO)DebugIoDxe/$(H2O_DDT_DEBUG_IO)DebugIoDxe.inf
+#!endif
+##[-end-181114-IB06070004-add]#
+#
+##[-start-190320-IB06070017-add]#
+#INF $(PROJECT_PKG)\Override\AgesaModulePkg\SnpDxe\SnpDxePort.inf
+##[-end-190320-IB06070017-add]#
+#
+##[-start-190225-IB06070011-add]#
+#!if gInsydeTokenSpaceGuid.PcdH2OSdhcSupported
+#  !disable INF InsydeModulePkg/Bus/Pci/SdhcDxe/SdHostDriverDxe.inf
+#  INF $(PROJECT_PKG)/Override/InsydeModulePkg/Bus/Pci/SdhcDxe/SdHostDriverDxe.inf
+#
+#  !disable INF InsydeModulePkg/Bus/Sdhc/SdMmcDxe/SdMmcDeviceDxe.inf
+#  INF $(PROJECT_PKG)/Override/InsydeModulePkg/Bus/Sdhc/SdMmcDxe/SdMmcDeviceDxe.inf
+#!if gInsydeTokenSpaceGuid.PcdH2OCsmSupported
+#  !disable INF InsydeModulePkg/Csm/SdLegacySmm/SdLegacySmm.inf
+#  INF $(PROJECT_PKG)/Override/InsydeModulePkg/Csm/SdLegacySmm/SdLegacySmm.inf
+#!endif
+#!endif
+##[-end-190225-IB06070011-add]#
+#
+##[-start-190326-IB06070019-add]#
+#!if gInsydeTokenSpaceGuid.PcdH2OUsbSupported
+#  !disable INF InsydeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
+#  INF $(PROJECT_PKG)/Override/InsydeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
+#!endif
+##[-end-190326-IB06070019-add]#
+##[-start-190725-IB06070044-add]#
+#!if gInsydeTokenSpaceGuid.PcdH2ONvmeSupported
+#  !disable INF InsydeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
+#  INF $(PROJECT_PKG)/Override/InsydeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
+#
+##[-start-200422-IB06070087-add]#
+#!disable INF InsydeModulePkg/Csm/NvmExpressLegacySmm/NvmExpressLegacySmm.inf
+#INF $(PROJECT_PKG)/Override/InsydeModulePkg/Csm/NvmExpressLegacySmm/NvmExpressLegacySmm.inf
+##[-end-200422-IB06070087-add]#
+#!endif
+##[-end-190725-IB06070044-add]#
+##[-start-190821-IB06070046-add]#
+#!if gInsydeTokenSpaceGuid.PcdH2OAhciSupported
+#  !disable INF InsydeModulePkg/Bus/Pci/AhciBusDxe/AhciBusDxe.inf
+#  INF $(PROJECT_PKG)/Override/InsydeModulePkg/Bus/Pci/AhciBusDxe/AhciBusDxe.inf
+#!endif
+##[-end-190821-IB06070046-add]#
+##[-start-211112-IB06070138-add]#
+#!if gInsydeTokenSpaceGuid.PcdH2OCsmSupported
+#!if gInsydeTokenSpaceGuid.PcdH2OAhciSupported == 1 || gInsydeTokenSpaceGuid.PcdH2OIdeSupported == 1
+#  !disable INF InsydeModulePkg/Csm/AtaLegacySmm/AtaLegacySmm.inf
+#  INF $(PROJECT_PKG)/Override/InsydeModulePkg/Csm/AtaLegacySmm/AtaLegacySmm.inf
+#!endif
+#!endif
+##[-end-211112-IB06070138-add]#
+##[-start-211112-IB06070139-add]#
+#!if gInsydeTokenSpaceGuid.PcdH2OIdeSupported
+#  !disable INF InsydeModulePkg/Bus/Pci/IdeBusDxe/IdeBusDxe.inf
+#  INF $(PROJECT_PKG)/Override/InsydeModulePkg/Bus/Pci/IdeBusDxe/IdeBusDxe.inf
+#!endif
+##[-end-211112-IB06070139-add]#
+#[-end-220714-IB14860813-remove]#
+
+#[-start-191108-IB060700061-add]#
+!if gInsydeTokenSpaceGuid.PcdH2OFormBrowserSupported == FALSE
+  !disable INF InsydeModulePkg/Universal/UserInterface/SetupBrowserDxe/SetupBrowserDxe.inf
+!if gInsydeTokenSpaceGuid.PcdGraphicsSetupSupported
+  !disable INF InsydeModulePkg/Universal/UserInterface/MicrowindowsDxe/MicrowindowsDxe.inf
+!endif
+!endif
+
+!if gInsydeTokenSpaceGuid.PcdGraphicsSetupSupported
+  !disable gTtfFontFileGuid
+!endif
+#[-end-191108-IB06070061-add]#
+
+#[-start-230923-IB18160151-add]#
+  #
+  # Vlan Id Supported
+  #
+  INF InsydeNetworkPkg/Drivers/VlanConfigDxe/VlanConfigDxe.inf
+#[-start-230923-IB18160151-add]#
+
+################################################################################
+
+[FV.FVMAIN_COMPACT]
+
+  FILE FV_IMAGE = 20bc8ac9-94d1-4208-ab28-5d673fd73486 {
+    SECTION GUIDED EE4E5898-3914-4259-9D6E-DC7BD79403CF PROCESSING_REQUIRED = TRUE {  # Lzma Compress
+      SECTION FV_IMAGE = DXEFV
+    }
+  }
+
+[FV.UNSIGNEDFV]
+!if $(UNSIGNED_FV_SUPPORT) == YES
+#
+# Drivers, binary files, logos.... can be stored in this FV
+#
+
+!endif
+
+################################################################################
+#
+# Rules are use with the [FV] section's module INF type to define
+# how an FFS file is created for a given INF file. The following Rule are the default
+# rules for the different module type. User can add the customized rules to define the
+# content of the FFS file.
+#
+################################################################################
+[Rule.Common.USER_DEFINED.ACPITABLE]
+  FILE FREEFORM = $(NAMED_GUID) {
+    RAW ACPI Optional    |.acpi
+    RAW ASL  Optional    |.aml
+  }

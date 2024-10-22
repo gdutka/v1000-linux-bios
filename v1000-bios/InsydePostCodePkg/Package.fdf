@@ -1,0 +1,23 @@
+## @file
+#  PostCode package Flash Description File
+#
+#******************************************************************************
+#* Copyright (c) 2016 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[FV.RECOVERYFV]
+!if gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeSupported == 1 && $(INSYDE_DEBUGGER) == 0
+INF APRIORI InsydePostCodePkg/PostCodePei/PostCodePei.inf
+!endif
+
+[FV.DXEFV]
+!if gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeSupported == 1 && $(INSYDE_DEBUGGER) == 0
+INF APRIORI InsydePostCodePkg/PostCodeDxe/PostCodeDxe.inf
+INF InsydePostCodePkg/PostCodeSmm/PostCodeSmm.inf
+!endif 

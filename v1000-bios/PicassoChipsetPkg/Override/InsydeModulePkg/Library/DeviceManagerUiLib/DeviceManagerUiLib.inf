@@ -1,0 +1,84 @@
+## @file
+# Device Manager Library used by DeviceManagerDxe
+#
+#******************************************************************************
+#* Copyright (c) 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+## @file
+#  Device Manager Library used by UiApp
+#
+#  Copyright (c) 2011 - 2015, Intel Corporation. All rights reserved.<BR>
+#  This program and the accompanying materials are licensed and made available under
+#  the terms and conditions of the BSD License that accompanies this distribution.
+#  The full text of the license may be found at
+#  http://opensource.org/licenses/bsd-license.php.
+#
+#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+##
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DeviceManagerUiLib
+  MODULE_UNI_FILE                = DeviceManagerUiLib.uni
+  FILE_GUID                      = 75EBDC2E-5323-4F31-A41D-FD1A7A9FC65E
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = NULL|DXE_DRIVER UEFI_APPLICATION
+  CONSTRUCTOR                    = DeviceManagerUiLibConstructor
+  DESTRUCTOR                     = DeviceManagerUiLibDestructor
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Sources]
+  DeviceManager.h
+  DeviceManagerVfr.Vfr
+  DeviceManagerStrings.uni
+  DeviceManagerImage.idf
+  DeviceManager.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  DevicePathLib
+  BaseLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  PrintLib
+  HiiLib
+  UefiHiiServicesLib
+  UefiLib
+  VariableLib
+
+[Guids]
+  gEfiHiiPlatformSetupFormsetGuid               ## CONSUMES ## GUID (Indicate the formset class guid to be displayed)
+  gEfiIfrTianoGuid                              ## CONSUMES ## GUID (Extended IFR Guid Opcode)
+  gEfiIfrFrontPageGuid                          ## CONSUMES ## GUID (Indicate the formset in this library need to dispaly in which page)
+  gEfiGenericVariableGuid
+
+[Protocols]
+  gEfiHiiConfigAccessProtocolGuid               ## CONSUMES
+  gEfiPciIoProtocolGuid
+  gEfiFormBrowser2ProtocolGuid
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OFormBrowserLocalMetroDESupported
+
+[BuildOptions]
+  MSFT:*_*_*_VFRPP_FLAGS = /FI$(MODULE_NAME)IdfDefs.h
+  GCC:*_*_*_VFRPP_FLAGS  = --include $(DEST_DIR_DEBUG)/$(MODULE_NAME)IdfDefs.h

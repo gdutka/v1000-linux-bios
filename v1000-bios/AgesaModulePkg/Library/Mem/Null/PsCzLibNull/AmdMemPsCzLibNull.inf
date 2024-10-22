@@ -1,0 +1,31 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemPsCzLibNull
+  FILE_GUID                      = A8B6CEE7-67DF-44b8-A2DE-1B93ED99500E
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemPsCzLib
+
+[sources.common]
+  mpcz3.c
+  mpcz4.c
+  mpScz3.c
+  mpScz4.c
+  mpUcz3.c
+  mpUcz4.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+
+[Pcd]
+
+

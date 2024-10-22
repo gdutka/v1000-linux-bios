@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = IdsLibNull
+  FILE_GUID                      = DBC50197-2159-4600-8EF4-DF4E0301DE37
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = IdsLib
+
+[Sources.common]
+  IdsLibNull.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  PcdLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+
+[Pcd]
+
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+

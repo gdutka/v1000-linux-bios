@@ -1,0 +1,52 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = RestTest
+  FILE_GUID                      = A7EA79B1-B668-4b4a-AC67-1B943BFBB53C
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = RestTestEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Sources]
+  RestTest.c
+  RestTest.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ShellPkg/ShellPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeNetworkPkg/InsydeNetworkPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiBootServicesTableLib
+  UefiApplicationEntryPoint
+  UefiLib
+  ShellLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  DevicePathLib
+  DebugLib
+  NetLib
+  UdpIoLib
+  PrintLib
+
+[Guids]
+  gEfiSmbiosTableGuid
+
+[Ppis]
+
+[Protocols]
+  gEfiRestProtocolGuid
+  gEfiDns4ServiceBindingProtocolGuid
+  gEfiDns6ServiceBindingProtocolGuid
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdH2ORestIPv6DnsPolicy

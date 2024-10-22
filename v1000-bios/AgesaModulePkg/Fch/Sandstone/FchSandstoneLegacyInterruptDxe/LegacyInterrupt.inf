@@ -1,0 +1,50 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdLegacyInterrupt
+  FILE_GUID                      = 5b6dbcbc-85f4-4bfc-af96-188581325c42
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdInstallLegacyInterrupt
+
+
+[sources.common]
+  LegacyInterrupt.c
+  LegacyInterrupt.h
+
+[sources.ia32]
+
+[sources.x64]
+
+[LibraryClasses.common.DXE_DRIVER]
+  BaseLib 
+  UefiLib
+  HobLib
+  PrintLib
+
+[LibraryClasses]
+  FchDxeLibV9
+
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DebugLib
+
+[Guids]
+
+[Protocols]
+  gEfiLegacyInterruptProtocolGuid       #PRODUCED
+
+[Packages]
+  MdePkg/MdePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[Depex]
+ gAmdFchSandstoneDepexProtocolGuid
+

@@ -1,0 +1,48 @@
+## @file
+# Auto Generate GenFvHash
+#
+#******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = GenFvHash
+  FILE_GUID                      = 3D4AC534-B642-48f5-9AB3-309C77B36CAB
+  MODULE_TYPE                    = USER_DEFINED
+  VERSION_STRING                 = 0.1
+
+#   MODULE_AUTORUN_TOOL            = $(BIN_DIR)\$(BASE_NAME)
+#   AUTORUN_PARAM                  = $(BUILD_DIR)\FV\FVMAIN_COMPACT.fv $(BUILD_DIR)\FV\FvHash.bin
+
+[Sources]
+  GenFvHash.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  DebugLib
+  PrintLib
+  BaseLib
+  MemoryAllocationLib
+  BaseCryptLib
+
+[Ppis]
+
+[Protocols]
+
+[Guids]
+
+[Pcd]
+
+[BuildOptions]
+  MSFT:*_*_IA32_DLINK_FLAGS == /out:"$(MODULE_DIR)\$(BASE_NAME).exe" /base:0x10000000 /NOLOGO /SUBSYSTEM:CONSOLE /NODEFAULTLIB /IGNORE:4086 /OPT:REF /MACHINE:I386 Kernel32.lib MSVCRT.lib
+  MSFT:*_*_*_CC_FLAGS = /wd4996 /MT

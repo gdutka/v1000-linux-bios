@@ -1,0 +1,81 @@
+/*
+ ****************************************************************************
+ *
+ * Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+ *
+ *******************************************************************************
+ */
+[Defines]
+  INF_VERSION          = 0x00010005
+  VERSION_STRING       = 1.0
+  BASE_NAME            = SnpDxePort
+  MODULE_TYPE          = UEFI_DRIVER
+  FILE_GUID            = 25ac458a-cf60-476e-861a-211c757657a6
+  ENTRY_POINT          = AmdXgbeEntryPoint
+
+[Sources]
+  AmdXgbe.c
+  SnpDxe.c
+  SnpDxe.h
+  SnpDxeImplement.c
+  SnpDxeXgbe.c
+  SnpDxeXgbe.h
+  SnpDxeConfig.h
+  mdio.c
+  mdio.h
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+  InsydeNetworkPkg/InsydeNetworkPkg.dec  
+  
+[LibraryClasses]
+  MemoryAllocationLib
+  BaseMemoryLib
+  DebugLib
+  BaseLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  NetLib
+  TimerLib
+  PcdLib
+  IoLib
+  AmdBaseLib
+  IdsLib
+  CcxRolesLib
+  AmdHeapLib
+  AmdPbsConfigLib  
+
+[Protocols]
+  gEfiSimpleNetworkProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gAmdFabricTopologyServices2ProtocolGuid #CONSUMED
+  gPca9535aProtocolGuid  #CONSUMED
+  gPca9545aProtocolGuid  #CONSUMED
+  #gSff8472ProtocolGuid   #CONSUMED
+  gxGbEI2cMasterProtocolGuid #CONSUMED
+  gEfiPciIoProtocolGuid #CONSUMED
+
+[Guids]
+  gEfiGlobalVariableGuid
+  gEfiEventExitBootServicesGuid
+  gEfiEventLegacyBootGuid
+
+[Pcd]
+
+[FeaturePcd]
+
+[Depex]
+  gEfiPciEnumerationCompleteProtocolGuid
+
+[BuildOptions]
+
+

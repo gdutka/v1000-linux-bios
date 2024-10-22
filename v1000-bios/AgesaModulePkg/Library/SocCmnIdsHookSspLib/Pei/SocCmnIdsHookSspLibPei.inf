@@ -1,0 +1,39 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = SocCmnIdsHookSspLibPei
+  FILE_GUID                      = A894812B-FA93-4F1A-AC67-087373DD4D93
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = SocCmnIdsHookSspLibPei
+
+[Sources.common]
+  SocCmnIdsHookSspLibPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  AmdIdsDebugPrintLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[FeaturePcd]
+
+[Pcd]
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+

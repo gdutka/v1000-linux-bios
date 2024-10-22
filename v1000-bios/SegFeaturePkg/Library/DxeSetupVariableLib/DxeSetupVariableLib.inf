@@ -1,0 +1,54 @@
+## @file
+# H2O Setup Vatiable library build description file for DXE phase.
+#
+#******************************************************************************
+#* Copyright (c) 2018, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxeSetupVariableLib
+  FILE_GUID                      = 2404C716-C040-479a-90A2-305398CA3D74
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = SetupVariableLib|DXE_DRIVER
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  DxeSetupVariableLib.c
+
+[Packages]
+  InsydeModulePkg/InsydeModulePkg.dec
+  SegFeaturePkg/SegFeaturePkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  HiiLib
+  VariableLib
+  PcdLib
+  DxeOemSvcFeatureLib
+
+[Protocols]
+
+[Guids]
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdH2OCcbVersion
+
+[Depex]
+  TRUE

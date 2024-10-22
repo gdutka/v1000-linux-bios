@@ -1,0 +1,83 @@
+#!/bin/bash
+pushd $1
+#
+# Copy Project.var to VarFile folder and set defualt prioiryt to 3
+#
+# WORKSPACE=/home/kernel/leon/5.0_1123
+# PROJECT_PKG=SharkBayMultiBoardPkg
+echo "$WORKSPACE/$PROJECT_PKG"
+if [ -f $WORKSPACE/$PROJECT_PKG/Project.var ]; then
+  if [ ! -d VarFile ]; then
+    mkdir VarFile
+  fi
+  if [ -f VarFile/Project.var ]; then
+    rm VarFile/Project.var  
+  fi
+  cat $WORKSPACE/$PROJECT_PKG/Project.var | while read -r line
+  do 
+    echo "$line" >> VarFile/Project.var
+    if [[ $line == [Var* ]]; then
+      echo "Priority = 3" >> VarFile/Project.var
+    fi
+  done  
+fi
+
+#
+# Creatge VarList.txt which contains all of *.var file from different priorities
+# 
+if [ -f VarList.txt ]; then
+  rm VarList.txt
+fi
+if [ -d VarFile ]; then
+  for entry in "VarFile"/*
+  do
+    echo ${entry##*/} >> VarList.txt
+  done
+  mv VarList.txt VarFile/VarList.txt
+fi
+
+#
+# Create a merged var file which used to call VarCompile tool/
+#
+if [ -f TotalVarFile.var ]; then
+  rm TotalVarFile.var
+fi
+
+if [ -d VarFile ]; then
+#  cd VarFile
+#  for entry in *.var
+#  do 
+#    cat $entry >> ../TotalVarFile_temp.var
+#  done
+#  cat ../TotalVarFile_temp.var | while read -r line
+#  do
+#    if [[ $line == !include* ]]; then
+#      echo "$line" >> ../TotalVarFile.var 
+#    fi
+#  done 
+#  cat ../TotalVarFile_temp.var | while read -r line
+#  do
+#    if [[ $line != !include* ]]; then
+#      echo "$line" >> ../TotalVarFile.var
+#    fi 
+#  done
+#  rm ../TotalVarFile_temp.var
+#  cd ..
+  cat VarFile/*.var > TotalVarFile.var
+  if [ -f VarDefault.varrc ]; then
+    rm VarDefault.varrc
+  fi
+  if [ -f TotalVarFile.var ]; then
+    VarCompile -var TotalVarFile.var -of VarDefault.varrc
+    if [ $? != 0 ]; then
+      popd
+      exit 1
+    fi
+  else 
+    touch VarDefault.varrc
+  fi
+else 
+  touch VarDefault.varrc
+fi
+popd
+

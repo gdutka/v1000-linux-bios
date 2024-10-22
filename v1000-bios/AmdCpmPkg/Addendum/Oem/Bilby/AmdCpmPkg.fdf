@@ -1,0 +1,15 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+## @file
+#  Platform Package Flash Description File
+#
+
+[FV.RECOVERYFV]
+!include AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmPkg.pei.inc.fdf
+
+[FV.DXEFV]
+!include AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmPkg.dxe.inc.fdf

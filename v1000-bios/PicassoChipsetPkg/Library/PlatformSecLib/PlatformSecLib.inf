@@ -1,0 +1,92 @@
+## @file
+#
+#******************************************************************************
+#* Copyright (c) 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+################################################################################
+#
+# Defines Section - statements that will be processed to create a Makefile.
+#
+################################################################################
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformSecLib
+  FILE_GUID                      = FEDBB81B-232C-4908-9204-80DA49B5F676
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PlatformSecLib
+
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32
+#
+
+################################################################################
+#
+# Sources Section - list of files that are required for the build to succeed.
+#
+################################################################################
+
+[Sources]
+  PlatformSecLib.c
+  PlatformSecLib.h
+
+[Sources.IA32]
+#[-start-240426-IB18160212-modify-]#
+#  Ia32/Flat32.asm
+#  Ia32/InitializeFpu.asm
+
+  Ia32/Flat32.nasm
+#[-end-240426-IB18160212-modify-]#
+
+################################################################################
+#
+# Package Dependency Section - list of Package files that are required for
+#                              this module.
+#
+################################################################################
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdPspFeaturePkg/AmdPspFeaturePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+
+[LibraryClasses]
+  SecOemSvcChipsetLibDefault
+#[-start-240426-IB18160212-add-]#
+  UefiCpuLib
+#[-end-240426-IB18160212-add-]#
+
+[Ppis]
+  gPspSmmResumePpiGuid              #CONSUMED
+  gCapsuleUpdateDetectedPpiGuid
+
+[Pcd.common]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+
+[FixedPcd]
+  gInsydeTokenSpaceGuid.PcdFlashFvRecoveryBase
+  gInsydeTokenSpaceGuid.PcdFlashFvRecoverySize
+  gChipsetPkgTokenSpaceGuid.PcdBootFirmwareVolumeBase
+  gChipsetPkgTokenSpaceGuid.PcdPciExpressSize
+  gAmdCpmPkgTokenSpaceGuid.PcdBspStackSize
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2ODdtSupported
+
+[BuildOptions]
+  MSFT:*_*_IA32_PP_FLAGS                 = /FIPlatformSecLib.h
+  MSFT:*_*_IA32_ASM_FLAGS                = /Zp4

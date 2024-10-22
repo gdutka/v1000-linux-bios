@@ -1,0 +1,197 @@
+<?xml version="1.0" ?>
+<DIRS AddressMode="0">
+    <!-- Tag: "PSP_DIR"  Specify the entries belong to PSP Directory -->
+    <!-- Attribute SIZE: -->
+    <!-- If "Size" attribute has been declared, it will be used to specify the whole size reserve for PSP entries, tool will automatically calculate the address for child "IMAGE_ENTRY"-->
+
+    <!-- Tag: "BIOS_DIR"  Specify the entries belong to BIOS Directory, the difference between BIOS and PSP directory,is the "Destination" filed only valid for BIOS directory -->
+    <!-- Attribute SIZE: -->
+    <!-- If "Size" attribute has been declared, it will be used to specify the whole size reserve for PSP entries, tool will automatically calculate the address for child "IMAGE_ENTRY"-->
+    <!-- If "Size" attribute has NOT been declared explicitly, the "address" should be declared in all child "IMAGE_ENTRY"s -->
+  <PSP_DIR Level="1" Base= "0x00063000" Size="0xC3000 " SpiBlockSize="0x1000">
+    <!-- AMD Public Key -->
+    <IMAGE_ENTRY Type="0x00" File="AmdPubKeyRV.bin"/>
+    <!-- Point to PSP Boot Loader firmware in 2nd level DIR, This entry is used to satisfie PSP bootrom -->
+    <POINT_ENTRY Type="0x01" Address="0x13E400" Size="0x20000"/>
+    <!-- PSP recovery Boot Loader firmware -->
+    <!-- <IMAGE_ENTRY Type="0x03" File="PspRecoveryBootLoader_prod_RV.sbin"/> -->
+    <IMAGE_ENTRY Type="0x03" File="PspRecoveryBootLoader_prod_RV.sbin"/>
+    <!-- SMU offchip firmware -->
+    <IMAGE_ENTRY Type="0x08" File="SmuFirmwareRV.csbin"/>
+    <IMAGE_ENTRY Type="0x12" File="SmuFirmware2RV.csbin"/>
+
+    <!-- RV2 SMU offchip firmware -->
+    <IMAGE_ENTRY Type="0x108" File="SmuFirmwareRV2.csbin"/>
+    <IMAGE_ENTRY Type="0x112" File="SmuFirmware2RV2.csbin"/>
+
+    <IMAGE_ENTRY Type="0x21" File="PspIkekRV.bin"/>
+    <!-- Token unlock Data -->
+    <IMAGE_ENTRY Type="0x22" File="SecureEmptyToken.bin"/>
+    <!-- Entry to load security gasket binary -->
+    <IMAGE_ENTRY Type="0x24" File="security_policy_PCO_FP5_AM4.sbin"/>
+    <!-- Entry to load security gasket binary -->
+    <IMAGE_ENTRY Type="0x124" File="security_policy_RV2_FP5_AM4.sbin"/>
+    <IMAGE_ENTRY Type="0x224" File="security_policy_PCO_FP5_AM4.sbin"/>
+    
+    <!-- Entry to load security gasket binary -->
+    <IMAGE_ENTRY Type="0x8024" File="security_policy_RV1_NPU_FP5_AM4.sbin"/>   
+     <!-- Entry to load RV2 NPU security gasket binary -->
+    <IMAGE_ENTRY Type="0x8124" File="security_policy_RV2_NPU_FP5_AM4.sbin"/> 
+    <!-- PSP AGESA Bootloaders -->
+    <IMAGE_ENTRY Type="0x30" File="AgesaBootloader0_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x31" File="AgesaBootloader1_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x32" File="AgesaBootloader2_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x33" File="AgesaBootloader3_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x34" File="AgesaBootloader4_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x35" File="AgesaBootloader5_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x36" File="AgesaBootloader6_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x37" File="AgesaBootloader7_prod_RV.csbin"/>
+    <!-- Point to 2nd level PSP Hdr -->
+    <POINT_ENTRY Type="0x40" Address="0x13E000" Size="0x400"/>
+  </PSP_DIR>
+
+  <BIOS_DIR Level="1" Base= "0x0126000" Size="0x18000" SpiBlockSize="0x1000">
+    <!-- Refer to BIOS guide for detail requirement of each Type -->
+    <!-- All definition is same as PSP_DIR except Destination -->
+    <!-- Attribute Destination:(Optional)-->
+    <!-- Destination: Used to specify the destination memory address PSP FW need copy to -->
+    <IMAGE_ENTRY Type="0x05" File="RtmPubSignedRV.key"/>
+    <!-- The RTMSignature.bin is NOT ready when generate Header with "BD" command, Use explicit "Size" to avoid open file fail  -->
+    <IMAGE_ENTRY Type="0x07" File="RTMSignature.bin" Size="0x100"/>
+    <!-- Agesa PSP Customization Block (PSP Agesa variable) NVRAM (APCB)-->
+    <IMAGE_ENTRY Type="0x60" File="APCB_RV_D4.bin" Size="0x2000"/>
+    <!-- Agesa PSP Customization Block (PSP Agesa variable) NVRAM (APCB)-->
+    <IMAGE_ENTRY Type="0x68" File="APCB_RV_D4.bin" Size="0x2000"/>
+    <!-- APOB will be filled @0x09F00000 which specify by the Destination -->
+    <POINT_ENTRY Type="0x61" Address="0" Size="0" Destination="0x09F00000"/>
+    <!-- FV_RECOVERY will copy to Temp Memory 0x09B00000 as specified by the Destination, also will
+        authenticate due the ResetImage Flag set to 1 -->
+    <POINT_ENTRY Address="0x750000L" Destination="0x09B00000" Size="0x300000" Type="0x62">
+      <TypeAttrib Copy="0x1" ReadOnly="0x0" RegionType="0x0" ResetImage="0x1" Compressed="0x1"/>
+    </POINT_ENTRY>
+    <!-- APPB PMU Firmware -->
+    <IMAGE_ENTRY Type="0x64" Instance="0x01" SubProgram="0x0" File="Appb_Rv_1D_Ddr4_Udimm_Imem.csbin" />
+    <IMAGE_ENTRY Type="0x65" Instance="0x01" SubProgram="0x0" File="Appb_Rv_1D_Ddr4_Udimm_Dmem.csbin" />
+    <IMAGE_ENTRY Type="0x64" Instance="0x04" SubProgram="0x0" File="Appb_Rv_2D_Ddr4_Imem.csbin" />
+    <IMAGE_ENTRY Type="0x65" Instance="0x04" SubProgram="0x0" File="Appb_Rv_2D_Ddr4_Dmem.csbin" />
+    <IMAGE_ENTRY Type="0x64" Instance="0x01" SubProgram="0x1" File="Appb_Rv2_1D_ddr4_Udimm_Imem.csbin" />
+    <IMAGE_ENTRY Type="0x65" Instance="0x01" SubProgram="0x1" File="Appb_Rv2_1D_ddr4_Udimm_Dmem.csbin" />
+    <IMAGE_ENTRY Type="0x64" Instance="0x04" SubProgram="0x1" File="Appb_Rv2_2D_ddr4_Udimm_Imem.csbin" />
+    <IMAGE_ENTRY Type="0x65" Instance="0x04" SubProgram="0x1" File="Appb_Rv2_2D_ddr4_Udimm_Dmem.csbin" />
+
+    <!-- Point to 2nd level BIOS DIR Hdr -->
+    <POINT_ENTRY Type="0x70" Address="0x00285000" Size="0x400"/>
+  </BIOS_DIR>
+
+  <PSP_DIR Level="2" Base= "0x13E000" Size="0x147000" SpiBlockSize="0x1000">
+    <!-- PSP Boot Loader firmware -->
+    <IMAGE_ENTRY Type="0x01" File="PspBootLoader_prod_RV.sbin"/>
+    <!-- AMD Public Key -->
+    <IMAGE_ENTRY Type="0x00" File="AmdPubKeyRV.bin"/>
+    <!-- PSP Secure OS firmware -->
+    <IMAGE_ENTRY Type="0x02" File="psp_os_combined_prod_RV.sbin"/>
+    <!-- PSP Non Volatile data -->
+    <POINT_ENTRY Type="0x04" Address = "0x41000" Size = "0x20000"/>
+    <!-- SMU offchip firmware -->
+    <IMAGE_ENTRY Type="0x08" File="SmuFirmwareRV.csbin"/>
+    <!-- PSP RPMC data -->
+    <POINT_ENTRY Type="0x54" Address = "0x00000" Size = "0x20000" />
+    <!-- AMD Secure Debug Key -->
+    <IMAGE_ENTRY Type="0x09" File="RavenSecureDebug_PublicKey.bin"/>
+    <VALUE_ENTRY Type="0x0B" Value="0x10000001"/>
+    <!-- PSP boot-loaded trustlet binaries -->
+    <IMAGE_ENTRY Type="0x0C" File="dr_ftpm_prod_RV.csbin"/>
+    <!-- Trustlet public key signed with AMD key -->
+<!--    <IMAGE_ENTRY Type="0x0D" File="ZeppelinTrustlet.tkn"/> -->
+    <!-- SMU offchip firmware 2-->
+    <IMAGE_ENTRY Type="0x12" File="SmuFirmware2RV.csbin"/>
+    <!-- PSP secure unlock debug image -->
+   <IMAGE_ENTRY Type="0x13" File="secure_unlock_prod_RV.sbin"/>
+    <!-- HW IP configuration file -->
+<!--    <IMAGE_ENTRY Type="0x20" File="PspIpConfigZP.bin"/> -->
+    <!-- Wrapped iKEK -->
+    <IMAGE_ENTRY Type="0x21" File="PspIkekRV.bin"/>
+    <!-- Token unlock Data -->
+    <IMAGE_ENTRY Type="0x22" File="SecureEmptyToken.bin"/>
+    <!-- Entry to load security gasket binary -->
+    <IMAGE_ENTRY Type="0x24" File="security_policy_PCO_FP5_AM4.sbin"/>
+    <!-- Entry to load security gasket binary -->
+    <IMAGE_ENTRY Type="0x124" File="security_policy_RV2_FP5_AM4.sbin"/>    
+    <IMAGE_ENTRY Type="0x224" File="security_policy_PCO_FP5_AM4.sbin"/>
+	
+    <!-- Entry to load security gasket binary -->
+    <IMAGE_ENTRY Type="0x8024" File="security_policy_RV1_NPU_FP5_AM4.sbin"/>
+    <!-- Entry to load RV2 NPU security gasket binary -->
+    <IMAGE_ENTRY Type="0x8124" File="security_policy_RV2_NPU_FP5_AM4.sbin"/>
+    <!-- MP2 SFI firmware -->
+    <IMAGE_ENTRY Type="0x25" File="MP2I2CFW.sbin"/>
+    <!-- RV2 MP2 SFI firmware -->
+    <IMAGE_ENTRY Type="0x125" File="MP2I2CFWRV2.sbin"/>
+    <IMAGE_ENTRY Type="0x225" File="MP2I2CFW.sbin"/>
+    <!-- AMD-TEE OS -->
+    <IMAGE_ENTRY Type="0x28" File="drv_sys_prod_RV.sbin"/>
+    <IMAGE_ENTRY Type="0x29" File="KvmEngineDummy.csbin"/>
+    <!-- PSP AGESA RT Driver -->
+    <IMAGE_ENTRY Type="0x2D" File="dr_agesa_prod_RV.sbin"/>
+    <!-- PSP AGESA Bootloaders -->
+    <IMAGE_ENTRY Type="0x30" File="AgesaBootloader0_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x31" File="AgesaBootloader1_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x32" File="AgesaBootloader2_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x33" File="AgesaBootloader3_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x34" File="AgesaBootloader4_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x35" File="AgesaBootloader5_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x36" File="AgesaBootloader6_prod_RV.csbin"/>
+    <IMAGE_ENTRY Type="0x37" File="AgesaBootloader7_prod_RV.csbin"/>
+    <!-- RV2 SMU offchip firmware -->
+    <IMAGE_ENTRY Type="0x108" File="SmuFirmwareRV2.csbin"/>
+    <!-- RV2 SMU offchip firmware 2 -->
+    <IMAGE_ENTRY Type="0x112" File="SmuFirmware2RV2.csbin"/>
+  </PSP_DIR>
+
+  <BIOS_DIR Level="2" Base= "0x00285000" Size="0x2B000" SpiBlockSize="0x1000">
+    <!-- Refer to BIOS guide for detail requirement of each Type -->
+    <!-- All definition is same as PSP_DIR except Destination -->
+    <!-- Attribute Destination:(Optional)-->
+    <!-- Destination: Used to specify the destination memory address PSP FW need copy to -->
+    <IMAGE_ENTRY Type="0x05" File="RtmPubSignedRV.key"/>
+    <!-- The RTMSignature.bin is NOT ready when generate Header with "BD" command, Use explicit "Size" to avoid open file fail  -->
+    <IMAGE_ENTRY Type="0x07" File="RTMSignatureL1L2.bin" Size="0x100"/>
+
+    <!-- Agesa PSP Customization Block (PSP Agesa variable) NVRAM (APCB)-->
+    <IMAGE_ENTRY Type="0x60" File="APCB_RV_D4.bin" Size="0x2000"/>
+
+    <!-- Agesa PSP Customization Block (PSP Agesa variable) NVRAM (APCB)-->
+    <IMAGE_ENTRY Type="0x68" File="APCB_RV_D4.bin" Size="0x2000"/>
+
+    <!-- APOB will be filled @0x09F00000 which specify by the Destination -->
+    <POINT_ENTRY Type="0x61" Address="0" Size="0" Destination="0x09F00000"/>
+
+    <!-- FV_RECOVERY will copy to Temp Memory 0x09B00000 as specified by the Destination, also will
+        authenticate due the ResetImage Flag set to 1 -->
+    <POINT_ENTRY Address="0x750000L" Destination="0x09B00000" Size="0x300000" Type="0x62">
+      <TypeAttrib Copy="0x1" ReadOnly="0x0" RegionType="0x0" ResetImage="0x1" Compressed="0x1"/>
+    </POINT_ENTRY>
+    <!-- APOB NVRAM COPY-->
+    <IMAGE_ENTRY Type="0x63" File="APOB_NV_RV.bin" />
+
+    <!-- APPB PMU Firmware -->
+    <IMAGE_ENTRY Type="0x64" Instance="0x01" SubProgram="0x0" File="Appb_Rv_1D_Ddr4_Udimm_Imem.csbin" />
+    <IMAGE_ENTRY Type="0x65" Instance="0x01" SubProgram="0x0" File="Appb_Rv_1D_Ddr4_Udimm_Dmem.csbin" />
+    <IMAGE_ENTRY Type="0x64" Instance="0x04" SubProgram="0x0" File="Appb_Rv_2D_Ddr4_Imem.csbin" />
+    <IMAGE_ENTRY Type="0x65" Instance="0x04" SubProgram="0x0" File="Appb_Rv_2D_Ddr4_Dmem.csbin" />
+    <IMAGE_ENTRY Type="0x64" Instance="0x01" SubProgram="0x1" File="Appb_Rv2_1D_ddr4_Udimm_Imem.csbin" />
+    <IMAGE_ENTRY Type="0x65" Instance="0x01" SubProgram="0x1" File="Appb_Rv2_1D_ddr4_Udimm_Dmem.csbin" />
+    <IMAGE_ENTRY Type="0x64" Instance="0x04" SubProgram="0x1" File="Appb_Rv2_2D_ddr4_Udimm_Imem.csbin" />
+    <IMAGE_ENTRY Type="0x65" Instance="0x04" SubProgram="0x1" File="Appb_Rv2_2D_ddr4_Udimm_Dmem.csbin" />
+
+    <!-- MICROCODE PATCH -->
+    <IMAGE_ENTRY Type="0x66" Instance="0x00" File="UcodePatch_RV_B0.bin" />
+    <IMAGE_ENTRY Type="0x66" Instance="0x01" File="UcodePatch_RV2_A0.bin" />
+    <IMAGE_ENTRY Type="0x66" Instance="0x02" File="UcodePatch_PCO_B1.bin" />
+    <IMAGE_ENTRY Type="0x66" Instance="0x03" File="UcodePatch_PCO_B0.bin" />
+
+    <!-- MP2 Configuration File -->
+    <IMAGE_ENTRY Type="0x6A" File="MP2FWConfig.sbin" />
+
+  </BIOS_DIR>
+</DIRS>

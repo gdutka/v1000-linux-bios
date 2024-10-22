@@ -1,0 +1,51 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = FchBaseLib
+  FILE_GUID                      = 4108287a-c864-4427-b2c3-bd0e91a83abd
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = FchBaseLib
+
+[Sources.common]
+  FchAcpiLib.c
+  FchPmioLib.c
+  FchSocLib.c
+  FchStallLib.c
+  FchRomAccessLib.c
+  FchConfigLib.c
+  FchAlinkLib.c
+  FchPmio2Lib.c
+  FchBiosRamLib.c
+  FchSmiLib.c
+  FchSmnLib.c
+  FchPciLib.c
+  FchSciLib.c
+  FchChipsetLib.c
+
+[Packages]
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+
+
+
+

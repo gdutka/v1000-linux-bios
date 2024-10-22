@@ -1,0 +1,38 @@
+## @file
+#  The PostCodeConfigLib instance
+#
+#******************************************************************************
+#* Copyright (c) 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = PostCodeMiscLib
+  FILE_GUID                 = 575E3E5D-16E6-4868-9C48-5EDA31E410BE
+  MODULE_TYPE               = BASE
+  VERSION_STRING            = 1.0
+  LIBRARY_CLASS             = PostCodeMiscLib
+
+[Sources]
+  PostCodeMiscLib.c
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydePostCodePkg/InsydePostCodePkg.dec
+  
+[LibraryClasses]  
+  BaseLib
+  PrintLib
+  DebugLib
+
+[FixedPcd]
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeDebugPortAddress
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeDisplayLength
+  

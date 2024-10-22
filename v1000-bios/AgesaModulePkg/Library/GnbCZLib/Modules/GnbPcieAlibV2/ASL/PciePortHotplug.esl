@@ -1,0 +1,283 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: GNB
+ * @e \$Revision: 61089 $   @e \$Date: 2011-10-31 10:31:02 -0700 (Mon, 31 Oct 2011) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Check if port support hotplug
+   *
+   *  Arg0 -  BDF
+   */
+  Method (procPcieIsPortHotplug, 1) {
+    if (LNotEqual (LinkHotplug, 0x1)) {
+      return (FALSE)
+    }
+    return (procPcieIsPort (Arg0))
+  }
+
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Hotplug
+   *
+   *  Arg0 -  ENABLE/DISABLE
+   */
+
+  Method (procPciePortHotplug, 1) {
+
+    Name (varPmControl, 0)
+    ALIB_DEBUG (" Disable ASPM on RC")
+    Store (bfPmControl, varPmControl)
+    //
+    // Check if we plug in or unplug
+    //
+    if (LEqual (Arg0, ENABLE)) {
+      ALIB_DEBUG (" Hotplug ENABLE")
+      Store (0, bfLinkDis)
+      Store (LinkStateReleaseTraining ,Local0)
+    } else {
+      ALIB_DEBUG (" Hotplug Dis")
+      //
+      // Disable ASPM on EP
+      //
+      procPcieEpAspm(DISABLE)
+      Store (procPcieEpPciDwRd (0, 4), Local0)
+      if (LNotEqual (Local0, 0xFFFFFFFF)) {
+        procPcieEpPciDwWr (0, 4, And (Local0, Not (0x4)))
+        Store (procPcieEpPciDwRd (1, 4), Local0)
+        if (LNotEqual (Local0, 0xFFFFFFFF)) {
+          procPcieEpPciDwWr (1, 4, And (Local0, Not (0x4)))
+        }
+      }
+      Store (1, bfLinkDis)
+      Store (LinkStateDeviceNotPresent ,Local0)
+    }
+
+    //
+    // Disable ASPM on RC
+    //
+    Store (0, bfPmControl)
+    while (LNotEqual (Local0, LinkStateTrainingCompleted)) {
+      if (LEqual (Local0, LinkStateReleaseTraining)) {
+        ALIB_DEBUG (" LinkStateReleaseTraining")
+        if (LGreater (PciePortAcSpeed, GEN1)) {
+          Store (PciePortAcSpeed, PcieLocalOverrideSpeed)
+          procPsppProcessState ()
+        }
+        //
+        // Power ON PHY lane and other processing before lane mux control
+        //
+        GNBSCOPE.procGnbPcieBeforeLaneMuxControl (ON, StartPhyLane, EndPhyLane)
+        //
+        // Enable lanes in lane mux
+        //
+        procPcieLaneMuxControl (ON)
+        //
+        // Power ON PHY lane and other processing after LaneMux Controls
+        //
+        GNBSCOPE.procGnbPcieAfterLaneMuxControl (ON, StartPhyLane, EndPhyLane)
+        //
+        // Release training
+        //
+        Store (0, bfHoldTraining)
+        //
+        // Move to next state
+        //
+        Store (LinkStateCheckPresence, Local0)
+      }
+      //
+      // Check device presence
+      //
+      if (LEqual (Local0, LinkStateCheckPresence)) {
+        ALIB_DEBUG (" LinkStateCheckPresence")
+        Store (0, Local1)
+        Store (FALSE, Local2)
+        while (LLess (Local1, 60)) {
+          if (LGreater (bfLcCurrentState, 4)) {
+            ALIB_DEBUG (" Device detected")
+            Store (TRUE, Local2)
+            break
+          }
+          Sleep (1)
+          Increment (Local1)
+        }
+        if (LEqual (Local2, TRUE)) {
+          Store (LinkStateDeviceDetected, Local0)
+        } else {
+          Store (LinkStateDeviceNotPresent, Local0)
+        }
+      }
+      //
+      // Device detected
+      //
+      if (LEqual (Local0, LinkStateDeviceDetected)) {
+        ALIB_DEBUG (" LinkStateDeviceDetected")
+        Store (0, Local1)
+        Store (FALSE, Local2)
+        while (LLess (Local1, 80)) {
+          if (LAnd (LGreaterEqual (bfLcCurrentState, 0x10), LLessEqual (bfLcCurrentState, 0x13))) {
+            ALIB_DEBUG (" Device Present")
+            Store (TRUE, Local2)
+            break
+          }
+          Sleep (1)
+          Increment (Local1)
+        }
+        if (LEqual (Local2, TRUE)) {
+          Store (LinkStateL0, Local0)
+        } else {
+          if (LEqual (PcieLinkSafeMode, 0x1)) {
+            Store (LinkStateDeviceNotPresent, Local0)
+          } else {
+            Store (LinkStateGen2Workaround, Local0)
+          }
+        }
+      }
+      //
+      // Try GEN2 workaround
+      //
+      if (LEqual (Local0, LinkStateGen2Workaround)) {
+        ALIB_DEBUG (" LinkStateGen2Workaround")
+        //
+        // Set overrides for PSPP
+        //
+        Store (0x1, PcieLinkSafeMode)
+        Store (GEN1, PcieLocalOverrideSpeed)
+        //
+        // Set link speed
+        //
+        procPcieProgramLinkSpeed (GEN1)
+
+        if (CondRefOf (\_SB.ALIC, Local6)) {
+          ALIB_DEBUG (" Call ALIC method")
+          //Local1  contain port BDF
+          Or (ShiftLeft (PciDev, 3), PciFun, Local1)
+          \_SB.ALIC (Local1, 0)
+          Sleep (2)
+          \_SB.ALIC (Local1, 1)
+          Store (LinkStateCheckPresence, Local0)
+          continue
+        }
+        Store (LinkStateDeviceNotPresent, Local0)
+      }
+      //
+      // Device not present
+      //
+      if (LEqual (Local0, LinkStateDeviceNotPresent)) {
+        ALIB_DEBUG (" Device not Present")
+        //
+        // Dummy read to update link state
+        //
+        procPcieEpPciDwRd (0x0, 0x0)
+        //
+        //  Put training on hold
+        //
+        ALIB_DEBUG (" HoldTraining")
+        Store (1, bfHoldTraining)
+        //
+        // Power OFF PHY lane and other processing before LaneMux Controls
+        //
+        GNBSCOPE.procGnbPcieBeforeLaneMuxControl (OFF, StartPhyLane, EndPhyLane)
+        //
+        // Disable lanes in lanemux
+        //
+        ALIB_DEBUG (" LaneMuxControl off")
+        procPcieLaneMuxControl (OFF)
+        //
+        // Power OFF PHY lane and other processing after LaneMux Controls
+        //
+        ALIB_DEBUG (" PhyLanePowerControl")
+        GNBSCOPE.procGnbPcieAfterLaneMuxControl (OFF, StartPhyLane, EndPhyLane)
+        //
+        // Remove overrides
+        //
+        Store (0x0, PcieLocalOverrideSpeed)
+        Store (0x0, PcieLinkSafeMode)
+        Store (0x0, PciePortRequest)
+        //
+        //  Return value
+        //
+        Store (0x0, Local2)
+        //
+        // Move to next state
+        //
+        Store (LinkStateTrainingCompleted, Local0)
+      }
+      //
+      // Device in L0
+      //
+      if (LEqual (Local0, LinkStateL0)) {
+       ALIB_DEBUG (" LinkStateL0")
+        Store (0x1, Local2)
+        Store (LinkStateTrainingCompleted, Local0)
+      }
+    }
+    //
+    // If link not in safe state no overrides needed
+    //
+
+    if (LEqual (PcieLinkSafeMode, 0x0)) {
+      ALIB_DEBUG (" LinkSafeMode")
+      Store (0x0, PcieLocalOverrideSpeed)
+    }
+    if (LOr (LGreater (PciePortAcSpeed, GEN1), LEqual (PsppStatus, PSPP_START))) {
+      if (LGreater (PsppPolicy, PSPP_POLICY_PERFORMANCE)) {
+        if (LNotEqual (Arg0, DISABLE)) {  // if we got here due to "unplug" then skip training
+          procPsppProcessState ()
+        }
+      }
+    }
+    //
+    // restore ASPM on RC
+    //
+    ALIB_DEBUG (" restore ASPM on RC")
+    Store (varPmControl, bfPmControl)
+    if (LNotEqual (varPmControl, 0)) {
+      procPcieEpAspm(ENABLE)
+    }
+    return (Local2)
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Lane mux control
+   *
+   *  Arg0 -  ON/OFF
+   */
+  Method (procPcieLaneMuxControl, 1) {
+    if (LGreater (StartPhyLane, EndPhyLane)) {
+      Subtract (StartPhyLane, EndPhyLane, Local0)
+    } else {
+      Subtract (EndPhyLane, StartPhyLane, Local0)
+    }
+    Increment (Local0)
+    ShiftLeft (1, Local0, Local0)
+    Decrement (Local0)
+    ShiftLeft (Local0, StartCoreLane, Local0)
+    if (LEqual (Arg0, ON)) {
+      Or (bfLaneEnable, Local0, bfLaneEnable)
+    } else {
+      And (bfLaneEnable, Not (Local0), Local1)
+      if (LEqual (Local1, 0)) {
+        And (bfLaneEnable, Not (Local0), bfLaneEnable)
+     }
+    }
+ALIB_DEBUG (Concatenate (" LaneEnable bit mask  ", ToHexString (bfLaneEnable), ADBG))
+  }

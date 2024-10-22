@@ -1,0 +1,65 @@
+## @file
+#  Component description file for PostCodeSmm driver
+#
+#******************************************************************************
+#* Copyright (c) 2016 - 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = PostCodeSmm
+  FILE_GUID                 = F1CF1802-8F94-4504-AA96-CE193C57C86E
+  MODULE_TYPE               = DXE_SMM_DRIVER
+  VERSION_STRING            = 1.0
+  PI_SPECIFICATION_VERSION  = 0x0001000A
+  ENTRY_POINT               = PostCodeSmmEntryPoint
+
+[Sources]
+  PostCodeSmm.c
+
+[Sources.X64]  
+  X64/HandlerEntrySmm.asm
+  X64/HandlerEntrySmm.S
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec  
+  SegFeaturePkg/SegFeaturePkg.dec
+  InsydePostCodePkg/InsydePostCodePkg.dec
+  
+[LibraryClasses]
+  UefiLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  SmmServicesTableLib
+  PrintLib
+  DebugLib
+  PostCodeConfigLib
+  SerialPortPostCodeLib
+  GraphicVgaLib
+  VgaPostCodeLib
+  BaseMemoryLib
+  PostCodeMiscLib
+
+[Protocols]
+  gEfiSmmReadyToLockProtocolGuid
+  gH2OPostCodeSmmDebugRegProtocolGuid
+  gH2OPostCodeVgaProtocolGuid
+  
+[Pcd]
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeSupported
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeSerialPortSupported
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeScreenSupported
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeTrapDebugPortNotifyList
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeNonTrapDebugPortNotifyList
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeDebugPortAddress
+  
+[Depex]
+  gEfiSmmConfigurationProtocolGuid
+  

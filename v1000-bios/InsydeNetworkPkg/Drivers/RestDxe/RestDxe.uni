@@ -1,0 +1,23 @@
+//;******************************************************************************
+//;* Copyright (c) 2012-2018, Insyde Software Corp. All Rights Reserved.
+//;*
+//;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+//;* transmit, broadcast, present, recite, release, license or otherwise exploit
+//;* any part of this publication in any form, by any means, without the prior
+//;* written permission of Insyde Software Corporation.
+//;*
+//;******************************************************************************
+//;
+//; Module Name:
+//;
+//;   RestDxe.uni
+//;
+//; Abstract:
+//;
+//;   Strings for REST driver
+//;
+
+#string STR_MODULE_ABSTRACT             #language en-US "UEFI REST service"
+
+#string STR_MODULE_DESCRIPTION          #language en-US "This driver provides EFI REST Protocol and EFI REST Service Binding Protocol."
+

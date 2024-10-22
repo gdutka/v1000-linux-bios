@@ -1,0 +1,27 @@
+## @file
+#  Component description file for EXT PEIM
+#
+#******************************************************************************
+#* Copyright (c) 2019, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ExtPei
+  FILE_GUID                      = 888ECA5C-AC48-442e-BB0B-1A77AEAC2808
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  BINARY_VERSION                 = 01.00.31.0802
+  ENTRY_POINT                    = ExtPeimEntry
+
+[Binaries.Ia32]
+  PE32|Ia32/ExtPei.efi|*
+
+[Binaries.X64]
+  PE32|X64/ExtPei.efi|*

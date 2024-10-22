@@ -1,0 +1,75 @@
+## @file
+#
+#  This is the first module taking control of the platform upon power-on/reset.
+#  Volume Top File (VTF).
+#
+#******************************************************************************
+#* Copyright (c) 2013 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SecCore
+  FILE_GUID                      = 1BA0062E-C779-4582-8566-336AE8F78F09
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  SecMain.c
+  SecMain.h
+  FindPeiCore.c
+
+[Sources.IA32]
+#[-start-221125-IB148600862-modify]#
+#  Ia32/ResetVec.asm16 | MSFT
+#  Ia32/ResetVec.asm16 | INTEL
+#  Ia32/Stack.asm
+#  Ia32/IdtVectorAsm.asm
+  Ia32/ResetVec.nasmb
+  Ia32/Stack.nasm
+  Ia32/IdtVectorAsm.nasm
+#[-end-221125-IB148600862-modify]#
+  Ia32/ArchSpecific.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AMD64ArchFamilyCpuPkg/AMD64ArchFamilyCpuPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  DebugLib
+  BaseLib
+  PlatformSecLib
+  PcdLib
+  DebugAgentLib
+  UefiCpuLib
+  PeCoffGetEntryPointLib
+  PeCoffExtraActionLib
+
+[Ppis]
+  gEfiSecPlatformInformationPpiGuid             # PPI ALWAYS_PRODUCED
+  gEfiTemporaryRamSupportPpiGuid                # PPI ALWAYS_PRODUCED
+
+[FixedPcd]
+  gEfiCpuTokenSpaceGuid.PcdSecCoreMaxPpiSupported
+  gEfiCpuTokenSpaceGuid.PcdSecPad1Raw32
+  gEfiCpuTokenSpaceGuid.PcdSecPad2Raw32
+
+[Pcd]
+  gEfiCpuTokenSpaceGuid.PcdPeiTemporaryRamStackSize
+

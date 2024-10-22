@@ -1,0 +1,132 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: NBIO
+ * @e \$Revision: 309090 $   @e \$Date: 2014-12-10 02:28:05 +0800 (Wed, 10 Dec 2014) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Manage DPTCi
+   *
+   *
+   *  Arg0 - buffer contains Power or thermal parameters
+   */
+  Method (procDPTCi, 1, Serialized) {
+    CreateWordField (Arg0, 0, varSizeOfBuffer)    // Get total size of input buffer
+
+    Store (Buffer (24) {}, Local7)                // Local7 as an input buffer and passed to procGnbSmuServiceReq
+    CreateDWordField (Local7, 0,  varSmuArg0)
+    CreateDWordField (Local7, 4,  varSmuArg1)
+    CreateDWordField (Local7, 8,  varSmuArg2)
+    CreateDWordField (Local7, 12, varSmuArg3)
+    CreateDWordField (Local7, 16, varSmuArg4)
+    CreateDWordField (Local7, 20, varSmuArg5)
+
+    Store (2, Local0)                             // Use Local0 as buffer index
+    while (LLess (Local0, varSizeOfBuffer)) {
+      Store (DeRefOf (Index (Arg0, Local0)), Local1)
+      Increment (Local0)
+      Store (DeRefOf (Index (Arg0, Local0)), Local2)
+      Increment (Local0)
+      Or (ShiftLeft (DeRefOf (Index (Arg0, Local0)), 8), Local2, Local2)
+      Increment (Local0)
+      Or (ShiftLeft (DeRefOf (Index (Arg0, Local0)), 16), Local2, Local2)
+      Increment (Local0)
+      Or (ShiftLeft (DeRefOf (Index (Arg0, Local0)), 24), Local2, Local2)
+      Increment (Local0)
+
+      Store (0, varSmuArg0)
+      Store (0, varSmuArg1)
+      Store (0, varSmuArg2)
+      Store (0, varSmuArg3)
+      Store (0, varSmuArg4)
+      Store (0, varSmuArg5)
+
+
+      if (LEqual (Local1, 0x1)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x1E, Local7)       // SMC_MSG_SetStapmTimeConstant       0x1E
+      }
+
+      if (LEqual (Local1, 0x3)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x1F, Local7)       // SMC_MSG_SetTctlMax                 0x1F
+      }
+
+      if (LEqual (Local1, 0x5)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x1A, Local7)       // SMC_MSG_SetSustainedPowerLimit     0x1A
+      }
+
+      if (LEqual (Local1, 0x6)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x1B, Local7)       // SMC_MSG_SetFastPPTLimit            0x1B
+      }
+
+      if (LEqual (Local1, 0x7)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x1C, Local7)       // SMC_MSG_SetSlowPPTLimit            0x1C
+      }
+
+      if (LEqual (Local1, 0x8)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x1D, Local7)       // SMC_MSG_SetSlowPPTTimeConstant     0x1D
+      }
+
+      if (LEqual (Local1, 0x9)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x26, Local7)       // SetProchotDeassertionRampTime      0x26
+      }
+
+      if (LEqual (Local1, 0xA)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x27, Local7)       // BIOSSMC_MSG_UpdateSkinTempError    0x27
+      }
+
+      if (LEqual (Local1, 0xB)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x20, Local7)       // SMC_MSG_SetVrmCurrentLimit         0x20
+      }
+
+      if (LEqual (Local1, 0xC)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x22, Local7)       // SMC_MSG_SetVrmMaximumCurrentLimit  0x22
+      }
+
+      if (LEqual (Local1, 0xD)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x24, Local7)       // BIOSSMC_MSG_SetPSI0CurrentLimit     0x24
+      }
+
+      if (LEqual (Local1, 0xF)) {
+        Store (Local2, varSmuArg0)
+        procSmuServiceReq (0x25, Local7)       // BIOSSMC_MSG_SetPSI0SocCurrentLimit   0x25
+      }
+
+      if (LEqual (PeApmEnable, ENABLE)) {
+        if (LEqual (Local1, 0x10)) {
+          if (LEqual (Local2, 0)) {
+            procSmuServiceReq (0x2B, Local7)       // SMC_MSG_StopGpuLink   0x2B
+          } else {
+            procSmuServiceReq (0x2A, Local7)       // SMC_MSG_StartGpuLink  0x2A
+          }
+        }
+      }
+    }
+  }

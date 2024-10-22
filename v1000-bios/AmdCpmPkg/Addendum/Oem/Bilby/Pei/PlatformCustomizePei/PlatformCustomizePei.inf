@@ -1,0 +1,51 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformCustomizePei
+  FILE_GUID                      = CC9F5B7E-254B-4F8A-A648-034A40AEDA35
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatformCustomizePeiEntryPoint
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[Sources]
+  PlatformCustomizePei.c
+
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  HobLib
+  AmdPbsConfigLib
+  AmdBaseLib
+  IoLib
+[Ppis]
+  gEfiPeiI2cMasterPpiGuid
+  gAmdCpmTablePpiGuid
+  gM24Lc128PpiGuid
+  gEfiPeiSmbus2PpiGuid
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gAmdCpmGpioInitFinishedPpiGuid
+[Guids]
+  gCbsSystemConfigurationGuid
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdSbTsiAlertComparatorModeEn
+  gAmdCpmPkgTokenSpaceGuid.PcdBoardRevision
+[Depex]
+  gEfiPeiI2cMasterPpiGuid AND
+  gM24Lc128PpiGuid AND
+  gEfiPeiReadOnlyVariable2PpiGuid
+  

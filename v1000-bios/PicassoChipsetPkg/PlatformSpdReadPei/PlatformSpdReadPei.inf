@@ -1,0 +1,57 @@
+## @file
+#  Implement the PEIM of PlatformSpdReadPei.
+#
+#  ***************************************************************************
+#  * Copyright (c) 2012, Insyde Software Corp. All Rights Reserved.
+#  *
+#  * You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#  * transmit, broadcast, present, recite, release, license or otherwise exploit
+#  * any part of this publication in any form, by any means, without the prior
+#  * written permission of Insyde Software Corporation.
+#  *
+#  ******************************************************************************
+#
+##
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = PlatformSpdReadPei
+  FILE_GUID                 = 423D7996-E4C3-4d88-BEFB-0A602576CACD
+  MODULE_TYPE               = PEIM
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = PlatformSpdReadPeiEntryPoint
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AmdCommonChipsetPkg/AmdCommonChipsetPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[Sources]
+  PlatformSpdReadPei.c
+
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  MemoryAllocationLib
+  HobLib
+  SmbusLib
+
+[Ppis]
+  gEfiPeiSmbus2PpiGuid
+  gAmdPlatformDimmSpdPpiGuid
+  gSpdDataReadPpiGuid
+
+[Guids]
+  gDimmSmbusAddrHobGuid
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdSmbusAddrChA1
+  gInsydeTokenSpaceGuid.PcdSmbusAddrChA2
+  gInsydeTokenSpaceGuid.PcdSmbusAddrChB1
+  gInsydeTokenSpaceGuid.PcdSmbusAddrChB2
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashSpdDataStoreBase
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdMaxDimms
+
+[Depex]
+  gEfiPeiSmbus2PpiGuid

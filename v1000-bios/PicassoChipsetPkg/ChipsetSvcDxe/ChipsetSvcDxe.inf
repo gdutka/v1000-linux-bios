@@ -1,0 +1,130 @@
+## @file
+#  Implement the driver of DxeChipsetSvc.
+#
+#  ***************************************************************************
+#  * Copyright (c) 2012 - 2018, Insyde Software Corp. All Rights Reserved.
+#  *
+#  * You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#  * transmit, broadcast, present, recite, release, license or otherwise exploit
+#  * any part of this publication in any form, by any means, without the prior
+#  * written permission of Insyde Software Corporation.
+#  *
+#  ******************************************************************************
+#
+##
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = ChipsetSvcDxe
+  FILE_GUID                 = 9b0ff2c0-e245-11e1-8eff-d0df9a35c106
+  MODULE_TYPE               = DXE_DRIVER
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = ChipsetSvcDxeEntryPoint
+  UNLOAD_IMAGE              = ChipsetSvcDxeUnload
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+  $(PROJECT_PKG)/Project.dec
+  $(CPM_PKG_PATH)/$(CPM_PKG_DEC).dec
+  AmdCpmPkg/Addendum/Oem/$(PLATFORM_NAME)/AmdCpmOemPkg.dec
+
+[Sources]
+  ChipsetSvcDxe.c
+  ComponentName.c
+  ComponentName.h
+  SataComReset.c
+  EnableFdWrites.c
+  IoDecodeControl.c
+  LegacyRegionAccessCtrl.c
+  ProgramChipsetSsid.c
+  InstallPciRomSwitchTextMode.c
+  SetIsaInfo.c
+  SetSmbiosMemoryData.c
+  SkipGetPciRom.c
+  UpdateAcpiTable.c
+  IrqRoutingInformation.c
+  FvRecoveryInfo.c
+  GetBiosProtectTable.c
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  BaseLib
+  UefiLib
+  DevicePathLib
+  DebugLib
+  PcdLib
+  IoLib
+  S3BootScriptLib
+  AcpiPlatformLib
+  DxeOemSvcChipsetLibDefault
+  AmdPspBaseLibV2
+  FchSandstoneDxeLib
+  AmdPbsConfigLib
+  KernelConfigLib
+  ChipsetConfigLib
+  VariableLib
+  PciExpressLib
+
+[Protocols]
+  gEfiDriverSupportedEfiVersionProtocolGuid
+  gEfiComponentName2ProtocolGuid
+  gEfiComponentNameProtocolGuid
+  gH2OChipsetServicesProtocolGuid
+  gEfiPciIoProtocolGuid
+  gEfiLegacy8259ProtocolGuid
+  gEfiCpuIo2ProtocolGuid
+  gFrameworkEfiMpServiceProtocolGuid
+  gEfiMpServiceProtocolGuid
+  gEfiGlobalNvsAreaProtocolGuid
+  gEfiAcpiSupportProtocolGuid
+  gAllPciIoPrtclsInstlFinishedProtocolGuid
+  gEfiBootLogoProtocolGuid
+  gEfiPciEnumerationCompleteProtocolGuid
+  gAmdCoreTopologyServicesProtocolGuid
+
+[Guids]
+  gSystemConfigurationGuid
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdPortNumberMapTable
+  gInsydeTokenSpaceGuid.PcdFlashFvMainBase
+  gInsydeTokenSpaceGuid.PcdFlashFvMainSize
+  gInsydeTokenSpaceGuid.PcdFlashFvRecoveryBase
+  gInsydeTokenSpaceGuid.PcdFlashFvRecoverySize
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gChipsetPkgTokenSpaceGuid.PcdVirtualBusTable
+  gChipsetPkgTokenSpaceGuid.PcdControllerDeviceIrqRoutingEntry
+  gChipsetPkgTokenSpaceGuid.PcdPirqPriorityTable
+  gChipsetPkgTokenSpaceGuid.PcdIrqPoolTable
+  gChipsetPkgTokenSpaceGuid.PcdPirqLinkValueArray
+  gChipsetPkgTokenSpaceGuid.PcdNbIoApicSupport
+  gChipsetPkgTokenSpaceGuid.PcdLegacyFreeSupported
+  gChipsetPkgTokenSpaceGuid.PcdLegacyFreeTiSupport
+  gAmdCpmPkgTokenSpaceGuid.PcdModernStandbySupport
+  gAmdCpmPkgTokenSpaceGuid.PcdReduceHardwareSupport
+  gChipsetPkgTokenSpaceGuid.PcdWatchdogTimerBase
+  gAmdCpmPkgTokenSpaceGuid.OriginalPlatformId
+  gChipsetPkgTokenSpaceGuid.PcdWsmtProtectionFlags
+  gAmdCpmPkgTokenSpaceGuid.PcdConnectStandbyEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdEmmcEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgGnbIoapicId
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgFchIoapicId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiS3Support
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdGetRVFamilyOPN
+
+[Depex]
+  gEfiVariableArchProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid
+

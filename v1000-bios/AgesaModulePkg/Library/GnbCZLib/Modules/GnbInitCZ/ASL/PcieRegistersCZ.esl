@@ -1,0 +1,35 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: GNB
+ * @e \$Revision: 309090 $   @e \$Date: 2014-12-10 02:28:05 +0800 (Wed, 10 Dec 2014) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+// Wrapper register block
+OperationRegion(varPcierOpRg, SystemMemory, PcieBaseAddress, 4096)
+  Field(varPcierOpRg, ByteAcc, NoLock, Preserve) {
+    Offset (0xE0),
+      bfPcieIndex, 32,
+    }
+    BankField (varPcierOpRg, bfPcieIndex, Or (ShiftLeft (^WRBS, 16), Add (0x800, Multiply (0x100, PORTID))), DwordAcc, NoLock, Preserve) {
+      Offset (0xE4),
+      bfHoldTraining, 1
+    }
+    BankField (varPcierOpRg, bfPcieIndex, Or (ShiftLeft (^CORE, 16), 0x0129), DwordAcc, NoLock, Preserve) {
+      Offset (0xE4),
+      bfLaneEnable, 16
+    }

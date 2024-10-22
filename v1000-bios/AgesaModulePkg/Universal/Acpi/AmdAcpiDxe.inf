@@ -1,0 +1,112 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdAcpiDxe
+  FILE_GUID                      = 729B3079-8913-4E12-AFEF-2CA264799469
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdGenerateAcpiTables
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses.common.DXE_DRIVER]
+  BaseLib
+  PcdLib
+  AmdHeapLib
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+
+[sources]
+  AmdAcpiCdit.c
+  AmdAcpiCdit.h
+  AmdAcpiCpuSsdt.c
+  AmdAcpiCpuSsdt.h
+  AmdAcpiCrat.c
+  AmdAcpiCrat.h
+  AmdAcpiDxe.c
+  AmdAcpiDxe.h
+  AmdAcpiSlit.c
+  AmdAcpiSlit.h
+  AmdAcpiSrat.c
+  AmdAcpiSrat.h
+  AmdAcpiMsct.c
+  AmdAcpiMsct.h
+
+[Guids]
+
+[Protocols]
+  gEfiAcpiTableProtocolGuid              #CONSUME
+  gAmdAcpiCpuSsdtServicesProtocolGuid    #CONSUME
+  gAmdFabricTopologyServices2ProtocolGuid #CONSUME
+  gAmdCoreTopologyServicesProtocolGuid   #CONSUME
+  gAmdCoreTopologyServicesV2ProtocolGuid #CONSUME
+  gAmdFabricAcpiSlitServicesProtocolGuid #CONSUME
+  gAmdCcxAcpiSratServicesProtocolGuid    #CONSUME
+  gAmdFabricAcpiSratServicesProtocolGuid #CONSUME
+  gAmdFabricAcpiCditServicesProtocolGuid #CONSUME
+  gAmdCcxAcpiCratServicesProtocolGuid    #CONSUME
+  gAmdFabricAcpiCratServicesProtocolGuid #CONSUME
+  gAmdIGpuAcpiCratServicesProtocolGuid   #CONSUME
+  gAmdAcpiDxeInitCompleteProtocolGuid    #PRODUCE
+  gAmdCcxBaseServicesProtocolGuid        #CONSUME
+  gAmdFabricAcpiMsctServicesProtocolGuid #CONSUME
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuSsdt
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuSsdtProcessorScopeName0
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuSsdtProcessorScopeName1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuSsdtProcessorScopeInSb
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiTableHeaderOemId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCditTableHeaderOemTableId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuSsdtTableHeaderOemTableId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCratTableHeaderOemTableId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiSlitTableHeaderOemTableId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiSratTableHeaderOemTableId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiMsctTableHeaderOemTableId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCrat
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCdit
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiSrat
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiSlit
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiMsct
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPowerCeiling
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuSsdtPct
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuSsdtPss
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuPerfPresentCap
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuSsdtXpss
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuSsdtPsd
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuSsdtPpc
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCstC1
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCstC3
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuCstC1Latency
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuCstC2Latency
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuCstC3Latency
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuLpiC1MinRes
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuLpiC2MinRes
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuLpiC3MinRes
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuLpiC1WorstCaseWakeupLatency
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuLpiC2WorstCaseWakeupLatency
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuLpiC3WorstCaseWakeupLatency
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCStateMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiC3Ctrl
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdAcpiPstateObjEnable
+
+[Depex]
+  gEfiAcpiTableProtocolGuid AND
+  gAmdCcxDxeInitCompleteProtocolGuid AND
+  gAmdFabricTopologyServices2ProtocolGuid AND
+  gAmdCcxOcCompleteProtocolGuid AND
+  gEfiPciEnumerationCompleteProtocolGuid
+

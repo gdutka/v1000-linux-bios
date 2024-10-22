@@ -1,0 +1,46 @@
+## @file
+#  The SerialPortPostCodeLib instance
+#
+#******************************************************************************
+#* Copyright (c) 2016 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = SerialPortPostCodeLib
+  FILE_GUID                 = DE7A3D25-9723-4ca4-B0E4-BCC572860CAB
+  MODULE_TYPE               = BASE
+  VERSION_STRING            = 1.0
+  LIBRARY_CLASS             = SerialPortPostCodeLib
+
+[Sources]
+  SerialPortPostCodeLib.c
+  SerialPortFunc.c
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydePostCodePkg/InsydePostCodePkg.dec
+    
+[LibraryClasses]  
+  PrintLib
+  PcdLib
+  IoLib
+  PlatformHookLib
+  PostCodeMiscLib
+  
+[Pcd]
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeSerialPortRegBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseMmio
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseHardwareFlowControl
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialDetectCable
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialBaudRate
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialLineControl
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialFifoControl
+  

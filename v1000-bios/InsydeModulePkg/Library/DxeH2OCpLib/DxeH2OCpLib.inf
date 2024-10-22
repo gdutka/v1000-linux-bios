@@ -1,0 +1,41 @@
+## @file
+#  Component description file for the DXE H2O check point library.
+#
+#******************************************************************************
+#* Copyright (c) 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxeH2OCpLib
+  FILE_GUID                      = 0CEE2817-6A82-432c-B6F2-335893B63502
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = H2OCpLib|DXE_CORE DXE_DRIVER DXE_RUNTIME_DRIVER UEFI_APPLICATION UEFI_DRIVER COMBINED_SMM_DXE DXE_SMM_DRIVER
+  CONSTRUCTOR                    = DxeH2OCpLibConstructor
+
+[Sources]
+  DxeH2OCpLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  UefiLib
+
+[Protocols]
+  gEfiSmmBase2ProtocolGuid

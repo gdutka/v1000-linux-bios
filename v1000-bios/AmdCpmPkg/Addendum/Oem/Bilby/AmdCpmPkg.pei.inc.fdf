@@ -1,0 +1,21 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+INF AmdCpmPkg/Addendum/Oem/Bilby/Pei/AmdCpmOemInitPei/AmdCpm3OemInitPeim.inf
+INF AmdCpmPkg/Kernel/Pei/AmdCpm3InitPeim.inf
+INF AmdCpmPkg/Features/GpioInit/Pei/AmdCpm3GpioInitPeim.inf
+#INF AmdCpmPkg/Features/DisplayFeature/Pei/AmdCpm3DisplayFeaturePeim.inf
+INF AmdCpmPkg/Features/PcieInit/Pei/AmdCpm3PcieInitPeim.inf
+
+INF AmdCpmPkg/Addendum/Oem/Bilby/Features/I2cMaster/Pei/AmdI2cMasterPei.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Devices/M24LC128/Pei/M24Lc128Pei.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Devices/Pca9535a/Pei/Pca9535aPei.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Devices/Pca9545a/Pei/Pca9545aPei.inf
+
+INF AmdCpmPkg/Addendum/Oem/Bilby/Pei/PlatformMemoryConfigurationPei/PlatformMemoryConfigurationPei.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Pei/PlatformCustomizePei/PlatformCustomizePei.inf
+#INF AmdCpmPkg/Addendum/Oem/Bilby/Pei/AmdXgbeAndDisplayConfigure/AmdXgbeAndDisplayConfigure.inf
+INF AmdCpmPkg/Addendum/Oem/Bilby/Pei/AmdXgbeWorkaround/AmdXgbeWorkaround.inf

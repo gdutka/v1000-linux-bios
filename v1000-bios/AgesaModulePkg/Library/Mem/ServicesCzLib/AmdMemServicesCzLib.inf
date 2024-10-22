@@ -1,0 +1,36 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemServicesCzLib
+  FILE_GUID                      = 459F5F7D-1DAD-4a6e-BB3F-61778281DCEC
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemServicesCzLib 
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  AmdMemServicesCzLib.h
+  AmdMemServicesCzLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+  AmdMemBaseLib
+  
+[Ppis] 
+  gAmdMemoryFamilyServicesPpiGuid #Publishes
+ 
+[Pcd]
+

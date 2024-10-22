@@ -1,0 +1,59 @@
+## @file
+#
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2013, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                   = 0x00010005
+  BASE_NAME                     = AcpiTables
+  FILE_GUID                     = 7E374E25-8E01-4FEE-87F2-390C23C606CD
+  MODULE_TYPE                   = USER_DEFINED
+  VERSION_STRING                = 1.0
+
+[Sources]
+  Asf/Asf.act
+  Asf/Asf.h
+  Boot/Boot.act
+  Boot/Boot.h
+  Facs/Facs.act
+  Facs/Facs.h
+  Facp/Facp.act
+  Facp/Facp.h
+  Hpet/Hpet.act
+  Hpet/Hpet.h
+  Madt/Madt.act
+  Madt/Madt.h
+  Mcfg/Mcfg.act
+  Mcfg/Mcfg.h
+  Wdrt/Wdrt.act
+  Wdrt/Wdrt.h
+  Slic/Slic.act
+  Slic/Slic.h
+  Wdat/Wdat.act
+  Wdat/Wdat.h
+  Spcr/Spcr.act
+  Spcr/Spcr.h
+  Wsmt/Wsmt.act
+  Wsmt/Wsmt.h
+
+[Packages]
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  PerformancePkg/PerformancePkg.dec
+
+
+[Pcd]
+  gChipsetPkgTokenSpaceGuid.PcdWatchdogTimerBase
+  gInsydeTokenSpaceGuid.PcdSoftwareSmiPort
+  gPerformancePkgTokenSpaceGuid.PcdPerfPkgAcpiIoPortBaseAddress
+
+[BuildOptions]

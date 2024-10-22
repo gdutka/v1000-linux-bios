@@ -1,0 +1,54 @@
+## @file
+#  Component description file for SpiLockSmi module
+#
+#*******************************************************************************
+#* Copyright (c) 2012 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#*******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BiosRegionLockEntry
+  FILE_GUID                      = BC05DC37-9DA0-4050-9728-F34DDB01E200
+  MODULE_TYPE                    = DXE_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = BiosRegionLockInit
+
+[Sources]
+  BiosRegionLockEntry.c
+  BiosRegionLockInfo.c
+  BiosRegionLockHelpFun.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+  
+[LibraryClasses]
+  DebugLib
+  IoLib
+  PcdLib
+  PciLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  S3BootScriptLib
+  UefiDriverEntryPoint
+
+[Guids]
+  gEfiEndOfDxeEventGroupGuid
+  
+[Protocols]
+  gEfiBiosRegionLockProtocolGuid
+
+[Pcd]
+  gChipsetPkgTokenSpaceGuid.PcdFchLimitProtectSizePerSet
+  
+[Depex]
+  TRUE

@@ -1,0 +1,79 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: GNB
+ * @e \$Revision: 309090 $   @e \$Date: 2014-12-10 02:28:05 +0800 (Wed, 10 Dec 2014) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+  // GNB register block
+  OperationRegion(varGnbOpRg, SystemMemory, PcieBaseAddress, 4096)
+    Field(varGnbOpRg, ByteAcc, NoLock, Preserve) {
+      Offset (0x60),
+      bfMisIndAddr, 32,
+      Offset (0x7C),
+      bfForceIntGfxDisable, 1,
+      Offset (0xB8),
+      bfNbSmuIndAddr, 32,
+      Offset (0xC8),
+      bfNbDevIndAddr, 32,
+    }
+ //   BankField (varGnbOpRg, bfNbDevIndAddr, 0x210001, DwordAcc, NoLock, Preserve) {
+ //     Offset (0x6C),
+ //     bfNbSbCfgEn, 1,  //BIT0
+ //   }
+    BankField (varGnbOpRg, bfNbSmuIndAddr, 0x13000000, DwordAcc, NoLock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageId, 32,
+    }
+    BankField (varGnbOpRg, bfNbSmuIndAddr, 0x13000010, DwordAcc, NoLock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageResponse, 32
+    }
+    BankField (varGnbOpRg, bfNbSmuIndAddr, 0x13000020, DwordAcc, NoLock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument0, 32
+    }
+    BankField (varGnbOpRg, bfNbSmuIndAddr, 0x13000024, DwordAcc, NoLock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument1, 32
+    }
+    BankField (varGnbOpRg, bfNbSmuIndAddr, 0x13000028, DwordAcc, NoLock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument2, 32
+    }
+    BankField (varGnbOpRg, bfNbSmuIndAddr, 0x1300002C, DwordAcc, NoLock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument3, 32
+    }
+    BankField (varGnbOpRg, bfNbSmuIndAddr, 0x13000030, DwordAcc, NoLock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument4, 32
+    }
+    BankField (varGnbOpRg, bfNbSmuIndAddr, 0x13000034, DwordAcc, NoLock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument5, 32
+    }
+    BankField (varGnbOpRg, bfNbSmuIndAddr, 0xC0014000, DwordAcc, NoLock, Preserve) {
+      Offset (0xBC),
+      bfGPU_DIS, 1
+    }
+  OperationRegion(varGnbGfxOpRg, SystemMemory, Add (PcieBaseAddress, 0x8000), 4096)
+    Field(varGnbGfxOpRg, DwordAcc, NoLock, Preserve) {
+      Offset (0x00),
+      bfVidDid, 32,
+    }
+

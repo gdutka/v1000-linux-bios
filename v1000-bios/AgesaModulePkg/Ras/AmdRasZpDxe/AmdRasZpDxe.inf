@@ -1,0 +1,62 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdRasZpDxe
+  FILE_GUID                      = 9A61F154-4A83-B8C5-80DE-239BFF40D66B
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdRasZpDxeInit
+
+[sources]
+  AmdRasZpDxe.c
+  AmdRasZpDxe.h
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DebugLib
+  IdsLib
+  IoLib
+  BaseMemoryLib
+  RasZpBaseLib
+  AmdPspApobLib
+  ApobCommonServiceLib
+
+[Guids]
+  gEfiEventReadyToBootGuid
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxCfgPFEHEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdMceSwSmiData
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdMcaErrThreshEn
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdMcaErrThreshCount
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdNbioCorrectedErrThreshEn
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdNbioCorrectedErrThreshCount
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdNbioDeferredErrThreshEn
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdNbioDeferredErrThreshCount
+
+[Protocols]
+  gAmdRasInitDataProtocolGuid                   #PRODUCED
+  gAmdCoreTopologyServicesProtocolGuid          #CONSUME
+  gAmdFabricTopologyServices2ProtocolGuid       #CONSUME
+  gAmdFabricZpDepexProtocolGuid                 #CONSUME
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModuleRasPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+
+[Depex]
+  gAmdFabricTopologyServices2ProtocolGuid AND
+  gAmdFabricZpDepexProtocolGuid AND
+  gAmdRasZpDepexProtocolGuid
+

@@ -1,0 +1,145 @@
+## @file
+#  Package declaration file for InsydeNetworkPkg
+#
+#******************************************************************************
+#* Copyright (c) 2023, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = InsydeNetworkPkg
+  PACKAGE_GUID                   = A24726B9-A4B3-4c03-BFE4-B663071DAF32
+  PACKAGE_VERSION                = 0.91
+
+[Includes]
+  Include
+
+[Includes.Common.Private]
+  Library/OpensslLib/Include
+  Library/OpensslLib/openssl-1.1.1w/include
+  Library/OpensslLib/openssl-1.1.1w/crypto/include
+
+[LibraryClasses]
+
+[Guids]
+  gEfiNetworkStackIPv4SupportGuid        = { 0xcad4ecda, 0xc857, 0x4ff9, {0x81, 0xab, 0xfd, 0xda, 0xfc, 0x70, 0xbb, 0x39} }
+  gEfiNetworkStackIPv6SupportGuid        = { 0x9da16e07, 0x3b52, 0x453d, {0xa7, 0xf0, 0x1a, 0xc0, 0x5d, 0x50, 0x49, 0x80} }
+  gEfiNetworkStackDHCPSupportGuid        = { 0x7f48caf0, 0x996e, 0x4bd8, {0xb0, 0x1d, 0xf2, 0x9f, 0x8c, 0x72, 0x92, 0xbc} }
+  gEfiNetworkStackUndiDependencyGuid     = { 0x45d54528, 0x70f9, 0x467c, {0xba, 0xdc, 0xb1, 0xe9, 0x75, 0x26, 0x5e, 0x90} }
+  gEfiNetworkEventPxeFailed              = { 0x0d5e6bad, 0xc9b5, 0x47c2, {0xb7, 0x88, 0xc7, 0x56, 0xbe, 0x54, 0xea, 0xdd} }
+
+  # Include/Guid/TlsAuthentication.h
+  gEfiTlsCaCertificateGuid      = { 0xfd2340D0, 0x3dab, 0x4349, { 0xa6, 0xc7, 0x3b, 0x4f, 0x12, 0xb4, 0x8e, 0xae }}
+
+  ## Network package token space guid.
+  # Include/Guid/NetworkPkgTokenSpace.h
+  gEfiNetworkPkgTokenSpaceGuid  = { 0x40e064b2, 0x0ae0, 0x48b1, { 0xa0, 0x7d, 0xf8, 0xcf, 0x1e, 0x1a, 0x23, 0x10}}
+
+  # Include/Guid/Ip6ConfigHii.h
+  gIp6ConfigNvDataGuid          = { 0x2eea107, 0x98db, 0x400e, { 0x98, 0x30, 0x46, 0xa, 0x15, 0x42, 0xd7, 0x99}}
+
+  # Include/Guid/IscsiConfigHii.h
+  gIScsiConfigGuid              = { 0x4b47d616, 0xa8d6, 0x4552, { 0x9d, 0x44, 0xcc, 0xad, 0x2e, 0xf, 0x4c, 0xf9}}
+
+  # Include/Guid/HttpBootConfigHii.h
+  gHttpBootConfigGuid           = { 0x4d20583a, 0x7765, 0x4e7a, { 0x8a, 0x67, 0xdc, 0xde, 0x74, 0xee, 0x3e, 0xc5 }}
+
+  # Include/Guid/TlsAuthConfigHii.h
+  gTlsAuthConfigGuid            = { 0xb0eae4f8, 0x9a04, 0x4c6d, { 0xa7, 0x48, 0x79, 0x3d, 0xaa, 0xf, 0x65, 0xdf }}
+
+  # Include/Guid/HttpTlsCipherList.h
+  gEdkiiHttpTlsCipherListGuid   = { 0x46ddb415, 0x5244, 0x49c7, { 0x93, 0x74, 0xf0, 0xe2, 0x98, 0xe7, 0xd3, 0x86 }}
+
+  # Include/Guid/WifiConnectionManagerConfigHii.h
+  gWifiConfigGuid               = { 0x9f94d327, 0x0b18, 0x4245, { 0x8f, 0xf2, 0x83, 0x2e, 0x30, 0xd, 0x2c, 0xef }}
+
+  # Include/Guid/NetworkEventGroup.h
+  gH2ONetworkPxeRunningGuid     = { 0xbe465124, 0x99b2, 0x471d, {0xb5, 0xc0, 0x38, 0xb9, 0x23, 0x69, 0xd8, 0x58} }
+  
+  # Include/Guid/HttoBootConfigHii.h
+  gHttpBootConfigLinkFormGuid   = { 0x43a98563, 0x8d7d, 0x4969, { 0xb1, 0x9f, 0xfc, 0x14, 0xb1, 0xf8, 0x36, 0xc9 }}
+
+  # Include/Guid/TlsCertManagementHii.h
+  gTlsCertManageLinkFormGuid    = { 0xa722ad54, 0x9eed, 0x491e, { 0x94, 0x51, 0x5f, 0x88, 0x1e, 0xb0, 0x28, 0xa5 }}
+
+[Protocols]
+  gNetworkLockerProtocolGuid    = { 0x0d5e6bad, 0xc9b5, 0x47c2, {0xb7, 0x88, 0xc7, 0x56, 0xbe, 0x54, 0xea, 0xdd} }
+  gH2oPxeDeviceInfoProtocolGuid = { 0xd12827a6, 0x5ae1, 0x4c25, {0x96, 0x11, 0x1c, 0x1f, 0x1a, 0xec, 0x91, 0x6d} }
+
+  gH2ONetworkConfigProtocolGuid = { 0x22b057f9, 0x7ea3, 0x42e7, {0x96, 0x63, 0x25, 0x9a, 0x30, 0x19, 0xa2, 0xf9} }
+
+  # Include/Protocol/Dcp.h
+  gEfiDpcProtocolGuid           = {0x480f8ae9, 0xc46, 0x4aa9,  { 0xbc, 0x89, 0xdb, 0x9f, 0xba, 0x61, 0x98, 0x6 } }
+
+[PcdsFeatureFlag]
+  gInsydeTokenSpaceGuid.PcdH2ONetworkSupported|FALSE|BOOLEAN|0x1000000C
+  gInsydeTokenSpaceGuid.PcdH2ONetworkIpv6Supported|FALSE|BOOLEAN|0x1000000D
+  gInsydeTokenSpaceGuid.PcdH2ONetworkIscsiSupported|FALSE|BOOLEAN|0x1000001b
+  gInsydeTokenSpaceGuid.PcdH2ONetworkHttpSupported|FALSE|BOOLEAN|0x1000001c
+  gInsydeTokenSpaceGuid.PcdH2ONetworkRestSupported|FALSE|BOOLEAN|0x1000001f
+  gInsydeTokenSpaceGuid.PcdH2ONetworkTlsSupported|FALSE|BOOLEAN|0x1000001d
+
+[PcdsFixedAtBuild, PcdsPatchableInModule]
+  ## Indicates whether HTTP connections (i.e., unsecured) are permitted or not.
+  # TRUE  - HTTP connections are allowed. Both the "https://" and "http://" URI schemes are permitted.
+  # FALSE - HTTP connections are denied. Only the "https://" URI scheme is permitted.
+  # @Prompt Indicates whether HTTP connections are permitted or not.
+  gEfiNetworkPkgTokenSpaceGuid.PcdAllowHttpConnections|FALSE|BOOLEAN|0x00000008
+
+[PcdsDynamicEx]
+  #
+  # This Feature will display DEVICE information when PXE start.
+  # Default is disable.
+  # It can be enabled by gH2oPxeDeviceInfoProtocolGuid, you can refer it in document "InsydeH2O Network Technical Reference".
+  #
+  gInsydeTokenSpaceGuid.PcdH2oPxeDisplayDeviceInformation|FALSE|BOOLEAN|0x11000501
+
+  #
+  # Dummy Dhcp definition PCDs
+  # PcdDummyDhcpHintFunctionDisable == TRUE, Hint function disable.
+  # PcdDummyDhcpHintFunctionDisable == FALSE, Hint when BitLockerNetworkUnlock need NetworkStack support.
+  #
+  gInsydeTokenSpaceGuid.PcdDummyDhcpHintFunctionDisable|FALSE|BOOLEAN|0x30000200
+  gInsydeTokenSpaceGuid.PcdDummyDhcpHintString|L"NetworkStack setting in SCU is not enabled, please enable it to support Windows BitLocker Network Unlock."|VOID*|0x30000201
+
+  #
+  # DHCP6 DUID select
+  #
+  gInsydeTokenSpaceGuid.PcdDhcp6DuidSelector|{0}|VOID*|0x20000202
+
+  #
+  # PXE procedure cancel hot key definition
+  # Key struct definition {KeyCode, ScanCode, [Next hot key], 0x00, 0x00[END]}
+  #
+  gInsydeTokenSpaceGuid.PcdPxeCancelHotKeyDefinition|{0x00, 0x17, 0x00, 0x00}|VOID*|0x30100001
+  gInsydeTokenSpaceGuid.PcdPxeCancelHotKeyString|"[ESC]"|VOID*|0x30100002
+  #
+  # Define how much retry times to detect network media.
+  # Set to 0, it will detect network media once.
+  #
+  gInsydeTokenSpaceGuid.PcdH2OPxeCheckMediaRetryCount|2|UINT8|0x30100003
+
+  #
+  # RestDxe policy PCD. PcdH2ORestDxeConnectWithIPv6DomainName
+  #   RestDxe will resolve domain name with IPv6 DNS and download content with IPv6 capability.
+  #     0x00 : Resolve domain name via DNS IPv4
+  #     0x01 : Resolve domain name via DNS IPv6
+  #
+  gInsydeTokenSpaceGuid.PcdH2ORestIPv6DnsPolicy|0x00|UINT8|0x30110001
+
+  #
+  # Interface of Manage HTTP boot URL user.
+  #
+  gLinkBootTokenSpaceGuid.PcdH2OHttpBootCreateUrlFormsetGuid|{GUID("43A98563-8D7D-4969-B19F-FC14B1F836C9")}|VOID*|0x00000001
+
+  #
+  # Interface of Manage TLS certificate.
+  #
+  gLinkSecurityTokenSpaceGuid.PcdH2OTlsCertManageFormsetGuid|{GUID("A722AD54-9EED-491e-9451-5F881EB028A5")}|VOID*|0x00000002
+

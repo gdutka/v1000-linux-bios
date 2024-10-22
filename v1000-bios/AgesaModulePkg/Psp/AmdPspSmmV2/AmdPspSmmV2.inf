@@ -1,0 +1,82 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdPspSmmV2
+  FILE_GUID                      = 6169AB1C-B05F-4D9C-AFEA-192911E41CE2
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = AmdPspSmmV2Entry
+
+[Sources]
+  AmdPspResumeHandlingV2.c
+  AmdPspResumeServicesV2.c
+  AmdPspResumeServicesV2.h
+  AmdPspSmmV2.c
+  AmdPspSmmV2.h
+
+[Sources.ia32]
+
+[Sources.x64]
+  AmdPspSmmMisc.asm
+  AmdPspSmmMisc.nasm
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  DebugLib
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  AmdBaseLib
+  AmdPspMboxLibV2
+  AmdPspBaseLibV2
+  FchBaseLib
+  PciLib
+  CcxPspLib
+  AmdCapsuleLib
+
+[Protocols]
+  gFchSmmSxDispatch2ProtocolGuid    #Consume
+  gFchSmmSwDispatch2ProtocolGuid    #Consume
+  gPspPlatformProtocolGuid          #Consume
+  gEfiLoadedImageProtocolGuid       #Consume
+  gAmdPspResumeServiceProtocolGuid  #Publish
+  gAmdCapsuleSmmHookProtocolGuid    #Publish
+  gPspMboxSmmBufferAddressProtocolGuid #Consume
+  gEfiMpServiceProtocolGuid         #Consume
+  gEfiSmmVariableProtocolGuid
+
+[Guids]
+  gApSyncFlagNvVariableGuid
+  ## CONSUMES             ## UNDEFINED # Protocol notify
+  gEdkiiEndOfS3ResumeGuid
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPspSendBootDoneCmdAtEndOfS3Resume
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspRomArmor2Enabled     ## CONSUMES
+
+[Depex]
+  gAmdPspSmmV2DepexProtocolGuid AND
+  gFchSmmSxDispatch2ProtocolGuid AND
+  gFchSmmSwDispatch2ProtocolGuid AND
+  gEfiMpServiceProtocolGuid AND
+  gEfiSmmVariableProtocolGuid AND
+  gEfiVariableArchProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid
+

@@ -1,0 +1,45 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = OptionMemoryInstallCzLib
+  FILE_GUID                      = F38F4505-18B2-415a-A70C-7C4E4524D3EA
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = OptionMemoryInstallCzLib 
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  OptionMemoryInstallCz.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  BaseLib
+  AmdBaseLib
+  AmdMemBaseLib
+  AmdMemArdkLib
+  AmdMemMainLib
+  AmdMemMainCzLib
+  AmdMemPsLib
+  AmdMemPsCzLib
+  AmdMemPsCzFp4Lib
+  AmdMemPsCzAm4Lib
+  AmdMemFeatDmiCollectLib
+  AmdMemNbLib
+  AmdMemNbCzLib
+  AmdMemFeatCratLib
+  AmdMemTechLib
+  AmdMemTechDdr3Lib
+  AmdMemTechDdr4Lib
+
+[Pcd]

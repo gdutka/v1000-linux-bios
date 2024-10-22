@@ -1,0 +1,39 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = GnbRegisterAccZpLib
+  FILE_GUID                      = 8B2A405D-BE22-408d-BAF1-416C1165E830
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = GnbRegisterAccZpLib
+
+[Sources]
+  GnbRegisterAccZpLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  PcdLib
+  PrintLib
+  BaseLib
+  DebugPrintErrorLevelLib
+  IdsLib
+  AmdBaseLib
+  GnbCommonLib
+#  GnbPcieConfigLib
+  GnbRegisterAccZpLib
+#  GnbSmuInitV8Lib
+
+[Pcd]
+
+

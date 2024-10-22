@@ -1,0 +1,2882 @@
+#;*************************************************************************************************
+#;* Copyright (c) 2014 - 2016, Insyde Software Corporation. All Rights Reserved.
+#;*
+#;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#;* transmit, broadcast, present, recite, release, license or otherwise exploit
+#;* any part of this publication in any form, by any means, without the prior
+#;* written permission of Insyde Software Corporation.
+#;*
+#;*************************************************************************************************
+#; Revision History: 
+#; 
+#; Label#: 02.01.04.0006
+#; Status: Tag
+#; Note:Add BaseTimeStampLib for support InsydePostCodePkg 01.02.04.0001
+#; 
+#; Tag#: 02.01.04.0006
+#; Issue#: IB04880004
+#; Severity: Feature
+#; Category: Others
+#; Symptom: Add BaseTimeStamp libaray for support time stamp service
+#; RootCause: Add this library for support PostCode show with time.
+#; Description: None
+#; Solution: Add BaseTimeStampLib
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Added:
+#;   1. Include\Library\BaseTimeStampLib.h
+#;   2. Library\BaseTimeStampLib\
+#;   3. Library\BaseTimeStampLib\BaseTimeStampLib.c
+#;   4. Library\BaseTimeStampLib\BaseTimeStampLib.inf
+#;   5. Library\BaseTimeStampLib\InternalBaseTimeStampLib.h
+#; Modified:
+#;   1. Package.dsc
+#;   2. SegFeaturePkg.dec
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 02.01.04.0005
+#; Status: Tag
+#; Note:Need work with InsydeIpmiPkg_Rev02 after 02.01.06.0006
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 02.01.04.0004
+#; Status: Tag
+#;   Test Code Base: Kernel 05.43.20
+#;   Notice: 1. This version only works in kernel 05.43.16 (or later versions).
+#;           2. Need work with InsydeIpmiPkg_Rev02 after 02.01.06.0012
+#; 
+#; Tag#: 02.01.04.0004
+#; Issue#: IB12130000
+#; Severity: Feature
+#; Category: Others
+#; Symptom: (Rollback Solution)
+#; RootCause: (Rollback Solution)
+#; Description: Rollback IB12130271 solution
+#; Solution: (Rollback Solution)
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Deleted:
+#;   1. IpmiRestructure\SegFeaturePkg\Include\Library\AdvBootH2OUveLib.h
+#;   2. IpmiRestructure\SegFeaturePkg\Library\AdvBootH2OUveLibNull\
+#; Modified:
+#;   1. IpmiRestructure\SegFeaturePkg\Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 02.01.04.0003
+#; Status: Tag
+#;   Test Code Base: Kernel 05.43.16
+#;   Notice: 1. This version only works in kernel 05.43.16 (or later versions).
+#;           2. Need work with InsydeIpmiPkg_Rev02 after 02.01.06.0012
+#; 
+#; Tag#: 02.01.04.0003
+#; Issue#: IB12130271
+#; Severity: Feature
+#; Category: Others
+#; Symptom: Add the NULL library of AdvBootH2OUveLib and the header file.
+#; RootCause: None
+#; Description: New feature
+#; Solution: Add it.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Added:
+#;   1. IpmiRestructure\SegFeaturePkg\Include\Library\AdvBootH2OUveLib.h
+#;   2. IpmiRestructure\SegFeaturePkg\Library\AdvBootH2OUveLibNull\
+#;   3. IpmiRestructure\SegFeaturePkg\Library\AdvBootH2OUveLibNull\AdvBootH2OUveLibNull.c
+#;   4. IpmiRestructure\SegFeaturePkg\Library\AdvBootH2OUveLibNull\AdvBootH2OUveLibNull.inf
+#; Modified:
+#;   1. IpmiRestructure\SegFeaturePkg\Package.dsc
+#; 
+#; Tag#: 02.01.04.0002
+#; Issue#: IB17350007
+#; Severity:Medium
+#; Category: Build
+#; Symptom: Gcc Build Failed
+#; RootCause: source file encode by "UCS-2 LE BOM"
+#; Description: Linux Build Failed owning to source file encode by "UCS-2 LE BOM",modify to ANSI encoding
+#; Solution: Source file modify to ANSI encoding
+#; SolutionDependency: None
+#; Reviewer: IB7350007
+#; RelatedFiles:
+#; Modified:
+#;   1. IpmiRestructure\SegFeaturePkg\Library\H2OSerialConfigLibNull\H2OSerialConfigLibNull.c
+#; 
+#; Tag#:02.01.04.0001
+#; Issue#:IB09330726
+#; Severity:Feature
+#; Category:IPMI
+#; Symptom: (Add feature)
+#; RootCause:(Add feature)
+#; Description: Modification with Ipmi restucture 02.01.07.0003.
+#; Solution: (Add feature)
+#; SolutionDependency:None
+#; Reviewer:IB09330000
+#; RelatedFiles:
+#; Modified:
+#;   1. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiFruLib.h
+#;   2. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiFruLib2.h
+#;   3. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiInterfaceLib.h
+#;   4. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiInterfaceLib2.h
+#;   5. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiLibDefine.h
+#;   6. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiOemFeatureLib.h
+#;   7. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSdrLib.h
+#;   8. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSdrLib2.h
+#;   9. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSelDataLib.h
+#;   10. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSelDataLib2.h
+#;   11. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSelInfoLib.h
+#;   12. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSelInfoLib2.h
+#;   13. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSyncBmcLib.h
+#;   14. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSyncBmcLib2.h
+#;   15. IpmiRestructure\SegFeaturePkg\Library\DxeIpmiFruLibNull\DxeIpmiFruLibNull.c
+#;   16. IpmiRestructure\SegFeaturePkg\Library\DxeIpmiFruLibNull2\DxeIpmiFruLibNull2.c
+#;   17. IpmiRestructure\SegFeaturePkg\Library\DxeIpmiSdrLibNull2\DxeIpmiSdrLibNull2.c
+#;   18. IpmiRestructure\SegFeaturePkg\Library\SmmIpmiFruLib2Null\SmmIpmiFruLib2Null.c
+#;   19. IpmiRestructure\SegFeaturePkg\Library\SmmIpmiFruLibNull\SmmIpmiFruLibNull.c
+#; 
+#; Tag#:01.01.04.0002
+#; Issue#:IB09330725
+#; Severity:Feature
+#; Category:IPMI
+#; Symptom: (Add feature)
+#; RootCause:(Add feature)
+#; Description: Remove IpmiSyncBmcLib in [LibraryClasses.common.DXE_DRIVER], always use [LibraryClasses]
+#; Solution: (Add feature)
+#; SolutionDependency:None
+#; Reviewer:IB09330000
+#; RelatedFiles:
+#; Modified:
+#;   1. IpmiRestructure\SegFeaturePkg\Package.dsc
+#; 
+#; Tag#:01.01.04.0002
+#; Issue#:IB09330710
+#; Severity:Feature
+#; Category:IPMI
+#; Symptom: (Add feature)
+#; RootCause:(Add feature)
+#; Description: Apply MdePkg IPMI Related Header Files
+#; Solution: (Add feature)
+#; SolutionDependency:None
+#; Reviewer:IB09330000
+#; RelatedFiles:
+#; Deleted:
+#;   1. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiBmcFeatureOemLib.h
+#;   2. IpmiRestructure\SegFeaturePkg\Library\DxeIpmiOemFeatureLibNull\
+#;   3. IpmiRestructure\SegFeaturePkg\Library\PeiIpmiOemFeatureLibNull\
+#;   4. IpmiRestructure\SegFeaturePkg\Library\SmmIpmiOemFeatureLibNull\
+#; Modified:
+#;   1. IpmiRestructure\SegFeaturePkg\Include\Library\H2OIpmiSdr.h
+#;   2. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiFruLib.h
+#;   3. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiFruLib2.h
+#;   4. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiLibDefine.h
+#;   5. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiOemFeatureLib.h
+#;   6. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSdrLib.h
+#;   7. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSdrLib2.h
+#;   8. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSelDataLib.h
+#;   9. IpmiRestructure\SegFeaturePkg\Include\Library\IpmiSelDataLib2.h
+#;   10. IpmiRestructure\SegFeaturePkg\Library\DxeIpmiFruLibNull\DxeIpmiFruLibNull.c
+#;   11. IpmiRestructure\SegFeaturePkg\Library\DxeIpmiFruLibNull2\DxeIpmiFruLibNull2.c
+#;   12. IpmiRestructure\SegFeaturePkg\Library\DxeIpmiSdrLibNull\DxeIpmiSdrLibNull.c
+#;   13. IpmiRestructure\SegFeaturePkg\Library\DxeIpmiSdrLibNull2\DxeIpmiSdrLibNull2.c
+#;   14. IpmiRestructure\SegFeaturePkg\Library\DxeIpmiSelDataLibNull\DxeIpmiSelDataLibNull.c
+#;   15. IpmiRestructure\SegFeaturePkg\Library\DxeIpmiSelDataLibNull2\DxeIpmiSelDataLibNull2.c
+#;   16. IpmiRestructure\SegFeaturePkg\Library\SmmIpmiFruLib2Null\SmmIpmiFruLib2Null.c
+#;   17. IpmiRestructure\SegFeaturePkg\Library\SmmIpmiFruLibNull\SmmIpmiFruLibNull.c
+#;   18. IpmiRestructure\SegFeaturePkg\Library\SmmIpmiSdrLib2Null\SmmIpmiSdrLib2Null.c
+#;   19. IpmiRestructure\SegFeaturePkg\Library\SmmIpmiSdrLibNull\SmmIpmiSdrLibNull.c
+#;   20. IpmiRestructure\SegFeaturePkg\Library\SmmIpmiSelDataLib2Null\SmmIpmiSelDataLib2Null.c
+#;   21. IpmiRestructure\SegFeaturePkg\Library\SmmIpmiSelDataLibNull\SmmIpmiSelDataLibNull.c
+#;   22. IpmiRestructure\SegFeaturePkg\Package.dsc
+#; 
+#; Tag#:01.01.04.0002
+#; Issue#:IB09330000
+#; Severity:Feature
+#; Category:IPMI
+#; Symptom: (Add feature)
+#; RootCause:(Add feature)
+#; Description: IPMI restructure
+#; Solution: (Add feature)
+#; SolutionDependency:None
+#; Reviewer:IB09330000
+#; RelatedFiles:
+#; Added:
+#;   1. IpmiRestructure\
+#; 
+#; Tag#: 05.41.44
+#; Issue#: IB17350005
+#; Severity: Feature
+#; Category: EDK
+#; Symptom: Feature build fail in kernel 05.33.40
+#; RootCause: SegFeaturePkg include H2OBoardId.h not found at InsydeModulePkg/Include
+#; Description: Kernel change Board Identifier from UINT8 to H2O_BOARD_ID on 05.41.40
+#; Solution: Add type H2O_BOARD_ID when kernel version before 05.41.40
+#; SolutionDependency: (None)
+#; Reviewer: IB17350000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Library\DxeSetupVariableLib\DxeSetupVariableLib.c
+#;   2. SegFeaturePkg\Library\DxeSetupVariableLib\DxeSetupVariableLib.inf
+#; 
+#; Tag#: 05.41.44
+#; Issue#: IB17350003
+#; Severity: Minor
+#; Category: Build
+#; Symptom: Change Board Identifier from UINT8 to H2O_BOARD_ID.
+#; RootCause: None
+#; Description: Follow IB15161002 to modify related codes.
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB17350000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Library\DxeSetupVariableLib\DxeSetupVariableLib.c
+#; 
+#; Tag#: 05.41.40
+#; Issue#: IB17350002
+#; Severity: Minor
+#; Category: Build
+#; Symptom: (ITS:0048723  ECR H2O0331) Remove Itanium references in H2O build files.
+#; RootCause: EDKII no longer support IPF architecture.
+#; Description: (Bug Fix)
+#; Solution: Removing ipf which is no longer supported from edk2.
+#; SolutionDependency: None
+#; Reviewer: IB17350002
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\SegFeaturePkg.dsc
+#; 
+#; Tag#: 05.41.40
+#; Issue#: IB17350001
+#; Severity: Feature
+#; Category: EDK
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Remove unnecessary definitions, it already define in InsydeModulePkg.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None
+#; Reviewer: IB17350001
+#; RelatedFiles:
+#; Deleted:
+#;   1. SegFeaturePkg\Include\Protocol\IsaIo.h
+#;   2. SegFeaturePkg\Include\Protocol\LegacyBios.h
+#;   3. SegFeaturePkg\Include\Protocol\LegacyBiosPlatform.h
+#; Modified:
+#;   1. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#; Tag#: 05.41.32
+#; Issue#: IB14860275
+#; Severity: Feature
+#; Category: RedfishSupportDxe
+#; Symptom: None
+#; RootCause: None
+#; Description: Support InsydeRedfishPkg boot option feature can cowork with InsydeIpmiPkg by SegFeatureInfo protocol
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB14860275
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Protocol\H2OSegFeatureInfo.h
+#; Modified:
+#;   1. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#; Tag#: 05.41.24
+#; Issue#: IB04880256
+#; Severity: Trivial
+#; Category: SEG feature
+#; Symptom: Protocol field name had wrong typo.
+#; RootCause: wrong typo.
+#; Description: None
+#; Solution: update it.
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Include\Protocol\H2OIpmiFeatureInfo.h
+#; 
+#; Tag#: 05.41.16
+#; Issue#: IB04880255
+#; Severity: Trivial
+#; Category: SEG feature
+#; Symptom: Add H2O_IPMI_FEATURE_INFO_PROTOCOL declare
+#; RootCause: For IpmiBootOptionOverride co-work with InsydeRedfishPkg module
+#; Description: None
+#; Solution: Add H2O_IPMI_FEATURE_INFO_PROTOCOL declare
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Protocol\H2OIpmiFeatureInfo.h
+#; Modified:
+#;   1. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#; Tag#: 05.41.24
+#; Issue#: IB17350000
+#; Severity: Medium
+#; Category: SEG feature
+#; Symptom: Deprecated Function "AsciiStrToUnicodeStr".
+#; RootCause: None
+#; Description: None
+#; Solution: Replace "AsciiStrToUnicodeStr" to "AsciiStrToUnicodeStrS".
+#; SolutionDependency: None
+#; Reviewer: IB17350000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Library\SegPlatformSupportLib\SegPlatformSupportLib.c
+#; 
+#; Tag#: 05.41.20
+#; Issue#: IB17350000
+#; Severity: Medium
+#; Category: SEG feature
+#; Symptom: Remove cJSONLib.
+#; RootCause: None
+#; Description: Remove cJSONLib.
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB17350000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#; Tag#: 05.41.20
+#; Issue#: IB04560770
+#; Severity: Feature
+#; Category: Code enhance
+#; Symptom: None
+#; RootCause: None
+#; Description: Remove no use definition
+#; Solution: Remove no use definition
+#; SolutionDependency: None.
+#; Reviewer: IB04560000
+#; RelatedFiles:
+#; Deleted:
+#;   1. SegFeaturePkg\Include\EventLogDefine.h
+#; 
+#; Tag#:05.41.16
+#; Issue#:IB09330600
+#; Severity:Feature
+#; Category:IPMI Library
+#; Symptom: (Add feature)
+#; RootCause:(Add feature)
+#; Description: Add IpmiExternalLibGetPowerPolicy() to replace IpmiSyncBmcPchControlPowerPolicy()
+#; Solution: (Add feature)
+#; SolutionDependency:None
+#; Reviewer:IB09330000
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\BaseIpmiExternalLib.h
+#;   2. SegFeaturePkg\Library\BaseIpmiExternalLibNull\
+#;   3. SegFeaturePkg\Library\BaseIpmiExternalLibNull\BaseIpmiExternalLibNull.c
+#;   4. SegFeaturePkg\Library\BaseIpmiExternalLibNull\BaseIpmiExternalLibNull.inf
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiSyncBmcLib.h
+#;   2. SegFeaturePkg\Include\Library\IpmiSyncBmcLib2.h
+#;   3. SegFeaturePkg\Package.dsc
+#; 
+#; Tag#:05.41.16
+#; Issue#:IB09330599
+#; Severity:Serious
+#; Category:IPMI Supervyse
+#; Symptom: When the SMI is triggered under the OS to send dimm error bitmap to BMC using IpmiBmcFeatureLibSendDimmError(), the last state displayed by the BMC dimm error led will be replaced by the new state.
+#; RootCause:IpmiBmcFeatureLibSendDimmError() use PCD to store dimm error bitmap and send it to BMC, but after ready to boot, the PCD will be locked and unable to write.
+#; IpmiBmcFeatureLibSendDimmError() still use this PCD to handle the next dimm error, so the next state will replace the last state.
+#; Description: (Bug fix)
+#; Solution: Add IpmiBmcFeatureLibClearDimmError() and IpmiBmcFeatureLibClearDimmErrorVariable() to support InsydeIpmiPkg 05.41.16
+#; SolutionDependency:None
+#; Reviewer:IB09330000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiOemFeatureLib.h
+#;   2. SegFeaturePkg\Library\DxeIpmiOemFeatureLibNull\DxeIpmiOemFeatureLibNull.c
+#; 
+#; Tag#: 05.41.16
+#; Issue#: IB04880254
+#; Severity: Medium
+#; Category: SEG feature
+#; Symptom: SegKernel build with Kernel 5.3 will build fail.
+#; RootCause: InsydeCrPkg use the new library H2OSerialConfigLib that add in Kernel 5.4
+#; Description: None
+#; Solution: Add H2OSerialConfigLib to SegFeaturePkg for compatible with Kernel 5.3 codebase project.
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\H2OSerialConfigLib.h
+#;   2. SegFeaturePkg\Library\H2OSerialConfigLibNull\
+#;   3. SegFeaturePkg\Library\H2OSerialConfigLibNull\H2OSerialConfigLibNull.c
+#;   4. SegFeaturePkg\Library\H2OSerialConfigLibNull\H2OSerialConfigLibNull.inf
+#;   5. SegFeaturePkg\Library\H2OSerialConfigLibNull\H2OSerialConfigLibNull.uni
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#; 
+#; Tag#: 05.33.08
+#; Issue#: IB04880253
+#; Severity: Trivial
+#; Category: SEG feature
+#; Symptom: Remove cJSONLib
+#; RootCause: Remove cJSONLib
+#; Description: None
+#; Solution: Remove cJSONLib.
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Deleted:
+#;   1. SegFeaturePkg\Include\Library\cJSON.h
+#;   2. SegFeaturePkg\Library\cJsonLib\
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#;   2. SegFeaturePkg\SegFeaturePkg.dsc
+#; 
+#; Tag#: 05.33.04
+#; Issue#: IB04880252
+#; Severity: Trivial
+#; Category: SEG feature
+#; Symptom: H2OIDE utility need a .ifc file.
+#; RootCause: The SegFeaturePkg don't has SegFeaturePkg.ifc file.
+#; Description: None
+#; Solution: Add SegFeaturePkg.ifc file.
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\SegFeaturePkg.ifc
+#; 
+#; Tag#: 05.33.04
+#; Issue#: IB08400672
+#; Severity: Feature
+#; Category: RAS
+#; Symptom: Remove InsydeRasPkg from SEG_Features repository.
+#; RootCause: None.
+#; Description: None.
+#; Solution: Remove InsydeRasPkg from SEG_Features repository.
+#; SolutionDependency: None.
+#; Reviewer: IB08400000
+#; RelatedFiles:
+#; Deleted:
+#;   1. InsydeRasPkg\
+#; 
+#; Tag#: 05.32.44
+#; Issue#: IB04880300
+#; Severity: Feature
+#; Category: SegFeature
+#; Symptom: Add cJsonLib
+#; RootCause: Consume require cJsonLib for consume
+#; Description: None
+#; Solution: Add cJsonLib and SegFeatureStdLib
+#; SolutionDependency: None
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\cJSON.h
+#;   2. SegFeaturePkg\Include\StdLib\
+#;   3. SegFeaturePkg\Include\StdLib\StdCLibSupport.h
+#;   4. SegFeaturePkg\Include\StdLib\assert.h
+#;   5. SegFeaturePkg\Include\StdLib\ctype.h
+#;   6. SegFeaturePkg\Include\StdLib\float.h
+#;   7. SegFeaturePkg\Include\StdLib\limits.h
+#;   8. SegFeaturePkg\Include\StdLib\locale.h
+#;   9. SegFeaturePkg\Include\StdLib\math.h
+#;   10. SegFeaturePkg\Include\StdLib\setjmp.h
+#;   11. SegFeaturePkg\Include\StdLib\stdarg.h
+#;   12. SegFeaturePkg\Include\StdLib\stddef.h
+#;   13. SegFeaturePkg\Include\StdLib\stdio.h
+#;   14. SegFeaturePkg\Include\StdLib\stdlib.h
+#;   15. SegFeaturePkg\Include\StdLib\string.h
+#;   16. SegFeaturePkg\Include\StdLib\wchar.h
+#;   17. SegFeaturePkg\Library\SegFeatureStdlib\
+#;   18. SegFeaturePkg\Library\SegFeatureStdlib\SegFeatureStdLib.inf
+#;   19. SegFeaturePkg\Library\SegFeatureStdlib\baselib.c
+#;   20. SegFeaturePkg\Library\cJsonLib\
+#;   21. SegFeaturePkg\Library\cJsonLib\.gitignore
+#;   22. SegFeaturePkg\Library\cJsonLib\.travis.yml
+#;   23. SegFeaturePkg\Library\cJsonLib\CHANGELOG.md
+#;   24. SegFeaturePkg\Library\cJsonLib\CMakeLists.txt
+#;   25. SegFeaturePkg\Library\cJsonLib\CONTRIBUTORS.md
+#;   26. SegFeaturePkg\Library\cJsonLib\LICENSE
+#;   27. SegFeaturePkg\Library\cJsonLib\Makefile
+#;   28. SegFeaturePkg\Library\cJsonLib\README.md
+#;   29. SegFeaturePkg\Library\cJsonLib\cJSON.c
+#;   30. SegFeaturePkg\Library\cJsonLib\cJSON.h
+#;   31. SegFeaturePkg\Library\cJsonLib\cJSON_Utils.c
+#;   32. SegFeaturePkg\Library\cJsonLib\cJSON_Utils.h
+#;   33. SegFeaturePkg\Library\cJsonLib\cJsonLib.inf
+#;   34. SegFeaturePkg\Library\cJsonLib\fuzzing\
+#;   35. SegFeaturePkg\Library\cJsonLib\fuzzing\.gitignore
+#;   36. SegFeaturePkg\Library\cJsonLib\fuzzing\CMakeLists.txt
+#;   37. SegFeaturePkg\Library\cJsonLib\fuzzing\afl-prepare-linux.sh
+#;   38. SegFeaturePkg\Library\cJsonLib\fuzzing\afl.c
+#;   39. SegFeaturePkg\Library\cJsonLib\fuzzing\afl.sh
+#;   40. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\
+#;   41. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test1
+#;   42. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test10
+#;   43. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test11
+#;   44. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test2
+#;   45. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test3
+#;   46. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test3.bu
+#;   47. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test3.uf
+#;   48. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test3.uu
+#;   49. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test4
+#;   50. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test5
+#;   51. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test6
+#;   52. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test7
+#;   53. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test8
+#;   54. SegFeaturePkg\Library\cJsonLib\fuzzing\inputs\test9
+#;   55. SegFeaturePkg\Library\cJsonLib\fuzzing\json.dict
+#;   56. SegFeaturePkg\Library\cJsonLib\library_config\
+#;   57. SegFeaturePkg\Library\cJsonLib\library_config\cJSONConfig.cmake.in
+#;   58. SegFeaturePkg\Library\cJsonLib\library_config\cJSONConfigVersion.cmake.in
+#;   59. SegFeaturePkg\Library\cJsonLib\library_config\libcjson.pc.in
+#;   60. SegFeaturePkg\Library\cJsonLib\library_config\libcjson_utils.pc.in
+#;   61. SegFeaturePkg\Library\cJsonLib\test.c
+#;   62. SegFeaturePkg\Library\cJsonLib\tests\
+#;   63. SegFeaturePkg\Library\cJsonLib\tests\CMakeLists.txt
+#;   64. SegFeaturePkg\Library\cJsonLib\tests\common.c
+#;   65. SegFeaturePkg\Library\cJsonLib\tests\common.h
+#;   66. SegFeaturePkg\Library\cJsonLib\tests\compare_tests.c
+#;   67. SegFeaturePkg\Library\cJsonLib\tests\inputs\
+#;   68. SegFeaturePkg\Library\cJsonLib\tests\inputs\test1
+#;   69. SegFeaturePkg\Library\cJsonLib\tests\inputs\test1.expected
+#;   70. SegFeaturePkg\Library\cJsonLib\tests\inputs\test10
+#;   71. SegFeaturePkg\Library\cJsonLib\tests\inputs\test10.expected
+#;   72. SegFeaturePkg\Library\cJsonLib\tests\inputs\test11
+#;   73. SegFeaturePkg\Library\cJsonLib\tests\inputs\test11.expected
+#;   74. SegFeaturePkg\Library\cJsonLib\tests\inputs\test2
+#;   75. SegFeaturePkg\Library\cJsonLib\tests\inputs\test2.expected
+#;   76. SegFeaturePkg\Library\cJsonLib\tests\inputs\test3
+#;   77. SegFeaturePkg\Library\cJsonLib\tests\inputs\test3.expected
+#;   78. SegFeaturePkg\Library\cJsonLib\tests\inputs\test4
+#;   79. SegFeaturePkg\Library\cJsonLib\tests\inputs\test4.expected
+#;   80. SegFeaturePkg\Library\cJsonLib\tests\inputs\test5
+#;   81. SegFeaturePkg\Library\cJsonLib\tests\inputs\test5.expected
+#;   82. SegFeaturePkg\Library\cJsonLib\tests\inputs\test6
+#;   83. SegFeaturePkg\Library\cJsonLib\tests\inputs\test7
+#;   84. SegFeaturePkg\Library\cJsonLib\tests\inputs\test7.expected
+#;   85. SegFeaturePkg\Library\cJsonLib\tests\inputs\test8
+#;   86. SegFeaturePkg\Library\cJsonLib\tests\inputs\test8.expected
+#;   87. SegFeaturePkg\Library\cJsonLib\tests\inputs\test9
+#;   88. SegFeaturePkg\Library\cJsonLib\tests\inputs\test9.expected
+#;   89. SegFeaturePkg\Library\cJsonLib\tests\json-patch-tests\
+#;   90. SegFeaturePkg\Library\cJsonLib\tests\json-patch-tests\.editorconfig
+#;   91. SegFeaturePkg\Library\cJsonLib\tests\json-patch-tests\.gitignore
+#;   92. SegFeaturePkg\Library\cJsonLib\tests\json-patch-tests\.npmignore
+#;   93. SegFeaturePkg\Library\cJsonLib\tests\json-patch-tests\README.md
+#;   94. SegFeaturePkg\Library\cJsonLib\tests\json-patch-tests\cjson-utils-tests.json
+#;   95. SegFeaturePkg\Library\cJsonLib\tests\json-patch-tests\package.json
+#;   96. SegFeaturePkg\Library\cJsonLib\tests\json-patch-tests\spec_tests.json
+#;   97. SegFeaturePkg\Library\cJsonLib\tests\json-patch-tests\tests.json
+#;   98. SegFeaturePkg\Library\cJsonLib\tests\json_patch_tests.c
+#;   99. SegFeaturePkg\Library\cJsonLib\tests\misc_tests.c
+#;   100. SegFeaturePkg\Library\cJsonLib\tests\misc_utils_tests.c
+#;   101. SegFeaturePkg\Library\cJsonLib\tests\old_utils_tests.c
+#;   102. SegFeaturePkg\Library\cJsonLib\tests\parse_array.c
+#;   103. SegFeaturePkg\Library\cJsonLib\tests\parse_examples.c
+#;   104. SegFeaturePkg\Library\cJsonLib\tests\parse_hex4.c
+#;   105. SegFeaturePkg\Library\cJsonLib\tests\parse_number.c
+#;   106. SegFeaturePkg\Library\cJsonLib\tests\parse_object.c
+#;   107. SegFeaturePkg\Library\cJsonLib\tests\parse_string.c
+#;   108. SegFeaturePkg\Library\cJsonLib\tests\parse_value.c
+#;   109. SegFeaturePkg\Library\cJsonLib\tests\parse_with_opts.c
+#;   110. SegFeaturePkg\Library\cJsonLib\tests\print_array.c
+#;   111. SegFeaturePkg\Library\cJsonLib\tests\print_number.c
+#;   112. SegFeaturePkg\Library\cJsonLib\tests\print_object.c
+#;   113. SegFeaturePkg\Library\cJsonLib\tests\print_string.c
+#;   114. SegFeaturePkg\Library\cJsonLib\tests\print_value.c
+#;   115. SegFeaturePkg\Library\cJsonLib\tests\unity\
+#;   116. SegFeaturePkg\Library\cJsonLib\tests\unity\.gitattributes
+#;   117. SegFeaturePkg\Library\cJsonLib\tests\unity\.gitignore
+#;   118. SegFeaturePkg\Library\cJsonLib\tests\unity\.travis.yml
+#;   119. SegFeaturePkg\Library\cJsonLib\tests\unity\README.md
+#;   120. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\
+#;   121. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\colour_prompt.rb
+#;   122. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\colour_reporter.rb
+#;   123. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\generate_config.yml
+#;   124. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\generate_module.rb
+#;   125. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\generate_test_runner.rb
+#;   126. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\parse_output.rb
+#;   127. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\stylize_as_junit.rb
+#;   128. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\test_file_filter.rb
+#;   129. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\type_sanitizer.rb
+#;   130. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\unity_test_summary.py
+#;   131. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\unity_test_summary.rb
+#;   132. SegFeaturePkg\Library\cJsonLib\tests\unity\auto\unity_to_junit.py
+#;   133. SegFeaturePkg\Library\cJsonLib\tests\unity\docs\
+#;   134. SegFeaturePkg\Library\cJsonLib\tests\unity\docs\ThrowTheSwitchCodingStandard.md
+#;   135. SegFeaturePkg\Library\cJsonLib\tests\unity\docs\UnityAssertionsCheatSheetSuitableforPrintingandPossiblyFraming.pdf
+#;   136. SegFeaturePkg\Library\cJsonLib\tests\unity\docs\UnityAssertionsReference.md
+#;   137. SegFeaturePkg\Library\cJsonLib\tests\unity\docs\UnityConfigurationGuide.md
+#;   138. SegFeaturePkg\Library\cJsonLib\tests\unity\docs\UnityGettingStartedGuide.md
+#;   139. SegFeaturePkg\Library\cJsonLib\tests\unity\docs\UnityHelperScriptsGuide.md
+#;   140. SegFeaturePkg\Library\cJsonLib\tests\unity\docs\license.txt
+#;   141. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\
+#;   142. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\
+#;   143. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\makefile
+#;   144. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\readme.txt
+#;   145. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\src\
+#;   146. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\src\ProductionCode.c
+#;   147. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\src\ProductionCode.h
+#;   148. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\src\ProductionCode2.c
+#;   149. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\src\ProductionCode2.h
+#;   150. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\test\
+#;   151. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\test\TestProductionCode.c
+#;   152. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\test\TestProductionCode2.c
+#;   153. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\test\test_runners\
+#;   154. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\test\test_runners\TestProductionCode2_Runner.c
+#;   155. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_1\test\test_runners\TestProductionCode_Runner.c
+#;   156. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\
+#;   157. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\makefile
+#;   158. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\readme.txt
+#;   159. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\src\
+#;   160. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\src\ProductionCode.c
+#;   161. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\src\ProductionCode.h
+#;   162. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\src\ProductionCode2.c
+#;   163. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\src\ProductionCode2.h
+#;   164. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\test\
+#;   165. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\test\TestProductionCode.c
+#;   166. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\test\TestProductionCode2.c
+#;   167. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\test\test_runners\
+#;   168. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\test\test_runners\TestProductionCode2_Runner.c
+#;   169. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\test\test_runners\TestProductionCode_Runner.c
+#;   170. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_2\test\test_runners\all_tests.c
+#;   171. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\
+#;   172. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\helper\
+#;   173. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\helper\UnityHelper.c
+#;   174. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\helper\UnityHelper.h
+#;   175. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\rakefile.rb
+#;   176. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\rakefile_helper.rb
+#;   177. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\readme.txt
+#;   178. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\src\
+#;   179. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\src\ProductionCode.c
+#;   180. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\src\ProductionCode.h
+#;   181. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\src\ProductionCode2.c
+#;   182. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\src\ProductionCode2.h
+#;   183. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\target_gcc_32.yml
+#;   184. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\test\
+#;   185. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\test\TestProductionCode.c
+#;   186. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\example_3\test\TestProductionCode2.c
+#;   187. SegFeaturePkg\Library\cJsonLib\tests\unity\examples\unity_config.h
+#;   188. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\
+#;   189. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\eclipse\
+#;   190. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\eclipse\error_parsers.txt
+#;   191. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\
+#;   192. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\rakefile.rb
+#;   193. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\rakefile_helper.rb
+#;   194. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\readme.txt
+#;   195. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\src\
+#;   196. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\src\unity_fixture.c
+#;   197. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\src\unity_fixture.h
+#;   198. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\src\unity_fixture_internals.h
+#;   199. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\src\unity_fixture_malloc_overrides.h
+#;   200. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\test\
+#;   201. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\test\Makefile
+#;   202. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\test\main\
+#;   203. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\test\main\AllTests.c
+#;   204. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\test\template_fixture_tests.c
+#;   205. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\test\unity_fixture_Test.c
+#;   206. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\test\unity_fixture_TestRunner.c
+#;   207. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\test\unity_output_Spy.c
+#;   208. SegFeaturePkg\Library\cJsonLib\tests\unity\extras\fixture\test\unity_output_Spy.h
+#;   209. SegFeaturePkg\Library\cJsonLib\tests\unity\release\
+#;   210. SegFeaturePkg\Library\cJsonLib\tests\unity\release\build.info
+#;   211. SegFeaturePkg\Library\cJsonLib\tests\unity\release\version.info
+#;   212. SegFeaturePkg\Library\cJsonLib\tests\unity\src\
+#;   213. SegFeaturePkg\Library\cJsonLib\tests\unity\src\unity.c
+#;   214. SegFeaturePkg\Library\cJsonLib\tests\unity\src\unity.h
+#;   215. SegFeaturePkg\Library\cJsonLib\tests\unity\src\unity_internals.h
+#;   216. SegFeaturePkg\Library\cJsonLib\tests\unity\test\
+#;   217. SegFeaturePkg\Library\cJsonLib\tests\unity\test\.rubocop.yml
+#;   218. SegFeaturePkg\Library\cJsonLib\tests\unity\test\Makefile
+#;   219. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\
+#;   220. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_cmd.c
+#;   221. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_def.c
+#;   222. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_head1.c
+#;   223. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_head1.h
+#;   224. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_mock_cmd.c
+#;   225. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_mock_def.c
+#;   226. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_mock_head1.c
+#;   227. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_mock_head1.h
+#;   228. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_mock_new1.c
+#;   229. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_mock_new2.c
+#;   230. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_mock_param.c
+#;   231. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_mock_run1.c
+#;   232. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_mock_run2.c
+#;   233. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_mock_yaml.c
+#;   234. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_new1.c
+#;   235. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_new2.c
+#;   236. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_param.c
+#;   237. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_run1.c
+#;   238. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_run2.c
+#;   239. SegFeaturePkg\Library\cJsonLib\tests\unity\test\expectdata\testsample_yaml.c
+#;   240. SegFeaturePkg\Library\cJsonLib\tests\unity\test\rakefile
+#;   241. SegFeaturePkg\Library\cJsonLib\tests\unity\test\rakefile_helper.rb
+#;   242. SegFeaturePkg\Library\cJsonLib\tests\unity\test\spec\
+#;   243. SegFeaturePkg\Library\cJsonLib\tests\unity\test\spec\generate_module_existing_file_spec.rb
+#;   244. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\
+#;   245. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\clang_file.yml
+#;   246. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\clang_strict.yml
+#;   247. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\gcc_32.yml
+#;   248. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\gcc_64.yml
+#;   249. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\gcc_auto_limits.yml
+#;   250. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\gcc_auto_stdint.yml
+#;   251. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\gcc_manual_math.yml
+#;   252. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\hitech_picc18.yml
+#;   253. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\iar_arm_v4.yml
+#;   254. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\iar_arm_v5.yml
+#;   255. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\iar_arm_v5_3.yml
+#;   256. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\iar_armcortex_LM3S9B92_v5_4.yml
+#;   257. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\iar_cortexm3_v5.yml
+#;   258. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\iar_msp430.yml
+#;   259. SegFeaturePkg\Library\cJsonLib\tests\unity\test\targets\iar_sh2a_v6.yml
+#;   260. SegFeaturePkg\Library\cJsonLib\tests\unity\test\testdata\
+#;   261. SegFeaturePkg\Library\cJsonLib\tests\unity\test\testdata\CException.h
+#;   262. SegFeaturePkg\Library\cJsonLib\tests\unity\test\testdata\Defs.h
+#;   263. SegFeaturePkg\Library\cJsonLib\tests\unity\test\testdata\cmock.h
+#;   264. SegFeaturePkg\Library\cJsonLib\tests\unity\test\testdata\mockMock.h
+#;   265. SegFeaturePkg\Library\cJsonLib\tests\unity\test\testdata\testRunnerGenerator.c
+#;   266. SegFeaturePkg\Library\cJsonLib\tests\unity\test\testdata\testRunnerGeneratorSmall.c
+#;   267. SegFeaturePkg\Library\cJsonLib\tests\unity\test\testdata\testRunnerGeneratorWithMocks.c
+#;   268. SegFeaturePkg\Library\cJsonLib\tests\unity\test\tests\
+#;   269. SegFeaturePkg\Library\cJsonLib\tests\unity\test\tests\test_generate_test_runner.rb
+#;   270. SegFeaturePkg\Library\cJsonLib\tests\unity\test\tests\testparameterized.c
+#;   271. SegFeaturePkg\Library\cJsonLib\tests\unity\test\tests\testunity.c
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#;   2. SegFeaturePkg\SegFeaturePkg.dec
+#;   3. SegFeaturePkg\SegFeaturePkg.dsc
+#; 
+#; Tag#: 05.32.40
+#; Issue#: IB10920058
+#; Severity: Feature
+#; Category: Setup
+#; Symptom: Build Fail
+#; RootCause: The vfr file do not support dynamic PCD
+#; Description: Change to PcdsFixedAtBuild
+#; Solution: None
+#; SolutionDependency: None
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#;   2. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#; Tag#: 05.32.40
+#; Issue#: IB10920060
+#; Severity: Feature
+#; Category: Setup
+#; Symptom: New Feature
+#; RootCause: New Feature
+#; Description: When SETUP load default variable, skip specific variable
+#; Solution: None
+#; SolutionDependency: None
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\DxeOemSvcFeatureLib.h
+#;   2. SegFeaturePkg\Library\DxeOemSvcFeatureLibNull\
+#;   3. SegFeaturePkg\Library\DxeOemSvcFeatureLibNull\DxeOemSvcFeatureLibNull.inf
+#;   4. SegFeaturePkg\Library\DxeOemSvcFeatureLibNull\OemSvcSkipLoadDefaultVariableNull.c
+#; Modified:
+#;   1. SegFeaturePkg\Library\DxeSetupVariableLib\DxeSetupVariableLib.c
+#;   2. SegFeaturePkg\Package.dsc
+#; 
+#; Tag#: 05.32.40
+#; Issue#: IB10920058
+#; Severity: Feature
+#; Category: Setup
+#; Symptom: New Feature
+#; RootCause: New Feature
+#; Description:  The platform Setup variable can has different value by SKU id setting
+#; Solution: None
+#; SolutionDependency: None
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\DxeSetupVariableLib.h
+#;   2. SegFeaturePkg\Library\DxeSetupVariableLib\
+#;   3. SegFeaturePkg\Library\DxeSetupVariableLib\DxeSetupVariableLib.c
+#;   4. SegFeaturePkg\Library\DxeSetupVariableLib\DxeSetupVariableLib.inf
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#;   2. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.28
+#; Status: Tag as 05.32.28 version
+#; 
+#; Tag#: 05.32.28
+#; Issue#: IB15760032
+#; Severity: Feature
+#; Category: DEBUG
+#; Symptom: New Feature
+#; RootCause: New Feature
+#; Description: Add MemoryDataAnalysisLib NULL library and .h definition file.
+#; Solution: New Feature.
+#; SolutionDependency: None.
+#; Reviewer: IB15760000
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\MemoryDataAnalysisLib.h
+#;   2. SegFeaturePkg\Library\MemoryDataAnalysisLibNull\
+#;   3. SegFeaturePkg\Library\MemoryDataAnalysisLibNull\MemoryDataAnalysisLibNull.c
+#;   4. SegFeaturePkg\Library\MemoryDataAnalysisLibNull\MemoryDataAnalysisLibNull.inf
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.24
+#; Status: Tag as 05.32.24 version
+#; 
+#; Tag#:05.32.24
+#; Issue#:IB09330470
+#; Severity:Minor
+#; Category:IPMI BMC joint feature
+#; Symptom: User may get error data when use H2O_IPMI_OEM_SEL_DATA
+#; RootCause:IPMI define structure error, not filled in multiples of eight
+#; Description: (Bug fix)
+#; Solution:(Bug fix)
+#; SolutionDependency:None
+#; Reviewer:IB09330000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiOemFeatureLib.h
+#; 
+#; Tag#:05.32.24
+#; Issue#:IB09330470
+#; Severity:Feature
+#; Category:IPMI BMC joint feature
+#; Symptom:New Feature
+#; RootCause:New Feature
+#; Description: BIOS use "Send Embedded Firmware Update Status." command to send BIOS Update status, BMC will log BIOS update status to SEL
+#; SEL Sensor Type : 0x2B and Sensor # : 0x12
+#; Solution:New Feature
+#; SolutionDependency:None
+#; Reviewer:IB09330000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiOemFeatureLib.h
+#; 
+#; Tag#: 05.32.24
+#; Issue#: IB09330462
+#; Severity: Feature
+#; Category: Seg platform support library
+#; Symptom: New Feature
+#; RootCause: Feature need to know BMC hub device path
+#; Description: New Feature
+#; Solution:  Add SegPlatformSupportLib to support feature get platform info 
+#; SolutionDependency: None
+#; Reviewer: IB09330000
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\SegPlatformSupportLib.h
+#;   2. SegFeaturePkg\Library\SegPlatformSupportLib\
+#;   3. SegFeaturePkg\Library\SegPlatformSupportLib\SegPlatformSupportLib.c
+#;   4. SegFeaturePkg\Library\SegPlatformSupportLib\SegPlatformSupportLib.inf
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#;   2. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.20
+#; Status: Tag as 05.32.20 version
+#; 
+#; Tag#: 05.32.20
+#; Issue#: IB09330453
+#; Severity: Feature
+#; Category: IPMI
+#; Symptom: None
+#; RootCause: None
+#; Description: BMC need SecureFlashCertificateFile when BMC want to update BIOS by SPI flash
+#; Solution: Get SecureFlashCertificateFile and send to BMC by new oem command
+#; SolutionDependency: None
+#; Reviewer: IB09330000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiOemFeatureLib.h
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.16
+#; Status: Tag as 05.32.16 version
+#; 
+#; Tag#: 05.32.16
+#; Issue#: IB09330451
+#; Severity: Feature
+#; Category: IPMI
+#; Symptom: None
+#; RootCause: None
+#; Description: BMC web wants to display BIOS version strings with MultiLanguage
+#; Solution: Add IpmiBmcFeatureLibSetVersionStringToBmc() ,IpmiBmcFeatureLibFeatureGetCurrentLanguage () and IpmiBmcFeatureLibGetNextLanguage() null function for add multi language version strings
+#; SolutionDependency: None
+#; Reviewer: IB09330000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiOemFeatureLib.h
+#;   2. SegFeaturePkg\Library\DxeIpmiOemFeatureLibNull\DxeIpmiOemFeatureLibNull.c
+#; 
+#; Tag#: 05.32.16
+#; Issue#: IB09330446
+#; Severity: Serious 
+#; Category: IPMI BMC joint feature/Build
+#; Symptom: User use IpmiOemFeatureLib function will build fail when IPMI not support BMC joint feature
+#; RootCause: IpmiOemFeatureLib null functions are incomplete in SegfeaturePkg
+#; Description: IpmiSyncBmcLib doesn't add all null functions in SegfeaturePkg, if project use those functions and close IPMI BMC joint feature will build fail
+#; Solution: (Bud fix)
+#; SolutionDependency:  None
+#; Reviewer: IB09330000
+#; 
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Library\DxeIpmiOemFeatureLibNull\DxeIpmiOemFeatureLibNull.c
+#;   2. SegFeaturePkg\Library\PeiIpmiOemFeatureLibNull\PeiIpmiOemFeatureLibNull.c
+#;   3. SegFeaturePkg\Library\SmmIpmiOemFeatureLibNull\SmmIpmiOemFeatureLibNull.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.12
+#; Status: Tag version
+#; 
+#; Tag#: 05.32.08
+#; Issue#: IB09330437
+#; Severity: Serious 
+#; Category: IPMI build
+#; Symptom: If set H2OIPMI_SUPPORT to NO, BIOS will build fail
+#; RootCause: IpmiSyncBmcLibNull is incomplete in SegfeaturePkg
+#; Description: IpmiSyncBmcLib doesn't has necessary declaration in SegfeaturePkg
+#; Solution: Add necessary declaration in SegfeaturePkg
+#; SolutionDependency:  None
+#; Reviewer: IB09330000
+#; 
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Library\IpmiSyncBmcLibNull\IpmiSyncBmcLibNull.c
+#;   2. SegFeaturePkg\Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.04
+#; Status: Tag version
+#; 
+#; Tag#: 05.32.04
+#; Issue#: IB14090000
+#; Severity: Minor
+#; Category: EventLog
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Modify function to dump debug message on SMM mode and DXE.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Library\EventLogDebugMsgLibNull\EventLogDebugMsgLibNull.inf
+#;   2. SegFeaturePkg\Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.52
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.52
+#; Issue#: IB09330412
+#; Severity: Feature 
+#; Category: IPMI
+#; Symptom: 1. IPMI interface lib use RecvLength to check buffer enough
+#;          2. Add IpmiOemFeatureLib
+#; RootCause: 1. IPMI use RecvLength to check buffer size, fix comment
+#;            2. Add IpmiOemFeatureLib
+#; Description: None
+#; Solution: 1. fix it
+#;           2. Add IpmiOemFeatureLib
+#; SolutionDependency:  None
+#; Reviewer: IB09330000
+#; 
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\IpmiOemFeatureLib.h
+#;   2. SegFeaturePkg\Library\DxeIpmiOemFeatureLibNull\
+#;   3. SegFeaturePkg\Library\DxeIpmiOemFeatureLibNull\DxeIpmiOemFeatureLibNull.c
+#;   4. SegFeaturePkg\Library\DxeIpmiOemFeatureLibNull\DxeIpmiOemFeatureLibNull.inf
+#;   5. SegFeaturePkg\Library\PeiIpmiOemFeatureLibNull\
+#;   6. SegFeaturePkg\Library\PeiIpmiOemFeatureLibNull\PeiIpmiOemFeatureLibNull.c
+#;   7. SegFeaturePkg\Library\PeiIpmiOemFeatureLibNull\PeiIpmiOemFeatureLibNull.inf
+#;   8. SegFeaturePkg\Library\SmmIpmiOemFeatureLibNull\
+#;   9. SegFeaturePkg\Library\SmmIpmiOemFeatureLibNull\SmmIpmiOemFeatureLibNull.c
+#;   10. SegFeaturePkg\Library\SmmIpmiOemFeatureLibNull\SmmIpmiOemFeatureLibNull.inf
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiInterfaceLib.h
+#;   2. SegFeaturePkg\Include\Library\IpmiInterfaceLib2.h
+#;   3. SegFeaturePkg\Library\DxeIpmiInterfaceLibNull\DxeIpmiInterfaceLibNull.c
+#;   4. SegFeaturePkg\Library\DxeIpmiInterfaceLibNull2\DxeIpmiInterfaceLibNull2.c
+#;   5. SegFeaturePkg\Library\PeiIpmiInterfaceLibNull\PeiIpmiInterfaceLibNull.c
+#;   6. SegFeaturePkg\Library\PeiIpmiInterfaceLibNull2\PeiIpmiInterfaceLibNull2.c
+#;   7. SegFeaturePkg\Library\SmmIpmiInterfaceLib2Null\SmmIpmiInterfaceLib2Null.c
+#;   8. SegFeaturePkg\Library\SmmIpmiInterfaceLibNull\SmmIpmiInterfaceLibNull.c
+#;   9. SegFeaturePkg\Package.dsc
+#; 
+#; Tag#: 05.31.49
+#; Issue#: IB08400545
+#; Severity: Feature
+#; Category: DEBUG
+#; Symptom: Add DEBUG Message library.
+#; RootCause: Enhancement.
+#; Description: Implement it.
+#; Solution: None.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\EventLogDebugMsgLib.h
+#;   2. SegFeaturePkg\Library\EventLogDebugMsgLibNull\
+#;   3. SegFeaturePkg\Library\EventLogDebugMsgLibNull\EventLogDebugMsgLibNull.c
+#;   4. SegFeaturePkg\Library\EventLogDebugMsgLibNull\EventLogDebugMsgLibNull.inf
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#; 
+#; Tag#: 05.31.49
+#; Issue#: IB08400542
+#; Severity: Feature
+#; Category: PCD
+#; Symptom: Change the PCD name with H2O naming rule.
+#; RootCause: Enhancement.
+#; Description: Update PCD name.
+#; Solution: None.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeRasPkg\EccRasPlatformSmm\EccRasPlatformSmm.c
+#;   2. InsydeRasPkg\EccRasPlatformSmm\EccRasPlatformSmm.inf
+#;   3. InsydeRasPkg\PcieRasPlatformSmm\PcieRasPlatformSmm.c
+#;   4. InsydeRasPkg\PcieRasPlatformSmm\PcieRasPlatformSmm.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.48
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.48
+#; Issue#: IB14090135
+#; Severity: Feature
+#; Category: EDK
+#; Symptom: Feature build fail in kernel 5.3 tag 48.
+#; RootCause: Kernel remove IntelFrameworkModulePkg and IntelFrameworkPkg (IB07010655).
+#; Description: Let SEG feature can be compatible for both 05.31.48 former and later kernel base.
+#; Solution: Copy some files, and update the SegFeaturePkg.dec.
+#; SolutionDependency: (None)
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Protocol\IsaIo.h
+#;   2. SegFeaturePkg\Include\Protocol\LegacyBios.h
+#;   3. SegFeaturePkg\Include\Protocol\LegacyBiosPlatform.h
+#; Modified:
+#;   1. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#; Tag#: 05.31.48
+#; Issue#: IB08400541
+#; Severity: Feature
+#; Category: EDK
+#; Symptom: Add ACPI Support protocol related definition into SegFeaturePkg.
+#; RootCause: New feature.
+#; Description: Let SEG feature can be compatible for both 05.31.48 former and later kernel base.
+#; Solution: Copy AcpiSupport.h into SegFeaturePkg, and update the SegFeaturePkg.dec to add the protocol declaration.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Protocol\AcpiSupport.h
+#; Modified:
+#;   1. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#; Tag#: 05.31.48
+#; Issue#: IB08400539
+#; Severity: Feature
+#; Category: EDK
+#; Symptom: Remove the IntelFrameworkPkg reference from InsydeEventLogPkg.
+#; RootCause: New feature.
+#; Description: New feature.
+#; Solution: Remove IntelFrameworkPkg reference from .inf file.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\EventLogDefine.h
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\EventLogDxeLib.h
+#;   2. SegFeaturePkg\Include\Library\EventLogSmmLib.h
+#; 
+#; Tag#: 05.31.48
+#; Issue#: IB09330405
+#; Severity: Minor 
+#; Category: IPMI
+#; Symptom: 1. Add PEI interface lib
+#;          2. Fix Smm library use IPMI path
+#; RootCause: 1. Add PEI interface lib for use
+#;            2. Remove IPMI path
+#; Description: None
+#; Solution: 1. Add library
+#;           2. change include header file
+#; SolutionDependency:  None
+#; Reviewer: IB09330000
+#; 
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Library\PeiIpmiInterfaceLibNull\
+#;   2. SegFeaturePkg\Library\PeiIpmiInterfaceLibNull\PeiIpmiInterfaceLibNull.c
+#;   3. SegFeaturePkg\Library\PeiIpmiInterfaceLibNull\PeiIpmiInterfaceLibNull.inf
+#;   4. SegFeaturePkg\Library\PeiIpmiInterfaceLibNull2\
+#;   5. SegFeaturePkg\Library\PeiIpmiInterfaceLibNull2\PeiIpmiInterfaceLibNull2.c
+#;   6. SegFeaturePkg\Library\PeiIpmiInterfaceLibNull2\PeiIpmiInterfaceLibNull2.inf
+#; Modified:
+#;   1. SegFeaturePkg\Library\DxeIpmiSelInfoLibNull\DxeIpmiSelInfoLibNull.c
+#;   2. SegFeaturePkg\Library\SmmIpmiFruLib2Null\SmmIpmiFruLib2Null.inf
+#;   3. SegFeaturePkg\Library\SmmIpmiFruLibNull\SmmIpmiFruLibNull.inf
+#;   4. SegFeaturePkg\Library\SmmIpmiInterfaceLib2Null\SmmIpmiInterfaceLib2Null.inf
+#;   5. SegFeaturePkg\Library\SmmIpmiInterfaceLibNull\SmmIpmiInterfaceLibNull.inf
+#;   6. SegFeaturePkg\Library\SmmIpmiSdrLib2Null\SmmIpmiSdrLib2Null.inf
+#;   7. SegFeaturePkg\Library\SmmIpmiSdrLibNull\SmmIpmiSdrLibNull.inf
+#;   8. SegFeaturePkg\Library\SmmIpmiSelDataLib2Null\SmmIpmiSelDataLib2Null.inf
+#;   9. SegFeaturePkg\Library\SmmIpmiSelDataLibNull\SmmIpmiSelDataLibNull.inf
+#;   10. SegFeaturePkg\Library\SmmIpmiSelInfoLib2Null\SmmIpmiSelInfoLib2Null.inf
+#;   11. SegFeaturePkg\Library\SmmIpmiSelInfoLibNull\SmmIpmiSelInfoLibNull.inf
+#;   12. SegFeaturePkg\Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.48
+#; Status: Tag version
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.44
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.44
+#; Issue#: IB09330400
+#; Severity: Minor 
+#; Category: IPMI
+#; Symptom: Fix issue
+#; RootCause: Library include protocol will build fail
+#; Description: None
+#; Solution: change include header file
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiSelDataLib.h
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.40
+#; Status: Tag version
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.36
+#; Status: Tag version
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.32
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.32
+#; Issue#: IB09330373
+#; Severity: Feature 
+#; Category: IPMI
+#; Symptom: Fix issue
+#; RootCause: Null function declare fail 
+#; Description: None
+#; Solution: Remove comma
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Library\DxeIpmiFruLibNull\DxeIpmiFruLibNull.c
+#;   2. SegFeaturePkg\Library\DxeIpmiInterfaceLibNull\DxeIpmiInterfaceLibNull.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.28
+#; Status: Tag version
+#; 
+#; 
+#; 
+#; Tag#: 05.31.28
+#; Issue#: IB09330369
+#; Severity: Feature 
+#; Category: IPMI
+#; Symptom: Update lost file
+#; RootCause: Lost two file at least update 
+#; Description: None
+#; Solution: Update those
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiSelInfoLib.h
+#;   2. SegFeaturePkg\Include\Library\IpmiSelInfoLib2.h 
+#; 
+#; Tag#: 05.31.28
+#; Issue#: IB09330369
+#; Severity: Feature 
+#; Category: IPMI
+#; Symptom: 1. Add Smm IPMI Lib
+#;          2. Fix some Lib define error
+#; RootCause: Ipmi Library for BMC or HECI use different Library, 
+#; Description: None
+#; Solution: 1. Add Library
+#;           2. Fix function define
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\H2OIpmiSdr.h
+#;   2. SegFeaturePkg\Include\Library\IpmiLibDefine.h
+#;   3. SegFeaturePkg\Library\SmmIpmiFruLib2Null\
+#;   4. SegFeaturePkg\Library\SmmIpmiFruLib2Null\SmmIpmiFruLib2Null.c
+#;   5. SegFeaturePkg\Library\SmmIpmiFruLib2Null\SmmIpmiFruLib2Null.inf
+#;   6. SegFeaturePkg\Library\SmmIpmiFruLibNull\
+#;   7. SegFeaturePkg\Library\SmmIpmiFruLibNull\SmmIpmiFruLibNull.c
+#;   8. SegFeaturePkg\Library\SmmIpmiFruLibNull\SmmIpmiFruLibNull.inf
+#;   9. SegFeaturePkg\Library\SmmIpmiInterfaceLib2Null\
+#;   10. SegFeaturePkg\Library\SmmIpmiInterfaceLib2Null\SmmIpmiInterfaceLib2Null.c
+#;   11. SegFeaturePkg\Library\SmmIpmiInterfaceLib2Null\SmmIpmiInterfaceLib2Null.inf
+#;   12. SegFeaturePkg\Library\SmmIpmiInterfaceLibNull\
+#;   13. SegFeaturePkg\Library\SmmIpmiInterfaceLibNull\SmmIpmiInterfaceLibNull.c
+#;   14. SegFeaturePkg\Library\SmmIpmiInterfaceLibNull\SmmIpmiInterfaceLibNull.inf
+#;   15. SegFeaturePkg\Library\SmmIpmiSdrLib2Null\
+#;   16. SegFeaturePkg\Library\SmmIpmiSdrLib2Null\SmmIpmiSdrLib2Null.c
+#;   17. SegFeaturePkg\Library\SmmIpmiSdrLib2Null\SmmIpmiSdrLib2Null.inf
+#;   18. SegFeaturePkg\Library\SmmIpmiSdrLibNull\
+#;   19. SegFeaturePkg\Library\SmmIpmiSdrLibNull\SmmIpmiSdrLibNull.c
+#;   20. SegFeaturePkg\Library\SmmIpmiSdrLibNull\SmmIpmiSdrLibNull.inf
+#;   21. SegFeaturePkg\Library\SmmIpmiSelDataLib2Null\
+#;   22. SegFeaturePkg\Library\SmmIpmiSelDataLib2Null\SmmIpmiSelDataLib2Null.c
+#;   23. SegFeaturePkg\Library\SmmIpmiSelDataLib2Null\SmmIpmiSelDataLib2Null.inf
+#;   24. SegFeaturePkg\Library\SmmIpmiSelDataLibNull\
+#;   25. SegFeaturePkg\Library\SmmIpmiSelDataLibNull\SmmIpmiSelDataLibNull.c
+#;   26. SegFeaturePkg\Library\SmmIpmiSelDataLibNull\SmmIpmiSelDataLibNull.inf
+#;   27. SegFeaturePkg\Library\SmmIpmiSelInfoLib2Null\
+#;   28. SegFeaturePkg\Library\SmmIpmiSelInfoLib2Null\SmmIpmiSelInfoLib2Null.c
+#;   29. SegFeaturePkg\Library\SmmIpmiSelInfoLib2Null\SmmIpmiSelInfoLib2Null.inf
+#;   30. SegFeaturePkg\Library\SmmIpmiSelInfoLibNull\
+#;   31. SegFeaturePkg\Library\SmmIpmiSelInfoLibNull\SmmIpmiSelInfoLibNull.c
+#;   32. SegFeaturePkg\Library\SmmIpmiSelInfoLibNull\SmmIpmiSelInfoLibNull.inf
+#; Deleted:
+#;   1. SegFeaturePkg\Include\Library\IpmiSelHeader.h
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiFruLib.h
+#;   2. SegFeaturePkg\Include\Library\IpmiFruLib2.h
+#;   3. SegFeaturePkg\Include\Library\IpmiInterfaceLib.h
+#;   4. SegFeaturePkg\Include\Library\IpmiInterfaceLib2.h
+#;   5. SegFeaturePkg\Include\Library\IpmiSdrLib.h
+#;   6. SegFeaturePkg\Include\Library\IpmiSdrLib2.h
+#;   7. SegFeaturePkg\Include\Library\IpmiSelDataLib2.h
+#;   8. SegFeaturePkg\Library\DxeIpmiFruLibNull2\DxeIpmiFruLibNull2.c
+#;   9. SegFeaturePkg\Library\DxeIpmiSdrLibNull\DxeIpmiSdrLibNull.c
+#;   10. SegFeaturePkg\Library\DxeIpmiSdrLibNull2\DxeIpmiSdrLibNull2.c
+#;   11. SegFeaturePkg\Library\DxeIpmiSelDataLibNull2\DxeIpmiSelDataLibNull2.c
+#;   12. SegFeaturePkg\Package.dsc
+#; 
+#; Tag#: 05.31.24 
+#; Issue#: IB05820000
+#; Severity: Feature 
+#; Category: Add SegFeaturePkg definition in DxeGraphicVgaLibNull.inf and PeiGraphicVgaLibNull.inf
+#; Symptom: none. 
+#; RootCause: none.
+#; Description: none.
+#; Solution: add it.
+#; SolutionDependency: None. 
+#; Reviewer: IB05820000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Library\DxeGraphicVgaLibNull\DxeGraphicVgaLibNull.inf
+#;   2. SegFeaturePkg\Library\PeiGraphicVgaLibNull\PeiGraphicVgaLibNull.inf
+#; 
+#; Tag#: 05.31.24 
+#; Issue#: IB05820440
+#; Severity: Feature 
+#; Category: 1.Remove BdsGraphicVgaLib and related file.
+#;           2.Remove PeiGraphicVgaLib.h, DxeGraphicVgaLib.h and BdsGraphicVgaLib.h, and use GraphicVgaLib.h instead
+#;           3.Modify the DxeGraphicVgaLibNull and PeiGraphicVgaLibNull function name.
+#; Symptom: none. 
+#; RootCause: none
+#; Description: new feature 
+#; Solution: add it.
+#; SolutionDependency: None. 
+#; Reviewer: IB05820440
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\GraphicVgaLib.h
+#; Deleted:
+#;   1. SegFeaturePkg\Include\Library\BdsGraphicVgaLib.h
+#;   2. SegFeaturePkg\Include\Library\DxeGraphicVgaLib.h
+#;   3. SegFeaturePkg\Include\Library\PeiGraphicVgaLib.h
+#;   4. SegFeaturePkg\Library\BdsGraphicVgaLibNull\
+#; Modified:
+#;   1. SegFeaturePkg\Library\DxeGraphicVgaLibNull\DxeGraphicVgaLibNull.c
+#;   2. SegFeaturePkg\Library\DxeGraphicVgaLibNull\DxeGraphicVgaLibNull.inf
+#;   3. SegFeaturePkg\Library\PeiGraphicVgaLibNull\PeiGraphicVgaLibNull.c
+#;   4. SegFeaturePkg\Library\PeiGraphicVgaLibNull\PeiGraphicVgaLibNull.inf
+#;   5. SegFeaturePkg\Package.dsc
+#; 
+#; Tag#: 05.31.24 
+#; Issue#: IB05820439
+#; Severity: Feature 
+#; Category: Add PeiGraphicVga,DxeGraphicVga and BdsGraphicVga NULL library and .h definition file 
+#; Symptom: add it. 
+#; RootCause: none
+#; Description: new feature 
+#; Solution: add it.
+#; SolutionDependency: None. 
+#; Reviewer: IB05820439
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\BdsGraphicVgaLib.h
+#;   2. SegFeaturePkg\Include\Library\DxeGraphicVgaLib.h
+#;   3. SegFeaturePkg\Include\Library\PeiGraphicVgaLib.h
+#;   4. SegFeaturePkg\Library\BdsGraphicVgaLibNull\
+#;   5. SegFeaturePkg\Library\BdsGraphicVgaLibNull\BdsGraphicVgaLibNull.c
+#;   6. SegFeaturePkg\Library\BdsGraphicVgaLibNull\BdsGraphicVgaLibNull.inf
+#;   7. SegFeaturePkg\Library\DxeGraphicVgaLibNull\
+#;   8. SegFeaturePkg\Library\DxeGraphicVgaLibNull\DxeGraphicVgaLibNull.c
+#;   9. SegFeaturePkg\Library\DxeGraphicVgaLibNull\DxeGraphicVgaLibNull.inf
+#;   10. SegFeaturePkg\Library\PeiGraphicVgaLibNull\
+#;   11. SegFeaturePkg\Library\PeiGraphicVgaLibNull\PeiGraphicVgaLibNull.c
+#;   12. SegFeaturePkg\Library\PeiGraphicVgaLibNull\PeiGraphicVgaLibNull.inf
+#; Deleted:
+#;   1. SegFeaturePkg\Include\Library\DxeEarlyVgaLib.h
+#;   2. SegFeaturePkg\Include\Library\PeiEarlyVgaLib.h
+#;   3. SegFeaturePkg\Library\DxeEarlyVgaLibNull\
+#;   4. SegFeaturePkg\Library\PeiEarlyVgaLibNull\
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.24
+#; Status: Tag version
+#; 
+#; 
+#; 
+#; Tag#: 05.31.24
+#; Issue#: IB09330362
+#; Severity: Feature 
+#; Category: IPMI
+#; Symptom: Add IpmiBmcFeatureGetDataLib
+#; RootCause: IpmiBmcFeature need some information to BMC
+#; Description: Add Get Data Library let project owner can override this library let IPMI can get those information
+#; Solution: Add Library
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\IpmiBmcFeatureGetDataLib.h
+#;   2. SegFeaturePkg\Library\IpmiBmcFeatureGetDataLibNull\
+#;   3. SegFeaturePkg\Library\IpmiBmcFeatureGetDataLibNull\IpmiBmcFeatureGetDataLibNull.c
+#;   4. SegFeaturePkg\Library\IpmiBmcFeatureGetDataLibNull\IpmiBmcFeatureGetDataLibNull.inf
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#; 
+#; Tag#: 05.31.24
+#; Issue#: IB09330361
+#; Severity: Feature 
+#; Category: IPMI
+#; Symptom: Rollback IPMI library and add library2
+#; RootCause: Change Ipmi library support HECI before, will let other use IPMI library code modify too many codes for supports 
+#; Description: Ipmi support HECI
+#; Solution: Rollback Ipmi library to not support HECI and add Library2 to support HECI
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\IpmiFruLib2.h
+#;   2. SegFeaturePkg\Include\Library\IpmiInterfaceLib2.h
+#;   3. SegFeaturePkg\Include\Library\IpmiSdrLib2.h
+#;   4. SegFeaturePkg\Include\Library\IpmiSelDataLib2.h
+#;   5. SegFeaturePkg\Include\Library\IpmiSelHeader.h
+#;   6. SegFeaturePkg\Include\Library\IpmiSelInfoLib2.h
+#;   7. SegFeaturePkg\Include\Library\IpmiSyncBmcLib2.h
+#;   8. SegFeaturePkg\Library\DxeIpmiFruLibNull2\
+#;   9. SegFeaturePkg\Library\DxeIpmiFruLibNull2\DxeIpmiFruLibNull2.c
+#;   10. SegFeaturePkg\Library\DxeIpmiFruLibNull2\DxeIpmiFruLibNull2.inf
+#;   11. SegFeaturePkg\Library\DxeIpmiInterfaceLibNull2\
+#;   12. SegFeaturePkg\Library\DxeIpmiInterfaceLibNull2\DxeIpmiInterfaceLibNull2.c
+#;   13. SegFeaturePkg\Library\DxeIpmiInterfaceLibNull2\DxeIpmiInterfaceLibNull2.inf
+#;   14. SegFeaturePkg\Library\DxeIpmiSdrLibNull2\
+#;   15. SegFeaturePkg\Library\DxeIpmiSdrLibNull2\DxeIpmiSdrLibNull2.c
+#;   16. SegFeaturePkg\Library\DxeIpmiSdrLibNull2\DxeIpmiSdrLibNull2.inf
+#;   17. SegFeaturePkg\Library\DxeIpmiSelDataLibNull2\
+#;   18. SegFeaturePkg\Library\DxeIpmiSelDataLibNull2\DxeIpmiSelDataLibNull2.c
+#;   19. SegFeaturePkg\Library\DxeIpmiSelDataLibNull2\DxeIpmiSelDataLibNull2.inf
+#;   20. SegFeaturePkg\Library\DxeIpmiSelInfoLibNull2\
+#;   21. SegFeaturePkg\Library\DxeIpmiSelInfoLibNull2\DxeIpmiSelInfoLibNull2.c
+#;   22. SegFeaturePkg\Library\DxeIpmiSelInfoLibNull2\DxeIpmiSelInfoLibNull2.inf
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiFruLib.h
+#;   2. SegFeaturePkg\Include\Library\IpmiInterfaceLib.h
+#;   3. SegFeaturePkg\Include\Library\IpmiSdrLib.h
+#;   4. SegFeaturePkg\Include\Library\IpmiSelDataLib.h
+#;   5. SegFeaturePkg\Include\Library\IpmiSelInfoLib.h
+#;   6. SegFeaturePkg\Include\Library\IpmiSyncBmcLib.h
+#;   7. SegFeaturePkg\Library\DxeIpmiFruLibNull\DxeIpmiFruLibNull.c
+#;   8. SegFeaturePkg\Library\DxeIpmiInterfaceLibNull\DxeIpmiInterfaceLibNull.c
+#;   9. SegFeaturePkg\Library\DxeIpmiSdrLibNull\DxeIpmiSdrLibNull.c
+#;   10. SegFeaturePkg\Library\DxeIpmiSelDataLibNull\DxeIpmiSelDataLibNull.c
+#;   11. SegFeaturePkg\Library\DxeIpmiSelInfoLibNull\DxeIpmiSelInfoLibNull.c
+#;   12. SegFeaturePkg\Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.20
+#; Status: Tag version
+#; 
+#; 
+#; 
+#; Tag#: 05.31.20
+#; Issue#: IB15760003 
+#; Severity: Feature 
+#; Category: Add SEG Multi-Serial Port Feature
+#; Symptom: add it. 
+#; RootCause: none
+#; Description: new feature 
+#; Solution: add it.
+#; SolutionDependency: None. 
+#; Reviewer: IB04560000
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Library\BaseSerialPortLib\
+#;   2. SegFeaturePkg\Library\BaseSerialPortLib\BaseSerialPortLib.c
+#;   3. SegFeaturePkg\Library\BaseSerialPortLib\BaseSerialPortLib.inf
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#;   2. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.20
+#; Status: Tag version
+#; 
+#; 
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.16
+#; Status: Tag version
+#; 
+#; 
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.12
+#; Status: Tag version
+#; 
+#; 
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.08
+#; Status: Tag version
+#; 
+#; 
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.04
+#; Status: Tag version
+#; 
+#; 
+#; 
+#; Tag#: 05.22.04 
+#; Issue#: IB04560000 
+#; Severity: Feature 
+#; Category: Add EarlyVga NULL library and .h definition file 
+#; Symptom: add it. 
+#; RootCause: none
+#; Description: new feature 
+#; Solution: add it.
+#; SolutionDependency: None. 
+#; Reviewer: IB04560000
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\DxeEarlyVgaLib.h
+#;   2. SegFeaturePkg\Include\Library\PeiEarlyVgaLib.h
+#;   3. SegFeaturePkg\Library\DxeEarlyVgaLibNull\
+#;   4. SegFeaturePkg\Library\DxeEarlyVgaLibNull\DxeEarlyVgaLibNull.c
+#;   5. SegFeaturePkg\Library\DxeEarlyVgaLibNull\DxeEarlyVgaLibNull.inf
+#;   6. SegFeaturePkg\Library\PeiEarlyVgaLibNull\
+#;   7. SegFeaturePkg\Library\PeiEarlyVgaLibNull\PeiEarlyVgaLibNull.c
+#;   8. SegFeaturePkg\Library\PeiEarlyVgaLibNull\PeiEarlyVgaLibNull.inf
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.48
+#; Status: Tag version
+#; 
+#; 
+#; 
+#; Tag#: 05.21.48
+#; Issue#: IB09330325
+#; Severity: Feature
+#; Category: IPMI
+#; Symptom: Remove error include
+#; RootCause: error link to bmc joint feature
+#; Description: Remove error include
+#; Solution: Remove error include
+#; SolutionDependency: None
+#; Reviewer: IB09330000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Library\PeiIpmiBmcFeatureLibNull\PeiIpmiBmcFeatureLibNull.inf
+#; 
+#; Tag#: 05.21.48
+#; Issue#: IB09330323
+#; Severity: Feature
+#; Category: IPMI
+#; Symptom: Add Ipmi bmc joint feature null lib
+#; RootCause: Support bmc joint feature
+#; Description: Add IPMI bmc joint feature null lib
+#; Solution: Add IPMI bmc joint feature null lib
+#; SolutionDependency: None
+#; Reviewer: IB09330000
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Include\Library\IpmiBmcFeatureOemLib.h
+#;   2. SegFeaturePkg\Include\Library\IpmiSyncBmcLib.h
+#;   3. SegFeaturePkg\Include\Library\PeiIpmiBmcFeatureLib.h
+#;   4. SegFeaturePkg\Library\IpmiBmcFeatureOemLibNull\
+#;   5. SegFeaturePkg\Library\IpmiBmcFeatureOemLibNull\IpmiBmcFeatureOemFunNull.c
+#;   6. SegFeaturePkg\Library\IpmiBmcFeatureOemLibNull\IpmiBmcFeatureOemLibNull.inf
+#;   7. SegFeaturePkg\Library\IpmiSyncBmcLibNull\
+#;   8. SegFeaturePkg\Library\IpmiSyncBmcLibNull\IpmiSyncBmcLibNull.c
+#;   9. SegFeaturePkg\Library\IpmiSyncBmcLibNull\IpmiSyncBmcLibNull.inf
+#;   10. SegFeaturePkg\Library\PeiIpmiBmcFeatureLibNull\
+#;   11. SegFeaturePkg\Library\PeiIpmiBmcFeatureLibNull\PeiIpmiBmcFeatureLibNull.c
+#;   12. SegFeaturePkg\Library\PeiIpmiBmcFeatureLibNull\PeiIpmiBmcFeatureLibNull.inf
+#; Modified:
+#;   1. SegFeaturePkg\Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.44
+#; Status: Tag version
+#; 
+#; 
+#; 
+#; Tag#: 05.21.47
+#; Issue#: IB09330314
+#; Severity: Feature
+#; Category: IPMI
+#; Symptom: Add HECI support with IPMI 
+#; RootCause: Add Ipmi support HECI interface to seg feature
+#; Description: Add IPMI send to HECI or BMC interface
+#; Solution: modify interface
+#; SolutionDependency: None
+#; Reviewer: IB09330000
+#; RelatedFiles:
+#; Modified:
+#;   1. SegFeaturePkg\Include\Library\IpmiFruLib.h
+#;   2. SegFeaturePkg\Include\Library\IpmiInterfaceLib.h
+#;   3. SegFeaturePkg\Include\Library\IpmiSdrLib.h
+#;   4. SegFeaturePkg\Include\Library\IpmiSelDataLib.h
+#;   5. SegFeaturePkg\Include\Library\IpmiSelInfoLib.h
+#;   6. SegFeaturePkg\Library\DxeIpmiFruLibNull\DxeIpmiFruLibNull.c
+#;   7. SegFeaturePkg\Library\DxeIpmiInterfaceLibNull\DxeIpmiInterfaceLibNull.c
+#;   8. SegFeaturePkg\Library\DxeIpmiSdrLibNull\DxeIpmiSdrLibNull.c
+#;   9. SegFeaturePkg\Library\DxeIpmiSelDataLibNull\DxeIpmiSelDataLibNull.c
+#;   10. SegFeaturePkg\Library\DxeIpmiSelInfoLibNull\DxeIpmiSelInfoLibNull.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.40
+#; Status: Tag version
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.30
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.30
+#; Issue#: IB04560000
+#; Severity: Feature 
+#; Category: SEG Feature
+#; Symptom: Remove All of SEG feature package
+#; RootCause: Create corresponding SVNs for these SEG feature packages
+#; Description: none
+#; Solution: remove it.
+#; SolutionDependency: None. 
+#; Reviewer: IB04560000
+#; RelatedFiles:
+#; Deleted:
+#;   1. InsydeApeiPkg\
+#;   2. InsydeCbtPkg\
+#;   3. InsydeCrPkg\
+#;   4. InsydeDebugAssistPkg\
+#;   5. InsydeEarlyKeyboardPkg\
+#;   6. InsydeEventLogPkg\
+#;   7. InsydeH2oUvePkg\
+#;   8. InsydeIpmiPkg\
+#;   9. InsydeMediaPlayerPkg\
+#; 
+#; Tag#: 05.21.29
+#; Issue#: IB14090077
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: Exception when manually enter BIOS setup (ESC Hot Key).
+#; RootCause: PchHsUartDxe driver install wrong protocol with random or zero Guid.
+#; Description: Exception when PcdHotKeyBoot function Locate Protocol unusual and Launch it.
+#; Solution: Add NULL parameter in InstallMultipleProtocolInterfaces function.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\Uart16550Devices\PchHsUartDxe\PchHsUartDxe.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.27
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.27
+#; Issue#: IB04560000
+#; Severity: Feature 
+#; Category: InsydeRemoteService
+#; Symptom: Remove InsydeRemoteService package
+#; RootCause: none
+#; Description: none
+#; Solution: remove it.
+#; SolutionDependency: None. 
+#; Reviewer: IB04560000
+#; RelatedFiles:
+#; Deleted:
+#;   1. InsydeRemoteServicePkg\
+#; 
+#; Tag#: 05.21.28
+#; Issue#: IB14090076
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: 1. Some SCU area is painted black at the terminal screen. 
+#;          2. Sometimes terminal screen set the wrong background.
+#;          3. First enter to the front page, the terminal receive some gibberish to print.
+#; RootCause: 1. Before Scroll down the screen, there didn't set the terminal attribute. 
+#;               The new line only set the default color.
+#;            2. If the all of columns in one row that print "space" char. There using ESC command (EraseLine) to set the
+#;               background. And that will set all of column to the same background.
+#;            3. The terminal runs the sync mode in front page. But the async terminal timer still trigger then 
+#;               the sync terminal will send error command.  
+#; Description: (Fix Bug)
+#; Solution: 1. Before Scroll down, setting the terminal attribute from  terminal simple text out attribute. 
+#;           2. When async mode. both check char and attribute. If there have other attribute then we didn't call EraseLine.
+#;           3. Disable the async timer when terminal initialize.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\TerminalDxe\AsyncTerminalConOut.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.26
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.26
+#; Issue#: IB14090075
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Fix H2OABT klocwork issue.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\Library\CrDeviceVariableLib\CrDeviceVariableLib.c
+#; 
+#; Tag#: 05.21.26
+#; Issue#: IB14090074
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Through send extra ESC sequencs code to adjust terminal resolution to fit host screen.
+#; Solution:  (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   2. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrConfigUtilStr.uni
+#;   3. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#;   4. InsydeCrPkg\CrServiceDxe\CrLegacySupport.c
+#;   5. InsydeCrPkg\Include\CrPolicyType.h
+#;   6. InsydeCrPkg\Include\Guid\CrConfigHii.h
+#;   7. InsydeCrPkg\Include\Protocol\ConsoleRedirectionService.h
+#;   8. InsydeCrPkg\Library\CrDeviceVariableLib\CrDeviceVariableMisc.c
+#;   9. InsydeCrPkg\Package.dsc
+#;   10. InsydeCrPkg\TerminalDxe\AsyncTerminalConOut.c
+#;   11. InsydeCrPkg\TerminalDxe\Common.c
+#;   12. InsydeCrPkg\TerminalDxe\SyncTerminalConOut.c
+#;   13. InsydeCrPkg\TerminalDxe\Terminal.c
+#;   14. InsydeCrPkg\TerminalDxe\Terminal.h
+#; 
+#; Tag#: 05.21.26
+#; Issue#: IB14090073
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Some customers want to record sequence log(CR Sync mode) and want to quick in SCU (async mode). 
+#;              When enter SCU set termianl as async mode. During boot and shell set terminal as sync mode.
+#; Solution:  (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\TerminalDxe\SyncTerminalConOut.c
+#;   2. InsydeCrPkg\TerminalDxe\Terminal.c
+#;   3. InsydeCrPkg\TerminalDxe\Terminal.h
+#;   4. InsydeCrPkg\TerminalDxe\TerminalDxe.inf
+#; 
+#; Tag#: 05.21.26
+#; Issue#: IB14090072
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: 1. There have a lot of `?' chars around the fields in BIOS SETUP.
+#;          2. Sync-Terminal output had wrong layout
+#; RootCause: 1. The VT100 terminal didn't Unrecognized Wide Character, so it print '?'.
+#;            2. Some terminal software didn't support scroll-up sequence code.
+#; Description: (Fix Bug)
+#; Solution: 1. VT100 termial output  exclusion of wide characters.
+#;           2. Remove scroll-up sequence code.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\TerminalDxe\SyncTerminalConOut.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.25
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.25
+#; Issue#: IB14090071
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Fix H2OABT klocwork issue.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\Library\CrDeviceVariableLib\CrDeviceVariableLib.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.24
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.23
+#; Issue#: IB14090070
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: 1. System hang when enable MMIO serial to redirection screen and execute H2ORTE in Dos.
+#;          2. In headless platform, the OPROM and DOS didn't redirection screen to terminal.
+#; RootCause: 1. Some application change the CPU mode in dos. That cause the MMIO accress will break.
+#;            2. The SEQ1[5] didn't decode when headless mode. Then always didn't do the INT 1C task to send screen.
+#; Description: (Bug Fix)
+#; Solution:  1. Using SMI to access MMIO address in DOS.
+#;            2. When headless mode, the  SEQ1[5] check always return TRUE.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Added:
+#;   1. InsydeCrPkg\CrServiceSmm\
+#;   2. InsydeCrPkg\CrServiceSmm\CrServiceSmm.c
+#;   3. InsydeCrPkg\CrServiceSmm\CrServiceSmm.h
+#;   4. InsydeCrPkg\CrServiceSmm\CrServiceSmm.inf
+#; Modified:
+#;   1. InsydeCrPkg\CrServiceDxe\CrLegacySupport.c
+#;   2. InsydeCrPkg\CrServiceDxe\CrLegacySupport.h
+#;   3. InsydeCrPkg\CrServiceDxe\CrServiceDxe.inf
+#;   4. InsydeCrPkg\Csm\CrRom\CrRom.bin
+#;   5. InsydeCrPkg\InsydeCrPkg.dec
+#;   6. InsydeCrPkg\Package.dsc
+#;   7. InsydeCrPkg\Package.fdf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.21
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.21
+#; Issue#: IB14090067
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: 1. Using PCI serial and boot in non-uefi mode. Some system will hang after load option ROM.
+#;          2. After load option ROM KT didn't work normal.
+#; RootCause:  1. One variable is NULL. That cause there didn't work the close interrupt function.
+#;             2. Option ROM setting uart to FIFO mode, but KT only support non-FIFO mode, now.
+#; Description: (Bug Fix)
+#; Solution:  1. Assign value to the variable, and PCI interrupt will close normal.
+#;            2. Option ROM didn't modify the FIFO mode setting.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\CrServiceDxe\CrLegacySupport.c
+#;   2. InsydeCrPkg\CrServiceDxe\CrServiceDxe.c
+#;   3. InsydeCrPkg\Csm\CrRom\CrRom.bin
+#;   4. InsydeCrPkg\Uart16550Devices\PciUartDxe\PciUartDxe.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.20
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.20
+#; Issue#: IB14090066
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: PCI serial device can't work in DOS.
+#; RootCause: CR OPROM using wrong PFA to get device IRQ.
+#; Description: (Bug Fix)
+#; Solution:  Fix FillCRInfo() to pass correct PFA to CR OPROM.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\CrServiceDxe\CrLegacySupport.c
+#; 
+#; Tag#: 05.21.20
+#; Issue#: IB04560578
+#; Severity: Feature 
+#; Category: POST code
+#; Symptom: Support non-efidebug BIOS to print POST code.
+#; RootCause: none
+#; Description: How to use it?
+#;              1. enable PCD - "PcdSerialPortPostCode"
+#;              2. overwrite PostCodeLib. 
+#;                 For example: PostCodeLib|SegFeaturePkg/Library/SerialPortPostCodeLib/SerialPortPostCodeLib.inf 
+#; Solution: Add it.
+#; SolutionDependency: None. 
+#; Reviewer: IB04560000
+#; RelatedFiles:
+#; Added:
+#;   1. SegFeaturePkg\Library\SerialPortPostCodeLib\
+#;   2. SegFeaturePkg\Library\SerialPortPostCodeLib\SerialPortPostCode.c
+#;   3. SegFeaturePkg\Library\SerialPortPostCodeLib\SerialPortPostCodeLib.inf
+#; Modified:
+#;   1. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.19
+#; Status: Tag version
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.18
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.18
+#; Issue#: IB14090065
+#; Severity: Minor
+#; Category: Remote Recovery Service
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Fix H2OABT klocwork issue.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeRemoteServicePkg\RrsConfigDxe\RrsConfig.c
+#; 
+#; Tag#: 05.21.18
+#; Issue#: IB14090064
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: If system only has one CR device. This CR device can't work when second boot.
+#; RootCause: Because "ConOut" variable will be reseted each boot. But the CR service only update active device path into "ConOut" variable at first boot.
+#; Description: (Bug Fix)
+#; Solution:  Add CR active device path into ConIn/ConOut variable every time.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\CrServiceDxe\CrVariableUpdate.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.17
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.17
+#; Issue#: IB14090063
+#; Severity: Minor
+#; Category: Remote Recovery Service
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Fix H2OABT klocwork issue.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeRemoteServicePkg\Library\H2OTcpIoLib\Tcp4IoLib.c
+#;   2. InsydeRemoteServicePkg\RamDiskDxe\RamDisk.c
+#;   3. InsydeRemoteServicePkg\RemoteRecoveryDriver\RemoteRecoveryDriver.inf
+#;   4. InsydeRemoteServicePkg\RrsConfigDxe\RrsConfig.c
+#; 
+#; Tag#: 05.21.17
+#; Issue#: IB14090062
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Fix H2OABT klocwork issue.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\CrServiceDxe\CrServiceDxe.c
+#;   2. InsydeCrPkg\CrServiceDxe\CrServiceMisc.c
+#;   3. InsydeCrPkg\CrServiceDxe\CrServiceMisc.h
+#;   4. InsydeCrPkg\CrServiceDxe\CrVariableUpdate.c
+#;   5. InsydeCrPkg\Library\CrDeviceVariableLib\CrDeviceVariableLib.c
+#;   6. InsydeCrPkg\Library\CrDeviceVariableLib\CrDeviceVariableMisc.c
+#;   7. InsydeCrPkg\Library\CrDeviceVariableLib\InternalCrDeviceVariableLib.h
+#;   8. InsydeCrPkg\TerminalDxe\Terminal.c
+#; 
+#; Tag#: 05.21.17
+#; Issue#: IB14090061
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Supporting 16550 Non-FIFO UART.  
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\Include\Protocol\Uart16550Access.h
+#;   2. InsydeCrPkg\Library\CrConfigDefaultLib\CrConfigDefaultLib.c
+#;   3. InsydeCrPkg\Uart16550Devices\PciUartDxe\PciUartDxe.c
+#;   4. InsydeCrPkg\Uart16550SerialDxe\Uart16550Serial.c
+#;   5. InsydeCrPkg\Uart16550SerialDxe\Uart16550Serial.h
+#; 
+#; Tag#: 05.21.17
+#; Issue#: IB14090060
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: Build fail at some board package. (e.g. Purley)
+#; RootCause: Compiler check some variables didn't initialize when used.
+#; Description: (Bug Fix)
+#; Solution: Initiating variables before used. 
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrDeviceMenu.c
+#;   2. InsydeCrPkg\Library\CrConfigDefaultLib\CrConfigDefaultLib.c
+#;   3. InsydeCrPkg\Library\CrDeviceVariableLib\CrDeviceVariableMisc.c
+#;   4. InsydeCrPkg\Uart16550Devices\IsaUartDxe\IsaUartDxe.c
+#; 
+#; Tag#: 05.21.17
+#; Issue#: IB04880023
+#; Severity: Minor
+#; Category: Remote Recovery
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: New RR architecture.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Added:
+#;   1. InsydeRemoteServicePkg\DnsDxe\DnsDxe.inf
+#;   2. InsydeRemoteServicePkg\DnsDxe\X64\
+#;   3. InsydeRemoteServicePkg\DnsDxe\X64\DnsDxe.efi
+#;   4. InsydeRemoteServicePkg\Ftp4Dxe\X64\
+#;   5. InsydeRemoteServicePkg\Ftp4Dxe\X64\Ftp4Dxe.efi
+#;   6. InsydeRemoteServicePkg\H2ODomUpdateDxe\X64\
+#;   7. InsydeRemoteServicePkg\H2ODomUpdateDxe\X64\H2ODomUpdateDxe.efi
+#;   8. InsydeRemoteServicePkg\H2ORrpDxe\
+#;   9. InsydeRemoteServicePkg\H2ORrpDxe\H2ORrpDxe.inf
+#;   10. InsydeRemoteServicePkg\H2ORrpDxe\Key\
+#;   11. InsydeRemoteServicePkg\H2ORrpDxe\Key\certificatePassword.txt
+#;   12. InsydeRemoteServicePkg\H2ORrpDxe\Key\certificatePrivKey
+#;   13. InsydeRemoteServicePkg\H2ORrpDxe\Key\certificatePubKey
+#;   14. InsydeRemoteServicePkg\H2ORrpDxe\Key\hostPassword.txt
+#;   15. InsydeRemoteServicePkg\H2ORrpDxe\Key\hostPrivKey
+#;   16. InsydeRemoteServicePkg\H2ORrpDxe\Key\hostPubKey
+#;   17. InsydeRemoteServicePkg\H2ORrpDxe\Key\hostPubKey.sign
+#;   18. InsydeRemoteServicePkg\H2ORrpDxe\Key\nodePassword.txt
+#;   19. InsydeRemoteServicePkg\H2ORrpDxe\Key\nodePrivKey
+#;   20. InsydeRemoteServicePkg\H2ORrpDxe\Key\nodePubKey
+#;   21. InsydeRemoteServicePkg\H2ORrpDxe\Key\nodePubKey.sign
+#;   22. InsydeRemoteServicePkg\H2ORrpDxe\X64\
+#;   23. InsydeRemoteServicePkg\H2ORrpDxe\X64\H2ORrpDxe.efi
+#;   24. InsydeRemoteServicePkg\Include\Guid\H2ORamDisk.h
+#;   25. InsydeRemoteServicePkg\Include\Library\H2OTcpIoLib.h
+#;   26. InsydeRemoteServicePkg\Include\Library\SelfDebugLib.h
+#;   27. InsydeRemoteServicePkg\Include\Protocol\H2ORamDiskServices.h
+#;   28. InsydeRemoteServicePkg\Include\Protocol\H2ORrp.h
+#;   29. InsydeRemoteServicePkg\Include\Protocol\PingProtocol.h
+#;   30. InsydeRemoteServicePkg\Include\Protocol\RrsDns.h
+#;   31. InsydeRemoteServicePkg\Library\H2OTcpIoLib\
+#;   32. InsydeRemoteServicePkg\Library\H2OTcpIoLib\H2OTcpIo.h
+#;   33. InsydeRemoteServicePkg\Library\H2OTcpIoLib\H2OTcpIoLib.c
+#;   34. InsydeRemoteServicePkg\Library\H2OTcpIoLib\H2OTcpIoLib.inf
+#;   35. InsydeRemoteServicePkg\Library\H2OTcpIoLib\Tcp4IoLib.c
+#;   36. InsydeRemoteServicePkg\Library\H2OTcpIoLib\Tcp6IoLib.c
+#;   37. InsydeRemoteServicePkg\Library\SelfDebugLib\
+#;   38. InsydeRemoteServicePkg\Library\SelfDebugLib\ConsoleDebug.c
+#;   39. InsydeRemoteServicePkg\Library\SelfDebugLib\SelfDebugLib.c
+#;   40. InsydeRemoteServicePkg\Library\SelfDebugLib\SelfDebugLib.inf
+#;   41. InsydeRemoteServicePkg\Library\SelfDebugLib\SerialDebug.c
+#;   42. InsydeRemoteServicePkg\Library\SelfDebugLib\UartDebug.c
+#;   43. InsydeRemoteServicePkg\PingDxe\
+#;   44. InsydeRemoteServicePkg\PingDxe\PingDxe.inf
+#;   45. InsydeRemoteServicePkg\PingDxe\X64\
+#;   46. InsydeRemoteServicePkg\PingDxe\X64\PingDxe.efi
+#;   47. InsydeRemoteServicePkg\RamDiskDxe\
+#;   48. InsydeRemoteServicePkg\RamDiskDxe\RamDisk.c
+#;   49. InsydeRemoteServicePkg\RamDiskDxe\RamDisk.h
+#;   50. InsydeRemoteServicePkg\RamDiskDxe\RamDiskDxe.inf
+#;   51. InsydeRemoteServicePkg\RemoteRecoveryDriver\
+#;   52. InsydeRemoteServicePkg\RemoteRecoveryDriver\RemoteRecoveryDriver.inf
+#;   53. InsydeRemoteServicePkg\RemoteRecoveryDriver\X64\
+#;   54. InsydeRemoteServicePkg\RemoteRecoveryDriver\X64\RemoteRecoveryDriver.efi
+#;   55. InsydeRemoteServicePkg\RrsConfigDxe\
+#;   56. InsydeRemoteServicePkg\RrsConfigDxe\RrsConfig.c
+#;   57. InsydeRemoteServicePkg\RrsConfigDxe\RrsConfigUtil.c
+#;   58. InsydeRemoteServicePkg\RrsConfigDxe\RrsConfigUtil.h
+#;   59. InsydeRemoteServicePkg\RrsConfigDxe\RrsConfigUtil.inf
+#;   60. InsydeRemoteServicePkg\RrsConfigDxe\RrsConfigUtilStr.uni
+#;   61. InsydeRemoteServicePkg\RrsConfigDxe\RrsConfigUtilVfr.vfr
+#;   62. InsydeRemoteServicePkg\RrsConfigDxe\RrsSetupConfig.h
+#; Deleted:
+#;   1. InsydeRemoteServicePkg\ConfigUtility\
+#;   2. InsydeRemoteServicePkg\DnsDxe\DnsDriver.c
+#;   3. InsydeRemoteServicePkg\DnsDxe\DnsDriver.h
+#;   4. InsydeRemoteServicePkg\DnsDxe\DnsDxe.inf
+#;   5. InsydeRemoteServicePkg\Ftp4Dxe\ComponentName.c
+#;   6. InsydeRemoteServicePkg\Ftp4Dxe\Ftp4Driver.c
+#;   7. InsydeRemoteServicePkg\Ftp4Dxe\Ftp4Driver.h
+#;   8. InsydeRemoteServicePkg\Ftp4Dxe\Ftp4Main.c
+#;   9. InsydeRemoteServicePkg\Ftp4Dxe\Ftp4Main.h
+#;   10. InsydeRemoteServicePkg\Ftp4Dxe\Ftp4TcpIo.c
+#;   11. InsydeRemoteServicePkg\Ftp4Dxe\Ftp4TcpIo.h
+#;   12. InsydeRemoteServicePkg\Ftp4Dxe\MyDebug.c
+#;   13. InsydeRemoteServicePkg\Ftp4Dxe\MyDebug.h
+#;   14. InsydeRemoteServicePkg\Ftp4Dxe\MyFiber.c
+#;   15. InsydeRemoteServicePkg\Ftp4Dxe\MyFiber.h
+#;   16. InsydeRemoteServicePkg\H2ODomUpdateDxe\BlockIo.c
+#;   17. InsydeRemoteServicePkg\H2ODomUpdateDxe\BlockIo.h
+#;   18. InsydeRemoteServicePkg\H2ODomUpdateDxe\ComponentName.c
+#;   19. InsydeRemoteServicePkg\H2ODomUpdateDxe\ComponentName.h
+#;   20. InsydeRemoteServicePkg\H2ODomUpdateDxe\DriverBinding.h
+#;   21. InsydeRemoteServicePkg\H2ODomUpdateDxe\H2ODomUpdateDxe.c
+#;   22. InsydeRemoteServicePkg\H2ODomUpdateDxe\H2ODomUpdateDxe.h
+#;   23. InsydeRemoteServicePkg\H2ORrsDxe\
+#;   24. InsydeRemoteServicePkg\Include\Protocol\Dns.h
+#;   25. InsydeRemoteServicePkg\Include\Protocol\H2ORrs.h
+#; Modified:
+#;   1. InsydeRemoteServicePkg\Ftp4Dxe\Ftp4Dxe.inf
+#;   2. InsydeRemoteServicePkg\H2ODomUpdateDxe\H2ODomUpdateDxe.inf
+#;   3. InsydeRemoteServicePkg\Include\Guid\H2ORrsConfig.h
+#;   4. InsydeRemoteServicePkg\Include\Guid\H2ORrsConfigHii.h
+#;   5. InsydeRemoteServicePkg\Include\H2ORrsStringId.h
+#;   6. InsydeRemoteServicePkg\Include\Protocol\H2ODomUpdate.h
+#;   7. InsydeRemoteServicePkg\InsydeRemoteServicePkg.dec
+#;   8. InsydeRemoteServicePkg\Package.dsc
+#;   9. InsydeRemoteServicePkg\Package.fdf
+#;   10. InsydeRemoteServicePkg\RrsStringsSvc\RrsStringsSvc.c
+#;   11. InsydeRemoteServicePkg\RrsStringsSvc\RrsStringsSvc.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.16
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.16
+#; Issue#: IB04560000 
+#; Severity: Feature 
+#; Category: H2OUVE
+#; Symptom: Add H2OUVE package 
+#; RootCause: none
+#; Description: This feature package is for H2OUVE tool
+#; Solution: Add it.
+#; SolutionDependency: None. 
+#; Reviewer: IB04560000
+#; RelatedFiles:
+#; Added:
+#;   1. InsydeH2oUvePkg\
+#;   2. InsydeH2oUvePkg\ConfigUtility\
+#;   3. InsydeH2oUvePkg\ConfigUtility\H2oUveConfigUtilDxe\
+#;   4. InsydeH2oUvePkg\ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtil.c
+#;   5. InsydeH2oUvePkg\ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtil.h
+#;   6. InsydeH2oUvePkg\ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtilConfigPageVfr.vfr
+#;   7. InsydeH2oUvePkg\ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtilDxe.inf
+#;   8. InsydeH2oUvePkg\ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtilSetupConfig.h
+#;   9. InsydeH2oUvePkg\ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtilStr.uni
+#;   10. InsydeH2oUvePkg\Include\
+#;   11. InsydeH2oUvePkg\Include\Guid\
+#;   12. InsydeH2oUvePkg\Include\Guid\H2oUveConfigUtilHii.h
+#;   13. InsydeH2oUvePkg\Include\Library\
+#;   14. InsydeH2oUvePkg\Include\Library\SmmOemSvcH2oUveLib.h
+#;   15. InsydeH2oUvePkg\Include\Protocol\
+#;   16. InsydeH2oUvePkg\Include\Protocol\VariableEditBootTypeInfo.h
+#;   17. InsydeH2oUvePkg\InsydeH2oUvePkg.dec
+#;   18. InsydeH2oUvePkg\Library\
+#;   19. InsydeH2oUvePkg\Library\SmmOemSvcH2oUveLib\
+#;   20. InsydeH2oUvePkg\Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.c
+#;   21. InsydeH2oUvePkg\Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.inf
+#;   22. InsydeH2oUvePkg\Library\SmmOemSvcH2oUveLib\SysPasswordSmm.c
+#;   23. InsydeH2oUvePkg\Library\SmmOemSvcH2oUveLib\SysPasswordSmm.h
+#;   24. InsydeH2oUvePkg\Library\SmmOemSvcH2oUveLib\VariableEditPwd.h
+#;   25. InsydeH2oUvePkg\Package.dsc
+#;   26. InsydeH2oUvePkg\Package.fdf
+#;   27. InsydeH2oUvePkg\VariableEditDxe\
+#;   28. InsydeH2oUvePkg\VariableEditDxe\VariableEditDxe.c
+#;   29. InsydeH2oUvePkg\VariableEditDxe\VariableEditDxe.h
+#;   30. InsydeH2oUvePkg\VariableEditDxe\VariableEditDxe.inf
+#;   31. InsydeH2oUvePkg\VariableEditSmm\
+#;   32. InsydeH2oUvePkg\VariableEditSmm\VariableEditSmm.c
+#;   33. InsydeH2oUvePkg\VariableEditSmm\VariableEditSmm.h
+#;   34. InsydeH2oUvePkg\VariableEditSmm\VariableEditSmm.inf
+#; 
+#; Tag#: 05.21.16
+#; Issue#: IB14090059
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: There will not be any changes when "FIFO_MAX_NUMBER" define more than 256.
+#; RootCause: The index variable was used UINT8. So it didn't access FIFO over 256 address.
+#; Description: (Bug Fix)
+#; Solution: Changing index type to UINT32 and add PcdH2OCrTerminalFifoSize to setting FIFO size.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\InsydeCrPkg.dec
+#;   2. InsydeCrPkg\Package.dsc
+#;   3. InsydeCrPkg\TerminalDxe\Terminal.h
+#;   4. InsydeCrPkg\TerminalDxe\TerminalConIn.c
+#;   5. InsydeCrPkg\TerminalDxe\TerminalDxe.inf
+#; 
+#; Tag#: 05.21.15
+#; Issue#: IB14090058
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: New CR architecture.
+#;              The gEfiCRPolicyProtocolGuid is discard now. Please using PcdH2OCrPolicy and PcdH2OCrDevice to replace it.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Added:
+#;   1. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrCallback.c
+#;   2. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrCallback.h
+#;   3. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrConfig.h
+#;   4. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrDeviceMenu.c
+#;   5. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrDeviceMenu.h
+#;   6. InsydeCrPkg\ConfigUtility\SolConfigUtility\
+#;   7. InsydeCrPkg\ConfigUtility\SolConfigUtility\SolConfigUtil.c
+#;   8. InsydeCrPkg\ConfigUtility\SolConfigUtility\SolConfigUtil.h
+#;   9. InsydeCrPkg\ConfigUtility\SolConfigUtility\SolConfigUtil.inf
+#;   10. InsydeCrPkg\ConfigUtility\SolConfigUtility\SolConfigUtilDialog.c
+#;   11. InsydeCrPkg\ConfigUtility\SolConfigUtility\SolConfigUtilMisc.c
+#;   12. InsydeCrPkg\ConfigUtility\SolConfigUtility\SolConfigUtilMisc.h
+#;   13. InsydeCrPkg\ConfigUtility\SolConfigUtility\SolConfigUtilSetupConfig.h
+#;   14. InsydeCrPkg\ConfigUtility\SolConfigUtility\SolConfigUtilStr.uni
+#;   15. InsydeCrPkg\ConfigUtility\SolConfigUtility\SolConfigUtilVfr.vfr
+#;   16. InsydeCrPkg\CrServiceDxe\
+#;   17. InsydeCrPkg\CrServiceDxe\CrBdaMemManager.c
+#;   18. InsydeCrPkg\CrServiceDxe\CrBdaMemManager.h
+#;   19. InsydeCrPkg\CrServiceDxe\CrLegacySupport.c
+#;   20. InsydeCrPkg\CrServiceDxe\CrLegacySupport.h
+#;   21. InsydeCrPkg\CrServiceDxe\CrServiceDxe.c
+#;   22. InsydeCrPkg\CrServiceDxe\CrServiceDxe.h
+#;   23. InsydeCrPkg\CrServiceDxe\CrServiceDxe.inf
+#;   24. InsydeCrPkg\CrServiceDxe\CrServiceMisc.c
+#;   25. InsydeCrPkg\CrServiceDxe\CrServiceMisc.h
+#;   26. InsydeCrPkg\CrServiceDxe\CrVariableUpdate.c
+#;   27. InsydeCrPkg\CrServiceDxe\CrVariableUpdate.h
+#;   28. InsydeCrPkg\Include\CrDeviceType.h
+#;   29. InsydeCrPkg\Include\CrPolicyType.h
+#;   30. InsydeCrPkg\Include\Guid\SolSetupConfigHii.h
+#;   31. InsydeCrPkg\Include\Library\CrDeviceVariableLib.h
+#;   32. InsydeCrPkg\Include\Library\SelfDebugLib.h
+#;   33. InsydeCrPkg\Include\Protocol\TelnetProtocol.h
+#;   34. InsydeCrPkg\Include\Protocol\Uart16550Access.h
+#;   35. InsydeCrPkg\Library\CrDeviceVariableLib\
+#;   36. InsydeCrPkg\Library\CrDeviceVariableLib\CrDeviceVariableLib.c
+#;   37. InsydeCrPkg\Library\CrDeviceVariableLib\CrDeviceVariableLib.inf
+#;   38. InsydeCrPkg\Library\CrDeviceVariableLib\CrDeviceVariableMisc.c
+#;   39. InsydeCrPkg\Library\CrDeviceVariableLib\DebugPrint.c
+#;   40. InsydeCrPkg\Library\CrDeviceVariableLib\DebugPrint.h
+#;   41. InsydeCrPkg\Library\CrDeviceVariableLib\InternalCrDeviceVariableLib.h
+#;   42. InsydeCrPkg\Library\SelfDebugLib\
+#;   43. InsydeCrPkg\Library\SelfDebugLib\SelfDebugLib.c
+#;   44. InsydeCrPkg\Library\SelfDebugLib\SelfDebugLib.inf
+#;   45. InsydeCrPkg\Library\SelfDebugLib\UartDebug.c
+#;   46. InsydeCrPkg\TelnetDxe\
+#;   47. InsydeCrPkg\TelnetDxe\TelnetDxe.inf
+#;   48. InsydeCrPkg\TelnetDxe\X64\
+#;   49. InsydeCrPkg\TelnetDxe\X64\TelnetDxe.efi
+#;   50. InsydeCrPkg\Uart16550Devices\
+#;   51. InsydeCrPkg\Uart16550Devices\IsaUartDxe\
+#;   52. InsydeCrPkg\Uart16550Devices\IsaUartDxe\ComponentName.c
+#;   53. InsydeCrPkg\Uart16550Devices\IsaUartDxe\IsaUartDxe.c
+#;   54. InsydeCrPkg\Uart16550Devices\IsaUartDxe\IsaUartDxe.h
+#;   55. InsydeCrPkg\Uart16550Devices\IsaUartDxe\IsaUartDxe.inf
+#;   56. InsydeCrPkg\Uart16550Devices\PchHsUartDxe\
+#;   57. InsydeCrPkg\Uart16550Devices\PchHsUartDxe\PchHsUartDxe.c
+#;   58. InsydeCrPkg\Uart16550Devices\PchHsUartDxe\PchHsUartDxe.h
+#;   59. InsydeCrPkg\Uart16550Devices\PchHsUartDxe\PchHsUartDxe.inf
+#;   60. InsydeCrPkg\Uart16550Devices\PciHsUartDxe\
+#;   61. InsydeCrPkg\Uart16550Devices\PciHsUartDxe\ComponentName.c
+#;   62. InsydeCrPkg\Uart16550Devices\PciHsUartDxe\PciHsUartDxe.c
+#;   63. InsydeCrPkg\Uart16550Devices\PciHsUartDxe\PciHsUartDxe.h
+#;   64. InsydeCrPkg\Uart16550Devices\PciHsUartDxe\PciHsUartDxe.inf
+#;   65. InsydeCrPkg\Uart16550Devices\PciUartDxe\
+#;   66. InsydeCrPkg\Uart16550Devices\PciUartDxe\ComponentName.c
+#;   67. InsydeCrPkg\Uart16550Devices\PciUartDxe\PciUartDxe.c
+#;   68. InsydeCrPkg\Uart16550Devices\PciUartDxe\PciUartDxe.h
+#;   69. InsydeCrPkg\Uart16550Devices\PciUartDxe\PciUartDxe.inf
+#;   70. InsydeCrPkg\Uart16550SerialDxe\
+#;   71. InsydeCrPkg\Uart16550SerialDxe\ComponentName.c
+#;   72. InsydeCrPkg\Uart16550SerialDxe\Uart16550Serial.c
+#;   73. InsydeCrPkg\Uart16550SerialDxe\Uart16550Serial.h
+#;   74. InsydeCrPkg\Uart16550SerialDxe\Uart16550SerialDxe.inf
+#;   75. InsydeCrPkg\UsbDevices\
+#;   76. InsydeCrPkg\UsbDevices\CrDdtCableDxe\
+#;   77. InsydeCrPkg\UsbDevices\CrDdtCableDxe\CrDdtCableDxe.inf
+#;   78. InsydeCrPkg\UsbDevices\CrDdtCableDxe\Ia32\
+#;   79. InsydeCrPkg\UsbDevices\CrDdtCableDxe\Ia32\CrDdtCableDxe.efi
+#;   80. InsydeCrPkg\UsbDevices\CrDdtCableDxe\X64\
+#;   81. InsydeCrPkg\UsbDevices\CrDdtCableDxe\X64\CrDdtCableDxe.efi
+#;   82. InsydeCrPkg\UsbDevices\CrPl2303Dxe\
+#;   83. InsydeCrPkg\UsbDevices\CrPl2303Dxe\CrPl2303Dxe.inf
+#;   84. InsydeCrPkg\UsbDevices\CrPl2303Dxe\Ia32\
+#;   85. InsydeCrPkg\UsbDevices\CrPl2303Dxe\Ia32\CrPl2303Dxe.efi
+#;   86. InsydeCrPkg\UsbDevices\CrPl2303Dxe\X64\
+#;   87. InsydeCrPkg\UsbDevices\CrPl2303Dxe\X64\CrPl2303Dxe.efi
+#; Deleted:
+#;   1. InsydeCrPkg\CrDdtCableDxe\
+#;   2. InsydeCrPkg\CrHookDxe\
+#;   3. InsydeCrPkg\CrPl2303Dxe\
+#;   4. InsydeCrPkg\CrPolicyDxe\
+#;   5. InsydeCrPkg\Include\Protocol\CRBdsHook.h
+#;   6. InsydeCrPkg\IsaSerialDxe\
+#;   7. InsydeCrPkg\Library\CrBdsLib\
+#;   8. InsydeCrPkg\Library\CrVfrConfigLib\CrVfrString.uni
+#;   9. InsydeCrPkg\Library\CrVfrConfigLib\Sol.c
+#;   10. InsydeCrPkg\Library\CrVfrConfigLib\Sol.h
+#;   11. InsydeCrPkg\Library\CrVfrConfigLib\SolConfigDialog.c
+#;   12. InsydeCrPkg\PciSerialDxe\
+#; Modified:
+#;   1. InsydeCrPkg\AdvanceTerminalDxe\AdvanceTerminalDxe.inf
+#;   2. InsydeCrPkg\AdvanceTerminalDxe\X64\AdvanceTerminalDxe.efi
+#;   3. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   4. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrConfigUtil.h
+#;   5. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrConfigUtil.inf
+#;   6. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrConfigUtilStr.uni
+#;   7. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#;   8. InsydeCrPkg\Csm\CrRom\CrRom.bin
+#;   9. InsydeCrPkg\Include\Guid\CrConfigHii.h
+#;   10. InsydeCrPkg\Include\Library\CrBdsLib.h
+#;   11. InsydeCrPkg\Include\Library\CrConfigDefaultLib.h
+#;   12. InsydeCrPkg\Include\Library\CrVfrConfigLib.h
+#;   13. InsydeCrPkg\Include\Protocol\CRPolicy.h
+#;   14. InsydeCrPkg\Include\Protocol\ConsoleRedirectionService.h
+#;   15. InsydeCrPkg\Include\Protocol\CrDeviceSupport.h
+#;   16. InsydeCrPkg\Include\Protocol\CrSrvManager.h
+#;   17. InsydeCrPkg\InsydeCrPkg.dec
+#;   18. InsydeCrPkg\Library\CrConfigDefaultLib\CrConfigDefaultLib.c
+#;   19. InsydeCrPkg\Library\CrConfigDefaultLib\CrConfigDefaultLib.inf
+#;   20. InsydeCrPkg\Library\CrVfrConfigLib\CrVfrConfigLib.c
+#;   21. InsydeCrPkg\Library\CrVfrConfigLib\CrVfrConfigLib.inf
+#;   22. InsydeCrPkg\Package.dsc
+#;   23. InsydeCrPkg\Package.fdf
+#;   24. InsydeCrPkg\SolDxe\SolDxe.inf
+#;   25. InsydeCrPkg\SolDxe\X64\SolDxe.efi
+#;   26. InsydeCrPkg\TerminalDxe\AsyncTerminalConOut.c
+#;   27. InsydeCrPkg\TerminalDxe\Terminal.c
+#;   28. InsydeCrPkg\TerminalDxe\Terminal.h
+#;   29. InsydeCrPkg\TerminalDxe\TerminalDxe.inf
+#;   30. InsydeCrPkg\UsbSerialDxe\UsbSerialDxe.inf
+#;   31. InsydeCrPkg\UsbSerialDxe\X64\UsbSerialDxe.efi
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.12 
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.13
+#; Issue#: IB14090054
+#; Severity: Minor
+#; Category: Console Redirection, EarlyKeyboard
+#; Symptom: (remove files)
+#; RootCause: (remove files)
+#; Description: Remove useless files
+#; Solution: (remove files)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Deleted:
+#;   1. InsydeCrPkg\InsydeCrPkg.dsc
+#;   2. InsydeEarlyKeyboardPkg\InsydeEarlyKeyboardPkg.dsc
+#; 
+#; Tag#: 05.21.11
+#; Issue#: IB09330292
+#; Severity: Feature
+#; Category: IPMI
+#; Symptom: Remove the old relative path
+#; RootCause: None.
+#; Description: None
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB09330000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeIpmiPkg\IpmiInterfacePei\IpmiInterfacePei.inf
+#; 
+#; Tag#: 05.21.11
+#; Issue#: IB08400337 
+#; Severity: Medium
+#; Category: Event Log
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement) 
+#; Description: Code enhancement:
+#;              1. Fix the string allocation issue.
+#;              2. Remove the disable of Insyde module drivers in DSC file, and only use disable mechanism in FDF file.
+#;              3. Should not display DebugMessageViewer if PcdStoreDebugMsgEnPei and PcdStoreDebugMsgEn are not enabled.
+#; Solution: None.
+#; SolutionDependency: None.
+#; Reviewer: IB08400000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeEventLogPkg\ConfigUtility\BiosEventLogConfigUtilDxe\BiosEventLogConfigUtil.c
+#;   2. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtil.c
+#;   3. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtilDxe.inf
+#;   4. InsydeEventLogPkg\ConfigUtility\SetupChangeConfigUtilDxe\SetupChangeConfigUtil.c
+#;   5. InsydeEventLogPkg\EventLogPostDisplayDxe\EventLogPostDisplayCommonFunc.c
+#;   6. InsydeEventLogPkg\Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.10 
+#; Status: Initial version
+#; 
+#; Tag#: 05.21.11
+#; Issue#: IB08400335 
+#; Severity: Feature
+#; Category: Setup
+#; Symptom: Change the Link opcode mechanism for SEG features.
+#; RootCause: None.
+#; Description: Code Enhancement. 
+#; Solution: 1. Removed the feature PCD from gLinkAdvancedTokenSpaceGuid.
+#;           2. Create feature PCD as PcdH2OXXXXFormsetClassGuid of feature's PCD token space. (XXXX is feature name.)
+#; SolutionDependency: None
+#; Reviewer: IB04560000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeApeiPkg\ConfigUtility\ApeiConfigUtilDxe\ApeiConfigUtilConfigPageVfr.vfr
+#;   2. InsydeApeiPkg\ConfigUtility\ApeiConfigUtilDxe\ApeiConfigUtilDxe.inf
+#;   3. InsydeApeiPkg\InsydeApeiPkg.dec
+#;   4. InsydeApeiPkg\Package.dsc
+#;   5. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrConfigUtil.inf
+#;   6. InsydeCrPkg\ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#;   7. InsydeCrPkg\InsydeCrPkg.dec
+#;   8. InsydeCrPkg\Package.dsc
+#;   9. InsydeEventLogPkg\ConfigUtility\H2OEventLogConfigManagerDxe\H2OEventLogConfigManagerDxe.inf
+#;   10. InsydeEventLogPkg\ConfigUtility\H2OEventLogConfigManagerDxe\H2OEventLogConfigManagerVfr.vfr
+#;   11. InsydeEventLogPkg\InsydeEventLogPkg.dec
+#;   12. InsydeEventLogPkg\Package.dsc
+#;   13. InsydeIpmiPkg\InsydeIpmiPkg.dec
+#;   14. InsydeIpmiPkg\Library\DxeIpmiDmConfigVfrLib\DxeIpmiDmConfigVfrLib.inf
+#;   15. InsydeIpmiPkg\Library\DxeIpmiDmConfigVfrLib\IpmiDmConfigVfr.vfr
+#;   16. InsydeIpmiPkg\Package.dsc
+#    17. InsydeIpmiPkg\IpmiInterfacePei\IpmiInterfacePei.inf
+#;   18. InsydeRemoteServicePkg\ConfigUtility\RrsConfigUtilDxe\RrsConfigUtil.inf
+#;   19. InsydeRemoteServicePkg\ConfigUtility\RrsConfigUtilDxe\RrsConfigUtilVfr.vfr
+#;   20. InsydeRemoteServicePkg\InsydeRemoteServicePkg.dec
+#;   21. InsydeRemoteServicePkg\Package.dsc
+#; 
+#; Tag#: 05.21.11
+#; Issue#: IB14090053
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Modify Console redirection IsaSerial driver version to increase the priority of connect.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\IsaSerialDxe\ComponentName.c
+#;   2. InsydeCrPkg\IsaSerialDxe\IsaSerialDxe.inf
+#;   3. InsydeCrPkg\IsaSerialDxe\Serial.c
+#;   4. InsydeCrPkg\Package.dsc
+#;   5. InsydeCrPkg\Package.fdf
+#; 
+#; Tag#: 05.21.06 
+#; Issue#: IB04560000 
+#; Severity: Feature 
+#; Category: SEG Feature 
+#; Symptom: (Code Enhancement) 
+#; RootCause: (Code Enhancement)
+#; Description: (Code Enhancement) 
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None. 
+#; Reviewer: IB04560000
+#; RelatedFiles:
+#; Deleted:
+#;   1. InsydeEventLogPkg\ConfigUtility\EventLogPkgVfrDataProviderPei\
+#; Modified:
+#;   1. InsydeEventLogPkg\Package.dsc
+#;   2. InsydeEventLogPkg\Package.fdf
+#;   3. InsydeIpmiPkg\IpmiInterfacePei\IpmiInterfacePei.c
+#;   4. InsydeIpmiPkg\IpmiInterfacePei\IpmiInterfacePei.inf
+#; 
+#; Tag#: 05.21.06 
+#; Issue#: IB04560000 
+#; Severity: Feature 
+#; Category: SEG Feature 
+#; Symptom: (Code Enhancement) 
+#; RootCause: (Code Enhancement)
+#; Description: (Code Enhancement) 
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None. 
+#; Reviewer: IB04560000
+#; RelatedFiles:
+#; Deleted:
+#;   1. SegFeaturePkg\Drivers\
+#;   2. SegFeaturePkg\Include\Library\PeiSegFeatureLib.h
+#;   3. SegFeaturePkg\Include\Library\VfrDataLib.h
+#;   4. SegFeaturePkg\Include\Ppi\H2OPeiVfrDataHandlerPpi.h
+#;   5. SegFeaturePkg\Include\Protocol\H2OVfrVariableProvider.h
+#;   6. SegFeaturePkg\Library\PeiSegFeatureLib\
+#;   7. SegFeaturePkg\Library\VfrDataLib\
+#; Modified:
+#;   1. InsydeApeiPkg\Whea\WheaSupport\WheaSupportDxe.c
+#;   2. SegFeaturePkg\Package.dsc
+#;   3. SegFeaturePkg\Package.fdf
+#;   4. SegFeaturePkg\SegFeaturePkg.dec
+#; 
+#; Tag#: 05.21.04
+#; Issue#: IB14090052
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: (Rollback)
+#; RootCause: (Rollback)
+#; Description: (Rollback)
+#; Solution: (Rollback)
+#; SolutionDependency: None
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\CrDdtCableDxe\CrDdtCableDxe.inf
+#;   2. InsydeCrPkg\CrPl2303Dxe\CrPl2303Dxe.inf
+#;   3. InsydeCrPkg\Library\CrBdsLib\CrBdsMisc.c
+#;   4. InsydeCrPkg\Library\CrVfrConfigLib\CrVfrConfigLib.c
+#;   5. InsydeCrPkg\UsbSerialDxe\UsbSerialDxe.inf
+#; 
+#; Tag#: 05.21.06
+#; Issue#: IB08400332 
+#; Severity: Feature
+#; Category: EFI DEBUG
+#; Symptom: (New Feature)
+#; RootCause: (New Feature) 
+#; Description: Add advanced mode operation to set the DEBUG print error level by detailed options. 
+#; Solution: (New Feature)
+#; SolutionDependency: None.
+#; Reviewer: IB08400000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtilConfigPageVfr.vfr
+#;   2. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtilSetupConfig.h
+#;   3. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtilStr.uni
+#;   4. InsydeEventLogPkg\DebugMessage\DebugMaskPei\DebugMaskPei.c
+#;   5. InsydeEventLogPkg\Include\Guid\DebugMessageConfigUtilHii.h
+#;   6. InsydeEventLogPkg\Include\Library\DebugCfgToErrLevelLib.h
+#;   7. InsydeEventLogPkg\Library\H2ODebugCfgToErrLevelLib\H2ODebugCfgToErrLevelLib.c
+#;   8. InsydeEventLogPkg\Library\H2ODxeDebugPrintErrorLevelLib\H2ODxeDebugPrintErrorLevelLib.c
+#;   9. InsydeEventLogPkg\Library\H2OPeiDebugPrintErrorLevelLib\H2OPeiDebugPrintErrorLevelLib.c
+#;   10. InsydeEventLogPkg\Library\H2OSmmDebugPrintErrorLevelLib\H2OSmmDebugPrintErrorLevelLib.c
+#; 
+#; Tag#: 05.21.04
+#; Issue#: IB14090052
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: USB Serial device didn't connect succes at XHCI platform.
+#; RootCause: The console redirection code only connect EHCI controller.
+#;            So the XHCI didn't be connected.
+#; Description: Bug fix. 
+#; Solution: Connect to all interfaces USB controller
+#; SolutionDependency: None
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\CrDdtCableDxe\CrDdtCableDxe.inf
+#;   2. InsydeCrPkg\CrPl2303Dxe\CrPl2303Dxe.inf
+#;   3. InsydeCrPkg\Library\CrBdsLib\CrBdsMisc.c
+#;   4. InsydeCrPkg\Library\CrVfrConfigLib\CrVfrConfigLib.c
+#;   5. InsydeCrPkg\UsbSerialDxe\UsbSerialDxe.inf
+#; 
+#; Tag#: 05.21.04
+#; Issue#: IB14090051
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Fix H2OABT klocwork issue.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg\Library\CrVfrConfigLib\CrVfrConfigLib.c
+#; 
+#; Tag#: 05.21.06
+#; Issue#: IB14090000
+#; Severity: Feature
+#; Category: Early Keyboard
+#; Symptom: Remove the old issue number and update copy right.
+#; RootCause: Code update.
+#; Description: None
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeEarlyKeyboardPkg\ConsoleInPei\ConsoleInPei.c
+#;   2. InsydeEarlyKeyboardPkg\ConsoleInPei\ConsoleInPei.h
+#;   3. InsydeEarlyKeyboardPkg\ConsoleInPei\ConsoleInPei.inf
+#;   4. InsydeEarlyKeyboardPkg\Include\Guid\H2OPeiCollectionKeyHob.h
+#;   5. InsydeEarlyKeyboardPkg\Include\Guid\H2OPeiMonitorKeyHob.h
+#;   6. InsydeEarlyKeyboardPkg\Include\Guid\HotKeyHob.h
+#;   7. InsydeEarlyKeyboardPkg\Include\Library\SerialIoLib.h
+#;   8. InsydeEarlyKeyboardPkg\Include\Ppi\H2OPeiConsoleIn.h
+#;   9. InsydeEarlyKeyboardPkg\Include\Ppi\H2OPeiMonitorKey.h
+#;   10. InsydeEarlyKeyboardPkg\Include\Ppi\H2OPeiSerialService.h
+#;   11. InsydeEarlyKeyboardPkg\Include\Ppi\H2OPeiSimpleTextInputEx.h
+#;   12. InsydeEarlyKeyboardPkg\Include\Ppi\H2OPeiUsbSerial.h
+#;   13. InsydeEarlyKeyboardPkg\InsydeEarlyKeyboardPkg.dec
+#;   14. InsydeEarlyKeyboardPkg\InsydeEarlyKeyboardPkg.dsc
+#;   15. InsydeEarlyKeyboardPkg\Library\IoSerialLib\DdtCable\DdtCableIoLib.c
+#;   16. InsydeEarlyKeyboardPkg\Library\IoSerialLib\DdtCable\DdtCableIoLib.inf
+#;   17. InsydeEarlyKeyboardPkg\Library\IoSerialLib\IsaSerial\IsaSerialIoLib.c
+#;   18. InsydeEarlyKeyboardPkg\Library\IoSerialLib\IsaSerial\IsaSerialIoLib.h
+#;   19. InsydeEarlyKeyboardPkg\Library\IoSerialLib\IsaSerial\IsaSerialIoLib.inf
+#;   20. InsydeEarlyKeyboardPkg\Library\IoSerialLib\UsbSerial\UsbSeialIoLib.inf
+#;   21. InsydeEarlyKeyboardPkg\Library\IoSerialLib\UsbSerial\UsbSerialIoLib.c
+#;   22. InsydeEarlyKeyboardPkg\MonitorKeyPei\MonitorKeyPei.c
+#;   23. InsydeEarlyKeyboardPkg\MonitorKeyPei\MonitorKeyPei.h
+#;   24. InsydeEarlyKeyboardPkg\Package.dsc
+#;   25. InsydeEarlyKeyboardPkg\Package.fdf
+#;   26. InsydeEarlyKeyboardPkg\Ps2KeyboardPei\Ps2KbdCtrller.c
+#;   27. InsydeEarlyKeyboardPkg\Ps2KeyboardPei\Ps2KbdTextIn.c
+#;   28. InsydeEarlyKeyboardPkg\Ps2KeyboardPei\Ps2Keyboard.c
+#;   29. InsydeEarlyKeyboardPkg\Ps2KeyboardPei\Ps2Keyboard.h
+#;   30. InsydeEarlyKeyboardPkg\Ps2KeyboardPei\Ps2KeyboardPei.inf
+#;   31. InsydeEarlyKeyboardPkg\SerialService\SerialServiceDxe\SerialServiceDxe.c
+#;   32. InsydeEarlyKeyboardPkg\SerialService\SerialServiceDxe\SerialServiceDxe.h
+#;   33. InsydeEarlyKeyboardPkg\SerialService\SerialServiceDxe\XyModemDxe.c
+#;   34. InsydeEarlyKeyboardPkg\SerialService\SerialServiceDxe\XyModemDxe.h
+#;   35. InsydeEarlyKeyboardPkg\SerialService\SerialServicePei\SerialConIn.c
+#;   36. InsydeEarlyKeyboardPkg\SerialService\SerialServicePei\SerialConIn.h
+#;   37. InsydeEarlyKeyboardPkg\SerialService\SerialServicePei\SerialConOut.c
+#;   38. InsydeEarlyKeyboardPkg\SerialService\SerialServicePei\SerialConOut.h
+#;   39. InsydeEarlyKeyboardPkg\SerialService\SerialServicePei\SerialServicePei.c
+#;   40. InsydeEarlyKeyboardPkg\SerialService\SerialServicePei\SerialServicePei.h
+#;   41. InsydeEarlyKeyboardPkg\SerialService\SerialServicePei\XyModemPei.c
+#;   42. InsydeEarlyKeyboardPkg\SerialService\SerialServicePei\XyModemPei.h
+#;   43. InsydeEarlyKeyboardPkg\SerialService\SerialServiceSmm\SerialServiceSmm.c
+#;   44. InsydeEarlyKeyboardPkg\SerialService\SerialServiceSmm\SerialServiceSmm.h
+#;   45. InsydeEarlyKeyboardPkg\UsbKbPei\PeiEfiKey.c
+#;   46. InsydeEarlyKeyboardPkg\UsbKbPei\PeiEfiKey.h
+#;   47. InsydeEarlyKeyboardPkg\UsbKbPei\PeiEvtManager.c
+#;   48. InsydeEarlyKeyboardPkg\UsbKbPei\PeiEvtManager.h
+#;   49. InsydeEarlyKeyboardPkg\UsbKbPei\UsbKeyboardPei.c
+#;   50. InsydeEarlyKeyboardPkg\UsbKbPei\UsbKeyboardPei.h
+#;   51. InsydeEarlyKeyboardPkg\UsbSerialPei\DdtDevice.c
+#;   52. InsydeEarlyKeyboardPkg\UsbSerialPei\Pl2303Device.c
+#;   53. InsydeEarlyKeyboardPkg\UsbSerialPei\Pl2303Device.h
+#;   54. InsydeEarlyKeyboardPkg\UsbSerialPei\UsbSerialPei.c
+#;   55. InsydeEarlyKeyboardPkg\UsbSerialPei\UsbSerialPei.h
+#;   56. InsydeEarlyKeyboardPkg\VirtualConInDxe\VirtualConIn.c
+#;   57. InsydeEarlyKeyboardPkg\VirtualConInDxe\VirtualConIn.h
+#;   58. InsydeEarlyKeyboardPkg\VirtualConInDxe\VirtualConInDxe.inf
+#; 
+#; Tag#: 05.21.06
+#; Issue#: IB09330000
+#; Severity: Feature
+#; Category: IPMI
+#; Symptom: Remove the old issue number and update copy right.
+#; RootCause: Code update.
+#; Description: None
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB09330000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeIpmiPkg\Include\IpmiDmConfigForm.h
+#;   2. InsydeIpmiPkg\Include\IpmiGeneralConfigData.h
+#;   3. InsydeIpmiPkg\Include\Standard\H2OIpmiSdr.h
+#;   4. InsydeIpmiPkg\InsydeIpmiPkg.dec
+#;   5. InsydeIpmiPkg\IpmiAsl\Ipmi.ASL
+#;   6. InsydeIpmiPkg\IpmiDmConfigDxe\IpmiDmConfigAccess.c
+#;   7. InsydeIpmiPkg\IpmiDmConfigDxe\IpmiDmConfigDriver.c
+#;   8. InsydeIpmiPkg\IpmiDmConfigDxe\IpmiDmInitHiiData.c
+#;   9. InsydeIpmiPkg\IpmiInterfaceDxeSmm\IpmiInterfaceCommon.c
+#;   10. InsydeIpmiPkg\IpmiInterfacePei\IpmiInterfacePei.c
+#;   11. InsydeIpmiPkg\IpmiInterfacePei\IpmiInterfacePei.h
+#;   12. InsydeIpmiPkg\IpmiInterfacePei\IpmiInterfacePei.inf
+#;   13. InsydeIpmiPkg\IpmiMiscDxe\IpmiMiscDxe.c
+#;   14. InsydeIpmiPkg\IpmiMiscDxe\IpmiMiscDxe.inf
+#;   15. InsydeIpmiPkg\IpmiSdrDxeSmm\IpmiSdrCommon.c
+#;   16. InsydeIpmiPkg\Library\DxeIpmiBdsLib\DxeIpmiBdsLib.inf
+#;   17. InsydeIpmiPkg\Library\DxeIpmiDmConfigVfrLib\IpmiDmConfigVfr.vfr
+#;   18. InsydeIpmiPkg\Library\DxeIpmiPackageLib\DxeIpmiPackageLib.inf
+#;   19. InsydeIpmiPkg\Library\DxeIpmiSetupUtilityLib\DxeIpmiSetupUtilityLib.inf
+#;   20. InsydeIpmiPkg\Library\PeiIpmiLpcLib\PeiIpmiLpcLib.inf
+#;   21. InsydeIpmiPkg\Library\PeiIpmiPackageLib\PeiIpmiPackageLib.inf
+#;   22. InsydeIpmiPkg\Library\SmmIpmiPlatformLib\SmmIpmiPlatformLib.inf
+#;   23. InsydeIpmiPkg\Package.dsc
+#;   24. InsydeIpmiPkg\Package.fdf
+#;   25. SegFeaturePkg\Library\DxeIpmiFruLibNull\DxeIpmiFruLibNull.c
+#;   26. SegFeaturePkg\Library\DxeIpmiFruLibNull\DxeIpmiFruLibNull.inf
+#;   27. SegFeaturePkg\Library\DxeIpmiInterfaceLibNull\DxeIpmiInterfaceLibNull.c
+#;   28. SegFeaturePkg\Library\DxeIpmiInterfaceLibNull\DxeIpmiInterfaceLibNull.inf
+#;   29. SegFeaturePkg\Library\DxeIpmiSdrLibNull\DxeIpmiSdrLibNull.c
+#;   30. SegFeaturePkg\Library\DxeIpmiSdrLibNull\DxeIpmiSdrLibNull.inf
+#;   31. SegFeaturePkg\Library\DxeIpmiSelDataLibNull\DxeIpmiSelDataLibNull.c
+#;   32. SegFeaturePkg\Library\DxeIpmiSelDataLibNull\DxeIpmiSelDataLibNull.inf
+#;   33. SegFeaturePkg\Library\DxeIpmiSelInfoLibNull\DxeIpmiSelInfoLibNull.c
+#;   34. SegFeaturePkg\Library\DxeIpmiSelInfoLibNull\DxeIpmiSelInfoLibNull.inf
+#;   35. SegFeaturePkg\Package.dsc
+#; 
+#; Tag#: 05.21.06
+#; Issue#: IB05080551 
+#; Severity: Medium
+#; Category: Event Log 
+#; Symptom: Error status may cause the potential issue.
+#; RootCause: Did not check the returned status from the function call.
+#; Description: Bug fix. 
+#; Solution: Check the returned status to avoid potential issue.
+#; SolutionDependency: None
+#; Reviewer: IB08400000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtil.c
+#;   2. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageDxe\MemoryStorageKernelDxe.c
+#; 
+#; Tag#: 05.21.06
+#; Issue#: IB13080000
+#; Severity: Feature
+#; Category: MediaPlayer
+#; Symptom: Remove the old issue number and update copy right.
+#; RootCause: Code update.
+#; Description: None
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB13080000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeMediaPlayerPkg\AnimationGifDxe\AnimationGifDxe.inf
+#;   2. InsydeMediaPlayerPkg\AudioDecoder\Mp3DecoderDxe\Mp3DecoderDxe.inf
+#;   3. InsydeMediaPlayerPkg\AudioDecoder\WaveDecoderDxe\WaveDecoderDxe.inf
+#;   4. InsydeMediaPlayerPkg\Include\Guid\MediaPlayerPkgTokenSpace.h
+#;   5. InsydeMediaPlayerPkg\Include\Guid\MediaPlayerRawDataGuid.h
+#;   6. InsydeMediaPlayerPkg\Include\Library\H264Lib.h
+#;   7. InsydeMediaPlayerPkg\Include\Library\MediaPlayerDxeLib.h
+#;   8. InsydeMediaPlayerPkg\Include\Library\Mp3Lib.h
+#;   9. InsydeMediaPlayerPkg\Include\Library\SoundInitLib.h
+#;   10. InsydeMediaPlayerPkg\Include\Library\XvidLib.h
+#;   11. InsydeMediaPlayerPkg\Include\Protocol\MediaDecoder.h
+#;   12. InsydeMediaPlayerPkg\Include\Protocol\MediaPlayer.h
+#;   13. InsydeMediaPlayerPkg\InsydeMediaPlayerPkg.dec
+#;   14. InsydeMediaPlayerPkg\Library\H264Lib\H264Lib.inf
+#;   15. InsydeMediaPlayerPkg\Library\MediaPlayerDxeLib\MediaPlayerDxeLib.inf
+#;   16. InsydeMediaPlayerPkg\Library\Mp3Lib\Mp3Lib.inf
+#;   17. InsydeMediaPlayerPkg\Library\SoundInitLib\SoundInitLib.inf
+#;   18. InsydeMediaPlayerPkg\Library\XvidLib\XvidLib.inf
+#;   19. InsydeMediaPlayerPkg\MediaPlayerDxe\MediaPlayerDxe.inf
+#;   20. InsydeMediaPlayerPkg\Package.dsc
+#;   21. InsydeMediaPlayerPkg\Package.fdf
+#;   22. InsydeMediaPlayerPkg\VideoDecoder\H264DecoderDxe\H264DecoderDxe.inf
+#;   23. InsydeMediaPlayerPkg\VideoDecoder\XvidDecoderDxe\XvidDecoderDxe.inf
+#;   24. SegFeaturePkg\Include\Library\MediaPlayerDxeLib.h
+#;   25. SegFeaturePkg\Library\MediaPlayerDxeLibNull\MediaPlayerDxeLibNull.c
+#;   26. SegFeaturePkg\Library\MediaPlayerDxeLibNull\MediaPlayerDxeLibNull.inf
+#; 
+#; Tag#: 05.21.06
+#; Issue#: IB08400000 
+#; Severity: Feature 
+#; Category: RAS
+#; Symptom: Clean up the InsydeRasPkg.
+#; RootCause: (Code Enhancement)
+#; Description: (Code Enhancement) 
+#; Solution: Remove the old issue number and modify the comments.
+#; SolutionDependency: None.
+#; Reviewer: IB08400000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeRasPkg\ConfigUtility\RasConfigUtilDxe\RasConfigUtil.c
+#;   2. InsydeRasPkg\ConfigUtility\RasConfigUtilDxe\RasConfigUtil.h
+#;   3. InsydeRasPkg\ConfigUtility\RasConfigUtilDxe\RasConfigUtilConfigPageVfr.vfr
+#;   4. InsydeRasPkg\ConfigUtility\RasConfigUtilDxe\RasConfigUtilDxe.inf
+#;   5. InsydeRasPkg\ConfigUtility\RasConfigUtilDxe\RasConfigUtilSetupConfig.h
+#;   6. InsydeRasPkg\ConfigUtility\RasConfigUtilDxe\RasConfigUtilStr.uni
+#;   7. InsydeRasPkg\Include\EventLogTable.h
+#;   8. InsydeRasPkg\Include\Guid\RasConfigUtilHii.h
+#;   9. InsydeRasPkg\Include\Guid\RasPkgTokenSpace.h
+#;   10. InsydeRasPkg\Include\Protocol\EccRasPlatformSmm.h
+#;   11. InsydeRasPkg\Include\Protocol\PcieRasPlatformSmm.h
+#;   12. InsydeRasPkg\Include\RasEventCommon.h
+#;   13. InsydeRasPkg\InsydeRasPkg.dec
+#;   14. InsydeRasPkg\Package.dsc
+#;   15. InsydeRasPkg\Package.fdf
+#;   16. InsydeRasPkg\RasEventStringDxe\RasEventStringDxe.c
+#;   17. InsydeRasPkg\RasEventStringDxe\RasEventStringDxe.h
+#;   18. InsydeRasPkg\RasEventStringDxe\RasEventStringDxe.inf
+#; 
+#; Tag#: 05.21.06
+#; Issue#: IB08400000 
+#; Severity: Feature 
+#; Category: Event Log
+#; Symptom: Clean up the InsydeEventLogPkg.
+#; RootCause: (Code Enhancement)
+#; Description: (Code Enhancement) 
+#; Solution: Remove the old issue number and modify the comments.
+#; SolutionDependency: None.
+#; Reviewer: IB08400000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeEventLogPkg\BmcSelStringTranslationDxe\BmcSelStringTranslation.c
+#;   2. InsydeEventLogPkg\BmcSelStringTranslationDxe\BmcSelStringTranslation.h
+#;   3. InsydeEventLogPkg\BmcSelStringTranslationDxe\BmcSelStringTranslationDxe.inf
+#;   4. InsydeEventLogPkg\ConfigUtility\BiosEventLogConfigUtilDxe\BiosEventLogConfigUtil.c
+#;   5. InsydeEventLogPkg\ConfigUtility\BiosEventLogConfigUtilDxe\BiosEventLogConfigUtil.h
+#;   6. InsydeEventLogPkg\ConfigUtility\BiosEventLogConfigUtilDxe\BiosEventLogConfigUtilConfigPageVfr.vfr
+#;   7. InsydeEventLogPkg\ConfigUtility\BiosEventLogConfigUtilDxe\BiosEventLogConfigUtilDxe.inf
+#;   8. InsydeEventLogPkg\ConfigUtility\BiosEventLogConfigUtilDxe\BiosEventLogConfigUtilEventAndMessagePageVfr.vfr
+#;   9. InsydeEventLogPkg\ConfigUtility\BiosEventLogConfigUtilDxe\BiosEventLogConfigUtilSetupConfig.h
+#;   10. InsydeEventLogPkg\ConfigUtility\BiosEventLogConfigUtilDxe\BiosEventLogConfigUtilStr.uni
+#;   11. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtil.c
+#;   12. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtil.h
+#;   13. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtilConfigPageVfr.vfr
+#;   14. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtilDxe.inf
+#;   15. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtilEventAndMessagePageVfr.vfr
+#;   16. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtilSetupConfig.h
+#;   17. InsydeEventLogPkg\ConfigUtility\DebugMessageConfigUtilDxe\DebugMessageConfigUtilStr.uni
+#;   18. InsydeEventLogPkg\ConfigUtility\EventLogPkgVfrDataProviderPei\EventLogPkgVfrDataProvider.h
+#;   19. InsydeEventLogPkg\ConfigUtility\EventLogPkgVfrDataProviderPei\EventLogPkgVfrDataProviderPei.inf
+#;   20. InsydeEventLogPkg\ConfigUtility\H2OEventLogConfigManagerDxe\H2OEventLogConfigManager.c
+#;   21. InsydeEventLogPkg\ConfigUtility\H2OEventLogConfigManagerDxe\H2OEventLogConfigManager.h
+#;   22. InsydeEventLogPkg\ConfigUtility\H2OEventLogConfigManagerDxe\H2OEventLogConfigManagerDxe.inf
+#;   23. InsydeEventLogPkg\ConfigUtility\H2OEventLogConfigManagerDxe\H2OEventLogConfigManagerSetupConfig.h
+#;   24. InsydeEventLogPkg\ConfigUtility\H2OEventLogConfigManagerDxe\H2OEventLogConfigManagerVfr.vfr
+#;   25. InsydeEventLogPkg\ConfigUtility\PostMessageConfigUtilDxe\PostMessageConfigUtil.c
+#;   26. InsydeEventLogPkg\ConfigUtility\PostMessageConfigUtilDxe\PostMessageConfigUtil.h
+#;   27. InsydeEventLogPkg\ConfigUtility\PostMessageConfigUtilDxe\PostMessageConfigUtilConfigPageVfr.vfr
+#;   28. InsydeEventLogPkg\ConfigUtility\PostMessageConfigUtilDxe\PostMessageConfigUtilDxe.inf
+#;   29. InsydeEventLogPkg\ConfigUtility\PostMessageConfigUtilDxe\PostMessageConfigUtilSetupConfig.h
+#;   30. InsydeEventLogPkg\ConfigUtility\SetupChangeConfigUtilDxe\SetupChangeConfigUtil.c
+#;   31. InsydeEventLogPkg\ConfigUtility\SetupChangeConfigUtilDxe\SetupChangeConfigUtil.h
+#;   32. InsydeEventLogPkg\ConfigUtility\SetupChangeConfigUtilDxe\SetupChangeConfigUtilDxe.inf
+#;   33. InsydeEventLogPkg\ConfigUtility\SetupChangeConfigUtilDxe\SetupChangeConfigUtilEventAndMessagePageVfr.vfr
+#;   34. InsydeEventLogPkg\ConfigUtility\SetupChangeConfigUtilDxe\SetupChangeConfigUtilSetupConfig.h
+#;   35. InsydeEventLogPkg\DebugMessage\DebugMaskPei\DebugMaskPei.c
+#;   36. InsydeEventLogPkg\DebugMessage\DebugMaskPei\DebugMaskPei.h
+#;   37. InsydeEventLogPkg\DebugMessage\DebugMaskPei\DebugMaskPei.inf
+#;   38. InsydeEventLogPkg\DebugMessage\StoreDebugMessageDxe\StoreDebugMessageDxe.c
+#;   39. InsydeEventLogPkg\DebugMessage\StoreDebugMessageDxe\StoreDebugMessageDxe.h
+#;   40. InsydeEventLogPkg\DebugMessage\StoreDebugMessageDxe\StoreDebugMessageDxe.inf
+#;   41. InsydeEventLogPkg\DebugMessage\StoreDebugMessagePei\StoreDebugMessagePei.c
+#;   42. InsydeEventLogPkg\DebugMessage\StoreDebugMessagePei\StoreDebugMessagePei.h
+#;   43. InsydeEventLogPkg\DebugMessage\StoreDebugMessagePei\StoreDebugMessagePei.inf
+#;   44. InsydeEventLogPkg\DebugMessage\StoreDebugMessageSmm\StoreDebugMessageSmm.c
+#;   45. InsydeEventLogPkg\DebugMessage\StoreDebugMessageSmm\StoreDebugMessageSmm.h
+#;   46. InsydeEventLogPkg\DebugMessage\StoreDebugMessageSmm\StoreDebugMessageSmm.inf
+#;   47. InsydeEventLogPkg\EventLog\EventLogDxe\EventLogDxe.c
+#;   48. InsydeEventLogPkg\EventLog\EventLogDxe\EventLogDxe.h
+#;   49. InsydeEventLogPkg\EventLog\EventLogDxe\EventLogDxe.inf
+#;   50. InsydeEventLogPkg\EventLog\EventLogPei\EventLogPei.c
+#;   51. InsydeEventLogPkg\EventLog\EventLogPei\EventLogPei.h
+#;   52. InsydeEventLogPkg\EventLog\EventLogPei\EventLogPei.inf
+#;   53. InsydeEventLogPkg\EventLog\EventLogSmm\EventLogSmm.c
+#;   54. InsydeEventLogPkg\EventLog\EventLogSmm\EventLogSmm.h
+#;   55. InsydeEventLogPkg\EventLog\EventLogSmm\EventLogSmm.inf
+#;   56. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageDxe\BiosStorageChipsetDxe.c
+#;   57. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageDxe\BiosStorageChipsetDxe.h
+#;   58. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageDxe\BiosStorageChipsetDxe.inf
+#;   59. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageDxe\BiosStorageKernelDxe.c
+#;   60. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageDxe\BiosStorageKernelDxe.h
+#;   61. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageDxe\BiosStorageKernelDxe.inf
+#;   62. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageDxe\BiosStorageKernelUseVariableDxe.c
+#;   63. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageDxe\BiosStorageKernelUseVariableDxe.h
+#;   64. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageDxe\BiosStorageKernelUseVariableDxe.inf
+#;   65. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStoragePei\BiosStoragePei.c
+#;   66. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStoragePei\BiosStoragePei.h
+#;   67. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStoragePei\BiosStoragePei.inf
+#;   68. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageSmm\BiosStorageChipsetSmm.c
+#;   69. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageSmm\BiosStorageChipsetSmm.h
+#;   70. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageSmm\BiosStorageChipsetSmm.inf
+#;   71. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageSmm\BiosStorageKernelSmm.c
+#;   72. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageSmm\BiosStorageKernelSmm.h
+#;   73. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageSmm\BiosStorageKernelSmm.inf
+#;   74. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageSmm\BiosStorageKernelUseVariableSmm.c
+#;   75. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageSmm\BiosStorageKernelUseVariableSmm.h
+#;   76. InsydeEventLogPkg\EventStorage\BiosStorage\BiosStorageSmm\BiosStorageKernelUseVariableSmm.inf
+#;   77. InsydeEventLogPkg\EventStorage\BmcSelStorage\BmcSelEventStorageDxe\BmcSelEventStorageDxe.c
+#;   78. InsydeEventLogPkg\EventStorage\BmcSelStorage\BmcSelEventStorageDxe\BmcSelEventStorageDxe.h
+#;   79. InsydeEventLogPkg\EventStorage\BmcSelStorage\BmcSelEventStorageDxe\BmcSelEventStorageDxe.inf
+#;   80. InsydeEventLogPkg\EventStorage\BmcSelStorage\BmcSelEventStorageSmm\BmcSelEventStorageSmm.c
+#;   81. InsydeEventLogPkg\EventStorage\BmcSelStorage\BmcSelEventStorageSmm\BmcSelEventStorageSmm.h
+#;   82. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageDxe\MemoryStorageChipsetDxe.c
+#;   83. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageDxe\MemoryStorageChipsetDxe.h
+#;   84. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageDxe\MemoryStorageChipsetDxe.inf
+#;   85. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageDxe\MemoryStorageKernelDxe.c
+#;   86. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageDxe\MemoryStorageKernelDxe.h
+#;   87. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageDxe\MemoryStorageKernelDxe.inf
+#;   88. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageSmm\MemoryStorageChipsetSmm.c
+#;   89. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageSmm\MemoryStorageChipsetSmm.h
+#;   90. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageSmm\MemoryStorageKernelSmm.c
+#;   91. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageSmm\MemoryStorageKernelSmm.h
+#;   92. InsydeEventLogPkg\EventStorage\MemoryStorage\MemoryStorageSmm\MemoryStorageKernelSmm.inf
+#;   93. InsydeEventLogPkg\Include\Guid\BiosEventLogConfigUtilHii.h
+#;   94. InsydeEventLogPkg\Include\Guid\BiosEventLogHob.h
+#;   95. InsydeEventLogPkg\Include\Guid\BiosStorageVariable.h
+#;   96. InsydeEventLogPkg\Include\Guid\DebugMessageConfigUtilHii.h
+#;   97. InsydeEventLogPkg\Include\Guid\H2OEventLogConfigManagerHii.h
+#;   98. InsydeEventLogPkg\Include\Guid\PostMessageConfigUtilHii.h
+#;   99. InsydeEventLogPkg\Include\Guid\SetupChangeConfigUtilHii.h
+#;   100. InsydeEventLogPkg\Include\Library\DebugCfgToErrLevelLib.h
+#;   101. InsydeEventLogPkg\Include\Library\EventLogDxeLib.h
+#;   102. InsydeEventLogPkg\Include\Library\EventLogGetTimeFromCmosLib.h
+#;   103. InsydeEventLogPkg\Include\Library\EventLogPeiLib.h
+#;   104. InsydeEventLogPkg\Include\Library\EventLogSmmLib.h
+#;   105. InsydeEventLogPkg\Include\Ppi\BiosStorage.h
+#;   106. InsydeEventLogPkg\Include\Protocol\BiosEventLog.h
+#;   107. InsydeEventLogPkg\Include\Protocol\BiosEventLogUseVariable.h
+#;   108. InsydeEventLogPkg\Include\Protocol\EventLog.h
+#;   109. InsydeEventLogPkg\InsydeEventLogPkg.dec
+#;   110. InsydeEventLogPkg\Library\EventLogDxeLib\EventLogDxeLib.c
+#;   111. InsydeEventLogPkg\Library\EventLogDxeLib\EventLogDxeLib.inf
+#;   112. InsydeEventLogPkg\Library\EventLogGetTimeFromCmosLib\EventLogGetTimeFromCmosLib.c
+#;   113. InsydeEventLogPkg\Library\EventLogGetTimeFromCmosLib\EventLogGetTimeFromCmosLib.h
+#;   114. InsydeEventLogPkg\Library\EventLogGetTimeFromCmosLib\EventLogGetTimeFromCmosLib.inf
+#;   115. InsydeEventLogPkg\Library\EventLogPeiLib\EventLogPeiLib.c
+#;   116. InsydeEventLogPkg\Library\EventLogPeiLib\EventLogPeiLib.inf
+#;   117. InsydeEventLogPkg\Library\EventLogSmmLib\EventLogSmmLib.c
+#;   118. InsydeEventLogPkg\Library\EventLogSmmLib\EventLogSmmLib.inf
+#;   119. InsydeEventLogPkg\Library\H2OBaseDebugPrintErrorLevelLib\H2OBaseDebugPrintErrorLevelLib.c
+#;   120. InsydeEventLogPkg\Library\H2OBaseDebugPrintErrorLevelLib\H2OBaseDebugPrintErrorLevelLib.inf
+#;   121. InsydeEventLogPkg\Library\H2ODebugCfgToErrLevelLib\H2ODebugCfgToErrLevelLib.c
+#;   122. InsydeEventLogPkg\Library\H2ODebugCfgToErrLevelLib\H2ODebugCfgToErrLevelLib.inf
+#;   123. InsydeEventLogPkg\Library\H2ODxeDebugPrintErrorLevelLib\H2ODxeDebugPrintErrorLevelLib.c
+#;   124. InsydeEventLogPkg\Library\H2ODxeDebugPrintErrorLevelLib\H2ODxeDebugPrintErrorLevelLib.inf
+#;   125. InsydeEventLogPkg\Library\H2OPeiDebugPrintErrorLevelLib\H2OPeiDebugPrintErrorLevelLib.c
+#;   126. InsydeEventLogPkg\Library\H2OPeiDebugPrintErrorLevelLib\H2OPeiDebugPrintErrorLevelLib.inf
+#;   127. InsydeEventLogPkg\Library\H2OSmmDebugPrintErrorLevelLib\H2OSmmDebugPrintErrorLevelLib.c
+#;   128. InsydeEventLogPkg\Library\H2OSmmDebugPrintErrorLevelLib\H2OSmmDebugPrintErrorLevelLib.inf
+#;   129. InsydeEventLogPkg\Package.dsc
+#;   130. InsydeEventLogPkg\Package.fdf
+#;   131. InsydeEventLogPkg\PostMessage\PostMessageDxe\PostMessageDxe.c
+#;   132. InsydeEventLogPkg\PostMessage\PostMessageDxe\PostMessageDxe.h
+#;   133. InsydeEventLogPkg\PostMessage\PostMessageDxe\PostMessageDxe.inf
+#;   134. InsydeEventLogPkg\PostMessage\PostMessageDxe\PostMessageHookDxe.c
+#;   135. InsydeEventLogPkg\PostMessage\PostMessageDxe\PostMessageHookDxe.h
+#;   136. InsydeEventLogPkg\PostMessage\PostMessagePei\PostMessagePei.c
+#;   137. InsydeEventLogPkg\PostMessage\PostMessagePei\PostMessagePei.h
+#;   138. InsydeEventLogPkg\PostMessage\PostMessagePei\PostMessagePei.inf
+#;   139. InsydeEventLogPkg\PostMessage\PostMessageSmm\PostMessageSmm.h
+#;   140. InsydeEventLogPkg\StatusCodeHandler\Pei\H2OMemoryStausCodeWorker.c
+#;   141. InsydeEventLogPkg\StatusCodeHandler\Pei\H2OSerialStatusCodeWorker.c
+#;   142. InsydeEventLogPkg\StatusCodeHandler\Pei\H2OStatusCodeHandlerPei.c
+#;   143. InsydeEventLogPkg\StatusCodeHandler\Pei\H2OStatusCodeHandlerPei.h
+#;   144. InsydeEventLogPkg\StatusCodeHandler\Pei\H2OStatusCodeHandlerPei.inf
+#;   145. InsydeEventLogPkg\StatusCodeHandler\RuntimeDxe\H2OMemoryStatusCodeWorker.c
+#;   146. InsydeEventLogPkg\StatusCodeHandler\RuntimeDxe\H2OSerialStatusCodeWorker.c
+#;   147. InsydeEventLogPkg\StatusCodeHandler\RuntimeDxe\H2OStatusCodeHandlerRuntimeDxe.c
+#;   148. InsydeEventLogPkg\StatusCodeHandler\RuntimeDxe\H2OStatusCodeHandlerRuntimeDxe.h
+#;   149. InsydeEventLogPkg\StatusCodeHandler\RuntimeDxe\H2OStatusCodeHandlerRuntimeDxe.inf
+#;   150. InsydeEventLogPkg\StatusCodeHandler\Smm\H2OMemoryStatusCodeWorker.c
+#;   151. InsydeEventLogPkg\StatusCodeHandler\Smm\H2OSerialStatusCodeWorker.c
+#;   152. InsydeEventLogPkg\StatusCodeHandler\Smm\H2OStatusCodeHandlerSmm.c
+#;   153. InsydeEventLogPkg\StatusCodeHandler\Smm\H2OStatusCodeHandlerSmm.h
+#;   154. InsydeEventLogPkg\StatusCodeHandler\Smm\H2OStatusCodeHandlerSmm.inf
+#; 
+#; Tag#: 05.21.06 
+#; Issue#: IB08400000 
+#; Severity: Feature
+#; Category: SEG Feature
+#; Symptom: Initial version.
+#; RootCause: None.
+#; Description: Initial version. 
+#; Solution: Create initial versions for all of the SEG features.
+#; SolutionDependency: None.
+#; Reviewer: IB08400000
+#; RelatedFiles: *.*
+#; 

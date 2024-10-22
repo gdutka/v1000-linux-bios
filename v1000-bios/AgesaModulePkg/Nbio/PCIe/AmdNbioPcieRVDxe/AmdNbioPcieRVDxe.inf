@@ -1,0 +1,82 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdNbioPcieRVDxe
+  FILE_GUID                      = D7908EC2-227A-472f-8095-6A159DD723D2
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdNbioPcieRVDxeEntry
+
+[Sources]
+  AmdNbioPcieRVDxe.c
+  AmdNbioPcieRVDxe.h
+  AmdNbioPcieAerRV.c
+  AmdNbioPcieAerRV.h
+  AmdNbioPcieSrisRV.c
+  AmdNbioPcieClkReqRV.c
+  AmdAPlusARV.c
+  AmdPsppRV.c
+  AmdPsppRV.h
+  AmdPhyClkCntrlRV.c
+  AmdNbioExitLatencyRV.c
+  AmdNbioPcieAspm.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  IdsLib
+  UefiLib
+  HobLib
+  PcieMiscCommLib
+  NbioHandleLib
+  NbioRegisterAccLib
+  PcieConfigLib
+  AmdIdsHookLib
+  NbioIdsHookRVLib
+  GnbPciAccLib
+  NbioSmuV10Lib
+  SmnAccessLib
+  PciLib
+  GnbPciLib
+  AmdS3SaveLib
+
+[Guids]
+  gGnbPcieHobInfoGuid
+  gEfiHobListGuid
+
+[Protocols]
+  gAmdNbioPcieServicesProtocolGuid
+  gEfiPciIoProtocolGuid
+  gAmdNbioPcieAerProtocolGuid
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgHdAudioEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgAzaliaCodecVerbTable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgAzaliaSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPeApmEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPsppPolicy
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPCIePHYPowerGating
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPCIeLTREnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPhyA0DynamicControl
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPhyA1DynamicControl
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPhyA2DynamicControl
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPhyA34DynamicControl
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPciePhyClkCntrlEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdGetRVFamilyOPN
+
+[Depex]
+  gAmdNbioPcieRVDxeDepexProtocolGuid
+
+

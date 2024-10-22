@@ -1,0 +1,47 @@
+## @file
+#  Platform Package Flash Description File
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[FV.RECOVERYFV]
+  #
+  # AGESA PSP Drivers
+  #
+#INF  AmdAgesaPkg/UefiUdk/Psp/PspCZPkg/Drivers/PspPei/PspPei.inf
+!if gAmdPspFeaturePkgTokenSpaceGuid.PcdPspFirmwareTpmSupported
+INF  AmdPspFeaturePkg/Drivers/fTPMTisPei/fTPMTisPei.inf
+!endif
+  #
+  # Platform PSP Driver
+  #
+!if gAmdPspFeaturePkgTokenSpaceGuid.PcdVerifyFvSupported
+INF  AmdPspFeaturePkg/Drivers/VerifyFvPei/VerifyFvPei.inf
+!endif
+
+[FV.DXEFV]
+  #
+  # AGESA PSP Drivers
+  #
+!if gAmdPspFeaturePkgTokenSpaceGuid.PcdPspFirmwareTpmSupported
+INF  AmdPspFeaturePkg/Drivers/fTPMTisDxe/fTPMTisDxe.inf
+INF RuleOverride = DRIVER_ACPITABLE AmdPspFeaturePkg/Drivers/fTPMTcg2Smm/fTPMTcg2Smm.inf
+INF  AmdPspFeaturePkg/Drivers/PspFactoryReset/PspFactoryReset.inf
+!endif
+#INF  AmdAgesaPkg/UefiUdk/Psp/PspCZPkg/Drivers/PspDxe/PspDxe.inf
+#INF  AmdAgesaPkg/UefiUdk/Psp/PspCZPkg/Drivers/PspSmm/PspSmm.inf
+#INF  AmdAgesaPkg/UefiUdk/Psp/PspCZPkg/Drivers/PspP2Cmbox/PspP2Cmbox.inf
+#INF  AmdAgesaPkg/UefiUdk/Psp/PspCZPkg/Drivers/CsSmm/CsSmmDriver.inf
+
+  #
+  # Platform PSP Driver
+  #
+#INF  AmdPspFeaturePkg/Drivers/NewRsmSampleDriver/NewRsmSampleDriver.inf
+#INF  AmdPspFeaturePkg/Drivers/PspSaveApob/PspSaveApob.inf 

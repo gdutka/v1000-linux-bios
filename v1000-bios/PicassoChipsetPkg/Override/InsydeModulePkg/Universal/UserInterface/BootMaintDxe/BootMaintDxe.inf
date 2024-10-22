@@ -1,0 +1,90 @@
+## @file
+# Boot Maintenance driver
+#
+#******************************************************************************
+#* Copyright (c) 2015 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BootMaintDxe
+  FILE_GUID                      = 167CC1F7-F4AB-46cc-8773-6278056C14EB
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = BootMaintEntry
+
+[Sources]
+  FE.vfr
+  Bm.vfr
+  Bmstring.uni
+  BootMaintDxeImage.idf
+  FormGuid.h
+  BootMaint.h
+  FileExplorer.c
+  BootMaint.c
+  UpdatePage.c
+  Variable.c
+  Data.c
+  ConsoleOption.c
+  BootOption.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  BaseLib
+  DevicePathLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  DebugLib
+  HiiLib
+  PcdLib
+  GenericBdsLib
+  GenericUtilityLib
+  PrintLib
+  OemGraphicsLib
+  H2OCpLib
+  UefiHiiServicesLib
+
+[Guids]
+  gEfiGlobalVariableGuid
+  gEfiIfrTianoGuid
+  gBootMaintFormSetGuid
+  gFileExploreFormSetGuid
+  gEfiLegacyDevOrderVariableGuid
+  gH2OBdsCpInitGuid
+
+[Protocols]
+  gEfiHiiConfigAccessProtocolGuid
+  gEfiHiiConfigRoutingProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiFormBrowser2ProtocolGuid
+  gEfiLoadFileProtocolGuid
+  gEfiSerialIoProtocolGuid
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OFormBrowserLocalMetroDESupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpInitSupported
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+  MSFT:*_*_*_VFRPP_FLAGS = /FI$(MODULE_NAME)IdfDefs.h
+  GCC:*_*_*_VFRPP_FLAGS  = --include $(DEST_DIR_DEBUG)/$(MODULE_NAME)IdfDefs.h

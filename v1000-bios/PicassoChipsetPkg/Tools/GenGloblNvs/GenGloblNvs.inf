@@ -1,0 +1,45 @@
+## @file
+# Auto Generate GloblNvs.asi
+#
+#******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = GenGloblNvs
+  FILE_GUID                      = CEAE1355-AD9C-4290-839A-0EB313411C62
+  MODULE_TYPE                    = USER_DEFINED
+  VERSION_STRING                 = 0.1
+
+  MODULE_AUTORUN_TOOL            = $(BIN_DIR)\$(BASE_NAME)
+  AUTORUN_PARAM                  = $(GLOBALNVS_HEADER_FILE_NAME) $(GLOBLNVS_ASI_FILE_NAME)
+
+  GLOBALNVS_HEADER_FILE_NAME     = $(WORKSPACE)\$(CHIPSET_PKG)\Include\Protocol\GlobalNvsArea.h
+  GLOBLNVS_ASI_FILE_NAME         = $(WORKSPACE)\$(PROJECT_PKG)\AcpiTables\Dsdt\GloblNvs.asl
+
+[Sources]
+  GenGloblNvs.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+
+[Ppis]
+
+[Protocols]
+
+[Guids]
+
+[Pcd]
+
+[BuildOptions]
+  MSFT:*_*_IA32_DLINK_FLAGS == /out:"$(BIN_DIR)\$(BASE_NAME).exe" /base:0x10000000 /NOLOGO /SUBSYSTEM:CONSOLE /NODEFAULTLIB /IGNORE:4086 /MAP /OPT:REF /DEBUG /MACHINE:I386 /LTCG Kernel32.lib MSVCRT.lib
+  MSFT:*_*_*_CC_FLAGS = /wd4996

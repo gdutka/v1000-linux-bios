@@ -1,0 +1,224 @@
+        Arista Valhalla Board BIOS Release Notes
+
+
+Rel_2.07
+December 31, 2021
+
+1. Ported to Bilby BIOS Tag 05.32.50.0013 with AMD EmbeddedPI-FP5_1.2.0.7.
+2. Added AristaPuffinPkg based on Puffin board with V1505/Picasso SOC and memory on DIMMs.
+3. Baud rate is 9600 baud for both Valhalla and Puffin packages.
+
+__________________________________________________________________________________________
+
+Rel_2.06
+October 20, 2021
+
+1. Changed the baud rate to 9600 baud for both efi debug messages and BIOS serial port display.
+2. Implemented GPIO9 fix as received from Ravindra Rama.
+3. Changed MAC address implementation, MAC address is read from SPI offset 0 to 5
+   and used for both Ethernet ports. The second Ethernet port has MAC address byte 5 incremented by 1.
+
+_________________________________________________________________________________________
+
+Rel_2.05
+September 17, 2021
+
+1. Get BoardRevision from GPIO5, GPIO6, GPIO7 and GPIO40, and save it in PcdBoardRevision.
+   File changed: PlatformCustomizePei.c.
+2. MAC Address is read from SPI offset 0 to 5 for Ethernet port 0 and SPI offset 6 to 11 for Ethernet Port 1.
+   MAC address is displayed in the Efidebug version of the BIOS.
+   File changed: AmdCpmOemInitPeim.c.
+3. When eMMC is enabled, GPIO86 was getting changed. Commented out that line of code for changing GPIO86
+   in the file AmdCpmOemTable.c. GPIO86 is used as GPIO Input for FPGA_CRC_ERR in Valhalla.
+
+_________________________________________________________________________________________
+Rel_2.04
+August 10, 2021
+
+1. Moved AmdCpmOemTable.c file to AristaVlhBoardPkg\Override\AmdCpmPkg\Addendum\Oem\Bilby\Pei\AmdCpmOemInitPei\ folder
+   to isolate all the changes for different versions of the board.
+2. Changed setup variable "AMD CBS\FCH Common Options\System Control\Toggle All PwrGood On CF9” from <Auto> to <Enabled>. 
+   With this change, the Valhalla board with Management Phy Rework can boot successfully with normal BIOS without
+   efi debug messages enabled.
+3. Changed setup variable "AMD CBS\NBIO Common Options\NB Configuration\IOMMU" to <Enabled>.
+4. Changed setup variable "AMD CBS\NBIO Common Options\Audio IOs" to <DISABLE AUDIO IOs>.
+5. Changed setup variable "AMD PBS\BLINK LED" to <GPIO 11 Output Low>.
+6. Implemented fix for allocating prefetch memory to PCIe root hub. Modified PciHotPlugDxe.c file.
+   Reserved 0x2000 for I/O range and 0x6400000 for NonPrefetchableMmio to PCI root bridge, Dev. 01, Fun. 01.
+7. Use EGPIO26 and EGPIO27 for PCI reset instead of GPIO6.
+8. Disabled sending Post Codes to the screen by setting PcdH2OPostCodeScreenSupported to FALSE.
+__________________________________________________________________________________________
+Rel_2.03
+July 16, 2021
+
+1. Moved FPGA base address to 0xFEED_0000, length 0x1_0000. This does not conflict with the MMIO range used by PCIe.
+2. Reserved memory for FPGA from 0xFEED_0000 to 0xFEED_FFFF in the ACPI code, file Mother.asl
+__________________________________________________________________________________________
+Rel. 2.02
+June 30, 2021
+
+1. Modified GPIO table to match GPIO document on the shared google drive.
+2. Assigned NMI to AGPIO4.
+3. Assigned GEVENT/INT to AGPIO3, AGPIO86 and AGPIO24.
+4. Reserved memory for FPGA from 0xD000_0000 to 0xD000_FFFF in the ACPI code.
+
+_________________________________________________________________________________________
+Rel. 2.01
+June 25, 2021
+
+1. Disabled TPM Pcds and initialized TPM before booting in SSLpcLate.c file.
+2. Changed BIOS Setup AMD CBS\NBIO Common Options\GFX Configuration\Integrated Graphics Controller to <Disabled>.
+3. Changed BIOS Setup AMD PBS\Primary Video Adapter to <Ext Graphics (PEG)>.
+
+   With these changes, now there is only one reset during BIOS boot and the boot time to
+   EFI Shell is reduced to 25 second from power-up.
+_________________________________________________________________________________________
+
+Rel. 2.00
+June 11, 2021
+
+1. Ported to Bilby BIOS Tag 05.32.50.0012 with AMD EmbeddedPI-FP5_1.2.0.6.
+2. Added BIOSImageDirectory16M.xml in the PlatformConfig folder that allows building a 16MB flash image
+   after setting "Raven_16M = YES" in Project.env file.
+3. Set "gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdResetMode|0x04" for SPIReadMode using Dual IO (1-2-2).
+   This should match RomSigData at offset 0x43 in the file GenOemRomSig.c.
+   (Release 1.10 had this set to 0x02 for SPIReadMode using Dial IO (1-1-2), but RomSigData offset 0x43 was
+   set to 0x04, which may have resulted in power cycle test failure.)
+_________________________________________________________________________________________
+
+Rel. 1.10
+May 28, 2021
+
+1. Revert back SPI clock change made in  PicassoChipsetPkg\Tools\GenOemRomSig\GenOemRomSig.c file.
+2. Added Ethernet changes received from Ravi to AmdOemCpmTable.c file modifying UpdateXgbeFchPcds()
+   and ConfigureEthernetDxioPorts().
+3. Changed SPI speed to 33.33 MHZ for (Normal Speed) and (Fast Speed New), in the file PlatformStage1Init.c,
+   verified by reading SPI100 Speed Config register at MMIO address 0xFEC10022. This is set to 0x1131.
+4. Modified the build procedure to leave 7.875MB of SPI blank for OS load.
+   The SPI has 32 bytes of the Embedded Firmware Structure at offset 0x20000.
+_________________________________________________________________________________________
+
+
+
+Rel. 1.09
+
+1. Removed changes made in Rel. 1.08 (eSPI single IO mode and SPI Dual IO 1-1-2 mode).
+2. Changed SPI clock to 33.3MHz.
+3. Added GPIO settings received from Ravi.
+_________________________________________________________________________________________
+
+
+
+Rel. 1.08
+May 21, 2021
+
+1. Changed eSPI mode to single IO mode just as in BoardBringup rel. 10 BIOS
+2. Change SPI access mode to Dual IO (1-1-2) from Dual IO (1-2-2).
+_________________________________________________________________________________________
+
+Rel. 1.07
+May 19, 2021
+
+1. Added TPM ASL code in the (Project Folder)\AcpiTables rather than in the OemAcpiTables folder.
+   This fixes the issue of TPM not being detected by the OS.
+2. Fixed setting setup default values when CMOS is not valid. This fixes the issue of 
+   setup changes being loaded with default values after power cycling.
+   Now any variables changed in the BIOS setup are maintained after power cycling.
+   This also fixes the issue of BIOS setup showing LPC_TPM rather than SPI_TPM after power cycling.
+__________________________________________________________________________________________
+
+Rel. 1.06
+May 12, 2021
+
+1. Fixed the issue that the variable was to LPC_TPM when initializing the TPM.
+   Always forced to set the variable to SPI_TPM.
+2. Disabled the routine EndOfDxeLockSpi as requested by Ravi.
+__________________________________________________________________________________________
+
+Rel. 1.05
+May 11, 2021
+
+1. Added Post Code display on the serial port.
+2. Used gCpmDxioTopologyTable_RV2 table for PCIe DXI mapping. (Used AmdCpmOemTable.c file from Ravi)
+   This has fix for the hot-plug issue.
+3. Enabled TPM_CS_L on AGPIO29 pin to select correct IOMUX offset.
+   (The file PicassoChipsetPkg\ChipsetSvcPei\PlatformStage1Init.c was using offset 0x1c instead of 0x1D
+   to select IOMUX for TPM_CS_L. Corrected this.)
+4. TPM is now enabled just before booting.
+5. Added change to enable eMMC at HS400 speed.
+
+_________________________________________________________________________________________   
+
+
+Rel. 1.04T2
+May 03, 2021
+
+1. Set GPP Port0 and GPP Port4 PCIe devices Max Link Speed and Max Link Capability to Gen2.
+
+__________________________________________________________________________________________
+
+Rel. 1.04T1
+May 03, 2021
+
+1. Added GPP Port0x1 and GPP Port4x1 PCIe devices in DXIO mapping.
+2. Changed Hotplug setting for GPP Port0 to "DxioHotPlugEnhaned".
+3. Disabled ASPM L1.1 and ASPM L1.2 for GPP Port0. 
+
+__________________________________________________________________________________________
+
+Rel. 1.04
+April 27, 2021
+
+1. The MMIO_BASE_REG3 (0xFEC2005C) is now set to 0xD000_0000, used to be 0xB000_0000.
+2. MMIOS Range3 Size (0xFEC20064) is set to 0xFFFF0000, used to be 0x00FF0000.
+3. The eMMC driver default is set to AMD eMMC driver.
+4. Unabe discrete TPM on eSPI in Setup by default.
+5. Create 16MB BIOS image in the build process by adding 8MB image to itself.
+6. Enables I2C 2 and 3 by in Setup by default.
+_________________________________________________________________________________________
+
+Rel. 1.03
+April 21, 2021
+
+1. The MMIO_BASE_REG3 (0xFEC2005C) is now set to 0xB000_0000, used to be 0x00F0_0000.
+2. Enabled UART0 abd disabled UART1, UART2, UART3 in Setup by default.
+3. Enabled eMMC to HS400 and enabled eMMC Boot in Setup by default.
+4. Enabled eSPI in Setup by default.
+5. Dsabled SATA in Setup by default.
+__________________________________________________________________________________________
+
+Rel. 1.02
+April 15, 2021
+
+1. Changed eMMC register settings for 3.3V operation, eMMC is now detected by the BIOS.
+___________________________________________________________________________________________
+___________________________________________________________________________________________
+
+        Arista Board Bringup Release Notes
+
+Rel_01: SPD for SODIMM, with and without ECC
+Rel_02: SPD Bytes 60-77 modified as for a customer with memory down
+Rel_03: Try building for 16MB SPI, set Raven_16M to YES in Project.env
+Rel_04: Used sample xml file for 16MB SPI and modified it for Arista
+Rel_05: Used original SPD data for Samsung UDIMM, except changed byte 3 to 0x03 for SODIMM.
+        Build it with Raven_16M = NO, created 8MB BIOS and WNC populated 8MB SPI part, same as on Bilby,
+        This BIOS boot on Bilby board with one UDIMM module.
+Rel_06: Same as Rel_05, except disabled TPM in the Project.dsc file.
+Rel_07: Put memory configuration data in CMOS instead of SPI, suspect BIOS is not able to write to SPI.
+        Set PcdAmdPspApcbRecoveryEnable to FALSE to prevent BIOS in going to recovery mode, trying to isolat
+		problem.
+Rel_08: Same as Rel_07 with additional debug messages when BIOS is writing to SPI to verify if write to SPI
+        is successful.
+Rel_09: Changed file SSEspiLib.c file to set Espi.IoMode to 0 for single mode operation of SPI.
+Note: After a call with WNC-Arista-Insyde, discovered that SPI WP# signal should be connected to CPU.
+      WNC reworked a board and connected the SPI WP# pint to CPU, after the rework, BIOS booted to EFI Shell.
+	  
+Rel_10: Got instruction from AMD on how to change SPI mode in the Agesa code to single mode ot dual mode instead of
+        quad mode, implemented the change and released both 8MB and 16MB BIOS images. Both images are able
+		to boot to EFI shell without any modifications to the hardware.
+
+
+
+
+
+

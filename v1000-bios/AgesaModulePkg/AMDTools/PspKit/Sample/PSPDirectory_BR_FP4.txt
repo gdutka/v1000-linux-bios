@@ -1,0 +1,25 @@
+//
+// Auto-generated file for BuildPspDirectory
+//
+BIOS_IMAGE  INPUT_FILE=Gardenia.fd, FIXFV_BASE=0x70000, FIXFV_SIZE=0x10000, DYNFV_BASE=0x80000, DYNFV_SIZE=0xa0000, RTM_SIZE=0x200000
+
+PSP_ENTRY TYPE=0, FILE=AmdPubKeyBR.bin
+PSP_ENTRY TYPE=1, FILE=PspBootLoader_prod_BR.sbin
+PSP_ENTRY TYPE=0x0008, FILE=SmuFirmwareCZ.sbin
+PSP_ENTRY TYPE=0x0108, FILE=SmuFirmwareBR_FP4.sbin
+PSP_ENTRY TYPE=3, FILE=PspRecoveryBootLoader_prod_BR.sbin
+PSP_ENTRY TYPE=5, FILE=RtmPubSignedBR.key
+PSP_ENTRY TYPE=7, FILE=RTMSignature.bin, SIZE=0x100
+PSP_ENTRY TYPE=2, FILE=PspSecureOs_prod_BR.csbin
+PSP_ENTRY TYPE=4, FILE=PspNvramBR.bin, Address=0x60000
+PSP_ENTRY TYPE=9, FILE=PspSecureDebugBR.Key
+#set VALUE = 0 to disable the Secure Debug Unlock feature 
+PSP_ENTRY TYPE=0xb, VALUE=0x1
+PSP_ENTRY TYPE=0xc, FILE=PspTrustlets_TPMver096_prod_BR.cbin
+PSP_ENTRY TYPE=0xd, FILE=TrustletKey_prod_BR.sbin
+PSP_ENTRY TYPE=0x10, FILE=PspAgesaS3Resume_prod_BR.csbin
+PSP_ENTRY TYPE=0x0012, FILE=SmuFirmware2_prod_CZ.sbin
+PSP_ENTRY TYPE=0x14, FILE=PspTrustlets_TPMver122_prod_BR.cbin
+PSP_ENTRY TYPE=0x0112, FILE=SmuFirmware2_prod_BR_FP4.sbin
+PSP_ENTRY TYPE=0x5F, FILE=SmuScsBR.bin
+PSP_ENTRY TYPE=0x1A, FILE=PspNvramS3_BR.bin, Address=0x5fb018

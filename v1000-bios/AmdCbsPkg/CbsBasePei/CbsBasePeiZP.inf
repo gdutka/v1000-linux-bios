@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CbsBasePeiZP
+  FILE_GUID                      = 2BC18FFC-7CF6-47C1-AF19-A4076DC00470
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0  
+  ENTRY_POINT                    = CbsBasePeimEntry
+
+[Sources]
+  CbsBasePei.c
+  CbsBasePei.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  PcdLib
+  HobLib
+  PrintLib
+  DebugLib
+  BaseMemoryLib
+  CbsPeiFuncLib
+  BaseLib
+
+[Guids]
+  gCbsSystemConfigurationGuid                   ## CONSUMES
+
+[Depex]
+  TRUE
+

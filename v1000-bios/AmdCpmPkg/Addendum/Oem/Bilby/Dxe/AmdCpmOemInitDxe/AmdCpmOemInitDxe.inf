@@ -1,0 +1,65 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2017-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AmdCpmOemInitDxe
+  FILE_GUID             = B6B643B8-2B41-4A61-A224-D4F476EF580C
+  MODULE_TYPE           = DXE_DRIVER
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = AmdCpmOemInitDxeEntryPoint
+
+[Sources.common]
+  AmdCpmOemInitDxe.c
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[BuildOptions]
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  UefiLib
+  UefiDriverEntryPoint
+  AmdCpmBaseLib
+  AmdPbsConfigLib
+
+[Guids]
+  gEfiEventReadyToBootGuid
+
+[Protocols]
+  gAmdCpmTableProtocolGuid
+  gAmdCpmNvDataProtocolGuid
+  gFchInitDonePolicyProtocolGuid
+  gEfiPciIoProtocolGuid
+  gAmdApcbDxeServiceProtocolGuid
+
+[Ppis]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSmuFeatureControlDefinesExt
+  gAmdCpmPkgTokenSpaceGuid.PcdSystemBootType
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdGetRVFamilyOPN
+
+[Depex]
+  gAmdCpmTableProtocolGuid
+  AND
+  gAmdCpmNvDataProtocolGuid
+  AND
+  gAmdApcbDxeServiceProtocolGuid
+  AND
+  gPspFlashAccSmmCommReadyProtocolGuid

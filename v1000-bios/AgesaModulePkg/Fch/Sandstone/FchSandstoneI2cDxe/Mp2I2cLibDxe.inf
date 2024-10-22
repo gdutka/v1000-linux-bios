@@ -1,0 +1,38 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = Mp2I2cLibDxe
+  FILE_GUID                      = 6AA5D404-5Ef6-4D72-8496-00B28C4C8E0F
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = Mp2I2cLibDxe|DXE_DRIVER DXE_SMM_DRIVER UEFI_APPLICATION UEFI_DRIVER  DXE_CORE
+
+[Sources.common]
+  Mp2I2cLibDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec  
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  UefiBootServicesTableLib
+  FchSandstoneDxeLib  
+
+[Guids]
+
+[Protocols]
+  
+[Ppis]
+
+[Pcd]
+
+[Depex]
+

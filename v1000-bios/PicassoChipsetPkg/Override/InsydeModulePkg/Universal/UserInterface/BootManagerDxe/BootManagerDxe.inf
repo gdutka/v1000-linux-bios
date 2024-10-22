@@ -1,0 +1,79 @@
+## @file
+# Boot Manager driver
+#
+#******************************************************************************
+#* Copyright (c) 2015 - 2019, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BootManagerDxe
+  FILE_GUID                      = 847BC3FE-B974-446D-9449-5AD5412E993B
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = BootManagerEntry
+
+[Sources]
+  BootManagerStrings.uni
+  BootManagerDxeImage.idf
+  BootManagerVfr.vfr
+  BootManager.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiLib
+  BaseLib
+  DevicePathLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  DebugLib
+  HiiLib
+  PcdLib
+  GenericBdsLib
+  GenericUtilityLib
+  H2OCpLib
+  VariableLib
+
+[Guids]
+  gEfiGenericVariableGuid
+  gEfiIfrTianoGuid
+  gBootManagerFormSetGuid
+  gH2OBdsCpInitGuid
+  gEfiGlobalVariableGuid
+
+[Protocols]
+  gEfiHiiConfigAccessProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiFormBrowser2ProtocolGuid
+  gEfiLoadFileProtocolGuid
+  gH2OFormBrowserProtocolGuid
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OFormBrowserLocalMetroDESupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpInitSupported
+  gInsydeTokenSpaceGuid.PcdAutoCreateDummyBootOption
+  gInsydeTokenSpaceGuid.PcdH2OBootMgrChangeBootOrderSupported
+  gInsydeTokenSpaceGuid.PcdH2OBootMgrAutoDetectRemovableBootDevice
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdH2OBootMgrExitAfterLaunchOption
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+  MSFT:*_*_*_VFRPP_FLAGS = /FI$(MODULE_NAME)IdfDefs.h
+  GCC:*_*_*_VFRPP_FLAGS  = --include $(DEST_DIR_DEBUG)/$(MODULE_NAME)IdfDefs.h

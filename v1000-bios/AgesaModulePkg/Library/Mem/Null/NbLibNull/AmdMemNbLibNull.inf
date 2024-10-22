@@ -1,0 +1,45 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemNbLibNull
+  FILE_GUID                      = D82612CB-3B49-4ee4-9429-251E83833486
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemNbLib 
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  mn.c
+  mndct.c
+  mnfeat.c
+  mnflow.c
+  mnmct.c
+  mnmrsD3.c
+  mnmrsD4.c
+  mnphy.c
+  mnpmu.c
+  mnreg.c
+  mnS3.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  BaseLib
+  AmdBaseLib
+  AmdMemBaseLib
+  AmdMemPsCzLib
+  
+[Pcd]
+

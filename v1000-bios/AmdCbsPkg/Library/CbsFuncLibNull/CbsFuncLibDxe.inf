@@ -1,0 +1,39 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CbsFuncLibDxe
+  FILE_GUID                      = 0B235E74-B9E7-4d76-B955-18A468DC132C
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CbsDxeFuncLib|DXE_DRIVER
+
+[sources.common]
+  CbsHookDxeLib.c
+  CbsHookDxeLib.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  UefiLib
+
+[Guids]
+  gEfiIfrTianoGuid                              ## CONSUMES ## Guid
+  gCbsSystemConfigurationGuid                   ## PRODUCES
+
+[Protocols]
+  gCbsProtocolGuid
+
+

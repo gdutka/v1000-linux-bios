@@ -1,0 +1,120 @@
+## @file
+# Package for support of AMD Chipset Common Modules.
+#
+#*******************************************************************************
+#* Copyright (c) 2012 - 2013, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#*******************************************************************************
+
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = AmdCommonChipsetPkg
+  PACKAGE_GUID                   = D15E4E82-8219-4175-BC79-BE33A0A81CBD
+  PACKAGE_VERSION                = 0.1
+
+[Includes]
+  Include
+
+[LibraryClasses]
+
+[Guids]
+  gAmdCommonChipsetPkgTokenSpaceGuid   = { 0x8b437a02, 0x656e, 0x47fc, {0x96, 0xad, 0xd0, 0xdf, 0xab, 0x44, 0xab, 0x60} }
+  gAzaliaPolicyGuid                    = { 0xE197BE68, 0x9AE2, 0x448E, {0xAC, 0x56, 0xA4, 0x70, 0x82, 0x5F, 0xD8, 0xD8} }
+  gAmdMemoryContextSaveRestoreDataGuid   = { 0x68299f11, 0xf7f2, 0x11e1, {0xaf, 0xa2, 0x2c, 0x41, 0x38, 0x0a, 0x0b, 0xaa} }
+  gAmdMemContextSaveRestoreVariableGuid  = { 0x96b3d61e, 0xf7f2, 0x11e1, {0xb7, 0x97, 0x2c, 0x41, 0x38, 0x0a, 0x0b, 0xaa} }
+  gAgesaMemorySaveDataGuid               = { 0x575E7FC3, 0xE067, 0x47D1, {0x83, 0x41, 0x7B, 0x8F, 0x1C, 0x28, 0xB0, 0x05} }
+
+[Ppis]
+  #
+  # Insyde Chipset Ppis
+  #
+  gPeiInstallVerbTablePpiGuid            = { 0XB9FE9515, 0XA5C9, 0X4976, {0X97, 0XDA, 0X4D, 0X4D, 0X5E, 0X92, 0XAF, 0X33} }
+
+  #
+  # Insyde Platform Ppis
+  #
+  gPeiInstallAzaliaVerbTablePpiGuid      = { 0x0BA3B847, 0xA82D, 0x4B51, {0x9A, 0xE5, 0x30, 0xDA, 0x02, 0xC4, 0x9E, 0xC3} }
+
+  #
+  # AmdMemContextSaveRestore Ppi
+  #
+  gAmdMemContextSaveRestorePpiGuid       = { 0xFBCE6942, 0x598A, 0x417D, {0xA6, 0x25, 0x43, 0x5A, 0x9D, 0x6B, 0x45, 0x26} }
+
+  gSpdDataReadPpiGuid                    = { 0xD18338DC, 0x65E8, 0x4819, {0xA6, 0xF7, 0x6E, 0x71, 0xCF, 0x03, 0x86, 0x1A} }
+
+[Protocols]
+  gFchDxeCalloutProtocolGuid             = { 0x972EF504, 0x281b, 0x470d, {0xa6, 0x54, 0xcc, 0xad, 0xeb, 0x12, 0x6c, 0xca} }
+  gAmdMemContextSaveRestoreProtocolGuid  = { 0xBD3BB9DE, 0x6C03, 0x4609, {0xBD, 0xA9, 0x86, 0x1C, 0xC4, 0x48, 0x83, 0x01} }
+  gAgesaMemorySaveDataProtocolGuid       = { 0x155523FE, 0x54EB, 0x4BC9, {0xB9, 0x17, 0xB5, 0xAB, 0x73, 0x56, 0x5C, 0x64} }
+
+[PcdsFeatureFlag]
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdMemoryContextSaveRestoreSupport|TRUE|BOOLEAN|0x8000000E
+
+[PcdsFixedAtBuild]
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdHdaBaseAddress|0xFD000000|UINT32|0x00000019
+
+  # Reserved 64M for PCIe
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdPcieReservedSize|0x4000000|UINT32|0x50000010
+
+  #
+  #Fch PCI -Azalia
+  #
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaBus|0x00|UINT8|0x60000001
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaDev|0x16|UINT8|0x60000002
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaFunc|0x02|UINT8|0x60000003
+  #
+  #Fch Common Base Register
+  #
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAcpiMmioBase|0xFED80000|UINT32|0x70000001
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdGpioBase|0x0100|UINT32|0x70000002
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdPmioBase|0x300|UINT32|0x70000003
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdIomuxBase|0x0D00|UINT32|0x70000004
+
+  #
+  #FchCallout -Azalia
+  #
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaSsid|0x00|UINT32|0x80000001
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaPinCfg|0x00|UINT8|0x80000002
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaSdin0|0x02|UINT8|0x80000003
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaSdin1|0x02|UINT8|0x80000004
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaSnoop|0x01|UINT8|0x80000005
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaDummy|0x00|UINT8|0x80000006
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaFrontPanel|0x00|UINT8|0x80000007
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFrontPanelDetected|0x00|UINT8|0x80000008
+
+  #
+  #MemoryContextSaveRestore
+  #
+  gAmdCommonChipsetPkgTokenSpaceGuid.CmosAmdMemoryContextSaveRestore|0x9E|UINT8|0x80000009
+  gAmdCommonChipsetPkgTokenSpaceGuid.PostPassFlag|0x1|UINT8|0x8000000A
+  gAmdCommonChipsetPkgTokenSpaceGuid.SetupChangedFlag|0x2|UINT8|0x8000000B
+  gAmdCommonChipsetPkgTokenSpaceGuid.UpdateMemoryContextNonvolatileFlag|0x4|UINT8|0x8000000C
+  gAmdCommonChipsetPkgTokenSpaceGuid.UpdateMemoryContextvolatileFlag|0x8|UINT8|0x8000000D
+
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAgesaMemoryInfoTranslateSwSmi|0xAE|UINT8|0x8000000F
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashMctDataStoreBase|0x00000000|UINT32|0x80000010
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashMctDataStoreSize|0x00000000|UINT32|0x80000011
+
+  #
+  #Spd read data ppi
+  #
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashSpdDataStoreBase|0x00000000|UINT32|0x80000012
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashSpdDataStoreSize|0x00000000|UINT32|0x80000013
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSizeOfSpd|0x200|UINT16|0x80000014
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSpdDdr2ChkList|{0x54, 0x50, 0x55, 0x51, 0x56, 0x52, 0x57, 0x53, 0x4C, 0x49, 0x4D, 0x4A, 0x4E, 0x4B, 0x4F, 0x58, 0x59, 0x5A}|VOID*|0x80000016
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSpdDdr3ChkList|{127, 126, 125, 124, 123, 122, 121, 120, 119, 118, 117}|VOID*|0x80000017
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSpdDdr4ChkList|{UINT16(328), UINT16(327), UINT16(326), UINT16(325), UINT16(324), UINT16(323), UINT16(322), UINT16(321), UINT16(320), UINT16(127), UINT16(126)}|VOID*|0x80000018
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdMaxDimms|4|UINT8|0x80000019
+
+[PcdsFixedAtBuild, PcdsPatchableInModule]
+
+[PcdsFixedAtBuild, PcdsPatchableInModule, PcdsDynamic, PcdsDynamicEx]
+
+[PcdsDynamic, PcdsDynamicEx]
+

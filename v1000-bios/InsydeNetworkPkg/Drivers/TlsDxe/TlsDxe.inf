@@ -1,0 +1,109 @@
+## @file
+#  This module produces EFI TLS Protocol, EFI TLS Service Binding Protocol and
+#  EFI TLS Configuration Protocol.
+#
+#  This module produces EFI TLS (Transport Layer Security) Protocol and EFI TLS
+#  Service Binding Protocol, to provide TLS services.
+#
+#******************************************************************************
+#* Copyright (c) 2019 - 2020, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+#  Copyright (c) 2016, Intel Corporation. All rights reserved.<BR>
+#
+#  This program and the accompanying materials
+#  are licensed and made available under the terms and conditions of the BSD License
+#  which accompanies this distribution. The full text of the license may be found at
+#  http://opensource.org/licenses/bsd-license.php.
+#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+#
+##
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = TlsDxe
+  FILE_GUID                 = 3aceb0c0-3c72-11e4-9a56-74d435052646
+  MODULE_TYPE               = DXE_DRIVER
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = TlsDriverEntryPoint
+  UNLOAD_IMAGE              = TlsUnload
+  MODULE_UNI_FILE           = TlsDxe.uni
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeNetworkPkg/InsydeNetworkPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[Sources]
+  TlsDriver.h
+  TlsDriver.c
+  TlsProtocol.c
+  TlsConfigProtocol.c
+  TlsImpl.h
+  TlsImpl.c
+
+  TlsAuthConfig.c
+  TlsAuthConfig.h
+  TlsAuthConfigStrings.uni
+  TlsAuthConfigVfr.vfr
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  MemoryAllocationLib
+  GenericUtilityLib
+  BaseMemoryLib
+  BaseLib
+  UefiLib
+  DebugLib
+  NetLib
+  BaseCryptLib
+  TlsLib
+  HiiLib
+  PrintLib
+  VariableLib
+
+[Guids]
+  gEfiCertX509Guid
+  gTlsAuthConfigGuid
+  gEfiTlsCaCertificateGuid
+  gEfiIfrTianoGuid
+
+[Protocols]
+  gEfiTlsServiceBindingProtocolGuid          ## PRODUCES
+  gEfiTlsProtocolGuid                        ## PRODUCES
+  gEfiTlsConfigurationProtocolGuid           ## PRODUCES
+  gEfiHiiConfigAccessProtocolGuid            ## CONSUME
+  gCryptoServicesProtocolGuid                ## CONSUME
+  gH2ODialogProtocolGuid                     ## CONSUME
+  gEfiBlockIoProtocolGuid                    ## CONSUME
+  gEfiSimpleFileSystemProtocolGuid           ## CONSUME
+  gEfiDevicePathToTextProtocolGuid           ## CONSUME
+  gEfiLoadFileProtocolGuid                   ## CONSUME
+  gH2OFormBrowserProtocolGuid                ## CONSUME
+
+[Pcd]
+  gLinkSecurityTokenSpaceGuid.PcdH2OTlsCertManageFormsetGuid
+  gInsydeTokenSpaceGuid.PcdH2OFormBrowserSupported
+#  gInsydeTokenSpaceGuid.PcdH2ONetworkTlsSupported    ### This driver enabled means those two PCD is enabled.
+#  gInsydeTokenSpaceGuid.PcdH2ONetworkHttpSupported
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  TlsDxeExtra.uni
+
+[Depex]
+  TRUE

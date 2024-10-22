@@ -1,0 +1,81 @@
+/** @file
+  This file contains a structure definition for the ACPI PCI Express
+  Description Table (MCFG).  Any changes to the MCFG table require updating the
+  respective structure count in mcfg.h and then adding the structure to the
+  MCFG defined in this file.  The table layout is defined in Mcfg.h and the
+  table contents are defined in Acpi1_0.h and Mcfg.h.
+
+;*******************************************************************************
+;* Copyright (c) 2013, Insyde Software Corporation. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;*******************************************************************************
+*/
+
+//
+// Statements that include other files
+//
+#include "Mcfg.h"
+
+//
+// PCI Express Description Table
+//
+
+EFI_ACPI_MEMORY_MAPPED_CONFIGURATION_SPACE_ACCESS_DESCRIPTION_TABLE Mcfg = {
+  {EFI_ACPI_3_0_PCI_EXPRESS_MEMORY_MAPPED_CONFIGURATION_SPACE_BASE_ADDRESS_DESCRIPTION_TABLE_SIGNATURE,
+  sizeof (EFI_ACPI_MEMORY_MAPPED_CONFIGURATION_SPACE_ACCESS_DESCRIPTION_TABLE),
+  EFI_ACPI_MEMORY_MAPPED_CONFIGURATION_SPACE_ACCESS_TABLE_REVISION,
+
+  //
+  // Checksum will be updated at runtime
+  //
+  0x00,
+
+  //
+  // It is expected that these values will be programmed at runtime
+  //
+  {'I', 'N', 'S', 'Y', 'D', 'E'},
+
+  // OEM table identification
+  ((((((((((((((UINT64)'A' << 8) + 'M') << 8) + 'D') << 8) + ' ') << 8) + 'C') << 8) + 'R') << 8) + 'B') << 8) + ' ',
+
+  EFI_ACPI_OEM_MCFG_REVISION,
+  ((((('M' << 8) + 'S') << 8) + 'F') << 8) + 'T',
+  1000000},              // ASL compiler revision number
+
+  0x0000000000000000,
+  //
+  // MCFG specific fields
+  //
+
+  {{0x00000000E0000000,                                           // BaseAddress
+  0x0000,                                                       // PciSegmentGroupNumber
+  0x00,                                                         // StartBusNumber
+  0x40,                                                         // EndBusNumber
+  0x00000000}}                                                    // Reserved
+
+};
+
+#ifdef __GNUC__
+VOID*
+ReferenceAcpiTable (
+ VOID
+ )
+
+{
+ return (VOID*)&Mcfg;
+}
+#else
+VOID
+main (
+ VOID
+ )
+
+{
+  return;
+}
+#endif

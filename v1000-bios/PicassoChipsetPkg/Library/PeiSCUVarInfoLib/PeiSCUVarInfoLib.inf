@@ -1,0 +1,42 @@
+## @file
+#
+#  Delay for at least the request number of microseconds.  Timer used is DMA 
+#  refresh timer, which has 15us granularity. You can call with any number of 
+#  microseconds, but this implementation cannot support 1us granularity.
+#
+#******************************************************************************
+#* Copyright (c) 2012, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+*/
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiSCUVarInfoLib
+  FILE_GUID                      = 36A0B9B5-E5F5-4a6e-AA46-67F8420828BE
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = SCUVarInfoLib|PEIM
+
+[Sources]
+  PeiSCUVarInfoLib.c
+
+[Packages]  
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  $(PROJECT_PKG)/Project.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  KernelConfigLib
+  BaseLib
+  BaseSetupDefaultLib
+
+    

@@ -1,0 +1,60 @@
+## @file
+#  Component description file for PlatformVfrLib library
+#
+#******************************************************************************
+#* Copyright (c) 2013 - 2015, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformVfrLib
+  FILE_GUID                      = DB424128-C5C8-4551-8BFA-1B22760B32D5
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PlatformVfrLib
+  STRGATHER_RESERVE_SIZE         = 0x1000
+
+[Sources]
+  SetupVfrStrings.uni
+  Advance/AdvanceVfr.vfr
+  Power/PowerVfr.vfr
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(PROJECT_PKG)/Project.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+
+[LibraryClasses]
+
+[Guids]
+
+[Protocols]
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdH2OTpmSupported
+  gInsydeTokenSpaceGuid.PcdH2OTpm2Supported
+  gInsydeTokenSpaceGuid.PcdH2OHddPasswordMinLength
+  gInsydeTokenSpaceGuid.PcdH2OHddPasswordMaxLength
+  gInsydeTokenSpaceGuid.PcdH2OUsbSupported
+  gChipsetPkgTokenSpaceGuid.PcdModernStandbySupport
+  gChipsetPkgTokenSpaceGuid.PcdLegacyFreeSupported
+  gChipsetPkgTokenSpaceGuid.PcdXhciSupported
+  gChipsetPkgTokenSpaceGuid.PcdReduceHardwareSupport
+  gInsydeTokenSpaceGuid.PcdH2OFormBrowserLocalMetroDESupported
+  gInsydeTokenSpaceGuid.PcdH2OFormBrowserSupported
+  gInsydeTokenSpaceGuid.PcdH2OAhciSupported
+  gChipsetPkgTokenSpaceGuid.PcdBdsReoveryLongRun
+
+[FeaturePcd]
+#>>EnableAbove4GBMmio++
+  gInsydeTokenSpaceGuid.Pcd64BitAmlSupported
+#<<EnableAbove4GBMmio++
+
+[BuildOptions]

@@ -1,0 +1,75 @@
+##;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+
+[Defines]
+  BASE_NAME                      = AmdPbsSetupDxe
+  FILE_GUID                      = BBB77CB9-762D-436C-AC40-8EE4901C3446
+  MODULE_TYPE                    = DXE_DRIVER
+  INF_VERSION                    = 0x00010005
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdPbsSetupDxeEntry
+
+[Sources]
+  AmdPbsSetupDxe.c
+  AmdPbsSetupDxe.h
+  AmdPbsHii.vfr
+  AmdPbsHii.uni
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  HiiLib
+  MemoryAllocationLib
+  PrintLib
+  UefiLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  PciExpressLib
+  AmdPbsConfigLib
+  PcdLib
+  AmdPspCommonLib
+  DxeServicesLib
+  AmdPspBaseLibV2
+
+[Guids]
+  gAmdPbsSystemConfigurationGuid
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.OriginalPlatformId
+  gAmdCpmPkgTokenSpaceGuid.CurrentPlatformId
+  gAmdCpmPkgTokenSpaceGuid.PcdAmdXhciFwLocation
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdDxioMajorRevision
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdDxioMinorRevision
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPackageString
+  gAmdCpmPkgTokenSpaceGuid.PcdGopDriverFile
+  gAmdCpmPkgTokenSpaceGuid.PcdModernStandbySupport
+  gAmdCpmPkgTokenSpaceGuid.PcdReduceHardwareSupport
+
+[Protocols]
+  gEfiHiiStringProtocolGuid                     ## CONSUMES
+  gEfiHiiConfigRoutingProtocolGuid              ## CONSUMES
+  gEfiHiiConfigAccessProtocolGuid               ## PRODUCES
+  gEfiHiiDatabaseProtocolGuid                   ## CONSUMES
+  gEfiPciIoProtocolGuid
+  gAmdCpmDisplayFeatureProtocolGuid
+  gEfiComponentName2ProtocolGuid
+
+[Depex]
+  gEfiVariableWriteArchProtocolGuid
+
+[BuildOptions]
+#  *_*_*_CC_FLAGS = /D _DRIVER_="\"$(MODULE_NAME)\""
+

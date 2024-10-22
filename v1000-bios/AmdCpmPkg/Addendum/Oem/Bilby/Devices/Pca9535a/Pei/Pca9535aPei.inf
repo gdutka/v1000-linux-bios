@@ -1,0 +1,40 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = Pca9535aPei
+  FILE_GUID             = D326F501-4D17-6E44-C840-208426F90CEC
+  MODULE_TYPE           = PEIM
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = Pca9535aPeiEntryPoint
+
+[Sources.common]
+  Pca9535aPei.c
+  Pca9535aPei.h
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[LibraryClasses]
+  PeimEntryPoint
+  DebugLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gEfiPeiI2cMasterPpiGuid
+  gPca9535aPpiGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+
+[Depex]
+  gEfiPeiI2cMasterPpiGuid

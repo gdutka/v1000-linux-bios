@@ -1,0 +1,52 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdApcbSmmSsp
+  FILE_GUID                      = A8A3B70D-A1BE-42fb-99E0-76CF7F40A512
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = AmdApcbSspSmmDriverEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  BaseMemoryLib
+  AmdBaseLib
+  IdsLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  DxeServicesTableLib
+  MemoryAllocationLib
+  ApcbSspLib
+
+[Sources]
+  ApcbSspSmm.c
+  ..\TokensSsp\ConfigTokens.c
+  ..\TokensSsp\CbsExtTokens.c
+
+[Guids]
+
+
+[Protocols]
+  gAmdApcbSmmServiceProtocolGuid  #publish
+
+
+[Pcd]
+
+
+[Depex]
+  gAmdApcbServiceSspDepexProtocolGuid
+
+

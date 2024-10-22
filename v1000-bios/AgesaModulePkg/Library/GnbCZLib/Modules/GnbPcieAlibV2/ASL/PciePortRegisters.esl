@@ -1,0 +1,72 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: GNB
+ * @e \$Revision: 61089 $   @e \$Date: 2011-10-31 10:31:02 -0700 (Mon, 31 Oct 2011) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+
+//
+// PCIe port register block
+//
+OperationRegion(varPortOpRg, SystemMemory, Add (PcieBaseAddress, Or (ShiftLeft (PCIDEV, 15), ShiftLeft (PCIFUN, 12))), 4096)
+  Field(varPortOpRg, ByteAcc, NoLock, Preserve) {
+    Offset (0x18),
+      ,8,
+      bfSecondaryBus, 8,
+      bfSubBusNumber, 8,
+    Offset (0x68),
+      bfPmControl, 2,
+      ,2,
+      bfLinkDis, 1,      //BIT4
+      bfRetrainLink, 1,  //BIT5
+    Offset (0x6A),
+      ,11,
+      bfLinkTraining, 1,  //BIT11
+    Offset (0x88),
+      bfTargetLinkSpeed, 4,
+      ,1,
+      bfHwAutonomousSpeedDisable, 1,  //BIT5
+      Offset (0xE0),
+      bfPciePortIndex, 32,
+    }
+    BankField (varPortOpRg, bfPciePortIndex, 0xA1, DwordAcc, NoLock, Preserve) {
+      Offset (0xE4),
+      ,12,
+      bfLcInitSpdChgWithCsrEn, 1,  //BIT12
+    }
+    BankField (varPortOpRg, bfPciePortIndex, 0xA2, DwordAcc, NoLock, Preserve) {
+      Offset (0xE4),
+      ,13,
+      bfLcUpconfigureDis, 1,  //BIT13
+    }
+    BankField (varPortOpRg, bfPciePortIndex, 0xA4, DwordAcc, NoLock, Preserve) {
+      Offset (0xE4),
+      bfLcGen2EnStrap, 1,  //BIT0
+      bfLcGen3EnStrap, 1,  //BIT1
+      ,11,
+      bfLcCurrentDataRate, 2,     //BIT[13..14]
+      ,14,
+      bfLcInitSpeedNegInL1En, 1,  //BIT29
+    }
+    BankField (varPortOpRg, bfPciePortIndex, 0xA5, DwordAcc, NoLock, Preserve) {
+      Offset (0xE4),
+      bfLcCurrentState, 6
+    }
+
+

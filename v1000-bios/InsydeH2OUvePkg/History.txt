@@ -1,0 +1,1584 @@
+#;*************************************************************************************************
+#;* Copyright (c) 1983-2016, Insyde Software Corporation. All Rights Reserved.
+#;*
+#;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#;* transmit, broadcast, present, recite, release, license or otherwise exploit
+#;* any part of this publication in any form, by any means, without the prior
+#;* written permission of Insyde Software Corporation.
+#;*
+#;*************************************************************************************************
+#; Revision History:
+#; 
+#; Label#: 01.01.04.0009
+#; Status: Tag
+#; Enhance: Fix the klocwork issue.
+#; Fix: 1. After loading optimized defaults via H2OUVE tool, BootOrder does not load to defaults.
+#;      2. Some notification functions do not update setup information correctly.
+#; 
+#; Tag#: 01.01.04.0009
+#; Issue#: IB12130381
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: Some notification functions do not update setup information correctly.
+#; RootCause: The TPL of notification functions in the VariableEditDxe driver is too high.
+#; Description: Currently, The TPL of notification functions in the VariableEditDxe driver is TPL_CALLBACK-2.
+#;              If the update function runs on TPL_CALLBACK-2 or lower, some setup information will not be updated because all notification functions in the VariableEditDxe driver run first.
+#; Solution: Set the TPL of the notification functions in the VariableEditDxe driver to the lowest available value(TPL_APPLICATION+1).
+#;           known issue: If the update function run on TPL_APPLICATION+1, it still has this problem.
+#; Reviewer: IB12130000
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#; Tag#: 01.01.04.0009
+#; Issue#: IB12130372
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: Fix the klocwork issue.
+#; RootCause: klocwork issue.
+#; Description: The issue is described as follows:
+#;                1. Pointer 'VarEditFunPw' returned from call to function 'GetVariable2' at line 1765 may be NULL and may be dereferenced at line 1776.
+#;                2. Suspicious dereference of pointer 'VarEditFunPw' before NULL check at line 1895.
+#; Solution: Fix it.
+#; SolutionDependency: None.
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#; Tag#: 01.01.04.0009
+#; Issue#: IB12130371
+#; Severity: Medium
+#; Category: H2OUVE package
+#; Symptom: After loading optimized defaults via H2OUVE tool, BootOrder does not load to defaults.
+#; RootCause: BootOrder is not processed when running the KEY_LOAD_OPTIMAL callback.
+#; Description: None.
+#; Solution: Delete the BootOrder variable when running the KEY_LOAD_OPTIMAL callback.
+#; SolutionDependency: None.
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 01.01.04.0008
+#; Status: Tag
+#; Enhance: Check whether the size of each language string exceeds RFC_3066_ENTRY_SIZE. (ITS: 0089920)
+#; 
+#; Tag#: 01.01.04.0008
+#; Issue#: IB12130334
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: (ITS: 0089920) InsydeH2OUvePkg - An issue in the handling of PlatformLangCodes.
+#; RootCause: This code always assumes that the PlatformLangCodes variable is NULL terminated.
+#; Description: Since this variable is listed as having Runtime access (not just Boot Service), it is possible for a OS app to change this variable’s contents. And this variable is accessed inside of SMM.
+#; Solution: Check whether the size of each language string exceeds RFC_3066_ENTRY_SIZE.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 01.01.04.0007
+#; Status: Tag
+#; Enhance: Use CommonGetVariableDataAndSize function instead of CommonGetVariableData function to be compatible with Kernel 5.5.
+#; 
+#; Tag#: 01.01.04.0007
+#; Issue#: IB12130326
+#; Severity: Minor
+#; Category: UEFI Variables
+#; Symptom: Use CommonGetVariableDataAndSize function instead of CommonGetVariableData function to get variables.
+#; RootCause: Kernel 5.5 has removed CommonGetVariableData function from VariableLib on Tag 05.51.32.
+#; Description: Kernel 5.5 has removed CommonGetVariableData function from VariableLib on Tag 05.51.32. (ITS: 85311 H2O0698, Issue#: IB02961400)
+#;              Change the consumer code to use CommonGetVariableDataAndSize function to be compatible with Kernel 5.5.
+#; Solution: Change it.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 01.01.04.0006
+#; Status: Tag
+#; Enhance: Report the value of PcdH2OCustomDefaultSupported to the tool.
+#; 
+#; Tag#: 01.01.04.0006
+#; Issue#: IB12340396
+#; Severity: Feature
+#; Category: H2OUVE package
+#; Symptom: The H2OUVE tool has no way to get the PcdH2OCustomDefaultSupported setting.
+#; RootCause: BIOS driver should provide the setting of PcdH2OCustomDefaultSupported for tool using.
+#; Description: Add a flag definition for PcdH2OCustomDefaultSupported in VARIABLE_EDIT_TABLE for the flag.
+#; Solution: Add it.
+#; SolutionDependency: None.
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#;   2. VariableEditDxe\VariableEditDxe.h
+#;   3. VariableEditDxe\VariableEditDxe.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 01.01.04.0005
+#; Status: Tag
+#; Enhance: Support users to register different priority SMI handlers to customize IHISI 52h and 53h.
+#; 
+#; Tag#: 01.01.04.0005
+#; Issue#: IB12130279
+#; Severity: Feature
+#; Category: H2OUVE package
+#; Symptom: Remove the related code of the advanced boot feature.
+#; RootCause: The solution IB12130272 will cause the dependency on SegFeaturePkg, which is not a good design.
+#; Description: According to Tim's suggestion, InsydeAdvBootPkg implements the same H2OUVE command at IhisiHighPriority higher-priority SMI handler for IHISI 53h.
+#;              For IHISI 52h, adjust the return code from IHISI_END_FUNCTION_CHAIN to EFI_SUCCESS in SetupCallbackSyncCallbackIhisi(). (User can register lower-priority SMI handler to do something. (Ex. call LibAdvBootLoadDefault ()))
+#; Solution: Remove it and adjust it.
+#;           InsydeAdvBootPkg will implement the new method in tag 01.01.06.0031.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#;   2. VariableEditSmm\VariableEditSmm.inf
+#; 
+#; Tag#: 01.01.04.0005
+#; Issue#: IB12130000
+#; Severity: Feature
+#; Category: H2OUVE package
+#; Symptom: (Rollback Solution)
+#; RootCause: (Rollback Solution)
+#; Description: Rollback IB12130278 solution
+#; Solution: (Rollback Solution)
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 01.01.04.0005
+#; Issue#: IB12130278
+#; Severity: Feature
+#; Category: H2OUVE package
+#; Symptom: Remove the related code of the advanced boot feature.
+#; RootCause: The solution IB12130272 will cause the dependency on SegFeaturePkg, which is not a good design.
+#; Description: According to Tim's suggestion, InsydeAdvBootPkg implements the same H2OUVE command at IhisiHighPriority higher-priority SMI handler for IHISI 53h.
+#;              For IHISI 52h, adjust the return code from IHISI_END_FUNCTION_CHAIN to EFI_SUCCESS in SetupCallbackSyncCallbackIhisi(). (User can register lower-priority SMI handler to do something. (Ex. call LibAdvBootLoadDefault ()))
+#; Solution: Remove it and adjust it. 
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 01.01.04.0005
+#; Issue#: IB12130272
+#; Severity: Feature
+#; Category: H2OUVE package
+#; Symptom: Support the Advanced boot feature.
+#; RootCause: None.
+#; Description: If the advanced boot feature is enabled, this driver supports getting/setting boot order and boot device type order via the advanced boot.
+#; Solution: Add it.
+#;           This solution needs to be compiled with SegFeaturePkg tag 02.01.0004.0003/01.01.04.0004.
+#;           The InsydeAdvBootPkg supports this solution on tag 01.01.06.0029.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#;   2. VariableEditSmm\VariableEditSmm.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 01.01.04.0004
+#; Status: Tag
+#; Enhance: Code enhance to prevent the variable be destroyed when executing RouteConfig.
+#; 
+#; Tag#: 01.01.04.0004
+#; Issue#: IB12340256
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: There is a risk to destroy the setting of others which don't need to be modified, so use CommonGetVariable to get the current setting after calling ZeroMem.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtil.c
+#;   2. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtil.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 01.01.04.0003
+#; Status: Tag
+#; Enhance: 1. Enhance the request of security level for IHISI 52h.
+#; Fix: 1. A minor coding issue in GetDevicePathStrByHiiHandle().
+#;      2. Fix the errors according to the report from the security review.
+#;      3. H2OUVE tool can't get the information of mUVEDataInfo in VariableEditDxe driver.
+#;      4. The size of EfiBootServicesData memory is used too much under the EFI Shell environment.
+#;      5. Correct the DestMax parameter value passed to StrCpyS() in GetCurrentBootTypeInformation().
+#; 
+#; Tag#: 01.01.04.0003
+#; Issue#: IB12130000
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: Correct the DestMax parameter value passed to StrCpyS() in GetCurrentBootTypeInformation().
+#; RootCause: The value is wrong.
+#; Description: The value should be the maximum number of Destination Unicode char(including terminating null char), not the size.
+#; Solution: Correct it.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 01.01.04.0003
+#; Issue#: IB12130236
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: The size of EfiBootServicesData memory is used too much under the EFI Shell environment.
+#; RootCause: The unused memory is not freed cleanly after exiting the VariableEditDxe driver.
+#; Description: None.
+#; Solution: Free the unused memory.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#; Tag#: 01.01.04.0003
+#; Issue#: IB12130227
+#; Severity: Serious
+#; Category: H2OUVE package
+#; Symptom: H2OUVE tool can't get the information of mUVEDataInfo in VariableEditDxe driver.
+#; RootCause: mUVEDataInfo may be removed because of the compiler optimization.
+#; Description: None.
+#; Solution: Use mUVEDataInfo in code.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#; Tag#: 01.01.04.0003
+#; Issue#: IB12130219
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: Enhance the request of security level for IHISI 52h.
+#; RootCause: (Code Enhancement)
+#; Description: Enhance the request of security level to reduce the security risk on IHISI 52h.
+#;              NOTE: H2OUVE tool supports this function from version 200.01.00.09. Please use this version or higher if BIOS enabled the security level mechanism (Set PcdH2OIhisiAuthSupported to TRUE).
+#; Solution: Enhance it.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeH2OUvePkg.dec
+#;   2. Notice.txt
+#;   3. VariableEditSmm\IhisiH2OUve.c
+#;   4. VariableEditSmm\VariableEditSmm.inf
+#; 
+#; Tag#: 01.01.04.0003
+#; Issue#: IB12130217
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: Fix the errors according to the report from the security review.
+#; RootCause: (Code Enhancement)
+#; Description: Clear the password buffer before the H2OSmiCallBack function return.
+#; Solution: Clear it.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 01.01.04.0003
+#; Issue#: IB12130209
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: Fix the errors according to the report from the security review.
+#; RootCause: (Code Enhancement)
+#; Description: 1. SetCurrentBootTypeInformation function: Check whether the external input(Data->BootTypeNumber) is correct before using it.
+#;              2. GetCallBackListSize function: Check if pCallbackListBuffer is in the command buffer before using it.
+#;              3. H2OSmiCallBack function: Check if Password is in the command buffer before using it.
+#;                                          The MaxSize value passed to AsciiStrnLenS use the min of STRING_COUNT_MAX and end-of-buffer(CallbackData->CallbackString).
+#;              5. SetupCallbackSyncCallbackIhisi function: Add a check to ensure that IndexPwd cannot exceed STRING_COUNT_MAX.
+#; Solution: Add it.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 01.01.04.0003
+#; Issue#: IB12130186
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: A minor coding issue in GetDevicePathStrByHiiHandle().
+#; RootCause: coding issue.
+#; Description: After calling ConvertDevicePathToText(), GetDevicePathStrByHiiHandle() doesn't return correct statue if ConvertDevicePathToText() return NULL.
+#; Solution: return correct status.
+#; SolutionDependency: None
+#; Reviewer: IB01780000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#; Tag#: 01.01.04.0002
+#; Issue#: IB12340095
+#; Severity: Medium
+#; Category: Build
+#; Symptom: The project layer can't set the PcdH2OUveSupported to FALSE in [PcdsFeatureFlag] label at Project.dsc.
+#; RootCause: The PcdH2OUveSupported pcd had been set to TRUE in [PcdsFixedAtBuild] label.
+#; Description: The PcdH2OUveSupported PCD type should match the definition in InsydeH2OUvePkg.dec.
+#; Solution: Correct it.
+#; SolutionDependency: None.
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Package.dsc
+#; 
+#; Tag#: 05.41.40
+#; Issue#: IB12340047
+#; Severity: Medium
+#; Category: Build
+#; Symptom: (ITS:0054876 ECR H2O0453) Remove support for EDK1, including EDK_GLOBAL
+#; RootCause: (Code Enhancement)
+#; Description: replace keyword EDK_GLOBAL with keyword DEFINE.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Package.dsc
+#; 
+#; Tag#: 05.41.39
+#; Issue#: IB12340046
+#; Severity: Medium
+#; Category: H2OUVE package
+#; Symptom: The -dpw feature of H2OUVE does not work properly.
+#; RootCause: The Unicode2Ascii function cannot work properly.
+#; Description: The driver uses the SysPassword service that has not been initialized to set the password.
+#; Solution: Add gEfiSysPasswordServiceProtocolGuid to the dependency of VariableEditDxe.inf to ensure that
+#; the SysPassword service has been initialized.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#;   2. VariableEditDxe\VariableEditDxe.inf
+#; 
+#; Tag#: 05.41.33
+#; Issue#: IB12340045
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: Recovery mode will Trigger the Assert which in the H2OUveConfigUtil.c
+#; RootCause: Fail to get variable.
+#; Description: Variable service may be limited under recovery mode.
+#; Solution: Replace the ASSERT with debug message to prevent the platform halt.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtil.c
+#; 
+#; Tag#: 05.41.32
+#; Issue#: IB12340044
+#; Severity: Minor
+#; Category: H2OUVE package
+#; Symptom: BootXXXX number doesn't exist but exist in BootOrder, function may return success.
+#; RootCause: The error status should be returned not skip.
+#; Description: Replace continue with break to report the error status.
+#; Solution: Fix it.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 05.41.28
+#; Issue#: IB12340043
+#; Severity: Feature
+#; Category: H2OUvePkg
+#; Symptom: Add layout inforamtion from HiiLayoutPkg to VARIABLE_EDIT_TABLE.
+#; RootCause: None
+#; Description: Kernel support the import description in .vfcf/.hfcf for those cloned items.
+#; So H2OUve also need this information to show those items.
+#; Solution: Add it to VARIABLE_EDIT_TABLE.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#;   2. VariableEditDxe\VariableEditDxe.h
+#;   3. VariableEditDxe\VariableEditDxe.inf
+#; 
+#; Tag#: 05.41.20
+#; Issue#: IB12340000
+#; Severity: Minor
+#; Category: H2OUvePkg
+#; Symptom: Memory has not been freed
+#; RootCause: None
+#; Description: Free the BootOption before return.
+#; Solution: Free it.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 05.41.16
+#; Issue#: IB12340000
+#; Severity: Minor
+#; Category: H2OUvePkg
+#; Symptom: The PcdH2OFormBrowserSupported has been removed.
+#; RootCause: Kerenl 05.41.16 has removed the PcdH2OFormBrowserSupported and the relative code with PcdH2OFormBrowserSupported=FALSE
+#; Description: H2OUvePkg should also remove the relative code with PcdH2OFormBrowserSupported=FALSE.
+#; Solution: Remove it.
+#; SolutionDependency: IB07010802 in 05.41.16
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#;   2. VariableEditDxe\VariableEditDxe.inf
+#; 
+#; Tag#: 05.41.12
+#; Issue#: IB12340000
+#; Severity: Medium
+#; Category: H2OUvePkg
+#; Symptom: 1.When the system password has been set and then use H2OUVE tool to load default settings by -l command, then "Power on Password" will be hidden.
+#; 2.The H2OUVE can not work fine with the in debug version BIOS binary, the SCU form set order is missing.
+#; RootCause: 1. The SupervisorFlag is not updated during POST, although the password is present.
+#; 2. Debug version BIOS use the /Gw flag to optimize global data, so the mUVEDataInfo data was disappeared.
+#; Description: 1. Driver should update the flag by itself.
+#; 2. Operate the mUVEDataInfo in the code to prevent the optimization.
+#; Solution: 1. Add back the PasswordStatusUpdate().
+#; 2. Add action to operate mUVEDataInfo
+#; SolutionDependency: None.
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#;   2. VariableEditDxe\VariableEditDxe.h
+#; 
+#; Tag#: 05.33.08
+#; Issue#: IB12340000
+#; Severity: Minor
+#; Category: H2OUvePkg
+#; Symptom: Language won't load defauld  when the KEY_LOAD_OPTIMAL callback is executed which is in SetupCallbackSyncCallbackIhisi().
+#; RootCause: The language variable has not been deleted.
+#; Description: Here using deleting variable to let platform regenerate the variable from default.
+#; Solution: Delete the Language variable when the KEY_LOAD_OPTIMAL callback is executed.
+#; SolutionDependency: None.
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 05.33.04
+#; Issue#: IB12340000
+#; Severity: Minor
+#; Category: Tools
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Create three Insyde Feature Catalog files (InsydeH2OUvePkg.ifc) in InsydeH2OUvePkg repository.
+#; For details, please refer to InsydeH2O Feature Packaging Technical Reference 077.docx.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Added:
+#;   1. InsydeH2OUvePkg.ifc
+#; 
+#; Tag#: 05.32.52
+#; Issue#: IB12130000
+#; Severity: Medium
+#; Category: Build
+#; Symptom: Build failed.
+#; RootCause: Element name is changed.
+#; Description: Error massage: "InsydeH2OUvePkg\VariableEditSmm\IhisiH2OUve.c(132): error C2039: 'Map': is not a member of 'VATS_BOOT_OPTION_INFORMATION_STRUCTURE'"
+#; Solution: Ccorrect it
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 05.32.52
+#; Issue#: IB12130000
+#; Severity: Trivial
+#; Category: Security
+#; Symptom: None
+#; RootCause: None
+#; Description: Check the data of input/output buffer in IHISI 52h and 53h is valid or not.
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 05.32.36
+#; Issue#: IB12340042
+#; Severity: Medium
+#; Category: Setup
+#; Symptom: Remove unused code in Setup driver.
+#; RootCause: Code Enhancement.
+#; Description: Code Enhancement.
+#; Solution: Remove it.
+#; SolutionDependency: None.
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtil.c
+#;   2. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtilConfigPageVfr.vfr
+#;   3. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtilStr.uni
+#;   4. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtil.c
+#;   5. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtilPageVfr.vfr
+#;   6. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtilStr.uni
+#; 
+#; Tag#: 05.32.32
+#; Issue#: IB12340041
+#; Severity: Tweak
+#; Category: H2OUvePkg
+#; Symptom: (Code adjustment)
+#; RootCause: (Code adjustment)
+#; Description: Move the SafeFreePool() and SafeFreePoolM macro to the top of all function, and all the function can use them directly.
+#; Solution: (Code adjustment)
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 05.32.32
+#; Issue#: IB12340040
+#; Severity: Tweak
+#; Category: H2OUvePkg
+#; Symptom: (Code adjustment)
+#; RootCause: (Code adjustment)
+#; Description: Remove the comments with issue number and useless codes.
+#; Solution: (Code adjustment)
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Include\Protocol\VariableEditBootTypeInfo.h
+#;   2. InsydeH2OUvePkg.dec
+#;   3. Package.dsc
+#;   4. VariableEditDxe\VariableEditDxe.inf
+#;   5. VariableEditSmm\VariableEditSmm.inf
+#; 
+#; Tag#: 05.32.32
+#; Issue#: IB12340039
+#; Severity: Tweak
+#; Category: H2OUvePkg
+#; Symptom: (Code enhancement)
+#; RootCause: (Code enhancement)
+#; Description: 1.Remove the comments with issue number and useless codes.
+#; 2.Replace EFI_D_ERROR/EFI_D_INFO with DEBUG_ERROR/DEBUG_INFO
+#; 3.Use SafeFreePoolM to safely free up memory.
+#; 4.Resolve security issues when calculating string sizes
+#; Solution: (Code enhancement)
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtil.c
+#;   2. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtil.c
+#;   3. VariableEditDxe\VariableEditDxe.c
+#;   4. VariableEditSmm\IhisiH2OUve.c
+#;   5. VariableEditSmm\VariableEditSmm.c
+#; 
+#; Tag#: 05.32.32
+#; Issue#: IB12340038
+#; Severity: Minor
+#; Category: IHISI
+#; Symptom: (ITS:0050126) IHISI (AH = 0x52) will ignore the error code outside-of-command-buffer condition in certain cases.
+#; RootCause: The IHISI_BUFFER_RANGE_ERROR will be ignored by the EFI_ERROR() macro, so avoid mixing EFI state and IHISI state in the sub-function to avoid misunderstanding.
+#; Description: (Bug Fix)
+#; Solution: Change the return status from IHISI_BUFFER_RANGE_ERROR to EFI_BAD_BUFFER_SIZE and convert it back to IHISI_BUFFER_RANGE_ERROR before returning the execution result of IHISI.
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 05.32.32
+#; Issue#: IB12340036
+#; Severity: Minor
+#; Category: IHISI
+#; Symptom: (ITS:0050126) IHISI (AH = 0x52) will ignore the error code outside-of-command-buffer condition in certain cases.
+#; RootCause: The IHISI_BUFFER_RANGE_ERROR will be ignored by the EFI_ERROR() macro, so it should use another way to handle error.
+#; Description: (Bug Fix)
+#; Solution: Change the condition to not equal to EFI_SUCESS.
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 05.32.32
+#; Issue#: IB12340035
+#; Severity: Minor
+#; Category: IHISI
+#; Symptom: (ITS:0050125) IHISI (AH = 0x52) has reachable ASSERTs
+#; RootCause: There are some reachable ASSERTs, and they should be removed in feature package.
+#; Description: (Bug Fix)
+#; Solution: Replace the ASSERTs with error message and error status code.
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#;   2. VariableEditSmm\VariableEditSmm.c
+#; 
+#; Tag#: 05.32.32
+#; Issue#: IB12340034
+#; Severity: Minor
+#; Category: IHISI
+#; Symptom: (ITS:0050124) IHISI (AH = 0x52) does not handle memory allocation failure correctly.
+#; RootCause: There are some memory allocation failures that have not been handled.
+#; Description: (Bug Fix)
+#; Solution: Handle the memory allocation failures
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 05.32.32
+#; Issue#: IB12340033
+#; Severity: Minor
+#; Category: IHISI
+#; Symptom: IHISI (AH = 0x52, 0x53) reports incorrect error when input buffer is not completely within the command buffer.
+#; RootCause: When the input buffer is not completely within the command buffer, it should return IHISI_BUFFER_RANGE_ERROR. But KernelFbtsGetFlashPartInfo () returns IHISI_UNSUPPORTED_FUNCTION.
+#; Description: (Bug Fix)
+#; Solution: 1.Return IHISI_BUFFER_RANGE_ERROR if buffer is not completely within the command buffer.
+#; 2.Add more security checks for command buffer.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.28
+#; Status: Support H2OUVE to modify the boot type order on BIOS image.
+#; 
+#; Tag#: 05.32.28
+#; Issue#: IB12340029
+#; Severity: Minor
+#; Category: Build
+#; Symptom: Build fail
+#; RootCause: Can not use Single-line comments in structure
+#; Description: None
+#; Solution: Replace Single-line comments with Multi-line comments.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Include\Protocol\VariableEditBootTypeInfo.h
+#; 
+#; Tag#: 05.32.28
+#; Issue#: IB12340032
+#; Severity: Trivial
+#; Category: H2OUvePkg
+#; Symptom: The PcdLegacyBootTypeOrder will be builded as DynamicExPcd instead of DynamicPcd.
+#; RootCause: IB07990174, Transfer DynamicPcd to DynamicExPcd if Build.exe with --Dynamic-to-DynamicEx enabled.
+#; Description: In order to be compatible with older versions of the kernel, PcdLegacyBootTypeOrder should always be builded as DynamicExPcd.
+#; Solution: Chahge the property of PcdLegacyBootTypeOrder to PcdsDynamicExDefault.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Package.dsc
+#; 
+#; Tag#: 05.32.28
+#; Issue#: IB12340031
+#; Severity: Minor
+#; Category: H2OUvePkg
+#; Symptom: ProjectSdlAnalysis.csv reports some warnings.
+#; RootCause: None.
+#; Description: Kernel 5.3 add tool chain support for VS2017 Code Analysis.
+#; It will generate ProjectSdlAnalysis.csv which contains MSFT SDL code analysis.
+#; Solution: Resolve those warnings.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtil.c
+#; 
+#; Tag#: 05.32.28
+#; Issue#: IB12340030
+#; Severity: Minor
+#; Category: H2OUvePkg
+#; Symptom: ProjectSdlAnalysis.csv reports some warnings.
+#; RootCause: None.
+#; Description: Kernel 5.3 add tool chain support for VS2017 Code Analysis.
+#; It will generate ProjectSdlAnalysis.csv which contains MSFT SDL code analysis.
+#; Solution: Resolve those warnings.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtil.c
+#;   2. VariableEditSmm\IhisiH2OUve.c
+#;   3. VariableEditSmm\VariableEditSmm.c
+#; 
+#; Tag#: 05.32.28
+#; Issue#: IB12340029
+#; Severity: Feature
+#; Category: H2OUvePkg
+#; Symptom: H2OUVE tool can't modify the boot type order by image.
+#; RootCause: BIOS didn't provide any infomation of boot type order to H2OUVE tool.
+#; Description: None
+#; Solution: Add the BootTypePCDTokenNumber to the VARIABLE_EDIT_BOOT_TYPE_INFO_PROTOCOL, and H2OUVE tool can use it to get and set boot type order.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Include\Protocol\VariableEditBootTypeInfo.h
+#;   2. Package.dsc
+#; 
+#; Tag#: 05.32.28
+#; Issue#: IB12340028
+#; Severity: Minor
+#; Category: H2OUvePkg
+#; Symptom: Code enhancement.
+#; RootCause: Code enhancement.
+#; Description: Adjust the content of BuffersOverlap function.
+#; Solution: Code enhancement.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#; Tag#: 05.32.25
+#; Issue#: IB12340027
+#; Severity: Feature
+#; Category: IHISI
+#; Symptom: Enhance the security of IHISI.
+#; RootCause: Enhance the security of IHISI.
+#; Description: All of the input buffer should be in the range of command buffer.
+#; Solution: Add more checking for input buffer.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.24
+#; Status: Tag version update
+#; 
+#; Tag#: 05.32.24
+#; Issue#: IB12340026
+#; Severity: Minor
+#; Category: H2OUvePkg
+#; Symptom: None
+#; RootCause: None
+#; Description: Change the timing of creating SCU data event to EndOfBdsBootSelection, and add a PCD to switch it.
+#; Solution: Replace ReadyToBoot checkpoint with gEndOfBdsBootSelectionProtocolGuid protocol notify.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeH2OUvePkg.dec
+#;   2. VariableEditDxe\VariableEditDxe.c
+#;   3. VariableEditDxe\VariableEditDxe.inf
+#; 
+#; Tag#: 05.32.21
+#; Issue#: IB12340024
+#; Severity: Minor
+#; Category: H2OUvePkg
+#; Symptom: The password exist but the H2OUVE does not do the password checking.
+#; RootCause: The settings of SupervisorFlag and UserFlag will be cleared when using Dediprog Flash the ROM, but password won't.
+#; Description: SupervisorFlag and UserFlag will not be updated during POST.
+#; Solution: Use the SetStatus password service to replace the above flags to perform a password checking.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.20
+#; Status: Tag version update, please use with 100.00.18.06 or newer H2OUVE Tool.
+#; 
+#; Tag#: 05.32.20
+#; Issue#: IB12340023
+#; Severity: Minor
+#; Category: Build
+#; Symptom: Build fail after IB10850214 has been committed.
+#; RootCause: Build tool change the parse rule for the PCD in VFR.
+#; Description: None
+#; Solution: Change the PCD type from PcdsDynamicEx to FixedAtBuild.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeH2OUvePkg.dec
+#;   2. Package.dsc
+#; 
+#; Tag#: 05.32.20
+#; Issue#: IB12340000
+#; Severity: Trivial
+#; Category: H2OUvePkg
+#; Symptom: The older version of H2OUVE Tool can't work normally with the latest version of InsydeH2OUvePkg.
+#; RootCause: The older version of H2OUVE Tool can't process the data of new version.
+#; Description: Add the minimum required description for H2OUVE tool.
+#; Solution: Update the minimum required description to Notice.txt.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Notice.txt
+#; 
+#; Tag#: 05.32.18
+#; Issue#: IB12340022
+#; Severity: Medium
+#; Category: SCT
+#; Symptom: It will assert when enter SCU to modify setting after IB12340021 was updated.
+#; RootCause: It will return uninitialized Progress.
+#; Description: Fix bug.
+#; Solution: Initialize it.
+#; SolutionDependency: IB12340021
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtil.c
+#;   2. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtil.c
+#; 
+#; Tag#: 05.32.18
+#; Issue#: IB12340021
+#; Severity: Medium
+#; Category: SCT
+#; Symptom: The failed items of UEFI2.6 SCT Test:
+#;          1. HII_CONFIG_ACCESS_PROTOCOL.RouteConfig - RouteConfig() returns EFI_NOT_FOUND if no target was found with the routing data.
+#;          2. HII_CONFIG_ACCESS_PROTOCOL.RouteConfig - RouteConfig() returns EFI_INVALID_PARAMETER with Configuration been NULL.
+#;          3. HII_CONFIG_ACCESS_PROTOCOL.ExtractConfig - ExtractConfig() returns EFI_INVALID_PARAMETER with Request been <MultiConfigRequest> format.
+#;          4. HII_CONFIG_ACCESS_PROTOCOL.ExtractConfig - ExtractConfig() Check if Results is in <MultiConfigAltResp> format.
+#;          5. HII_CONFIG_ACCCES_PROTOCOL.ExtractConfig - ExtractConfig() returns EFI_SUCCESS with valid parameters and and Progress points to the Requests null terminator.		 
+#; RootCause: RouteConfig() and ExtractConfig() don't follow the UEFI spec.
+#; Description: Fix bug.
+#; Solution: Correct the issues by referring to UEFI Specification and Driver Sample code. 
+#; SolutionDependency: None.
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtil.c
+#;   2. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtil.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.16
+#; Status: Tag version update
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.12
+#; Status: Tag version update
+#; 
+#; Tag#: 05.32.10
+#; Issue#: IB12130000
+#; Severity: Feature
+#; Category: H2OUvePkg
+#; Symptom: H2OUVE tool can't identify each Formset.
+#; RootCause: Formset Guid may be the same with others.
+#; Description: None
+#; Solution: Add the Device Path information for identifying Formset.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#;   2. VariableEditDxe\VariableEditDxe.h
+#;   3. VariableEditDxe\VariableEditDxe.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.04
+#; Status: Tag version update
+#; 
+#; Tag#: 05.32.03
+#; Issue#: IB12340020
+#; Severity: Medium
+#; Category: Build
+#; Symptom: Build failed, because the SysPasswordSmm.h has been removed.
+#; RootCause: SysPasswordSmm.h was removed in IB12340019.
+#; Description: The "#include <SysPasswordSmm.h>" should be removed.
+#; Solution: Remove it.
+#; SolutionDependency: IB12340019
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditSmm\IhisiH2OUve.c
+#;   2. VariableEditSmm\VariableEditSmm.c
+#; 
+#; Tag#: 05.32.02
+#; Issue#: IB12340019
+#; Severity: Tweak
+#; Category: H2OUvePkg
+#; Symptom: Replace the smm password service which provided by H2OUvePkg with the smm password service of kernel.
+#; RootCause: Kernel had been provided the SMM version gEfiSysPasswordServiceProtocolGuid protocol.
+#; Description: 1.Replace the password service.
+#;              2.Add the definition of return code of result.
+#; Solution: Remove the smm password service from H2OUvePkg, and try to get the smm password service which provided by kernel.
+#; SolutionDependency: IB02960950
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Deleted:
+#;   1. VariableEditSmm\SysPasswordSmm.c
+#;   2. VariableEditSmm\SysPasswordSmm.h
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.inf
+#;   2. VariableEditSmm\IhisiH2OUve.c
+#;   3. VariableEditSmm\IhisiH2OUve.h
+#;   4. VariableEditSmm\VariableEditSmm.c
+#;   5. VariableEditSmm\VariableEditSmm.inf
+#; 
+#; Tag#: 05.32.01
+#; Issue#: IB12130000
+#; Severity: Text
+#; Category: H2OuvePkg
+#; Symptom: (Rollback)
+#; RootCause: (Rollback)
+#; Description: (Rollback)
+#; Solution: (Rollback)
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. Notice.txt
+#; 
+#; Tag#: 05.31.49
+#; Issue#: IB12130000
+#; Severity: Text
+#; Category: H2OUvePkg
+#; Symptom: None
+#; RootCause: None
+#; Description: Adjust the description in Notice.txt.
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; 
+#; RelatedFiles:
+#; Modified:
+#;   1. Notice.txt
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.01
+#; Status: Fix the issue of Hii strings.
+#; 
+#; Tag#: 05.32.01
+#; Issue#: IB12340018
+#; Severity: Trivial
+#; Category: H2ouvePkg
+#; Symptom: Remove unused function.
+#; RootCause: None
+#; Description: Remove unused function.
+#; Solution: Remove
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#; Tag#: 05.32.01
+#; Issue#: IB12340017
+#; Severity: Medium
+#; Category: H2ouvePkg
+#; Symptom: The Hii Database which is prepared for H2OUVE using has some strings are incorrect. 
+#; RootCause: The hook function (GetPasswordStatus) always return EFI_NOT_FOUND, and this behavior will provide the wrong information for PasswordCheck().
+#; Description: The hook function is used to avoid the password popup dialog, but it has the side effect that the Hii string of password will not be updated when the password is exist.
+#; Solution: Does not ues the the hook function, and set HaveSysPasswordCheck to FALSE to temporarily disable system password checking.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.52
+#; Status: Tag version update
+#; 
+#; Tag#: 05.31.50
+#; Issue#: IB12340016
+#; Severity: Tweak
+#; Category: H2ouvePkg
+#; Symptom: When the system password has been setted and the "Power on Password" was "Disabled", then the password dialog will show at every time booting.
+#; RootCause: The hook function (GetPasswordStatus) does not work because the hook timing is too late.
+#; Description: There is a hook function (GetPasswordStatus) to prevent the password dialog displayed each time when booting, but it does not work normally.
+#; Solution: The GetStatus() should be hooked by GetPasswordStatus() before doing the notify function of InstallSetupUtilityHiiData.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#; Tag#: 05.31.49
+#; Issue#: IB12130000
+#; Severity: Trivial
+#; Category: H2OUvePkg
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description:  Adjust naming rule according to the suggestion of Tim Lewis. Following is the suggestion.
+#;                => Try to be consistent with name prefix. For example, in H2OUve package, all names have the form "H2OUvexxxx" Great! But a few choose differently. 
+#;                   gH2OVarableEditGuid (why not gH2OUveGuid), PcdH2OSampleFormSupported (why not PcdH2OUveSampleFormSupported), gH2OSetupCallbackSyncGuid (gH2OUveSetupCallbackSyncGuid). 
+#;                   In general, it is good for a feature to use the same name prefix for public symbols (like gH2OCr or gH2OEventLog or gH2ODebugAssist) This makes it easy for the customer to identify which "feature" produced the symbol.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. Include\Guid\H2OUveGuid.h
+#;   2. InsydeH2OUvePkg.dec
+#;   3. Package.dsc
+#;   4. Package.fdf
+#;   5. VariableEditDxe\VariableEditDxe.c
+#;   6. VariableEditDxe\VariableEditDxe.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.48
+#; Status: Adjust and enhance original Trunk code according to kernel code review comments
+#;         (This version is only available on kernel 05.31.45 and later version.)
+#; 
+#; Tag#: 05.31.48
+#; Issue#: IB12130000
+#; Severity: Text
+#; Category: H2OUvePkg
+#; Symptom: Build error.
+#; RootCause: File name is incorrect.
+#; Description: Rename "H2oUve..." to "H2OUve...".
+#; Solution: Correct it.
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Added:
+#;   1. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtil.c
+#;   2. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtilDxe.inf
+#;   3. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtilSetupConfig.h
+#;   4. ConfigUtility\H2OUveConfigUtilDxe\H2OUveConfigUtilStr.uni
+#;   5. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtil.c
+#;   6. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtil.h
+#;   7. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtil.inf
+#;   8. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtilPageVfr.vfr
+#;   9. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtilSetupConfig.h
+#;   10. ConfigUtility\H2OUveSampleFormUtility\H2OUveSampleFormUtilStr.uni
+#;   11. H2OUveSampleForm_ReadMe.doc
+#;   12. InsydeH2OUvePkg.dec
+#; Deleted:
+#;   1. ConfigUtility\H2OUveConfigUtilDxe\H2oUveConfigUtil.c
+#;   2. ConfigUtility\H2OUveConfigUtilDxe\H2oUveConfigUtilDxe.inf
+#;   3. ConfigUtility\H2OUveConfigUtilDxe\H2oUveConfigUtilSetupConfig.h
+#;   4. ConfigUtility\H2OUveConfigUtilDxe\H2oUveConfigUtilStr.uni
+#;   5. ConfigUtility\H2OUveSampleFormUtility\H2oUveSampleFormUtil.c
+#;   6. ConfigUtility\H2OUveSampleFormUtility\H2oUveSampleFormUtil.h
+#;   7. ConfigUtility\H2OUveSampleFormUtility\H2oUveSampleFormUtil.inf
+#;   8. ConfigUtility\H2OUveSampleFormUtility\H2oUveSampleFormUtilPageVfr.vfr
+#;   9. ConfigUtility\H2OUveSampleFormUtility\H2oUveSampleFormUtilSetupConfig.h
+#;   10. ConfigUtility\H2OUveSampleFormUtility\H2oUveSampleFormUtilStr.uni
+#;   11. H2oUveSampleForm_ReadMe.doc
+#;   12. InsydeH2oUvePkg.dec
+#; 
+#; Tag#: 05.31.48
+#; Issue#: IB12130000
+#; Severity: Medium
+#; Category: EDK
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Following kernel code adjustment
+#;                => ECR: H2O0277 - Remove IntelFrameworkModulePkg and IntelFrameworkPkg from the Kernel 5.3 and Kernel 5.4.(Refer to kernel 5.3 Issue# IB07010655 for details)   
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtilDxe.inf
+#;   2. ConfigUtility\H2oUveSampleFormUtility\H2oUveSampleFormUtil.inf
+#;   3. VariableEditDxe\VariableEditDxe.inf
+#;   4. VariableEditSmm\VariableEditSmm.inf
+#; 
+#; Tag#: 05.31.48
+#; Issue#: IB12130000
+#; Severity: Minor
+#; Category: H2ouvePkg
+#; Symptom: None
+#; RootCause: None
+#; Description: 1. Move Trunk code to "Branch\Kernel 5.2 or before Kernel 05.31.45".
+#;              2. Adjust and enhance original Trunk code according to kernel code review comments. 
+#;                 (This version is only available on kernel 05.31.45 and later version.)
+#;              
+#;              Note:
+#;                If use the older kernel(Kernel 5.2 or before Kernel 05.31.45), please choose one method from the following:
+#;                  1. Use the code from "Branch\Kernel 5.2 or before Kernel 05.31.45".
+#;                  2. Merge the code with IB02960942 and IB02960941 from Kernel 5.3.
+#; 
+#; Solution: None
+#; SolutionDependency: None
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.44
+#; Status: Tag version update
+#; 
+#; Tag#: 05.31.44
+#; Issue#: IB12130000
+#; Severity: Medium
+#; Category: H2ouvePkg
+#; Symptom: In UEFI boot mode, it will hang during getting IFR data.
+#; RootCause: The IFR data will be freed if locate EFI_LEGACY_BIOS_PROTOCOL(gEfiLegacyBiosProtocolGuid) protocol failed.
+#; Description: None
+#; Solution: Free IFR Data if both SaveVarEditVar() and GetFEsegmentTableAddress() are failed.
+#; SolutionDependency: IB12340014
+#; Reviewer: IB12130000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.40
+#; Status: Tag version update
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.36
+#; Status: Tag version update
+#; 
+#; Tag#: 05.31.36
+#; Issue#: IB12340015
+#; Severity: Minor
+#; Category: H2ouvePkg
+#; Symptom: None
+#; RootCause: None
+#; Description: 1.Remove IB1234009.
+#;              2.According to IB07010638 to enhance code, use new state to create and destroy SCU data.
+#; Solution: If project owner set PcdH2OFormBrowserSupported to FALSE, 
+#;           please use IB07010638 to resolve the bug cause by the setting of PcdH2OFormBrowserSupported.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Deleted:
+#;   1. Override\
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#;   2. VariableEditSmm\VariableEditSmm.c
+#;   3. VariableEditSmm\VariableEditSmm.h
+#;   4. VariableEditSmm\VariableEditSmm.inf
+#; 
+#; Tag#: 05.31.36
+#; Issue#: IB12340014
+#; Severity: Minor
+#; Category: H2ouvePkg
+#; Symptom: Fail to get the IFRPKG table.
+#; RootCause: There are some project have the LegacyBios protocol in pure EFI boot mode.
+#; Description: Variable won't be created when the LegacyBios protocol is exist.
+#;              But the Variable is the only way to get the IFRPKG table in pure EFI boot mode.
+#; Solution: Always create the variable.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.32
+#; Status: Tag version update
+#; 
+#; Tag#: 05.31.28
+#; Issue#: IB12130000
+#; Severity: Trivial
+#; Category: Sample Formset
+#; Symptom: None
+#; RootCause: None
+#; Description: 1. Add a form that is described before the description of goto this form in VFR.
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: None
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2oUveSampleFormUtility\H2oUveSampleFormUtilPageVfr.vfr
+#;   2. ConfigUtility\H2oUveSampleFormUtility\H2oUveSampleFormUtilStr.uni
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.28
+#; Status: Fix build failed & Tag version update
+#; 
+#; Tag#: 05.31.28
+#; Issue#: IB12340013
+#; Severity: Serious
+#; Category: H2ouvePkg
+#; Symptom: Build failed
+#; RootCause: ARRAY_SIZE macro redefinition
+#; Description: None
+#; Solution: Add #ifndef to avoid the redefinition
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Include\Library\SmmOemSvcH2oUveLib.h
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.28
+#; Status: Tag version update
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.24
+#; Status: Tag version update
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.20
+#; Status: Tag version update
+#; 
+#; Tag#: 05.31.20
+#; Issue#: IB12340012
+#; Severity: Tweak
+#; Category: H2ouvePkg
+#; Symptom: The return value should be EFI_UNSUPPORTED when the function is do nothing.
+#; RootCause: The return value always be EFI_SUCCESS.
+#; Description: None
+#; Solution: Correct the return value.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtil.c
+#; 
+#; Tag#: 05.31.20
+#; Issue#: IB12340011
+#; Severity: Minor
+#; Category: H2ouvePkg
+#; Symptom: Can't modify the language of platform.
+#; RootCause: The CallbackID didn't be handled in SetupCallbackSyncCallbackIhisi()
+#; Description: IHISI 52h is implemented by SetupCallbackSyncCallbackIhisi, but there are some CallbackID didn't be handled.
+#; Solution: Add action of changing language.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.16
+#; Status: Tag version update
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.12
+#; Status: Tag version update
+#; 
+#; Tag#: 05.31.12
+#; Issue#: IB12340010
+#; Severity: Minor
+#; Category: H2ouvePkg
+#; Symptom: H2ouvePkg will build fail at some platform.
+#; RootCause: HiiLib doesn't be included.
+#; Description: HiiLib may or may not be included by other library.
+#; Solution: Add HiiLib into .inf file.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.inf
+#; 
+#; Tag#: 05.31.08
+#; Issue#: IB12340000
+#; Severity: Trivial
+#; Category: H2ouvePkg
+#; Symptom: None.
+#; RootCause: None.
+#; Description: Adjust the code for consistent with the document.
+#; Solution: 1.Rename RESULT_ARRAY to RESULT_LIST.
+#;           2.Status in H2O_CALLBACK_STATUS is unused, so remove it.
+#;           H2OUVE side should sync this change.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Include\Library\SmmOemSvcH2oUveLib.h
+#;   2. Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.c
+#;   3. Library\SmmOemSvcH2oUveLib\VariableEditPwd.h
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.08
+#; Status: Tag version update
+#; 
+#; Tag#: 05.31.08
+#; Issue#: IB12340000
+#; Severity: Trivial
+#; Category: H2ouvePkg
+#; Symptom: None.
+#; RootCause: None.
+#; Description: The help string can't help user understand  as below.
+#;              When H2OUVE Support is disabled, there are many command which in H2OUVE can work normally.
+#; Solution: Modify the help string of H2OUVE Support.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtilStr.uni
+#; 
+#; Tag#: 05.31.05
+#; Issue#: IB12340009
+#; Severity: Serious
+#; Category: H2ouvePkg
+#; Symptom: Driver initialization failed when PcdH2OFormBrowserSupported was FALSE.
+#; RootCause: The behavior of SetupUtilityNotifyFn will vary depending on the value of PcdH2OFormBrowserSupported.
+#; Description: The different behavior will cause this driver can't work normally.
+#;              This driver use the InitializeSetupUtility state to do CreateScuData() and use the ShutdownSetupUtility state to do DestroyScuData().
+#;              But this rule is not suitable when PcdH2OFormBrowserSupported was FALSE.
+#;              For the system stability, this feature won't be supported when PcdH2OFormBrowserSupported is FALSE.
+#; Solution: This feature is unsupported when PcdH2OFormBrowserSupported is FALSE.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Added:
+#;   1. Override\
+#;   2. Override\Modify\
+#;   3. Override\Modify\InsydeH2oUvePkg\
+#;   4. Override\Modify\InsydeH2oUvePkg\VariableEditDxe\
+#;   5. Override\Modify\InsydeH2oUvePkg\VariableEditDxe\VariableEditDxe.c
+#;   6. Override\Modify\InsydeH2oUvePkg\VariableEditSmm\
+#;   7. Override\Modify\InsydeH2oUvePkg\VariableEditSmm\VariableEditSmm.c
+#;   8. Override\Modify\SkylakeChipsetPkg\
+#;   9. Override\Modify\SkylakeChipsetPkg\UefiSetupUtilityDxe\
+#;   10. Override\Modify\SkylakeChipsetPkg\UefiSetupUtilityDxe\SetupUtility.c
+#;   11. Override\Original\
+#;   12. Override\Original\InsydeH2oUvePkg\
+#;   13. Override\Original\InsydeH2oUvePkg\VariableEditDxe\
+#;   14. Override\Original\InsydeH2oUvePkg\VariableEditDxe\VariableEditDxe.c
+#;   15. Override\Original\InsydeH2oUvePkg\VariableEditSmm\
+#;   16. Override\Original\InsydeH2oUvePkg\VariableEditSmm\VariableEditSmm.c
+#;   17. Override\Original\SkylakeChipsetPkg\
+#;   18. Override\Original\SkylakeChipsetPkg\UefiSetupUtilityDxe\
+#;   19. Override\Original\SkylakeChipsetPkg\UefiSetupUtilityDxe\SetupUtility.c
+#; Modified:
+#;   1. Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.c
+#;   2. VariableEditDxe\VariableEditDxe.c
+#;   3. VariableEditSmm\VariableEditSmm.c
+#;   4. VariableEditSmm\VariableEditSmm.h
+#;   5. VariableEditSmm\VariableEditSmm.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.04
+#; Status: Tag version update
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.22.04
+#; Status: Tag version update
+#; 
+#; Tag#: 05.22.02
+#; Issue#: IB12340008
+#; Severity: Tweak
+#; Category: H2ouvePkg
+#; Symptom: It may cause build fail when import H2ouvePkg directly.
+#; RootCause: There are some chipset-related definitions in H2ouvePkg.
+#; Description: None
+#; Solution: Remove the chipset-related definitions.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.c
+#;   2. Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.48
+#; Status: Tag version update
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.42
+#; Status: Support default password feature
+#; 
+#; Tag#: 05.21.42
+#; Issue#: IB12340007
+#; Severity: Feature
+#; Category: H2ouvePkg
+#; Symptom: (New Feature)
+#; RootCause: (New Feature)
+#; Description: Support Adding default password on image by H2OUVE.
+#; Solution: (New Feature)
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Include\Guid\H2oUveConfigUtilHii.h
+#;   2. VariableEditDxe\VariableEditDxe.c
+#;   3. VariableEditDxe\VariableEditDxe.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.41
+#; Status: Compatibility correction for SetupNvData.
+#; 
+#; Tag#: 05.21.41
+#; Issue#: IB12340006
+#; Severity: Feature
+#; Category: H2ouvePkg
+#; Symptom: (New Feature)
+#; RootCause: (New Feature)
+#; Description: H2oUveSampleFormUtility is driver which is used to verify/debug/check H2OUVE tool.
+#; Solution: (New Feature)
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Added:
+#;   1. ConfigUtility\H2oUveSampleFormUtility\
+#;   2. ConfigUtility\H2oUveSampleFormUtility\H2oUveSampleFormUtil.c
+#;   3. ConfigUtility\H2oUveSampleFormUtility\H2oUveSampleFormUtil.h
+#;   4. ConfigUtility\H2oUveSampleFormUtility\H2oUveSampleFormUtil.inf
+#;   5. ConfigUtility\H2oUveSampleFormUtility\H2oUveSampleFormUtilPageVfr.vfr
+#;   6. ConfigUtility\H2oUveSampleFormUtility\H2oUveSampleFormUtilSetupConfig.h
+#;   7. ConfigUtility\H2oUveSampleFormUtility\H2oUveSampleFormUtilStr.uni
+#;   8. H2OUVE_Shell_100.00.08.02_default.txt
+#;   9. H2OUVE_Shell_100.00.08.02_runtime.txt
+#;   10. H2oUveSampleForm_ReadMe.doc
+#;   11. Include\Guid\H2oUveSampleFormUtilHii.h
+#; Modified:
+#;   1. InsydeH2oUvePkg.dec
+#;   2. Package.dsc
+#;   3. Package.fdf
+#; 
+#; Tag#: 05.21.41
+#; Issue#: IB12340005
+#; Severity: Tweak
+#; Category: H2ouvePkg
+#; Symptom: Build failed, because SetupNvData is not exist.
+#; RootCause: The SetupNvData has been remove by IB07240447
+#; Description: SetupNvData should be same as Setup variable, so the data update is deleted.
+#; Solution: Remove the data update.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.40
+#; Status: Tag version update
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.36
+#; Status: Structural adjustment & Password feature update
+#; 
+#; Tag#: 05.21.36
+#; Issue#: IB12340004
+#; Severity: Medium
+#; Category: H2ouvePkg
+#; Symptom: Password feature can't work correctly.
+#; RootCause: The code is removed at initial version, and now it has added back with some necessary modification.
+#; Description: 1.Remove the password request at POST when power on password is disabled.
+#;              2.When PcdSysPasswordInCmos = NO, it should work normally.
+#;              3.When PcdSecureSysPasswordSupported = YES, It should work normally. 
+#; Solution: 1. Add hook function.
+#;           2. Add EfiGetSystemConfigurationTable2() to get the data of hob, and change DXE service to SMM service.
+#;           3. Add UnlockPassword() & LockPassword(), and UnlockPassword() will release access right to modify password.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.c
+#;   2. Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.inf
+#;   3. Library\SmmOemSvcH2oUveLib\SysPasswordSmm.c
+#;   4. Library\SmmOemSvcH2oUveLib\SysPasswordSmm.h
+#;   5. VariableEditDxe\VariableEditDxe.c
+#; 
+#; Tag#: 05.21.35
+#; Issue#: IB12340003
+#; Severity: Tweak
+#; Category: H2ouvePkg
+#; Symptom: Code adjustment
+#; RootCause: None
+#; Description: None
+#; Solution: Remove unused code & correct error message level.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#; 
+#; Tag#: 05.21.35
+#; Issue#: IB12340002
+#; Severity: Medium
+#; Category: H2ouvePkg
+#; Symptom: Timeout can't be changed by H2OUVE.
+#; RootCause: Timeout variable always sets to 0 when executing H2OUVE to modify SCU setting.
+#; Description: None
+#; Solution: Sync Setup->Timeout to Timeout variable.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.c
+#; 
+#; Tag#: 05.21.35
+#; Issue#: IB12340001
+#; Severity: Serious
+#; Category: H2ouvePkg
+#; Symptom: Monitor won't show in legacy mode when H2OUVE support is enabled.
+#; RootCause: Install Hii data too early to cause some side effect
+#; Description: VBIOS can't work normally when H2OUVE support is enabled.
+#; Solution: Adjust the the behavior of install Hii data to ready to boot phase.
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Modified:
+#;   1. VariableEditDxe\VariableEditDxe.c
+#;   2. VariableEditDxe\VariableEditDxe.h
+#;   3. VariableEditDxe\VariableEditDxe.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.32
+#; Status: Tag version update
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.30
+#; Status: Initial code
+#; 
+#; Tag#: 05.21.30.0001
+#; Issue#: IB12340000
+#; Severity: Feature
+#; Category: H2ouvePkg
+#; Symptom: None
+#; RootCause: None
+#; Description: Initial code base.
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; Added:
+#;   1. ConfigUtility\
+#;   2. ConfigUtility\H2oUveConfigUtilDxe\
+#;   3. ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtil.c
+#;   4. ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtil.h
+#;   5. ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtilConfigPageVfr.vfr
+#;   6. ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtilDxe.inf
+#;   7. ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtilSetupConfig.h
+#;   8. ConfigUtility\H2oUveConfigUtilDxe\H2oUveConfigUtilStr.uni
+#;   9. Include\
+#;   10. Include\Guid\
+#;   11. Include\Guid\H2oUveConfigUtilHii.h
+#;   12. Include\Library\
+#;   13. Include\Library\SmmOemSvcH2oUveLib.h
+#;   14. Include\Protocol\
+#;   15. Include\Protocol\VariableEditBootTypeInfo.h
+#;   16. InsydeH2oUvePkg.dec
+#;   17. Library\
+#;   18. Library\SmmOemSvcH2oUveLib\
+#;   19. Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.c
+#;   20. Library\SmmOemSvcH2oUveLib\SmmOemSvcH2oUveLib.inf
+#;   21. Library\SmmOemSvcH2oUveLib\SysPasswordSmm.c
+#;   22. Library\SmmOemSvcH2oUveLib\SysPasswordSmm.h
+#;   23. Library\SmmOemSvcH2oUveLib\VariableEditPwd.h
+#;   24. Package.dsc
+#;   25. Package.fdf
+#;   26. VariableEditDxe\
+#;   27. VariableEditDxe\VariableEditDxe.c
+#;   28. VariableEditDxe\VariableEditDxe.h
+#;   29. VariableEditDxe\VariableEditDxe.inf
+#;   30. VariableEditSmm\
+#;   31. VariableEditSmm\VariableEditSmm.c
+#;   32. VariableEditSmm\VariableEditSmm.h
+#;   33. VariableEditSmm\VariableEditSmm.inf
+#; 
+#; Tag#: 05.21.30
+#; Issue#: IB12340000
+#; Severity: Trivial
+#; Category: H2ouvePkg
+#; Symptom: None
+#; RootCause: None
+#; Description: History.txt auto update test
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB12340000
+#; RelatedFiles:
+#; 

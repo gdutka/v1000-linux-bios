@@ -1,0 +1,57 @@
+## @file
+# Auto Generate OemRomSig
+#
+#******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = GenOemRomSig
+  FILE_GUID                      = 91FF9FD4-C910-4a67-98FE-356D7DD9BD7E
+  MODULE_TYPE                    = USER_DEFINED
+  VERSION_STRING                 = 0.1
+
+  MODULE_AUTORUN_TOOL            = "$(BIN_DIR)/$(BASE_NAME)"
+  AUTORUN_PARAM                  = "$(BUILD_DIR)/FV/OemRomSig.fv"
+
+[Sources]
+  GenOemRomSig.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AmdPspFeaturePkg/AmdPspFeaturePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  DebugLib
+  PrintLib
+
+[Ppis]
+
+[Protocols]
+
+[Guids]
+
+[Pcd]
+  gChipsetPkgTokenSpaceGuid.PcdFlashUsbFirmwareBase
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvSigBase
+  gInsydeTokenSpaceGuid.PcdFlashAreaBaseAddress
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspDirBase
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspDirSize
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVBiosDirBase
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVBiosDirSize
+
+[BuildOptions]
+  MSFT:*_*_IA32_DLINK_FLAGS == /out:"$(BIN_DIR)\$(BASE_NAME).exe" /base:0x10000000 /NOLOGO /SUBSYSTEM:CONSOLE /IGNORE:4086 /MAP /OPT:REF /DEBUG /MACHINE:I386 /LTCG Kernel32.lib libcmt.lib
+  MSFT:*_*_*_CC_FLAGS = /wd4996 /D PLATFORM_NAME=$(PLATFORM_NAME)
+#  GCC:*_*_IA32_DLINK_FLAGS == -o $(BIN_DIR)/$(BASE_NAME) -m32 -dynamic-linker /lib/ld-linux.so.2 $(LIB32_PATH)/crtn.o
+  GCC:*_*_IA32_DLINK_FLAGS == -o $(BIN_DIR)/$(BASE_NAME) -m elf_i386 -dynamic-linker /lib/ld-linux.so.2 $(LIB32_PATH)/crt1.o $(LIB32_PATH)/crti.o $(LIB32_PATH)/crtn.o
+  GCC:*_*_*_DLINK2_FLAGS == -lc

@@ -1,0 +1,46 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = AmdCbsPkg
+  PACKAGE_GUID                   = 956D6A2D-8CD3-49f3-B7A1-937AD9991EC5
+  PACKAGE_VERSION                = 1.00
+
+[Includes]
+  Include
+  Include/Guid
+  Include/Library
+  Include/Ppi
+  Include/Protocol
+
+[LibraryClasses]
+  ##  @libraryclass  Provide the CBS back-end code.
+  #
+  
+[Guids]
+  ## AmdCbs package token space guid
+  gAmdCbsPkgTokenSpaceGuid       = { 0x2c4e1a86, 0xa6a1, 0x4396, { 0x97, 0x93, 0xd9, 0x41, 0xa4, 0x43, 0x86, 0xd9 } }
+  # Include/Guid/AmdCbsConfig.h
+  gCbsSystemConfigurationGuid    = { 0x3A997502, 0x647A, 0x4c82, {0x99, 0x8E, 0x52, 0xEF, 0x94, 0x86, 0xA2, 0x47} }
+  #FORMSET_ID_GUID_AMD_CBS
+  gLinkAmdCbsTokenSpaceGuid      = { 0xB04535E3, 0x3004, 0x4946, { 0x9E, 0xB7, 0x14, 0x94, 0x28, 0x98, 0x30, 0x53 } }
+
+[Ppis]
+  # Include/Ppi/CbsHookPei.h
+  gAmdCbsHookPpiGuid             = { 0x4126c85, 0x5c4e, 0x458f, {0xab, 0xc1, 0x29, 0xf1, 0xf7, 0xda, 0x36, 0x5e } }
+
+[Protocols]
+  # Include/Protocol/AmdCbsHookProtocol.h
+  gCbsProtocolGuid               = { 0xecad4a0,  0x75e9, 0x46d7, {0xa3, 0xa6, 0x81, 0xfe, 0x17, 0x3f, 0x2e, 0xca} }
+  # Include/Protocol/CbsBctSmmProtocol.h
+  gCbsBctSmmProtocolGuid         = { 0x147f8bda, 0xda41, 0x45bb, {0xbc, 0x9b, 0x82, 0x7e, 0x72, 0xdc, 0x30, 0xa1} }
+  # Include/Protocol/AmdCbsSetupProtocol.h
+  gCbsSetupProtocolGuid          = { 0x5083736, 0xbcab, 0x4474, {0x8d, 0xb8, 0xfe, 0xea, 0x0, 0x1c, 0xe, 0x53} }
+
+[PcdsDynamic]
+  gAmdCbsPkgTokenSpaceGuid.PcdDramType|0x0000|UINT8|0x0
+

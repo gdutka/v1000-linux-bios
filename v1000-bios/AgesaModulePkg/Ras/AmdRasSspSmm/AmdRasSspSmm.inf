@@ -1,0 +1,63 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdRasSspSmm
+  FILE_GUID                      = EE8175EF-4C60-82AF-F5E2-8A9EF1FC0A9A
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.1
+  ENTRY_POINT                    = AmdRasSspSmmInit
+
+[sources]
+AmdRasSspSmm.c
+AmdRasSspSmm.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/AgesaModuleRasPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+  AgesaModulePkg/AgesaModuleMemPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  IoLib
+  AmdBaseLib
+  SmmServicesTableLib
+  UefiDriverEntryPoint
+  DebugLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  RasSspSmmLib
+  SmnAccessLib
+  BaseFabricTopologyLib
+
+[Pcd]
+
+[Guids]
+
+[Protocols]
+  gAmdRasSmm2ProtocolGuid                   #PRODUCED
+  gFchSmmSwDispatch2ProtocolGuid            #CONSUMED
+  gAmdRasInitDataProtocolGuid               #CONSUMED
+  gAmdFabricSspDepexProtocolGuid            #CONSUMED
+  gAmdPostPackageRepairInfoProtocolGuid     #CONSUMED
+
+[Depex]
+  gFchSmmSwDispatch2ProtocolGuid AND
+  gAmdRasInitDataProtocolGuid AND
+  gAmdFabricSspDepexProtocolGuid AND
+  gAmdRasSspDepexProtocolGuid
+
+

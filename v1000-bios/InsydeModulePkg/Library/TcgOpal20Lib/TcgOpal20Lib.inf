@@ -1,0 +1,51 @@
+## @file
+#  TCG OPAL 2.0 Library
+#
+#******************************************************************************
+#* Copyright (c) 2016, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = TcgOpal20Lib
+  FILE_GUID                      = 9FF52079-F215-4d09-B3D9-E95C8CB6B06E
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = TcgOpal20Lib
+  CONSTRUCTOR                    = TcgOpal20LibConstructor
+
+[Binaries.Ia32]
+!if $(GCC)==Gcc
+  LIB|Ia32/GccTcgOpal20Lib.lib
+!ELSE
+  LIB|Ia32/TcgOpal20Lib.lib
+!ENDIF
+
+[Binaries.X64]
+!if $(GCC)==Gcc
+  LIB|X64/GccTcgOpal20Lib.lib
+!ELSE
+  LIB|X64/TcgOpal20Lib.lib
+!ENDIF
+
+[Binaries.Arm]
+  LIB|Arm/TcgOpal20Lib.lib
+
+[Binaries.AArch64]
+  LIB|AArch64/TcgOpal20Lib.lib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+
+

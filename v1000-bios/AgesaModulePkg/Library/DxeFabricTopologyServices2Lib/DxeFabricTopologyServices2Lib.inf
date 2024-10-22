@@ -1,0 +1,37 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxeFabricTopologyServices2Lib
+  FILE_GUID                      = 12EDC2BE-3E6A-46B9-A67C-04E4372FB767
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DxeFabricTopologyServices2Lib
+
+[Sources]
+  FabricTopologyServices2Dxe.c
+  FabricTopologyServices2Dxe.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+
+[LibraryClasses]
+  BaseFabricTopologyLib
+
+[Guids]
+
+[Protocols]
+  gAmdFabricTopologyServices2ProtocolGuid # PRODUCED
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+

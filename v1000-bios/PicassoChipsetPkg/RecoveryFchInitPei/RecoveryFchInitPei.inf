@@ -1,0 +1,63 @@
+## @file
+#  Component description file for RecoveryFchInit PEIM.
+#
+#******************************************************************************
+#* Copyright (c) 2013 - 2014, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = RecoveryFchInitPei
+  FILE_GUID            	         = 7A97840A-F3F6-49EC-928A-36D90A76D6A5
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = RecoveryFchInitEntryPoint
+
+[Sources]
+  RecoveryFchInitPei.c
+  RecoveryFchInitPei.h
+  FchGppPortDeviceInitPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  BaseMemoryLib
+  DebugLib
+  FabricResourceManagerLib
+  PciLib
+
+[Ppis]
+  gEfiPeiStallPpiGuid
+  gEfiEndOfPeiSignalPpiGuid
+  gPeiUsbControllerPpiGuid
+  gPeiAtaControllerPpiGuid
+  gAmdFchInitPpiGuid
+  gPeiAhciControllerPpiGuid
+  gPeiNvmeControllerPpiGuid
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdUseFastCrisisRecovery
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gChipsetPkgTokenSpaceGuid.PcdPciExpressSize
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdGetRVFamilyOPN
+
+[Depex]
+  gEfiPeiMemoryDiscoveredPpiGuid AND
+  gEfiPeiBootInRecoveryModePpiGuid
+
+[BuildOptions]
+  MSFT:*_*_*_CC_FLAGS = /Od

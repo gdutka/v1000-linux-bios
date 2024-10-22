@@ -1,0 +1,67 @@
+## @file
+#  Component description file for SMARTStatusCodeeDxe driver
+#
+#******************************************************************************
+#* Copyright (c) 2021, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = EsataBootControlDxe
+  FILE_GUID                      = 76504DF8-9D28-4099-8EC8-5A67CBE886B0
+  MODULE_TYPE                    = DXE_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A  
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = EsataBootControlDxeEntryPoint
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Sources]
+  EsataBootControlDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  UefiLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  PcdLib
+  ReportStatusCodeLib
+  DebugLib
+  BaseMemoryLib
+  PciLib
+  DevicePathLib
+  H2OCpLib
+  VariableLib
+  
+[Guids]
+  gH2OBdsCpBootDeviceSelectGuid                 ## CONSUMES
+  gSystemConfigurationGuid  
+  
+[Protocols]
+  gEfiAtaPassThruProtocolGuid
+  gEfiPciIoProtocolGuid  
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpBootDeviceSelectSupported
+  gInsydeTokenSpaceGuid.PcdH2OEsataDriveBootControl
+  
+[Pcd]  
+  gInsydeTokenSpaceGuid.PcdH2OEsataDriveBootPolicy
+  
+[Depex]
+   TRUE

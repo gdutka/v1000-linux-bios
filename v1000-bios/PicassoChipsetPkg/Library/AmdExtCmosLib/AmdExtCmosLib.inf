@@ -1,0 +1,46 @@
+## @file
+# Component description file for the CMOS library.
+#
+#******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdExtCmosLib
+  FILE_GUID                      = 57DEA01A-2D23-4BF0-B8BF-E3F25693BE63
+  MODULE_TYPE                    = BASE
+  LIBRARY_CLASS                  = AmdExtCmosLib
+
+[Sources]
+  AmdExtCmosLib.c
+
+[Sources.ia32]
+#[-start-240426-IB18160212-modify-]#
+#  Ia32/AmdExtCmosLib.asm
+   Ia32/AmdExtCmosLib.nasm
+#[-end-240426-IB18160212-modify-]#
+
+
+[Sources.x64]
+#[-start-240426-IB18160212-modify-]#
+#  X64/AmdExtCmosLib.asm
+   X64/AmdExtCmosLib.nasm
+#[-end-240426-IB18160212-modify-]#
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AmdCommonChipsetPkg/AmdCommonChipsetPkg.dec
+
+[LibraryClasses]
+  IoLib
+

@@ -1,0 +1,36 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = GnbSSocketLib
+  FILE_GUID                      = 244100BB-3A2F-4f9b-AEAE-9B2A5D0878DB
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = GnbSSocketLib
+
+[Sources]
+  GnbSSocketLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  PcdLib
+  PrintLib
+  IdsLib
+  BaseLib
+  DebugPrintErrorLevelLib
+  AmdBaseLib
+  GnbLib
+  GnbPciAccLib
+
+[Pcd]
+

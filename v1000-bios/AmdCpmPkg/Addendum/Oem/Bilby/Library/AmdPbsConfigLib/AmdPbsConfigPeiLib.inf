@@ -1,0 +1,44 @@
+##;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdPbsConfigLibPei
+  FILE_GUID                      = B94FF150-6909-4BE8-892B-2D303C561AF0
+  MODULE_TYPE                    = PEIM
+  LIBRARY_CLASS                  = AmdPbsConfigLib|PEIM
+
+[Sources]
+  AmdPbsConfigPeiLib.c
+  AmdPbsDefault.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses]
+  PeiServicesLib
+  BaseMemoryLib
+  DebugLib
+
+[Guids]
+  gAmdPbsSystemConfigurationGuid
+
+[Ppis]
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gAmdCpmOemTablePpiGuid
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.OriginalPlatformId
+  gAmdCpmPkgTokenSpaceGuid.CurrentPlatformId
+
+[Depex]
+  gEfiPeiReadOnlyVariable2PpiGuid
+

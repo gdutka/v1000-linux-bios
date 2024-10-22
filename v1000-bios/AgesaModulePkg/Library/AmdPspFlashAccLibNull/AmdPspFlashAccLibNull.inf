@@ -1,0 +1,33 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdPspFlashAccLibNull
+  FILE_GUID                      = EC3FAA39-0765-45BF-9610-ED81087C4ED8
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdPspFlashAccLib
+
+[Sources.common]
+  AmdPspFlashAccLibNull.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+
+[LibraryClasses]
+
+[Guids]
+
+[Protocols]
+
+
+[Pcd]
+
+[Depex]
+  TRUE

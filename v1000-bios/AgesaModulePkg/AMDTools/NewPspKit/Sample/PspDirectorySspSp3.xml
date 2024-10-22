@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!-- Firmware is place @AgesaModulePkg\Firmwares\SSP  -->
+<DIRS>
+  <PSP_DIR Base="0x77000L" Size="0x1a0000" SpiBlockSize="0x1000">
+    <IMAGE_ENTRY File="AmdPubKeySsp.bin" Type="0x0"/>
+    <IMAGE_ENTRY File="PspBootLoader_test.sbin" Type="0x1"/>
+    <IMAGE_ENTRY File="SmuFirmwareSsp.csbin" Type="0x8"/>
+    <VALUE_ENTRY Type="0xb" Value="0x1"/>
+    <IMAGE_ENTRY File="SmuFirmware2Ssp.csbin" Type="0x12"/>
+    <IMAGE_ENTRY File="DebugUnlockSsp.sbin" Type="0x13"/>
+    <IMAGE_ENTRY File="SecureEmptyToken.bin" Type="0x22"/>
+    <IMAGE_ENTRY File="Mp5Ssp.csbin" Type="0x2a"/>
+    <IMAGE_ENTRY File="AgesaBootloader_U_prod_Mcm_SSP.bin" Type="0x30"/>
+  </PSP_DIR>
+  <BIOS_DIR Base="0x217000L" Size="0x7D000" SpiBlockSize="0x1000">
+    <!-- APCB is platform specific, need be built per platform -->
+    <IMAGE_ENTRY Type="0x60" File="APCB_SSP_D4.bin"/>
+    <!-- APOB region declaration, ABL will copy the APOB structure to this region -->
+    <POINT_ENTRY Type="0x61" Address="0x0" Destination="0x4000000" Size="0x0"/>
+    <!-- Declare X86 reset image -->
+    <POINT_ENTRY Type="0x62" Address="0xd00000L" Destination="0x1d00000" Size="0x300000">
+      <TypeAttrib Compressed="0x0" Copy="0x1" ReadOnly="0x0" RegionType="0x0" ResetImage="0x1"/>
+    </POINT_ENTRY>
+
+    <!-- MICROCODE PATCH -->
+    <!-- Please note the Instance of MICROCODE PATCH should be continual-->
+    <IMAGE_ENTRY Type="0x66" Instance="0x00" File="UcodePatch_SSP_A0.bin" />
+
+    <!-- ABL PMU Firmwares -->
+    <IMAGE_ENTRY Type="0x64" Instance="0x01" File="Appb_SSP_1D_ddr4_Udimm_Imem.cbin"/>
+    <IMAGE_ENTRY Type="0x65" Instance="0x01" File="Appb_SSP_1D_ddr4_Udimm_Dmem.cbin"/>
+    <IMAGE_ENTRY Type="0x64" Instance="0x02" File="Appb_SSP_2D_ddr4_Imem.cbin"/>
+    <IMAGE_ENTRY Type="0x65" Instance="0x02" File="Appb_SSP_2D_ddr4_Dmem.cbin"/>
+  </BIOS_DIR>
+</DIRS>
+

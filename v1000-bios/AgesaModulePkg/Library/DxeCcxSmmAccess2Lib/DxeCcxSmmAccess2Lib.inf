@@ -1,0 +1,43 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CcxSmmAccess2Lib
+  FILE_GUID                      = F3A65067-5C24-4889-97F7-EE6F883B167A
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CcxSmmAccess2Lib
+
+[Sources.common]
+  CcxSmmAccess2Lib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses]
+  CcxRolesLib
+  IdsLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  BaseLib
+  HobLib
+  AmdIdsHookLib
+
+[Guids]
+  gEfiSmmPeiSmramMemoryReserveGuid
+
+[Protocols]
+  gEfiMpServiceProtocolGuid
+  gEfiSmmAccess2ProtocolGuid
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+

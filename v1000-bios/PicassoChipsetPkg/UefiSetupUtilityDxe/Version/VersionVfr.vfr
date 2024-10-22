@@ -1,0 +1,87 @@
+/** @file
+
+;******************************************************************************
+;* Copyright (c) 2015, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+#include "SetupConfig.h"
+
+//
+//          Form : Version Menu
+//
+formset
+  guid     = SYSTEM_CONFIGURATION_GUID,
+  title    = STRING_TOKEN(STR_VERSION_TITLE),
+  help     = STRING_TOKEN(STR_VERSION_HELP),
+  class    = SETUP_UTILITY_CLASS,
+  subclass = SETUP_UTILITY_SUBCLASS,
+
+  varstore SYSTEM_CONFIGURATION,            // This is the data structure type
+    varid = CONFIGURATION_VARSTORE_ID,      // Optional VarStore ID
+    name  = SystemConfig,                    // Define referenced name in vfr
+    guid  = SYSTEM_CONFIGURATION_GUID;      // GUID of this buffer storage
+
+  form
+    formid = ROOT_FORM_ID,
+
+    title = STRING_TOKEN(STR_VERSION_TITLE);
+
+    subtitle
+      text = STRING_TOKEN(STR_BLANK_STRING);
+
+      text
+        help   = STRING_TOKEN(STR_BLANK_STRING),
+        text   = STRING_TOKEN(STR_VERSION_TITLE),
+        text   = STRING_TOKEN(STR_BLANK_STRING),
+        flags  = INTERACTIVE,
+        key    = KEY_VERSION_PAGE_CALLBACK;
+
+      text
+        help   = STRING_TOKEN(STR_VERSION_HELP),
+        text   = STRING_TOKEN(STR_BIOS_VERSION_2_STRING),
+        text   = STRING_TOKEN(STR_MISC_BIOS_VERSION),
+        flags  = 0,
+        key    = 0;
+
+      text
+        help   = STRING_TOKEN(STR_VERSION_HELP),
+        text   = STRING_TOKEN(STR_BIOS_RELEASE_DATE_STRING),
+        text   = STRING_TOKEN(STR_MISC_BIOS_RELEASE_DATE),
+        flags  = 0,
+        key    = 0;
+
+      text
+        help   = STRING_TOKEN(STR_VERSION_HELP),
+        text   = STRING_TOKEN(STR_INSYDE_KERNEL_VERSION_STRING),
+        text   = STRING_TOKEN(STR_CCB_VERSION),
+        flags  = 0,
+        key    = 0;
+        
+      text
+        help   = STRING_TOKEN(STR_VERSION_HELP),
+        text   = STRING_TOKEN(STR_AGESA_VERSION_STRING),
+        text   = STRING_TOKEN(STR_AGESA_VERSION_VALUE),
+        flags  = 0,
+        key    = 0;
+
+
+
+      text
+        help   = STRING_TOKEN(STR_VERSION_HELP),
+        text   = STRING_TOKEN(STR_SYSTEM_CORE_FREQ_STRING),
+        text   = STRING_TOKEN(STR_SYSTEM_CORE_FREQ_STRING2),
+        flags  = 0,
+        key    = 0;
+
+     subtitle
+      text = STRING_TOKEN(STR_BLANK_STRING);
+   endform;
+
+endformset;

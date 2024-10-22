@@ -1,0 +1,30 @@
+## @file
+# Component description file for IoDecodeLibNull module
+#
+#******************************************************************************
+#* Copyright 2017 Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corp.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = IoDecodeLibNull
+  FILE_GUID         = E983C6CF-5D3B-4251-94BB-C72CDCF8780A
+  MODULE_TYPE       = BASE
+  VERSION_STRING    = 1.0
+  LIBRARY_CLASS     = IoDecodeLib
+
+[Sources]
+  IoDecodeLibNull.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]

@@ -1,0 +1,72 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = JedecNvdimm
+  FILE_GUID                      = A318A838-CF30-4d86-A545-DEA3523BC538
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = JedecNvdimmEntryPoint
+
+[Sources]
+  JedecNvdimm.h
+  JedecNvdimm.c
+  JedecNvdimmAcpi.h
+  JedecNvdimmAcpi.c
+  JedecNvdimmDsm.h
+  JedecNvdimmDsm.c
+  JedecNvdimmSmbus.c
+  JedecNvdimmSmbus.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/Fch/Taishan/FchTaishan.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DebugLib
+  HobLib
+  BaseLib
+  AmdBaseLib
+  PcdLib
+  PrintLib
+
+[Protocols]
+  gEfiSmmBase2ProtocolGuid
+  gEfiSmmSwDispatch2ProtocolGuid
+  gEfiAcpiTableProtocolGuid
+  gAmdFabricTopologyServices2ProtocolGuid
+  gAmdAcpiDxeInitCompleteProtocolGuid
+  gAmdSmbiosDxeInitCompleteProtocolGuid
+  gAmdFabricAcpiSratServicesProtocolGuid
+  gEfiSmbiosProtocolGuid
+  gEfiAcpiSdtProtocolGuid
+  gEfiMetronomeArchProtocolGuid
+
+[Guids]
+  gEfiHobListGuid
+  gAmdNvdimmInfoHobGuid
+  gAmdNvdimmSpdInfoHobGuid
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiTableHeaderOemId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiTableHeaderOemTableId
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid AND
+  gEfiSmmSwDispatch2ProtocolGuid AND
+  gEfiAcpiTableProtocolGuid AND
+  gAmdFabricTopologyServices2ProtocolGuid AND
+  gEfiSmbiosProtocolGuid AND
+  gEfiAcpiSdtProtocolGuid
+

@@ -1,0 +1,38 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CbsFuncLibPei
+  FILE_GUID                      = 0B235E74-B9E7-4d76-B955-18A468DC132C
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CbsPeiFuncLib|PEIM
+
+[sources.common]
+  CbsHookPeiLib.c
+  CbsHookPeiLib.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  PcdLib
+  HobLib
+  PeiServicesTablePointerLib
+  PeiServicesLib
+
+[Guids]
+  gEfiIfrTianoGuid                              ## CONSUMES ## Guid
+  gCbsSystemConfigurationGuid                   ## PRODUCES
+
+[Ppis]
+  gAmdCbsHookPpiGuid
+
+

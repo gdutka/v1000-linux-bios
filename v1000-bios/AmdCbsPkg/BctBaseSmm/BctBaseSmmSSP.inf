@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BctBaseSmmSSP
+  FILE_GUID                      = 0F647B12-5FA2-4B5E-9D61-2AB3C51F224E
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = BctBaseSmmEntry
+
+[Sources.common]
+  BctBaseSmm.c
+  BctBaseSmm.h
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  UefiBootServicesTableLib
+  CbsBctSmmLib
+  BaseLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+
+[Protocols]
+  gCbsBctSmmProtocolGuid
+
+[Guids]
+
+[Depex]
+  gFchSmmSwDispatch2ProtocolGuid

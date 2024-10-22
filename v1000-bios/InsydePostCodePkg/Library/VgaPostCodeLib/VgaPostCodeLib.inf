@@ -1,0 +1,33 @@
+## @file
+#  The VgaPostCodeLib instance
+#
+#******************************************************************************
+#* Copyright (c) 2016 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = VgaPostCodeLib
+  FILE_GUID                 = 1B60AAA4-46BE-4e05-9FA9-7D8F646E6B5C
+  MODULE_TYPE               = DXE_DRIVER
+  VERSION_STRING            = 1.0
+  LIBRARY_CLASS             = VgaPostCodeLib
+
+[Sources]
+  VgaPostCodeLib.c
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydePostCodePkg/InsydePostCodePkg.dec
+    
+[LibraryClasses]  
+  PrintLib
+  PostCodeMiscLib
+  

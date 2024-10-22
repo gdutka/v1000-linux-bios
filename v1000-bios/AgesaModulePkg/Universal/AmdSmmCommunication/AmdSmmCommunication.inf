@@ -1,0 +1,47 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdSmmCommunication
+  FILE_GUID                      = 64E6D006-E62A-481E-8F5A-3F76C9184741
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = AmdSmmCommunicationEntry
+
+[Sources]
+  AmdSmmCommunication.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  IdsLib
+  SmmMemLib
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  BaseMemoryLib
+  UefiBootServicesTableLib
+  S3BootScriptLib
+  AmdBaseLib
+
+
+[Protocols]
+
+[Guids]
+  gAmdSmmCommunicationHandleGuid
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdS3LibPrivateDataAddress
+
+[Depex]
+#  gAmdSmmCommunicationDepexProtocolGuid AND
+  gEfiSmmBase2ProtocolGuid

@@ -1,0 +1,47 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AmdCpmFchLib
+  FILE_GUID             = 66E2EA1D-ED4A-4D66-BF33-EB01EDD9F9A5
+  MODULE_TYPE           = BASE
+  VERSION_STRING        = 1.0
+  LIBRARY_CLASS         = AmdCpmFchLib|PEIM DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER DXE_RUNTIME_DRIVER
+
+[Sources.common]
+  AmdCpmFch.c
+  AmdCpmFch.h
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[LibraryClasses]
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.FchPcieGpp0AslName
+  gAmdCpmPkgTokenSpaceGuid.FchPcieGpp1AslName
+  gAmdCpmPkgTokenSpaceGuid.FchPcieGpp2AslName
+  gAmdCpmPkgTokenSpaceGuid.FchPcieGpp3AslName
+  gAmdCpmPkgTokenSpaceGuid.EcRamBaseAddr
+  gAmdCpmPkgTokenSpaceGuid.EcRamGpioOffset
+  gAmdCpmPkgTokenSpaceGuid.CpmBootModeOverride
+  gAmdCpmPkgTokenSpaceGuid.PcdIoPort80LpcDecodeEn
+
+[Depex]

@@ -1,0 +1,37 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = FchPeiLibV9
+  FILE_GUID                      = E5AC7A6D-D5F7-48fa-8AC4-EC30FAA06468
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = FchPeiLibV9
+
+
+[sources.common]
+  FchPeiLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+
+[LibraryClasses]
+
+[LibraryClasses.common.PEIM]
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+
+[BuildOptions]
+
+

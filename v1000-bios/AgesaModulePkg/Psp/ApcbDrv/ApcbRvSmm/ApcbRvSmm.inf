@@ -1,0 +1,53 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdApcbRvSmm
+  FILE_GUID                      = 97A03375-250D-4c59-93A8-F76796725E18
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = AmdApcbRvSmmDriverEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  BaseMemoryLib
+  AmdBaseLib
+  IdsLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  DxeServicesTableLib
+  MemoryAllocationLib
+  ApcbRvLib
+
+[Sources]
+  ApcbRvSmm.c
+  ApcbRvSmm.h
+  ../TokensRv/ConfigTokens.c
+  ../TokensRv/CbsExtTokens.c
+
+[Guids]
+
+
+[Protocols]
+  gAmdApcbSmmServiceProtocolGuid  #publish
+
+
+[Pcd]
+
+
+[Depex]
+  gAmdApcbServiceRvDepexProtocolGuid
+
+

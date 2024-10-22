@@ -1,0 +1,342 @@
+/** @file
+
+;*******************************************************************************
+;* Copyright (c) 2013, Insyde Software Corporation. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;*******************************************************************************
+*/
+
+//
+// Statements that include other files
+//
+#include "Wdat.h"
+
+//
+// Watchdog Action Table
+//
+EFI_ACPI_WATCHDOG_ACTION_1_0_DESCRIPTION_TABLE Wdat = {
+  {
+    //
+    //==========================
+    //  Standard ACPI Header 
+    //==========================
+    //
+    {
+      SIGNATURE_32 ('W', 'D', 'A', 'T'),
+      sizeof (EFI_ACPI_WATCHDOG_ACTION_1_0_DESCRIPTION_TABLE),
+      EFI_ACPI_WATCHDOG_ACTION_1_0_TABLE_REVISION,
+      0,
+      {EFI_ACPI_OEM_ID},
+      EFI_ACPI_OEM_TABLE_ID,
+      EFI_ACPI_OEM_REVISION,
+      EFI_ACPI_CREATOR_ID,
+      EFI_ACPI_CREATOR_REVISION
+    },
+    //
+    //===================
+    //  Watchdog Header
+    //===================
+    //
+    sizeof (EFI_ACPI_WATCHDOG_ACTION_1_0_TABLE) - sizeof (EFI_ACPI_DESCRIPTION_HEADER),  // WatchdogHeaderLength;
+    0xFF,                                // PCISegment;
+    0xFF,                                // PCIBusNumber;
+    0xFF,                                // PCIDeviceNumber;
+    0xFF,                                // PCIFunctionNumber;
+    {0x0, 0x0, 0x0},                       // Reserved_45[3];
+    // Because the address of "Action Table : SET_COUNTDOWN_PERIOD" in WDAT point to "FixedPcdGet32(PcdWatchdogTimerBase) + 4"
+    // and this timer is clocked at approximately 1 seconds
+    // So this field should set 1000 (milliseconds)
+    // and timeouts ranging from 2 second to 1023 seconds (count value from 2 to 1023)
+    1000,                                // TimerPeriod;
+    1023,                                // MaxCount;
+    2,                                   // MinCount;
+    EFI_ACPI_WDAT_1_0_WATCHDOG_ENABLED | EFI_ACPI_WDAT_1_0_WATCHDOG_STOPPED_IN_SLEEP_STATE,  // WatchdogFlags;
+    {0x0, 0x0, 0x0},                       // Reserved_61[3];
+    TOTAL_NUMBER_ACTION_ENTRIES          // NumberWatchdogInstructionEntries
+  },
+  //
+  //==================
+  //  Action Tables
+  //==================
+  //
+  {
+    //
+    //================================================================
+    //                   Reset
+    //================================================================
+    // 
+    // Restarts the watchdog timer's countdown. This action is required.
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_RESET,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_WRITE_VALUE | EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_PRESERVE_REGISTER,
+      {0,        // Reserved x 2
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase)},
+      0x80,     // value, write 1 to WatchDogTrigger will reset counter
+      0x80      // Mask
+    },
+    //
+    //================================================================
+    //                   Query Current Countdown Period - (optional)
+    //================================================================
+    // 
+    // Returns the current countdown value of the watchdog hardware (in count intervals).
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_QUERY_CURRENT_COUNTDOWN_PERIOD,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_READ_COUNTDOWN,
+      {0,
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase) + 4},
+      0x0,     // Value is ignore in this instruction
+      0xFFFF   // Mask [15:0]
+    },
+    //
+    //================================================================
+    //                   Query Countdown Period - (optional) - Hudson-1 WDT does not provide this function
+    //================================================================
+    // 
+    // Returns the countdown value the watchdog hardware 
+    // is configured to use when reset
+    // (in count intervals).
+    //
+//    {
+//      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_QUERY_COUNTDOWN_PERIOD,
+//      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_READ_COUNTDOWN,
+//      0,
+//      0,
+//      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase) + 4},
+//      0x0,
+//      0x03FF
+//    },
+    //
+    //================================================================
+    //                   Set Countdown Period - Hudson-1 WDT can write a new countdown value to a register during a reset
+    //================================================================
+    //
+    // Sets the countdown value (in count intervals) 
+    // to be used when the watchdog timer is reset.
+    // This action is required if WATCHDOG_ACTION_RESET does not explicitly 
+    // write a new countdown value to a register during a reset. 
+    // Otherwise, this action is optional.
+    // Note: Without this action, tools can not set new countdown to WDT.
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_SET_COUNTDOWN_PERIOD,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_WRITE_COUNTDOWN | EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_PRESERVE_REGISTER,
+      {0,
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase) + 4},
+      0x0,    // Value is ignore in this instruction
+      0xFFFF  // Mask [15:0]
+    },
+    //
+    //================================================================
+    //                   Query Running State
+    //================================================================
+    //
+    // Determines if the watchdog hardware is currently in enabled/running 
+    // state. The same result must occur when performed from both 
+    // from enabled/stopped state and enabled/running state.
+    // If the watchdog hardware is disabled, results are indeterminate.
+    // This action is required.
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_QUERY_RUNNING_STATE,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_READ_VALUE,
+      {0,
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase)},
+      0x1,  // Value 1 means WDT is in running state
+      0x1   // Mask WatchDogControll[0] = WatchDogRunStopB
+    },
+    //
+    //================================================================
+    //                   Set Running State List
+    //================================================================
+    //
+    // Starts the watchdog, if not already in running state.
+    // If the watchdog hardware is disabled, results are indeterminate.
+    // This action is required.
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_SET_RUNNING_STATE,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_WRITE_VALUE | EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_PRESERVE_REGISTER,
+      {0,
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase)},
+      0x1,  // Value write 1 to set WDT into running state
+      0x1   // Mask WatchDogControll[0] = WatchDogRunStopB
+    },
+    //
+    //================================================================
+    //                  Query Stopped State List
+    //================================================================
+    //
+    // Determines if the watchdog hardware is currently in enabled/stopped 
+    // state. The sameresult must occur when performed from both the 
+    // enabled/stopped state and enabled/running state.
+    // If the watchdog hardware is disabled, results are indeterminate.
+    // This action is required.
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_QUERY_STOPPED_STATE,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_READ_VALUE,
+      {0,
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase)},
+      0x0,  // Value 0 means WDT is in stopped state
+      0x1   // Mask WatchDogControll[0] = WatchDogRunStopB
+    },
+    //
+    //================================================================
+    //                  Set Stopped State List    
+    //================================================================
+    //
+    // Stops the watchdog, if not already in stopped state.
+    // If the watchdog hardware is disabled, results are indeterminate.
+    // This action is required.
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_SET_STOPPED_STATE,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_WRITE_VALUE | EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_PRESERVE_REGISTER,
+      {0,
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase)},
+      0x0,  // Value write 0 to set WDT into stopped state
+      0x1   // Mask WatchDogControll[0] = WatchDogRunStopB
+    },
+    //
+    //================================================================
+    //                   Query Reboot - (optional)
+    //================================================================
+    //
+    // Determines if the watchdog hardware is configured 
+    // to perform a reboot when the watchdog is fired.
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_QUERY_REBOOT,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_READ_VALUE,
+      {0,
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase)},
+      0x0,  // Value 0 means System will reset when WDT fired
+      0x4   // Mask WatchDogControll[2] = WatchDogAction
+    },
+    //
+    //================================================================
+    //                   Set Reboot - (optional)
+    //================================================================
+    //
+    // Configures the watchdog hardware to perform a reboot  
+    // when it is fired.
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_SET_REBOOT,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_WRITE_VALUE | EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_PRESERVE_REGISTER,
+      {0x0,
+      0x0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase)},
+      0x0,  // Value, Write 0 will set WatchDogAction into System reset state
+      0x4   // Mask WatchDogControll[2] = WatchDogAction
+    },
+    //
+    //================================================================
+    //                   Query Shutdown - (optional)
+    //================================================================
+    //
+    // Determines if the watchdog hardware is configured to perform 
+    // a system shutdown when fired.
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_QUERY_SHUTDOWN,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_READ_VALUE,
+      {0,
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase)},
+      0x4,  // Value 1 means System will power off when WDT fired
+      0x4   // Mask WatchDogControll[2] = WatchDogAction
+    },
+    //
+    //================================================================
+    //                   Set Shutdown - (optional)
+    //================================================================
+    //
+    // Configures the watchdog hardware to perform a system shutdown 
+    // when fired. 
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_SET_SHUTDOWN,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_WRITE_VALUE | EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_PRESERVE_REGISTER,
+      {0,
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase)},
+      0x4,  // Value, Write Bit[2] to 1 will set WatchDogAction into System power off state
+      0x4   // Mask WatchDogControll[2] = WatchDogAction
+    },
+    //
+    //================================================================
+    //                   Query Watchdog Status List
+    //================================================================
+    //
+    // Determines if the current boot was caused by the watchdog firing.
+    // The boot status is required to be set if the watchdog fired 
+    // and caused a reboot.
+    // It is recommended that the Watchdog Status be set if the watchdog
+    // fired and causeda shutdown.
+    // This action is required.
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_QUERY_WATCHDOG_STATUS,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_READ_VALUE,
+      {0,
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase)},
+      0x2,  // Value, Bit[1] = 1 means WDT has expired and caused the current restart
+      0x2   // Mask WatchDogControll[1] = WatchDogFired
+    },
+    //
+    //================================================================
+    //                   Clear Watchdog Status List
+    //================================================================
+    //
+    // Sets the watchdog's boot status to the default value.
+    // This action is required.
+    //
+    {
+      EFI_ACPI_WDAT_1_0_WATCHDOG_ACTION_SET_WATCHDOG_STATUS,
+      EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_WRITE_VALUE | EFI_ACPI_WDAT_1_0_WATCHDOG_INSTRUCTION_PRESERVE_REGISTER,
+      {0,
+      0},
+      {EFI_ACPI_3_0_SYSTEM_MEMORY, 32, 0, EFI_ACPI_3_0_DWORD, FixedPcdGet32(PcdWatchdogTimerBase)},
+      0x2,  // Value, Write Bit[1] = 1 this bit is cleared by writing a "1"
+      0x2   // Mask WatchDogControll[1] = WatchDogFired
+    },
+  } // Action Tables
+}; // WDAT
+
+#ifdef __GNUC__
+VOID*
+ReferenceAcpiTable (
+ VOID
+ )
+
+{
+ return (VOID*)&Wdat;
+}
+#else
+VOID
+main (
+ VOID
+ )
+
+{
+  return;
+}
+#endif

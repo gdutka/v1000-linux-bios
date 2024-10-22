@@ -1,0 +1,87 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CbsFuncInstance
+  FILE_GUID                      = 58DEAE02-C55F-4a2c-BBA0-615B58379390
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CbsDxeFuncLib
+
+[sources.common]
+  CbsFuncLib/Cbs.h
+  ResourceRVFP5/AmdCbsVariable.h
+  ResourceRVFP5/AmdCbsDefault.c
+  ResourceRVFP5/CbsIdsNvRV.c
+
+  CbsFuncLib/CbsHookDxeLib.c
+  CbsFuncLib/CbsHookDxeLib.h
+  CbsFuncLib/CbsDxeFuncTable.c
+  CbsFuncLib/CbsBaseLib.c
+  
+  CbsFuncLib/IDS/CbsIDSCommonDxe.c
+  CbsFuncLib/IDS/CbsIDSCommonDxe.h
+
+  CbsFuncLib/ZEN/CBSZenFunDXE_RV.c
+  CbsFuncLib/ZEN/CBSZenFunDXE_RV.h
+
+  CbsFuncLib/DF/CBSDfFunDXE_RV.c
+  CbsFuncLib/DF/CBSDfFunDXE_RV.h
+
+  CbsFuncLib/UMC/CBSUmcFunDXE_RV.c
+  CbsFuncLib/UMC/CBSUmcFunDXE_RV.h
+
+  CbsFuncLib/NBIO/CBSNbioFunDXE_RV.c
+  CbsFuncLib/NBIO/CBSNbioFunDXE_RV.h
+
+  CbsFuncLib/FCH/CBSFchFunDXE_RV.c
+  CbsFuncLib/FCH/CBSFchFunDXE_RV.h
+
+  CbsFuncLib/PROMONTORY/CBSPromontoryFunDXE_RV.c
+  CbsFuncLib/PROMONTORY/CBSPromontoryFunDXE_RV.h
+
+  CbsFuncLib/SMU/CBSSmuFunDXE_RV.c
+  CbsFuncLib/SMU/CBSSmuFunDXE_RV.h
+
+  CbsFuncLib/SOC/CBSSocFunDXE_RV.c
+  CbsFuncLib/SOC/CBSSocFunDXE_RV.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  UefiLib
+  PcdLib
+  AmdBaseLib
+
+[Guids]
+  gAmdCbsPkgTokenSpaceGuid
+  gEfiIfrTianoGuid                              ## CONSUMES ## Guid
+  gCbsSystemConfigurationGuid                   ## PRODUCES
+
+[Protocols]
+  gCbsProtocolGuid
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.FchRTDeviceEnableMap
+
+[BuildOptions.Common]
+  MSFT:*_*_*_CC_FLAGS = /FAsc /Od /wd 4245 /D AMD_CBS_ZEN_RV /D AMD_CBS_DF_RV /D AMD_CBS_UMC_RV /D AMD_CBS_NBIO_RV /D AMD_CBS_FCH_RV /D AMD_CBS_PROMONTORY_RV
+

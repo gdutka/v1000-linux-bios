@@ -1,0 +1,126 @@
+## @file
+#  Implement the Driver of SmmChipsetSvc.
+#
+#  ***************************************************************************
+#  * Copyright (c) 2015, Insyde Software Corp. All Rights Reserved.
+#  *
+#  * You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#  * transmit, broadcast, present, recite, release, license or otherwise exploit
+#  * any part of this publication in any form, by any means, without the prior
+#  * written permission of Insyde Software Corporation.
+#  *
+#  ******************************************************************************
+#
+##
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = ChipsetSvcSmm
+  FILE_GUID                 = D359DE86-0A1B-47bc-95D2-1D1F8FFF0AD8
+  MODULE_TYPE               = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION  = 0x0001000A
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = ChipsetSvcSmmEntryPoint
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  $(PROJECT_PKG)/Project.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+  AmdPspFeaturePkg/AmdPspFeaturePkg.dec
+
+[Sources]
+  ChipsetSvcSmm.c
+  ComponentName.c
+  ComponentName.h
+  ResetSystem.c
+  LegacyRegionAccessCtrl.c
+  EnableFdWrites.c
+  SataComReset.c
+  CsSvcIhisiFbts.c
+  CsSvcIhisiFbts.h
+  CsSvcIhisiFets.c
+  CsSvcIhisiFets.h
+  CsSvcIhisiOemExtraDataCommunication.c
+  CsSvcIhisiOemExtraDataCommunication.h
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  BaseLib
+  DebugLib
+  PcdLib
+  UefiLib
+  PciCf8Lib
+  PciLib
+  IoLib
+  TimerLib
+  BaseOemSvcKernelLibDefault
+  SmmOemSvcChipsetLibDefault
+  FchDxeLibV9
+  VariableLib
+  SmmOemSvcKernelLibDefault
+#[-start-190319-IB06070016-add]#
+  ProcessPendingCapsuleLib
+#[-end-190319-IB06070016-add]#
+#[-start-230823-IB19090047-add]#
+  FlashRegionLib
+#[-end-230823-IB19090047-add]#
+
+[Protocols]
+  gEfiDriverSupportedEfiVersionProtocolGuid
+  gEfiComponentName2ProtocolGuid
+  gEfiComponentNameProtocolGuid
+  gH2OSmmChipsetServicesProtocolGuid
+  gEfiSmmFwBlockServiceProtocolGuid
+  gH2OIhisiFbtsToolVersionProtocolGuid
+#[-start-230823-IB19090047-add]#
+  gH2OIhisiProtocolGuid
+#[-end-230823-IB19090047-add]#
+
+[Guids]
+  gSystemConfigurationGuid
+  gH2OFlashMapRegionMsdmGuid
+  gSecureFlashInfoGuid
+
+[FeaturePcd]
+  gChipsetPkgTokenSpaceGuid.PcdEcReInitAfterFlash
+  gChipsetPkgTokenSpaceGuid.PcdEcSharedFlashSupported
+  gChipsetPkgTokenSpaceGuid.PcdEcIdlePerWriteBlockSupported
+
+[FixedPcd]
+  gInsydeTokenSpaceGuid.PcdFlashFvMainBase
+  gInsydeTokenSpaceGuid.PcdFlashFvMainSize
+  gInsydeTokenSpaceGuid.PcdFlashFvRecoveryBase
+  gInsydeTokenSpaceGuid.PcdFlashFvRecoverySize
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageMsdmDataBase
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageMsdmDataSize
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageMicrocodeBase
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageMicrocodeSize
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvEcBase
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvEcSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspNvRamBase
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspNvRamSize
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+#  gChipsetPkgTokenSpaceGuid.PcdIhisiFbtsToolVersion
+#[-start-230823-IB19090047-add]#
+  # gInsydeTokenSpaceGuid.PcdFlashAreaSize
+  # gChipsetPkgTokenSpaceGuid.PcdBiosImageInBottomSpiRom
+#[-end-230823-IB19090047-add]#
+
+[Depex]
+  TRUE

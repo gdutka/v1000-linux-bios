@@ -1,0 +1,9 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+INF AmdCbsPkg/CbsSetupDxe/CbsSetupDxeRV.inf
+INF AmdCbsPkg/CbsBaseDxe/CbsBaseDxeRV.inf
+INF AmdCbsPkg/BctBaseSmm/BctBaseSmmRV.inf

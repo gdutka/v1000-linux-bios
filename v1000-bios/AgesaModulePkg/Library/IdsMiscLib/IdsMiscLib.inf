@@ -1,0 +1,46 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = IdsMiscLib
+  FILE_GUID                      = 2DA316E3-706C-4519-BFDB-223870C74E53
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = IdsMiscLib
+
+[Sources.common]
+  IdsMiscLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  TimerLib
+  BaseLib
+  IoLib
+  AmdBaseLib
+  PcdLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAgesaTestPointEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAgesaTestPointWidth
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdIdsDebugPort
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAgesaAssertEnable
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+

@@ -1,0 +1,102 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FchSandstoneSmmInit
+  FILE_GUID                      = 4a69756b-209b-4d57-8810-142dac6bb7b5
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.1
+  ENTRY_POINT                    = FchSmmEntryPoint
+
+[sources]
+  FchSmm.c
+  FchSmm.h
+  GpiSmi.c
+  IoTrapSmi.c
+  MiscSmi.c
+  PeriodicTimerSmi.c
+  PowerButtonSmi.c
+  SwSmi.c
+  SxSmi.c
+
+[sources.ia32]
+
+[sources.x64]
+
+[LibraryClasses]
+  FchSandstoneDxeLib
+  FchSmmLibV9
+
+  UefiDriverEntryPoint
+  BaseMemoryLib
+  BaseLib
+  DebugLib
+  SmmServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  DevicePathLib
+  MemoryAllocationLib
+
+  HobLib
+  UefiLib
+ 
+  PcdLib
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemBeforePciRestoreSwSmi|0xD3|UINT8|0x0002F010
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemAfterPciRestoreSwSmi|0xD4|UINT8|0x0002F011
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemEnableAcpiSwSmi|0xA0|UINT8|0x0002F012
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemDisableAcpiSwSmi|0xA1|UINT8|0x0002F013
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemSpiUnlockSwSmi|0xAA|UINT8|0x0002F014
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemSpiLockSwSmi|0xAB|UINT8|0x0002F015
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemStartTimerSmi|0xBC|UINT8|0x0002F016
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemStopTimerSmi|0xBD|UINT8|0x0002F017
+ 
+[Guids]
+
+[Protocols]
+  gFchInitProtocolGuid                   #CONSUMED
+  gFchSmmGpiDispatch2ProtocolGuid        #CONSUMED
+  gFchSmmMiscDispatchProtocolGuid        #CONSUMED
+  gFchSmmPeriodicalDispatch2ProtocolGuid #CONSUMED
+  gFchSmmSxDispatch2ProtocolGuid         #CONSUMED
+  gFchSmmPwrBtnDispatch2ProtocolGuid     #CONSUMED
+  gFchSmmIoTrapDispatch2ProtocolGuid     #CONSUMED
+  gFchSmmSwDispatch2ProtocolGuid         #CONSUMED
+  gEfiSmmBase2ProtocolGuid               #CONSUMED
+  gFchInitProtocolGuid                   #CONSUMED
+  gFchSmmUsbDispatch2ProtocolGuid        #CONSUMED 
+  gEdkiiSmmReadyToBootProtocolGuid       #CONSUMED 
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid 
+  AND
+  gFchSmmSxDispatch2ProtocolGuid
+  AND
+  gFchSmmSwDispatch2ProtocolGuid
+  AND
+  gFchSmmPwrBtnDispatch2ProtocolGuid
+  AND
+  gFchSmmIoTrapDispatch2ProtocolGuid
+  AND
+  gFchSmmPeriodicalDispatch2ProtocolGuid
+  AND
+  gFchSmmGpiDispatch2ProtocolGuid
+  AND
+  gFchSmmMiscDispatchProtocolGuid
+  AND
+  gFchInitProtocolGuid
+  AND
+  gAmdFchSandstoneDepexProtocolGuid
+

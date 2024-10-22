@@ -1,0 +1,92 @@
+## @file
+#  Component description file for AcpiSupportDxe module.
+#
+#  This driver initializes ACPI tables (Rsdp, Rsdt and Xsdt) and produces UEFI/PI 
+#  services to install/uninstall/manage ACPI tables.
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+#  Copyright (c) 2006 - 2016, Intel Corporation. All rights reserved.<BR>
+#  Copyright (c) 2016, Linaro Ltd. All rights reserved.<BR>
+#  This program and the accompanying materials are
+#  licensed and made available under the terms and conditions of the BSD License
+#  which accompanies this distribution.  The full text of the license may be found at
+#  http://opensource.org/licenses/bsd-license.php
+#  
+#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AcpiSupportDxe
+  MODULE_UNI_FILE                = AcpiTableDxe.uni
+  FILE_GUID                      = 9622E42C-8E38-4A08-9E8F-54F784652F6B
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InstallAcpiSupport
+
+[Sources]
+  AcpiSupport.c
+  AcpiSupport.h
+  AcpiSupportAcpiSupportProtocol.c
+  AcpiSdt.h
+  AcpiSdt.c
+  Aml.c
+  AmlString.c
+  AmlOption.c
+  AmlChild.c
+  AmlNamespace.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  UefiDriverEntryPoint
+  BaseMemoryLib
+  UefiLib
+  DebugLib
+  BaseLib
+  PcdLib
+
+[Guids]
+  gEfiAcpi10TableGuid                           ## PRODUCES ## SystemTable
+  gEfiAcpiTableGuid                             ## PRODUCES ## SystemTable
+
+[FeaturePcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdInstallAcpiSdtProtocol  ## CONSUMES
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId            ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId       ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision      ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId        ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorRevision  ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiExposedTableVersions    ## CONSUMES
+
+[Protocols]
+  gEfiAcpiTableProtocolGuid                     ## PRODUCES
+  gEfiAcpiSupportProtocolGuid                   ## PRODUCES
+  gEfiAcpiSdtProtocolGuid                       ## PRODUCES
+
+[Depex]
+  TRUE
+
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  AcpiTableDxeExtra.uni

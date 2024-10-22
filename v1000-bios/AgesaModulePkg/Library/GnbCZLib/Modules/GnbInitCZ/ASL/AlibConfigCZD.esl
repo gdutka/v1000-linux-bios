@@ -1,0 +1,37 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: GNB
+ * @e \$Revision: 281175 $   @e \$Date: 2013-12-18 01:53:00 -0600 (Wed, 18 Dec 2013) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+
+#define  BR0                           \_SB.AWR0.ABR0
+#define  BR1                           \_SB.AWR0.ABR1
+#define  BR2                           \_SB.AWR0.ABR2
+#define  BR3                           \_SB.AWR0.ABR3
+#define  BR4                           \_SB.AWR0.ABR4
+#define  BR5                           \_SB.AWR1.ABR5
+#define  BR6                           \_SB.AWR1.ABR6
+#define  BR7                           \_SB.AWR1.ABR7
+#define  BR8                           \_SB.AWR1.ABR8
+#define  BR9                           \_SB.AWR1.ABR9
+
+#define  NUM_OF_PORTS                  10
+#define  HOTPLUG_SUPPORT               1
+#define  PSPP_SUPPORT                  0

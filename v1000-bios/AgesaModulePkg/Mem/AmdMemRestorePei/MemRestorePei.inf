@@ -1,0 +1,43 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemRestorePei
+  FILE_GUID                      = 4B6E1294-08D2-4131-83E4-14BE9FCD42C1
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdMemRestorePeiEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaModuleMemPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PeimEntryPoint
+  AmdBaseLib
+  FchBaseLib
+  MemRestoreLib
+
+[Sources]
+  MemRestorePei.h
+  MemRestorePei.c
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gEfiEndOfPeiSignalPpiGuid          #consume
+
+[Pcd]
+
+[Depex]
+  gAmdMemRestoreDepexPpiGuid
+

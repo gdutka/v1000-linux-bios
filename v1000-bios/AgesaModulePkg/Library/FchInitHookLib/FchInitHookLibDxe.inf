@@ -1,0 +1,33 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FchInitHookLib
+  FILE_GUID                      = c7da2770-e0a1-4566-8dd4-7f5c9e6ca466
+  MODULE_TYPE                    = DXE_DRIVER
+  LIBRARY_CLASS                  = FchInitHookLibDxe
+
+[Sources.Ia32]
+
+
+[Sources.X64]
+  FchInitHookLibDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+
+[LibraryClasses]
+  PcdLib
+
+[Protocols]
+
+[Guids]
+
+[Pcd]
+
+[Depex]

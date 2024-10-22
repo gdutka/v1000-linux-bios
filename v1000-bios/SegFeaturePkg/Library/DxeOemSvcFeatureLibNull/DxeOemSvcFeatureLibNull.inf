@@ -1,0 +1,47 @@
+## @file
+#  Component description file for DxeOemSvcFeatureLib instance.
+#
+#******************************************************************************
+#* Copyright (c) 2018, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxeOemSvcFeatureLib
+  FILE_GUID                      = 8473ECBD-B47F-4f63-8313-37A5BD240948
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DxeOemSvcFeatureLib|DXE_DRIVER
+  
+[Sources]
+  OemSvcSkipLoadDefaultVariableNull.c
+  
+  
+[Packages]
+  InsydeModulePkg/InsydeModulePkg.dec
+  SegFeaturePkg/SegFeaturePkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  HiiLib
+  VariableLib
+  PcdLib
+  MemoryAllocationLib
+
+  
+[Guids]
+  
+[Pcd]
+ 
+
+[Depex]
+  TRUE

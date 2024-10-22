@@ -1,0 +1,64 @@
+## @file
+#  Component description file for SMARTStatusCodeeDxe driver
+#
+#******************************************************************************
+#* Copyright (c) 2020, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SmartStatusCodeDxe
+  FILE_GUID                      = CA2AA7FF-3B9C-457c-BE1C-79F17881D2B1
+  MODULE_TYPE                    = DXE_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A  
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = SmartStatusCodeDxeEntryPoint
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Sources]
+  SmartStatusCodeDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  UefiLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  PcdLib
+  ReportStatusCodeLib
+  DebugLib
+  BaseMemoryLib
+  PciLib
+  DevicePathLib
+  H2OCpLib
+  
+[Guids]
+  gH2OBdsCpBootDeviceSelectGuid                 ## CONSUMES
+  
+[Protocols]
+  gEfiSmmBase2ProtocolGuid
+  gEfiAtaPassThruProtocolGuid
+  gEfiNvmExpressPassThruProtocolGuid
+  gEfiSmmCommunicationProtocolGuid
+  
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpBootDeviceSelectSupported
+  
+[Depex]
+   TRUE

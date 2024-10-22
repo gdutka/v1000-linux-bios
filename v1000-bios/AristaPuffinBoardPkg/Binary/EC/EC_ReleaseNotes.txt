@@ -1,0 +1,172 @@
+----------------------------------------------------------------------------
+MEC1701 Embedded Controller Firmware Release Notes
+
+Copyright 2018, Advanced Micro Devices, Inc.
+
+Platform: Mandolin/Tambourine
+
+Contact:  Fanli.Zhou@amd.com
+----------------------------------------------------------------------------
+
+Version:  1.0.3
+Date:     Apr. 9th, 2018
+
+Features and Fixes:
+    - Disable wakeup from scan matrix KB
+    - ECRAMxB7[5]: 1 - Use SMI for EC events; 0 - Use SCI for EC events (default)
+
+Version:  1.0.2
+Date:     Apr. 9th, 2018
+
+Features and Fixes:
+    - Build from MS branch
+    - Add MS support and EC sleep
+    - MS flag is cleared and EC sleep is disabled.
+
+Version:  1.0.1
+Date:     Mar. 16th, 2018
+
+Features and Fixes:
+    - Modern standby supporting
+    - for MS bring-up
+
+Version:  0.1.5
+Date:     Mar. 12th, 2018
+
+Features and Fixes:
+    - Add Lid/Dock 200ms debouncing
+    - Set EC GPIO204 default as OD_1 for nVIDIA card supportting.
+    - Two bits to CCG4 (RV2 indicator and MS indicator)
+        ECRAMxB7[7]: 1 - MS supported, 0 - S3 supported
+        ECRAMxB7[6]: 1 - RV2 platform, 0 - RV1 platform
+
+Version:  0.1.4
+Date:     Aug. 7th, 2017
+
+Features and Fixes:
+    - Use 'was set' for LOM_RESETn_AUX/PCIE_WWAN_RSTn/DT_RESETn_AUX/WLAN_RESETn_AUX_WLAN_R_RESETn_AUX
+    - Enable the retries when enable/disable charger.
+
+Version:  0.1.3
+Date:     June 30th, 2017
+
+Features and Fixes:
+    - UCSI mailbox is migrated to I2C slave 0x08 by offset 0xF000, which is not compatible with previous version.
+
+      Please **NOTE** by this EC, UCSI function can work only with CCG4 v11 or newer.
+      How to check the PD FW version of your board ?
+          1. Boot to BIOS setup menu. 
+          2. [Setup Utility] -> the [Main] label -> [Firmware Version] -> 
+               * USB PD Section1 Version: 010B
+               * USB PD Section2 Version: 010B
+             where 'B' is the hexadecimal minor version, i.e. v11
+
+      How to update the PD FW ?
+          Please refer to instructions in below link.
+          http://confluence.amd.com/display/PLSE/USB+Type+C+Cypress+PD+FW+Update+Instructions
+
+Version:  0.1.2
+Date:     June 12th, 2017
+
+Features and Fixes:
+    - PLAT-21369: [RV USB] Drop test failed when load 5*900mA &1*500mA for all the 6 USB ports
+    - Enable pre-charge and dead battery reactivate.
+
+Version:  0.1.1
+Date:     May 22th, 2017
+
+Features and Fixes:
+    - Enable SMBus tunnel to Cypress IC, which is for re-dirver tuning.
+    - Switching to f_SmtBty for Smart battery & charger.
+
+Version:  0.1.0
+Date:     May 8th, 2017
+
+Features and Fixes:
+    - PLAT-20101: [RV-FP5] UCSI yellow bang
+
+Version:  0.0.9
+Date:     Apr. 25th, 2017
+
+Features and Fixes:
+    - PLAT-18530: PCIE_ RST# sequence not meeting requirement for some devices.
+    - Add build flag CCG4_FORCE_UPDATE to support CCG4 downgrading
+    - Trace both bit 3 and bit 7 of HPIx0006 as UCSI interrupt indicator so as to 
+      compatible with all of CCG4 versions.
+
+Version:  0.0.8
+Date:     Apr. 7th, 2017
+
+Features and Fixes:
+    - Handle AUX RESET signals according to APU_RST_L_BUF
+    - Use 16-bit fix point encoding with 8 fractional bits for DPTC margin reporting.
+    - Kernel code update "7321"
+      * Update MEC1701 pin template, update the AutoGen scripts accordingly.
+      * Remove TRACE_FIFO sopport
+      * Remove VENDOR_POWER_CONTROL
+      * Rewritte GPIO interface in md_gpioCtrl.c
+
+Version:  0.0.7
+Date:     Mar. 10th, 2017
+
+Features and Fixes:
+    - Check PD Sink/Src status before update PDO.
+    - Fix minor battery charge issue.
+    - Refresh PMIC settings when system exits from G3.
+    - ALW power on in DC mode if DC_S5_ALW_EN_CTRL high.
+
+
+Version:  0.0.6
+Date:     Feb. 24th, 2017
+
+Features and Fixes:
+    - Export PMIC I2C tunnel in ACPI space.
+      * 0x90/0x91/0x92 for register offset/data/slave address respectively.
+    - Fix the issue that dead battery charging failed by only Type-C power source.
+    - Add Dynamic Power and Thermal Control interface supporting
+    - Add XConnect support
+      * QEvent 0x51/0x52 on GPIO104 rising/falling edge respectively.
+      * EC ACPI space 0xAE bit 0 for GPIO104 pin status and 0xB2 bit 5 for GPIO105 
+        status controlling
+    - Add DPTC debug interface.
+
+
+Version:  0.0.5
+Date:     Jun. 26th, 2017
+
+Features and Fixes:
+    - Export I2C tunnel of USB PD controller (a.k.a CCG4/HPI) into EC ACPI space.
+
+
+Version:  0.0.4
+Date:     Jun. 22th, 2017
+
+Features and Fixes:
+    - Set the default VDDP and VDD_S5 voltage to 0.9v
+
+
+Version:  0.0.3
+Date:     Jun. 19th, 2017
+
+Features and Fixes:
+    - Add UCSI support
+      * Use 0xE0 command to trigger OPM to PPM transfer
+      * QEvent 0x50 for PPM to OPM notification
+      * UCSI structure is resided in EC ACPI space 0x60 to 0x8F
+
+
+Version:  0.0.2
+Date:     Jun. 19th, 2016
+
+Features and Fixes:
+    - Add multithreading supporting
+    - Add CCG4 FW update supporting
+
+
+Version:  0.0.1
+Date:     Oct. 31th, 2016
+
+Features and Fixes:
+    - KBC/ACPI interface ready.
+    - Power up sequence is updated to Raven silicon.
+    - For Raven 0050 PI RC2.

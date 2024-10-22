@@ -1,0 +1,77 @@
+## @file
+#
+#
+#******************************************************************************
+#* Copyright (c) 2014 - 2020, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxeFlashRegionLib
+  FILE_GUID                      = 35A15F7D-6F69-4545-BA57-E37255F2B044
+  MODULE_TYPE                    = DXE_DRIVER
+  LIBRARY_CLASS                  = FlashRegionLib
+  CONSTRUCTOR                    = DxeFlashRegionLibInit
+  DESTRUCTOR                     = DxeFlashRegionLibDestruct
+
+
+
+[Sources]
+  DxeFlashRegionLib.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeFlashDevicePkg/InsydeFlashDevicePkg.dec
+
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  H2OCpLib
+  PerformanceLib
+  PostCodeLib
+  DebugLib
+  HobLib
+
+[Protocols]
+  gEfiSmmBase2ProtocolGuid
+  gEfiHashProtocolGuid
+  gGetPcdInfoProtocolGuid
+  gPcdProtocolGuid
+
+[Guids]
+  gInsydeTokenSpaceGuid
+  gEfiHashAlgorithmSha256Guid
+  gEfiEventExitBootServicesGuid
+  gH2OFlashMapRegionBootFvGuid
+  gH2OFlashMapRegionFvGuid
+  gH2OFlashMapRegionDxeFvGuid
+  gH2OFlashMapRegionPeiFvGuid
+  gH2OFlashMapRegionUnsignedFvGuid
+  gH2OFlashMapRegionFtwBackupGuid
+  gH2OFlashMapRegionFtwStateGuid
+  gH2OFlashMapRegionVarGuid
+  gH2OFlashMapRegionFlashMapGuid
+  gH2OFlashMapRegionFactoryCopyGuid
+  gH2OBaseCpVerifyFvGuid
+
+
+[PcdEx]
+  gInsydeTokenSpaceGuid.PcdH2OFlashDeviceMapStart
+  gInsydeTokenSpaceGuid.PcdH2OFlashDeviceMapSize
+
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OBaseCpVerifyFvSupported
+

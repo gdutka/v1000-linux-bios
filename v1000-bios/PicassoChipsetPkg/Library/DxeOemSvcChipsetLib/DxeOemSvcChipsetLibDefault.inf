@@ -1,0 +1,36 @@
+## @file
+#  Component description file for DXE OEM Services Chipset Lib Default instance.
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2014, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxeOemSvcChipsetLibDefault
+  FILE_GUID                      = 900887F9-838B-4235-9BEA-BBDE4D5AC308
+  MODULE_TYPE                    = UEFI_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DxeOemSvcChipsetLibDefault|DXE_CORE DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SAL_DRIVER DXE_SMM_DRIVER UEFI_APPLICATION UEFI_DRIVER SMM_CORE
+
+[Sources]
+  OemSvcHookPlatformDxe.c
+  OemSvcSetUsbLegacyPlatformOptions.c
+  OemSvcDxePlatformAfterAllPciInitFinished.c
+  OemSvcUpdateGlobalNvs.c
+  OemSvcHookRouteConfig.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(PROJECT_PKG)/Project.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+
+[LibraryClasses]
+  DxeOemSvcChipsetLib

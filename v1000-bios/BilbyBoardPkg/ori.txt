@@ -1,0 +1,1918 @@
+$VAR1 = 'CbsCmnMemTsmeDdr4';
+$VAR2 = {
+          'size' => 8,
+          'index' => 113,
+          'name' => 'CbsCmnMemTsmeDdr4',
+          'comments' => 'TSME'
+        };
+$VAR3 = 'CbsCmnMemCtrllerDramEccSymbolSizeDdr4';
+$VAR4 = {
+          'name' => 'CbsCmnMemCtrllerDramEccSymbolSizeDdr4',
+          'comments' => 'DRAM ECC Symbol Size',
+          'size' => 8,
+          'index' => 233
+        };
+$VAR5 = 'CbsCmnMemCtrllerRttParkDdr4';
+$VAR6 = {
+          'size' => 8,
+          'index' => 235,
+          'name' => 'CbsCmnMemCtrllerRttParkDdr4',
+          'comments' => 'RttPark'
+        };
+$VAR7 = 'CbsCmnPTPciePort5Enable';
+$VAR8 = {
+          'size' => 8,
+          'index' => 229,
+          'name' => 'CbsCmnPTPciePort5Enable',
+          'comments' => 'PT PCIE Port 5 Enable'
+        };
+$VAR9 = 'CbsDfCmnCc6MemEncryption';
+$VAR10 = {
+           'name' => 'CbsDfCmnCc6MemEncryption',
+           'comments' => 'CC6 memory region encryption',
+           'size' => 8,
+           'index' => 68
+         };
+$VAR11 = 'CbsCmnPersistentSizeHigh';
+$VAR12 = {
+           'comments' => 'Persistent memory reserved size High',
+           'name' => 'CbsCmnPersistentSizeHigh',
+           'index' => 271,
+           'size' => 32
+         };
+$VAR13 = 'CbsDbgFanTableCtl';
+$VAR14 = {
+           'size' => 8,
+           'index' => 135,
+           'name' => 'CbsDbgFanTableCtl',
+           'comments' => 'Fan Table Control'
+         };
+$VAR15 = 'CbsCpuPstCustomP1';
+$VAR16 = {
+           'index' => 17,
+           'size' => 8,
+           'comments' => 'Custom Pstate1',
+           'name' => 'CbsCpuPstCustomP1'
+         };
+$VAR17 = 'CbsCpuPst7Did';
+$VAR18 = {
+           'name' => 'CbsCpuPst7Did',
+           'comments' => '  Pstate7 DID',
+           'size' => 8,
+           'index' => 57
+         };
+$VAR19 = 'CbsCmnMemTimingTrcDdr4';
+$VAR20 = {
+           'size' => 8,
+           'index' => 87,
+           'name' => 'CbsCmnMemTimingTrcDdr4',
+           'comments' => 'Trc'
+         };
+$VAR21 = 'CbsCmnMemTimingTrasDdr4';
+$VAR22 = {
+           'index' => 85,
+           'size' => 8,
+           'comments' => 'Tras',
+           'name' => 'CbsCmnMemTimingTrasDdr4'
+         };
+$VAR23 = 'CbsCmnFchXgbe1Enable';
+$VAR24 = {
+           'comments' => 'XGBE1 enable',
+           'name' => 'CbsCmnFchXgbe1Enable',
+           'index' => 264,
+           'size' => 8
+         };
+$VAR25 = 'CbsCmnFchUsbXHCI0Enable';
+$VAR26 = {
+           'size' => 8,
+           'index' => 152,
+           'name' => 'CbsCmnFchUsbXHCI0Enable',
+           'comments' => 'XHCI0 controller enable'
+         };
+$VAR27 = 'CbsDbgPTProm1Usb20P1';
+$VAR28 = {
+           'index' => 219,
+           'size' => 8,
+           'comments' => 'PT USB20 PORT1',
+           'name' => 'CbsDbgPTProm1Usb20P1'
+         };
+$VAR29 = 'CbsCmnCpuGlobalCstateCtrl';
+$VAR30 = {
+           'name' => 'CbsCmnCpuGlobalCstateCtrl',
+           'comments' => 'Global C-state Control',
+           'size' => 8,
+           'index' => 5
+         };
+$VAR31 = 'CbsCmnGnbGfxUmaFrameBufferSize';
+$VAR32 = {
+           'index' => 128,
+           'size' => 32,
+           'comments' => 'UMA Frame buffer Size',
+           'name' => 'CbsCmnGnbGfxUmaFrameBufferSize'
+         };
+$VAR33 = 'CbsCmnMemDataPoisoningDdr4';
+$VAR34 = {
+           'name' => 'CbsCmnMemDataPoisoningDdr4',
+           'comments' => 'Data Poisoning',
+           'size' => 8,
+           'index' => 112
+         };
+$VAR35 = 'CbsCmnSocRpmcControl';
+$VAR36 = {
+           'name' => 'CbsCmnSocRpmcControl',
+           'comments' => 'RPMC Control',
+           'size' => 8,
+           'index' => 267
+         };
+$VAR37 = 'CbsCmnMemCtrllerPwrDnEnDdr4';
+$VAR38 = {
+           'name' => 'CbsCmnMemCtrllerPwrDnEnDdr4',
+           'comments' => 'Power Down Enable',
+           'size' => 8,
+           'index' => 245
+         };
+$VAR39 = 'CbsCmnFchUart1LegacyConfig';
+$VAR40 = {
+           'size' => 8,
+           'index' => 165,
+           'name' => 'CbsCmnFchUart1LegacyConfig',
+           'comments' => 'Uart 1 Legacy Options'
+         };
+$VAR41 = 'CbsCmnMemTimingTwrrdDdr4';
+$VAR42 = {
+           'size' => 8,
+           'index' => 236,
+           'name' => 'CbsCmnMemTimingTwrrdDdr4',
+           'comments' => 'Twrrd'
+         };
+$VAR43 = 'CbsDbgFchEmmcBoot';
+$VAR44 = {
+           'index' => 174,
+           'size' => 8,
+           'comments' => 'eMMC Boot ',
+           'name' => 'CbsDbgFchEmmcBoot'
+         };
+$VAR45 = 'CbsCmnMemTimingTrfc2Ddr4';
+$VAR46 = {
+           'name' => 'CbsCmnMemTimingTrfc2Ddr4',
+           'comments' => 'Trfc2',
+           'size' => 16,
+           'index' => 105
+         };
+$VAR47 = 'CbsDfCmnMemIntlvSize';
+$VAR48 = {
+           'index' => 72,
+           'size' => 8,
+           'comments' => 'Memory interleaving size',
+           'name' => 'CbsDfCmnMemIntlvSize'
+         };
+$VAR49 = 'CbsCmnMemTimingTrpDdr4';
+$VAR50 = {
+           'index' => 84,
+           'size' => 8,
+           'comments' => 'Trp',
+           'name' => 'CbsCmnMemTimingTrpDdr4'
+         };
+$VAR51 = 'CbsCmnPTSataPort7Enable';
+$VAR52 = {
+           'comments' => 'PT SATA Port 7 Enable',
+           'name' => 'CbsCmnPTSataPort7Enable',
+           'index' => 186,
+           'size' => 8
+         };
+$VAR53 = 'CbsDbgFanTablePwmFreq';
+$VAR54 = {
+           'name' => 'CbsDbgFanTablePwmFreq',
+           'comments' => 'Pwm Frequency',
+           'size' => 8,
+           'index' => 144
+         };
+$VAR55 = 'CbsDbgFchEmmcD3Support';
+$VAR56 = {
+           'name' => 'CbsDbgFchEmmcD3Support',
+           'comments' => 'D3 Cold Support',
+           'size' => 8,
+           'index' => 173
+         };
+$VAR57 = 'CbsCmnMemTimingTrdwrDdr4';
+$VAR58 = {
+           'index' => 255,
+           'size' => 8,
+           'comments' => 'Trdwr',
+           'name' => 'CbsCmnMemTimingTrdwrDdr4'
+         };
+$VAR59 = 'CbsCpuPstCustomP6';
+$VAR60 = {
+           'index' => 47,
+           'size' => 8,
+           'comments' => 'Custom Pstate6',
+           'name' => 'CbsCpuPstCustomP6'
+         };
+$VAR61 = 'CbsCmnMemTimingTwrwrScDdr4';
+$VAR62 = {
+           'comments' => 'TwrwrSc',
+           'name' => 'CbsCmnMemTimingTwrwrScDdr4',
+           'index' => 259,
+           'size' => 8
+         };
+$VAR63 = 'CbsCmnGnbSMUSystemConfig';
+$VAR64 = {
+           'comments' => 'System Configuration',
+           'name' => 'CbsCmnGnbSMUSystemConfig',
+           'index' => 122,
+           'size' => 8
+         };
+$VAR65 = 'CbsCpuPst0Did';
+$VAR66 = {
+           'index' => 15,
+           'size' => 8,
+           'comments' => '  Pstate0 DID',
+           'name' => 'CbsCpuPst0Did'
+         };
+$VAR67 = 'CbsCmnCpuPfeh';
+$VAR68 = {
+           'index' => 3,
+           'size' => 8,
+           'comments' => 'Platform First Error Handling',
+           'name' => 'CbsCmnCpuPfeh'
+         };
+$VAR69 = 'CbsCmnMemMbistPerBitSlaveDieReporting';
+$VAR70 = {
+           'size' => 8,
+           'index' => 121,
+           'name' => 'CbsCmnMemMbistPerBitSlaveDieReporting',
+           'comments' => 'MBIST Per Bit Slave Die Reporting'
+         };
+$VAR71 = 'CbsDfCmnFreezeQueueError';
+$VAR72 = {
+           'name' => 'CbsDfCmnFreezeQueueError',
+           'comments' => 'Freeze DF module queues on error',
+           'size' => 8,
+           'index' => 76
+         };
+$VAR73 = 'CbsDbgPTProm1Usb20P5';
+$VAR74 = {
+           'comments' => 'PT USB20 PORT5',
+           'name' => 'CbsDbgPTProm1Usb20P5',
+           'index' => 223,
+           'size' => 8
+         };
+$VAR75 = 'CbsCmnFchUart2Config';
+$VAR76 = {
+           'name' => 'CbsCmnFchUart2Config',
+           'comments' => 'Uart 2 Enable (no HW FC)',
+           'size' => 8,
+           'index' => 166
+         };
+$VAR77 = 'CbsCmnMemCadBusAddrCmdDrvStrenDdr4';
+$VAR78 = {
+           'size' => 8,
+           'index' => 260,
+           'name' => 'CbsCmnMemCadBusAddrCmdDrvStrenDdr4',
+           'comments' => 'AddrCmdDrvStren'
+         };
+$VAR79 = 'CbsCmnMemOverclockFailCNT';
+$VAR80 = {
+           'index' => 108,
+           'size' => 8,
+           'comments' => 'Fail_CNT',
+           'name' => 'CbsCmnMemOverclockFailCNT'
+         };
+$VAR81 = 'CbsCmnCpuCpb';
+$VAR82 = {
+           'size' => 8,
+           'index' => 4,
+           'name' => 'CbsCmnCpuCpb',
+           'comments' => 'Core Performance Boost'
+         };
+$VAR83 = 'CbsCmnMemTimingTrrdLDdr4';
+$VAR84 = {
+           'name' => 'CbsCmnMemTimingTrrdLDdr4',
+           'comments' => 'TrrdL',
+           'size' => 8,
+           'index' => 89
+         };
+$VAR85 = 'CbsCmnCpuGenSmtEn';
+$VAR86 = {
+           'name' => 'CbsCmnCpuGenSmtEn',
+           'comments' => 'SMTEN',
+           'size' => 8,
+           'index' => 62
+         };
+$VAR87 = 'CbsDbgPTUsb30P1';
+$VAR88 = {
+           'comments' => 'PT USB30 PORT1',
+           'name' => 'CbsDbgPTUsb30P1',
+           'index' => 194,
+           'size' => 8
+         };
+$VAR89 = 'CbsDbgPTUsb31P0';
+$VAR90 = {
+           'size' => 8,
+           'index' => 191,
+           'name' => 'CbsDbgPTUsb31P0',
+           'comments' => 'PT USB31 PORT0'
+         };
+$VAR91 = 'CbsDbgPTProm2Usb20P1';
+$VAR92 = {
+           'name' => 'CbsDbgPTProm2Usb20P1',
+           'comments' => 'PT USB20 PORT1',
+           'size' => 8,
+           'index' => 210
+         };
+$VAR93 = 'CbsCmnMemAddressHashBankDdr4';
+$VAR94 = {
+           'index' => 116,
+           'size' => 8,
+           'comments' => 'Address Hash Bank',
+           'name' => 'CbsCmnMemAddressHashBankDdr4'
+         };
+$VAR95 = 'CbsCmnMemCtrllerRttNomDdr4';
+$VAR96 = {
+           'comments' => 'RttNom',
+           'name' => 'CbsCmnMemCtrllerRttNomDdr4',
+           'index' => 246,
+           'size' => 8
+         };
+$VAR97 = 'CbsCmnPTPciePort2Enable';
+$VAR98 = {
+           'size' => 8,
+           'index' => 226,
+           'name' => 'CbsCmnPTPciePort2Enable',
+           'comments' => 'PT PCIE Port 2 Enable'
+         };
+$VAR99 = 'CbsCmnFchUart0LegacyConfig';
+$VAR100 = {
+            'size' => 8,
+            'index' => 163,
+            'name' => 'CbsCmnFchUart0LegacyConfig',
+            'comments' => 'Uart 0 Legacy Options'
+          };
+$VAR101 = 'CbsCpuPst2Fid';
+$VAR102 = {
+            'comments' => '  Pstate2 FID',
+            'name' => 'CbsCpuPst2Fid',
+            'index' => 26,
+            'size' => 8
+          };
+$VAR103 = 'CbsCmnMemDataBusConfigCtlDdr4';
+$VAR104 = {
+            'name' => 'CbsCmnMemDataBusConfigCtlDdr4',
+            'comments' => 'Data Bus Configuration User Controls',
+            'size' => 8,
+            'index' => 256
+          };
+$VAR105 = 'CbsCpuPst3Fid';
+$VAR106 = {
+            'name' => 'CbsCpuPst3Fid',
+            'comments' => '  Pstate3 FID',
+            'size' => 8,
+            'index' => 32
+          };
+$VAR107 = 'CbsCmnMemTimingTrdrdSdDdr4';
+$VAR108 = {
+            'comments' => 'TrdrdSd',
+            'name' => 'CbsCmnMemTimingTrdrdSdDdr4',
+            'index' => 249,
+            'size' => 8
+          };
+$VAR109 = 'CbsCpuVoltageP0';
+$VAR110 = {
+            'comments' => '  Voltage (uV)',
+            'name' => 'CbsCpuVoltageP0',
+            'index' => 13,
+            'size' => 32
+          };
+$VAR111 = 'CbsCmnFchSystemPwrFailShadow';
+$VAR112 = {
+            'size' => 8,
+            'index' => 155,
+            'name' => 'CbsCmnFchSystemPwrFailShadow',
+            'comments' => 'Ac Loss Control'
+          };
+$VAR113 = 'CbsCpuRelaxedEdcThrottling';
+$VAR114 = {
+            'size' => 8,
+            'index' => 59,
+            'name' => 'CbsCpuRelaxedEdcThrottling',
+            'comments' => 'Relaxed EDC throttling'
+          };
+$VAR115 = 'CbsCmnMemMbistEn';
+$VAR116 = {
+            'index' => 118,
+            'size' => 8,
+            'comments' => 'MBIST Enable',
+            'name' => 'CbsCmnMemMbistEn'
+          };
+$VAR117 = 'CbsCmnMemTimingTrdrdScLDdr4';
+$VAR118 = {
+            'comments' => 'TrdrdScL',
+            'name' => 'CbsCmnMemTimingTrdrdScLDdr4',
+            'index' => 99,
+            'size' => 8
+          };
+$VAR119 = 'CbsCpuPst5Vid';
+$VAR120 = {
+            'index' => 46,
+            'size' => 8,
+            'comments' => '  Pstate5 VID',
+            'name' => 'CbsCpuPst5Vid'
+          };
+$VAR121 = 'CbsCpuCofP5';
+$VAR122 = {
+            'index' => 42,
+            'size' => 32,
+            'comments' => '  Frequency (MHz)',
+            'name' => 'CbsCpuCofP5'
+          };
+$VAR123 = 'CbsCmnFchUart3Config';
+$VAR124 = {
+            'comments' => 'Uart 3 Enable (no HW FC)',
+            'name' => 'CbsCmnFchUart3Config',
+            'index' => 168,
+            'size' => 8
+          };
+$VAR125 = 'CbsCmnPTSataPort0Enable';
+$VAR126 = {
+            'name' => 'CbsCmnPTSataPort0Enable',
+            'comments' => 'PT SATA Port 0 Enable',
+            'size' => 8,
+            'index' => 179
+          };
+$VAR127 = 'CbsDbgPTUsbEqualization4';
+$VAR128 = {
+            'comments' => 'PT USB Equalization4',
+            'name' => 'CbsDbgPTUsbEqualization4',
+            'index' => 189,
+            'size' => 8
+          };
+$VAR129 = 'CbsCmnFchUart3LegacyConfig';
+$VAR130 = {
+            'name' => 'CbsCmnFchUart3LegacyConfig',
+            'comments' => 'Uart 3 Legacy Options',
+            'size' => 8,
+            'index' => 169
+          };
+$VAR131 = 'CbsCpuPst6Fid';
+$VAR132 = {
+            'name' => 'CbsCpuPst6Fid',
+            'comments' => '  Pstate6 FID',
+            'size' => 8,
+            'index' => 50
+          };
+$VAR133 = 'CbsCmnMemTimingTwtrLDdr4';
+$VAR134 = {
+            'index' => 93,
+            'size' => 8,
+            'comments' => 'TwtrL',
+            'name' => 'CbsCmnMemTimingTwtrLDdr4'
+          };
+$VAR135 = 'CbsDbgPTProm2Usb30P0';
+$VAR136 = {
+            'comments' => 'PT USB30 PORT0',
+            'name' => 'CbsDbgPTProm2Usb30P0',
+            'index' => 207,
+            'size' => 8
+          };
+$VAR137 = 'CbsDbgFanPolarity';
+$VAR138 = {
+            'index' => 145,
+            'size' => 8,
+            'comments' => 'Fan Polarity',
+            'name' => 'CbsDbgFanPolarity'
+          };
+$VAR139 = 'CbsCpuPst1Did';
+$VAR140 = {
+            'comments' => '  Pstate1 DID',
+            'name' => 'CbsCpuPst1Did',
+            'index' => 21,
+            'size' => 8
+          };
+$VAR141 = 'CbsCpuPst5Did';
+$VAR142 = {
+            'size' => 8,
+            'index' => 45,
+            'name' => 'CbsCpuPst5Did',
+            'comments' => '  Pstate5 DID'
+          };
+$VAR143 = 'CbsCpuPst4Fid';
+$VAR144 = {
+            'index' => 38,
+            'size' => 8,
+            'comments' => '  Pstate4 FID',
+            'name' => 'CbsCpuPst4Fid'
+          };
+$VAR145 = 'CbsCmnFchSdConfig';
+$VAR146 = {
+            'index' => 154,
+            'size' => 8,
+            'comments' => 'SD Configuration Mode',
+            'name' => 'CbsCmnFchSdConfig'
+          };
+$VAR147 = 'CbsDbgPTProm1Usb31P0';
+$VAR148 = {
+            'size' => 8,
+            'index' => 215,
+            'name' => 'CbsDbgPTProm1Usb31P0',
+            'comments' => 'PT USB31 PORT0'
+          };
+$VAR149 = 'CbsCpuPst7Vid';
+$VAR150 = {
+            'name' => 'CbsCpuPst7Vid',
+            'comments' => '  Pstate7 VID',
+            'size' => 8,
+            'index' => 58
+          };
+$VAR151 = 'CbsCmnMemTimingTwrwrDdDdr4';
+$VAR152 = {
+            'comments' => 'TwrwrDd',
+            'name' => 'CbsCmnMemTimingTwrwrDdDdr4',
+            'index' => 252,
+            'size' => 8
+          };
+$VAR153 = 'CbsCpuVoltageP1';
+$VAR154 = {
+            'size' => 32,
+            'index' => 19,
+            'name' => 'CbsCpuVoltageP1',
+            'comments' => '  Voltage (uV)'
+          };
+$VAR155 = 'CbsDfCmnUmaAbove4G';
+$VAR156 = {
+            'name' => 'CbsDfCmnUmaAbove4G',
+            'comments' => 'UMA Above 4G',
+            'size' => 8,
+            'index' => 265
+          };
+$VAR157 = 'CbsDfCmnMemIntlv';
+$VAR158 = {
+            'index' => 71,
+            'size' => 8,
+            'comments' => 'Memory interleaving',
+            'name' => 'CbsDfCmnMemIntlv'
+          };
+$VAR159 = 'CbsDbgGnbAudioIOs';
+$VAR160 = {
+            'name' => 'CbsDbgGnbAudioIOs',
+            'comments' => 'Audio IOs',
+            'size' => 8,
+            'index' => 123
+          };
+$VAR161 = 'CbsCpuPst4Vid';
+$VAR162 = {
+            'size' => 8,
+            'index' => 40,
+            'name' => 'CbsCpuPst4Vid',
+            'comments' => '  Pstate4 VID'
+          };
+$VAR163 = 'CbsCmnPersistentHigh';
+$VAR164 = {
+            'size' => 32,
+            'index' => 270,
+            'name' => 'CbsCmnPersistentHigh',
+            'comments' => 'Persistent memory Base High'
+          };
+$VAR165 = 'CbsCpuVoltageP4';
+$VAR166 = {
+            'index' => 37,
+            'size' => 32,
+            'comments' => '  Voltage (uV)',
+            'name' => 'CbsCpuVoltageP4'
+          };
+$VAR167 = 'CbsCpuVoltageP5';
+$VAR168 = {
+            'index' => 43,
+            'size' => 32,
+            'comments' => '  Voltage (uV)',
+            'name' => 'CbsCpuVoltageP5'
+          };
+$VAR169 = 'CbsCmnMemTimingTrtpDdr4';
+$VAR170 = {
+            'name' => 'CbsCmnMemTimingTrtpDdr4',
+            'comments' => 'Trtp',
+            'size' => 8,
+            'index' => 111
+          };
+$VAR171 = 'CbsCmnMemTimingTwrwrScLCtrlDdr4';
+$VAR172 = {
+            'index' => 100,
+            'size' => 8,
+            'comments' => 'TwrwrScL Ctrl',
+            'name' => 'CbsCmnMemTimingTwrwrScLCtrlDdr4'
+          };
+$VAR173 = 'CbsCmnGnbGfxNbAzalia';
+$VAR174 = {
+            'index' => 129,
+            'size' => 8,
+            'comments' => 'NB Azalia',
+            'name' => 'CbsCmnGnbGfxNbAzalia'
+          };
+$VAR175 = 'CbsDbgPTProm1Usb20P2';
+$VAR176 = {
+            'size' => 8,
+            'index' => 220,
+            'name' => 'CbsDbgPTProm1Usb20P2',
+            'comments' => 'PT USB20 PORT2'
+          };
+$VAR177 = 'CbsCmnPTSataPort1Enable';
+$VAR178 = {
+            'name' => 'CbsCmnPTSataPort1Enable',
+            'comments' => 'PT SATA Port 1 Enable',
+            'size' => 8,
+            'index' => 180
+          };
+$VAR179 = 'CbsDbgPTProm2Usb20P4';
+$VAR180 = {
+            'size' => 8,
+            'index' => 213,
+            'name' => 'CbsDbgPTProm2Usb20P4',
+            'comments' => 'PT USB20 PORT4'
+          };
+$VAR181 = 'CbsDbgFanTableTempLow';
+$VAR182 = {
+            'size' => 8,
+            'index' => 136,
+            'name' => 'CbsDbgFanTableTempLow',
+            'comments' => 'Low Temperature'
+          };
+$VAR183 = 'CbsDbgPTProm1Usb20P0';
+$VAR184 = {
+            'name' => 'CbsDbgPTProm1Usb20P0',
+            'comments' => 'PT USB20 PORT0',
+            'size' => 8,
+            'index' => 218
+          };
+$VAR185 = 'CbsCmnMemCtrllerRttWrDdr4';
+$VAR186 = {
+            'name' => 'CbsCmnMemCtrllerRttWrDdr4',
+            'comments' => 'RttWr',
+            'size' => 8,
+            'index' => 241
+          };
+$VAR187 = 'CbsCmnMemCtrller2TModeDdr4';
+$VAR188 = {
+            'comments' => 'Cmd2T',
+            'name' => 'CbsCmnMemCtrller2TModeDdr4',
+            'index' => 247,
+            'size' => 8
+          };
+$VAR189 = 'CbsCmnMemTimingTrrdSDdr4';
+$VAR190 = {
+            'name' => 'CbsCmnMemTimingTrrdSDdr4',
+            'comments' => 'Trrds',
+            'size' => 8,
+            'index' => 88
+          };
+$VAR191 = 'CbsCmnCpuGenDowncoreCtrl';
+$VAR192 = {
+            'name' => 'CbsCmnCpuGenDowncoreCtrl',
+            'comments' => 'Downcore control',
+            'size' => 8,
+            'index' => 61
+          };
+$VAR193 = 'CbsDbgPTProm2Usb20P3';
+$VAR194 = {
+            'size' => 8,
+            'index' => 212,
+            'name' => 'CbsDbgPTProm2Usb20P3',
+            'comments' => 'PT USB20 PORT3'
+          };
+$VAR195 = 'CbsCmnGnbNbIOMMU';
+$VAR196 = {
+            'name' => 'CbsCmnGnbNbIOMMU',
+            'comments' => 'IOMMU',
+            'size' => 8,
+            'index' => 130
+          };
+$VAR197 = 'CbsCmnMemTimingTrcdrdDdr4';
+$VAR198 = {
+            'size' => 8,
+            'index' => 82,
+            'name' => 'CbsCmnMemTimingTrcdrdDdr4',
+            'comments' => 'Trcdrd'
+          };
+$VAR199 = 'CbsCpuPst3Vid';
+$VAR200 = {
+            'index' => 34,
+            'size' => 8,
+            'comments' => '  Pstate3 VID',
+            'name' => 'CbsCpuPst3Vid'
+          };
+$VAR201 = 'CbsCmnCpuOcMode';
+$VAR202 = {
+            'index' => 6,
+            'size' => 8,
+            'comments' => 'OC Mode',
+            'name' => 'CbsCmnCpuOcMode'
+          };
+$VAR203 = 'CbsCmnSpdSmbusVoltage';
+$VAR204 = {
+            'comments' => 'SMBUS SPD Voltage',
+            'name' => 'CbsCmnSpdSmbusVoltage',
+            'index' => 266,
+            'size' => 8
+          };
+$VAR205 = 'CbsCmnMemTimingTwrDdr4';
+$VAR206 = {
+            'size' => 8,
+            'index' => 95,
+            'name' => 'CbsCmnMemTimingTwrDdr4',
+            'comments' => 'Twr'
+          };
+$VAR207 = 'CbsDbgPTProm2Usb31P0';
+$VAR208 = {
+            'size' => 8,
+            'index' => 205,
+            'name' => 'CbsDbgPTProm2Usb31P0',
+            'comments' => 'PT USB31 PORT0'
+          };
+$VAR209 = 'CbsDbgFanTablePwmHigh';
+$VAR210 = {
+            'size' => 8,
+            'index' => 142,
+            'name' => 'CbsDbgFanTablePwmHigh',
+            'comments' => 'High Pwm'
+          };
+$VAR211 = 'CbsDfCmnCc6AllocationScheme';
+$VAR212 = {
+            'name' => 'CbsDfCmnCc6AllocationScheme',
+            'comments' => 'Location of private memory regions',
+            'size' => 8,
+            'index' => 69
+          };
+$VAR213 = 'CbsCmnMemTimingTckeDdr4';
+$VAR214 = {
+            'name' => 'CbsCmnMemTimingTckeDdr4',
+            'comments' => 'Tcke',
+            'size' => 8,
+            'index' => 258
+          };
+$VAR215 = 'CbsDbgPTSataAggresiveDevSlpP0';
+$VAR216 = {
+            'name' => 'CbsDbgPTSataAggresiveDevSlpP0',
+            'comments' => 'PT Aggresive SATA Device Sleep Port 0',
+            'size' => 8,
+            'index' => 177
+          };
+$VAR217 = 'CbsComboFlag';
+$VAR218 = {
+            'comments' => 'Combo CBS',
+            'name' => 'CbsComboFlag',
+            'index' => 0,
+            'size' => 8
+          };
+$VAR219 = 'CbsCmnFchUartDriverType';
+$VAR220 = {
+            'comments' => 'Uart Driver Type',
+            'name' => 'CbsCmnFchUartDriverType',
+            'index' => 269,
+            'size' => 8
+          };
+$VAR221 = 'CbsCmnMemTimingTwtrSDdr4';
+$VAR222 = {
+            'name' => 'CbsCmnMemTimingTwtrSDdr4',
+            'comments' => 'TwtrS',
+            'size' => 8,
+            'index' => 92
+          };
+$VAR223 = 'CbsCmnMemTimingTrcpageDdr4';
+$VAR224 = {
+            'size' => 16,
+            'index' => 97,
+            'name' => 'CbsCmnMemTimingTrcpageDdr4',
+            'comments' => 'Trcpage'
+          };
+$VAR225 = 'CbsCmnFchI2C0Config';
+$VAR226 = {
+            'size' => 8,
+            'index' => 156,
+            'name' => 'CbsCmnFchI2C0Config',
+            'comments' => 'I2C 0 Enable'
+          };
+$VAR227 = 'CbsCmnMemCadBusCsOdtDrvStrenDdr4';
+$VAR228 = {
+            'index' => 257,
+            'size' => 8,
+            'comments' => 'CsOdtDrvStren',
+            'name' => 'CbsCmnMemCadBusCsOdtDrvStrenDdr4'
+          };
+$VAR229 = 'CbsDfCmnRedirScrubCtrl';
+$VAR230 = {
+            'name' => 'CbsDfCmnRedirScrubCtrl',
+            'comments' => 'Redirect scrubber control',
+            'size' => 8,
+            'index' => 64
+          };
+$VAR231 = 'CbsCmnPTPciePort0Enable';
+$VAR232 = {
+            'index' => 224,
+            'size' => 8,
+            'comments' => 'PT PCIE Port 0 Enable',
+            'name' => 'CbsCmnPTPciePort0Enable'
+          };
+$VAR233 = 'CbsCmnFchEspiConfig';
+$VAR234 = {
+            'size' => 8,
+            'index' => 170,
+            'name' => 'CbsCmnFchEspiConfig',
+            'comments' => 'ESPI Enable'
+          };
+$VAR235 = 'CbsDbgFchEmmcDriverType';
+$VAR236 = {
+            'index' => 172,
+            'size' => 8,
+            'comments' => 'Driver Type',
+            'name' => 'CbsDbgFchEmmcDriverType'
+          };
+$VAR237 = 'CbsCmnFchSataEnable';
+$VAR238 = {
+            'name' => 'CbsCmnFchSataEnable',
+            'comments' => 'SATA Controller',
+            'size' => 8,
+            'index' => 146
+          };
+$VAR239 = 'CbsCmnMemCadBusTimingCtlDdr4';
+$VAR240 = {
+            'size' => 8,
+            'index' => 243,
+            'name' => 'CbsCmnMemCadBusTimingCtlDdr4',
+            'comments' => 'CAD Bus Timing User Controls'
+          };
+$VAR241 = 'CbsCmnCpuStreamingStoresCtrl';
+$VAR242 = {
+            'comments' => 'Streaming Stores Control',
+            'name' => 'CbsCmnCpuStreamingStoresCtrl',
+            'index' => 7,
+            'size' => 8
+          };
+$VAR243 = 'CbsDbgForcePwmCtl';
+$VAR244 = {
+            'name' => 'CbsDbgForcePwmCtl',
+            'comments' => 'Force PWM Control',
+            'size' => 8,
+            'index' => 133
+          };
+$VAR245 = 'CbsDbgFanTableTempHigh';
+$VAR246 = {
+            'size' => 8,
+            'index' => 138,
+            'name' => 'CbsDbgFanTableTempHigh',
+            'comments' => 'High Temperature'
+          };
+$VAR247 = 'CbsCmnGnbGfxiGPU_CONTROL';
+$VAR248 = {
+            'comments' => 'Integrated Graphics Controller',
+            'name' => 'CbsCmnGnbGfxiGPU_CONTROL',
+            'index' => 124,
+            'size' => 8
+          };
+$VAR249 = 'CbsDfCmnSysProbeFilter';
+$VAR250 = {
+            'index' => 70,
+            'size' => 8,
+            'comments' => 'System probe filter',
+            'name' => 'CbsDfCmnSysProbeFilter'
+          };
+$VAR251 = 'CbsCmnMemTimingLegalDisclaimer1';
+$VAR252 = {
+            'size' => 8,
+            'index' => 78,
+            'name' => 'CbsCmnMemTimingLegalDisclaimer1',
+            'comments' => 'DRAM Timing Configuration Legal Disclaimer 1'
+          };
+$VAR253 = 'CbsDbgPTUsb31P1';
+$VAR254 = {
+            'size' => 8,
+            'index' => 192,
+            'name' => 'CbsDbgPTUsb31P1',
+            'comments' => 'PT USB31 PORT1'
+          };
+$VAR255 = 'CbsCmnToggleAllPwrGoodOnCf9';
+$VAR256 = {
+            'comments' => 'Toggle All PwrGood On Cf9',
+            'name' => 'CbsCmnToggleAllPwrGoodOnCf9',
+            'index' => 234,
+            'size' => 8
+          };
+$VAR257 = 'CbsDbgPTProm2Usb20P0';
+$VAR258 = {
+            'index' => 209,
+            'size' => 8,
+            'comments' => 'PT USB20 PORT0',
+            'name' => 'CbsDbgPTProm2Usb20P0'
+          };
+$VAR259 = 'CbsCmnPTSataPort5Enable';
+$VAR260 = {
+            'size' => 8,
+            'index' => 184,
+            'name' => 'CbsCmnPTSataPort5Enable',
+            'comments' => 'PT SATA Port 5 Enable'
+          };
+$VAR261 = 'CbsDbgPTUsb20P5';
+$VAR262 = {
+            'size' => 8,
+            'index' => 204,
+            'name' => 'CbsDbgPTUsb20P5',
+            'comments' => 'PT USB20 PORT5'
+          };
+$VAR263 = 'CbsCmnMemTimingTcwlDdr4';
+$VAR264 = {
+            'size' => 8,
+            'index' => 110,
+            'name' => 'CbsCmnMemTimingTcwlDdr4',
+            'comments' => 'Tcwl'
+          };
+$VAR265 = 'CbsCmnMemTimingTrcCtrlDdr4';
+$VAR266 = {
+            'comments' => 'Trc Ctrl',
+            'name' => 'CbsCmnMemTimingTrcCtrlDdr4',
+            'index' => 86,
+            'size' => 8
+          };
+$VAR267 = 'CbsCmnMemMbistAggressors';
+$VAR268 = {
+            'index' => 120,
+            'size' => 8,
+            'comments' => 'MBIST Aggressors',
+            'name' => 'CbsCmnMemMbistAggressors'
+          };
+$VAR269 = 'CbsCpuPst2Did';
+$VAR270 = {
+            'size' => 8,
+            'index' => 27,
+            'name' => 'CbsCpuPst2Did',
+            'comments' => '  Pstate2 DID'
+          };
+$VAR271 = 'CbsDbgPTUsb30P0';
+$VAR272 = {
+            'size' => 8,
+            'index' => 193,
+            'name' => 'CbsDbgPTUsb30P0',
+            'comments' => 'PT USB30 PORT0'
+          };
+$VAR273 = 'CbsDbgPTUsb30P4';
+$VAR274 = {
+            'comments' => 'PT USB30 PORT4',
+            'name' => 'CbsDbgPTUsb30P4',
+            'index' => 197,
+            'size' => 8
+          };
+$VAR275 = 'CbsCmnMemTimingTwrwrSdDdr4';
+$VAR276 = {
+            'comments' => 'TwrwrSd',
+            'name' => 'CbsCmnMemTimingTwrwrSdDdr4',
+            'index' => 250,
+            'size' => 8
+          };
+$VAR277 = 'CbsCpuPst1Fid';
+$VAR278 = {
+            'name' => 'CbsCpuPst1Fid',
+            'comments' => '  Pstate1 FID',
+            'size' => 8,
+            'index' => 20
+          };
+$VAR279 = 'CbsDbgPTProm1Usb31P1';
+$VAR280 = {
+            'name' => 'CbsDbgPTProm1Usb31P1',
+            'comments' => 'PT USB31 PORT1',
+            'size' => 8,
+            'index' => 216
+          };
+$VAR281 = 'CbsCmnMemDataMaskDdr4';
+$VAR282 = {
+            'size' => 8,
+            'index' => 262,
+            'name' => 'CbsCmnMemDataMaskDdr4',
+            'comments' => 'Data Mask'
+          };
+$VAR283 = 'CbsCmnFchI2C5Config';
+$VAR284 = {
+            'comments' => 'I2C 5 Enable',
+            'name' => 'CbsCmnFchI2C5Config',
+            'index' => 161,
+            'size' => 8
+          };
+$VAR285 = 'CbsCmnMemTimingTrfc2CtrlDdr4';
+$VAR286 = {
+            'index' => 104,
+            'size' => 8,
+            'comments' => 'Trfc2 Ctrl',
+            'name' => 'CbsCmnMemTimingTrfc2CtrlDdr4'
+          };
+$VAR287 = 'CbsCmnMemMappingBankInterleaveDdr4';
+$VAR288 = {
+            'size' => 8,
+            'index' => 114,
+            'name' => 'CbsCmnMemMappingBankInterleaveDdr4',
+            'comments' => 'Chipselect Interleaving'
+          };
+$VAR289 = 'CbsCpuPst3Did';
+$VAR290 = {
+            'index' => 33,
+            'size' => 8,
+            'comments' => '  Pstate3 DID',
+            'name' => 'CbsCpuPst3Did'
+          };
+$VAR291 = 'CbsCmnMemCtrllerDramEccEnDdr4';
+$VAR292 = {
+            'name' => 'CbsCmnMemCtrllerDramEccEnDdr4',
+            'comments' => 'DRAM ECC Enable',
+            'size' => 8,
+            'index' => 232
+          };
+$VAR293 = 'CbsCmnMemTimingTwrwrScLDdr4';
+$VAR294 = {
+            'name' => 'CbsCmnMemTimingTwrwrScLDdr4',
+            'comments' => 'TwrwrScL',
+            'size' => 8,
+            'index' => 101
+          };
+$VAR295 = 'CbsDbgFanTableHyst';
+$VAR296 = {
+            'index' => 143,
+            'size' => 8,
+            'comments' => 'Temperature Hysteresis',
+            'name' => 'CbsDbgFanTableHyst'
+          };
+$VAR297 = 'CbsCmnPTSataClass';
+$VAR298 = {
+            'comments' => 'PT SATA Mode',
+            'name' => 'CbsCmnPTSataClass',
+            'index' => 176,
+            'size' => 8
+          };
+$VAR299 = 'CbsCmnPersistentSizeLow';
+$VAR300 = {
+            'index' => 273,
+            'size' => 32,
+            'comments' => 'Persistent memory reserved size Low',
+            'name' => 'CbsCmnPersistentSizeLow'
+          };
+$VAR301 = 'CbsCmnGnbGfxUmaVersion';
+$VAR302 = {
+            'index' => 126,
+            'size' => 8,
+            'comments' => 'UMA Version',
+            'name' => 'CbsCmnGnbGfxUmaVersion'
+          };
+$VAR303 = 'CbsCmnFchI2C2Config';
+$VAR304 = {
+            'comments' => 'I2C 2 Enable',
+            'name' => 'CbsCmnFchI2C2Config',
+            'index' => 158,
+            'size' => 8
+          };
+$VAR305 = 'CbsDbgForcePwm';
+$VAR306 = {
+            'index' => 134,
+            'size' => 8,
+            'comments' => 'Force PWM',
+            'name' => 'CbsDbgForcePwm'
+          };
+$VAR307 = 'CbsDbgFchSataAggresiveDevSlpP0';
+$VAR308 = {
+            'name' => 'CbsDbgFchSataAggresiveDevSlpP0',
+            'comments' => 'Aggresive SATA Device Sleep Port 0',
+            'size' => 8,
+            'index' => 150
+          };
+$VAR309 = 'CbsCmnGnbGfxUmaMode';
+$VAR310 = {
+            'index' => 125,
+            'size' => 8,
+            'comments' => 'UMA Mode',
+            'name' => 'CbsCmnGnbGfxUmaMode'
+          };
+$VAR311 = 'CbsDfCmnChnlIntlvHash';
+$VAR312 = {
+            'size' => 8,
+            'index' => 73,
+            'name' => 'CbsDfCmnChnlIntlvHash',
+            'comments' => 'Channel interleaving hash'
+          };
+$VAR313 = 'CbsCmnMemTimingTfawDdr4';
+$VAR314 = {
+            'size' => 8,
+            'index' => 91,
+            'name' => 'CbsCmnMemTimingTfawDdr4',
+            'comments' => 'Tfaw'
+          };
+$VAR315 = 'CbsDbgPTProm2Usb31P1';
+$VAR316 = {
+            'index' => 206,
+            'size' => 8,
+            'comments' => 'PT USB31 PORT1',
+            'name' => 'CbsDbgPTProm2Usb31P1'
+          };
+$VAR317 = 'CbsCpuPstCustomP4';
+$VAR318 = {
+            'index' => 35,
+            'size' => 8,
+            'comments' => 'Custom Pstate4',
+            'name' => 'CbsCpuPstCustomP4'
+          };
+$VAR319 = 'CbsCmnMemTimingTrdrdScLCtrlDdr4';
+$VAR320 = {
+            'comments' => 'TrdrdScL Ctrl',
+            'name' => 'CbsCmnMemTimingTrdrdScLCtrlDdr4',
+            'index' => 98,
+            'size' => 8
+          };
+$VAR321 = 'CbsCpuPst0Vid';
+$VAR322 = {
+            'size' => 8,
+            'index' => 16,
+            'name' => 'CbsCpuPst0Vid',
+            'comments' => '  Pstate0 VID'
+          };
+$VAR323 = 'CbsDfCmnDramScrubTime';
+$VAR324 = {
+            'size' => 8,
+            'index' => 63,
+            'name' => 'CbsDfCmnDramScrubTime',
+            'comments' => 'DRAM scrub time'
+          };
+$VAR325 = 'CbsCpuPstCustomP2';
+$VAR326 = {
+            'name' => 'CbsCpuPstCustomP2',
+            'comments' => 'Custom Pstate2',
+            'size' => 8,
+            'index' => 23
+          };
+$VAR327 = 'CbsCmnPTPciePort3Enable';
+$VAR328 = {
+            'name' => 'CbsCmnPTPciePort3Enable',
+            'comments' => 'PT PCIE Port 3 Enable',
+            'size' => 8,
+            'index' => 227
+          };
+$VAR329 = 'CbsDbgFanCtl';
+$VAR330 = {
+            'comments' => 'Fan Control',
+            'name' => 'CbsDbgFanCtl',
+            'index' => 132,
+            'size' => 8
+          };
+$VAR331 = 'CbsCmnMemGearDownModeDdr4';
+$VAR332 = {
+            'size' => 8,
+            'index' => 254,
+            'name' => 'CbsCmnMemGearDownModeDdr4',
+            'comments' => 'Gear Down Mode'
+          };
+$VAR333 = 'CbsCmnFchUart0Config';
+$VAR334 = {
+            'comments' => 'Uart 0 Enable',
+            'name' => 'CbsCmnFchUart0Config',
+            'index' => 162,
+            'size' => 8
+          };
+$VAR335 = 'CbsCmnPTPciePort1Enable';
+$VAR336 = {
+            'index' => 225,
+            'size' => 8,
+            'comments' => 'PT PCIE Port 1 Enable',
+            'name' => 'CbsCmnPTPciePort1Enable'
+          };
+$VAR337 = 'CbsDbgPTSataAggresiveDevSlpP1';
+$VAR338 = {
+            'name' => 'CbsDbgPTSataAggresiveDevSlpP1',
+            'comments' => 'PT Aggresive SATA Device Sleep Port 1',
+            'size' => 8,
+            'index' => 178
+          };
+$VAR339 = 'CbsCmnMemCadBusCkeDrvStrenDdr4';
+$VAR340 = {
+            'index' => 248,
+            'size' => 8,
+            'comments' => 'CkeDrvStren',
+            'name' => 'CbsCmnMemCadBusCkeDrvStrenDdr4'
+          };
+$VAR341 = 'CbsCmnPTSataPort4Enable';
+$VAR342 = {
+            'comments' => 'PT SATA Port 4 Enable',
+            'name' => 'CbsCmnPTSataPort4Enable',
+            'index' => 183,
+            'size' => 8
+          };
+$VAR343 = 'CbsCmnFchI2C1Config';
+$VAR344 = {
+            'size' => 8,
+            'index' => 157,
+            'name' => 'CbsCmnFchI2C1Config',
+            'comments' => 'I2C 1 Enable'
+          };
+$VAR345 = 'CbsDbgPTXhciGen1';
+$VAR346 = {
+            'name' => 'CbsDbgPTXhciGen1',
+            'comments' => 'PT XHCI GEN1',
+            'size' => 8,
+            'index' => 187
+          };
+$VAR347 = 'CbsCmnMemTimingLegalDisclaimer';
+$VAR348 = {
+            'comments' => 'DRAM Timing Configuration Legal Disclaimer',
+            'name' => 'CbsCmnMemTimingLegalDisclaimer',
+            'index' => 77,
+            'size' => 8
+          };
+$VAR349 = 'CbsCpuPst1Vid';
+$VAR350 = {
+            'size' => 8,
+            'index' => 22,
+            'name' => 'CbsCpuPst1Vid',
+            'comments' => '  Pstate1 VID'
+          };
+$VAR351 = 'CbsCpuCofP6';
+$VAR352 = {
+            'name' => 'CbsCpuCofP6',
+            'comments' => '  Frequency (MHz)',
+            'size' => 32,
+            'index' => 48
+          };
+$VAR353 = 'CbsCmnMemTimingTfawCtrlDdr4';
+$VAR354 = {
+            'index' => 90,
+            'size' => 8,
+            'comments' => 'Tfaw Ctrl',
+            'name' => 'CbsCmnMemTimingTfawCtrlDdr4'
+          };
+$VAR355 = 'CbsCmnMemTimingTrcdwrDdr4';
+$VAR356 = {
+            'index' => 83,
+            'size' => 8,
+            'comments' => 'Trcdwr',
+            'name' => 'CbsCmnMemTimingTrcdwrDdr4'
+          };
+$VAR357 = 'CbsDbgPTUsb30P2';
+$VAR358 = {
+            'size' => 8,
+            'index' => 195,
+            'name' => 'CbsDbgPTUsb30P2',
+            'comments' => 'PT USB30 PORT2'
+          };
+$VAR359 = 'CbsCpuPst4Did';
+$VAR360 = {
+            'size' => 8,
+            'index' => 39,
+            'name' => 'CbsCpuPst4Did',
+            'comments' => '  Pstate4 DID'
+          };
+$VAR361 = 'CbsDfCmnSyncFloodProp';
+$VAR362 = {
+            'index' => 65,
+            'size' => 8,
+            'comments' => 'Disable DF sync flood propagation',
+            'name' => 'CbsDfCmnSyncFloodProp'
+          };
+$VAR363 = 'CbsCpuVoltageP2';
+$VAR364 = {
+            'comments' => '  Voltage (uV)',
+            'name' => 'CbsCpuVoltageP2',
+            'index' => 25,
+            'size' => 32
+          };
+$VAR365 = 'CbsCmnMemOverclockDdr4';
+$VAR366 = {
+            'size' => 8,
+            'index' => 79,
+            'name' => 'CbsCmnMemOverclockDdr4',
+            'comments' => 'Overclock'
+          };
+$VAR367 = 'CbsDfCmnxGmiDlwmCtrl';
+$VAR368 = {
+            'comments' => 'xGMI DLWM control',
+            'name' => 'CbsDfCmnxGmiDlwmCtrl',
+            'index' => 75,
+            'size' => 8
+          };
+$VAR369 = 'CbsCmnPersistentLow';
+$VAR370 = {
+            'name' => 'CbsCmnPersistentLow',
+            'comments' => 'Persistent memory Base Low',
+            'size' => 32,
+            'index' => 272
+          };
+$VAR371 = 'CbsCpuPst5Fid';
+$VAR372 = {
+            'size' => 8,
+            'index' => 44,
+            'name' => 'CbsCpuPst5Fid',
+            'comments' => '  Pstate5 FID'
+          };
+$VAR373 = 'CbsDbgFchEmmcEnable';
+$VAR374 = {
+            'size' => 8,
+            'index' => 171,
+            'name' => 'CbsDbgFchEmmcEnable',
+            'comments' => 'eMMC/SD Configure'
+          };
+$VAR375 = 'CbsCpuLegalDisclaimer';
+$VAR376 = {
+            'name' => 'CbsCpuLegalDisclaimer',
+            'comments' => 'Custom Core Pstates Legal Disclaimer',
+            'size' => 8,
+            'index' => 9
+          };
+$VAR377 = 'CbsDbgPTProm2Usb20P2';
+$VAR378 = {
+            'name' => 'CbsDbgPTProm2Usb20P2',
+            'comments' => 'PT USB20 PORT2',
+            'size' => 8,
+            'index' => 211
+          };
+$VAR379 = 'CbsDbgPTProm2Usb30P1';
+$VAR380 = {
+            'comments' => 'PT USB30 PORT1',
+            'name' => 'CbsDbgPTProm2Usb30P1',
+            'index' => 208,
+            'size' => 8
+          };
+$VAR381 = 'CbsCmnCpuL2TlbWayAlloc';
+$VAR382 = {
+            'comments' => 'L2 TLB Associativity',
+            'name' => 'CbsCmnCpuL2TlbWayAlloc',
+            'index' => 2,
+            'size' => 8
+          };
+$VAR383 = 'CbsCmnFchI2C3Config';
+$VAR384 = {
+            'size' => 8,
+            'index' => 159,
+            'name' => 'CbsCmnFchI2C3Config',
+            'comments' => 'I2C 3 Enable'
+          };
+$VAR385 = 'CbsCmnPTPciePort6Enable';
+$VAR386 = {
+            'size' => 8,
+            'index' => 230,
+            'name' => 'CbsCmnPTPciePort6Enable',
+            'comments' => 'PT PCIE Port 6 Enable'
+          };
+$VAR387 = 'CbsCmnPTSataPort6Enable';
+$VAR388 = {
+            'index' => 185,
+            'size' => 8,
+            'comments' => 'PT SATA Port 6 Enable',
+            'name' => 'CbsCmnPTSataPort6Enable'
+          };
+$VAR389 = 'CbsDbgFanTableTempCritical';
+$VAR390 = {
+            'comments' => 'Critical Temperature',
+            'name' => 'CbsDbgFanTableTempCritical',
+            'index' => 139,
+            'size' => 8
+          };
+$VAR391 = 'CbsCmnMemTimingTclDdr4';
+$VAR392 = {
+            'size' => 8,
+            'index' => 81,
+            'name' => 'CbsCmnMemTimingTclDdr4',
+            'comments' => 'Tcl'
+          };
+$VAR393 = 'CbsDbgPTProm1Usb20P4';
+$VAR394 = {
+            'size' => 8,
+            'index' => 222,
+            'name' => 'CbsDbgPTProm1Usb20P4',
+            'comments' => 'PT USB20 PORT4'
+          };
+$VAR395 = 'CbsDbgPTProm1Usb30P0';
+$VAR396 = {
+            'name' => 'CbsDbgPTProm1Usb30P0',
+            'comments' => 'PT USB30 PORT0',
+            'size' => 8,
+            'index' => 217
+          };
+$VAR397 = 'CbsCpuVoltageP3';
+$VAR398 = {
+            'name' => 'CbsCpuVoltageP3',
+            'comments' => '  Voltage (uV)',
+            'size' => 32,
+            'index' => 31
+          };
+$VAR399 = 'CbsCpuVoltageP6';
+$VAR400 = {
+            'name' => 'CbsCpuVoltageP6',
+            'comments' => '  Voltage (uV)',
+            'size' => 32,
+            'index' => 49
+          };
+$VAR401 = 'CbsCpuPst7Fid';
+$VAR402 = {
+            'index' => 56,
+            'size' => 8,
+            'comments' => '  Pstate7 FID',
+            'name' => 'CbsCpuPst7Fid'
+          };
+$VAR403 = 'CbsCmnMemCtrllerBankGroupSwapAltDdr4';
+$VAR404 = {
+            'comments' => 'BankGroupSwapAlt',
+            'name' => 'CbsCmnMemCtrllerBankGroupSwapAltDdr4',
+            'index' => 240,
+            'size' => 8
+          };
+$VAR405 = 'CbsCmnMemCadBusDrvStrenCtlDdr4';
+$VAR406 = {
+            'name' => 'CbsCmnMemCadBusDrvStrenCtlDdr4',
+            'comments' => 'CAD Bus Drive Strength User Controls',
+            'size' => 8,
+            'index' => 253
+          };
+$VAR407 = 'CbsDfCmnXGmiEncryption';
+$VAR408 = {
+            'index' => 67,
+            'size' => 8,
+            'comments' => 'xGMI encryption control',
+            'name' => 'CbsDfCmnXGmiEncryption'
+          };
+$VAR409 = 'CbsCpuPst2Vid';
+$VAR410 = {
+            'index' => 28,
+            'size' => 8,
+            'comments' => '  Pstate2 VID',
+            'name' => 'CbsCpuPst2Vid'
+          };
+$VAR411 = 'CbsCpuLegalDisclaimer1';
+$VAR412 = {
+            'size' => 8,
+            'index' => 10,
+            'name' => 'CbsCpuLegalDisclaimer1',
+            'comments' => 'Custom Core Pstates Legal Disclaimer 1'
+          };
+$VAR413 = 'CbsDbgPTUsb20P3';
+$VAR414 = {
+            'index' => 202,
+            'size' => 8,
+            'comments' => 'PT USB20 PORT3',
+            'name' => 'CbsDbgPTUsb20P3'
+          };
+$VAR415 = 'CbsCmnFchLpcClockRunEn';
+$VAR416 = {
+            'size' => 8,
+            'index' => 175,
+            'name' => 'CbsCmnFchLpcClockRunEn',
+            'comments' => 'LPC Clock Run control'
+          };
+$VAR417 = 'CbsCmnCpuGenWA05';
+$VAR418 = {
+            'name' => 'CbsCmnCpuGenWA05',
+            'comments' => 'RedirectForReturnDis',
+            'size' => 8,
+            'index' => 1
+          };
+$VAR419 = 'CbsCmnGnbPciePsppPolicy';
+$VAR420 = {
+            'size' => 8,
+            'index' => 131,
+            'name' => 'CbsCmnGnbPciePsppPolicy',
+            'comments' => 'PSPP Policy'
+          };
+$VAR421 = 'CbsCmnCpuEnIbs';
+$VAR422 = {
+            'name' => 'CbsCmnCpuEnIbs',
+            'comments' => 'Enable IBS',
+            'size' => 8,
+            'index' => 8
+          };
+$VAR423 = 'CbsCmnFchI2C4Config';
+$VAR424 = {
+            'size' => 8,
+            'index' => 160,
+            'name' => 'CbsCmnFchI2C4Config',
+            'comments' => 'I2C 4 Enable'
+          };
+$VAR425 = 'CbsCmnPTPciePort4Enable';
+$VAR426 = {
+            'name' => 'CbsCmnPTPciePort4Enable',
+            'comments' => 'PT PCIE Port 4 Enable',
+            'size' => 8,
+            'index' => 228
+          };
+$VAR427 = 'CbsCmnPTSataPort2Enable';
+$VAR428 = {
+            'comments' => 'PT SATA Port 2 Enable',
+            'name' => 'CbsCmnPTSataPort2Enable',
+            'index' => 181,
+            'size' => 8
+          };
+$VAR429 = 'CbsCmnMemTimingTrfcCtrlDdr4';
+$VAR430 = {
+            'index' => 102,
+            'size' => 8,
+            'comments' => 'Trfc Ctrl',
+            'name' => 'CbsCmnMemTimingTrfcCtrlDdr4'
+          };
+$VAR431 = 'CbsDfCmnCstateCtrl';
+$VAR432 = {
+            'name' => 'CbsDfCmnCstateCtrl',
+            'comments' => 'DF C-state control',
+            'size' => 8,
+            'index' => 74
+          };
+$VAR433 = 'CbsDbgPTUsb20P0';
+$VAR434 = {
+            'comments' => 'PT USB20 PORT0',
+            'name' => 'CbsDbgPTUsb20P0',
+            'index' => 199,
+            'size' => 8
+          };
+$VAR435 = 'CbsDbgPTUsb30P5';
+$VAR436 = {
+            'size' => 8,
+            'index' => 198,
+            'name' => 'CbsDbgPTUsb30P5',
+            'comments' => 'PT USB30 PORT5'
+          };
+$VAR437 = 'CbsCmnMemAddrCmdSetupDdr4';
+$VAR438 = {
+            'index' => 244,
+            'size' => 8,
+            'comments' => 'AddrCmdSetup',
+            'name' => 'CbsCmnMemAddrCmdSetupDdr4'
+          };
+$VAR439 = 'CbsCmnFchSataClass';
+$VAR440 = {
+            'size' => 8,
+            'index' => 147,
+            'name' => 'CbsCmnFchSataClass',
+            'comments' => 'SATA Mode'
+          };
+$VAR441 = 'CbsDbgPTUsb20P4';
+$VAR442 = {
+            'size' => 8,
+            'index' => 203,
+            'name' => 'CbsDbgPTUsb20P4',
+            'comments' => 'PT USB20 PORT4'
+          };
+$VAR443 = 'CbsCmnMemDisMemErrInj';
+$VAR444 = {
+            'index' => 268,
+            'size' => 8,
+            'comments' => 'Disable Memory Error Injection',
+            'name' => 'CbsCmnMemDisMemErrInj'
+          };
+$VAR445 = 'CbsDbgFchSataAggresiveDevSlpP1';
+$VAR446 = {
+            'size' => 8,
+            'index' => 151,
+            'name' => 'CbsDbgFchSataAggresiveDevSlpP1',
+            'comments' => 'Aggresive SATA Device Sleep Port 1'
+          };
+$VAR447 = 'CbsDfCmnGmiEncryption';
+$VAR448 = {
+            'name' => 'CbsDfCmnGmiEncryption',
+            'comments' => 'GMI encryption control',
+            'size' => 8,
+            'index' => 66
+          };
+$VAR449 = 'CbsCmnMemMbistSubTest';
+$VAR450 = {
+            'comments' => 'MBIST Test Mode',
+            'name' => 'CbsCmnMemMbistSubTest',
+            'index' => 119,
+            'size' => 8
+          };
+$VAR451 = 'CbsCmnMemCtrllerProcOdtDdr4';
+$VAR452 = {
+            'name' => 'CbsCmnMemCtrllerProcOdtDdr4',
+            'comments' => 'ProcODT',
+            'size' => 8,
+            'index' => 109
+          };
+$VAR453 = 'CbsCpuPst6Vid';
+$VAR454 = {
+            'comments' => '  Pstate6 VID',
+            'name' => 'CbsCpuPst6Vid',
+            'index' => 52,
+            'size' => 8
+          };
+$VAR455 = 'CbsCpuCofP7';
+$VAR456 = {
+            'index' => 54,
+            'size' => 32,
+            'comments' => '  Frequency (MHz)',
+            'name' => 'CbsCpuCofP7'
+          };
+$VAR457 = 'CbsCmnMemTimingTrdrdScDdr4';
+$VAR458 = {
+            'comments' => 'TrdrdSc',
+            'name' => 'CbsCmnMemTimingTrdrdScDdr4',
+            'index' => 237,
+            'size' => 8
+          };
+$VAR459 = 'CbsCmnFchSataRasSupport';
+$VAR460 = {
+            'name' => 'CbsCmnFchSataRasSupport',
+            'comments' => 'Sata RAS Support',
+            'size' => 8,
+            'index' => 148
+          };
+$VAR461 = 'CbsCmnFchUart1Config';
+$VAR462 = {
+            'name' => 'CbsCmnFchUart1Config',
+            'comments' => 'Uart 1 Enable',
+            'size' => 8,
+            'index' => 164
+          };
+$VAR463 = 'CbsCpuCofP3';
+$VAR464 = {
+            'size' => 32,
+            'index' => 30,
+            'name' => 'CbsCpuCofP3',
+            'comments' => '  Frequency (MHz)'
+          };
+$VAR465 = 'CbsDbgPTUsb30P3';
+$VAR466 = {
+            'comments' => 'PT USB30 PORT3',
+            'name' => 'CbsDbgPTUsb30P3',
+            'index' => 196,
+            'size' => 8
+          };
+$VAR467 = 'CbsDbgPTUsb20P1';
+$VAR468 = {
+            'comments' => 'PT USB20 PORT1',
+            'name' => 'CbsDbgPTUsb20P1',
+            'index' => 200,
+            'size' => 8
+          };
+$VAR469 = 'CbsCpuCofP2';
+$VAR470 = {
+            'name' => 'CbsCpuCofP2',
+            'comments' => '  Frequency (MHz)',
+            'size' => 32,
+            'index' => 24
+          };
+$VAR471 = 'CbsCmnFchXgbe0Enable';
+$VAR472 = {
+            'name' => 'CbsCmnFchXgbe0Enable',
+            'comments' => 'XGBE0 enable',
+            'size' => 8,
+            'index' => 263
+          };
+$VAR473 = 'CbsCmnMemCtrllerBankGroupSwapDdr4';
+$VAR474 = {
+            'comments' => 'BankGroupSwap',
+            'name' => 'CbsCmnMemCtrllerBankGroupSwapDdr4',
+            'index' => 115,
+            'size' => 8
+          };
+$VAR475 = 'CbsCpuVoltageP7';
+$VAR476 = {
+            'name' => 'CbsCpuVoltageP7',
+            'comments' => '  Voltage (uV)',
+            'size' => 32,
+            'index' => 55
+          };
+$VAR477 = 'CbsCmnPTPciePort7Enable';
+$VAR478 = {
+            'index' => 231,
+            'size' => 8,
+            'comments' => 'PT PCIE Port 7 Enable',
+            'name' => 'CbsCmnPTPciePort7Enable'
+          };
+$VAR479 = 'CbsCmnMemTimingTrcpageCtrlDdr4';
+$VAR480 = {
+            'comments' => 'Trcpage Ctrl',
+            'name' => 'CbsCmnMemTimingTrcpageCtrlDdr4',
+            'index' => 96,
+            'size' => 8
+          };
+$VAR481 = 'CbsCpuPstCustomP3';
+$VAR482 = {
+            'size' => 8,
+            'index' => 29,
+            'name' => 'CbsCpuPstCustomP3',
+            'comments' => 'Custom Pstate3'
+          };
+$VAR483 = 'CbsCmnMemTimingTrfc4Ddr4';
+$VAR484 = {
+            'comments' => 'Trfc4',
+            'name' => 'CbsCmnMemTimingTrfc4Ddr4',
+            'index' => 107,
+            'size' => 16
+          };
+$VAR485 = 'CbsDbgFanTableTempMed';
+$VAR486 = {
+            'comments' => 'Medium Temperature',
+            'name' => 'CbsDbgFanTableTempMed',
+            'index' => 137,
+            'size' => 8
+          };
+$VAR487 = 'CbsCmnMemTimingTrfcDdr4';
+$VAR488 = {
+            'index' => 103,
+            'size' => 16,
+            'comments' => 'Trfc',
+            'name' => 'CbsCmnMemTimingTrfcDdr4'
+          };
+$VAR489 = 'CbsCpuPstCustomP7';
+$VAR490 = {
+            'index' => 53,
+            'size' => 8,
+            'comments' => 'Custom Pstate7',
+            'name' => 'CbsCpuPstCustomP7'
+          };
+$VAR491 = 'CbsCmnFchUart2LegacyConfig';
+$VAR492 = {
+            'index' => 167,
+            'size' => 8,
+            'comments' => 'Uart 2 Legacy Options',
+            'name' => 'CbsCmnFchUart2LegacyConfig'
+          };
+$VAR493 = 'CbsCmnMemTimingTwrCtrlDdr4';
+$VAR494 = {
+            'size' => 8,
+            'index' => 94,
+            'name' => 'CbsCmnMemTimingTwrCtrlDdr4',
+            'comments' => 'Twr Ctrl'
+          };
+$VAR495 = 'CbsCpuCofP1';
+$VAR496 = {
+            'index' => 18,
+            'size' => 32,
+            'comments' => '  Frequency (MHz)',
+            'name' => 'CbsCpuCofP1'
+          };
+$VAR497 = 'CbsCmnGnbGfxDisplayResolution';
+$VAR498 = {
+            'size' => 8,
+            'index' => 127,
+            'name' => 'CbsCmnGnbGfxDisplayResolution',
+            'comments' => 'Display Resulotuon'
+          };
+$VAR499 = 'CbsCpuCofP0';
+$VAR500 = {
+            'comments' => '  Frequency (MHz)',
+            'name' => 'CbsCpuCofP0',
+            'index' => 12,
+            'size' => 32
+          };
+$VAR501 = 'CbsCmnFchUsbXHCI1Enable';
+$VAR502 = {
+            'index' => 153,
+            'size' => 8,
+            'comments' => 'XHCI1 controller enable',
+            'name' => 'CbsCmnFchUsbXHCI1Enable'
+          };
+$VAR503 = 'CbsCmnMemCsOdtSetupDdr4';
+$VAR504 = {
+            'index' => 239,
+            'size' => 8,
+            'comments' => 'CsOdtSetup',
+            'name' => 'CbsCmnMemCsOdtSetupDdr4'
+          };
+$VAR505 = 'CbsCmnPTSataPort3Enable';
+$VAR506 = {
+            'size' => 8,
+            'index' => 182,
+            'name' => 'CbsCmnPTSataPort3Enable',
+            'comments' => 'PT SATA Port 3 Enable'
+          };
+$VAR507 = 'CbsCpuPstCustomP5';
+$VAR508 = {
+            'name' => 'CbsCpuPstCustomP5',
+            'comments' => 'Custom Pstate5',
+            'size' => 8,
+            'index' => 41
+          };
+$VAR509 = 'CbsDbgPTUsb20P2';
+$VAR510 = {
+            'index' => 201,
+            'size' => 8,
+            'comments' => 'PT USB20 PORT2',
+            'name' => 'CbsDbgPTUsb20P2'
+          };
+$VAR511 = 'CbsCmnSystemTemperatureTracking';
+$VAR512 = {
+            'name' => 'CbsCmnSystemTemperatureTracking',
+            'comments' => 'System Temperature Tracking',
+            'size' => 32,
+            'index' => 261
+          };
+$VAR513 = 'CbsCmnMemTimingTrdrdDdDdr4';
+$VAR514 = {
+            'name' => 'CbsCmnMemTimingTrdrdDdDdr4',
+            'comments' => 'TrdrdDd',
+            'size' => 8,
+            'index' => 251
+          };
+$VAR515 = 'CbsCpuPst6Did';
+$VAR516 = {
+            'comments' => '  Pstate6 DID',
+            'name' => 'CbsCpuPst6Did',
+            'index' => 51,
+            'size' => 8
+          };
+$VAR517 = 'CbsDbgPTProm1Usb20P3';
+$VAR518 = {
+            'index' => 221,
+            'size' => 8,
+            'comments' => 'PT USB20 PORT3',
+            'name' => 'CbsDbgPTProm1Usb20P3'
+          };
+$VAR519 = 'CbsCpuCoreThreadLegalDisclaimer';
+$VAR520 = {
+            'comments' => 'Core/Thread Enablement Legal Disclaimer',
+            'name' => 'CbsCpuCoreThreadLegalDisclaimer',
+            'index' => 60,
+            'size' => 8
+          };
+$VAR521 = 'CbsCmnMemSpeedDdr4';
+$VAR522 = {
+            'name' => 'CbsCmnMemSpeedDdr4',
+            'comments' => 'Memory Clock Speed',
+            'size' => 8,
+            'index' => 80
+          };
+$VAR523 = 'CbsCmnMemAddressHashCsDdr4';
+$VAR524 = {
+            'comments' => 'Address Hash CS',
+            'name' => 'CbsCmnMemAddressHashCsDdr4',
+            'index' => 117,
+            'size' => 8
+          };
+$VAR525 = 'CbsDbgFanTableTPwmLow';
+$VAR526 = {
+            'comments' => 'Low Pwm',
+            'name' => 'CbsDbgFanTableTPwmLow',
+            'index' => 140,
+            'size' => 8
+          };
+$VAR527 = 'CbsDbgFanTablePwmMed';
+$VAR528 = {
+            'name' => 'CbsDbgFanTablePwmMed',
+            'comments' => 'Medium Pwm',
+            'size' => 8,
+            'index' => 141
+          };
+$VAR529 = 'CbsDbgPTProm2Usb20P5';
+$VAR530 = {
+            'name' => 'CbsDbgPTProm2Usb20P5',
+            'comments' => 'PT USB20 PORT5',
+            'size' => 8,
+            'index' => 214
+          };
+$VAR531 = 'CbsCmnFchSataAhciDisPrefetchFunction';
+$VAR532 = {
+            'index' => 149,
+            'size' => 8,
+            'comments' => 'Sata Disabled AHCI Prefetch Function',
+            'name' => 'CbsCmnFchSataAhciDisPrefetchFunction'
+          };
+$VAR533 = 'CbsCmnMemCkeSetupDdr4';
+$VAR534 = {
+            'size' => 8,
+            'index' => 238,
+            'name' => 'CbsCmnMemCkeSetupDdr4',
+            'comments' => 'CkeSetup'
+          };
+$VAR535 = 'CbsCmnMemCadBusClkDrvStrenDdr4';
+$VAR536 = {
+            'name' => 'CbsCmnMemCadBusClkDrvStrenDdr4',
+            'comments' => 'ClkDrvStren',
+            'size' => 8,
+            'index' => 242
+          };
+$VAR537 = 'CbsCpuCofP4';
+$VAR538 = {
+            'comments' => '  Frequency (MHz)',
+            'name' => 'CbsCpuCofP4',
+            'index' => 36,
+            'size' => 32
+          };
+$VAR539 = 'CbsDbgPTUsbRedriver';
+$VAR540 = {
+            'index' => 190,
+            'size' => 8,
+            'comments' => 'PT USB Redriver',
+            'name' => 'CbsDbgPTUsbRedriver'
+          };
+$VAR541 = 'CbsCmnMemTimingTrfc4CtrlDdr4';
+$VAR542 = {
+            'name' => 'CbsCmnMemTimingTrfc4CtrlDdr4',
+            'comments' => 'Trfc4 Ctrl',
+            'size' => 8,
+            'index' => 106
+          };
+$VAR543 = 'CbsDbgPTXhciGen2';
+$VAR544 = {
+            'index' => 188,
+            'size' => 8,
+            'comments' => 'PT XHCI GEN2',
+            'name' => 'CbsDbgPTXhciGen2'
+          };
+$VAR545 = 'CbsCpuPst0Fid';
+$VAR546 = {
+            'index' => 14,
+            'size' => 8,
+            'comments' => '  Pstate0 FID',
+            'name' => 'CbsCpuPst0Fid'
+          };
+$VAR547 = 'CbsCpuPstCustomP0';
+$VAR548 = {
+            'index' => 11,
+            'size' => 8,
+            'comments' => 'Custom Pstate0',
+            'name' => 'CbsCpuPstCustomP0'
+          };

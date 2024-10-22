@@ -1,0 +1,2950 @@
+                                 Broadcom Corporation
+                                 5300 California Avenue
+                                 Irvine, CA 92617
+
+                                     Release Notes
+                      Broadcom Gigabit Ethernet UEFI Driver for x64
+
+                      Copyright (c) 2002-2017 Broadcom Corporation
+                                All rights reserved.
+
+                                 September 5, 2017
+Revision History
+================
+
+Version 20.6.56 September 5, 2017
+---------------------------------
+  1. Fix 4-part ID check when upgrading whole NVRAM image via Firmware
+     Management Protocol.SetImage, for multi-port devices. (CTRL-26436)
+
+Version 20.6.55 August 10, 2017
+-------------------------------
+  Fixes:
+  ======
+  1. Add OEM friendly name. (CTRL-26243)
+
+Version 20.6.54 June 26 2017
+----------------------------
+  Fixes:
+  ======
+  1. Add RESET_REQUIRED flag for HII Boot Protocol field. (CTRL-25704)
+
+Version 20.6.53 June 26 2017
+----------------------------
+  Fixes:
+  ======
+  1. Problem: SCT crash in FMP.GetImage() function. (CTRL-25493)
+     
+     Cause  : Driver retrieved incorrect NVRAM directory for CCM image.
+
+     Change : Update driver to retrieve CCM directory image information from
+              extended directory structure.
+
+  2. Add 4-part ID check when upgrading whole NVRAM image via Firmware
+     Management Protocol.SetImage, to prevent incorrect image being programmed
+     to device. (CTRL-25807)
+
+  3. Update Default WOL values for certain OEM devices. (CTRL-25656)
+
+Version 20.6.52 May 4, 2017
+---------------------------
+  Fixes:
+  ======
+  1. Problem: Driver return incorrect status value to OEM extensions in Driver 
+              Healh Protocol message. (CTRL-25484)
+
+     Change : Initialize message structure to zero before using.
+  2. Correct Slot retrieval procedure.
+
+Version 20.6.51 May 2, 2017
+---------------------------
+  Fixes:
+  ======
+  1. Correct Driver Health Protocol message list termination format.(CTRL-25484)
+
+Version 20.6.50 April 13, 2017
+------------------------------
+  Fixes:
+  ======
+  1. Add Family Firmware Version for certain OEM devices. (CTRL-25318)
+
+Version 20.6.13 April 11, 2017
+------------------------------
+  Fixes:
+  ======
+  1. Problem: SMASH entry appears in HII menu with no SMASH image in NVRAM. (CTRL-25290)
+     Change : Correct number of buffer elements when parsing NVRAM directories.
+
+  2. Check for NVRAM image length when searching for valid NVRAM image types.
+  3. Correct permanent MAC address reported to OEM specific interface.
+
+Version 20.6.12 March 13, 2017
+------------------------------
+  Fixes:
+  ======
+  1. Problem: Kernel panic when booting to OEM diagnostics image.
+
+     Change : Update driver to remove usage of EVT_SIGNAL_VIRTUAL_ADDRESS_CHANGE
+              event. (CTRL-25023)
+  
+Version 20.6.11 March 8, 2017
+-----------------------------
+  Fixes:
+  ======
+  1. Update HII default value for Wake on Lan parameter to enabled for certain
+     OEM devices. (CTRL-24994)
+  2. Problem: Driver reports incorrect Permanent MAC address to OEM specific
+              interface.
+
+     Change : Update driver to fetch MAC address from correct NVRAM offset
+  3. Problem: Unable to update VPD via Firmware Management Protocol.(CTRL-25025)
+
+     Change : Update driver to parse VPD text size parameter correctly.
+
+Version 20.6.10 February 15, 2017
+---------------------------------
+  Fixes:
+  ======
+  1. Set logging bit in DriverHealth protocol messaging. (CTRL-24589)
+  2. Remove Vendor Code requirement for programming firmware via Firmware
+     Management Protocol for certain OEM devices.
+  3. Set HII Subnet Mask Prefix default value. (CTRL-24765)
+
+Version 20.6.9 January 18, 2017
+-------------------------------
+  Fixes:
+  ======
+  1. Set Virtual MAC address default values to 0. (CTRL-24396)
+
+Version 20.6.8 January 12, 2017
+-------------------------------
+  Fixes:
+  ======
+  1. Update HII default value to enable MBA option ROM. (CTRL-24109)
+  2. Add OEM override strings for certain HII fields. (CTRL-24391)
+  3. Add missing x-UEFI keyword for HII Energy Efficient Ethernet field. (CTRL-24094)
+
+  Enhancements:
+  =============
+  1. Update copyright to reflect year of 2017.
+
+Version 20.6.7 December 16, 2016
+--------------------------------
+  Fixes:
+  ======
+  1. Update HII Port Enablement strings and visibility.
+  2. Update OEM friendly names. (CTRL-24168)
+  3. Add EEE parameter for certain OEM devices.
+
+Version 20.6.6 December 3, 2016
+-------------------------------
+  Fixes:
+  ======
+  1. Display MBA configuration menu for certain OEM devices. (CTRL-23974)
+  2. Update driver to add OEM specific extensions to Driver Health Protocol.
+     (CTRL-24043)
+  3. Update driver to add OEM specific protocol.
+
+Version 20.6.5 October 19, 2016
+-------------------------------
+  Fixes:
+  ======
+  1. Fix truncated string reported to OEM specific interface.
+
+Version 20.6.4 October 17, 2016
+-------------------------------
+  Fixes:
+  ======
+  1. Add support new device IDs. (CTRL-23329)
+
+Version 20.6.3 October 5, 2016
+------------------------------
+  Fixes:
+  ======
+  1. Unable to set HII parameter via OEM utility. (CTRL-23179)
+  2. Update OEM specific interface configuration string opcode. 
+  3. Update OEM specific interface configuration string description.
+
+Version 20.6.2 September 9, 2016
+--------------------------------
+  Fixes:
+  ======
+  1. Update friendly names for certain OEM devices. (CTRL-22794)
+  2. Update OEM specific interface configuration string description. (CTRL-22899)
+  3. Update ExtractConfig() to handle NULL offset input. (CTRL-22590)
+
+Version 20.6.1 August 2, 2016
+-----------------------------
+  Fixes:
+  ======
+  1. Add support for additional OEM device IDs. (CTRL-22246)
+  2. Update device IDs for OEM specific interface. (CTRL-22674)
+
+Version 20.6.0 July 22, 2016
+----------------------------
+  Fixes:
+  ======
+  1. Remove individual component version information when reporting inventory
+     to OEM specific interface. (CTRL-22481)
+
+Version 20.4.0 May 5, 2016
+--------------------------
+  Enhancements:
+  =============
+  1. Add support for additional devices for OEM specific interface.
+
+Version 20.2.0 March 15, 2016
+-----------------------------
+  Fixes:
+  ======
+  1. Update default values for various iSCSI Boot parameters. (CTRL-21395)
+  2. Updated driver to set additional NII Ipv6Supported flag to TRUE.
+  3. Add ProgWrite modifier to IpAutoConfig keyword. (CTRL-21721)
+  4. Update driver to use Virtual MAC address if non-zero MAC address is 
+     detected. (CTRL-20786)
+  5. Update driver type to Boot Services driver.
+  6. Update HII Boot Protocol default value to None. (CTRL-21762)
+
+Version 17.4.1 January 10, 2016
+-------------------------------
+  Fixes:
+  ======
+  1. Updated driver to fix localization string contents. (CTRL-21350)
+
+  Enhancements:
+  =============
+  1. Update copyright year to relect 2016
+
+Version 17.4.0 September 14, 2015
+---------------------------------
+  Fixes:
+  ======
+  1. Update permanent MAC address retrieval logic when reporting value to 
+     additional AIM fields. (CTRL-20966)
+
+  Enhancements:
+  =============
+  1. Add support for OEM GUID type for Adapter Information Protocol.
+
+Version 17.2.3 September 12, 2015
+---------------------------------
+  Fixes:
+  ======
+  1. Updated driver to set NII IPv6Supported flag to TRUE. (CTRL-20999)
+
+Version 17.2.2 July 22, 2015
+----------------------------
+  Enhancements:
+  =============
+  1. Updated driver to modify attribute pattern strings for OEM devices. 
+     (CTRL-20819)
+
+Version 17.2.1 June 10, 2015
+----------------------------
+  Fixes:
+  ======
+  1. Problem: Firmware Version field missing in HII menu for certain
+              OEM devices. (CTRL-20646)
+
+     Cause  : Driver did not properly detect VPD 'MN' keyword.
+
+     Change : Updated driver to fix data-swapping when reading VPD contents.
+
+  2. Removed extraneous HII page which was causing OEM parameter extraction
+     utility to show improper configuration.
+
+Version 17.2.0 April 10, 2015
+-----------------------------
+  Fixes:
+  ======
+  1. Update permanent MAC address retrieval logic when reporting value to AIM.
+
+  Enhancements:
+  =============
+  1. Restore additional VPD fields when programming entire NVRAM image for
+     certain OEM devices. (CTRL-20512)
+
+Version 17.0.10 March 18, 2015
+------------------------------
+  Fixes:
+  ======
+  1. Update Firmware Management Protocol Firmware version display for
+     certain OEM devices based on updated requirement. (CTRL-20495)
+
+Version 17.0.9 March 15, 2015
+-----------------------------
+  Enhancements:
+  =============
+  1. Update Firmware Management Protocol Firmware version display for
+     certain OEM devices. (CTRL-20495)
+
+Version 17.0.8 March 5, 2015
+----------------------------
+  Enhancements:
+  =============
+  1. Add additional OEM device IDs. (CTRL-20410)
+  2. Update AIM Firmware information menu per OEM request. (CTRL-20408)
+
+Version 17.0.7 February 6, 2015
+-------------------------------
+  Fixes:
+  ======
+  1. Updated driver to toggle record flag based on OEM shared memory 
+     parameter value.
+
+Version 17.0.6 January 29, 2015
+-------------------------------
+  Enhancements:
+  =============
+  1. Updated HII menu to support OEM shared memory parameter. (CTRL-20404)
+
+Version 17.0.5 January 9, 2015
+------------------------------
+  Fixes:
+  ======
+  1. Updated driver to modify RegEx modifers to comply with latest OEM
+     mapping specification.
+
+  Enhancements:
+  =============
+  1. Updated with latest localization file.
+
+Version 17.0.4 December 19, 2014
+--------------------------------
+  Fixes:
+  ======
+  1. Updated driver to comply with latest OEM mapping specification. (CTRL-20369)
+
+Version 17.0.3 December 11, 2014
+--------------------------------
+  Fixes:
+  ======
+  1. Updated DriverHealth protocol behavior to handle NULL ControllerHandle
+     parameter for GetHealthStatus. (CQ#74036)
+
+Version 17.0.2 November 25, 2014
+--------------------------------
+  Fixes:
+  ======
+  1. Problem: RSOD occurs when updating firmware images via OEM utility. (CQ#74002)
+
+     Change : Updated driver to validate VendorCode pointer.
+
+  Enhancements:
+  =============
+  1. Updated driver to include attribute pattern strings per OEM specification. (CQ#73824)
+              
+Version 17.0.1 November 5, 2014
+-------------------------------
+  Fixes:
+  ======
+  1. Problem: Restoring profile via OEM utility completes with errors. (CQ#73956)
+
+     Cause  : Driver did not properly detect OEM devices which caused OEM
+              keywords to be unavailable for programming commands.
+
+     Change : Updated driver to detect additional OEM device IDs.
+
+  2. Problem: Intermittent RSOD when invoking AdapterInformation Protocol
+              GetInformation() interface via OEM tool.
+
+     Change : Updated driver to allocate memory for proprietary structure
+              separately from InformationBlock allocation.
+
+  3. Updated driver to handle new OEM version string format.
+
+  4. Problem: Firmware Management Protocol CheckImage() returns
+              IMAGE_UPDATABLE_INVALID_OLD for valid images on certain OEM 
+              devices.
+
+     Change : Update driver behavior to return IMAGE_UPDATABLE_VALID for
+              certain OEM devices.
+
+  Enhancements:
+  =============
+  1. Updated driver to relocate PHY mutex locking mechanism.
+
+  2. Hide Blink LED parameter in OEM tool. (CQ#73823)
+
+  3. Updated driver to display human friendly name for Driver Health 
+     handle. (CQ#73809)
+
+              
+Version 17.0.0 September 8, 2014
+--------------------------------
+  Enhancements:
+  =============
+  1. Updated copyright banner to reflect year of 2015.
+
+Version 16.8.8 September 8, 2014
+--------------------------------
+  Fixes:
+  ======
+  1. Problem: SCT Firmware Management Protocol GetImage() conformance 
+              test fails. (CQ#73725)
+ 
+     Change : Updated driver to correctly correlate ImageIndex for 
+              'whole image' descriptor for certain OEM devices.
+
+Version 16.8.7 August 29, 2014
+------------------------------
+  Fixes:
+  ======
+  1. Problem: VPD checksum error after updating NVRAM image via Firmware
+              Management Protocol. 
+
+     Change : Updated driver to correct checksum variable initialization.
+
+  2. Problem: Driver does not enumerate NCSI firmware type for AIM support. (CQ#73802)
+
+     Change : Updated driver to enumerate NCSI firmware type for AIM 
+              interface.
+
+  3. Updated AIM specification level to current revision.
+
+Version 16.8.6 August 22, 2014
+------------------------------
+  Fixes:
+  ======
+  1. Problem: Driver returns value of zero for non-existent NVRAM images
+              for OEM Firmware Management Protocol tool. (CQ#73621)
+
+     Change : Updated driver behavior for certain OEM to only support
+              'whole image' programming via Firmware Management Protocol.
+
+  2. Add support for OEM GUID type for Adapter Information Protocol. (CQ#73673)
+
+Version 16.8.5 August 15, 2014
+------------------------------
+  Fixes:
+  ======
+  1. Problem: SCT Firmware Management Protocol GetImage() conformance 
+              test fails. (CQ#73725)
+ 
+     Change : Updated driver to correctly correlate ImageIndex for 
+              'whole image' descriptor.
+
+  2. Problem: Systems fails to PXE boot on certain OEM systems. (CQ#73685)
+
+     Change : Updated driver to poll TX EMAC counters, to determine whether
+              frames were transmitted, and if necessary restart DMA engine.
+
+Version 16.8.4 July 29, 2014
+----------------------------
+  Fixes:
+  ======
+  1. Problem: Missing Japanese string in Firmware Image Menu. (CQ#73638)
+   
+     Change : Updated driver with latest localization file.
+
+  2. Updated AIM ConnectorLayout field value for certain OEM device. (CQ#73683)
+
+  3. Problem: Incorrect NCSI version in HII Firmware Image Menu. (CQ#73703)
+
+     Change : Updated version parsing logic for NCSI images.
+
+Version 16.8.3 July 22, 2014
+----------------------------
+  Fixes:
+  ======
+  1. Problem: HII Blink LEDs action runs for twice the duration specified. (CQ#73648)
+
+     Change : Updated driver to examine browser Action value to prevent
+              blinking logic from executing twice.
+
+  2. Updated driver to support latest AIM specification. (CQ#73683)
+
+  3. Updated driver to set HII LED blink rate to 1Hz.
+
+Version 16.8.2 July 1, 2014
+---------------------------
+  Fixes:
+  ======
+  1. Updated EFI_DRIVER_SUPPORTED_VERSION. (CQ#73623)
+
+  Enhancements:
+  =============
+  1. Updated driver to acquire mutex register to avoid PHY access
+     contention. (CQ#73583)
+
+  2. Update driver memory allocation type.
+
+  3. Add support for EFI_FIRMWARE_IMAGE_DESCRIPTOR version 2 for certain OEM. (CQ#73457)
+
+Version 16.8.1 June 11, 2014
+----------------------------
+  Fixes:
+  ======
+  1. Problem: Programming whole image via Firmware Management Protocol
+              does not retain MAC addresses or VPD. (CQ#73486)
+
+     Change : Updated driver to retain device MAC addresses and VPD when
+              programming whole image via Firmware Management Protocol.
+
+  2. Updated Driver Diagnostics Protocol to skip MAC Loopback test for 
+     Sawtooth and Cotopaxi devices. (CQ#73571)
+
+Version 16.8.0 June 9, 2014
+---------------------------
+  Fixes:
+  ======
+  1. Updated Firmware Management Protocol support to include programming
+     whole image. (CQ#73486)
+
+  2. Problem: NC-SI version in HII Firmware Image menu shows incorrect 
+              version.
+
+     Change : Updated driver to parse version correctly from NVRAM.
+
+  Enhancements:
+  =============
+  1. Added support for OEM-specific diagnostic protocol. (CQ#73394) 
+
+  2. Removed unnecessary fields in internal HII data structure.
+
+  3. Added support for additional AIM devices. 
+
+  4. Return "N/A" when invalid AIM data is detected.
+
+
+Version 16.6.5 June 6, 2014
+---------------------------
+  Problem: OEM HII browser invokes "Save" confirmation box when user has
+           not modified any data. (CQ#73441)
+
+  Change : Updated driver to handle hidden question data to prevent
+           erroneous "Save" confirmation.
+
+Version 16.6.4 May 23, 2014
+---------------------------
+  Fixes:
+  ======
+  1. Updated driver to not register AIM support for unsupported devices.
+
+  2. Updated driver to not attempt to read I2C VPD for unsupported devices.
+
+
+Version 16.6.3 May 12, 2014
+---------------------------
+  Fixes:
+  ======
+  1. Updated driver to enable WOL bit. (CQ#73376)
+
+  2. Updated various AIM-related parameters for certain OEM devices.
+
+  3. Updated driver to display friendly name for specific OEM device2. (CQ#73362)
+
+  Enhancements:
+  =============
+  1. Added VPD-V0 firmware page per AIM specification.
+
+Version 16.6.2 April 10, 2014
+-----------------------------
+  Fixes:
+  ======
+  1. Problem: HII menu shows link status as "Disconnected" with cable 
+              attached on certain OEM platforms. (CQ#72153)
+
+     Change : Updated driver to detect link status without needing to
+              initialize UNDI interface.
+
+  2. Updated driver reboot signalling behavior to comply with latest OEM
+     specification. (CQ#68155)
+
+  3. Updated CHAP password field to String type for certain OEM devices. (CQ#73341)
+
+
+Version 16.6.1 March 28, 2014
+-----------------------------
+  Fixes:
+  ======
+  1. Updated AIM FoD UID minimum field length to 3.
+
+Version 16.6.0 March 26, 2014
+-----------------------------
+  Fixes:
+  ======
+  1. Problem: System doesn't detect link reliably. (CQ#72965)
+
+     Change : Updated UNDI Init logic such that link is determined after
+     device is initialized such that there is no contention with the bootcode
+     PHY code.
+
+  2. Updated driver to display friendly name for specific OEM devices. (CQ#73170)
+
+  3. Problem: HII menu shows link status as "Disconnected" with cable 
+              attached on certain OEM platforms. (CQ#72153)
+
+     Change : Updated driver to detect link status without needing to
+              initialize UNDI interface.
+
+  4. Problem: System asserts when exiting HII menu on certain OEM systems. (CQ#72914)
+
+     Change : Removed unnecessary NULL string parameter, and initialized
+              Progress pointer in RouteConfig() function.
+
+  5. Problem: Invalid characters appended to firmware version field in 
+              HII Firmware Image menu. (CQ#73265)
+
+     Change : Corrected build flag to utilize correct VPD parsing function.
+
+  Enhancements:
+  =============
+  1. Updated driver to attach PCI/IO protocol interface to AIM-related
+     driver handle.
+
+  2. Removed unnecessary blank lines in HII Firmware Image menu.
+
+Version 16.4.11 March 10, 2014
+------------------------------
+  Fixes:
+  ======
+  1. Problem: Setting iSCSI Secondary Device MAC address to non-existent
+              or non-Broadcom device MAC address causes RSOD on certain
+              OEM platform (CQ#73203)
+
+     Cause  : An incorrect pointer offset is used when attempting to
+              search for other device MAC addresses.
+
+     Change : Removed erroneous search function as a new method to search
+              and compare MAC addresses had been introduced in a previous
+              version.
+
+  Enhancements:
+  =============
+  1. AIM interface for certain OEM devices. (CQ#71959)
+
+Version 16.4.10 February 24, 2014
+---------------------------------
+  Enhancements:
+  =============
+  1. AIM interface for certain OEM devices. (CQ#71959)
+
+Version 16.4.9 February 10, 2014
+--------------------------------
+  Enhancements:
+  =============
+  1. Add support for AIM interface for certain OEM devices. (CQ#71959)
+  2. Updated copyright to reflect year of 2014.
+
+Version 16.4.8 December 27, 2013
+--------------------------------
+  Enhancements:
+  =============
+  1. Add support for AIM interface for certain OEM devices. (CQ#71959)
+
+Version 16.4.7 November 21, 2013
+--------------------------------
+   Fixes:
+   ======
+   1. Add Wake on Lan parameter to HII Main menu for certain OEM devices. (CQ#71647)
+
+   2. Updated driver to return "N/A" for VPD image type in GetImageInfo().
+
+Version 16.4.6 November 8, 2013
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: SCT GetImage() Conformance test failure. (CQ#71690)
+
+      Cause  : Driver incorrectly aggregates image size for CCM image.
+
+      Change : Updated driver to correctly calculate CCM image size.
+
+   2. Updated driver to return "N/A" for Version Name string for non-present
+      images in GetImageInfo() for certain OEM devices. (CQ#71633)
+ 
+   3. Updated readme.txt to reflect platforms supported.
+
+Version 16.4.5 November 1, 2013
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: GetImageInfo() returns duplicate ImageIds for different
+               images. (CQ#71632)
+
+      Change : Update logic to calculate unique IDs for different images.
+
+   2. Problem: Unable to update NCSI component with newer version via
+               Firmware Management Protocol. (CQ#71637)
+
+      Change : Update driver to parse NCSI file format correctly to 
+               determine new image version.
+
+   3. Removed unnecessary lines in HII Firmware Image menu for certain OEM.
+      (CQ#71547)
+ 
+   4. Updated driver to suppress HII IP Autoconfiguration parameter when 
+      IPv6 mode is disabled on certain OEM devices. (CQ#71573)
+
+Version 16.4.4 October 25, 2013
+-------------------------------
+   Fixes:
+   ======
+   1. Update HII formset title format per OEM specifications for certain
+      OEM devices. (CQ#71419)
+
+   2. Update driver to check for NULL parameter in DriverHealth protocol
+      interface and return appropriate status.
+
+   Enhancements:
+   =============
+   1. Updated driver to suppress HII Subnet Mask Prefix parameter when IPv6
+      mode is disabled on certain OEM devices.
+
+Version 16.4.3 October 19, 2013
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: Sensor and device information mechanism does not update
+               accordingly. (CQ#71404)
+
+      Change : Driver to provide pointer to semaphore.
+
+Version 16.4.2 October 17, 2013
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: Driver does not provide data structures for sensor and device
+               information mechanism correctly. (CQ#71404)
+
+      Change : Updated driver to correctly calculated data offset during
+               initialization.
+
+  Enhancements:
+  =============
+  1. Driver to honor new control bit to disable Autoneg @ 1G Half Duplex
+     advertisement. (CQ#71393)
+
+     Impact:  BCM5717, BCM5718, BCM5719, and BCM5720 controllers only.
+
+  2. Driver to remove fail messages for sensor and device information
+     mechanism (CQ#71402)
+
+Version 16.4.1 October 16, 2013
+-------------------------------
+  Enhancements:
+  =============
+  1. Added Adapter Information Protocol support per uEFI spec 2.4. (CQ#71222)
+
+Version 16.4.0 October 8, 2013
+------------------------------
+   Enhancements:
+   =============
+  1. Added a mechanism to provide sensor and device information for
+     BCM5717, BCM5718, BCM5719, BCM5720, and BCM5724. 
+
+Version 16.2.4 September 30, 2013
+---------------------------------
+   Enhancements:
+   =============
+   1. Updated with latest localization files.
+
+Version 16.2.3 September 11, 2013
+---------------------------------
+   Fixes:
+   ======
+   1. Problem: Driver always updates Virtual MAC address in shared memory,
+               regardless of whether Virtual MAC address has been modified.
+               This can cause bootcode to display wrong information.
+               (CQ#70719)
+
+      Change : Updated driver to compare Virtual MAC address with current
+               address to determine if shared memory should be updated.
+ 
+Version 16.2.2 August 20, 2013
+------------------------------
+   Enhancements:
+   =============
+   1. Updated APE inter-processor interface code for BCM5762, BCM57767,
+      BCM57787, BCM57764, BCM5725, and BCM5727 controllers.
+
+Version 16.2.1 August 9, 2013
+-----------------------------
+   Fixes:
+   ======
+   1. Problem: UNDI driver failed to pass traffic when BCM5762 devices links 
+      at 10Mbps/100Mbps.(CQ#70541)
+
+      Change: Updated reset code to force GRC clock to run at 62.5MHz.
+
+Version 16.2.0 August 7, 2013
+-----------------------------
+   Fixes:
+   ======
+   1. Problem: GetImageInfo() return incorrect AttributesSupported bits for
+               non-existent images in NVRAM
+
+      Change : Updated driver to set correct updatable bits for images that
+               are not currently programmed in NVRAM.
+
+   2. Problem: GetImageInfo() returns EFI_INVALID_PARAMETER error with OEM
+               tool. (CQ#68510)
+
+      Cause  : OEM tools passes insufficient buffer size and NULL pointer
+               parameter on inital call to GetImageInfo().  Driver detects
+               NULL pointer and returns failure status.
+
+      Change : Updated driver to inspect ImageInfoSize parameter before
+               checking ImageInfo pointer. This will change driver behavior
+               to return failure status explicitly defined in specification.
+
+   3. Problem: Incorrect ASF version shown in HII Firmware Image menu. (CQ#69204)
+
+      Change : Updated driver to parse ASF version format correctly.
+
+   4. Problem: SCT GetImage() Function test failure. (CQ#68721)
+
+      Cause  : Driver exceeds buffer when retrieving bootcode image, due to
+               miscalculation of necessary NVRAM info included in image. 
+
+      Change : Update driver to include NVRAM contents when calculating
+               necessary buffer size for GetImage(). Update GetImageInfo()
+               with same calculation when reporting image size.
+
+   5. Problem: Driver returns EFI_SUCCESS for incorrect device handles via
+               DriverHealthProtocol interface. (CQ#69611)
+
+      Change : Update driver to validate correct device handles.
+
+   6. Problem: Permanent MAC Address value is changed to Virtual MAC 
+               Address value, via OEM tool, on system warm reboot. (CQ#69400)
+
+      Change : Updated driver to maintain permanent MAC address value from
+               NVRAM to report to OEM tool.
+
+   7. Problem: SCT SetImage() conformance test failure.
+
+      Change : Updated driver to add check to prevent buffer overflow when
+               reading VPD file image.
+
+Version 16.0.6 April 30, 2013
+-----------------------------
+   Fixes:
+   ======
+   1. Problem: Driver doesn't indicates Flex-Addressing on the UNDI API interface.
+
+      Change : Driver indicates permanent MAC address to UNDI API interface with
+               MAC address from MAC registers instead from the NVRAM.
+
+Version 16.0.5 April 10, 2013
+----------------------------
+    Fixes:
+    ======
+    1. Problem: Incorrect NCSI version on BCM5725 with SMASH enabled. (CQ#68546)
+  
+       Change : Updated driver to identify and parse SMASH binary image.
+
+    Enhancements:
+    =============
+    1. Updated driver with latest localization files.
+
+    2. Updated driver to only enable NIC's interrupt when requested.(CQ#68686)
+
+Version 16.0.4 March 15, 2013
+-----------------------------
+    Fixes:
+    ======
+    1. Problem: Incorrect NCSI version shown in HII Firmware Image menu. (CQ#68113)
+
+       Change : Updated driver to correctly parse version format.
+
+    2. Problem: Banner Timeout parameter in HII MBA Configuration menu does
+                not allow user to input a value of 15.
+
+       Change : Updated driver to allow proper input range. (CQ#68264)
+
+    3. Problem: System RSOD when entering HII configuration menu on certain
+                OEM systems. (CQ#68114)
+
+       Cause  : On OEM system, the driver returned uninitialized data to 
+                ExtractConfig() caller. Newly introduced in 16.0.3.
+
+       Change : Updated driver to ensure data is initialized prior to return.
+
+    Enhancements:
+    =============
+    1. Added support for BCM5727.
+
+Version 16.0.3 February 28, 2013
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: BCM5720 NDC fail to support the VLAN tagging in UEFI. (CQ#67467)
+
+      Change : Updated Receive Configuration not to strip VLAN ID.
+
+   2. Problem: SCT Firmware Management Protocol failure.
+
+      Change : Updated GetImageInfo() to return correct DescriptorSize
+               value.
+               Updated SetPackageInfo() to check maximum length parameter
+               before updating PackageNameVersion.
+
+   3. Problem: On certain platform, Hii shows link status 'connected' without
+               any IOM module present. (CQ#67499)
+
+      Change : In Fiber Fallback logic, set link status according to Sync
+               Status bits.
+
+      Impact:  Fiber Phy controllers only.
+
+   4. Problem: SCT Firmware Management Protocol GetImage() test can return
+               incorrect status codes.
+
+      Change : Updated return status codes per specification.
+
+   5. Problem: SCT Firmware Managment Protocol SetPackageInfo() failure. (CQ#67553)
+
+      Change : Update GetPackageInfo() to return PackageVersionNameMaxLen
+               value correctly when existing PackageVersionName is not 
+               present.
+
+   6. Problem: OEM friendly name port number mismatch in HII menu. (CQ#68004)
+
+      Change : Update port number in HII submenus using base 1.
+
+   Enhancements:
+   =============
+   1. Added a place holder for localizing EFI_COMPONENT_NAME2_PROTOCOL.
+
+   2. Customized PackageVersionName in Firmware Management Protocol for a 
+      specific OEM (CQ#66861).
+
+   3. Restrict PackageVersionName to ASCII characters.
+
+   4. Restrict PackageVersionName to a maximum of 16 characters.
+
+Version 16.0.2 January 11, 2013
+-------------------------------
+   Fixes:
+   ======
+   1. Updated driver to display friendly name for specific OEM devices
+      based on updated specification revision. (CQ#66851) (CQ#66865)
+
+   2. Update x-UEFI modifiers for iSCSI Initiator Subnet Prefix parameter. (CQ#67027)
+
+   Enhancements:
+   =============
+   1. Suppress non-UEFI related parameters for specific OEM devices in HII
+      menu. (CQ#66857)
+
+   2. Updated EFI_DRIVER_SUPPORTED_VERSION.
+
+   3. Updated copyright date.
+ 
+Version 16.0.1 December 20, 2012
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: SCT failure on Diagnostics2 Protocol test. (CQ#66942)
+
+      Change : Updated driver to handle invalid input parameters per 
+               specification.
+
+   2. Problem: Firmware Management Protocol interface allows iSCSI Boot
+               image to be downgraded without using vendor code.
+
+      Change : Updated driver to correctly parse proposed iSCSI Boot image.
+
+   Enhancements:
+   =============
+   1. Removed EEE support.
+
+      Impact: All controllers.
+
+   2. Add support for In Field Feature Enablement. (CQ#65803)
+
+   3. Add support for new OEM device IDs.
+
+   4. Update OEM friendly name format per updated specification. 
+      (CQ#66865) (CQ#66851)
+ 
+Version 16.0.0 November 28, 2012
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: Truncated abort reason string is displayed via Firmware 
+               Management Protocol.
+
+      Change : Update driver to copy entire abort reason string to buffer.
+   
+   Enhancements:
+   =============
+   1. Updated driver to handle new version format scheme.
+
+   2. Updated driver to remove unnecessary debug message generated by a
+      library call.
+
+   3. Remove CCM image from device NVRAM when programming an MBA image that
+      already contains an embedded CCM. (CQ#66071)
+
+   4. Added support for new 5717 C0 device ID (0x1665)
+
+
+Version 15.8.1 October 17, 2012
+-------------------------------
+   Fixes:
+   ======
+   1. Updated driver to check for NULL input parameters in DriverHealth
+      protocol. (CQ#65753)
+
+   2. Problem: Drvdiag failure on BCM5725 device. (CQ#65902)
+   
+      Change : Updated driver to use correct start values when running
+               memory tests.
+
+   3. Problem: BCM57760, BCM57780, BCM57790, and BCM57788 device
+               disappeared after multiple iteration of copy/compare test on
+               some platforms. (CQ #66029)
+
+      Change:  Apply work-around after Chip Reset.
+
+      Impact:  BCM57760, BCM57780, BCM57790, and BCM57788 controllers only.
+
+   4. Problem: Traffic LED does not light up on BCM57764, BCM57767, BCM57787,
+               BCM5725, and BCM5762 controllers.
+
+      Change:  Driver sets Link Activiy LED BIT.
+
+      Impact:  BCM57764, BCM57767, BCM57787, BCM5725, and BCM5762 controllers.
+
+   Enhancements:
+   =============
+   1. Removed link up polling in UNDI_INITIALIZE API to shorten initialization
+      time.
+
+Version 15.8.0 October 4, 2012
+------------------------------
+   Fixes:
+   ======
+   1. Problem: Programming bootcode via Firmware Management Protocol causes
+               corruption.
+
+      Change : Updatd driver logic to handle programming bootcode image
+               correctly.  Issue introduced in 15.4.1
+
+   2. Updated driver to add error checking logic for mal-formed strings in
+      HII Callback().
+
+   3. Problem: VPD checksum error after upgrading via Firmware Management
+               Protocol.
+
+      Change : Updated driver to calculate checksum after upgrading VPD
+               via Firmware Management Protocol.
+
+   4. Problem: Driver program multiple iSCSI Boot configuration files for
+               single port devices via Firmware Management Protocol.
+
+      Change : Update driver logic to determine correct number of ports.
+
+   Enhancements:
+   =============
+   1. Remove driver generated pop up error messages in HII menu.
+   
+   2. Added support for BCM57764, BCM57767, BCM57787, BCM5725,
+      and BCM5762 controllers.
+
+   3. Clear Fast Boot register after upgrading bootcode via Firmware
+      Management Protocol for BCM5719 and BCM5720 devices.
+
+   4. Removed .lib files
+
+   5. Install Firmware Management Protocol on all physical ports.
+   
+   6. Add support for BCM5717 C0 silicon.
+
+   7. Enhanced driver to display friendly name for specific OEM devices.
+      (CQ#64911)
+
+   8. Updated driver with latest localization files. (CQ#64912)
+
+Version 15.4.5 Auguest 29, 2012
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: Programming bootcode via Firmware Management Protocol causes
+               corruption.
+
+      Change : Updatd driver logic to handle programming bootcode image
+               correctly.  Issue introduced in 15.4.1
+
+   2. Updated driver to add error checking logic for mal-formed strings in
+      HII Callback().
+
+   Enhancements:
+   =============
+   1. Clear Fast Boot register after upgrading bootcode via Firmware
+      Management Protocol for BCM5719 and BCM5720 devices.
+
+   2. Removed .lib files
+
+Version 15.4.4 Auguest 6, 2012
+------------------------------
+   Enhancements:
+   =============
+   1. Remove driver generated pop up error messages in HII menu.
+
+Version 15.4.3 July 24, 2012
+----------------------------
+   Enhancements:
+   =============
+   1. Removed EEE support for BCM57762, BCM57766, BCM57782, and 
+      BCM57786 controllers.
+
+      Impact:
+              BCM57762, BCM57766, BCM57782, and BCM57786 controllers.
+
+   2. Remove logic to display device banner during initial load.
+      (CQ#64715) (CQ#64775)
+
+Version 15.4.2 June 29, 2012
+----------------------------
+    Fixes:
+    ======
+    1. Updated x-UEFI keyword modifier for iSCSI Initiator Subnet Mask.
+    
+Version 15.4.1 June 18, 2012
+----------------------------
+    Fixes:
+    ======
+    1. Problem: Runing UEFI reboot test which include "Drvdiag -s"
+                led to System Crashes w/ GPF Errors. (CQ#61037)
+
+       Cause  : Driver Receive Routine gets call during Diagnostic in progress.
+
+       Change : Prevent Driver Receive Routine to execute while Diagnostic is in
+                progress.
+ 
+    2. Problem: Setting parameter via OEM configuration tool with incorrect
+                values passes. (CQ#56130)
+
+       Change : Updated x-UEFI keyword modifier.
+
+    Enhancements:
+    =============
+    1. set the UEFI UNDI driver clock policy to minimize the GRC reset duration.
+       (CQ#63586).
+
+      Impact: BCM57781, BCM57785, BCM57761, BCM57765, BCM57791, BCM57795, BCM57762,
+              BCM57766, BCM57786, and BCM57782 controllers in OTP mode only.
+
+Version 15.4.0 May 15, 2012
+---------------------------
+    Fixes:
+    ======
+    1. Problem: Unable to save HII configuration after resetting to default
+                values on OEM browser. (CQ#63069)
+
+       Cause  : Default values were defined for IP-related fields in IPv4
+                format. This can cause a mismatch with the IP version
+                field, which does not have a defined default value.
+
+       Change : Remove default values for IP-related fields to prevent
+                possible IP version mismatch.
+
+    2. Problem: Incorrect attribute type for HII LinkStatus parameter. (CQ#62946)
+
+       Change : Updated to correct type and options per OEM specification.
+
+    3. Update x-UEFI keywords based on OEM specification. (CQ#63180)
+
+    Enhancements:
+    =============
+    1. Updated driver to enable Option ROM if HII MBA Boot Protocol is
+       not set to NONE value. (CQ#62650).
+
+Version 15.2.52 April 19, 2012
+------------------------------
+    Fixes:
+    ======
+    1. Problem: A-rev 5720 NDC can't acquire DHCP address.
+
+       Cause:   Some registers of DMA Read engine block can have bogus
+                values after power cycle.  This can cause DMA engine to 
+                stop DMAing Tx packets from the host.
+
+       Change : Implemented software workaround so that DMA Read engine
+                can ignore bogus values in these registers.
+
+       Impact:  BCM5719 and BCM5720 controllers only.
+
+Version 15.2.51 April 12, 2012
+------------------------------
+    Fixes:
+    ======
+    1. Problem: Device is still active after issuing a shutdown if APE is
+                not responsive. (CQ#62359)
+
+       Change : Update driver to issue a GRC reset even if APE is not
+                responsive.
+
+Version 15.2.50 March 28, 2012
+------------------------------
+    Fixes:
+    ======
+    1. Problem: Link Status indication logic doesn't work with GET_STATUS API.
+
+       Change:  Updated driver to indicate that UNDI driver supports 
+                NO_MEDIA_DETECT capability in GET_INIT_INFO API.
+
+    Enhancements:
+    =============
+    1. Updated HII Subnet Mask allowable field length to proper width.
+
+    2. Suppress non-supported IP version, if applicable, in HII iSCSI
+       General Parameters menu.
+
+    3. Full support of UCM for OEM configuration tool. (CQ#58849)
+
+Version 15.2.6 March 5, 2012
+----------------------------
+    Fixes:
+    ======
+    1. Problem: OEM HII browser hangs when saving a language change from
+                English to Chinese.
+
+       Cause :  Some English strings contained Chinese characters, which
+                are non-ASCII, and failed the character conversion from
+                Unicode to ASCII.  This caused the system to hang.
+
+       Change : Updated driver to modify supported language strings 
+                contents with only the relevant localized string.  This 
+                will prevent English strings being updated with non-English
+                characters.
+
+Version 15.2.5 February 28, 2012
+--------------------------------
+    Fixes:
+    ======
+    1. Problem: Buffer allocated for browser form data in EDK II UP4 library
+                was not big enough and there might be a potential problem that 
+                it would cause RSOD after modifying configuration data.
+                
+       Change:  Allocated buffer with proper size.
+
+Version 15.2.4 February 27, 2012
+--------------------------------
+    Fixes:
+    ======
+    1. Problem: The Config VLAN ID help message in HII browser MBA menu showed
+                valid range from 1 to 4095. (CQ#61833)
+
+       Change: Changed the help message to show valid range from 1 to 4094.
+
+   Enhancements:
+   =============
+   1. Hide device banner during initial load for certain OEM.
+      (CQ#60975,CQ#61752)
+
+Version 15.2.3 February 22, 2012
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: EEE does not function when EEE is enabled on
+               BCM57762 and BCM57766 controllers.(CQ #61699)
+      
+      Change:  Excluded EEE PHY interoperability software workaround 
+               for BCM57762 and BCM57766 controllers.
+
+      Impact:  BCM57762 and BCM57766 controllers only.
+
+   2. Problem: LEDs turned off when driver is loaded on BCM57762
+               and BCM57766 controllers.
+
+      Change:  Driver sets Link Activity LED BIT.
+
+      Impact:  BCM57762 and BCM57766 controllers only.
+
+   Enhancements:
+   =============
+   1. Updated with latest localization files.
+
+Version 15.2.2 January 31, 2012
+-------------------------------
+   Enhancements:
+   =============
+   1. Built using EDK2.
+   2. Added Driver Health Protocol support.
+   3. Updated driver to display current MAC address in HII formset title
+      for OEM devices. (CQ#61020).
+
+Version 15.2.1 January 09, 2012
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: DRVDIAG -s Memory test failed in BCM57766.(CQ#60675)
+
+      Change : Driver Diag performs Memory Test with correct
+               address range for BCM57762, BCM57766, BCM57786,
+               and BCM57782.
+
+   2. Problem: UEFI OS install via UEFI from windows 2008 WDS failed
+               on BCM57762.(CQ#60680)
+
+      Change : Updated Driver to initialize NVRAM according to the
+               correct ASIC REV for BCM57762, BCM57766, BCM57786,
+               and BCM57782.
+    Note:
+    =====
+    1. Updated Copyright banner to reflect year of 2012.
+
+Version 15.2.0 December 21, 2011
+--------------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM57762, BCM57766, BCM57786,
+      and BCM57782 controllers.
+   2. Firmware Management Protocol supports upgrade of CCM rom image.
+
+Version 15.0.17 October 31, 2011
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: Setting iSCSI Initiator name with '-' character fails via
+               OEM configuration tool.
+
+      Change : Updated RegEx modifier contents to move '-' character to 
+               the start of the value expression.
+
+   2. Problem: Missing iSCSI Chap ID attributes in x-UEFI mapping. 
+               (CQ#59510)
+
+      Change : Added iSCSI Chap ID attributes in x-UEFI mapping.
+
+Version 15.0.16 October 05, 2011
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: On multiple port device, the MBA settings on one or more 
+               ports may not be saved via HII browser.
+
+      Cause:  On certain OEM systems, ExtractConfig() is called very early
+              in the HII browser process.  This can result in stale MBA
+              configuration being saved to NVRAM.
+
+      Change:  Refresh MBA port configuration from NVRAM before updating 
+               any MBA port configuration.
+
+   2. Problem: Setting iSCSI Initiator name with '-' character fails via
+               OEM configuration tool. (CQ#58951)
+
+      Change : Added '-' to the list of allowable character in x-UEFI
+               string contents.
+
+Version 15.0.15 October 04, 2011
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: drvdiag fails at Loopback test on BCM5719 in PCI-E
+               Gen II mode.
+
+      Cause:   During loopback test, DMA data exceed FIFO size and
+               caused BCM5719 to cease operation.
+
+      Change:  Reduced number of Receive Buffer Descriptors.
+
+   Enhancements:
+   =============
+   1. Hide device banner during initial load for certain OEM.(CQ#58681)
+
+Version 15.0.14 September 27, 2011
+----------------------------------
+   Enhancements:
+   =============
+   1. Added Question ID support in HII browser prompts (CQ#58849)
+
+Version 15.0.13 September 16, 2011
+----------------------------------
+   Fixes:
+   ======
+
+   1. Problem: BCM57781 in OTP mode failed to ping other clients (CQ#58604).
+
+      Cause:   Driver reads incorrect MAC address in OTP mode.
+
+      Change:  Updated driver to use correct MAC address in OTP mode.
+
+Version 15.0.12 August 31, 2011
+-------------------------------
+   Fixes:
+   ======
+   1. Updated HII Vlan ID parameter default value to 1.
+
+   Enhancements:
+   =============
+   1. Build with latest International localization file.
+
+Version 15.0.11 August 26, 2011
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: drvdiag fails at register tests on BCM5718. (CQ#58108)
+
+      Cause:   During drvdiag register tests, certain status registers can
+               be updated by other components while the test is being run.
+               This contention can cause a failure report.
+
+      Change:  Remove status registers from the test matrix.
+
+  Enhancements:
+  =============
+  1. Updated device description strings in HII menus.
+
+Version 15.0.10 August 17, 2011
+-------------------------------
+  Fixes:
+  ======
+  1. Problem:    When certain OEM system updated firmware images, the update 
+                 applied to all ports of the same chip (CQ#57383).
+
+     Change:     Driver installs Firmware Management Protocol only for first
+                 port of the chip. This will only allow firmware image update
+                 on first port.
+
+     Relevance:  The design of installing Firmware Management Protocol for
+                 all ports of the chip had been in place since Firmware 
+                 Management Protocol was supported.
+
+  2. Problem:    Missing x-UEFI tag. (CQ#57710)
+
+     Change:     Added missing x-UEFI tag for Blink LEDs attribute.
+
+     Relevance:  x-UEFI specification.
+
+  3. Problem:    Incorrect x-UEFI modifier for BootToTarget attribute. (CQ#54947)
+
+     Change:     Updated modifier to use ReadOnlyIf per OEM specification.
+
+     Relevance:  x-UEFI specification.
+
+
+Version 15.0.9 August 5, 2011
+-----------------------------
+   Fixes:
+   ======
+   1. Problem: HII Firmware Image Menu did not report MBA combined image
+               properly. NCSI version was not correct. UMP and ASF firmware
+               should not be displayed when NC-SI firmware was present
+               (CQ#57643).
+
+      Cause:   The NCSI version was computed wrongly. When determining
+               entries in MBA combined image, data read from NVRAM were
+               not in proper endian format that caused UEFI driver not to be
+               detected. UMP, and ASF versions were always displayed even 
+               though they did not exist in NVRAM.
+
+      Change:  The NCSI version computation is fixed. MBA combined image
+               information read from NVRAM is in proper endian format. Displays
+               only the management firmware installed in NVRAM.
+
+   Enhancements:
+   =============
+   1. Implement software workaround for EEE PHY interoperability
+      issues for all EEE capable devices except for BCM5720.
+
+      Impact: BCM5717, BCM5718, BCM5719, BCM57761, BCM57765, BCM57781,
+              BCM57785, BCM57791, and BCM57795 controllers only.
+              
+   2. After upgrading MBA, PXE enable bit is left untouched in NVRAM
+      setting instead of always turning it on after upgrade.
+
+Version 15.0.8 August 3, 2011
+-----------------------------
+   Fixes:
+   ======
+   1. Problem: drvdiag fails on BCM5720. (CQ#57471)
+
+      Cause:   During drvdiag register tests, certain status registers can
+               be updated by other components while the test is being run.
+               This contention can cause a failure report.
+
+      Change:  Remove status registers from the test matrix.
+
+Version 15.0.7 July 28, 2011
+----------------------------
+   Fixes:
+   1. Problem: Boot Retry Count parameter in MBA Configuration menu is not
+               configurable. (CQ#57371)
+
+      Cause:   This parameter is not applicable.
+
+      Change:  Remove Boot Retry Count from MBA Configuration menu.
+
+Version 15.0.6 July 26, 2011
+----------------------------
+   Fixes:
+   ======
+   1. Problem: Vlan ID parameter value in HII MBA Configuration menu is 
+               inconsistent with value displayed by CCM. (CQ#57185)
+
+      Cause:   When extracting Vlan ID data, the driver incorrectly swapped
+               Vlan ID values.
+
+      Change:  Updated driver to swap Vlan ID values properly during
+               extraction.
+
+  2.  Problem: Vlan ID parameter help message shows incorrect range value.
+
+      Change:  Updated help message to display correct range values.
+      
+  3.  Problem: Drvdiag command did not work with UEFI revision 2.3. (CQ#57268)
+
+      Cause:   UEFI revision 2.3 requires EFI_DRIVER_DIAGNOSTICS2_PROTOCOL
+               support for diagnostics.
+
+      Change:  Added support for EFI_DRIVER_DIAGNOSTICS2_PROTOCOL.
+      
+  4.  Problem: Upon exiting BOFM, driver always requested for system reboot
+               even if there was no BOFM address change. (CQ#57291)
+
+      Change:  Check if BOFM address is different from current virtual
+               address before returning system reboot status.
+      
+      
+
+Version 15.0.5 July 19, 2011
+----------------------------
+   Enhancements:
+   =============
+   1. Updated Subnet Mask Prefix allowable field length to correct width.
+
+   2. Removed colons from display strings in Firmware Image menu.
+      (CQ#55173).
+
+   3. Enhanced driver to don't drop link if EEE was already setup by other  
+      software components such as NCSI.
+
+Version 15.0.4 July 8, 2011
+---------------------------
+   Fixes:
+   ======
+   1. Problem: Upgrading iSCSI Boot component via Firmware Management
+               Protocol returns insufficient space error on BCM5719.
+
+      Cause:   When the driver re-arranges NVRAM images to remove memory 
+               gaps, it incorrectly byte-swapped the extended directory
+               contents which caused an incorrect size value.
+
+      Change:  Updated driver to ensure contents of extended directory are
+               in the correct order.
+
+   2. Problem: NCSI firmware version is reported incorrectly in Firmware
+               Management Protocol.
+
+      Change:  Updated driver to correctly parse NCSI firmware version.
+
+   3. Problem: BCM5718 with Self Bootcode, fails to ping other clients
+               (CQ#56221).
+
+      Cause:   Driver reads MAC address at incorrect offset in NVRAM for
+               Self Boot mode.
+
+      Change:  Updated driver to use correct offset for Self Boot devices.
+
+Version 15.0.3 June 7, 2011
+---------------------------
+   Fixes:
+   ======
+   1. Problem: On certain OEM system, updating HII browser configuration 
+               for selected device caused NVRAM data corruption. (CQ#56067)
+      Cause :  Wrong manufacturing block data was used to update the
+               selected device's NVRAM data.
+      Change : The manufacturing block data is not stored in a global
+               structure, but inside the device's data structure.
+
+   2. Problem: BCM5720 fails to update iSCSI Boot with Firmware Management
+               Protocol. (CQ#56015)
+      Cause :  Driver incorrectly detected the number of ports supported by
+               the device, and consequently calculated the necessary space
+               incorrectly.
+      Change : Updated driver to detect correct number of ports for device.
+
+Version 15.0.2 May 19, 2011
+---------------------------
+   Fixes:
+   ======
+   1. Problem: Firmware Management Protocol GetImageInfo() returns 
+               duplicate GUIDs for different firmware images. (CQ#55693)
+
+      Cause : Method used to locate GUIDs was incorrect.
+
+      Change : Updated search method to locate proper GUIDs.
+
+   Enhancements:
+   =============
+   1. Added "NONE" option to Boot Protocol in HII MBA Configuration menu.
+      (CQ#55699)
+
+   2. Removed unnecessary x-UEFI strings.
+
+   3. Updated Image ID Name string to 'ASF' for Firmware Management 
+      Protocol.
+
+Version 15.0.1 May 11, 2011
+---------------------------
+   Fixes:
+   ======
+   1. Problem: Missing EBC driver from previous released version.
+
+      Change : Included EBC driver in this release. 
+   
+Version 14.8.1 May 10, 2011
+---------------------------
+   Fixes:
+   ======
+   1. Problem: Updatetest fails to update NC-SI firmware on BCM5719 and 
+               BCM5720. (CQ#54953).
+
+      Change : Updated driver to support NCSI firmware files.
+
+   2. Problem: BCM5720 will not update boot code via Updatetest. (CQ#55097)
+
+      Cause : Driver expects GetImageInfo() function to be called prior
+              to initiating any other Updatetest operation.
+
+      Change: Updated driver to remove dependency that GetImageInfo()
+              be the first operation executed.     
+
+   3. Problem: Some HII attributes have a colon in the display string. (CQ#55173)
+      Change : Removed colons from attribute display strings.
+
+   4. Problem: Incorrect modifier for attribute BootToTarget. (CQ#54947)
+
+      Change : Updated modifier to SuppressIf for BootToTarget attribute.
+
+   5. Problem: Incorrect x-UEFI mappings for BCM5720. (CQ#54560)
+
+      Change : Updated driver to correct keyword mapping values.
+
+   6. Added additional modifiers in x-UEFI mappings per updated spec
+      requirement. (CQ#55472)
+
+   Enhancements:
+   =============
+   1. Updated HII iSCSI Boot General Parameters menu to Grayout parameters
+      instead of suppressing them based on IP version. (CQ#55120).
+   
+   2. Implement software workaround for EEE PHY interoperability
+      issues for EEE capable devices.
+
+   Notes:
+   ======
+   1. IA32 platform driver is not supported in release.
+
+Version 14.8.0 April 12, 2011
+-----------------------------
+   Enhancements:
+   =============
+   1. Driver to read the Hardware Configuration from shared memory
+      to Enable/Disable EEE mode in EEE capable devices. (CQ#54514)
+
+   Notes:
+   ======
+   1. Adjust version number for Software Rel 14.8
+
+Version 14.6.4 March 18, 2011
+-----------------------------
+  Fixes:
+  ======
+   1. Problem: On certain platform when driver was loaded/unloaded causes
+               the device unable to generate interrupt on next boot.
+
+      Change: Updated driver to clear mailbox interrupt to a value
+              of 0 during device initialization and shutting down.
+
+   Enhancements:
+   =============
+   1. Added NVRAM extended directory support.
+   2. Added firmware management support to install 4 iSCSI configuration
+      blocks for Cotopaxi.
+   3. Added firmware management VPD parsing support.
+
+Version 14.6.3 March 15, 2011
+-----------------------------
+   Fixes:
+   ======
+   Problem: Upgrading bootcode using Firmware Management Protocol fails
+            for BCM5719 devices. (CQ#53785)
+
+   Cause :  Driver incorrectly parsed the proposed bootcode image file,
+            which caused it to assume it is an unsupported file image.
+
+   Change : Updated driver to correctly identify bootcode image file
+            structure.
+
+   Enhancements:
+   =============
+   1. Added support for BCM5720 controller. (CQ#53771)
+   2. Added BOFM support.
+
+Version 14.6.2 January 13, 2011
+-------------------------------
+  Fixes:
+  ======
+  1. Problem: DRVDIAG test fails on BCM5719/BCM5718. (CQ#51825)
+
+     Change : Updated driver to include proper register values for 
+              DRVDIAG test.
+
+  2. Problem: When running multiple family devices, using different driver
+              versions, the HII browser may crash.
+
+     Cause :  Differing driver versions contains varying support
+              functionality to retrieve other devices hardware info. The
+              driver did not check the supported capabilities of a 
+              different driver before attempting to access a function. This
+              function was not supported and the pointer was NULL.
+
+     Change : Updated driver to check function pointer validity before
+              attempting to call any support functions.
+
+  3. Updated copyright date.
+
+Version 14.6.1 December 19, 2010
+--------------------------------
+  Enhancements:
+  =============
+   1. Added support for BCM5719 controllers.
+
+Version 14.6.0 November 30, 2010
+--------------------------------
+   Enhancements:
+   =============
+   1. Added x-UEFI language strings per OEM specification.
+   2. Added support of new VPD format.
+   3. Updated driver to retain Virtual MAC Addresses acrosss warm reboot.
+
+Version 14.4.0 October 25, 2010
+-------------------------------
+  Fixes:
+  ======
+   1. Problem:
+              CQ #50525 - BCM5718 Fiber cannot pass traffic.
+      Change:
+              Add support for Fiber phy.
+      Impact:
+              BCM5718 controllers only.
+
+   2. Problem:
+              CQ #50409 - Driver wipes out hardware configuration when in
+              Self-Boot configuration.
+      Change:
+              Updated reset code to do a read-modify-write when updates the
+              register to disable clkreg when in Self-Boot configuration.
+      Impact:
+              BCM57761, BCM57765, BCM57781, BCM57785, BCM57791,
+              and BCM57795 controllers Self-Boot configuration.
+
+   3. Problem:
+              CQ #50447 - Incorrect link LED behavior after Driver executed.
+      Change:
+              Driver sets Link Activiy LED BIT.
+      Impact:
+              BCM57761, BCM57765, BCM57781, BCM57785, BCM57791,
+              and BCM57795 controllers.
+
+   Enhancements:
+   =============
+   1. Add EEE support for BCM5717, BCM5718, BCM57761, BCM57765, BCM57781,
+      BCM57785, BCM57791, and BCM57795 controllers.
+
+      Impact:
+              BCM5717, BCM5718, BCM57761, BCM57765, BCM57781, BCM57785,
+              BCM57791, and BCM57795 controllers.
+
+   2. Updated APE inter-processor interface code for BCM5717 and BCM5718
+      controllers.
+
+      Impact:
+              BCM5717 and BCM5718 controllers only.
+
+   3. Added extended VPD support.
+
+   Notes:
+   ======
+   1. Adjust version number for Software Rel 14.4
+
+Version 14.2.3 June 30, 2010
+----------------------------
+  Fixes:
+  ======
+   1. Problem: Invalid IP format accepted in HII NIC settings menu.(CQ#41701)
+
+      Cause :  Validation logic did not check IP format validity.
+
+      Change : Updated validation logic to detect offending invalid format.
+
+   2. Problem: HII CHAP ID parameter accepts more than 32 characters.(CQ#41836)
+    
+      Cause :  Validation logic did not check iSCSI Configuration block version
+               for length of CHAP ID boundary.
+
+      Change : Updated driver to detect iSCSI Configuration block version, and
+               enforce the appropriate length boundary.
+
+   3. Problem: Duplicate offsets for some HII Data parameters. (CQ#45555)
+   
+      Cause :  Shared fields were used for certain parameters.
+
+      Change : Created unique fields for each HII data parameter.
+
+   4. Problem: Invalid CHAP ID characters saved. (CQ#46519)
+
+      Cause :  The driver contains two unique CHAP ID fields to handle cases for
+               iSCSI Boot configuration v1.0 and v2.0.  Only one of these fields
+               is initialized and modified based on the version present in NVRAM,
+               while the other is unused.  The unused field contains 
+               uninitialized data when the HII configuration is saved.
+
+      Change : Initialize unused CHAP ID field to NULL.
+
+   5. Problem: After setting "Boot To Target" parameter to "One Time Disabled"
+               in HII iSCSI Configuration menu, user cannot save parameter to 
+               other values.
+
+      Cause :  The "One Time Disabled" bit in iSCSI configuration was not 
+               cleared when other values are saved by the user.
+
+      Change : Clear "One Time Disabled" bit in iSCSI configuration, when other
+               values are saved by the user.
+
+   6. Problem: Unable to save subnet mask prefix for IPv6 in HII menu. (CQ#47723)
+    
+      Cause :  Driver incorrectly validated the parameter for use with IPv4.
+
+      Change : Updated driver to validate the correct parameter field based
+               on IP version flag.
+
+   7. Problem: When running multiple devices, using different driver versions, 
+               the HII browswer may crash when configuring Secondary Device MAC
+               Address parameter on devices running v14.0.6 or older. (CQ#48114)
+
+      Cause :  Differing internal structure lengths were causing a miscalculation
+               for certain desired offsets.
+
+      Change : Create a uniform structure length compatible with previous drivers
+               to ensure the correct offsets are calculated and used.
+
+  Enhancements:
+  =============
+  1. Added "Hide Setup Prompt", "Banner Message Timeout", Boot Strap Type",
+     and "Setup Key Stroke" parameters in HII MBA Configuration menu.
+
+  2. Added IPV6 support to Firmware Management Protocol and Image Update Protocol.
+
+  3. Added support for "One Time Disabled" option for iSCSI Boot to Target
+      parameter in HII iSCSI General Parameters menu.
+
+  4. Added "Boot Retry Count" parameter in HII MBA Configuration menu.
+
+  5. Add ability to Enable/Disable Option ROM in NVRAM via HII RouteConfig().
+     (CQ#46350)
+
+
+Version 14.2.2 June 26, 2010
+----------------------------
+  Fixes:
+  ======
+  1. Problem: In HII MBA Configuration Menu, if VLAN Mode was disabled,
+              VLAN ID entry was not displayed. (CQ#47915)
+
+     Cause :  The logic skipped displaying VLAN ID entry when VLAN Mode
+              was disabled.
+
+     Change : Displayed VLAN ID entry even when VLAN Mode was disabled,
+              but set it to READ ONLY.
+
+  Enhancements:
+  =============
+  1. Enhanced UNDI Get Status command to support 
+     PXE_OPFLAGS_GET_MEDIA_STATUS.
+
+  2. Add NCSI support for BCM5717, BCM5718, and BCM5724 controllers.
+
+     Impact:
+             BCM5717, BCM5718, and BCM5724 family controllers only.
+
+  3. Add EEE support for BCM5785 controller.
+
+     Impact:
+             BCM5785 controller only.
+
+Version 14.2.1 May 25, 2010
+-----------------------------
+   Enhancements:
+   =============
+   1. Assign unique signature to NetXtreme I family driver. The driver
+      only finds same family of Broadcom devices in the system to 
+      determine if "Secondary Device" menu in iSCSI is displayed. When
+      driver signature is not found, it will return NULL without
+      calling debug check.
+
+Version 14.2.0 April 08, 2010
+-----------------------------
+   Enhancements:
+   =============
+   1. Added supports for SelfBoot/OTP Devices.
+   2. Updated Copyright banner to reflect year of 2010.
+
+   Notes:
+   ======
+   1. Adjust version number for Software Rel 14.2.
+
+Version 14.0.6 December 30, 2009
+--------------------------------
+   Enhancements:
+   =============
+   1. Added support for SelfBoot Devices.
+
+   2. Built with latest International localized strings.
+
+Version 14.0.5 December 15, 2009
+--------------------------------
+   Fixes:
+   ======
+    1.Problem:
+               DRVDIAG -s failed in BCM57765. (CQ#44957)
+      Cause:
+               Driver Diag performed Memory Test with incorrect
+               address range for BCM57765.
+      Change:
+               Driver Diag performs Memory Test with correct
+               address range for BCM57765.
+      Impact:
+               None.
+
+Version 14.0.4 December 14, 2009
+--------------------------------
+   Enhancements:
+   =============
+   1. Updated Firmware Package Version description string. (CQ#41838)
+
+Version 14.0.3 November 30, 2009
+--------------------------------
+   Enhancements:
+   =============
+   1. Displayed link status in HII configuration page. (CQ#44039)
+
+Version 14.0.2 October 21, 2009
+-------------------------------
+   Fixes:
+   ======
+    1.Problem:
+               DRVDIAG -s failed in BCM57765 (FPGA). (CQ#44138)
+      Cause:
+               Driver Diag performed Memory Test with incorrect
+               address range for BCM57765.
+      Change:
+               Driver Diag performs Memory Test with correct
+               address range for BCM57765.
+      Impact:
+               None.
+
+Version 14.0.1 October 06, 2009
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM5717, BCM5718, and BCM5724 controllers.
+
+Version 14.0.0 September 18, 2009
+---------------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM57781, BCM57785, BCM57761, BCM57765, BCM57791,
+      and BCM57795 controllers.
+
+Version 12.2.3 September 2, 2009
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: Unable to ping system with 10Mbps Full/Half. (CQ#43254).
+
+      Cause:   Driver did not update the setting of the MI Status
+               Register for 10Mbps.
+
+      Change:  Driver update the setting of the MI Status Register 
+               accordingly.
+
+      Impact:  10Mbps only.
+
+Version 12.2.2 July 10, 2009
+----------------------------
+   Fixes:
+   ======
+   1. Problem: Firmware Management Protocol SetImage() function returns 
+               incorrect error code. (CQ#42488)
+
+      Change : Update driver to return correct error code when SetImage() fails.
+
+   Enhancements:
+   =============
+   1.  Updated driver for Firmware Management Protocol regarding iSCSI Boot
+       update behavior.  If the current iSCSI Boot driver residing in NVRAM is
+       IPv4 only, then the updated component will also be IPv4 only.  If the 
+       current driver is IPv6 then updated component will be IPv6, and so on.
+   
+   2.  Added support for BCM57788 devices.
+
+Version 12.2.1 May 21, 2009
+---------------------------
+   Fixes:
+   ======
+   1. Problem: Unable to save changes in HII. (CQ#40555).
+
+      Cause : "CHAP ID" parameter length mismatch in iSCSI Boot configuration
+              block and HII internal structure.
+ 
+      Change: Updated driver to support the updated parameter length in HII.
+
+   2. Problem: HII Firmware image menu does not display help text. (CQ#40951)
+
+      Change: Added help text.
+
+   Enhancements:
+   =============
+   1. Updated HII interface to support IPv6 parameters.
+
+Version 12.2.0 April 25, 2009
+-----------------------------
+   Enhancements:
+   =============
+   1. Enhanced UNDI API routine to support mapping from Multicast IPv6 
+      Address to Multicast MAC address per RFC 2464.
+
+Version 12.0.2 March 27, 2009
+-----------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM5785 10/100 controllers.
+
+   Fixes:
+   ======
+   1. Fixed a problem where bus descriptions of some devices are not 
+      displayed correctly.
+
+Version 12.0.1 March 24, 2009
+-----------------------------
+   Fixes:
+   ======
+   1. Updated sign-on string to display correct driver version.
+
+Version 12.0.0 March 23, 2009
+-----------------------------
+   Fixes:
+   ======
+   1. Problem: Network stack would display error messages after 
+      ExitBootServices() is called.
+
+      Cause : UNDI driver returns interface error when interface is 
+      marked in *closed* state after ExitBootServices() is called.
+     
+      Change : Changed UNDI driver so that Rx Indication routine 
+      returns NO_DATA when interface is in *closed* state instead
+      of interface errors.
+
+   2. Problem: "CHAP Secret" value should not be visible when screen loads.
+               (CQ#39565)
+   
+      Change : Modified "CHAP Secret" parameter type from string to password.
+
+   3. Problem: HII allowed out-of-range value for TCP port parameter in iSCSI
+               Target menus. (CQ#39408)
+   
+      Change : Updated driver to enforce range checking for TCP port value.
+
+   Enhancements:
+   =============
+   1. Corrected punctuation in HII help menu strings.
+
+   2. Updated applicable HII parameter default values to be consistent with
+      iSCSI Boot Configuration tool default values. (CQ#39606)
+
+   3. Suppress iSCSI option from Boot Protocol parameter in HII MBA
+      Configuration menu, if iSCSI Boot components are not detected. (CQ#39476)
+      
+
+Version 11.9.7 January 22, 2009
+-------------------------------
+   Enhancements:
+   =============
+    1. Added EFI Version Protocol Support.
+
+Version 11.9.6 January 15, 2009
+-------------------------------
+   Fixes:
+   ======
+    1. Problem:
+               NXI UEFI: No LEDs are lit after loading driver on BCM57790. (CQ#39245)
+
+      Cause:
+               Driver did not preserve the Miscellaneous Local Control register.
+
+      Change:
+               Driver performs read and modify when setting the Miscellaneous
+               Local Control register.
+
+      Impact:
+               BCM57790 only.
+
+   Enhancements:
+   =============
+   1. Updated "Legacy Boot Protocol" option in HII MBA Configuration menu.
+
+Version 11.9.5 January 5, 2009
+------------------------------
+   Enhancements:
+   =============
+   1. Added support for 5761S controller.
+
+Version 11.9.4 December 29, 2008
+--------------------------------
+   Fixes:
+   ======
+    1. Problem:
+               NXI UEFI: No LEDs are lit after loading driver on BCM57780. (CQ#39090)
+
+      Cause:
+               Driver did not preserve the Miscellaneous Local Control register.
+
+      Change:
+               Driver performs read and modify when setting the Miscellaneous
+               Local Control register.
+
+      Impact:
+               BCM57780 only.
+
+Version 11.9.3 December 24, 2008
+--------------------------------
+   Enhancements:
+   =============
+   1. Added "Use Independent Target Name" option in HII Secondary Device menu.
+
+Version 11.9.2 December 12, 2008
+--------------------------------
+   Fixes:
+   ======
+    1.Problem:
+               UEFI undie: DRVDIAG failed in b57780. (CQ#38764)
+      Cause:
+               Driver Diag performed Memory Test with incorrect
+               address range for BCM57760 and BCM57780.        
+
+      Change:
+               Driver Diag performs Memory Test with correct
+               address range for BCM57760 and BCM57780.
+
+      Impact:
+               None.
+   
+   Enhancements:
+   =============
+   1. Built with  EDK_20081121.
+
+   2. Added support for the Human Interface Infrastructure Protocol.
+
+Version 11.9.1 November 17, 2008
+--------------------------------
+   Enhancements:
+   =============
+   1. Added support for 57760 and 57790 controllers.
+
+Version 11.9.0 October 21, 2008
+-------------------------------
+
+   Enhancements:
+   =============
+   1. Added support for the 5785 and 57780 controllers.
+   2. Added support for UEFI Firmware Management Protocol v0.3.0.
+
+Version 11.4.1 May 30, 2008
+---------------------------
+   Fixes:
+   ======
+    1. Problem:
+               DASH processor stalls when the driver applies a GRC reset
+               while the DASH processor is also accessing the GRC reset register.
+
+      Cause:
+               A LSI bug is causing this behavior. This driver implements the
+               LSI recommended workaround.        
+
+      Change:
+               The workaround requires the driver to acquire a mutex register
+               before issuing the GRC reset.
+
+      Impact:
+               DASH firmware 0.96 or later is required for this fix to work.
+
+Version 11.4.0 May 14, 2008
+---------------------------
+   Fixes:
+   ======
+   1. Updated driver to correctly implement software handshake with DASH 
+      firmware.
+   2. Updated language code to RFC 3066 format.
+ 
+   Enhancements:
+   =============
+   1. Update CLP support to restore factory default MAC address.
+   2. Display driver messages to StdErr.  If StdErr is not defined, then
+      do not display any messages.
+
+Version 11.0.8 March 12, 2008
+----------------------------
+   Enhancements:
+   =============
+   1. Add CLP support to update permanent MAC Address. (CQ#31813)
+
+Version 11.0.7 March 12, 2008
+----------------------------
+   Fixes:
+   ======
+   1. Problem: BCM5784 fails DRVDIAG test. (CQ#34187)
+   
+      Cause : Incorrect memory offset was being applied.
+ 
+      Change : Corrected memory offset.
+
+Version 11.0.6 March 7, 2008
+----------------------------
+   Fixes:
+   ======
+   1. Problem: BCM5787 fails DRVDIAG test. (CQ#34111)
+
+      Cause : Incorrect register read/write mask was being applied at 
+              offset 0x4000
+
+      Change: Corrected register read/write mask
+
+   2. Problem: PXE arp timeout and loss of mgmt fw connection when
+      PXE/DASH enabled. (CQ#33998)
+   
+      Cause : Driver did not implement the new DASH firmware setup rules
+              for the BCM5761/BCM5761E controllers.
+
+      Change: Implemented required DASH firmware setup rules for the 
+              BCM5761/BCM5761E controllers.
+
+Version 11.0.5 February 11, 2008
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: System might hang during driver bringup/shutdown if CLKREQ
+      and ASPM L0s/L1 are enabled on PCI-E link control registers. (CQ#33808)
+      
+      Cause: Issuing a GRC reset with CLKREQ enabled is causing a global
+      chip reset which causes PCI-E link to drop.
+
+      Change: When ClkReq and L0s/L1 ASPM are enabled, driver will clear
+      ClkReq enable bit before doing GRC reset and restore it after GRC reset.
+
+Version 11.0.4 January 31, 2008
+-------------------------------
+   Enhancements:
+   =============
+   1. Updated Copyright banner to reflect year of 2008.
+   2. Implemented software workaround for AFE BW and Line Distortion problem
+      with BCM5764/BCM5784/BCM5723 B0 devices.  Implementation based on the 
+      content of the One-Time-Program (OTP) memory on the device.
+   3. Removed support for BCM5784/BCM5764/5723 Ax devices.
+   4. Updated APE inter-processor interface code to work with updated DASH
+      firmware for BCM5761/BCM5761E device. 
+   5. Implemented software workaround for BCM5764/BCM5784/BCM5723 B0 devices
+      during Phy Reset.
+
+Version 11.0.3 December 7, 2007
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for 5723 controllers.
+
+Version 11.0.2 November 29, 2007
+--------------------------------
+   Enhancements:
+   =============
+   1. Implemented required software workaround for BCM5764 A0/A1
+      where driver configures clock policy for CPMU block.
+
+   2. Added software handshake with DASH firmware for the 5761/5761E 
+      controllers.
+
+Version 11.0.1 October 23, 2007
+-------------------------------
+   Enhancements:
+   =============
+   1. Improve Tx performance for 5784/5764 A0 devices.
+
+Version 11.0.0 October 16, 2007
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for 5784 and 5761/5761E controllers.
+
+Version 10.7.0 May 8, 2007
+----------------------------
+   Enhancements:
+   =============
+   1. Rebuilt under UEFI EDK for EFI Specification v2.0.
+
+Version 10.4.2 April 3, 2007
+----------------------------
+   Fixes:
+   =====
+   1.  Problem : Invoking UNDI_API PXE_OPCODE_GET_CONFIG_INFO can cause the
+       system to crash.
+
+       Change: Fixed the API routine to call correct PCI Config Read routines.
+
+Version 10.4.1 February 16, 2007
+-------------------------------
+  Enhancements:
+  =============
+  1. Add a checksum byte at NVRAM offset 0x75 for code directory area 
+     (0x14-0x73).(CQ28259) 
+
+Version 10.4.0 January 17, 2007
+-------------------------------
+  Enhancements:
+  =============
+  1. Added support for BCM5756M and BCM5722 devices.
+  2. Enhanced drvcfg to display current link setting.(CQ28155)  
+
+Version 9.4.4 July 27, 2006
+---------------------------
+   Fixes:
+   =====
+   1.  Problem : Application failed to update permanent MAC address or 
+       firmware images (EFI driver or bootcode) on the LOM device which
+       uses GPIO as write-protect control.
+
+       Cause: Driver doesn't assert GPIO1 correctly when write-protect 
+       is enabled.
+
+       Change: Fixed NVRAM write enable routine to assert GPIO1 correctly.
+
+Version 9.4.3 June 1, 2006
+--------------------------
+   Fixes:
+   =====
+   1.  Problem: BCM5704s cannot establish link with Marvell media conversion 
+       module.
+
+       Cause: Marvell serdes may take up 3 seconds or longer to start AUTONEG 
+       process when PCS and SYNC are up. It doesn't start it until the copper
+       interface side is up.  When Autoneg fails, it doesn't perform fallback
+       mechanism correctly.  It later brings down the link again.  It causes 
+       link up/down continuously.
+
+      Change: Changed to BCM5704 AUTONEG logic to handle fallback mechanism 
+      correctly.
+
+Version 9.4.2 May 24, 2006
+-------------------------
+   Enhancements:
+   =============
+   1. Enhanced Configuration Protocol to allow users to force fiber link speed 
+      per customer's request.
+
+Version 9.4.1 May 17, 2006
+-------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM5786 family devices.
+
+Version 9.4.0 May 3, 2006
+-------------------------
+   Enhancements:
+   =============
+   1. Enhanced EFI UNDI STATION_ADDRESS API to allow upper layer to change
+      and restore permanent MAC address. (CQ24519)
+
+Version 9.0.0 December 22, 2005
+--------------------------------
+   Enhancements:
+   =============
+   1. Request: Added support for BCM5752/BCM5755/BCM5787/BCM5714S/
+      BCM5715S/BCM5780/BCM5780S/BCM5754 family devices.
+
+Version 8.1.3 October 26, 2005
+--------------------------------
+   Enhancements:
+   =============
+   1. Updated readme.txt to use native EFI driver instead of EBC driver
+      in the example of ROM. (CQ#14469)
+
+Version 8.1.2 September 22, 2005
+--------------------------------
+   Fixes:
+   =====
+   1.  Problem: EFI Update Protocol fails to update boot code on the device
+       that has invalid checksum of manufacturing block.
+
+       Cause: When driver is requested to update boot code, updating 
+       protocol routine validates many other parameters 
+       (magic number, checksum of manufacturing block, etc...) before
+       programming of boot code is initiated.  Some of the OEM NICs with 
+       Broadcom devices have been released with invalid manufacturing 
+       checksum.  This causes updating boot code image to fail. 
+
+      Change: Per customer's requests, changed EFI update image protocol 
+      routine to not validate the checksum of manufacturing block.
+
+Version 8.1.1 March 15, 2005
+----------------------------
+   Fixes:
+   =====
+   1. Problem: EFI driver doesn't work in some EFI environment 
+      where virtual address is not the same as physical address.
+
+      Cause : There is some limitation in mapping function interface 
+      passed by SNP module where it only allows 100 mapping.  Older
+      driver cannot call this interface to map every preallocated 
+      Rx buffers, etc...  
+
+      Change: Changed UNDI driver to call mapping function provided
+      by SNP module one time during initialization.  Driver then 
+      manages the buffer pool.
+
+      Impact:
+               None.
+
+Version 8.1.0 January 31, 2005
+------------------------------
+   Enhancements:
+   =============
+   1. Enhance EFI Image Update Protocol to have the capability to 
+      upgrade the boot code firmware. (CQ#11673)
+
+      Change: Change Image Update Protocol handler to look at content
+      of the image being passed to see if it's an Expansion ROM image (
+      0x55 0xaa ...) or boot code (0x66 0x99 0x55 0xaa....) and also  
+      add logic to program boot code image.
+
+Version 7.7.4 December 8, 2004
+------------------------------
+   Fixes:
+   =====
+   1. Problem: Updating EFI driver via EFI Update Image protocol is 
+      slow.
+
+      Change: Changed to set NVRAM control bits correctly in NVRAM 
+      write routine.
+
+      Impact:
+               None.
+
+Version 7.7.3 December 7, 2004
+------------------------------
+   Fixes:
+   =====
+   1. Problem: EFI Drvcfg doesn't configure speed correctly. (CQ#11534)
+
+      Cause  : Parameters are not stored correctly.
+
+      Change: Fixed the configuration routine to store parameters
+      correctly.
+
+      Impact:
+               None.
+
+Version 7.7.2 December 6, 2004
+------------------------------
+   Fixes:
+   =====
+   1. Problem: Diagnostics fails on BCM5701 LOM devices. (CQ#11362)
+
+      Cause  : RequestedMediaType field of the device structure was not set to 
+      MAC or PHY loopback during MAC or PHY loopback.  If a link change occurs,
+      PHY initialization routine can change the loopback setting.
+
+      Change: Change diagnostics code to set RequestedMediaType field with
+      correct values during loopback testing.      
+
+      Impact:
+               None.
+
+Version 7.7.1 December 2, 2004
+------------------------------
+   Fixes:
+   =====
+   1. Problem: Diagnostics fails on the Shasta family devices.
+
+      Cause  : Incorrect memory and register information is used.
+
+      Change: Change diagnostics code to use correct memory and register
+      information for Shasta family devices.
+
+      Impact:
+               None.
+
+
+Version 7.7.0 November 16, 2004
+------------------------------
+
+   Enhancements:
+   =============
+   1. Request: Preserve content of lower 14-bit of Serdes control 
+      register which includes parameters of Predriver current, 
+      Tx driver current, and pre-emphasis coefficient.
+      
+      Change : Changed PXE firmware to preserve content of lower 14-bit 
+      of Serdes control when TX Serdes overwrite feature is enabled.
+
+   2. Request: Added ST M45PExxx/Saifun SA25Fxxx/AT25F512N support for 
+      Shasta family devices.
+
+        The following is the supported NVRAM summary:
+    
+       SO   :   Bit 25, Flash Size,     internal pull-up 
+       SI   :   Bit 24, Protected Mode, internal pull-down
+       SCLK :   Bit 1,  Buffered Mode,  internal pull-down
+       CS   :   Bit 0,  Flash Mode,     internal pull-down
+
+    [SO,SI,SCLK,CS] Device          Description
+    --------------- ------------  ----------------------
+     1000         AT24C512      SEEPROM, AT24Cxxx, any size              
+     0111         SA25F0xx      Saifun SA25F005/010/020 (512KB/1MB/2MB)
+     1011         AT45DB011B    Atmel Buffered 1MB Flash
+     1101         ST M45PEx0    ST M45PE80/M45PE40/M45PE20/M45PE10
+                                8/4/2/1MB Flash
+      Change : Modified Flash driver to support above devices.  
+
+   3. Request : Added support for BCM5751 devices in 12x12 packages.
+
+      Change : Changed PXE code to recognize devices with PCI vendor ID/device
+      ID of 0x14e4/0x16f7,0x14e4/0x16fd,0x14e4/0x16fe, and 0x14e4/0x16dd.
+
+Version 7.5.1 October 19, 2004
+------------------------------
+
+   Enhancements:
+   =============
+   1. Request:  Enhance Driver Unload feature so that issuing explicit 
+      disconnect command is not necessary when "unload" command is
+      used to unload a driver.
+
+      Change: EFI Image Unload command is supposed to disconnect all 
+      components that are attaching to the image being unloaded.  
+      However, this command might not disconnect all components due 
+      to a bug in SNP in some core firmware environments. 
+      Changed driver unloading routine to disconnect all components 
+      that are attaching to the image handle of the UNDI driver.
+
+      Impact:
+             None.
+   
+Version 7.5.0 October 18, 2004
+-----------------------------
+
+   Enhancements:
+   =============
+   1. Request:  Add support for BCM575x-based NICs/LOMs.
+
+      Change: Changed PXE code to recognize and support BCM575x-based 
+             NICs/LOMS.
+
+      Impact:
+             None.
+   
+   2. Request: Make enhancement so that EFI driver and ASF/IPMI can run 
+      concurrently.
+
+      Change: Changed EFI UNDI code to handshake with ASF/IPMI firmware
+      during initialization/shutdown sequence.
+
+Version 7.0.4 October 7, 2004
+-----------------------------
+
+   Enhancements:
+   =============
+   1. Request:  Add EFI Driver Image Update Protocol.  This allows user 
+      application to interface with the driver for programming the EFI ROM 
+      on the NIC's NVRAM. (CQ#10977)
+
+      The GUID and protocol interface are shown as follows:
+        {0xC07B8D1F,0xF359,0x4C84,0xBF,0xCA,0xB1,0xE5,0x36,0xE0,0x14,0x26} 
+
+        (EFIAPI *EFI_FC_DRIVER_IMAGE_UPDATE_PROTOCOL_UPDATE_DRIVER) (
+               IN       EFI_HANDLE              ControllerHandle,
+               IN       UINT8                   *FwImagePtr,
+               IN       UINT32                  FwImageSize
+        );
+
+
+      Change: Implemented logic to program EFI image on the NIC's NVRAM,
+      program Expansion ROM size parameters based on the size of the driver
+      image, and finally administratively enable PXE parameter.
+
+      Impact:
+               None.
+
+Version 7.0.3 May 26, 2004
+----------------------------
+
+   Fixes:
+   =====
+   1. Problem: System might crash during ExitBootService if driver is stopped 
+      and started again (e.g reconnect -r) before ExitBootService is called.
+
+      Cause  : UNDI driver maintains a list of devices that it controls.  There
+      is a bug in DriverStop where it doesn't remove the control block from 
+      this list of devices even the memory block of that control block is freed.  
+      During ExitBootService, driver refers to memory block that has been 
+      freed which causes system to crash.
+
+      Change: Fixed the DriverStop routine so that it removes the control block
+      from the list of managed devices.
+
+      Impact:
+               None.
+
+Version 7.0.2 March 30, 2004
+----------------------------
+
+   Fixes:
+   =====
+   1. Problem: BCM5701-based NIC/LOM PXE might use zero MAC address 
+               when it's used with older version of boot code.
+
+      Cause  : UNDI driver assumes that MAC address are programmed by the 
+               bootcode.  However, older version of boot code doesn't 
+               program MAC address correctly in a certain scenario. UNDI 
+               driver v6.8.0 should have fixed this problem. However, 
+               serial EEPROM driver has a bug which causes MAC address in 
+               the serial EEPROM cannot be read correctly.
+
+      Change: Fixed serial EEPROM driver so that MAC address can be read
+              correctly.
+
+      Impact:
+               None.
+
+Version 7.0.1 March 11, 2004
+----------------------------
+   Fixes:
+   ========
+   1. Problem: EFI core firmware doesn't shutdown EFI driver before it 
+      transfers control to the O/S.  Linux driver doesn't bring up the
+      chip properly if it's not in unintialized state.
+
+      Change: Added an ExitBootServices event hook so that it issues GRC
+      reset to the devices that it's managing.
+
+      Impact: None.
+
+   Enhancements:
+   =============
+   1. Request:
+             Increase support for maximum up to 64 NICs or LOMs.
+
+      Impact:
+             None.
+
+Version 7.0.0 August 18, 2003
+-----------------------------
+   Enhancements:
+   =============
+   1. Request:
+             Improve bit error performance of 5703AX and 5704AX when used
+             with long cable lengths.
+      Change:
+             Program the phy's ADC and Gamma registers to more optimum 
+             settings.
+      Impact:
+             None.
+
+   2. Request:
+             Improve Serdes drive levels on 5704s.
+      Change:
+             Programed the serdes config registers so that SerDes' drive 
+             transmission level is 1.2V.
+
+      Impact:
+             None. 
+
+Version 6.8.1 July 29, 2003
+----------------------------
+   Fixes:
+   ========
+   1. Problem: UNDI driver might indicate a few packets with invalid length
+               to upper layer right after second and subsequent driver 
+               init/shutdown.
+  
+      Cause  : After second init, driver indices are not reinitialized.  
+
+      Change: UNDI driver is changed to reinitialize indices.
+
+      Impact:
+               None.
+
+Version 6.8.0 July 21, 2003
+----------------------------
+   Fixes:
+   ========
+   1. Problem: UNDI driver might use zero MAC address when it's used with 
+               older version of boot code.  This will cause UNDI driver to
+               fail in network boot.  This should only happen on a certain 
+               LOM  applications where WoL is disabled.
+  
+      Cause  : UNDI driver assumes that MAC address are programmed by the 
+               bootcode. However, older version of boot code doesn't program 
+               MAC address correctly in a certain scenario.
+
+      Change: If MAC registers contain zero MAC address, UNDI driver will 
+              retrieve MAC address from the NVRAM directly.
+
+      Impact:
+               None.
+
+   Enhancements:
+   =============
+   1. Request:
+               Enable hardware fixes in 5704_Bx parts for known 5704 Ax errata.
+      Change:
+               Added code to driver init routines to enable hardware fixes in
+               5704 B0 silicon.  See 5704 errata for more details info about
+               the changes/fixes in B0 silicon.
+
+      Impact:
+               None.
+
+Version 6.1.2 May 12, 2003
+----------------------------
+   Fixes:
+   ========
+   1. Problem: Driver doesn't pass traffic if the fiber interface is 
+               connected to a port that has AUTONEG turned off. (CQ#7781)
+
+      Cause: Fallback mechanism doesn't work when autonegotiation fails 
+             and interface doesn't receive configuration change from 
+             the link partner.
+
+      Change: Fixed the PHY setup routine so that fallback mechanism 
+              works correctly.
+
+      Impact: None.
+
+Version 6.1.1 May 08, 2003
+----------------------------
+   Fixes:
+   ========
+   1. Problem: DHCP process intermittently doesn't completely successfully. 
+
+      Cause: This issue is caused by the following reasons:
+               * Status block is not updated in a certain race condition. 
+               * Link might be completely before base code starts sending 
+                 out DHCP request packets.  This causes packets not being
+                 sent to DHCP server.
+
+      Change: Changed the UNDI_Initialize API call so that it checks for 
+              link up before returning back to the callers when Cable Check 
+              is requested.  
+              Changed so that UNDI doesn't dynamically turn on and off
+              host coalescing block. 
+
+      Impact: None.
+
+   2. Problem: Multicast packets are not filtered correctly.  If 
+               RECEIVE_FILTER UNDI API is called with
+               PXE_RECEIVE_FILTER_DISABLE is called, the controller
+               is mistakenly programmed to operate in promiscuous 
+               mode.
+ 
+      Cause  : If RECEIVE_FILTER API is called with PXE_RECEIVE_DISABLE, 
+               the driver will receive unwanted packets from the network.  
+               This can cause lower performance and packet drops.
+
+      Change:  Changed so that correct filtering is disabled when this 
+               API is called.
+
+      Impact:
+               None.
+
+
+   Enhancements:
+   =============
+   1. Request: Provide proper indication of media presence after UNDI 
+               INIITIALIZE calls.  This allows base code to abort PXE
+               boot if no cable is attached.
+
+      Change:  Changed the UNDI Initialize API so that it polls for
+               link status.
+
+      Impact:
+               None.
+
+   2. Request: "Revision Level of Code/Data" in PCI ROM header should 
+               contain version of EFI UNDI driver.
+
+      Change:  Enhanced EFIROM.EXE utility to initialize the mentioned
+               field with correct UNDI version number.
+
+      Impact:
+               None.
+
+
+Version 6.1.0 May 04, 2003
+----------------------------
+   Fixes:
+   ========
+   1. Problem: In some extremely rare situations, 5702/03/04 Copper NICs
+               may not link up after a PHY reset.
+
+      Cause: On some 5702/03/04 PHY cores, there is a small probability of
+             lock up after a PHY reset.
+
+      Change: Added code to detect PHY lock up after a PHY reset and
+              reset again if lock up is detected.
+
+      Impact: The added lock up detection and recovery code affects
+              driver reset and link down events where PHY resets are
+              performed.
+
+   Enhancements:
+   =============
+   2. Request: Enhanced to allow users to start diagnostics without specifying
+               the child handle.
+
+      Change:  Changed diagnostics upper layer interface to retrieve child handle
+               from internal data structure with given controller handler.
+
+      Impact:
+               None.
+
+   Enhancements:
+   =============
+   3. Request: Enhanced to take advantage DUAL ADDRESS that is supported in 
+               EFI 1.10.14.61.
+
+      Change:  Changed initializing code to enable DUAL_ADDRESS feature for
+               PCI/IO of devices.
+
+      Impact:
+               None.
+
+
+v6.0.2 (03/05/03) - Fixed a problem where register test fails on BCM5705 when
+                    no cable is connected. (CQ7153)
+                  - Added an interface to export UNDI driver version to 
+                    external management software entity. 
+                  - Enhanced EFIROM application so that it extracts UNDI driver
+                    version from EFI UNDI driver and to put UNDI version 
+                    information into EFI ROM header.
+
+v6.0.1 (02/27/03) - Added MAC and PHY loopback feature in addition to 
+                    current memory and register test.  Driver transmits 
+                    2000 packets with incremental length (from 64 bytes to 
+                    1518 bytes) and verifies it can receive all packets 
+                    back correctly. (CQ6692)
+                 -  Fixed a typo in product description string. (CQ 7085)
+
+v6.0.0 (02/13/03) - Added support for newer version of BCM5705 family.
+                  - Enhanced so that packet is always padded with 0's if 
+                    the packet length is less than minimum ethernet packet
+                    size.  The padding is now padded by hardware ASICs 
+                    instead of software.
+
+v5.0.5 (12/17/02) - Added EBC (EFI Byte Code) support.  See section 
+                    "Integration driver with Option ROM" for details.
+                  - Fixed a problem where generic banner is displayed 
+                    for newer version of BCM5703-based NICs.
+                   
+v5.0.4 (12/11/02) - Added support for new PCI devices (0x14e4/0x16c7,0x14e4/0x16c6,
+                    0x14e4/0x1696).
+
+v5.0.3 (11/26/02) - Enhanced so that version in drivers command now contains
+                    UNDI driver version.
+                  - Fixed a problem where link monitoring timer is not stopped
+                    when driver is shut down.
+
+v5.0.2 (10/03/02) - Second channel of BCM5704 fiber NIC is not detected  
+                    in core firmware v1.02. (CQ5627)
+
+v5.0.1 (09/17/02) - Fixed a problem where FTP file download hangs when B5700B2 
+                    is used. (CQ5501)
+                  - Added BCM5704 Fiber support.
+
+v5.0.0 (09/12/02) - Fixed a problem where MTFTP download fails. (CQ5444)
+
+v3.0.4 (08/28/02) - Added EFI Driver Diagnostics Protocol Support.
+                  - Added NII driver version 3.1 support.
+                  - Removed support for BCM5705 and BCM5901.
+
+v3.0.3 (08/27/02) - Fixed a problem where link comes up at 100Mbps when WOL
+                    is enabled on a certain NICs. (CQ5292)
+                  - Fixed a problem where system hangs if the content of 
+                    NVRAM is blank or corrupted.
+
+v3.0.2 (08/13/02) - Added support for BCM5705 and BCM5901.
+                  - Fixed a problem where driver failes to negotiate link to
+                    highest denominitor when it's set from 10/100 to Auto. (CQ5058)
+
+v3.0.1 (07/23/02) - Added EFI Component Name Protocol support.
+                  - Added EFI Configuration Protocol support.
+                  - Enhanced to comply with EFI 1.1 v0.95.
+
+v3.0.0 (06/19/02) - Fixed a problem where only one channel of BCM5704-based NIC
+                    is detected. (CQ4377)
+                  - Fixed a problem where PCI-X command register is overwritten.
+
+v2.1.6 (06/07/02) - Fixed a problem where base-code fails to transmit packets if 
+                    there is a lot of broadcast background traffic.  
+
+v2.1.5 (04/22/02) - Fixed a problem where driver doesn't work in some PCI-X systems.
+
+v2.1.4 (03/21/02) - Fixed a problem where BCM5700C2 NIC does not work at 
+                    if connection is changed from 100Mbps to 1Gbps. (CQ3711)
+                  - Added support for different LED configurations.
+
+v2.1.3 (03/20/02) - Fixed a problem where BCM5700C2 NIC does not work at 
+                    100Mbps. (CQ3605)
+                  - Fixed a problem where no device path found for BCM5700B2.
+                    (CQ3586)
+
+v2.1.2 (02/24/02) - Added support for Ethernet WireSpeed feature for 
+                    BCM5702/BCM5703 NICs/LOMs.
+                  - Added support for NICs with device ID 0x16a6 and 0x16a7.
+                  - Added machanism to protect serial EEPROM corruption.
+
+v2.1.1 (02/12/02) - Fixed a banner typo.
+
+v2.1.0 (02/02/02) - Fixed a problem where driver doesn't work in EFI 1.10.54 
+                    core firmware environment.
+
+v2.0.5 (11/19/01) - Added description of what slot (PCI or PCI-X) the NIC/LOM is 
+                    installed on when it's detected.
+                  - Released EFI driver in library format for LOM application.
+
+v2.0.4 (11/16/01) - Added support for EFI core firmware v1.1.
+                  - Fixed a problem where performance of TCP/UDP traffic 
+                    is intermittently slow.
+
+v2.0.3 (10/29/01) - Built specificially for core firmware V1.02.12.32 and
+                    older.  This version of driver doesn't raise/restore
+                    priority level as done to work around an issue
+                    in SNP module of core firmware v1.02.12.36 Or newer.
+
+v2.0.2 (10/26/01) - Fixed a problem Bond ID is not checked correctly.
+
+v2.0.1 (10/19/01) - Added support for BCM5702 and BCM5703 NICs/LOMs.
+
+v2.0.0 (09/06/01) - Fixed a problem where application (pktsnoop) cannot
+                    monitor packet with invalid 802.3 length fields.
+                  - Fixed a problem where system intermittently crashes during
+                    continous file transfer.
+                  - Added Fiber NIC support.
+
+v0.03 (08/31/01)  - Added support for BCM5701.
+                  - Fixed problem with loading driver on IA-32 (CQ#2009).
+                  - Fixed problem when assigning IP address on IA-32 (CQ#2300).
+                  - Fixed pktxmit.efi crashing problem (CQ#2302).
+                  - Added a workaround to minimize the race condition on SNP
+
+v0.02 (08/18/01)  - Fixed problem with ping on IA-64 (CQ#1960).
+
+v0.01 (05/14/01)  - First Release. 
+
+
+
+

@@ -1,0 +1,64 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FchSSSataD3ColdSmm
+  FILE_GUID                      = ada1c665-7a8a-467c-84ea-7172b2b65862
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.1
+  ENTRY_POINT                    = FchSataD3ColdSmmEntryPoint
+
+[sources]
+  FchSSSataD3ColdSmm.c
+  FchSSSataD3ColdSmm.h
+
+[sources.ia32]
+
+[sources.x64]
+
+[LibraryClasses]
+  FchSandstoneDxeLib
+  FchSmmLibV9
+
+  UefiDriverEntryPoint
+  BaseMemoryLib
+  BaseLib
+  DebugLib
+  SmmServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  DevicePathLib
+  MemoryAllocationLib
+  HobLib
+  UefiLib
+  PcdLib
+
+[Guids]
+
+[Protocols]
+  gFchInitProtocolGuid                   #CONSUMED
+  gFchSmmSwDispatch2ProtocolGuid         #CONSUMED
+  gFchSmmSxDispatch2ProtocolGuid         #CONSUMED
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchSataD3EntrySwSmi
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchSataD3ExitSwSmi
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.FchRTD3ColdEnableMap
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[Depex]
+  gFchSmmSwDispatch2ProtocolGuid
+  AND
+  gFchInitProtocolGuid
+  AND
+  gAmdFchSandstoneDepexProtocolGuid
+

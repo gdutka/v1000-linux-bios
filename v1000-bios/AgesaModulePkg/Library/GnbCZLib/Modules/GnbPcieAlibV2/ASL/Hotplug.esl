@@ -1,0 +1,194 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: GNB
+ * @e \$Revision: 61089 $   @e \$Date: 2011-10-31 10:31:02 -0700 (Mon, 31 Oct 2011) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+/*----------------------------------------------------------------------------------------*/
+/**
+ *  Port hotplug
+ *
+ *  Arg0 - Hotplug scenario
+ *  Arg1 - Port BDF
+ */
+Method (procHotplug, 2) {
+  ALIB_DEBUG (" Hotplug Enter ")
+  Store (0, Local0)
+  while (LLess (Local0, NUM_OF_PORTS)) {
+    Store (procHotplugCheckPort (Local0, Arg1), Local1)
+    if (LEqual (Local1, TRUE)) {
+      Store (procHotplugPort (Local0, Arg0), Local1)
+      break
+    }
+    Increment (Local0)
+  }
+  ALIB_DEBUG (" Hotplug return buffer")
+  Store (Buffer (10) {}, Local7)
+  CreateWordField (Local7, 0x0, varReturnBufferLength)
+  CreateByteField (Local7, 0x2, varReturnStatus)
+  CreateByteField (Local7, 0x3, varReturnDeviceStatus)
+  Store (0x4, varReturnBufferLength)
+  Store (0x0, varReturnStatus)
+  Store (Local1, varReturnDeviceStatus)
+  ALIB_DEBUG (" Hotplug Exit")
+  return (Local7)
+}
+
+/*----------------------------------------------------------------------------------------*/
+/**
+ *  Locate hotplug port
+ *
+ *  Arg0 - port index
+ *  Arg1 - BDF of child device
+ */
+Method (procHotplugCheckPort, 2) {
+ALIB_DEBUG (Concatenate (" HotplugCheckPort Port  ", ToHexString (Arg0), ADBG))
+#ifdef BR0
+  if (LEqual(Arg0, 0)) {
+    return (BR0.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+#ifdef BR1
+  if (LEqual(Arg0, 1)) {
+    return (BR1.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+#ifdef BR2
+  if (LEqual(Arg0, 2)) {
+    return (BR2.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+#ifdef BR3
+  if (LEqual(Arg0, 3)) {
+    return (BR3.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+#ifdef BR4
+  if (LEqual(Arg0, 4)) {
+    return (BR4.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+#ifdef BR5
+  if (LEqual(Arg0, 5)) {
+    return (BR5.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+#ifdef BR6
+  if (LEqual(Arg0, 6)) {
+    return (BR6.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+#ifdef BR7
+  if (LEqual(Arg0, 7)) {
+    return (BR7.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+#ifdef BR8
+  if (LEqual(Arg0, 8)) {
+    return (BR8.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+#ifdef BR9
+  if (LEqual(Arg0, 9)) {
+    return (BR9.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+#ifdef BR10
+  if (LEqual(Arg0, 10)) {
+    return (BR10.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+#ifdef BR11
+  if (LEqual(Arg0, 11)) {
+    return (BR11.procPcieIsPortHotplug (Arg1))
+  }
+#endif
+}
+
+/*----------------------------------------------------------------------------------------*/
+/**
+ *  Locate hotplug port
+ *
+ *  Arg0 - port index
+ *  Arg1 - hotplug action
+ */
+Method (procHotplugPort, 2) {
+ALIB_DEBUG (Concatenate (" HotplugPort Port  ", ToHexString (Arg0), ADBG))
+#ifdef BR0
+  if (LEqual(Arg0,0)) {
+    return (BR0.procPciePortHotplug (Arg1))
+  }
+#endif
+#ifdef BR1
+  if (LEqual(Arg0, 1)) {
+    return (BR1.procPciePortHotplug (Arg1))
+  }
+#endif
+#ifdef BR2
+  if (LEqual(Arg0, 2)) {
+    return (BR2.procPciePortHotplug (Arg1))
+  }
+#endif
+#ifdef BR3
+  if (LEqual(Arg0, 3)) {
+    return (BR3.procPciePortHotplug (Arg1))
+  }
+#endif
+#ifdef BR4
+  if (LEqual(Arg0, 4)) {
+    return (BR4.procPciePortHotplug (Arg1))
+  }
+#endif
+#ifdef BR5
+  if (LEqual(Arg0, 5)) {
+    return (BR5.procPciePortHotplug (Arg1))
+  }
+#endif
+#ifdef BR6
+  if (LEqual(Arg0, 6)) {
+    return (BR6.procPciePortHotplug (Arg1))
+  }
+#endif
+#ifdef BR7
+  if (LEqual(Arg0, 7)) {
+    return (BR7.procPciePortHotplug (Arg1))
+  }
+#endif
+#ifdef BR8
+  if (LEqual(Arg0, 8)) {
+    return (BR8.procPciePortHotplug (Arg1))
+  }
+#endif
+#ifdef BR9
+  if (LEqual(Arg0, 9)) {
+    return (BR9.procPciePortHotplug (Arg1))
+  }
+#endif
+#ifdef BR10
+  if (LEqual(Arg0, 10)) {
+    return (BR10.procPciePortHotplug (Arg1))
+  }
+#endif
+#ifdef BR11
+  if (LEqual(Arg0, 11)) {
+    return (BR11.procPciePortHotplug (Arg1))
+  }
+#endif
+}
+

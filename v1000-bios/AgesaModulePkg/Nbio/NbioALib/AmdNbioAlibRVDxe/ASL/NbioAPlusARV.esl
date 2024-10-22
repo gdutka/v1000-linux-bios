@@ -1,0 +1,113 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: NBIO
+ * @e \$Revision: 309090 $   @e \$Date: 2014-12-10 02:28:05 +0800 (Wed, 10 Dec 2014) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  A+A feature
+   *
+   *
+   *  Arg0 - buffer contains Power or thermal parameters
+   */
+  Method (procAPlusAFeature, 0, Serialized) {
+    if (LEqual (PeApmEnable, ENABLE)) {
+      ALIB_DEBUG ("procPeApmFeature - Enable")
+      Store (0, Local0)
+      while (LLess (Local0, NUM_OF_PORTS)) {
+        procAplusAFeaturePort (Local0)
+        Increment (Local0)
+      }
+    }
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  A+A Service Request Interface
+   *
+   *
+   *  Arg0 - A+A Service Request #
+   *  Arg1 - SMU Request Arg0
+   *  Arg2 - SMU Request Arg1
+   */
+    Method (procAPlusAServiceReq, 3) {
+      ALIB_DEBUG (Concatenate ("procAPlusAServiceReq ", ToHexString (Arg0), ADBG))
+      // Local7 as an input buffer and passed to procSmuServiceReq
+      Store (Buffer (24) {}, Local7)
+      CreateDWordField (Local7, 0,  varSmuArg0)
+      CreateDWordField (Local7, 4,  varSmuArg1)
+      CreateDWordField (Local7, 8,  varSmuArg2)
+      CreateDWordField (Local7, 12, varSmuArg3)
+      CreateDWordField (Local7, 16, varSmuArg4)
+      CreateDWordField (Local7, 20, varSmuArg5)
+      Store (Arg1, varSmuArg0)
+      Store (Arg2, varSmuArg1)
+      procSmuServiceReq (Arg0, Local7)
+    }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  A+A feature for PCIe port
+   *
+   *  Arg0 - port index
+   */
+  Method (procAplusAFeaturePort, 1) {
+  ALIB_DEBUG (Concatenate (" procAplusAFeaturePort Port  ", ToHexString (Arg0), ADBG))
+  #ifdef BR0
+    if (LEqual(Arg0, 0)) {
+      return (BR0.procPciePortAPlusA ())
+    }
+  #endif
+  #ifdef BR1
+    if (LEqual(Arg0, 1)) {
+      return (BR1.procPciePortAPlusA ())
+    }
+  #endif
+  #ifdef BR2
+    if (LEqual(Arg0, 2)) {
+      return (BR2.procPciePortAPlusA ())
+    }
+  #endif
+  #ifdef BR3
+    if (LEqual(Arg0, 3)) {
+      return (BR3.procPciePortAPlusA ())
+    }
+  #endif
+  #ifdef BR4
+    if (LEqual(Arg0, 4)) {
+      return (BR4.procPciePortAPlusA ())
+    }
+  #endif
+  #ifdef BR5
+    if (LEqual(Arg0, 5)) {
+      return (BR5.procPciePortAPlusA ())
+    }
+  #endif
+  #ifdef BR6
+    if (LEqual(Arg0, 6)) {
+      return (BR6.procPciePortAPlusA ())
+    }
+  #endif
+  #ifdef BR7
+    if (LEqual(Arg0, 7)) {
+      return (BR7.procPciePortAPlusA ())
+    }
+  #endif
+  }

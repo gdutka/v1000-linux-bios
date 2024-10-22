@@ -1,0 +1,22 @@
+//;******************************************************************************
+//;* Copyright (c) 2015, Insyde Software Corp. All Rights Reserved.
+//;*
+//;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+//;* transmit, broadcast, present, recite, release, license or otherwise exploit
+//;* any part of this publication in any form, by any means, without the prior
+//;* written permission of Insyde Software Corporation.
+//;*
+//;******************************************************************************
+//;
+//; Module Name:
+//;
+//;   SecureBootMgrDxeImage.idf
+//;
+//; Abstract:
+//;
+//;   Images for SecureBootMgrDxe
+//;
+
+!if gInsydeTokenSpaceGuid.PcdH2OFormBrowserLocalMetroDESupported
+#image IMAGE_SECURE_BOOT_MENU        "ImageSecureBootMenu.png"
+!endif

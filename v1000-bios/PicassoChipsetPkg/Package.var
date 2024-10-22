@@ -1,0 +1,33 @@
+## @file
+#  File to declare variable default information
+#
+#******************************************************************************
+#* Copyright (c) 2015, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+# This file is ini format and Comments are prefixed with a # and continue to the end of the line.
+#
+
+#
+# Optional [Guids] section. uses to declare guid which used in this file.
+#
+[Guids]
+
+#
+# The [Packages] section lists all of the package declaration files that contain
+# GUIDs or PCDs that are used by this variable declaration file.
+#
+[Packages]
+
+#
+# Below can write Var section to introduce a single UEFI variable default value for the specified
+# default stores and specified SKU.
+#
+# Section format is [Var.VariableGUID.VariableName] for example [Var.gEfiFileInfoGuid.MyTestVar]
+#

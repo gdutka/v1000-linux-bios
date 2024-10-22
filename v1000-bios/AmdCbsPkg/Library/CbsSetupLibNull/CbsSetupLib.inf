@@ -1,0 +1,27 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CbsSetupLibInstance
+  FILE_GUID                      = 3FD49817-D908-4539-BC43-6D314BD99559
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CbsSetupLib
+
+[Sources]
+  CbsSetupLib.c
+  AmdCbsDefault.c
+  AmdCbsForm.vfr
+  AmdCbsStrings.uni
+
+[LibraryClasses]
+  CbsDxeFuncLib
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+

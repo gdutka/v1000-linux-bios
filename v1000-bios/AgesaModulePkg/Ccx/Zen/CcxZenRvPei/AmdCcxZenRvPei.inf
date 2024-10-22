@@ -1,0 +1,72 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdCcxZenRvPei
+  FILE_GUID                      = D3A6CF7C-2A13-4DCD-961F-B88C85ACEB34
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdCcxZenRvPeiInit
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  PeimEntryPoint
+  AmdBaseLib
+  IdsLib
+  CcxBaseX86Lib
+  CcxBistLib
+  CcxRolesLib
+  CcxResetTablesLib
+  AmdIdsHookLib
+  CcxZenRvIdsHookLibPei
+  FchBaseLib
+  AmdCapsuleLib
+  MemRestoreLib
+
+[sources]
+  AmdCcxZenRvPei.c
+  CcxZenRvBrandString.c
+  CcxZenRvBrandString.h
+  CcxZenRvCacheInit.c
+  CcxZenRvCacheInit.h
+  CcxZenRvDownCoreInit.c
+  CcxZenRvDownCoreInit.h
+#[start-240426-IB18160212-add]#
+  ApAsm.nasm
+#[start-240426-IB18160212-add]#
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gAmdFabricTopologyServices2PpiGuid #CONSUMED
+  gAmdCcxPeiInitCompletePpiGuid      #PRODUCED
+  gAmdCoreTopologyServicesPpiGuid    #CONSUMED
+  gAmdNbioSmuServicesPpiGuid         #CONSUMED
+  gEfiPeiReset2PpiGuid               #CONSUMED
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDownCoreMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSmtMode
+
+[Depex]
+  gAmdCcxZenRvDepexPpiGuid AND
+  gAmdFabricTopologyServices2PpiGuid AND
+  gAmdCoreTopologyServicesPpiGuid AND
+  gAmdNbioSmuServicesPpiGuid
+

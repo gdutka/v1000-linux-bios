@@ -1,0 +1,51 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010005
+  BASE_NAME             = AmdXgbeAndDisplayConfigurePei
+  FILE_GUID             = 7f0690ad-1725-4930-8137-94d0fcf5f63a
+  MODULE_TYPE           = PEIM
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = AmdXgbeAndDisplayConfigurePeiInit
+
+[Sources.common]
+  AmdXgbeAndDisplayConfigure.c
+  AmdXgbeAndDisplayConfigure.h
+
+[LibraryClasses]
+  BaseLib
+  HobLib
+  DebugLib
+  PeimEntryPoint
+  AmdCpmBaseLib
+  AmdCpmCpuLib
+  AmdCpmFchLib
+  AmdPbsConfigLib
+  IoLib
+  AmdBaseLib
+[Guids]
+
+[Ppis]
+gEfiPeiI2cMasterPpiGuid
+gEfiPeiReadOnlyVariable2PpiGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec 
+  
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbeSfp
+  gAmdCpmPkgTokenSpaceGuid.PcdBoardRevision
+[Depex]
+gEfiPeiI2cMasterPpiGuid AND
+gAmdCpmTablePpiGuid AND
+gEfiPeiReadOnlyVariable2PpiGuid

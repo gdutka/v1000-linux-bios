@@ -1,0 +1,35 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemServicesLib
+  FILE_GUID                      = 394297B7-BE27-4107-9209-2245103AA985
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemServicesLib 
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  AmdMemServicesLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+  AmdMemBaseLib
+  
+[Ppis] 
+  gAmdMemoryFamilyServicesPpiGuid #Consumes
+ 
+[Pcd]
+

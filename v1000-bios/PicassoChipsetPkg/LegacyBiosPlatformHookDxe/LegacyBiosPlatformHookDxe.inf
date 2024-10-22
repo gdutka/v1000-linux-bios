@@ -1,0 +1,52 @@
+## @file
+#  Component description file for LegacyBiosPlatformHook driver.
+#
+#*******************************************************************************
+#* Copyright (c) 2013 - 2018, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#*******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = LegacyBiosPlatformHookDxe
+  FILE_GUID                      = A94B6FBA-BB07-4a98-8749-A860D6EB7724
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = LegacyBiosPlatformHookDxeEntry
+
+[Sources]
+  LegacyBiosPlatformHookDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  BaseLib
+  DxeServicesLib
+  DxeChipsetSvcLib
+
+[Protocols]
+  gEfiLegacyBiosProtocolGuid
+  gEfiLegacyBiosPlatformProtocolGuid
+  gEfiPciIoProtocolGuid
+  gOemServicesProtocolGuid
+  gEfiLegacyInterruptProtocolGuid
+
+[FeaturePcd]
+#  gInsydeTokenSpaceGuid.PcdSeamlessAhciSupported
+
+[Depex]
+  gEfiLegacyBiosProtocolGuid AND
+  gEfiLegacyBiosPlatformProtocolGuid
+

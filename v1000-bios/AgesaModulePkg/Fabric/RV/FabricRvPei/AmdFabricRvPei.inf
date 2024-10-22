@@ -1,0 +1,76 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdFabricRvPei
+  FILE_GUID                      = 09DF88E2-0E05-4F28-A55F-0D62BFBCF59F
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdFabricRvPeiInit
+
+#
+#  VALID_ARCHITECTURES           = IA32
+#
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  PcdLib
+  PeimEntryPoint
+  AmdBaseLib
+  IdsLib
+  BaseFabricTopologyLib
+  PeiFabricTopologyServices2Lib
+  FabricPstatesLib
+  FabricRegisterAccLib
+  AmdIdsHookLib
+  FabricIdsHookRvLibPei
+  ApobCommonServiceLib
+  PeiFabricResourceManagerServicesLib
+
+[sources]
+  AmdFabricRvPei.c
+  FabricCcmInit.c
+  FabricCcmInit.h
+  FabricCsInit.c
+  FabricCsInit.h
+  FabricDfClkGatingInit.c
+  FabricDfClkGatingInit.h
+  FabricGcmNcmInit.c
+  FabricGcmNcmInit.h
+  FabricIomsInit.c
+  FabricIomsInit.h
+  FabricPieRasInit.c
+  FabricPieRasInit.h
+  FabricScrubInit.c
+  FabricScrubInit.h
+  FabricPstateServicesPei.c
+  FabricPstateServicesPei.h
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gAmdFabricTopologyServices2PpiGuid #PRODUCED
+  gAmdFabricPstateServicesPpiGuid    #PRODUCED
+  gAmdSocLogicalIdPpiGuid            #CONSUMED
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFabricDramScrubTime
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFabricEccScrubRedirection
+
+[Depex]
+  gAmdFabricRvDepexPpiGuid
+

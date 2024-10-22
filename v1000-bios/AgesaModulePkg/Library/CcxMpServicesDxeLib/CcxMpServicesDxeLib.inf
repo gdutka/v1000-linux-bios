@@ -1,0 +1,46 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = CcxMpServicesDxeLib
+  FILE_GUID                      = E47D2A4A-1BD3-4008-B697-A3F7913AB4A6
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CcxMpServicesLib|DXE_DRIVER DXE_RUNTIME_DRIVER DXE_CORE UEFI_DRIVER
+
+[Sources.common]
+  CcxMpServicesDxeLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+  CcxRolesLib
+
+[Guids]
+
+[Protocols]
+  gEfiMpServiceProtocolGuid               #CONSUME
+  gAmdFabricTopologyServices2ProtocolGuid #CONSUME
+  gAmdCoreTopologyServicesProtocolGuid    #CONSUME
+  gAmdCoreTopologyServicesV2ProtocolGuid  #CONSUME
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+  gAmdFabricTopologyServices2ProtocolGuid AND
+  gAmdCoreTopologyServicesProtocolGuid OR gAmdCoreTopologyServicesV2ProtocolGuid
+

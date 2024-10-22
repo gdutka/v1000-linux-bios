@@ -1,0 +1,53 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AmdCpmPcieInitDxe
+  FILE_GUID             = C5FA0EE8-2D81-4202-A021-3DA700B3DEAE
+  MODULE_TYPE           = DXE_DRIVER
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = AmdCpmPcieInitDxeEntryPoint
+
+[Sources.common]
+  AmdCpmPcieInitDxe.c
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[LibraryClasses]
+  BaseLib
+  UefiLib
+  UefiDriverEntryPoint
+  AmdCpmBaseLib
+
+[Guids]
+  gEfiEventReadyToBootGuid
+
+[Protocols]
+  gAmdCpmTableProtocolGuid
+  gAmdCpmNvDataProtocolGuid
+  gBootTimeRecordProtocolGuid
+
+[Ppis]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.EcAslName
+  gAmdCpmPkgTokenSpaceGuid.LpcAslName
+  gAmdCpmPkgTokenSpaceGuid.LanAslName
+  gAmdCpmPkgTokenSpaceGuid.WLanAslName
+
+[Depex]
+  gAmdCpmTableProtocolGuid
+  AND
+  gAmdCpmNvDataProtocolGuid

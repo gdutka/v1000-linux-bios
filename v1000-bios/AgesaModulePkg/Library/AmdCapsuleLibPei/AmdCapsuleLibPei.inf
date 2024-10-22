@@ -1,0 +1,36 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdCapsuleLibPei
+  FILE_GUID                      = 3DBEF65D-FAF4-46EE-8F0B-9A3D0ECB2DE0
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdCapsuleLib | PEIM
+
+[Sources.common]
+  AmdCapsuleLibPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses]
+ PeiServicesTablePointerLib
+ IdsLib
+
+[Guids]
+
+[Protocols]
+
+
+[Ppis]
+  gCapsuleUpdateDetectedPpiGuid
+
+[Pcd]
+
+

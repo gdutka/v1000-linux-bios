@@ -1,0 +1,62 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FanPolicyDxe
+  FILE_GUID                      = FE2F54A9-017D-45c2-A82D-9822BCF14CA6
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = FanPolicyEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  BaseLib
+  UefiLib
+  DebugLib
+  UefiDriverEntryPoint
+  NbioSmuV9Lib
+  AmdCpmBaseLib
+  IoLib
+
+[Sources]
+  FanPolicyDxe.c
+  FanPolicyData.c
+
+[Guids]
+  gAmdPbsSystemConfigurationGuid
+
+[Protocols]
+  gAmdNbioSmuServicesProtocolGuid
+  gAmdCpmTableProtocolGuid
+
+[Pcd]
+ #Fan table control
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdForceFanPwmEn
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdForceFanPwm
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableOverride
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableHysteresis
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempLow
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempMed
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempHigh
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempCritical
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmLow
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmMed
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmHigh
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmFreq
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePolarity
+ 
+[Depex]
+  gAmdCpmTableProtocolGuid

@@ -1,0 +1,70 @@
+#/** @file
+#
+#  Component description file for H2OUve Sample Form Utility DXE driver.
+#
+#;******************************************************************************
+#;* Copyright (c) 2016, Insyde Software Corporation. All Rights Reserved.
+#;*
+#;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#;* transmit, broadcast, present, recite, release, license or otherwise exploit
+#;* any part of this publication in any form, by any means, without the prior
+#;* written permission of Insyde Software Corporation.
+#;*
+#;******************************************************************************
+#*/
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = H2OUveSampleFormUtil
+  FILE_GUID                      = 630DC0C0-E3C9-499b-BA33-68A872E3DC75
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = H2OUveSampleFormUtilInitialize
+
+[Sources]
+  H2OUveSampleFormUtil.c
+  H2OUveSampleFormUtil.h
+  H2OUveSampleFormUtilPageVfr.vfr
+  H2OUveSampleFormUtilStr.uni
+  H2OUveSampleFormUtilSetupConfig.h
+  
+[Packages]
+  $(INSYDE_H2OUVE_PKG)/$(INSYDE_H2OUVE_PKG).dec
+  InsydeModulePkg/InsydeModulePkg.dec  
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  DebugLib
+  DevicePathLib
+  BaseLib
+  BaseMemoryLib
+  UefiLib
+  HiiLib
+  VariableLib
+
+[Guids]
+  gEfiIfrTianoGuid                              ## PRODUCES
+  gH2OUveSampleFormVarstoreGuid                 ## PRODUCES
+  gH2OUveSampleFormGuid                         ## PRODUCES
+  
+[Protocols]
+  gEfiHiiConfigAccessProtocolGuid               ## PRODUCES
+  gEfiVariableArchProtocolGuid                  ## CONSUMES
+  gEfiHiiDatabaseProtocolGuid                   ## CONSUMES
+  gEfiHiiStringProtocolGuid                     ## CONSUMES
+  gEfiFormBrowser2ProtocolGuid                  ## CONSUMES
+  gEfiHiiConfigRoutingProtocolGuid              ## CONSUMES
+  gEdkiiFormBrowserEx2ProtocolGuid              ## CONSUMES
+  
+[Pcd]
+  gH2OUvePkgTokenSpaceGuid.PcdH2OUveClassGuid
+
+[Depex]
+  gEfiVariableArchProtocolGuid      AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiHiiDatabaseProtocolGuid       
+

@@ -1,0 +1,93 @@
+## @file
+#  Platform Package Declaration file
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2013, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = BilbyBoardPkg
+  PACKAGE_GUID                   = ee3db236-6353-4df9-a8e0-efc7f29560f1
+
+  PACKAGE_VERSION                = 0.1
+
+[Includes]
+  Include
+
+[Guids]
+  gPlatformPkgTokenSpaceGuid     = {0xffd4675e, 0xff47, 0x46d9, {0xac, 0x24, 0x8b, 0x33, 0x1f, 0x93, 0x77, 0x37}}
+#[-start-190725-IB06070044-add]#
+  ## InsydeModule Ignored Storage token space guid
+  # Include/Guid/H2OStorageIgnoreDevice.h
+  gH2OIgnoreDeviceListTokenSpaceGuid     = { 0xae3bfa0f, 0xcb26, 0x43de, {0xa4, 0x34, 0xa1, 0x9c, 0xdc, 0x30, 0xfd, 0xa1} }
+#[-end-190725-IB06070044-add]#
+
+[Ppis]
+
+[Protocols]
+
+[PcdsFeatureFlag]
+  gPlatformPkgTokenSpaceGuid.PcdRtkUsbLanSupport|FALSE|BOOLEAN|0x00000001
+  gPlatformPkgTokenSpaceGuid.PcdBvmSupport|FALSE|BOOLEAN|0x00000002
+  gPlatformPkgTokenSpaceGuid.PcdFlashFvBvmBase|0x00000000|UINT32|0x00000003
+  gPlatformPkgTokenSpaceGuid.PcdFlashFvBvmSize|0x00000000|UINT32|0x00000004
+  gPlatformPkgTokenSpaceGuid.PcdEmulationOnly|FALSE|BOOLEAN|0x00000005
+#[-start-221013-IB14860855-add]#
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthSupported|FALSE|BOOLEAN|0x1000009A
+#[-end-221013-IB14860855-add]#
+
+[PcdsFixedAtBuild]
+  gPlatformPkgTokenSpaceGuid.PcdFlashFvMainReserveBase|0x00000000|UINT32|0x00000011
+  gPlatformPkgTokenSpaceGuid.PcdFlashFvMainReserveSize|0x00000000|UINT32|0x00000012
+  gPlatformPkgTokenSpaceGuid.PcdSerialPortSelect|5|UINT8|0x00000013
+
+  gPlatformPkgTokenSpaceGuid.PcdFlashFvMainCRCBase|0x00000000|UINT32|0x00000014
+  gPlatformPkgTokenSpaceGuid.PcdFlashFvMainCRCSize|0x00000000|UINT32|0x00000015
+  
+  #
+  # File GUIDs definition PCDs
+  #
+  # GUID Data Structure {UINT32  Data1; UINT16  Data2; UINT16  Data3; UINT8 Data4[8]}
+  # XhciFirmware.bin                     - 52948E6F-137E-4adc-ABC7-D17DC0AD9EC4
+  gPlatformPkgTokenSpaceGuid.PcdXhciFirmware|{ 0x6F, 0x8E, 0x94, 0x52, 0x7E, 0x13, 0xdc, 0x4a, 0xAB, 0xC7, 0xD1, 0x7D, 0xC0, 0xAD, 0x9E, 0xC4 }|VOID*|0x60000073
+
+  # RTL8153x.bin                          - C778953D-D04D-4AE9-94A8-19DCF5A964EF
+  gPlatformPkgTokenSpaceGuid.PcdRtl8153OnXhciRom|{ 0x3d, 0x95, 0x78, 0xc7, 0x4d, 0xd0, 0xe9, 0x4a, 0x94, 0xa8, 0x19, 0xdc, 0xf5, 0xa9, 0x64, 0xef }|VOID*|0x60000074
+
+#  # RTL8153e.bin                          - F3511FAF-703F-4747-A17B-E7A2D71BCFC7
+#  gPlatformPkgTokenSpaceGuid.PcdRtl8153OnEhciRom|{ 0xaf, 0x1f, 0x51, 0xf3, 0x3f, 0x70, 0x47, 0x47, 0xa1, 0x7b, 0xe7, 0xa2, 0xd7, 0x1b, 0xcf, 0xc7 }|VOID*|0x60000075
+
+   # b57pxee.lom						   - C778953D-D04D-4AE9-94A8-19DCF5A964E9
+   gPlatformPkgTokenSpaceGuid.PcdBcm5762PxeRom|{0xe4, 0x1d, 0xc2, 0xb7, 0x33, 0x5a, 0xbb, 0x46, 0xa2, 0x2e, 0xed, 0x6c, 0xd9, 0x9f, 0x5e, 0xdc }|VOID*|0x60000076
+
+   # RTL8111.lom						   - {B591816F-D392-477b-9533-0DD0D39DF669}
+   gPlatformPkgTokenSpaceGuid.PcdRTL8111PxeRom|{0x6f, 0x81, 0x91, 0xb5, 0x92, 0xd3, 0x7b, 0x47, 0x95, 0x33, 0xd, 0xd0, 0xd3, 0x9d, 0xf6, 0x69 }|VOID*|0x60000077
+
+[PcdsDynamic]
+  gI2cDeviceTokenSpaceGuid.PcdI2cTouchPad0|{0}|VOID*|0x00000001
+  gI2cDeviceTokenSpaceGuid.PcdI2cTouchPad1|{0}|VOID*|0x00000002
+  gI2cDeviceTokenSpaceGuid.PcdI2cTouchPad2|{0}|VOID*|0x00000003
+  gI2cDeviceTokenSpaceGuid.PcdI2cTouchPad3|{0}|VOID*|0x00000004
+  gI2cDeviceTokenSpaceGuid.PcdI2cTouchPanel0|{0}|VOID*|0x00000005
+  gI2cDeviceTokenSpaceGuid.PcdI2cTouchPanel1|{0}|VOID*|0x00000006
+  gI2cDeviceTokenSpaceGuid.PcdI2cTouchPanel2|{0}|VOID*|0x00000007
+  gI2cDeviceTokenSpaceGuid.PcdI2cTouchPanel3|{0}|VOID*|0x00000008
+
+[PcdsDynamicEx]
+  #
+  # PcdH2OIommuMapping is a Boolean PCD that specify DMA buffer's mapping behavior for each chipset when Iommu enabled.
+  # TRUE: Device address will be assigned to controller's DMA buffer's address register default
+  #       This is the scenario that mapping table is kept across OS transition.
+  # FALSE: Host address will be assigned to controller's DMA buffer's address register
+  #        This is the scenarios that mapping table is removed after ExitBootService.
+  #
+  gInsydeTokenSpaceGuid.PcdH2OIommuMapping|TRUE|BOOLEAN|0x2000007D
+
+[LibraryClasses]

@@ -1,0 +1,30 @@
+## @file
+#  Component description file for PeiTisDepexLib instance.
+#
+#******************************************************************************
+#* Copyright (c) 2014, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiTisDepexLib
+  FILE_GUID                      = 9D78A90D-556F-47fd-8839-5AFB8CC54496
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = NULL|PEI_CORE PEIM
+  
+[Sources]
+  Dummy.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[Depex]
+  gEfiPeiMasterBootModePpiGuid AND
+  gEfiPeiReadOnlyVariable2PpiGuid

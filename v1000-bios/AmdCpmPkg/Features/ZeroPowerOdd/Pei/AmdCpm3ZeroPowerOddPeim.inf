@@ -1,0 +1,45 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AmdCpmZeroPowerOddPeim
+  FILE_GUID             = 25BDDDA9-CCF5-4D13-9954-EC69D30BABC4
+  MODULE_TYPE           = PEIM
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = AmdCpmZeroPowerOddPeimEntryPoint
+
+[Sources.common]
+  AmdCpmZeroPowerOddPeim.c
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[LibraryClasses]
+  BaseLib
+  PeimEntryPoint
+  AmdCpmBaseLib
+  AmdBaseLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gAmdCpmTablePpiGuid
+  gAmdCpmGpioInitFinishedPpiGuid
+  gBootTimeRecordPpiGuid
+  gPeiLastS3RestorePointPpiGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[Depex]
+  gAmdCpmTablePpiGuid

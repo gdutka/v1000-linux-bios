@@ -1,0 +1,184 @@
+## @file
+#  Component description file for IhisiSmm module
+#
+#******************************************************************************
+#* Copyright (c) 2023, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = IhisiServicesSmm
+  FILE_GUID                      = 87C2106E-8790-459D-BD44-2EF32A68C3F9
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = IhisiServicesSmmEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  IhisiServicesSmm.h
+  IhisiServicesSmm.c
+  IhisiRegistration.h
+  IhisiRegistration.c
+  IhisiVats.h
+  IhisiVats.c
+  IhisiFbts.h
+  IhisiFbts.c
+  IhisiFets.h
+  IhisiFets.c
+  IhisiCommonRegionCommunication.h
+  IhisiCommonRegionCommunication.c
+  IhisiOemExtraDataCommunication.h
+  IhisiOemExtraDataCommunication.c
+  IhisiSecureFlash.c
+  IhisiCommonFunctions.c
+  IhisiCommonFunctions.h
+  IhisiCheckBuffer.c
+  IhisiCheckBuffer.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  FmpDevicePkg/FmpDevicePkg.dec
+
+[LibraryClasses]
+  HobLib
+  BaseLib
+  BvdtLib
+  DebugLib
+  LockBoxLib
+  VariableLib
+  BaseMemoryLib
+  SmmChipsetSvcLib
+  VariableSupportLib
+  MemoryAllocationLib
+  SmmServicesTableLib
+  SeamlessRecoveryLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  SmmOemSvcKernelLibDefault
+  BaseOemSvcKernelLibDefault
+  CacheMaintenanceLib
+  FlashRegionLib
+  KernelConfigLib
+  RngLib
+  FmpAuthenticationLib
+  FmpDependencyLib  
+  H2OCpLib
+
+[Protocols]
+  gH2OIhisiProtocolGuid
+  gEfiSmmCpuProtocolGuid
+  gTianoCompressProtocolGuid
+  gEfiSmmVariableProtocolGuid
+  gEfiSmmSwDispatch2ProtocolGuid
+  gEfiSmmFwBlockServiceProtocolGuid
+  gEfiSmmAccess2ProtocolGuid
+  gEdkiiSmmExitBootServicesProtocolGuid
+  gEdkiiSmmReadyToBootProtocolGuid
+  gEfiSmmEndOfDxeProtocolGuid
+  gH2OSmmVariableLockPolicyProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid  
+  gEfiSysPasswordServiceProtocolGuid
+
+[Guids]
+  gEfiFlashMapHobGuid
+  gSecureFlashInfoGuid
+  gH2OFlashMapRegionBvdtGuid
+  gH2OFlashMapRegionBootFvGuid
+  gH2OFlashMapRegionFvGuid
+  gH2OFlashMapRegionDxeFvGuid
+  gH2OFlashMapRegionPeiFvGuid
+  gH2OFlashMapRegionUnsignedFvGuid
+  gH2OFlashMapRegionFtwStateGuid
+  gH2OFlashMapRegionFtwBackupGuid
+  gH2OFlashMapRegionMsdmGuid
+  gH2OFlashMapRegionMicrocodeGuid
+  gH2OFlashMapRegionSmbiosUpdateGuid
+  gH2OFlashMapRegionVarGuid
+  gH2OFlashMapRegionVarDefaultGuid
+  gH2OFlashMapRegionLogoGuid  
+  gH2OSmmCpIhisiAuthStatusGuid
+  gH2OSmmCpIhisiAuthCheckGuid
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdIhisiFbtsVersion
+  gInsydeTokenSpaceGuid.PcdIhisiFbtsVendorId
+  gInsydeTokenSpaceGuid.PcdIhisiRegisterTable
+  gInsydeTokenSpaceGuid.PcdKeepVariableInList
+  gInsydeTokenSpaceGuid.PcdSecureFlashSupported
+  gInsydeTokenSpaceGuid.PcdH2OSecureBootSupported
+  gInsydeTokenSpaceGuid.PcdIhisiFbtsBatteryLowBound
+  gInsydeTokenSpaceGuid.PcdFlashUnsignedFvRegionBase
+  gInsydeTokenSpaceGuid.PcdDefaultPreservedVariableList
+  gInsydeTokenSpaceGuid.PcdEndOfFlashUnsignedFvRegionTotalSize
+  gInsydeTokenSpaceGuid.PcdFlashFvMainBase
+  gInsydeTokenSpaceGuid.PcdFlashFvMainSize
+  gInsydeTokenSpaceGuid.PcdFlashFvRecoveryBase
+  gInsydeTokenSpaceGuid.PcdFlashFvRecoverySize
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageDmiBase
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageDmiSize
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageBvdtBase
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageBvdtSize
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageMsdmDataBase
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageMsdmDataSize
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageMicrocodeBase
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageMicrocodeSize
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageFactoryCopyBase
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageFactoryCopySize
+  gInsydeTokenSpaceGuid.PcdH2OIhisiCmdBufferSize
+  gInsydeTokenSpaceGuid.PcdH2OIhisiImageBufferSize
+  gInsydeTokenSpaceGuid.PcdH2OIhisiDatsSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiFbtsSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiFbts2Supported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiFetsSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiFmtsSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiVatsSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthNoneSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthPostSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthDxeSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthSecureEnvSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthPasswordSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthSecureBootDisabledSupported
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase64
+  gInsydeTokenSpaceGuid.PcdSecureFlashCertificateFile
+
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OIhisiRuntimeProtect
+  gInsydeTokenSpaceGuid.PcdH2OIhisiCmdBufferSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiImageBufferSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiCmdBufferBelow4Gb
+  gInsydeTokenSpaceGuid.PcdH2OIhisiImageBufferBelow4Gb
+  gInsydeTokenSpaceGuid.PcdH2OSmmCpIhisiAuthStatusSupported
+  gInsydeTokenSpaceGuid.PcdH2OSmmCpIhisiAuthCheckSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthPasswordSupervisor
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthPasswordUser
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthEnabled
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthSupported
+  gInsydeTokenSpaceGuid.PcdH2OIhisiVatsWriteLockEnabled
+
+[Depex]
+  gEfiSmmCpuProtocolGuid AND
+  gEfiSmmAccess2ProtocolGuid AND
+  gEfiSmmSwDispatch2ProtocolGuid
+

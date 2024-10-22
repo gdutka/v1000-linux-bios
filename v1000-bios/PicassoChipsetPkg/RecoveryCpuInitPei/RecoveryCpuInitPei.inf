@@ -1,0 +1,52 @@
+## @file
+#  Component description file for InstallVerbTablePei PEIM.
+#
+#******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = RecoveryCpuInitPei
+  FILE_GUID            	         = 01882424-63B1-4E30-90E8-4C2C344E89C0
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = RecoveryCpuInitEntryPoint
+  
+[Sources]
+  RecoveryCpuInitPei.c
+  RecoveryCpuInitPei.h
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AmdCommonChipsetPkg/AmdCommonChipsetPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  
+[LibraryClasses]
+  IoLib
+  DebugLib
+  PeimEntryPoint
+  PeiServicesLib
+  PeiOemSvcKernelLibDefault 
+  PeiChipsetSvcLib
+  PciExpressLib
+  KernelConfigLib
+
+[Ppis]
+  gEfiPeiCpuIoPpiInstalledGuid
+  gEfiPciCfg2PpiGuid
+  
+[Depex]
+  gEfiPeiCpuIoPpiInstalledGuid AND
+  gEfiPciCfg2PpiGuid AND
+  gEfiPeiRecoveryModulePpiGuid

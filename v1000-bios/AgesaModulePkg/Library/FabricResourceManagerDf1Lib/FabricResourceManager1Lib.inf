@@ -1,0 +1,51 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FabricResourceManager1Lib
+  FILE_GUID                      = 66D43AAC-586C-4832-9E85-8813D40B1376
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = FabricResourceManagerLib
+
+[Sources]
+  FabricResourceInitBasedOnNv1.c
+  FabricResourceManager1.c
+  FabricResourceManager1.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+  AmdS3SaveLib
+  AmdHeapLib
+  BaseFabricTopologyLib
+  FabricRegisterAccLib
+  IdsLib
+  PciLib
+  FabricResourceSizeForEachRbLib
+  FabricResourceReportToGcdLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdBottomMmioReservedForPrimaryRb
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdMmioAbove4GLimit
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdMmioSizePerRbForNonPciDevice
+
+[Depex]
+

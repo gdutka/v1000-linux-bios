@@ -1,0 +1,242 @@
+## @file
+#  BdsDxe
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2020, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+##
+#
+#  BDSDxe module is core driver for BDS phase.
+#  When DxeCore dispatching all DXE driver, this module will produce architecture protocol gEfiBdsArchProtocolGuid.
+#  After DxeCore finish dispatching, DxeCore will invoke Entry interface of protocol gEfiBdsArchProtocolGuid, then BDS phase is entered.
+#
+#  Generally, this module take reposiblity to connect all necessary devices for platform boot,
+#  these boot device path are hold in PlatformBdsLib library instance produced by platform.
+#  For legacy boot, BDS will transfer control to legacy BIOS after legacy boot device is select.
+#  For EFI boot, BDS will load boot loader file EFI\BOOT\BOOTIA32.EFI, EFI\BOOT\BOOTX64.EFI,
+#  EFI\BOOT\BOOTIA64.EFI file from selected boot device and transfer control to boot loader.
+#
+#  BDSDxe also maintain the UI for "Boot Manager, Boot Maintaince Manager, Device Manager" which
+#  is used for user to configure boot option or maintain hardware device.
+#
+#  Copyright (c) 2008 - 2012, Intel Corporation. All rights reserved.<BR>
+#  This program and the accompanying materials
+#  are licensed and made available under the terms and conditions of the BSD License which accompanies this distribution.
+#  The full text of the license may be found at
+#  http://opensource.org/licenses/bsd-license.php
+#
+#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BdsDxe
+  FILE_GUID                      = FC5C7020-1A48-4198-9BE2-EAD5ABC8CF2F
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = BdsInitialize
+
+[Sources]
+  Bds.h
+  BdsServices.h
+  String.h
+  Strings.uni
+
+  BdsEntry.c
+  BdsServices.c
+  BdsHotKey.c
+  BdsHotKeyDesc.c
+  DefaultBootList.c
+  String.c
+  Capsules.c
+  MemoryTest.c
+  MemoryCheck.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  PerformancePkg/PerformancePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+
+[LibraryClasses]
+  DevicePathLib
+  BaseLib
+  HobLib
+  UefiRuntimeServicesTableLib
+  GenericBdsLib
+  PerformanceLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  PrintLib
+  HiiLib
+  UefiDriverEntryPoint
+  PlatformBdsLib
+  CapsuleLib
+  PcdLib
+  UefiHiiServicesLib
+  IoLib
+  CmosLib
+  OemGraphicsLib
+  GenericUtilityLib
+  KernelConfigLib
+  PostCodeLib
+  DxeOemSvcKernelLibDefault
+  VariableLib
+  H2OCpLib
+  SortLib
+  RectLib
+  HiiExLib
+  DxeChipsetSvcLib
+  DxeServicesTableLib
+
+[Guids]
+  gEfiGlobalVariableGuid
+  gEfiMemorySubClassGuid
+  gEfiGenericVariableGuid
+  gSystemConfigurationGuid
+  gEfiEndOfDxeEventGroupGuid
+  gEfiConsoleOutDeviceGuid
+  gAcpiVariableSetGuid
+  gH2OBdsCpInitGuid
+  gH2OBdsCpEndOfDxeAfterGuid
+  gH2OBdsCpEndOfDxeBeforeGuid
+  gH2OBdsCpExitBootServicesBeforeGuid
+  gH2OBdsCpLegacyBootAfterGuid
+  gH2OBdsCpLegacyBootBeforeGuid
+  gH2OBdsCpDriverConnectAfterGuid
+  gH2OBdsCpDriverConnectBeforeGuid
+  gH2OBdsBootDeviceGroupGuid
+  gSecureFlashInfoGuid
+  gH2OBdsCpNoBootDeviceGuid
+  gH2OBdsCpBootBeforeGuid
+  gH2OBdsCpBootAfterGuid
+  gH2OBdsCpOsRecoveryGuid
+  gH2OBdsCpPlatformRecoveryGuid
+  gH2OBdsCpSysPrepGuid
+  gH2OBdsCpBootDeviceSelectGuid
+  gH2OBdsCpPlatformInitGuid
+  gH2OBdsCpHotKeyDetectedGuid
+  gH2OBdsCpUpdateMemoryTypeInfoGuid
+  gH2OBdsLoadOptionSetupUtilityAppFileGuid
+  gH2OStopHotKeyGuid
+  gZeroGuid
+  gEfiMemoryTypeInformationGuid
+
+
+[Protocols]
+  gEfiBdsArchProtocolGuid
+  gEfiSimpleTextInputExProtocolGuid
+  gEfiSkipScanRemovableDevProtocolGuid
+  gEfiSetupUtilityProtocolGuid
+  gEfiDataHubProtocolGuid
+  gMemoryErrorEventGuid
+  gEfiHiiDatabaseProtocolGuid
+  gEfiVariableArchProtocolGuid
+  gEfiVariableWriteArchProtocolGuid
+  gEfiGenericMemTestProtocolGuid
+  gH2ODialogProtocolGuid
+  gEfiSmbiosProtocolGuid
+  gEndOfDisableQuietBootGuid
+  gEdkiiVariableLockProtocolGuid
+  gEfiTimerArchProtocolGuid
+  gEfiStartOfBdsDiagnosticsProtocolGuid
+  gH2OBdsServicesProtocolGuid
+  gEfiBootOptionPolicyProtocolGuid
+  gH2OBdsBootGroupProtocolGuid
+  gEfiLegacyRegion2ProtocolGuid
+  gEfiLegacyBiosProtocolGuid
+  gH2OKeyDescProtocolGuid
+  gEfiDevicePathFromTextProtocolGuid
+  gEfiSetupUtilityApplicationProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+  gEfiGraphicsOutputProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiEdidDiscoveredProtocolGuid
+  gEfiDevicePathToTextProtocolGuid
+  gEfiRamDiskProtocolGuid
+
+[FeaturePcd]
+  gEfiMdePkgTokenSpaceGuid.PcdUgaConsumeSupport
+  gInsydeTokenSpaceGuid.PcdFrontPageSupported
+  gInsydeTokenSpaceGuid.PcdEndOfDxeEventSupported
+  gInsydeTokenSpaceGuid.PcdWin8FastBootErrorMessageSupported
+  gInsydeTokenSpaceGuid.PcdAutoCreateDummyBootOption
+  gInsydeTokenSpaceGuid.PcdMemoryMapConsistencyCheck
+  gInsydeTokenSpaceGuid.PcdH2OCsmSupported
+  gInsydeTokenSpaceGuid.PcdSecureFlashSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsSysPrepSupported
+  gInsydeTokenSpaceGuid.PcdH2OReducePrservedMemorySupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpBootAfterSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpBootBeforeSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpBootDeviceSelectSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpConOutConnectAfterSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpDisplayBeforeSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpDisplayStringBeforeSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpDriverConnectAfterSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpDriverConnectBeforeSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpEndOfDxeAfterSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpEndOfDxeBeforeSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpExitBootServicesBeforeSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpInitSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpNoBootDeviceSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpOsRecoverySupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpPlatformRecoverySupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpReadyToBootAfterSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpReadyToBootBeforeSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpSysPrepSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpPlatformInitSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpHotKeyDetectedSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpUpdateMemoryTypeInfoSupported
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdPlatformBootTimeOut
+  gInsydeTokenSpaceGuid.PcdPlatformBootTimeOutMax
+  gInsydeTokenSpaceGuid.PcdPlatformBootTimeOutInvalidDialogSupported
+  gInsydeTokenSpaceGuid.PcdBootState
+  gInsydeTokenSpaceGuid.PcdFirmwareVendor
+  gInsydeTokenSpaceGuid.PcdLoadDefaultSetupMenu
+  gInsydeTokenSpaceGuid.PcdH2OBdsOsIndicationsFwUiApp
+  gInsydeTokenSpaceGuid.PcdH2OBdsDefaultHotKeyDescPosn
+  gInsydeTokenSpaceGuid.PcdH2OBdsDefaultHotKeyDescQuietPosn
+  gInsydeTokenSpaceGuid.PcdH2OBdsBootFailApp
+  gInsydeTokenSpaceGuid.PcdH2OBdsBootSuccessApp
+  gInsydeTokenSpaceGuid.PcdH2OBdsBootWatchdogTimeOut
+  gInsydeTokenSpaceGuid.PcdH2OBdsCancelMemoryTestHotKey
+  gInsydeTokenSpaceGuid.PcdOsIndicationsSupported
+  gInsydeTokenSpaceGuid.PcdPlatformBootTimeOutMs
+  gInsydeTokenSpaceGuid.PcdDisplayOemHotkeyString
+  gInsydeTokenSpaceGuid.PcdH2OSkipMemRangeList
+  gInsydeTokenSpaceGuid.PcdPreserveMemoryTable
+  gInsydeTokenSpaceGuid.PcdDefaultLogoResolution
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision
+  gEfiMdeModulePkgTokenSpaceGuid.PcdProgressCodeOsLoaderLoad
+  gEfiMdeModulePkgTokenSpaceGuid.PcdProgressCodeOsLoaderStart
+  gH2OBdsDefaultBootOptionsTokenSpaceGuid
+  gH2OBdsHotKeyGuid
+  gH2OBdsHotKeyDescGuid
+  gH2OBdsHotKeyDescQuietGuid
+
+[Depex]
+  gEfiHiiDatabaseProtocolGuid AND gEfiVariableArchProtocolGuid AND gEfiVariableWriteArchProtocolGuid
+
+#
+# [BootMode]
+#   BOOT_ON_FLASH_UPDATE    ## SOMETIMES_CONSUMES (Update Capsule Image)
+#
+#
+# [Hob]
+#   HOB                     ## SOMETIMES_CONSUMES  ## GUID EXTENSION Capsule Data Hob
+#
+#

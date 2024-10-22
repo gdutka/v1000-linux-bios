@@ -1,0 +1,79 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdPspDxeV2Rv
+  FILE_GUID                      = 8B786703-E8C7-4BEA-8F07-CDF991B90999
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdPspDxeV2DriverEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  BaseMemoryLib
+  AmdBaseLib
+  IdsLib
+  AmdIdsHookLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  DxeServicesTableLib
+  AmdSocBaseLib
+  AmdPspMboxLibV2
+  AmdPspBaseLibV2
+  AmdPspApobLib
+  AmdPspFlashUpdateLib
+  MemoryAllocationLib
+  CcxPspLib
+  AmdCapsuleLib
+  FabricResourceManagerLib
+  MemRestoreLib
+  PspIdsHookLibDxe
+  ApobCommonServiceLib
+
+[Sources]
+  AmdPspDxeV2.c
+
+[Guids]
+  gEfiEventReadyToBootGuid
+  gPspSmmCommHandleGuid    ## CONSUMES
+  gEfiEventExitBootServicesGuid
+
+[Protocols]
+  gEfiSmmControl2ProtocolGuid #Consume
+  gPspPlatformProtocolGuid    #Consume
+  gEfiMpServiceProtocolGuid   #Consume
+  gEfiPciEnumerationCompleteProtocolGuid  #Consume
+  gAmdPspCommonServiceProtocolGuid  #publish
+  gPspFlashAccSmmCommReadyProtocolGuid
+  gEfiSmmCommunicationProtocolGuid        ## CONSUMES
+  gAmdCoreTopologyServicesProtocolGuid    #CONSUME
+  gAmdNbioSmuServicesProtocolGuid         #CONSUME
+  gAmdFabricTopologyServices2ProtocolGuid #CONSUME
+  gAmdApcbDxeServiceProtocolGuid          #CONSUME
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdSmmCommunicationAddress
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspApcbRecoveryEnable
+
+[Depex]
+  gAmdPspDxeV2RvDepexProtocolGuid
+
+
+
+

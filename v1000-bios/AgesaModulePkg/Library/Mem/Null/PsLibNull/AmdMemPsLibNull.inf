@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemPsLibNull
+  FILE_GUID                      = 8D84906F-393F-4ce3-AEEB-8DD7E2204F9D
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemPsLib
+
+[sources.common]
+  mp.c
+  mpcadcfg.c
+  mpdatacfgD3.c
+  mpdatacfgD4.c
+  mplribt.c
+  mplrnlr.c
+  mplrnpr.c
+  mpmaxfreq.c
+  mpmr0.c
+  mpodtpat.c
+  mprc10opspd.c
+  mprc2ibt.c
+  mprtt.c
+  mps2d.c
+  mpsao.c
+  mpseeds.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+
+[Pcd]
+
+

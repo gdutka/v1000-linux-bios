@@ -1,0 +1,55 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdNbioIOMMURVDxe
+  FILE_GUID                      = 73F53712-2A64-4b86-961D-C25B63DF198C
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdNbioIOMMURVDxeEntry
+
+[Sources]
+  AmdNbioIOMMURVDxe.c
+  MsixWorkaroundRV.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  IdsLib
+  GnbLib
+  GnbPciLib
+  GnbPciAccLib
+  NbioHandleLib
+  NbioIommuIvrsLib
+  PcieConfigLib
+  NbioSmuV10Lib
+  UefiLib
+  AmdIdsHookLib
+  NbioIdsHookRVLib
+  NbioRegisterAccLib
+
+[Protocols]
+  gAmdNbioPcieServicesProtocolGuid
+  gEfiAcpiTableProtocolGuid
+  gAmdSocLogicalIdProtocolGuid            #CONSUME
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdIvrsControl
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgIommuSupport
+
+[Depex]
+  gAmdNbioIOMMURVDxeDepexProtocolGuid AND
+  gAmdNbioPcieServicesProtocolGuid AND
+  gEfiPciEnumerationCompleteProtocolGuid

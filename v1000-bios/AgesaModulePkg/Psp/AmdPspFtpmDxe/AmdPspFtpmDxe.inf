@@ -1,0 +1,44 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdPspFtpmDxe
+  FILE_GUID                      = 023B3AA9-098F-4027-B83F-B6407DA06569
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdPspFtpmDxeDriverEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  AmdPspFtpmLib
+  UefiDriverEntryPoint
+
+[Sources]
+  AmdPspFtpmDxe.c
+
+[Protocols]
+  gAmdPspFtpmProtocolGuid
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspSystemTpmConfig
+
+[Depex]
+  TRUE
+

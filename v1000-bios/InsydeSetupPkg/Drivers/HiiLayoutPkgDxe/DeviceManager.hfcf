@@ -1,0 +1,61 @@
+/** @file
+  Layout and hot key definitions for Device Manager
+
+;******************************************************************************
+;* Copyright (c) 2018, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+#define DEVICE_MANAGER_FORMSET_GUID {0x3ebfa8e6, 0x511d, 0x4b5b, 0xa9, 0x5f, 0xfb, 0x38, 0x26, 0xf , 0x1c, 0x27}
+
+vfr
+  formset
+    guid   = DEVICE_MANAGER_FORMSET_GUID;
+    layout = BOOT_MANAGER_LAYOUT_ID;
+
+    hotkey hotkeyid = 0x401;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SHOW_HELP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SHOW_HELP,
+           style    = .H2OHotKeyShowHelp;
+    endhotkey;
+    hotkey hotkeyid = 0x402;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_DISCARD_EXIT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_DISCARD_AND_EXIT,
+           style    = .H2OHotKeyDiscardAndExit;
+    endhotkey;
+    hotkey hotkeyid = 0x403;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_ITEM,
+           group    = 1,
+           style    = .H2OHotKeySelectPreviousItem;
+    endhotkey;
+    hotkey hotkeyid = 0x404;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_NEXT_ITEM,
+           group    = 1,
+           style    = .H2OHotKeySelectNextItem;
+    endhotkey;
+    hotkey hotkeyid = 0x405;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_ENTER),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_ENTER_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_ENTER_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_ENTER,
+           style    = .H2OHotKeyEnter;
+    endhotkey;
+  endformset;
+endvfr;
+

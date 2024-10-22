@@ -1,0 +1,154 @@
+## @file
+#  Component description file for PciBus module.
+
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2019, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+##
+#  Component description file for PciBus module.
+#
+#  PCI bus driver. This module will probe all PCI devices and allocate MMIO and IO
+#  space for these devices. Please use PCD feature flag PcdPciBusHotplugDeviceSupport to enable
+#  hot plug supporting.
+#
+#  Copyright (c) 2006 - 2017, Intel Corporation. All rights reserved.<BR>
+#
+#  This program and the accompanying materials
+#  are licensed and made available under the terms and conditions of the BSD License
+#  which accompanies this distribution. The full text of the license may be found at
+#  http://opensource.org/licenses/bsd-license.php
+#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PciBusDxe
+  FILE_GUID                      = 93B80004-9FB3-11d4-9A3A-0090273FC14D
+  MODULE_TYPE                    = UEFI_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PciBusEntryPoint
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC ARM AARCH64
+#
+#  DRIVER_BINDING                =  gPciBusDriverBinding
+#  COMPONENT_NAME                =  gPciBusComponentName
+#  COMPONENT_NAME2               =  gPciBusComponentName2
+#
+
+[Sources]
+  PciLib.c
+  PciIo.c
+  PciBus.c
+  PciDeviceSupport.c
+  ComponentName.c
+  ComponentName.h
+  PciCommand.c
+  PciResourceSupport.c
+  PciEnumeratorSupport.c
+  PciEnumerator.c
+  PciOptionRomSupport.c
+  PciDriverOverride.c
+  PciPowerManagement.c
+  PciPowerManagement.h
+  PciDriverOverride.h
+  PciRomTable.c
+  PciHotPlugSupport.c
+  PciLib.h
+  PciHotPlugSupport.h
+  PciRomTable.h
+  PciOptionRomSupport.h
+  PciEnumeratorSupport.h
+  PciEnumerator.h
+  PciResourceSupport.h
+  PciDeviceSupport.h
+  PciCommand.h
+  PciIo.h
+  PciBus.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+
+[LibraryClasses]
+  PcdLib
+  DevicePathLib
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  ReportStatusCodeLib
+  BaseMemoryLib
+  UefiLib
+  BaseLib
+  UefiDriverEntryPoint
+  DebugLib
+  S3BootScriptLib
+  KernelConfigLib
+  DxeOemSvcKernelLibDefault
+  H2OCpLib
+
+[Protocols]
+  gEfiPciHotPlugRequestProtocolGuid               ## SOMETIMES_PRODUCES
+  gEfiPciIoProtocolGuid                           ## BY_START
+  gEfiDevicePathProtocolGuid                      ## BY_START
+  gEfiBusSpecificDriverOverrideProtocolGuid       ## BY_START
+  gEfiLoadedImageProtocolGuid                     ## SOMETIMES_CONSUMES
+  gEfiDecompressProtocolGuid                      ## SOMETIMES_CONSUMES
+  gEfiPciHotPlugInitProtocolGuid                  ## SOMETIMES_CONSUMES
+  gEfiPciHostBridgeResourceAllocationProtocolGuid ## TO_START
+  gEfiPciPlatformProtocolGuid                     ## SOMETIMES_CONSUMES
+  gEfiPciOverrideProtocolGuid                     ## SOMETIMES_CONSUMES
+  gEfiPciEnumerationCompleteProtocolGuid          ## PRODUCES
+  gEfiPciRootBridgeIoProtocolGuid                 ## TO_START
+  gEfiIncompatiblePciDeviceSupportProtocolGuid    ## SOMETIMES_CONSUMES
+  gEfiLoadFile2ProtocolGuid                       ## SOMETIMES_PRODUCES
+  gEfiLegacyBiosProtocolGuid                      ## SOMETIMES_CONSUMES
+  gEfiSecurityArchProtocolGuid                    ## SOMETIMES_CONSUMES
+  gEfiSecurity2ArchProtocolGuid                   ## SOMETIMES_CONSUMES
+  gEdkiiIoMmuProtocolGuid                         ## SOMETIMES_CONSUMES
+  gEfiLoadedImageDevicePathProtocolGuid           ## CONSUMES
+
+[Guids]
+  gH2OBdsCpPciEnumBeginGuid
+  gH2OBdsCpPciEnumCompleteBeforeGuid
+  gH2OBdsCpPciEnumCompleteAfterGuid
+  gH2OBdsCpPciEnumUpdateDevInfoGuid
+  gH2OBdsCpPciEnumUpdateDevResourcesGuid
+
+[FeaturePcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdPciBusHotplugDeviceSupport         ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdPciBridgeIoAlignmentProbe          ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdUnalignedPciIoEnable               ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdPciDegradeResourceForOptionRom     ## CONSUMES
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpPciEnumBeginSupported               ## CONSUMES
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpPciEnumCompleteBeforeSupported      ## CONSUMES
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpPciEnumCompleteAfterSupported       ## CONSUMES
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpPciEnumUpdateDevInfoSupported       ## CONSUMES
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpPciEnumUpdateDevResourcesSupported  ## CONSUMES
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSrIovSystemPageSize         ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSrIovSupport                ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAriSupport                  ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdMrIovSupport                ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdPciDisableBusEnumeration    ## SOMETIMES_CONSUMES
+  gInsydeTokenSpaceGuid.PcdNoExternalDmaSupported               ## CONSUMES
+  gInsydeTokenSpaceGuid.PcdNoExternalDmaOverrideTable           ## CONSUMES
+  gInsydeTokenSpaceGuid.PcdPciCacheLineSizeSupported            ## CONSUMES
+  gInsydeTokenSpaceGuid.PcdH2OInternalDmaDisableTable           ## CONSUMES
+  gInsydeTokenSpaceGuid.PcdH2OOptionRomBarReserved
+  gInsydeTokenSpaceGuid.PcdH2OPciOptionRomSupported

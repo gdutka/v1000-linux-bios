@@ -1,0 +1,86 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+#*****************************************************************************
+#*
+#* This software package can be used to enable the Overclocking of certain
+#* AMD processors and its use is subject to the terms and conditions of the
+#* AMD Overclocking Waiver. Enabling overclocking through use of the low-level
+#* routines included in this package and operating an AMD processor outside of
+#* the applicable AMD product specifications will void any AMD warranty and 
+#* can result in damage to the processor or the system into which the processor
+#* has been integrated. The user of this software assumes, and AMD disclaims,
+#* all risk, liability, costs and damages relating to or arising from the 
+#* overclocking of AMD processors.
+#*
+#******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AodSmmZp
+  FILE_GUID                      = AAF875D2-0968-4585-A40A-B35C9FE0CAEC
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AodSmmEntryPoint
+
+[sources]
+  AodSmm.c
+
+[sources.ia32]
+
+[sources.x64]
+
+[LibraryClasses]
+
+  UefiDriverEntryPoint
+  BaseMemoryLib
+  BaseLib
+  DebugLib
+  SmmServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  UefiLib
+  PcdLib
+  AodRuntimeLib
+  AodCbsLibZp
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.SwSmiCmdAodUpdateMemClkTimings
+
+[Guids]
+
+[Protocols]
+  gFchSmmSwDispatch2ProtocolGuid         #CONSUMED
+  gEfiSmmBase2ProtocolGuid               #CONSUMED
+  gEfiSmmVariableProtocolGuid            #CONSUMED
+  gAodNvAreaUpdatedProtocolGuid          #CONSUMED
+  gEfiMetronomeArchProtocolGuid          #CONSUMED
+  gAmdApcbSmmServiceProtocolGuid         #CONSUMED
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid
+  AND
+  gFchSmmSwDispatch2ProtocolGuid
+  AND
+  gAmdFchTaishanDepexProtocolGuid
+  AND
+  gAodNvAreaUpdatedProtocolGuid
+  AND
+  gEfiMetronomeArchProtocolGuid
+  AND
+  gAmdApcbSmmServiceProtocolGuid

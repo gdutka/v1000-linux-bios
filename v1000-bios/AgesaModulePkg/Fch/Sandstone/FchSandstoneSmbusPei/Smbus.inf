@@ -1,0 +1,56 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+
+  INF_VERSION                   = 0x00010005
+  BASE_NAME                     = FchSmbusPei
+  FILE_GUID                     = ff3f5786-7026-403f-9a95-47f989391294
+  MODULE_TYPE                   = PEIM
+  VERSION_STRING                = 1.0
+  ENTRY_POINT                   = AmdSmbusPeiInit
+
+
+[sources.common]
+  Smbus.c
+  Smbus.h
+
+[sources.ia32]
+
+[sources.x64]
+
+[LibraryClasses.IA32]
+
+[LibraryClasses]
+  PeimEntryPoint
+  BaseLib
+  DebugLib
+  IoLib
+  PeiServicesLib
+  HobLib
+  AmdBaseLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gEfiPeiSmbus2PpiGuid          #PRODUCED
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[Depex]
+  gEfiPeiCpuIoPpiInstalledGuid  AND
+  gAmdFchInitPpiGuid AND
+  gAmdFchSSSmbusDepexPpiGuid
+  # gEfiPeiSmbus2PpiGuid needs to be available before Agesa AmdInitReset has 
+  # been run even though AmdInitReset should be the function that initializes 
+  # the southbridge.  Don't put a dependency on gAmdPeiInitResetPpiGuid
+
+

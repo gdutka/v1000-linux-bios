@@ -1,0 +1,54 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AmdCpmZeroPowerOddDxe
+  FILE_GUID             = CC6E66A3-472A-4802-9B97-21420C026391
+  MODULE_TYPE           = DXE_DRIVER
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = AmdCpmZeroPowerOddDxeEntryPoint
+
+[Sources.common]
+  AmdCpmZeroPowerOddDxe.c
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[LibraryClasses]
+  BaseLib
+  UefiLib
+  UefiDriverEntryPoint
+  AmdCpmBaseLib
+
+[Guids]
+  gEfiEventReadyToBootGuid
+
+[Protocols]
+  gAmdCpmTableProtocolGuid
+  gAmdCpmNvDataProtocolGuid
+  gBootTimeRecordProtocolGuid
+
+[Ppis]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.EcAslName
+  gAmdCpmPkgTokenSpaceGuid.EcMutexAslName
+  gAmdCpmPkgTokenSpaceGuid.LpcAslName
+  gAmdCpmPkgTokenSpaceGuid.OkEcAslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGp18AslName
+
+[Depex]
+  gAmdCpmTableProtocolGuid
+  AND
+  gAmdCpmNvDataProtocolGuid

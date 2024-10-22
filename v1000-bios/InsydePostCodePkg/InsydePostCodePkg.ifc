@@ -1,0 +1,36 @@
+<Features>
+  <!-- Trunk feature -->
+  <Feature>
+    <Name>InsydePostCodePkg</Name>
+    <Root>InsydePostCodePkg</Root>
+    <Version>05.41.40</Version>
+    <Revision>2</Revision>
+    <Repository>
+      <Type>Svn</Type>
+      <Url>http://svn-tc.insydesw.com/H2O-SEG-Feature/InsydePostCodePkg</Url>
+    </Repository>
+    <Package>
+      <SourceDir>.</SourceDir>
+    </Package>
+    <File>
+      <SourcePath>InsydePostCodePkg.ifc</SourcePath>
+    </File>
+  </Feature>
+  <!-- Version 0.0.0.1 feature -->
+  <Feature>
+    <Name>InsydePostCodePkg</Name>
+    <Root>InsydePostCodePkg</Root>
+    <Version>0.0.0.1</Version>
+    <Revision>2</Revision>
+    <Repository>
+      <Type>Svn</Type>
+      <Url>http://svn-tc.insydesw.com/H2O-SEG-Feature/InsydePostCodePkg</Url>
+    </Repository>
+    <Package>
+      <SourceDir>.</SourceDir>
+    </Package>
+    <File>
+      <SourcePath>InsydePostCodePkg.ifc</SourcePath>
+    </File>
+  </Feature>
+</Features>

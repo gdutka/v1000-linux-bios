@@ -1,0 +1,42 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdVersionPei
+  FILE_GUID                      = 70456853-D70E-496C-B6B1-CF88A30BE1A9
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdVersionPeiInit
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  BaseLib
+  DebugLib
+  AmdBaseLib
+
+[sources]
+  AmdVersionPei.c
+  AmdVersionPei.h
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gAmdVersionStringPpiGuid         #PRODUCED
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPackageString
+
+[Depex]
+  TRUE
+

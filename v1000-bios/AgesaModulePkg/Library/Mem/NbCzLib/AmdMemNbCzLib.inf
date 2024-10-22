@@ -1,0 +1,56 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemNbCzLib
+  FILE_GUID                      = 3BAF2564-D605-4523-A693-AEAF8E0C35D2
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemNbCzLib 
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  mncz.c
+  mnD3cz.c
+  mnD4cz.c
+  mndctcz.c
+  mndctD3cz.c
+  mndctD4cz.c
+  mnidendimmcz.c
+  mnmctcz.c
+  mnphycz.c
+  mnphyD3cz.c
+  mnphyD4cz.c
+  mnpmucz.c
+  mnpmuD3cz.c
+  mnpmuD4cz.c
+  mnPmuSramMsgBlockCZ.c
+  mnprotocz.c
+  mnpspcz.c
+  mnregcz.c
+  mnS3cz.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  BaseLib
+  AmdBaseLib
+  AmdMemBaseLib
+  AmdMemPsCzLib
+  FabricPstatesLib
+  AmdMemFeatTableLib
+  AmdMemFeatIdentifyDimmLib
+  PciLib
+  
+[Pcd]

@@ -1,0 +1,86 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CbsFuncInstance
+  FILE_GUID                      = 1B4F9041-B3FA-4918-AB59-82929C1D7BA4
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CbsPeiFuncLib
+
+[sources.common]
+  CbsFuncLib/Cbs.h
+  ResourceRVFP5/AmdCbsVariable.h
+  ResourceRVFP5/AmdCbsDefault.c
+  ResourceRVFP5/CbsIdsNvRV.c
+
+  CbsFuncLib/CbsHookPeiLib.c
+  CbsFuncLib/CbsHookPeiLib.h
+  CbsFuncLib/CbsPeiFuncTable.c
+  CbsFuncLib/CbsBaseLib.c
+
+  CbsFuncLib/IDS/CbsIDSCommonPei.c
+  CbsFuncLib/IDS/CbsIDSCommonPei.h
+
+  CbsFuncLib/ZEN/CBSZenFunPEI_RV.c
+  CbsFuncLib/ZEN/CBSZenFunPEI_RV.h
+
+  CbsFuncLib/DF/CBSDfFunPEI_RV.c
+  CbsFuncLib/DF/CBSDfFunPEI_RV.h
+
+  CbsFuncLib/UMC/CBSUmcFunPEI_RV.c
+  CbsFuncLib/UMC/CBSUmcFunPEI_RV.h
+
+  CbsFuncLib/NBIO/CBSNbioFunPEI_RV.c
+  CbsFuncLib/NBIO/CBSNbioFunPEI_RV.h
+
+  CbsFuncLib/FCH/CBSFchFunPEI_RV.c
+  CbsFuncLib/FCH/CBSFchFunPEI_RV.h
+
+  CbsFuncLib/PROMONTORY/CBSPromontoryFunPEI_RV.c
+  CbsFuncLib/PROMONTORY/CBSPromontoryFunPEI_RV.h
+
+  CbsFuncLib/SMU/CBSSmuFunPEI_RV.c
+  CbsFuncLib/SMU/CBSSmuFunPEI_RV.h
+
+  CbsFuncLib/SOC/CBSSocFunPEI_RV.c
+  CbsFuncLib/SOC/CBSSocFunPEI_RV.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  PcdLib
+  HobLib
+  PeimEntryPoint
+  DebugLib
+  PeiServicesTablePointerLib
+  PeiServicesLib
+  AmdBaseLib
+  CbsSetAgesaPcdLib
+
+[Guids]
+  gAmdCbsPkgTokenSpaceGuid
+  gEfiIfrTianoGuid                              ## CONSUMES ## Guid
+  gCbsSystemConfigurationGuid                   ## PRODUCES
+
+[Ppis]
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gAmdCbsHookPpiGuid
+  gAmdPcdInitReadyPpiGuid
+
+[Pcd]
+  
+[BuildOptions.Common]
+  MSFT:*_*_*_CC_FLAGS = /FAsc /Od /wd 4245 /D AMD_CBS_ZEN_RV /D AMD_CBS_DF_RV /D AMD_CBS_UMC_RV /D AMD_CBS_NBIO_RV /D AMD_CBS_FCH_RV /D AMD_CBS_PROMONTORY_RV

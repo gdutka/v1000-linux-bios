@@ -1,0 +1,56 @@
+## @file
+#  Component description file for S3NotifyDispatchPei module.
+#
+#******************************************************************************
+#* Copyright (c) 2012, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = S3NotifyDispatchPei
+  FILE_GUID                      = 7B69DCB6-424C-4844-A53D-087056382870
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = S3NotifyDispatchPeiInitialize
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  S3NotifyDispatchPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  $(FCH_PKG_PATH)/$(FCH_PKG_DEC).dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  BaseLib
+  DebugLib
+  IoLib
+  PeiServicesLib
+  PcdLib
+
+[Ppis]
+  gPeiPostScriptTablePpiGuid
+  gPeiS3RestoreAcpiCallbackPpiGuid
+  gPeiSmmControlPpiGuid
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemBeforePciRestoreSwSmi
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemAfterPciRestoreSwSmi
+
+[Depex]
+  gEfiPeiMasterBootModePpiGuid

@@ -1,0 +1,35 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemS3InitLib
+  FILE_GUID                      = 1ED5E97A-7280-4ecc-A3F0-8C64EBBCC8F0
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemS3InitLib 
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  S3Init.c
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdMemMainLib
+  AmdMemFeatS3Lib
+  AmdMemMainCzLib
+  AmdHeapLib
+  AmdMemErrorLogLib
+  HardCodedMemCommonServiceLib
+
+[Pcd]
+

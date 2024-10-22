@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = CcxZenZpIdsHookLibPei
+  FILE_GUID                      = AE3FB6F1-4E27-431b-BB9D-E9EB3BC6C90D
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CcxZenZpIdsHookLibPei
+
+[Sources.common]
+  CcxZenZpIdsHookLibPei.c  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  
+[LibraryClasses]
+  AmdBaseLib
+  AmdIdsDebugPrintLib
+  CcxRolesLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[FeaturePcd]
+
+[Pcd]
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+

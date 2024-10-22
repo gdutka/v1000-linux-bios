@@ -1,0 +1,45 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdErrorPei
+  FILE_GUID                      = A5C02C56-19A7-43B5-A0D0-04518A1CA69E
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PeiAmdErrorInit
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  DebugLib
+  AmdErrorLogLib
+
+[sources]
+  AmdErrorLogPei.h
+  AmdErrorLogPei.c
+
+[Guids]
+  gErrorLogHobGuid
+
+[Protocols]
+
+[Ppis]
+  gAmdErrorLogServicePpiGuid           #PRODUCED
+  gAmdErrorLogPpiGuid                  #PRODUCED
+  gAmdErrorLogReadyPpiGuid             #PRODUCED
+  gAmdErrorLogFullPpiGuid              #PRODUCED
+  gAmdErrorLogAvailablePpiGuid         #PRODUCED
+  gAmdErrorLogDepexPpiGuid             #CONSUMED
+
+[Pcd]
+
+[Depex]
+  gAmdErrorLogDepexPpiGuid

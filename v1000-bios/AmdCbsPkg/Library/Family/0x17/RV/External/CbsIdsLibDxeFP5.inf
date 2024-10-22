@@ -1,0 +1,48 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CbsIdsHookExtLibDxe
+  FILE_GUID                      = 1BDE1359-85A7-4215-B81A-6C1D1A635660
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdIdsHookExtLib
+
+[sources.common]	
+  CbsIdsLib/CbsIdsExtHookLibDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  UefiLib
+  AmdBaseLib
+  CbsDxeFuncLib
+
+[Guids]
+  gAmdCbsPkgTokenSpaceGuid
+  gEfiIfrTianoGuid                              ## CONSUMES ## Guid
+  gCbsSystemConfigurationGuid                   ## PRODUCES
+
+[Protocols]
+  gCbsProtocolGuid
+
+[BuildOptions.Common]
+  MSFT:*_*_*_CC_FLAGS = /FAsc /Od /wd 4245
+
+[DEPEX]
+  gCbsProtocolGuid
+

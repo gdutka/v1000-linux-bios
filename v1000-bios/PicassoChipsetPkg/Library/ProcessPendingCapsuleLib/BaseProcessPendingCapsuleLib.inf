@@ -1,0 +1,37 @@
+## @file
+#
+#******************************************************************************
+#* Copyright (c) 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BaseProcessPendingCapsuleLib
+  FILE_GUID                      = 2019E029-420B-4D4C-9C21-74A2E0686D3B
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ProcessPendingCapsuleLib
+
+[Sources]
+  BaseProcessPendingCapsuleLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[LibraryClasses]
+  IoLib
+  VariableLib
+  DebugLib
+
+[Guids]
+  gSecureFlashInfoGuid
+

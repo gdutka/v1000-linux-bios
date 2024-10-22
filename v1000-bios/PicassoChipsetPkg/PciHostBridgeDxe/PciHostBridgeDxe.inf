@@ -1,0 +1,117 @@
+## @file
+#  Component description file a sinngle segment PCI Host Bridge driver.
+#
+#  ***************************************************************************
+#  * Copyright (c) 2015, Insyde Software Corp. All Rights Reserved.
+#  *
+#  * You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#  * transmit, broadcast, present, recite, release, license or otherwise exploit
+#  * any part of this publication in any form, by any means, without the prior
+#  * written permission of Insyde Software Corporation.
+#  *
+#  ******************************************************************************
+#
+##
+
+##
+#
+#    Component description file a sinngle segment PCI Host Bridge driver.
+#
+#  Copyright (c) 2008 - 2010, Intel Corporation. All rights reserved.<BR>
+#  This program and the accompanying materials
+#  are licensed and made available under the terms and conditions of the BSD License
+#  which accompanies this distribution.  The full text of the license may be found at
+#  http://opensource.org/licenses/bsd-license.php
+#
+#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PciHostBridge
+  FILE_GUID                      = 2383608E-C6D0-4e3e-858D-45DFAC3543D5
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = InitializePciHostBridge
+
+[Packages]
+  MdePkg/MdePkg.dec
+  PcAtChipsetPkg/PcAtChipsetPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+#>>EnableAbove4GBMmio++
+  $(PROJECT_PKG)/Project.dec
+#<<EnableAbove4GBMmio++
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DxeServicesTableLib
+  UefiLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  BaseLib
+  DebugLib
+  DevicePathLib
+  IoLib
+  PciLib
+  UefiRuntimeServicesTableLib
+  HobLib
+  S3BootScriptLib
+  FabricResourceManagerLib
+#>>EnableAbove4GBMmio++
+  PcdLib
+#<<EnableAbove4GBMmio++
+
+[Sources]
+  PciHostBridge.c
+  PciRootBridgeIo.c
+  PciHostBridge.h
+  IoFifo.h
+
+[Sources.IA32]
+#[-start-240426-IB18160212-modify-]#
+#  Ia32/IoFifo.asm
+  Ia32/IoFifo.nasm
+#[-end-240426-IB18160212-modify-]#
+
+[Sources.X64]
+#[-start-240426-IB18160212-modify-]#
+#  X64/IoFifo.asm
+  X64/IoFifo.nasm
+#[-end-240426-IB18160212-modify-]#
+
+[Guids]
+  gMemoryCeilingVariableGuid
+
+[Protocols]
+  gEfiPciHostBridgeResourceAllocationProtocolGuid
+  gEfiPciRootBridgeIoProtocolGuid
+  gEfiMetronomeArchProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gAmdApcbDxeServiceProtocolGuid
+#>>EnableAbove4GBMmio++
+  gEfiGlobalNvsAreaProtocolGuid
+#<<EnableAbove4GBMmio++
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gChipsetPkgTokenSpaceGuid.PcdPciExpressSize
+  gPcAtChipsetPkgTokenSpaceGuid.PcdIoApicBaseAddress
+  gInsydeTokenSpaceGuid.PcdFlashAreaBaseAddress
+  gInsydeTokenSpaceGuid.PcdFlashAreaSize
+  gInsydeTokenSpaceGuid.PcdH2ODdtSupported
+  gChipsetPkgTokenSpaceGuid.PcdMmioLimit1
+  gChipsetPkgTokenSpaceGuid.PcdMmioLimit2
+#>>EnableAbove4GBMmio++
+  gChipsetPkgTokenSpaceGuid.PcdMmioMem64Enable
+#<<EnableAbove4GBMmio++
+
+[depex]
+  gEfiMetronomeArchProtocolGuid AND
+  gAmdApcbDxeServiceProtocolGuid

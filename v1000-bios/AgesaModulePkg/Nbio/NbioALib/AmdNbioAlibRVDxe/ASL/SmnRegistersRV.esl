@@ -1,0 +1,91 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: NBIO
+ * @e \$Revision: 309090 $   @e \$Date: 2014-12-10 02:28:05 +0800 (Wed, 10 Dec 2014) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+  // NBIO register block
+  OperationRegion(varNbioOpRg, SystemMemory, PcieBaseAddress, 4096)
+    Field(varNbioOpRg, DwordAcc, Lock, Preserve) {
+      Offset (0xB8),
+      bfNbSmuIndAddr, 32,
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x03B10528, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageId, 32,
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x03B10564, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageResponse, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x03B10998, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument0, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x03B1099c, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument1, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x03B109a0, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument2, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x03B109a4, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument3, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x03B109a8, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument4, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x03B109ac, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfSmuMessageArgument5, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x13B00084, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfIohcNbPciArb, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x11140280, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfPciePort0PcieLcCntl, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x11141280, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfPciePort1PcieLcCntl, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x11142280, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfPciePort2PcieLcCntl, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x11143280, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfPciePort3PcieLcCntl, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x11144280, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfPciePort4PcieLcCntl, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x11145280, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfPciePort5PcieLcCntl, 32
+    }
+    BankField (varNbioOpRg, bfNbSmuIndAddr, 0x11146280, DwordAcc, Lock, Preserve) {
+      Offset (0xBC),
+      bfPciePort6PcieLcCntl, 32
+    }

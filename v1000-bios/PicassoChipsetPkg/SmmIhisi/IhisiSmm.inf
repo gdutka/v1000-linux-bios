@@ -1,0 +1,102 @@
+## @file
+#  Component description file for IhisiSmm module
+#
+#******************************************************************************
+#* Copyright (c) 2015 - 2016, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+INF_VERSION                    = 0x00010005
+BASE_NAME                      = IhisiSmm
+FILE_GUID                      = 7B7B65B6-E350-4139-8FE4-665772D32A47
+MODULE_TYPE                    = DXE_SMM_DRIVER
+PI_SPECIFICATION_VERSION       = 0x0001000A
+VERSION_STRING                 = 1.0
+ENTRY_POINT                    = IhisiEntryPoint
+
+[Sources]
+  IhisiSmm.h
+  IhisiSmm.c
+  Fbts.h
+  Fbts.c
+  ChipsetSecureFlash.h
+  ChipsetSecureFlash.c
+#[-start-221013-IB14860855-add]#
+  ApcbTokensUpdate.h
+  ApcbTokensUpdate.c
+#[-end-221013-IB14860855-add]#
+
+[Packages]
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  $(PROJECT_PKG)/Project.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+#[-start-221013-IB14860855-add]#
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  InsydeH2OUvePkg/InsydeH2OUvePkg.dec
+#[-end-221013-IB14860855-add]#
+
+[LibraryClasses]
+  UefiLib
+  UefiDriverEntryPoint
+  DebugLib
+  SpiAccessLib
+  FchDxeLibV9
+  FdSupportLib
+  BaseOemSvcKernelLibDefault
+  SmmServicesTableLib
+  BaseLib
+  BaseMemoryLib  
+  SmmOemSvcKernelLibDefault
+  VariableLib
+  KernelConfigLib
+  ProcessPendingCapsuleLib
+
+[Protocols]
+  gH2OIhisiProtocolGuid
+  gEfiSmmFwBlockServiceProtocolGuid
+  gH2OIhisiFbtsToolVersionProtocolGuid
+#[-start-221013-IB14860855-add]#
+  gAmdApcbSmmServiceProtocolGuid
+  gCbsBctSmmProtocolGuid
+#[-end-221013-IB14860855-add]#
+
+[Guids]
+  gSystemConfigurationGuid
+#[-start-221013-IB14860855-add]#
+  gCbsSystemConfigurationGuid
+  gAodSystemConfigurationGuid
+#[-end-221013-IB14860855-add]#
+
+[FeaturePcd]
+#[-start-221013-IB14860855-add]#
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthSupported
+#[-end-221013-IB14860855-add]#
+
+[Pcd]
+  gChipsetPkgTokenSpaceGuid.PcdEcSharedFlashSupported
+  gChipsetPkgTokenSpaceGuid.PcdEcReInitAfterFlash
+  gChipsetPkgTokenSpaceGuid.PcdEcIdlePerWriteBlockSupported
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvEcBase
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvEcSize
+  gInsydeTokenSpaceGuid.PcdIhisiRegisterTable
+  gInsydeTokenSpaceGuid.PcdSecureFlashSupported
+#[-start-221013-IB14860855-add]#
+  gH2OUvePkgTokenSpaceGuid.PcdH2oUveSecurityLevelAllowed
+#[-end-221013-IB14860855-add]#
+
+[Depex]
+  gH2OIhisiProtocolGuid AND
+  gEfiSmmFwBlockServiceProtocolGuid
+

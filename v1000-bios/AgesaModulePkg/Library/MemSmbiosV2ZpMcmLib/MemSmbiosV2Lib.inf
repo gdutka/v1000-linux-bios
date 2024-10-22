@@ -1,0 +1,33 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemSmbiosV2ZpMcmLib
+  FILE_GUID                      = 4909D644-B527-4E47-A8B2-3B6B42AD4D2F
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemSmbiosV2Lib
+
+[sources.common]
+  MemSmbiosV2Lib.c
+
+[Guids]
+  gAmdNvdimmSpdInfoHobGuid
+  gAmdMemoryInfoHobGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdHeapLib
+  AmdCalloutLib
+
+[Pcd]
+
+

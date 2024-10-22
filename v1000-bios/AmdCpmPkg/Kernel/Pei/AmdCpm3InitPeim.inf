@@ -1,0 +1,60 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AmdCpmInitPeim
+  FILE_GUID             = D919136E-865C-4b10-B099-5D897CFEDE08
+  MODULE_TYPE           = PEIM
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = AmdCpmInitPeimEntryPoint
+
+[Sources.common]
+  AmdCpmInitPeim.c
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[LibraryClasses]
+  BaseLib
+  HobLib
+  PeimEntryPoint
+  AmdCpmBaseLib
+  AmdCpmCpuLib
+  AmdCpmFchLib
+  AmdBaseLib
+
+[Guids]
+  gAmdCpmTableHobGuid
+
+[Protocols]
+
+[Ppis]
+  gAmdCpmTablePpiGuid
+  gAmdCpmOemTablePpiGuid
+  gAmdCpmTableHobPpiGuid
+  gEfiPeiSmbus2PpiGuid
+  gEfiPeiMemoryDiscoveredPpiGuid
+  gBootTimeRecordPpiGuid
+  gPeiLastS3RestorePointPpiGuid
+  gAmdFabricTopologyServices2PpiGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.PlatformIdOverride
+  gAmdCpmPkgTokenSpaceGuid.CurrentPlatformId
+  gAmdCpmPkgTokenSpaceGuid.OriginalPlatformId
+  gAmdCpmPkgTokenSpaceGuid.EcRamBaseAddr
+
+[Depex]
+  TRUE

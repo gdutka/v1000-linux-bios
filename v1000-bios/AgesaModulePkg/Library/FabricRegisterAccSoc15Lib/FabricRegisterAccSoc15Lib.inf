@@ -1,0 +1,32 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FabricRegisterAccSoc15Lib
+  FILE_GUID                      = 25ED9173-65CF-40b8-A6BE-1382689038AB
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = FabricRegisterAccLib
+
+[Sources]
+  FabricRegisterAccSoc15Lib.c
+  FabricRegisterAccSoc15Lib.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  PciLib
+  AmdS3SaveLib
+
+[Pcd]
+
+

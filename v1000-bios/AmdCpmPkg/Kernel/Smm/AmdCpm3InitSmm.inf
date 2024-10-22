@@ -1,0 +1,50 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION               = 0x00010006
+  BASE_NAME                 = AmdCpmInitSmm
+  FILE_GUID                 = 30AF1245-A58E-4ef7-8C75-B725939B3B9F
+  MODULE_TYPE               = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION  = 0x0001000A
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = AmdCpmInitSmmEntryPoint
+
+[Sources.common]
+  AmdCpmInitSmm.c
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[LibraryClasses]
+  BaseLib
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  AmdCpmBaseLib
+  AmdCpmCpuLib
+  AmdCpmFchLib
+
+[Guids]
+
+[Protocols]
+  gEfiSmmBase2ProtocolGuid
+  gAmdCpmTableProtocolGuid
+  gAmdCpmTableSmmProtocolGuid
+  gBootTimeRecordProtocolGuid
+
+[Ppis]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid
+  AND
+  gAmdCpmTableProtocolGuid

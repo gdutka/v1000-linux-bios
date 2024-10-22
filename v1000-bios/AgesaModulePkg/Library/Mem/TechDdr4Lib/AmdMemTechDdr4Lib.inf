@@ -1,0 +1,31 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemTechDdr4ib
+  FILE_GUID                      = 6553E1FB-28A1-490e-99A8-8CB2D0C596AD
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdMemTechDdr4Lib
+
+[sources.common]
+  mt4.c
+  mtspd4.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdMemFeatTableLib
+
+[Pcd]
+
+
+
+

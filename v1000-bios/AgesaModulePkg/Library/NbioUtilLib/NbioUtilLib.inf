@@ -1,0 +1,35 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = NbioUtilLib
+  FILE_GUID                      = 37F9A0D5-7D7A-4A78-1790-343645DC2896
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = NbioUtilLib
+
+
+[Sources]
+  NbioUtilLib.c
+
+[Packages]
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  BaseMemoryLib
+  BaseLib
+  SmnAccessLib
+  FabricResourceManagerLib
+
+[Pcd]
+
+

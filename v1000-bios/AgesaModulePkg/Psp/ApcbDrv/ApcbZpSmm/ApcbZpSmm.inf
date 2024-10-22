@@ -1,0 +1,53 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdApcbZpSmm
+  FILE_GUID                      = 599438A7-4292-4977-8C06-FFC16C445E83
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = AmdApcbZpSmmDriverEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  BaseMemoryLib
+  AmdBaseLib
+  IdsLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  DxeServicesTableLib
+  MemoryAllocationLib
+  ApcbZpLib
+
+[Sources]
+  ApcbZpSmm.c
+  ApcbZpSmm.h
+  ..\TokensZp\ConfigTokens.c
+  ..\TokensZp\CbsExtTokens.c
+
+[Guids]
+
+
+[Protocols]
+  gAmdApcbSmmServiceProtocolGuid  #publish
+
+
+[Pcd]
+
+
+[Depex]
+  gAmdApcbServiceZpDepexProtocolGuid
+
+

@@ -1,0 +1,42 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = MemIdsHookLib
+  FILE_GUID                      = D5FEA885-4A21-46aa-89D3-542F76507D26
+
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = MemIdsHookLib
+
+[Sources.common]
+  MemIdsHookCzLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  AmdIdsDebugPrintLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[FeaturePcd]
+
+[Pcd]
+gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdMemCfgUserTimingMode
+gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdMemCfgMemClockValue
+
+[Depex]
+  TRUE
+
+[BuildOptions]

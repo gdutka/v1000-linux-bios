@@ -1,0 +1,36 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdPspFlashAccLibSmm
+  FILE_GUID                      = CE8B879A-D1DE-493B-BEF2-758C5B27091A
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdPspFlashAccLib | DXE_SMM_DRIVER 
+  CONSTRUCTOR                    = AmdPspFlashAccLibSmmConstructor
+
+[Sources.common]
+  AmdPspFlashAccLibSmm.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  SmmServicesTableLib
+  DebugLib
+  AmdPspBaseLibV2
+
+[Guids]
+
+[Protocols]
+  gEfiSmmBase2ProtocolGuid
+[Pcd]
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid

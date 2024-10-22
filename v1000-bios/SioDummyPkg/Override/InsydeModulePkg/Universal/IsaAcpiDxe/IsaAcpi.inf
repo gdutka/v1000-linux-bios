@@ -1,0 +1,72 @@
+## @file
+# IsaAcpiDxe Information File
+#
+#******************************************************************************
+#* Copyright (c) 2013 - 2019, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = IsaAcpiDxe
+  FILE_GUID                      = 2DC22D1C-2B4D-4D04-9AD2-BC1D8FDE20FF
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = IsaAcpiDriverEntryPoint
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#  DRIVER_BINDING                = gIsaAcpiDriver
+#
+
+[Sources]
+  IsaAcpiDxe.h
+  IsaAcpiDxe.c
+  IsaAcpi.h
+  IsaAcpi.c
+  DmaControllerInit.c
+  8237aRegs.h
+  OldIsaAcpi.h
+  OldIsaAcpi.c
+
+[Protocols]
+  gEfiIsaAcpiProtocolGuid           ## PRODUCES
+  gEfiPciIoProtocolGuid             ## CONSUMES
+  gH2OIsaDeviceProtocolGuid         ## SOMETIMES_PRODUCES
+  gEfiIsaPnp303DeviceProtocolGuid   ## ALWAYS_CONSUMED
+  gEfiIsaPnp401DeviceProtocolGuid   ## ALWAYS_CONSUMED
+  gEfiIsaPnp501DeviceProtocolGuid   ## ALWAYS_CONSUMED
+  gEfiIsaPnp510DeviceProtocolGuid   ## ALWAYS_CONSUMED
+  gEfiIsaPnp604DeviceProtocolGuid   ## ALWAYS_CONSUMED
+  gEfiIsaPnpB02fDeviceProtocolGuid  ## ALWAYS_CONSUMED
+  gEfiIsaPnpF03DeviceProtocolGuid   ## ALWAYS_CONSUMED
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SioDummyPkg/SioDummyPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  DebugLib
+  DevicePathLib
+  DxeChipsetSvcLib
+  IoLib
+  MemoryAllocationLib
+  PostCodeLib
+  SortLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
+
+[Pcd]
+
+[Depex]
+  TRUE
+

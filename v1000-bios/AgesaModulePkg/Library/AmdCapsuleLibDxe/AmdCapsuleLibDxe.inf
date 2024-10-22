@@ -1,0 +1,35 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdCapsuleLibDxe
+  FILE_GUID                      = 2164419D-A2AF-4B6A-9D10-ED6F704EEE1D
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdCapsuleLib | DXE_DRIVER DXE_SMM_DRIVER
+
+[Sources.common]
+  AmdCapsuleLibDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses]
+  HobLib
+
+[Guids]
+  gAmdCapsuleStatusHobGuid
+
+[Protocols]
+
+
+[Ppis]
+
+[Pcd]
+
+

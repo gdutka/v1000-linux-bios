@@ -1,0 +1,65 @@
+## @file
+#  Component description file for PostCodeDxe driver
+#
+#******************************************************************************
+#* Copyright (c) 2016 - 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = PostCodeDxe
+  FILE_GUID                 = B6E78A31-AF84-4b5d-92FC-5077C483F891
+  MODULE_TYPE               = DXE_DRIVER
+  VERSION_STRING            = 1.0
+  PI_SPECIFICATION_VERSION  = 0x0001000A
+  ENTRY_POINT               = PostCodeDxeEntryPoint
+
+[Sources]
+  PostCodeDxe.c
+  
+[Sources.X64]
+  X64/HandlerEntryDxe.asm
+  X64/HandlerEntryDxe.S
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SegFeaturePkg/SegFeaturePkg.dec
+  InsydePostCodePkg/InsydePostCodePkg.dec
+  
+[LibraryClasses]
+  UefiLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  PrintLib
+  DebugLib
+  PostCodeConfigLib
+  SerialPortPostCodeLib
+  GraphicVgaLib
+  VgaPostCodeLib  
+  BaseMemoryLib
+  PostCodeMiscLib
+  
+[Protocols]
+  gEfiCpuArchProtocolGuid
+  gEfiGraphicsOutputProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gH2OPostCodeVgaProtocolGuid
+  
+[Pcd]
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeSupported
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeSerialPortSupported
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeScreenSupported
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeTrapDebugPortNotifyList
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeNonTrapDebugPortNotifyList
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeDebugPortAddress
+  
+[Depex]
+  TRUE
+  

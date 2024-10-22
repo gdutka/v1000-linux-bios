@@ -1,0 +1,58 @@
+## @file
+#  Check the CPU has support STIBP feature or not, then determin the STIBP option
+#  is visible or not.
+#  Also according SCU setting to Enable/Disable STIBP setting.
+#
+#******************************************************************************
+#* Copyright (c) 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corp.
+#*
+#******************************************************************************
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = StibpFeatureDxe
+  FILE_GUID                      = 2345fb4d-0b26-4a14-aa2e-f7b955154495
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = StibpFeatureDxeEntryPoint
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  StibpFeatureDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AMD64ArchFamilyCpuPkg/AMD64ArchFamilyCpuPkg.dec
+
+[LibraryClasses]
+  UefiLib  
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  ChipsetConfigLib
+  SetupUtilityLib
+  DebugLib
+  
+[Protocols]
+  gEfiMpServiceProtocolGuid
+
+[Depex]
+  gEfiSetupUtilityProtocolGuid      AND
+  gEfiVariableArchProtocolGuid      AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiMpServiceProtocolGuid
+

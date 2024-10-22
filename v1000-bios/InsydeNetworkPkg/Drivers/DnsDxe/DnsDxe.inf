@@ -1,0 +1,35 @@
+## @file
+#  Description of Dns driver
+#
+#******************************************************************************
+#* Copyright (c) 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[defines]
+  INF_VERSION          = 0x00010005
+  BASE_NAME            = DnsDxe
+  FILE_GUID            = b219e140-dffc-11e3-b956-0022681e6906
+  MODULE_TYPE          = DXE_DRIVER
+  VERSION_STRING       = 1.0
+  BINARY_VERSION       = 05.23.34.0822
+
+[Binaries.Ia32]
+  PE32|Ia32/DnsDxe.efi|*
+
+[Binaries.X64]
+  PE32|X64/DnsDxe.efi|*
+
+[Binaries.ARM]
+  PE32|Arm/DnsDxe.efi|*
+
+[Binaries.AARCH64]
+  PE32|Aarch64/DnsDxe.efi|*
+
+[Depex]
+  TRUE

@@ -1,0 +1,29 @@
+## @file
+#  Component description file for Ext module
+#
+#******************************************************************************
+#* Copyright (c) 2019 - 2020, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ExtDxe
+  FILE_GUID                      = 0AB1429C-8A60-46d2-9FC8-399450F475DD
+  MODULE_TYPE                    = UEFI_DRIVER
+  BINARY_VERSION                 = 01.01.42.1020
+  VERSION_STRING                 = 1.0
+
+[Binaries.Ia32]
+  PE32|Ia32/ExtDxe.efi|*
+
+[Binaries.X64]
+  PE32|X64/ExtDxe.efi|*
+
+
+

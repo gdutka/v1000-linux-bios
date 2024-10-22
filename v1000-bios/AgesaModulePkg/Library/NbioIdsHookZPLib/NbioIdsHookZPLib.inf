@@ -1,0 +1,74 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = NbioIdsHookZPLib
+  FILE_GUID                      = 992E3C68-950F-43C0-8BFD-E28F781469E0
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = NbioIdsHookZPLib
+
+[Sources.common]
+  NbioIdsHookZPLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  AmdIdsDebugPrintLib
+  PcdLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[FeaturePcd]
+
+[Pcd]
+ gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSmuFeatureControlDefines
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdcTDP
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdNbioPoisonConsumption
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgIommuSupport
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdNbioRASControl
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgHdAudioEnable
+
+ #Fan table control
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdForceFanPwmEn
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdForceFanPwm
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableOverride
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableHysteresis
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempLow
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempMed
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempHigh
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTableTempCritical
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmLow
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmMed
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmHigh
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePwmFreq
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdFanTablePolarity
+
+ gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocPPTLimit
+ gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocTDCLimit
+ gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocEDCLimit
+ gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocPBOLimitScalar
+ gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdMocTjMax
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgForcePcieGenSpeed
+
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgTDC
+ gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgEDC
+
+ gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdDldoPsmMargin
+
+[Depex]
+  TRUE
+
+[BuildOptions]

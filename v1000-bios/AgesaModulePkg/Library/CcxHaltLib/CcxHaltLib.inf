@@ -1,0 +1,54 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = CcxHaltLib
+  FILE_GUID                      = 1AED961E-A2E7-432b-9C10-8862FC6E8563
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CcxHaltLib
+
+[Sources.common]
+  CcxHaltLib.c
+  
+[Sources.IA32]
+  Ia32/CcxHaltLib32.asm
+
+[Sources.x64]
+  x64/CcxHaltLib64.asm
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr250
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr258
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr259
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr268
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr269
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26A
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26B
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26C
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26D
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26E
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFixedMtrr26F
+
+[Depex]
+

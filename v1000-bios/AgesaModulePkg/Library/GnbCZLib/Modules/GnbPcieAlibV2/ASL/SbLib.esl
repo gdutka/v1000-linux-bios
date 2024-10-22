@@ -1,0 +1,63 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: GNB
+ * @e \$Revision: 61089 $   @e \$Date: 2011-10-31 10:31:02 -0700 (Mon, 31 Oct 2011) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+	// Create an opregion for PM IO Registers
+  OperationRegion (PMIO, SystemIO, 0xCD6, 0x2)
+	  Field (PMIO, ByteAcc, NoLock, Preserve)
+	  {
+	  	bfPmIoIndex, 8,
+	  	bfPmIoData, 8
+	  }
+	  IndexField (bfPmIoIndex, bfPmIoData, ByteAcc, NoLock, Preserve)
+	  {
+	  	Offset(0xE0),               // IO Base address of A-Link Express/ A-Link Bridge register
+	  	bfAlinkBaseAddress, 32,
+	  }
+  OperationRegion (ACFG, SystemIO, bfAlinkBaseAddress, 0x8)
+	  Field (ACFG, DWordAcc, Nolock, Preserve){
+	  	bfAlinkIndex, 32
+	  }
+    BankField (ACFG, bfAlinkIndex, 0x80000068, DwordAcc, NoLock, Preserve) {
+     Offset (0x4),
+        bfPmControl, 2
+     }
+
+
+  Name (ABSM, 0)
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  SB ASPM control
+   *
+   *  Arg0 - ENABLE/DISABLE
+   *
+   */
+  Method (procSbAspm, 1) {
+    if (LEqual (Arg0, DISABLE)) {
+      Store (bfPmControl, ABSM)
+      Store (0, bfPmControl)
+    } else {
+      Store (ABSM, bfPmControl)
+    }
+  }
+
+
+

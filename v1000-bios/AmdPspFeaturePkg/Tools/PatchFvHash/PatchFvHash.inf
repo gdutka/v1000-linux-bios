@@ -1,0 +1,48 @@
+## @file
+# Auto Generate PatchFvHash
+#
+#******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PatchFvHash
+  FILE_GUID                      = B3CFE107-6A3B-4e58-B187-A7BD025DEC0A
+  MODULE_TYPE                    = USER_DEFINED
+  VERSION_STRING                 = 0.1
+
+#   MODULE_AUTORUN_TOOL            = $(MODULE_DIR)\$(BASE_NAME)
+#   AUTORUN_PARAM                  = $(BUILD_DIR)\FV\$(PLATFORM_NAME).fd $(BUILD_DIR)\FV\FvMainCompactHash.bin
+
+[Sources]
+  PatchFvHash.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AmdPspFeaturePkg/AmdPspFeaturePkg.dec
+
+[LibraryClasses]
+  DebugLib
+  PrintLib
+
+[Ppis]
+
+[Protocols]
+
+[Guids]
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdFlashAreaBaseAddress
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashFvMainHashBase
+
+[BuildOptions]
+  MSFT:*_*_IA32_DLINK_FLAGS == /out:"$(MODULE_DIR)\$(BASE_NAME).exe" /base:0x10000000 /NOLOGO /SUBSYSTEM:CONSOLE /NODEFAULTLIB /IGNORE:4086 /OPT:REF /MACHINE:I386 Kernel32.lib MSVCRT.lib
+  MSFT:*_*_*_CC_FLAGS = /wd4996 /MT

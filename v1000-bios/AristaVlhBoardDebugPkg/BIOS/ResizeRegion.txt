@@ -1,0 +1,34 @@
+;************************
+;*  DO NOT EDIT
+;*  FILE auto-generated. Single FD compatible 
+;****
+
+[FD.BILBYPEI] 
+       Resize      Size Taken        Offset         Size        End                      PCD
+   ------------    ----------      -----------    --------   --------         --------------------------
+        fixed         96000               0         300000     300000          gChipsetPkgTokenSpaceGuid.PcdBootFirmwareVolumeBase
+
+[FD.BILBY] 
+       Resize      Size Taken        Offset         Size        End                      PCD
+   ------------    ----------      -----------    --------   --------         --------------------------
+        fixed            20           20000           1000      21000          gChipsetPkgTokenSpaceGuid.PcdFlashFvSigBase
+        fixed         10000           21000          20000      41000          gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspNvRamBase
+        fixed         124B4           41000          20000      61000          gChipsetPkgTokenSpaceGuid.PcdFlashUsbFirmwareBase
+        fixed             0           63000          C3000     126000          gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspDirBase
+        fixed             0          126000          18000     13E000          gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVBiosDirBase
+        fixed        542000          48B000         640000     ACB000          gInsydeTokenSpaceGuid.PcdFlashFvMainBase
+        fixed             0          ACB000         1B8000     C83000          gPlatformPkgTokenSpaceGuid.PcdFlashFvMainReserveBase
+        fixed          1000          C83000           1000     C84000          gInsydeTokenSpaceGuid.PcdFlashUnsignedFvRegionBase
+        fixed             0          C84000           1000     C85000          gInsydeTokenSpaceGuid.PcdFlashNvStorageDmiBase
+        fixed           850          C85000           1000     C86000          gInsydeTokenSpaceGuid.PcdH2OFlashDeviceMapStart
+        fixed           18B          C88000           1000     C89000          gInsydeTokenSpaceGuid.PcdFlashNvStorageBvdtBase
+        fixed             0          C89000           1000     C8A000          gInsydeTokenSpaceGuid.PcdFlashNvStorageMsdmDataBase
+        fixed            58          C8A000          25000     CAF000          gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase
+        fixed            20          CAF000           1000     CB0000          gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase
+        fixed             0          CB0000          26000     CD6000          gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase
+        fixed             0          CD6000           4000     CDA000          gInsydeTokenSpaceGuid.PcdFlashNvStorageFactoryCopyBase
+        fixed             0          CDA000           3000     CDD000          gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashMctDataStoreBase
+        fixed             0          CDD000           1000     CDE000          gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashSpdDataStoreBase
+        fixed          10D1          CDE000          20000     CFE000          gInsydeTokenSpaceGuid.PcdFlashNvStorageVariableDefaultsBase
+        fixed             0          CFE000           1000     CFF000          gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashFvMainHashBase
+        fixed             0          CFF000           1000     D00000          gPlatformPkgTokenSpaceGuid.PcdFlashFvMainCRCBase

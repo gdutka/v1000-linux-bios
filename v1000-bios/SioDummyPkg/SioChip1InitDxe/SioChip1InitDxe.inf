@@ -1,0 +1,63 @@
+## @file
+# Component description file for SioChip1InitDxe module
+#
+#******************************************************************************
+#* Copyright 2017 Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corp.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = SioChip1InitDxe
+  FILE_GUID         = 739ad314-3344-441a-b338-5aa4ed8581ea
+  MODULE_TYPE       = DXE_DRIVER
+  VERSION_STRING    = 1.0
+  ENTRY_POINT       = SioDummyChip1Init
+
+[Sources]
+  SioChip1InitDxe.c
+  SioUart1.c
+  SioUart2.c
+  SioPs2Keyboard.c
+  SioPs2Mouse.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SioDummyPkg/SioDummyPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  DebugLib
+  MemoryAllocationLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  BaseMemoryLib
+  BaseLib
+  SioDummyPrivateLib
+  PcdLib
+  UefiLib
+
+[Protocols]
+  gH2OIsaDeviceProtocolGuid
+  gH2OSioInstancePrivateInfoProtocolGuid
+
+[FixedPcd]
+  gSioGuid.PcdH2OSioDummyChip1Uart1Supported
+  gSioGuid.PcdH2OSioDummyChip1Uart2Supported
+  gSioGuid.PcdH2OSioDummyChip1KbcSupported
+  gSioGuid.PcdH2OSioDummyChip1Uart1Base
+  gSioGuid.PcdH2OSioDummyChip1Uart1Irq
+  gSioGuid.PcdH2OSioDummyChip1Uart2Base
+  gSioGuid.PcdH2OSioDummyChip1Uart2Irq
+
+[Pcd]
+  gSioGuid.PcdH2OSioDummyChip1IsaDeviceUid
+
+[Depex]
+  TRUE

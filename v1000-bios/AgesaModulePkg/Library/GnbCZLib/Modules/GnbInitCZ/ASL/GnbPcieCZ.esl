@@ -1,0 +1,185 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: GNB
+ * @e \$Revision: 312749 $   @e \$Date: 2015-02-11 09:59:07 +0800 (Wed, 11 Feb 2015) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+// Wrapper register block
+OperationRegion(varPcierOpRgCZ, SystemMemory, PcieBaseAddress, 4096)
+  Field(varPcierOpRgCZ, ByteAcc, NoLock, Preserve) {
+    Offset (0xE0),
+      bfPcieIndexCZ, 32,
+    }
+    BankField (varPcierOpRgCZ, bfPcieIndexCZ, 0x01110004, DwordAcc, NoLock, Preserve) {
+      Offset (0xE4),
+      ,12,
+      bfPifDegradePwrPllModeGfx, 1
+    }
+    BankField (varPcierOpRgCZ, bfPcieIndexCZ, 0x01318070, DwordAcc, NoLock, Preserve) {
+      Offset (0xE4),
+      bfArbEn0Gfx, 1
+    }
+    BankField (varPcierOpRgCZ, bfPcieIndexCZ, 0x01410129, DwordAcc, NoLock, Preserve) {
+      Offset (0xE4),
+      bfLaneEnableGfx, 16
+    }
+
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Set PCIe VID
+   *
+   *  Arg0 - PCIe link speed
+   *
+   */
+
+  Method (procGnbSetPcieVid, 1) {
+    ALIB_DEBUG (Concatenate (" PCIe VID :", ToHexString (Arg0), ADBG))
+    if (LEqual (Arg0, GEN1)) {
+      Store (PcieVidGen1, local0)
+    }
+    if (LEqual (Arg0, GEN2)) {
+      Store (PcieVidGen2, local0)
+    }
+    if (LEqual (Arg0, GEN3)) {
+      Store (PcieVidGen3, local0)
+    }
+
+    // translate Vid code to millivolt with two fraction bits.
+    if (LGreater (local0, 0xF7)) {
+      Store (0xF7, local0)
+    }
+
+    // Equation: VID code increase/decrease 1, there is one 6.25mv change.
+    //           6.25mv could be described using integer 625 with two fraction bits.
+    // Millivolt = (0xF7 - Vid + 1) * 625
+    Store (Multiply (625, Add (Subtract(0xF7, local0, local1), 1)), local2)
+
+    // SmuMillivolt value = Millivolt * 4 / 100.
+    Divide (Multiply (local2, 4, local2), 100, local3, local4)
+
+    // Send msg to smu services to apply voltage change.
+    // Local7 as an input buffer and passed to procGnbSmuServiceReq
+    Store (Buffer (24) {}, Local7)
+    CreateDWordField (Local7, 0,  varSmuArg0)
+    CreateDWordField (Local7, 4,  varSmuArg1)
+    CreateDWordField (Local7, 8,  varSmuArg2)
+    CreateDWordField (Local7, 12, varSmuArg3)
+    CreateDWordField (Local7, 16, varSmuArg4)
+    CreateDWordField (Local7, 20, varSmuArg5)
+    Store (local4, varSmuArg0)
+    procGnbSmuServiceReq (58, local7)
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  PHY lane power up/down
+   *
+   *  Arg1 - ON/OFF
+   *  Arg1 - Start Lane
+   *  Arg2 - Stop Lane
+   */
+
+  Method (procGnbSmuPciePhyLanePowerControl, 3) {
+//    if (LAnd (LGreaterEqual (Arg1, 8), LGreaterEqual (Arg2, 8))) {
+//      if (LGreater (Arg1, Arg2)) {
+//        And (Arg2, 0xff, Local1) //lower
+//        And (Arg1, 0xff, Local2) //upper
+//      } else {
+//        And (Arg1, 0xff, Local1) //lower
+//        And (Arg2, 0xff, Local2) //upper
+//      }
+//      Store (0, Local3)
+//      Or (ShiftLeft (Local2, 24), ShiftLeft (Local1, 16), Local3)
+//      Or (Local3, 0x3, Local3) // Rx=1, Tx=1, Core=0
+//      if (LEqual (Arg0, ON)) {
+//        Store (3, Local0)
+//      } else {
+//        Store (2, Local0)
+//      }
+//      procGnbSmuServiceReq (Local0, Local3)
+//    }
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  PIF Control Before LaneMux Control
+   *
+   *  Arg1 - ON/OFF
+   *  Arg1 - Start Lane
+   *  Arg2 - Stop Lane
+   */
+
+  Method (procGnbPcieBeforeLaneMuxControl, 3) {
+    // Check for GFX wrapper - lanes 8-15
+    if (LAnd (LGreaterEqual (Arg1, 8), LGreaterEqual (Arg2, 8))) {
+      if (LEqual (Arg0, ON)) {
+        ALIB_DEBUG (" ArbEn = 1")
+        // If power up, ArbEn0 = 1
+        Store (1, bfArbEn0Gfx)
+      } else {
+        // If power down, PIF_DEGRADE_PWR_PLL_MODE = 0 if all 8 lanes are off (ie. Laneenable has all lanes cut); = 1 if not all lanes
+        // Because lanes are not cut yet, we need to determine which lanes will be off
+        ALIB_DEBUG (" PIF_DEGRADE_PWR_PLL_MODE = 0")
+        if (LGreater (Arg1, Arg2)) {
+          Subtract (Arg1, Arg2, Local1)
+          Subtract (Arg2, 8, Local2)
+        } else {
+          Subtract (Arg2, Arg1, Local1)
+          Subtract (Arg1, 8, Local2)
+        }
+        Increment (Local1)
+        ShiftLeft (1, Local1, Local1)
+        Decrement (Local1)
+        ShiftLeft (Local1, Local2, Local1)
+        And (bfLaneEnableGfx, Not (Local1), Local0)
+        if (LEqual (Local0, 0x00)) {
+          Store (0, bfPifDegradePwrPllModeGfx)
+        } else {
+          Store (1, bfPifDegradePwrPllModeGfx)
+        }
+      }
+    }
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  PIF Control After LaneMux Control
+   *
+   *  Arg1 - ON/OFF
+   *  Arg1 - Start Lane
+   *  Arg2 - Stop Lane
+   */
+
+  Method (procGnbPcieAfterLaneMuxControl, 3) {
+    // Check for GFX wrapper - lanes 8-15
+    if (LAnd (LGreaterEqual (Arg1, 8), LGreaterEqual (Arg2, 8))) {
+      if (LEqual (Arg0, ON)) {
+        // If power up, PIF_DEGRADE_PWR_PLL_MODE = 1
+        ALIB_DEBUG (" PIF_DEGRADE_PWR_PLL_MODE = 1")
+        Store (1, bfPifDegradePwrPllModeGfx)
+      } else {
+        // If power down, PIF_DEGRADE_PWR_PLL_MODE = 0 if all 8 lanes are off (ie. Laneenable has all lanes cut); = 1 if not all lanes
+        if (LEqual (And (bfLaneEnableGfx, 0xFF), 0x00)) {
+          ALIB_DEBUG (" ArbEn = 0")
+          Store (0, bfArbEn0Gfx)
+        }
+      }
+    }
+  }

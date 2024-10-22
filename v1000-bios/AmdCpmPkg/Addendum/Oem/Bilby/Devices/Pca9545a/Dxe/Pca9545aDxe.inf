@@ -1,0 +1,36 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = Pca9545aDxe
+  FILE_GUID                      = E0A0C1DE-469B-4D37-62E1-F8BB8AB958AE
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = Pca9545aDxeInit
+
+
+[Sources.common]
+  Pca9545aDxe.c
+  Pca9545aDxe.h
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DebugLib
+
+[Guids]
+
+[Protocols]
+  gEfiI2cMasterProtocolGuid     #CONSUMED
+  gPca9545aProtocolGuid	        #PRODUCED
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+
+[Depex]
+  gEfiI2cMasterProtocolGuid
+

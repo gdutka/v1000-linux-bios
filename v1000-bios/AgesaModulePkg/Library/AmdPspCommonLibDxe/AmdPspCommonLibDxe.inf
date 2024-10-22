@@ -1,0 +1,40 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdPspCommonLib
+  FILE_GUID                      = 33069F93-D50D-465B-8909-4B126A7EAC22
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdPspCommonLib|DXE_DRIVER DXE_SMM_DRIVER UEFI_APPLICATION UEFI_DRIVER  DXE_CORE
+
+[Sources.common]
+  AmdPspCommonLibDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+  UefiBootServicesTableLib
+
+[Guids]
+
+[Protocols]
+  gAmdPspCommonServiceProtocolGuid
+  
+[Ppis]
+
+[Pcd]
+
+[Depex]
+  gAmdPspCommonServiceProtocolGuid
+
+

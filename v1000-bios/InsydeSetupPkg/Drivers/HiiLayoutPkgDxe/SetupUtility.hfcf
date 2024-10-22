@@ -1,0 +1,252 @@
+/** @file
+  Layout and hot key definitions for Setup Utility
+
+;******************************************************************************
+;* Copyright (c) 2018 - 2019, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+#include <Guid/H2OSetup.h>
+
+#define SCU_HOT_KEY_PROPERTY_SHOW_HELP                         image          = IMAGE_TOKEN(IMAGE_HOTKEY_SHOW_HELP),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_SHOW_HELP,\
+                                                               style          = .H2OHotKeyShowHelp;
+
+#define SCU_HOT_KEY_PROPERTY_DISCARD_AND_EXIT                  image          = IMAGE_TOKEN(IMAGE_HOTKEY_DISCARD_EXIT),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_DISCARD_AND_EXIT,\
+                                                               style          = .H2OHotKeyDiscardAndExit;
+
+#define SCU_HOT_KEY_PROPERTY_SELECT_PREVIOUS_ITEM              image          = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_UP),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_ITEM_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_ITEM,\
+                                                               group          = 1,\
+                                                               style          = .H2OHotKeySelectPreviousItem;
+
+#define SCU_HOT_KEY_PROPERTY_SELECT_NEXT_ITEM                  image          = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_DOWN),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_ITEM_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_SELECT_NEXT_ITEM,\
+                                                               group          = 1,\
+                                                               style          = .H2OHotKeySelectNextItem;
+
+#define SCU_HOT_KEY_PROPERTY_SELECT_PREVIOUS_MENU              image          = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_MENU_UP),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_MENU_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_SELECT_MENU_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_MENU,\
+                                                               group          = 2,\
+                                                               style          = .H2OHotKeySelectPreviousMenu;
+
+#define SCU_HOT_KEY_PROPERTY_SELECT_NEXT_MENU                  image          = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_MENU_DOWN),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_MENU_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_SELECT_MENU_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_SELECT_NEXT_MENU,\
+                                                               group          = 2,\
+                                                               style          = .H2OHotKeySelectNextMenu;
+
+#define SCU_HOT_KEY_PROPERTY_MODIFY_PREVIOUS_VALUE             image          = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_DOWN),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_MODIFY_PREVIOUS_VALUE_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_MODIFY_PREVIOUS_VALUE,\
+                                                               group          = 3,\
+                                                               style          = .H2OHotKeyModifyPreviousValue;
+
+#define SCU_HOT_KEY_PROPERTY_MODIFY_NEXT_VALUE                 image          = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_UP),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_MODIFY_NEXT_VALUE_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_MODIFY_NEXT_VALUE,\
+                                                               group          = 3,\
+                                                               style          = .H2OHotKeyModifyNextValue;
+
+#define SCU_HOT_KEY_PROPERTY_SHIFT_DOWN                        image          = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_DOWN),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_MODIFY_PREVIOUS_VALUE_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),\
+                                                               group          = 3,\
+                                                               action         = H2O_HOT_KEY_ACTION_CALLBACK,\
+                                                               actionvalue    = BOOLEAN(FALSE),\
+                                                               style          = .H2OHotKeyShiftDown;
+
+#define SCU_HOT_KEY_PROPERTY_SHIFT_UP                          image          = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_UP),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_MODIFY_NEXT_VALUE_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),\
+                                                               group          = 3,\
+                                                               action         = H2O_HOT_KEY_ACTION_CALLBACK,\
+                                                               actionvalue    = BOOLEAN(TRUE),\
+                                                               style          = .H2OHotKeyShiftUp;
+
+#define SCU_HOT_KEY_PROPERTY_ENTER                             image          = IMAGE_TOKEN(IMAGE_HOTKEY_ENTER),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_ENTER_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_ENTER_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_ENTER,\
+                                                               style          = .H2OHotKeyEnter;
+
+#define SCU_HOT_KEY_PROPERTY_LOAD_DEFAULT_CALLBACK             image          = IMAGE_TOKEN(IMAGE_HOTKEY_LOAD_DEFAULT),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_LOAD_DEFAULT_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_LOAD_DEFAULT_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_CALLBACK,\
+                                                               actionformset  = FORMSET_ID_GUID_EXIT,\
+                                                               actionquestion = KEY_SCAN_F9,\
+                                                               style          = .H2OHotKeyLoadDefaultCallback;
+
+#define SCU_HOT_KEY_PROPERTY_SAVE_AND_EXIT_CALLBACK            image          = IMAGE_TOKEN(IMAGE_HOTKEY_SAVE_AND_EXIT),\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_SAVE_AND_EXIT_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_SAVE_AND_EXIT_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_CALLBACK,\
+                                                               actionformset  = FORMSET_ID_GUID_EXIT,\
+                                                               actionquestion = KEY_SCAN_F10,\
+                                                               style          = .H2OHotKeySaveAndExitCallback;
+
+#define SCU_HOT_KEY_PROPERTY_MODIFY_PREVIOUS_VALUE_HIDDEN_KEY  prompt         = STRING_TOKEN(STR_HOT_KEY_MODIFY_PREVIOUS_VALUE_HIDDEN_KEY_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_MODIFY_PREVIOUS_VALUE,\
+                                                               style          = .H2OHotKeyModifyPreviousValueHiddenKey;
+
+#define SCU_HOT_KEY_PROPERTY_MODIFY_NEXT_VALUE_HIDDEN_KEY      action         = H2O_HOT_KEY_ACTION_MODIFY_NEXT_VALUE,\
+                                                               prompt         = STRING_TOKEN(STR_HOT_KEY_MODIFY_NEXT_VALUE_HIDDEN_KEY_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),\
+                                                               style          = .H2OHotKeyModifyNextValueHiddenKey;
+
+#define SCU_HOT_KEY_PROPERTY_SHIFT_DOWN_HIDDEN_KEY             prompt         = STRING_TOKEN(STR_HOT_KEY_MODIFY_PREVIOUS_VALUE_HIDDEN_KEY_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_CALLBACK,\
+                                                               actionvalue    = BOOLEAN(FALSE),\
+                                                               style          = .H2OHotKeyShiftDownHiddenKey;
+
+#define SCU_HOT_KEY_PROPERTY_SHIFT_UP_HIDDEN_KEY               prompt         = STRING_TOKEN(STR_HOT_KEY_MODIFY_NEXT_VALUE_HIDDEN_KEY_PROMPT_STRING),\
+                                                               help           = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),\
+                                                               action         = H2O_HOT_KEY_ACTION_CALLBACK,\
+                                                               actionvalue    = BOOLEAN(TRUE),\
+                                                               style          = .H2OHotKeyShiftUpHiddenKey;
+
+#define SCU_BOOT_SHIFT_HOT_KEYS  hotkey hotkeyid = 0x707; SCU_HOT_KEY_PROPERTY_SHIFT_DOWN                       endhotkey;\
+                                 hotkey hotkeyid = 0x708; SCU_HOT_KEY_PROPERTY_SHIFT_UP                         endhotkey;\
+                                 hotkey hotkeyid = 0x70C; SCU_HOT_KEY_PROPERTY_SHIFT_DOWN_HIDDEN_KEY            endhotkey;\
+                                 hotkey hotkeyid = 0x70D; SCU_HOT_KEY_PROPERTY_SHIFT_UP_HIDDEN_KEY              endhotkey;
+
+#define SCU_HOT_KEYS             hotkey hotkeyid = 0x701; SCU_HOT_KEY_PROPERTY_SHOW_HELP                        endhotkey;\
+                                 hotkey hotkeyid = 0x702; SCU_HOT_KEY_PROPERTY_DISCARD_AND_EXIT                 endhotkey;\
+                                 hotkey hotkeyid = 0x703; SCU_HOT_KEY_PROPERTY_SELECT_PREVIOUS_ITEM             endhotkey;\
+                                 hotkey hotkeyid = 0x704; SCU_HOT_KEY_PROPERTY_SELECT_NEXT_ITEM                 endhotkey;\
+                                 hotkey hotkeyid = 0x705; SCU_HOT_KEY_PROPERTY_SELECT_PREVIOUS_MENU             endhotkey;\
+                                 hotkey hotkeyid = 0x706; SCU_HOT_KEY_PROPERTY_SELECT_NEXT_MENU                 endhotkey;\
+                                 hotkey hotkeyid = 0x707; SCU_HOT_KEY_PROPERTY_MODIFY_PREVIOUS_VALUE            endhotkey;\
+                                 hotkey hotkeyid = 0x708; SCU_HOT_KEY_PROPERTY_MODIFY_NEXT_VALUE                endhotkey;\
+                                 hotkey hotkeyid = 0x709; SCU_HOT_KEY_PROPERTY_ENTER                            endhotkey;\
+                                 hotkey hotkeyid = 0x70A; SCU_HOT_KEY_PROPERTY_LOAD_DEFAULT_CALLBACK            endhotkey;\
+                                 hotkey hotkeyid = 0x70B; SCU_HOT_KEY_PROPERTY_SAVE_AND_EXIT_CALLBACK           endhotkey;\
+                                 hotkey hotkeyid = 0x70C; SCU_HOT_KEY_PROPERTY_MODIFY_PREVIOUS_VALUE_HIDDEN_KEY endhotkey;\
+                                 hotkey hotkeyid = 0x70D; SCU_HOT_KEY_PROPERTY_MODIFY_NEXT_VALUE_HIDDEN_KEY     endhotkey;
+
+style .LmdeScreen                property {color : lightgray; background-color : black    ;} endstyle;
+style .LmdeOwnerDraw             property {color : lightgray; background-color : black    ;} endstyle;
+style .LmdeTitle                 property {color : white    ;                              } endstyle;
+style .LmdeTitle     :highlight  property {color : white    ;                              } endstyle;
+style .LmdeSetupMenu             property {color : blue     ;                              } endstyle;
+style .LmdeSetupMenu :highlight  property {color : blue     ; background-color : lightgray;} endstyle;
+style .LmdeSetupMenu :grayout    property {color : darkgray ;                              } endstyle;
+style .LmdeSetupMenu :selectable property {color : white    ;                              } endstyle;
+style .LmdeSetupMenu :focus      property {color : blue     ; background-color : lightgray;} endstyle;
+style .LmdeSetupPage             property {color : darkgray ;                              } endstyle;
+style .LmdeSetupPage :highlight  property {color : white    ; background-color : blue     ;} endstyle;
+style .LmdeSetupPage :grayout    property {color : darkgray ;                              } endstyle;
+style .LmdeSetupPage :selectable property {color : darkgray ;                              } endstyle;
+style .LmdeSetupPage :focus      property {color : white    ; background-color : blue     ;} endstyle;
+style .LmdeSetupPage :disabled   property {color : blue     ; background-color : black    ;} endstyle;
+style .LmdeSetupPage :enabled    property {color : white    ; background-color : black    ;} endstyle;
+style .LmdeHelpText              property {color : darkgray ;                              } endstyle;
+style .LmdeHotkey                property {color : white    ;                              } endstyle;
+style .LmdeHotkey    :highlight  property {color : white    ;                              } endstyle;
+style .LmdeHotkey    :grayout    property {color : darkgray ;                              } endstyle;
+style .LmdeHotkey    :selectable property {color : white    ;                              } endstyle;
+style .LmdeHotkey    :focus      property {color : white    ;                              } endstyle;
+style .LmdeQuestion              property {color : black    ; background-color : blue     ;} endstyle;
+style .LmdeQuestion  :highlight  property {color : white    ;                              } endstyle;
+style .LmdeQuestion  :grayout    property {color : darkgray ;                              } endstyle;
+style .LmdeQuestion  :selectable property {color : black    ;                              } endstyle;
+style .LmdeQuestion  :focus      property {color : white    ;                              } endstyle;
+style .LmdeQuestion  :disabled   property {color : darkgray ; background-color : black    ;} endstyle;
+style .LmdeQuestion  :enabled    property {color : white    ; background-color : black    ;} endstyle;
+
+style .LmdeScreen    panel property {visibility : hidden ; left :  0%; top : 0em; right :  0%; bottom :  0%;                                                  } endstyle;
+style .LmdeOwnerDraw panel property {visibility : visible; left :  0%; top : 0em; right :  0%; bottom : 86%;                                                  } endstyle;
+style .LmdeTitle     panel property {visibility : visible; left : 12%; top : 14%; right :  0%; bottom : 77%; background-color : darkgray ;                    } endstyle;
+style .LmdeSetupMenu panel property {visibility : visible; left :  0%; top : 14%; right : 88%; bottom :  0%; background-color : black    ;                    } endstyle;
+style .LmdeSetupPage panel property {visibility : visible; left : 12%; top : 23%; right : 35%; bottom : 13%; background-color : lightgray; border-width : 1em;} endstyle;
+style .LmdeHelpText  panel property {visibility : visible; left : 65%; top : 23%; right :  0%; bottom : 13%; background-color : lightgray; border-width : 1em;} endstyle;
+style .LmdeHotkey    panel property {visibility : visible; left : 12%; top : 87%; right :  0%; bottom :  0%; background-color : black    ;                    } endstyle;
+style .LmdeQuestion  panel property {visibility : hidden ; left : 60%; top : 50%; right :  0%; bottom : 15%;                               border-width : 1em;} endstyle;
+
+#include "Tool.hfcf"
+
+layout
+  layoutid          = SCU_LAYOUT_ID,
+  displayengineguid = DISPLAY_ENGINE_LOCAL_METRO_GUID;
+
+  panel panelid = SCREEN_PANEL_ID    , paneltype = H2O_PANEL_TYPE_SCREEN         ; style = .LmdeScreen   ; endpanel;
+  panel panelid = OWNER_DRAW_PANEL_ID, paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LmdeOwnerDraw; endpanel;
+  panel panelid = TITLE_PANEL_ID     , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LmdeTitle    ; endpanel;
+  panel panelid = SETUP_MENU_PANEL_ID, paneltype = H2O_PANEL_TYPE_SETUP_MENU     ; style = .LmdeSetupMenu; endpanel;
+  panel panelid = SETUP_PAGE_PANEL_ID, paneltype = H2O_PANEL_TYPE_SETUP_PAGE     ; style = .LmdeSetupPage; endpanel;
+  panel panelid = HELP_TEXT_PANEL_ID , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LmdeHelpText ; endpanel;
+  panel panelid = HOTKEY_PANEL_ID    , paneltype = H2O_PANEL_TYPE_HOTKEY         ; style = .LmdeHotkey   ; endpanel;
+  panel panelid = QUESTION_PANEL_ID  , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LmdeQuestion ; endpanel;
+endlayout;
+
+vfr
+  formset
+    guid   = FORMSET_ID_GUID_BOOT;
+    layout = SCU_LAYOUT_ID;
+
+    SCU_HOT_KEYS
+
+    //
+    // In Boot\EFI and Boot\Legacy pages, change from modify value hot key to callback hot key.
+    // VFR driver callback function will implement the functionality of change boot device order.
+    //
+    form formid = BOOT_OPTION_FORM_ID        ; SCU_BOOT_SHIFT_HOT_KEYS  endform;
+    form formid = BOOT_DEVICE_FDD_FORM_ID    ; SCU_BOOT_SHIFT_HOT_KEYS  endform;
+    form formid = BOOT_DEVICE_HDD_FORM_ID    ; SCU_BOOT_SHIFT_HOT_KEYS  endform;
+    form formid = BOOT_DEVICE_CD_FORM_ID     ; SCU_BOOT_SHIFT_HOT_KEYS  endform;
+    form formid = BOOT_DEVICE_PCMCIA_FORM_ID ; SCU_BOOT_SHIFT_HOT_KEYS  endform;
+    form formid = BOOT_DEVICE_USB_FORM_ID    ; SCU_BOOT_SHIFT_HOT_KEYS  endform;
+    form formid = BOOT_EMBED_NETWORK_FORM_ID ; SCU_BOOT_SHIFT_HOT_KEYS  endform;
+    form formid = BOOT_DEVICE_BEV_FORM_ID    ; SCU_BOOT_SHIFT_HOT_KEYS  endform;
+    form formid = BOOT_DEVICE_OTHER_FORM_ID  ; SCU_BOOT_SHIFT_HOT_KEYS  endform;
+    form formid = BOOT_DEVICE_EFI_FORM_ID    ; SCU_BOOT_SHIFT_HOT_KEYS  endform;
+    form formid = BOOT_DEVICE_LEG_NOR_BOOT_ID; SCU_BOOT_SHIFT_HOT_KEYS  endform;
+  endformset;
+
+  formset
+    guid   = FORMSET_ID_GUID_SECURITY;
+    layout = SCU_LAYOUT_ID;
+
+    SCU_HOT_KEYS
+
+    //
+    // In order to keep original display of changing password dialog (i.e. unlock/new/comfirm_new passwords in single dialog),
+    // change the property "single-password"(default is FALSE) to TRUE except check storage/master_storage password.
+    //
+    style = .ChangePwInSingleDlg;
+    form formid = STORAGE_PASSWORD_DEVICE_FORM_ID;
+      question questionid = KEY_CHECK_STORAGE_PASSWORD       ; style = .ChangePwInMultiDlg; endquestion;
+      question questionid = KEY_CHECK_MASTER_STORAGE_PASSWORD; style = .ChangePwInMultiDlg; endquestion;
+    endform;
+  endformset;
+
+  formset
+    guid   = SETUP_UTILITY_FORMSET_CLASS_GUID;
+    layout = SCU_LAYOUT_ID;
+
+    SCU_HOT_KEYS
+  endformset;
+endvfr;
+

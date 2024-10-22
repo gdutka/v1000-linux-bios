@@ -1,0 +1,43 @@
+## @file
+#  This PEIM forces BIOS load default if CMOS checksum corrupted.
+#
+#******************************************************************************
+#* Copyright (c) 2014, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = NvVariableFailDetectPei
+  FILE_GUID                      = A2424BB5-5441-4efe-A608-2CCD60824C06
+  MODULE_TYPE                    = PEIM
+  ENTRY_POINT                    = NvVariableFailDetectEntryPoint
+
+[Sources]
+  NvVariableFailDetectPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+
+[LibraryClasses]
+   PeimEntryPoint
+   PeiServicesLib
+   DebugLib
+   CmosLib
+   HobLib
+
+[Guids]
+  gNvVariableFailGuid
+
+[Ppis]
+  gEfiPeiReadOnlyVariable2PpiGuid
+
+[Depex]
+  TRUE

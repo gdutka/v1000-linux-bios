@@ -1,0 +1,64 @@
+## @file
+#  Component description file for TisDxe module.
+#
+#******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = fTPMTisDxe
+  FILE_GUID                      = 97A20DF5-6F57-4c76-9095-0F6439F8A81C
+  MODULE_TYPE                    = COMBINED_SMM_DXE
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DriverEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF
+#
+
+[Sources]
+  fTPMTisDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  IoLib
+  TimerLib
+  DebugLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  Tpm2TisCommLib
+  AmdPspFtpmLib
+  PcdLib
+
+[Protocols]
+  gTpm2InterfaceGuid
+  gEfiSmmBase2ProtocolGuid
+
+[Pcd]
+  gChipsetPkgTokenSpaceGuid.PcdTpmType
+  gInsydeTokenSpaceGuid.PcdDxeTpmPolicy
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid
+
+[BuildOptions]
+#  *_*_*_CC_FLAGS = /Od

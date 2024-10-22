@@ -1,0 +1,82 @@
+## @file
+#  Component description file for SmmPlatform module.
+#
+#*******************************************************************************
+#* Copyright (c) 2016 - 2018, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#*******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SmmPlatform
+  FILE_GUID                      = e4d932f4-31c9-4075-8fa3-4030f7eb767a
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = SmmPlatformEntryPoint
+
+[Sources]
+  SmmPlatform.c
+  S5Wakeup.c
+  SaveResFuncs.c
+  CapsuleWakeup.c
+
+[Packages]
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+  AgesaPkg/AgesaPkg.dec
+  $(PROJECT_PKG)/Project.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/$(PLATFORM_NAME)/AmdCpmOemPkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  PostCodeLib
+  PciExpressLib
+  SmmChipsetSvcLib
+  SmmOemSvcKernelLibDefault
+  BaseOemSvcKernelLib
+  PcdLib
+  CmosLib
+  VariableLib
+  ProcessPendingCapsuleLib
+
+[Guids]
+  gSecureFlashInfoGuid
+  gSystemConfigurationGuid
+  gCbsSystemConfigurationGuid
+  
+[Protocols]
+  gEfiSmmSxDispatch2ProtocolGuid
+  gEfiSmmSwDispatch2ProtocolGuid
+  gEfiSmmPowerButtonDispatch2ProtocolGuid
+
+  gAcpiEnableCallbackStartProtocolGuid
+  gAcpiDisableCallbackStartProtocolGuid
+  gAcpiRestoreCallbackStartProtocolGuid
+  gAcpiRestoreCallbackDoneProtocolGuid
+  gAmdCapsuleSmmHookProtocolGuid
+
+[Pcd]
+  gChipsetPkgTokenSpaceGuid.PcdLegacyFreeSupported
+  gChipsetPkgTokenSpaceGuid.PcdLegacyFreeTiSupport
+  gChipsetPkgTokenSpaceGuid.PcdSecureFlashWakeFromS3Time
+  gAmdCpmPkgTokenSpaceGuid.PcdReduceHardwareEnable
+
+[Depex]
+  gEfiSmmPowerButtonDispatch2ProtocolGuid AND
+  gEfiSmmSxDispatch2ProtocolGuid AND
+  gEfiSmmSwDispatch2ProtocolGuid AND
+  gEfiSmmVariableProtocolGuid
+

@@ -1,0 +1,94 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FchSmmDispatcher
+  FILE_GUID                      = 2fe607a1-b7d3-41d6-be4a-da60bd1caaac
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = FchSmmDispatcherEntry
+
+[sources]
+  FchSmmData.c
+  FchSmmDispatcher.c
+  FchSmmDispatcher.h
+  FchSmmGpiDispatcher/FchSmmGpiDispatcher.c
+  FchSmmGpiDispatcher/FchSmmGpiDispatcher.h
+  FchSmmIoTrapDispatcher/FchSmmIoTrapDispatcher.c
+  FchSmmIoTrapDispatcher/FchSmmIoTrapDispatcher.h
+  FchSmmMiscDispatcher/FchSmmMiscDispatcher.c
+  FchSmmMiscDispatcher/FchSmmMiscDispatcher.h
+  FchSmmPeriodicalDispatcher/FchSmmPeriodicalDispatcher.c
+  FchSmmPeriodicalDispatcher/FchSmmPeriodicalDispatcher.h
+  FchSmmPwrBtnDispatcher/FchSmmPwrBtnDispatcher.c
+  FchSmmPwrBtnDispatcher/FchSmmPwrBtnDispatcher.h
+  FchSmmSwDispatcher/FchSmmSwDispatcher.c
+  FchSmmSwDispatcher/FchSmmSwDispatcher.h
+  FchSmmSxDispatcher/FchSmmSxDispatcher.c
+  FchSmmSxDispatcher/FchSmmSxDispatcher.h
+  FchSmmUsbDispatcher/FchSmmUsbDispatcher.c
+  FchSmmUsbDispatcher/FchSmmUsbDispatcher.h
+
+[sources.ia32]
+
+[sources.x64]
+
+[LibraryClasses]
+  FchSmmLibV9 
+  FchSandstoneDxeLib
+  NbioHandleLib
+  NbioSmuV10Lib
+  UefiDriverEntryPoint
+  BaseMemoryLib
+  BaseLib
+  DebugLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  SmmServicesTableLib
+  DevicePathLib
+  MemoryAllocationLib
+  S3BootScriptLib
+
+[Guids]
+
+[Protocols]
+  gFchSmmSwDispatch2ProtocolGuid            #PRODUCED
+  gEfiSmmSwDispatch2ProtocolGuid            #PRODUCED
+  gFchSmmSxDispatch2ProtocolGuid            #PRODUCED
+  gEfiSmmSxDispatch2ProtocolGuid            #PRODUCED
+  gFchSmmPwrBtnDispatch2ProtocolGuid        #PRODUCED
+  gEfiSmmPowerButtonDispatch2ProtocolGuid   #PRODUCED
+  gFchSmmPeriodicalDispatch2ProtocolGuid    #PRODUCED
+  gEfiSmmPeriodicTimerDispatch2ProtocolGuid #PRODUCED
+  gFchSmmUsbDispatch2ProtocolGuid           #PRODUCED
+  gEfiSmmUsbDispatch2ProtocolGuid           #PRODUCED
+  gFchSmmGpiDispatch2ProtocolGuid           #PRODUCED
+  gEfiSmmGpiDispatch2ProtocolGuid           #PRODUCED
+  gFchSmmIoTrapDispatch2ProtocolGuid        #PRODUCED
+  gEfiSmmIoTrapDispatch2ProtocolGuid        #PRODUCED
+
+  gFchSmmMiscDispatchProtocolGuid           #PRODUCED
+
+  gEfiSmmConfigurationProtocolGuid          #CONSUMED
+  gEfiSmmBase2ProtocolGuid                  #CONSUMED
+  gEfiSmmCpuProtocolGuid                    #CONSUMED
+  gAmdCapsuleSmmHookProtocolGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid
+  AND
+  gEfiSmmCpuProtocolGuid
+  AND
+  gAmdFchSSSmmDispacherDepexProtocolGuid
+

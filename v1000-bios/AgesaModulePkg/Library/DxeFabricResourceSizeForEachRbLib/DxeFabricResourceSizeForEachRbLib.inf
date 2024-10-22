@@ -1,0 +1,40 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxeFabricResourceSizeForEachRbLib
+  FILE_GUID                      = D945E4ED-A5AE-40D9-9E2F-234496298035
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = FabricResourceSizeForEachRbLib
+
+[Sources]
+  DxeFabricResourceSizeForEachRbLib.c
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+  UefiRuntimeServicesTableLib
+
+[Guids]
+  gAmdResourceSizeForEachRbGuid
+  gAmdResourceDistributionGuid
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+

@@ -1,0 +1,58 @@
+/** @file
+  VFR file used by TlsAuthConfigDxe driver.
+
+  Copyright (c) 2016, Intel Corporation. All rights reserved.<BR>
+
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+**/
+
+#include "TlsAuthConfigNvData.h"
+
+formset
+  guid   = TLS_AUTH_CONFIG_GUID,
+  title  = STRING_TOKEN(STR_TLS_CERTIFICATE_MANAGER),
+  help   = STRING_TOKEN(STR_TLS_CERTIFICATE_MANAGER_HELP),
+
+  //
+  // Form: TLS certificate manager
+  //
+  form formid = FORMID_MAIN_FORM,
+       title  = STRING_TOKEN(STR_TLS_CERTIFICATE_MANAGER);
+
+    goto FORM_ID_IMPORT_CERTIFICATE_FILE,
+      prompt = STRING_TOKEN(STR_TLS_CERTIFICATE_IMPORT),
+      help   = STRING_TOKEN(STR_TLS_CERTIFICATE_IMPORT),
+      flags  = INTERACTIVE,
+      key    = KEY_IMPORT_CERT_FILE;
+
+    goto FORM_ID_MANAGE_CERTIFICATE_FILE,
+      prompt = STRING_TOKEN(STR_TLS_CERTIFICATE_DELETE),
+      help   = STRING_TOKEN(STR_TLS_CERTIFICATE_DELETE),
+      flags  = INTERACTIVE,
+      key    = KEY_DELETE_CERT_FILE;
+
+// Unsupported
+//    goto FORM_ID_MANAGE_CERTIFICATE_FILE,
+//      prompt = STRING_TOKEN(STR_TLS_CERTIFICATE_EXPORT),
+//      help   = STRING_TOKEN(STR_TLS_CERTIFICATE_EXPORT),
+//      flags  = INTERACTIVE,
+//      key    = KEY_EXPORT_CERT_FILE;
+  endform;
+
+  form
+    formid = FORM_ID_IMPORT_CERTIFICATE_FILE,
+    title  = STRING_TOKEN(STR_TLS_CERTIFICATE_IMPORT);
+    label LABEL_ID_FILE_LIST_START;
+    label LABEL_ID_FILE_LIST_END;
+  endform;
+
+  form
+    formid = FORM_ID_MANAGE_CERTIFICATE_FILE,
+    title  = STRING_TOKEN(STR_TLS_CERTIFICATE_DELETE);
+    label LABEL_ID_FILE_LIST_START;
+    label LABEL_ID_FILE_LIST_END;
+  endform;
+
+endformset;
+

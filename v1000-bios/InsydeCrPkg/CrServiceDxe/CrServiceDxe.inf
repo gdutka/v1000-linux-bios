@@ -1,0 +1,86 @@
+## @file
+# Component description file for CrServiceDxe module
+#******************************************************************************
+#* Copyright (c) 2012 - 2013, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CrServiceDxe
+  FILE_GUID                      = 149E1CBD-A263-46db-895C-4B0201D242B1
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = CrServiceEntryPoint
+
+[Sources]
+  CrServiceDxe.c
+  CrBdaMemManager.c
+  CrLegacySupport.c
+  CrVariableUpdate.c
+  CrServiceMisc.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeCrPkg/InsydeCrPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiLib
+  BaseMemoryLib
+  UefiDriverEntryPoint
+  CrDeviceVariableLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  DxeServicesTableLib
+  DxeServicesLib
+  DxeChipsetSvcLib
+  DxeOemSvcKernelLibDefault
+  DevicePathLib
+  DebugLib
+  VariableLib
+  BdsCpLib
+  H2OSerialConfigLib
+
+[Guids]
+  gEfiGlobalVariableGuid
+  gH2OCrConfigurationGuid
+  gH2OBdsCpConOutConnectBeforeProtocolGuid
+  gH2OBdsCpConInConnectBeforeProtocolGuid
+  gH2OBdsCpConOutConnectAfterProtocolGuid
+  gH2OBdsCpConnectAllAfterProtocolGuid
+
+[Protocols]
+  gEfiPciRootBridgeIoProtocolGuid
+  gEfiLegacyBiosProtocolGuid
+  gEfiLegacyBiosPlatformProtocolGuid
+  gEfiSmmAccess2ProtocolGuid
+  gH2OConsoleRedirectionServiceProtocolGuid
+  gEfiPciIoProtocolGuid
+  gH2OCrUart16550AccessProtocolGuid
+  gH2OCrOpRomInfoProtocolGuid
+  gTerminalEscCodeProtocolGuid
+  gH2OUsbSerialControllerIoProtocolGuid
+  gEfiSmmControl2ProtocolGuid
+
+[FeaturePcd]
+
+[Pcd]
+  gInsydeCrTokenSpaceGuid.PcdH2OCrOpRomFile
+  gInsydeTokenSpaceGuid.PcdDevNullScreenPtr
+  gInsydeTokenSpaceGuid.PcdDevNullAttributes
+  gInsydeTokenSpaceGuid.PcdSoftwareSmiPort
+  gInsydeCrTokenSpaceGuid.PcdH2OCrSoftwareSmi
+
+[Depex]
+  TRUE
+

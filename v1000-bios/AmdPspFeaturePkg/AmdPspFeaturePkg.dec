@@ -1,0 +1,72 @@
+## @file
+#  Package declaration file for AmdPspFeaturePkg
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = AmdPspFeaturePkg
+  PACKAGE_GUID                   = 1698D912-D30C-4b9d-BB55-A6520DD09B02
+  PACKAGE_VERSION                = 0.1
+
+[Includes]
+  Include
+
+[Guids]
+  gAmdPspFeaturePkgTokenSpaceGuid       = { 0x38eb6059, 0xdf8, 0x4adb, { 0x85, 0x95, 0x4e, 0xc2, 0x63, 0x6f, 0x61, 0xf3 } }
+  gPspApobSmmCommHandleGuid             = { 0xb0a63ddf, 0x323c, 0x4d16, { 0xb9, 0xf9, 0xbc, 0x56, 0xd9, 0x87, 0x9e, 0xb1 } }
+
+
+[Ppis]
+  gPspSmmResumePpiGuid                  = { 0x724c1d03, 0xeb, 0x474b, { 0xa4, 0x6, 0xdf, 0xc8, 0x34, 0x45, 0x63, 0x23 } }
+
+[Protocols]
+
+[PcdsFeatureFlag]
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdPspFirmwareTpmSupported|FALSE|BOOLEAN|0x10000001
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdVerifyFvSupported|FALSE|BOOLEAN|0x10000002
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdPspComboSupport|FALSE|BOOLEAN|0x10000003
+
+[PcdsFixedAtBuild]
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashBRPspNvRamBase|0x00000000|UINT32|0x00000001
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashBRPspNvRamSize|0x00000000|UINT32|0x00000002
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashBRPspFixedBase|0x00000000|UINT32|0x00000003
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashBRPspFixedSize|0x00000000|UINT32|0x00000004
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashBRPspUpdateableBase|0x00000000|UINT32|0x00000005
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashBRPspUpdateableSize|0x00000000|UINT32|0x00000006
+
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashZPPspDirFixedBase|0x00000000|UINT32|0x00000007
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashZPPspDirFixedSize|0x00000000|UINT32|0x00000008
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashZPBiosDirFixedBase|0x00000000|UINT32|0x00000009
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashZPBiosDirFixedSize|0x00000000|UINT32|0x0000000A
+
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashZPPspDirUpdateableBase|0x00000000|UINT32|0x0000000B
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashZPPspDirUpdateableSize|0x00000000|UINT32|0x0000000C
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashZPBiosDirUpdateableBase|0x00000000|UINT32|0x0000000D
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashZPBiosDirUpdateableSize|0x00000000|UINT32|0x0000000E
+
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspDirBase|0x00000000|UINT32|0x0000000F
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspDirSize|0x00000000|UINT32|0x00000010
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVBiosDirBase|0x00000000|UINT32|0x00000011
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVBiosDirSize|0x00000000|UINT32|0x00000012
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashFvMainHashBase|0x00000000|UINT32|0x00000013
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashFvMainHashSize|0x00000000|UINT32|0x00000014
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashPspHeaderBase|0x00000000|UINT32|0x00000015
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashPspHeaderSize|0x00000000|UINT32|0x00000016
+
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashZPPspNvRamBase|0x00000000|UINT32|0x00000017
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashZPPspNvRamSize|0x00000000|UINT32|0x00000018
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspNvRamBase|0x00000000|UINT32|0x00000019
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashRVPspNvRamSize|0x00000000|UINT32|0x00000020
+
+[PcdsDynamic]
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdAmdPspFactoryReset|FALSE|BOOLEAN|0x00010001
+

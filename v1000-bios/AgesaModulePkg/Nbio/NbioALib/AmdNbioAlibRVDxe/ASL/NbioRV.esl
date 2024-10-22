@@ -1,0 +1,112 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: NBIO
+ * @e \$Revision: 324183 $   @e \$Date: 2015-08-13 11:24:44 +0800 (Thu, 13 Aug 2015) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  SMU Service request
+   *
+   *  Arg0 - Smu service ID
+   *  Arg1 - Smu service parameters
+   *
+   */
+  Method (procSmuServiceReq, 2, Serialized) {
+    ALIB_DEBUG (" procSmuServiceReq Enter")
+
+    // Define Arg1 for function 0
+    CreateDWordField(Arg1,  0, varSmuParam0)           // SMU service Request Argument 0
+    CreateDWordField(Arg1,  4, varSmuParam1)           // SMU service Request Argument 1
+    CreateDWordField(Arg1,  8, varSmuParam2)           // SMU service Request Argument 2
+    CreateDWordField(Arg1, 12, varSmuParam3)           // SMU service Request Argument 3
+    CreateDWordField(Arg1, 16, varSmuParam4)           // SMU service Request Argument 4
+    CreateDWordField(Arg1, 20, varSmuParam5)           // SMU service Request Argument 5
+
+    ALIB_DEBUG (Concatenate ("  Smu service id = ", ToHexString (Arg0), ADBG))
+    ALIB_DEBUG (Concatenate ("  Smu service argument0 = ", ToHexString (varSmuParam0), ADBG))
+    ALIB_DEBUG (Concatenate ("  Smu service argument1 = ", ToHexString (varSmuParam1), ADBG))
+    ALIB_DEBUG (Concatenate ("  Smu service argument2 = ", ToHexString (varSmuParam2), ADBG))
+    ALIB_DEBUG (Concatenate ("  Smu service argument3 = ", ToHexString (varSmuParam3), ADBG))
+    ALIB_DEBUG (Concatenate ("  Smu service argument4 = ", ToHexString (varSmuParam4), ADBG))
+    ALIB_DEBUG (Concatenate ("  Smu service argument5 = ", ToHexString (varSmuParam5), ADBG))
+
+    // 1 Clear Response
+    ALIB_DEBUG ("--Clear Response--")
+    Store (0, bfSmuMessageResponse)
+
+    while (LNotEqual (bfSmuMessageResponse, 0)) {
+    }
+
+    // 2 Write message arguments
+    Store (varSmuParam0, bfSmuMessageArgument0)
+    Store (varSmuParam1, bfSmuMessageArgument1)
+    Store (varSmuParam2, bfSmuMessageArgument2)
+    Store (varSmuParam3, bfSmuMessageArgument3)
+    Store (varSmuParam4, bfSmuMessageArgument4)
+    Store (varSmuParam5, bfSmuMessageArgument5)
+
+    // 3 Write message ID
+    Store (Arg0, bfSmuMessageId)
+
+    // 4 Poll Response until non-zero
+    while (LEqual (bfSmuMessageResponse, 0)) {
+        ALIB_DEBUG ("--Poll Response until non-zero--")
+    }
+
+    // 5 Read updated SMU message arguments if necessary
+    // Store (bfSmuMessageArgument0, varSmuParam0)
+    // Store (bfSmuMessageArgument1, varSmuParam1)
+    // Store (bfSmuMessageArgument2, varSmuParam2)
+    // Store (bfSmuMessageArgument3, varSmuParam3)
+    // Store (bfSmuMessageArgument4, varSmuParam4)
+    // Store (bfSmuMessageArgument5, varSmuParam5)
+
+    ALIB_DEBUG ("procSmuServiceReq Exit")
+  }
+
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  DXIO Service Request Interface
+   *
+   *
+   *  Arg0 - SMU Request Arg0 (DXIO Service Request #)
+   *  Arg1 - SMU Request Arg1
+   *  Arg2 - SMU Request Arg2
+   *  Arg3 - SMU Request Arg3
+   */
+    Method (procDxioServiceReq, 5) {
+      ALIB_DEBUG (" DXIO Service Request")
+      // Local7 as an input buffer and passed to procSmuServiceReq
+      Store (Buffer (24) {}, Local7)
+      CreateDWordField (Local7, 0,  varSmuArg0)
+      CreateDWordField (Local7, 4,  varSmuArg1)
+      CreateDWordField (Local7, 8,  varSmuArg2)
+      CreateDWordField (Local7, 12, varSmuArg3)
+      CreateDWordField (Local7, 16, varSmuArg4)
+      CreateDWordField (Local7, 20, varSmuArg5)
+      Store (Arg0, varSmuArg0)
+      Store (Arg1, varSmuArg1)
+      Store (Arg2, varSmuArg2)
+      Store (Arg3, varSmuArg3)
+      procSmuServiceReq (0xA, Local7)
+    }
+
+

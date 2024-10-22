@@ -1,0 +1,44 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = ApCommunicationXvLib
+  FILE_GUID                      = A5429347-0311-41F6-A245-2CCD6DA08EE1
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ApCommunicationLib
+
+[Sources.common]
+  cpuApComm.c
+  cpuApComm.h
+  cpuApCommApic.c
+
+[Sources.IA32]
+  Ia32/ApCommunicationXvLib32.asm
+
+[Sources.X64]
+  x64/ApCommunicationXvLib64.asm
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+

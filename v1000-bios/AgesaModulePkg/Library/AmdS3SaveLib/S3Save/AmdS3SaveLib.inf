@@ -1,0 +1,47 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdS3SaveLib
+  FILE_GUID                      = BEBB3682-429F-4580-99D1-9976EDF1DDE1
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdS3SaveLib | DXE_DRIVER DXE_SMM_DRIVER DXE_RUNTIME_DRIVER
+  CONSTRUCTOR                    = AmdS3SaveLibConstructor
+  DESTRUCTOR                     = AmdS3SaveLibDestructor
+
+[Sources.common]
+  AmdS3SaveLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses]
+  IdsLib
+  AmdBaseLib
+  S3BootScriptLib
+  UefiLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  UefiBootServicesTableLib
+  PciLib
+
+[Guids]
+  gEfiEventReadyToBootGuid
+  gAmdSmmCommunicationHandleGuid
+
+[Protocols]
+  gEfiSmmCommunicationProtocolGuid
+  gEfiDxeSmmReadyToLockProtocolGuid
+
+[Ppis]
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdS3LibPrivateDataAddress
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdSmmCommunicationAddress
+[Depex]

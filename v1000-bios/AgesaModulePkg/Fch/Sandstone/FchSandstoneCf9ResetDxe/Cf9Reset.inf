@@ -1,0 +1,53 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = Cf9Reset
+  FILE_GUID                      = d62e660e-6561-45db-a838-8609bba5ff37
+  MODULE_TYPE                    = DXE_RUNTIME_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InitializeCf9Reset
+
+[sources.common]
+  Cf9Reset.c
+  Cf9Reset.h
+
+[LibraryClasses.common.DXE_DRIVER]
+  BaseLib 
+  UefiLib
+  PrintLib
+  IoLib
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DebugLib
+  FchSandstoneDxeLib
+
+[Guids]
+
+[Protocols]
+  gEfiResetArchProtocolGuid      #PRODUCED
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchFullHardReset
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdFchPmCtrlSlpIoWrWidth
+
+[Depex]
+  gEfiCpuIo2ProtocolGuid  AND
+  gAmdFchSandstoneDepexProtocolGuid
+
+

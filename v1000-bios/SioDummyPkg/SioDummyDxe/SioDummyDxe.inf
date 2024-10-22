@@ -1,0 +1,47 @@
+## @file
+#  Component description file for SioXXXDxe module
+#
+#******************************************************************************
+#* Copyright 2017 Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corp.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = SioDummyDxe
+  FILE_GUID         = 868573b7-c460-4889-969a-63e58f3bc2dd
+  MODULE_TYPE       = DXE_DRIVER
+  VERSION_STRING    = 1.0
+  ENTRY_POINT       = SioDummyDriverEntry
+
+[Sources]
+  SioDxeEntry.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SioDummyPkg/SioDummyPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  DebugLib
+  MemoryAllocationLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  SioDummyPrivateLib
+  UefiLib
+  PostCodeLib
+  BaseMemoryLib
+  DevicePathLib
+  DxeChipsetSvcLib
+
+[Protocols]
+  gH2OSioInstancePrivateInfoProtocolGuid
+
+[Depex]
+  gH2OSioInstancePrivateInfoProtocolGuid

@@ -1,0 +1,40 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdPspFtpmLib
+  FILE_GUID                      = 1AA11B82-76FE-44C4-BF86-14161887D5EE
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdPspFtpmLib
+
+[Sources.common]
+  AmdPspFtpmLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  AmdBaseLib
+  IdsLib
+  AmdPspCommonLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdFtpmTimeout1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdFtpmTimeout2
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspSystemTpmConfig
+
+[Depex]

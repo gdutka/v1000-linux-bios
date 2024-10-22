@@ -1,0 +1,24 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdHstiV2
+  FILE_GUID                      = 5466B9AA-EE2F-4FDB-84A3-A330BE1301FF
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[Binaries.X64]
+  PE32|AmdHstiV2.efi|*
+  DXE_DEPEX|AmdHstiV2.depex
+
+  
+

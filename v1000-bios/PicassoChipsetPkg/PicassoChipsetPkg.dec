@@ -1,0 +1,366 @@
+## @file
+#  Chipset Package Declaration file
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = ChipsetPkg
+  PACKAGE_GUID                   = DF131C26-D59D-45c8-A8EB-2BFD518D8BA9
+  PACKAGE_VERSION                = 0.1
+
+[Includes]
+  Include
+#  OemSvcTodo
+
+[LibraryClasses]
+
+[PcdsFeatureFlag]
+  #
+  # Manufacturer group enable/disable PCDs
+  #
+  gH2OFlashDeviceGuid.PcdMicronEnable|TRUE|BOOLEAN|0x02000009
+#[-start-190507-IB06070026-modify]#
+  gH2OFlashDeviceEnableGuid.PcdMxic25l6436eSpiEnable|TRUE|BOOLEAN|0x001720C3
+#[-end-190507-IB06070026-modify]#
+  gH2OFlashDeviceEnableGuid.PcdMxic25u6435fSpiEnable|TRUE|BOOLEAN|0x003725C2
+  gH2OFlashDeviceEnableGuid.PcdMxic25u12835fSpiEnable|TRUE|BOOLEAN|0x003825C2
+#[-start-231004-IB18160156-add]#
+  gH2OFlashDeviceEnableGuid.PcdMxic77u12851fSpiEnable|TRUE|BOOLEAN|0x003875C2
+  gH2OFlashDeviceEnableGuid.PcdMxic77u25650fSpiEnable|TRUE|BOOLEAN|0x003975C2
+#[-end-231004-IB18160156-add]#
+  gH2OFlashDeviceEnableGuid.PcdMicronN25q128aSpiEnable|TRUE|BOOLEAN|0x0018BB20
+
+  gChipsetPkgTokenSpaceGuid.PcdNbIoApicSupport|TRUE|BOOLEAN|0x10000001
+  gChipsetPkgTokenSpaceGuid.PcdUmaBaseUpperThan4G|TRUE|BOOLEAN|0x10000002
+  gChipsetPkgTokenSpaceGuid.PcdLegacyFreeTiSupport|FALSE|BOOLEAN|0x10000004
+  gChipsetPkgTokenSpaceGuid.PcdLegacyFreeSupported|FALSE|BOOLEAN|0x10000006
+  # EC Shared Flahs support
+  gChipsetPkgTokenSpaceGuid.PcdEcSharedFlashSupported|TRUE|BOOLEAN|0x10000007
+  # EC Re-Init after flash
+  gChipsetPkgTokenSpaceGuid.PcdEcReInitAfterFlash|TRUE|BOOLEAN|0x10000008
+  gChipsetPkgTokenSpaceGuid.PcdEcIdlePerWriteBlockSupported|FALSE|BOOLEAN|0x10000009
+  # BiosProtectSmm module use for Secure Flash feature
+  gChipsetPkgTokenSpaceGuid.PcdFchAvalonSupport|FALSE|BOOLEAN|0x1000000A
+#  gChipsetPkgTokenSpaceGuid.PcdCommonSpiSupported|FALSE|BOOLEAN|0x1000000B
+#  gChipsetPkgTokenSpaceGuid.PcdDisplaySpiNotSupport|TRUE|BOOLEAN|0x1000000C
+  gChipsetPkgTokenSpaceGuid.PcdCrbOnlySupport|TRUE|BOOLEAN|0x1000000D
+  gChipsetPkgTokenSpaceGuid.PcdXhciSupported|TRUE|BOOLEAN|0x1000000F
+  # Determine the SPI access method (1: MMIO / 0: IO Cycle)
+  gChipsetPkgTokenSpaceGuid.PcdSpiMmioAccessEnable|TRUE|BOOLEAN|0x10000010
+  gChipsetPkgTokenSpaceGuid.PcdSpiTpm|FALSE|BOOLEAN|0x10000012
+  gChipsetPkgTokenSpaceGuid.PcdBdsReoveryLongRun|FALSE|BOOLEAN|0x10000015
+  gChipsetPkgTokenSpaceGuid.PcdH2OPreferDtpmBootSupported|TRUE|BOOLEAN|0x10000016
+
+#[-start-181221-IB09860035-add]#
+  gChipsetPkgTokenSpaceGuid.PcdH2OGpioCfgSupported|FALSE|BOOLEAN|0x40000059
+#[-end-181221-IB09860035-add]#
+
+[PcdsFixedAtBuild, PcdsPatchableInModule, PcdsDynamic]
+  gChipsetPkgTokenSpaceGuid.SpiOrLpcTPM|1|UINT8|0x10000013
+
+[PcdsFixedAtBuild]
+  #
+  # File GUIDs definition PCDs
+  #
+  # GUID Data Structure {UINT32  Data1; UINT16  Data2; UINT16  Data3; UINT8 Data4[8]}
+  # SLP20Pubkey.bin                      - 1A1E2341-A2FB-42C7-8D17-3073D08EB21D
+  # SLP20Marker.bin                      - DD6569A7-E455-4EE5-B2BA-ECDA84ACBC99
+  # Oa30MsdmData.bin                     - A9943829-A25A-4B94-AC0B-99DD37099F76
+  # LegacyAhciRom/AMDAHCI.BIN            - 52948E6F-137E-4adc-BBB7-D17DC0AD9EC4
+  gChipsetPkgTokenSpaceGuid.PcdSlp20PubkeyFile|{GUID("1A1E2341-A2FB-42C7-8D17-3073D08EB21D")}|VOID*|0x60000075
+  gChipsetPkgTokenSpaceGuid.PcdSlpP20MarkerFile|{GUID("DD6569A7-E455-4EE5-B2BA-ECDA84ACBC99")}|VOID*|0x60000076
+  gChipsetPkgTokenSpaceGuid.PcdOa30MsdmDataFile|{GUID("A9943829-A25A-4B94-AC0B-99DD37099F76")}|VOID*|0x60000077
+  gChipsetPkgTokenSpaceGuid.PcdLegacyVideoRomFile|{GUID("8DFAE5D4-B50E-4C10-96E6-F2C266CACBB6")}|VOID*|0x60000078
+  gChipsetPkgTokenSpaceGuid.PcdLegacyRaidRomFile|{GUID("501737AB-9D1A-4856-86D3-7F1287FA5A55")}|VOID*|0x60000079
+  gChipsetPkgTokenSpaceGuid.PcdLegacyPxeRomFile|{GUID("4C316C9A-AFD9-4E33-AEAB-26C4A4ACC0F7")}|VOID*|0x60000080
+  gChipsetPkgTokenSpaceGuid.PcdLegacyAhciRomFile|{GUID("52948E6F-137E-4ADC-BBB7-D17DC0AD9EC4")}|VOID*|0x60000081
+  gChipsetPkgTokenSpaceGuid.PcdLegacyVideoRV2RomFile|{GUID("8DFAE5D4-B50E-4C10-96E6-F2C266CAACD7")}|VOID*|0x60000082
+  gChipsetPkgTokenSpaceGuid.PcdLegacyVideoPCORomFile|{GUID("8DFAE5D4-B50E-4C10-96E6-F2C266CA5678")}|VOID*|0x60000083
+  gChipsetPkgTokenSpaceGuid.PcdGopDriverFile|{GUID("A8DAFB9B-3529-4e87-8584-ECDB6A5B78B6")}|VOID*|0x60000090
+
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvEcBase|0x00000000|UINT32|0x00000001
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvEcSize|0x00000000|UINT32|0x00000002
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvIecBase|0x00000000|UINT32|0x00000003
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvIecSize|0x00000000|UINT32|0x00000004
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvSigBase|0x00000000|UINT32|0x00000005
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvSigSize|0x00000000|UINT32|0x00000006
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvEc2Base|0x00000000|UINT32|0x00000007
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvEc2Size|0x00000000|UINT32|0x00000008
+  gChipsetPkgTokenSpaceGuid.PcdFlashUsbFirmwareBase|0x00000000|UINT32|0x00000009
+  gChipsetPkgTokenSpaceGuid.PcdFlashUsbFirmwareSize|0x00000000|UINT32|0x0000000A
+  gChipsetPkgTokenSpaceGuid.PcdFlashMctDataStoreBase|0x00000000|UINT32|0x0000000D
+  gChipsetPkgTokenSpaceGuid.PcdFlashMctDataStoreSize|0x00000000|UINT32|0x0000000E
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvBackupBase|0x00000000|UINT32|0x0000000F
+  gChipsetPkgTokenSpaceGuid.PcdFlashFvBackupSize|0x00000000|UINT32|0x00000010
+
+  # SmmAccess2Dxe
+  gChipsetPkgTokenSpaceGuid.PcdMaximumSmramRanges|0x02|UINT8|0x00000012
+
+  # Reserved 64M for PCIe
+  gChipsetPkgTokenSpaceGuid.PcdPciExpressSize|0x4000000|UINT32|0x60000015
+  # FchSmmLib
+  gChipsetPkgTokenSpaceGuid.PcdSmmDataPort|0xb1|UINT16|0x00000014
+  gChipsetPkgTokenSpaceGuid.PcdSmmActivationData|0x55|UINT8|0x00000015
+  gChipsetPkgTokenSpaceGuid.PcdNvVariableFailDetect|TRUE|BOOLEAN|0x00000016
+
+  #
+  # ACPI
+  #
+  gChipsetPkgTokenSpaceGuid.PcdWatchdogTimerBase|0xFEB00000|UINT32|0x00000017
+  gChipsetPkgTokenSpaceGuid.PcdDsdtRevision|0x01|UINT8|0x00000018
+  #
+  # CMOS index/data
+  #
+  gChipsetPkgTokenSpaceGuid.PcdCmosIndexPort|0x70|UINT8|0x00000019
+  gChipsetPkgTokenSpaceGuid.PcdCmosDataPort|0x71|UINT8|0x00000020
+
+  #Chipset smi
+  gChipsetPkgTokenSpaceGuid.PcdEfiC1eSwSmi|0xAC|UINT8|0x0000002A
+  gChipsetPkgTokenSpaceGuid.PcdEnableS4InternalKbcwakSwSmi|0xAD|UINT8|0x0000002B
+  gChipsetPkgTokenSpaceGuid.PcdFchOemStartTimerSwSmi|0xBC|UINT8|0x0000002C
+  gChipsetPkgTokenSpaceGuid.PcdFchOemStopTimerSwSmi|0xBD|UINT8|0x0000002D
+  gChipsetPkgTokenSpaceGuid.PcdBiosAcpiSwSmi|0xBE|UINT8|0x0000002E
+  gChipsetPkgTokenSpaceGuid.PcdCpuSmiIoTrapSwSmi|0xBF|UINT8|0x0000002F
+  gChipsetPkgTokenSpaceGuid.PcdAcpiOemSwSmi|0xE4|UINT8|0x00000030
+  gChipsetPkgTokenSpaceGuid.PcdAcpiShowDebugPortSwSmi|0xE5|UINT8|0x00000031
+  gChipsetPkgTokenSpaceGuid.PcdBrightnessRestoreSwSmi|0xE6|UINT8|0x00000032
+  gChipsetPkgTokenSpaceGuid.PcdSpiRomProtectLockSwSmi|0xE7|UINT8|0x00000033
+  gChipsetPkgTokenSpaceGuid.PcdSpiRomProtectUnlockSwSmi|0xE8|UINT8|0x00000034
+  ## SetSsidSvidDxe.c
+  #
+  # The PCD for SetSsidSvidDxe, used to distinguish add-in cards.
+  #
+  gChipsetPkgTokenSpaceGuid.PcdNoBridgeDeviceSsid|FALSE|BOOLEAN|0x00000036
+
+  #
+  # Note: If change sizeof(SYSTEM_CONFIGURATION) in SetupConfig.h, must update really structure size in Project.dsc!!!
+  #
+  gChipsetPkgTokenSpaceGuid.PcdSetupConfigSize|700|UINT32|0x60000000
+
+  ## Sync up these 2 PCDs with PSP directory values
+  gChipsetPkgTokenSpaceGuid.PcdBootFirmwareVolumeBase|0x09C00000|UINT32|0x00000040
+  gChipsetPkgTokenSpaceGuid.PcdBootFirmwareVolumeSize|0x00200000|UINT32|0x00000041
+
+  gChipsetPkgTokenSpaceGuid.PcdSecureFlashWakeFromS3Time|3|UINT8|0x20001001
+
+  #
+  # Limit protect size for Bios region lock.
+  #
+  gChipsetPkgTokenSpaceGuid.PcdFchLimitProtectSizePerSet|0x1000000|UINT32|0x00000045
+
+  #
+  # T-SEG size
+  #
+  gChipsetPkgTokenSpaceGuid.PcdTsegSize|0x00800000|UINT32|0x00000046
+
+  #
+  # For Support Sata Freeze feature
+  #
+  gChipsetPkgTokenSpaceGuid.PcdSataFreezeByAsl|FALSE|BOOLEAN|0x00000047
+
+  #
+  # For Clear CMOS Load Default Support
+  #
+  gChipsetPkgTokenSpaceGuid.PcdH2OCmosLoadDefaultSupported|TRUE|BOOLEAN|0x00000050
+
+[PcdsDynamic, PcdsDynamicEx]
+  # @PcdTypeStruct LEGACY_MODIFY_PIR_TABLE {UINTN BridgeBus; UINTN BridgeDevice; UINTN BridgeFunction; UINT8 VirtualSecondaryBus;}
+  # @PcdTypeArray  LEGACY_MODIFY_PIR_TABLE VirtualBusTable[] "An array of PCI bridge"
+  # @PcdValueType  VirtualBusTable[]
+  gChipsetPkgTokenSpaceGuid.PcdVirtualBusTable|{0}|VOID*|0x70000001
+  # @PcdTypeStruct EFI_LEGACY_PIRQ_ENTRY {UINT8 Pirq; UINT16 IrqMask;}
+  # @PcdTypeStruct EFI_LEGACY_IRQ_ROUTING_ENTRY {UINT8 Bus; UINT8 Device; EFI_LEGACY_PIRQ_ENTRY PirqEntry[4]; UINT8 Slot; UINT8 Reserved;}
+  # @PcdTypeArray  EFI_LEGACY_IRQ_ROUTING_ENTRY PcdControllerDeviceIrqRoutingEntry[]; "An array of Controller device IRQ routing entry."
+  # @PcdValueType  PcdControllerDeviceIrqRoutingEntry[]
+  gChipsetPkgTokenSpaceGuid.PcdControllerDeviceIrqRoutingEntry|{0}|VOID*|0x70000002
+  # @PcdTypeArray  UINT8 PirqPriorityTable[]; "An array of PIRQ value."
+  # @PcdValueType  PirqPriorityTable[]
+  gChipsetPkgTokenSpaceGuid.PcdPirqPriorityTable|{0}|VOID*|0x70000003
+  # @PcdTypeStruct EFI_LEGACY_IRQ_PRIORITY_TABLE_ENTRY {UINT8 Irq; UINT8 Used;}
+  # @PcdTypeArray  EFI_LEGACY_IRQ_PRIORITY_TABLE_ENTRY PirqPriorityTable[]; "An array of IRQ pool."
+  # @PcdValueType  IrqPriorityTable[]
+  gChipsetPkgTokenSpaceGuid.PcdIrqPoolTable|{0}|VOID*|0x70000004
+  # @PcdTypeArray  UINT8 PirqLinkValueArray[]; "An array of PIRQ link Array."
+  # @PcdValueType  PirqLinkValueArray[]
+  gChipsetPkgTokenSpaceGuid.PcdPirqLinkValueArray|{0}|VOID*|0x70000005
+
+#[-start-190507-IB06070026-modify]#
+  gH2OFlashDeviceGuid.PcdMxic25l6436eSpi|{0}|VOID*|0x001720C3
+  gH2OFlashDeviceMfrNameGuid.PcdMxic25l6436eSpiMfrName|"Mxic"|VOID*|0x001720C3
+  gH2OFlashDevicePartNameGuid.PcdMxic25l6436eSpiPartName|"25L6436E"|VOID*|0x001720C3
+  gH2OFlashDeviceConfigGuid.PcdMxic25l6436eSpiConfig|{0}|VOID*|0x001720C3
+
+  gH2OFlashDeviceGuid.PcdMxic25u6435fSpi|{0}|VOID*|0x003725C2
+  gH2OFlashDeviceMfrNameGuid.PcdMxic25u6435fSpiMfrName|"MXIC"|VOID*|0x003725C2
+  gH2OFlashDevicePartNameGuid.PcdMxic25u6435fSpiPartName|"25U6435F"|VOID*|0x003725C2
+  gH2OFlashDeviceConfigGuid.PcdMxic25u6435fSpiConfig|{0}|VOID*|0x003725C2
+#[-end-190507-IB06070026-modify]#
+
+  #
+  # MXIC 25U12835F
+  #
+  gH2OFlashDeviceGuid.PcdMxic25u12835fSpi|{0}|VOID*|0x003825C2
+  gH2OFlashDeviceMfrNameGuid.PcdMxic25u12835fSpiMfrName|"MXIC"|VOID*|0x003825C2
+  gH2OFlashDevicePartNameGuid.PcdMxic25u12835fSpiPartName|"25U12835F"|VOID*|0x003825C2
+  gH2OFlashDeviceConfigGuid.PcdMxic25u12835fSpiConfig|{0}|VOID*|0x003825C2
+
+#[-start-231004-IB18160156-add]#
+  #
+  # MXIC 77U12851F
+  #
+  gH2OFlashDeviceGuid.PcdMxic77u12851fSpi|{0}|VOID*|0x003875C2
+  gH2OFlashDeviceMfrNameGuid.PcdMxic77u12851fSpiMfrName|"MXIC"|VOID*|0x003875C2
+  gH2OFlashDevicePartNameGuid.PcdMxic77u12851fSpiPartName|"77U12851F"|VOID*|0x003875C2
+  gH2OFlashDeviceConfigGuid.PcdMxic77u12851fSpiConfig|{0}|VOID*|0x003875C2
+
+  #
+  # MXIC 77U25650F
+  #
+  gH2OFlashDeviceGuid.PcdMxic77u25650fSpi|{0}|VOID*|0x003975C2
+  gH2OFlashDeviceMfrNameGuid.PcdMxic77u25650fSpiMfrName|"MXIC"|VOID*|0x003975C2
+  gH2OFlashDevicePartNameGuid.PcdMxic77u25650fSpiPartName|"77U25650F"|VOID*|0x003975C2
+  gH2OFlashDeviceConfigGuid.PcdMxic77u25650fSpiConfig|{0}|VOID*|0x003975C2
+#[-end-231004-IB18160156-add]#
+
+  #
+  # MICRON N25Q128A
+  #
+  gH2OFlashDeviceGuid.PcdMicronN25q128aSpi|{0}|VOID*|0x0018BB20
+  gH2OFlashDeviceMfrNameGuid.PcdMicronN25q128aSpiMfrName|"MICRON"|VOID*|0x0018BB20
+  gH2OFlashDevicePartNameGuid.PcdMicronN25q128aSpiPartName|"N25Q128A"|VOID*|0x0018BB20
+  gH2OFlashDeviceConfigGuid.PcdMicronN25q128aSpiConfig|{0}|VOID*|0x0018BB20
+
+  gChipsetPkgTokenSpaceGuid.PcdTpmType|0x00|UINT8|0x70000006
+  gChipsetPkgTokenSpaceGuid.PcdIhisiFbtsToolVersion|0x0000|UINT16|0x00000039
+
+  #
+  #PCD of each region base and size
+  #
+  gChipsetPkgTokenSpaceGuid.PcdFlashAreaPeiBaseAddress|0x00000000|UINT32|0x00000052
+  gChipsetPkgTokenSpaceGuid.PcdFlashAreaPeiSize|0x00000000|UINT32|0x00000053
+  gChipsetPkgTokenSpaceGuid.PcdFlashAreaMainBaseAddress|0x00000000|UINT32|0x00000054
+  gChipsetPkgTokenSpaceGuid.PcdFlashAreaMainSize|0x00000000|UINT32|0x00000055
+
+  gChipsetPkgTokenSpaceGuid.PcdOemTableId|"Bilby"|VOID*|0x00000038
+
+  gChipsetPkgTokenSpaceGuid.PcdMmioLimit1|0x0000000000000000|UINT64|0x40000000
+  gChipsetPkgTokenSpaceGuid.PcdMmioLimit2|0x0000000000000000|UINT64|0x40000001
+
+  #
+  # The PCDs are used to control the Windows SMM Security Mitigations Table - Protection Flags
+  #
+  # BIT0: FIXED_COMM_BUFFERS, If set, expresses that for all synchronous SMM entries,SMM will validate that input and output buffers lie entirely within the expected fixed memory regions.
+  # BIT1: COMM_BUFFER_NESTED_PTR_PROTECTION. If set, expresses that for all synchronous SMM entries, SMM will validate that input and output pointers embedded within the fixed communication buffer only refer to address ranges \
+  #       that lie entirely within the expected fixed memory regions.
+  # BIT2: SYSTEM_RESOURCE_PROTECTION, Firmware setting this bit is an indication that it will not allow reconfiguration of system resources via non-architectural mechanisms.
+  # BIT3-31: Reserved, must return 0 when read.
+  #
+  gChipsetPkgTokenSpaceGuid.PcdWsmtProtectionFlags|0|UINT32|0x70000019
+
+  gChipsetPkgTokenSpaceGuid.PcdPeiGopEnable|FALSE|BOOLEAN|0x70000007
+
+[PcdsDynamic]
+
+#>>EnableAbove4GBMmio++
+  #
+  # Enable MMIO above 4G , its value is determined by SystemConfiguration.EnableAbove4GBMmio in SCU
+  #
+  gChipsetPkgTokenSpaceGuid.PcdMmioMem64Enable|0|UINT8|0x70000020
+#<<EnableAbove4GBMmio++
+
+[Guids]
+  gChipsetPkgTokenSpaceGuid              = { 0x60b430f5, 0x409e, 0x4ea6, {0xb7, 0xe6, 0x65, 0x0d, 0x45, 0xde, 0xe9, 0xba} }
+#  gFdTableInfoHobGuid                    = { 0x63bdf162, 0xeeef, 0x429b, {0x9a, 0x1f, 0xf5, 0x5a, 0x2c, 0x46, 0x6d, 0x76} }
+  #
+  # Insyde Chipset Guids
+  #
+  gMtrrDataInfoGuid                      = { 0x15c57af9, 0x1db3, 0x4cb7, {0x81, 0x2b, 0x71, 0xC2, 0x9B, 0xc3, 0x80, 0x37} }
+  gHddPasswordModifiedGuid               = { 0xd7b8bbb1, 0xb27a, 0x486e, {0xaf, 0x59, 0xaf, 0x3d, 0x05, 0x07, 0xbc, 0xda} }
+  gNvVariableFailGuid                    = { 0x0E5CE58D, 0xE59B, 0x4F93, {0x90, 0x4A, 0x6E, 0xF2, 0xB9, 0x7A, 0x41, 0xD7} }
+
+  ## GUID used to store the Memory Ceiling value into an EFI Variable
+  # Include/Guid/MemoryCeilingVariable.h
+  gMemoryCeilingVariableGuid             = { 0xad22518b, 0x450a, 0x4857, {0x96, 0xc3, 0xd1, 0xe2, 0x2f, 0x20, 0x61, 0x29} }
+
+  #
+  # Insyde Cpu Guids
+  #
+  gUmaExistHobGuid                       = { 0xEB417550, 0xDA25, 0x4F07, {0xA5, 0xAE, 0xE7, 0x11, 0x90, 0x11, 0x0D, 0x02} }
+
+  #
+  # Platform Guids
+  #
+  gPeiBaseMemoryTestPpiGuid              = { 0xb6ec423c, 0x21d2, 0x490d, {0x85, 0xc6, 0xdd, 0x58, 0x64, 0xea, 0xa6, 0x74} }
+  gAmdMemoryContextSaveRestoreDataGuid   = { 0x966eb6fa, 0xeb61, 0x4f18, {0x87, 0x47, 0xe8, 0x27, 0x2e, 0xef, 0xa5, 0xbd} }
+  gAmdMemContextSaveRestoreVariableGuid  = { 0x52bc0af3, 0xbcb8, 0x4275, {0xbd, 0x96, 0x46, 0x6f, 0x55, 0xe4, 0x9d, 0x9c} }
+
+  #
+  # FCH Guids
+  #
+  gEfiLoadAmdAhciUefiDriverProtocolGuid  = { 0xe6a918dd, 0xc2ed, 0x485e, {0x91, 0x3d, 0xdd, 0xbf, 0xaf, 0x34, 0x9c, 0x6c} }
+  gSataControllerDriverGuid              = { 0x8f50dafb, 0xb373, 0x440b, {0x9e, 0xe2, 0x62, 0xb6, 0x65, 0xb6, 0x1d, 0x73} }
+  gSataRaidControllerGuid                = { 0x353e427b, 0xba1f, 0x4177, {0x8c, 0xa9, 0x44, 0xf0, 0x50, 0xc7, 0xe6, 0xae} }
+
+  gEfiTpmDeviceInstanceTpm20FtpmGuid     = { 0x0D2098C2, 0xBD29, 0x4fbc, {0xAB, 0xEC, 0x4E, 0x03, 0x8E, 0xFA, 0xA3, 0x58} }
+
+  #
+  # Definition of Setup Token GUID for Formset List
+  #
+  #define FORMSET_ID_GUID_ADVANCE   {0xc6d4769e, 0x7f48, 0x4d2a, 0x98, 0xe9, 0x87, 0xad, 0xcc, 0xf3, 0x5c, 0xcc}
+  #define FORMSET_ID_GUID_POWER     {0xa6712873, 0x925f, 0x46c6, 0x90, 0xb4, 0xa4, 0x0f, 0x86, 0xa0, 0x91, 0x7b}
+  gLinkAdvancedTokenSpaceGuid            = { 0xc6d4769e, 0x7f48, 0x4d2a, {0x98, 0xe9, 0x87, 0xad, 0xcc, 0xf3, 0x5c, 0xcc} }
+  gLinkPowerTokenSpaceGuid               = { 0xa6712873, 0x925f, 0x46c6, {0x90, 0xb4, 0xa4, 0x0f, 0x86, 0xa0, 0x91, 0x7b} }
+
+  # Include/Guid/VariableEditFunctionDisable.h
+  gVarableEditFunctionDisableGuid        = { 0xef0849b6, 0xfad0, 0x40e9, { 0x91, 0x7, 0x97, 0x4a, 0xeb, 0x87, 0x87, 0xa2 }}
+
+[Ppis]
+  #
+  # Insyde Chipset Ppis
+  #
+  gPeiBootScriptDonePpiGuid              = { 0xFD7C4665, 0x34BE, 0x426b, {0xB1, 0xF8, 0x3A, 0xB7, 0x53, 0xCE, 0x44, 0xB0} }
+
+  #
+  # Insyde Cpu Ppis
+  #
+  gPeiCachePpiGuid                       = { 0xC153205A, 0xE898, 0x4C24, {0x86, 0x89, 0xA4, 0xB4, 0xBC, 0xC5, 0xC8, 0xA2} }
+
+  #
+  # Insyde Platform Ppis
+  #
+
+[Protocols]
+  #
+  # Insyde Chipset Protocols
+  #
+  gEfiGlobalNvsAreaProtocolGuid          = { 0x074e1e48, 0x8132, 0x47a1, {0x8c, 0x2c, 0x3f, 0x14, 0xad, 0x9a, 0x66, 0xdc} }
+
+  #
+  # Insyde Cpu Protocols
+  #
+  gEfiPlatformCpuProtocolGuid            = { 0xbd26cdc9, 0xa092, 0x462a, {0x87, 0x7a, 0x5a, 0xb6, 0xad, 0xce, 0x48, 0x12} }
+  gPiSmmBaseRelocProtocolGuid            = { 0xda5a04d4, 0x712f, 0x4075, { 0x92, 0xd6, 0x26, 0xf4, 0x9f, 0xe9, 0xb5, 0xd7} }
+  gEfiSmmCpuCounterProtocolGuid          = { 0x21f302ae, 0x6e95, 0x471a, { 0x84, 0xbc, 0xb1, 0x48, 0x00, 0x40, 0x3a, 0x1d }}
+
+  #
+  # Insyde Platform Protocol
+  #
+  gAllPciIoPrtclsInstlFinishedProtocolGuid = { 0x676D7012, 0x139B, 0x485A, {0x96, 0xF1, 0x98, 0x6F, 0xC4, 0x8A, 0x86, 0x4B} }
+  gEfiSioPolicyProtocolGuid              = { 0x4940A33C, 0x13C6, 0x4CD8, {0xA7, 0xA7, 0x4A, 0x60, 0x20, 0xF4, 0xCC, 0x73} }
+
+  #
+  # SpiLock Smi Protocol
+  #
+  gEfiSpiLockSmiProtocolGuid            = { 0x815cd2a5, 0x80aa, 0x462f, {0xa9, 0x94, 0x37, 0xd9, 0xdf, 0xa9, 0xae, 0xa6} }
+
+  gH2OIhisiFbtsToolVersionProtocolGuid  = { 0x3b940abd, 0xc446, 0x448f, {0xb7, 0xe6, 0x89, 0x23, 0xef, 0x58, 0xc9, 0x3b} }
+

@@ -1,0 +1,1144 @@
+/** @file
+
+;******************************************************************************
+;* Copyright (c) 2015 - 2018, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+#include <ChipsetSetupConfig.h>
+//#include <CrSetupConfig.h>
+
+//
+//          Form 2: Advanced Menu
+//
+formset
+  guid     = FORMSET_ID_GUID_ADVANCE,
+  title    = STRING_TOKEN(STR_ADVANCED_TITLE),
+  help     = STRING_TOKEN(STR_BLANK_STRING),
+  classguid = SETUP_UTILITY_FORMSET_CLASS_GUID,
+  class     = SETUP_UTILITY_CLASS,
+  subclass  = EFI_USER_ACCESS_THREE,
+#if defined(SETUP_IMAGE_SUPPORT) && FeaturePcdGet(PcdH2OFormBrowserLocalMetroDESupported)
+  image     = IMAGE_TOKEN (IMAGE_ADVANCE);
+#endif
+  varstore CHIPSET_CONFIGURATION,           // This is the data structure type
+    varid = CONFIGURATION_VARSTORE_ID,      // Optional VarStore ID
+    name  = SystemConfig,                   // Define referenced name in vfr
+    guid  = SYSTEM_CONFIGURATION_GUID;      // GUID of this buffer storage
+
+  varstore ADVANCE_CONFIGURATION,
+    varid = ADVANCE_VARSTORE_ID,
+    name  = AdvanceConfig,
+    guid  = SYSTEM_CONFIGURATION_GUID;
+
+  form formid = ROOT_FORM_ID,
+
+    title = STRING_TOKEN(STR_ADVANCED_TITLE);
+
+    subtitle
+      text = STRING_TOKEN(STR_BLANK_STRING);
+
+//     goto 0x20,
+//       prompt = STRING_TOKEN(STR_PCI_CONFIG_STRING),
+//       help = STRING_TOKEN(STR_PCI_CONFIG_HELP);
+    goto 0x20,
+      prompt = STRING_TOKEN(STR_PCIE_CONFIG_STRING),
+      help = STRING_TOKEN(STR_PCIE_CONFIG_HELP);
+
+    goto 0x21,
+      prompt = STRING_TOKEN(STR_BOOT_CONFIG_STRING),
+      help = STRING_TOKEN(STR_BOOT_CONFIG_HELP);
+    goto 0x22,
+      prompt = STRING_TOKEN(STR_PERIP_CONFIG_STRING),
+#if defined(SETUP_IMAGE_SUPPORT) && FeaturePcdGet(PcdH2OFormBrowserLocalMetroDESupported)
+      help = STRING_TOKEN(STR_PERIP_CONFIG_HELP),
+      image = IMAGE_TOKEN (IMAGE_PERIPHERAL),;
+#else
+      help = STRING_TOKEN(STR_PERIP_CONFIG_HELP);
+#endif
+    goto 0x23,
+      prompt = STRING_TOKEN(STR_IDE_CONFIG_STRING),
+#if defined(SETUP_IMAGE_SUPPORT) && FeaturePcdGet(PcdH2OFormBrowserLocalMetroDESupported)
+      help = STRING_TOKEN(STR_IDE_CONFIG_HELP),
+      image = IMAGE_TOKEN (IMAGE_SATA_CONFIG),;
+#else
+      help = STRING_TOKEN(STR_IDE_CONFIG_HELP);
+#endif
+    goto 0x25,
+      prompt = STRING_TOKEN(STR_VIDEO_CONFIG_STRING),
+#if defined(SETUP_IMAGE_SUPPORT) && FeaturePcdGet(PcdH2OFormBrowserLocalMetroDESupported)
+      help = STRING_TOKEN(STR_VIDEO_CONFIG_HELP),
+      image = IMAGE_TOKEN (IMAGE_VIDEO_CONFIG),;
+#else
+      help = STRING_TOKEN(STR_VIDEO_CONFIG_HELP);
+#endif
+
+    goto 0x26,
+      prompt = STRING_TOKEN(STR_USB_CONFIG_STRING),
+      help = STRING_TOKEN(STR_USB_CONFIG_HELP);
+    goto 0x27,
+      prompt = STRING_TOKEN(STR_CHIPSET_CONFIG_STRING),
+#if defined(SETUP_IMAGE_SUPPORT) && FeaturePcdGet(PcdH2OFormBrowserLocalMetroDESupported)
+      help = STRING_TOKEN(STR_CHIPSET_CONFIG_HELP),
+      image = IMAGE_TOKEN (IMAGE_CHIPSET_CONFIG),;
+#else
+      help = STRING_TOKEN(STR_CHIPSET_CONFIG_HELP);
+#endif
+
+    goto 0x28,
+      prompt = STRING_TOKEN(STR_ACPI_TABLE_STRING),
+#if defined(SETUP_IMAGE_SUPPORT) && FeaturePcdGet(PcdH2OFormBrowserLocalMetroDESupported)
+      help = STRING_TOKEN(STR_ACPI_TABLE_HELP),
+      image = IMAGE_TOKEN (IMAGE_ACPI_CONFIG),;
+#else
+      help = STRING_TOKEN(STR_ACPI_TABLE_HELP);
+#endif
+    goto 0x29,
+      prompt = STRING_TOKEN(STR_CPU_SETTING_STRING),
+#if defined(SETUP_IMAGE_SUPPORT) && FeaturePcdGet(PcdH2OFormBrowserLocalMetroDESupported)
+      help = STRING_TOKEN(STR_CPU_SETTING_HELP),
+      image = IMAGE_TOKEN (IMAGE_CPU_CONTROL),;
+#else
+      help = STRING_TOKEN(STR_CPU_SETTING_HELP);
+#endif
+//    goto 0x2a,
+//      prompt = STRING_TOKEN(STR_AMD_PBS_STRING),
+//      help = STRING_TOKEN(STR_AMD_PBS_HELP);
+
+//>>EnableAbove4GBMmio++
+#if FeaturePcdGet (Pcd64BitAmlSupported)
+    oneof varid   =  SystemConfig.EnableAbove4GBMmio,
+      prompt   = STRING_TOKEN(STR_MMIO_ABOVE_4G_PROMPT),
+      help     = STRING_TOKEN(STR_MMIO_ABOVE_4G_HELP),
+      option text = STRING_TOKEN (STR_DISABLED_TEXT), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_ENABLED_TEXT),  value = 1, flags = MANUFACTURING | RESET_REQUIRED | DEFAULT;
+    endoneof;
+#endif
+//<<ableAbove4GBMmio++
+
+    link;
+  endform;
+
+    //
+    //  Form 0x20: Pci configuration
+    //
+//     form
+//       formid = 0x20, title = STRING_TOKEN(STR_PCI_CONFIG_STRING);
+//
+//       subtitle
+//         text = STRING_TOKEN(STR_PCI_CONFIG_STRING);
+//
+//       subtitle
+//         text = STRING_TOKEN(STR_BLANK_STRING);
+//
+//       grayoutif
+//         ideqval SystemConfig.UserAccessLevel == 2
+//         AND
+//         ideqval SystemConfig.SetUserPass == 1;
+//       oneof
+//         varid       = SystemConfig.PciSlot4,
+//         questionid  = KEY_PCI_SLOT_4_IRQ_SET,
+//         prompt      = STRING_TOKEN(STR_PCI_SLOT4_STRING),
+//         help        = STRING_TOKEN(STR_PCI_SLOT_HELP),
+//         option text = STRING_TOKEN(STR_AUTO_TEXT),      value = 0, flags = INTERACTIVE | DEFAULT;
+//         option text = STRING_TOKEN(STR_PCI_IRQ3_TEXT),  value = 3, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ4_TEXT),  value = 4, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ5_TEXT),  value = 5, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ7_TEXT),  value = 7, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ9_TEXT),  value = 9, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ10_TEXT), value = 10, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ11_TEXT), value = 11, flags = INTERACTIVE;
+//       endoneof;
+//
+//       oneof
+//         varid       = SystemConfig.PciSlot5,
+//         questionid  = KEY_PCI_SLOT_5_IRQ_SET,
+//         prompt      = STRING_TOKEN(STR_PCI_SLOT5_STRING),
+//         help        = STRING_TOKEN(STR_PCI_SLOT_HELP),
+//         option text = STRING_TOKEN(STR_AUTO_TEXT),      value = 0, flags = INTERACTIVE | DEFAULT;
+//         option text = STRING_TOKEN(STR_PCI_IRQ3_TEXT),  value = 3, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ4_TEXT),  value = 4, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ5_TEXT),  value = 5, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ7_TEXT),  value = 7, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ9_TEXT),  value = 9, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ10_TEXT), value = 10, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ11_TEXT), value = 11, flags = INTERACTIVE;
+//       endoneof;
+//
+//       oneof
+//         varid       = SystemConfig.PciSlot6,
+//         questionid  = KEY_PCI_SLOT_6_IRQ_SET,
+//         prompt      = STRING_TOKEN(STR_PCI_SLOT6_STRING),
+//         help        = STRING_TOKEN(STR_PCI_SLOT_HELP),
+//         option text = STRING_TOKEN(STR_AUTO_TEXT),      value = 0, flags = INTERACTIVE | DEFAULT;
+//         option text = STRING_TOKEN(STR_PCI_IRQ3_TEXT),  value = 3, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ4_TEXT),  value = 4, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ5_TEXT),  value = 5, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ7_TEXT),  value = 7, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ9_TEXT),  value = 9, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ10_TEXT), value = 10, flags = INTERACTIVE;
+//         option text = STRING_TOKEN(STR_PCI_IRQ11_TEXT), value = 11, flags = INTERACTIVE;
+//       endoneof;
+//       endif;
+//
+//     endform;
+    //
+    //  Form 0x20: Pcie Configuration
+    //
+    form
+      formid = 0x20, title = STRING_TOKEN(STR_PCIE_CONFIG_STRING);
+
+      subtitle text = STRING_TOKEN(STR_PCIE_CONFIG_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+      oneof
+        varid       = SystemConfig.GnbPciePsppPolicy,
+        prompt      = STRING_TOKEN(STR_PSPP_POLICY_STRING),
+        help        = STRING_TOKEN(STR_PSPP_POLICY_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_PERFORMANCE_STRING), value = 1, flags = 0;
+        option text = STRING_TOKEN(STR_BALANCED_HIGH_STRING), value = 2, flags = 0;
+        option text = STRING_TOKEN(STR_BALANCED_LOW_STRING), value = 3, flags = DEFAULT;
+        option text = STRING_TOKEN(STR_POWER_SAVING_STRING), value = 4, flags = 0;
+        option text = STRING_TOKEN(STR_AUTO_TEXT), value = 5, flags = 0;
+      endoneof;
+      endif;
+
+      goto 0x201,
+        prompt = STRING_TOKEN(STR_APU_GPP_00_FEATURE_STRING),
+        help = STRING_TOKEN(STR_APU_GPP_00_FEATURE_HELP);
+
+      goto 0x202,
+        prompt = STRING_TOKEN(STR_APU_GPP_01_FEATURE_STRING),
+        help = STRING_TOKEN(STR_APU_GPP_01_FEATURE_HELP);
+
+      goto 0x203,
+        prompt = STRING_TOKEN(STR_APU_GPP_02_FEATURE_STRING),
+        help = STRING_TOKEN(STR_APU_GPP_02_FEATURE_HELP);
+
+      goto 0x204,
+        prompt = STRING_TOKEN(STR_APU_GPP_03_FEATURE_STRING),
+        help = STRING_TOKEN(STR_APU_GPP_03_FEATURE_HELP);
+
+      goto 0x205,
+        prompt = STRING_TOKEN(STR_APU_GPP_04_FEATURE_STRING),
+        help = STRING_TOKEN(STR_APU_GPP_04_FEATURE_HELP);
+
+      goto 0x206,
+        prompt = STRING_TOKEN(STR_APU_GPP_05_FEATURE_STRING),
+        help = STRING_TOKEN(STR_APU_GPP_05_FEATURE_HELP);
+
+      goto 0x207,
+        prompt = STRING_TOKEN(STR_APU_GPP_06_FEATURE_STRING),
+        help = STRING_TOKEN(STR_APU_GPP_06_FEATURE_HELP);
+
+    endform;
+    //
+    //  Form 0x201: APU GPP 0 Feature
+    //
+    form
+      formid = 0x201, title = STRING_TOKEN(STR_APU_GPP_00_FEATURE_STRING);
+
+      subtitle text = STRING_TOKEN(STR_APU_GPP_00_FEATURE_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      oneof
+        varid       = SystemConfig.APUGpp0,
+        prompt      = STRING_TOKEN(STR_APU_GPP_ENABLED_STRING),
+        help        = STRING_TOKEN(STR_APU_GPP_ENABLED_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+
+    endform;
+    //
+    //  Form 0x202: APU GPP 1 Feature
+    //
+    form
+      formid = 0x202, title = STRING_TOKEN(STR_APU_GPP_01_FEATURE_STRING);
+
+      subtitle text = STRING_TOKEN(STR_APU_GPP_01_FEATURE_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      oneof
+        varid       = SystemConfig.APUGpp1,
+        prompt      = STRING_TOKEN(STR_APU_GPP_ENABLED_STRING),
+        help        = STRING_TOKEN(STR_APU_GPP_ENABLED_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+
+    endform;
+    //
+    //  Form 0x203: APU GPP 2 Feature
+    //
+    form
+      formid = 0x203, title = STRING_TOKEN(STR_APU_GPP_02_FEATURE_STRING);
+
+      subtitle text = STRING_TOKEN(STR_APU_GPP_02_FEATURE_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      oneof
+        varid       = SystemConfig.APUGpp2,
+        prompt      = STRING_TOKEN(STR_APU_GPP_ENABLED_STRING),
+        help        = STRING_TOKEN(STR_APU_GPP_ENABLED_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+
+    endform;
+    //
+    //  Form 0x204: APU GPP 3 Feature
+    //
+    form
+      formid = 0x204, title = STRING_TOKEN(STR_APU_GPP_03_FEATURE_STRING);
+
+      subtitle text = STRING_TOKEN(STR_APU_GPP_03_FEATURE_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      oneof
+        varid       = SystemConfig.APUGpp3,
+        prompt      = STRING_TOKEN(STR_APU_GPP_ENABLED_STRING),
+        help        = STRING_TOKEN(STR_APU_GPP_ENABLED_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+
+    endform;
+    //
+    //  Form 0x205: APU GPP 4 Feature
+    //
+    form
+      formid = 0x205, title = STRING_TOKEN(STR_APU_GPP_04_FEATURE_STRING);
+
+      subtitle text = STRING_TOKEN(STR_APU_GPP_04_FEATURE_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      oneof
+        varid       = SystemConfig.APUGpp4,
+        prompt      = STRING_TOKEN(STR_APU_GPP_ENABLED_STRING),
+        help        = STRING_TOKEN(STR_APU_GPP_ENABLED_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+
+    endform;
+    //
+    //  Form 0x206: APU GPP 5 Feature
+    //
+    form
+      formid = 0x206, title = STRING_TOKEN(STR_APU_GPP_05_FEATURE_STRING);
+
+      subtitle text = STRING_TOKEN(STR_APU_GPP_05_FEATURE_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      oneof
+        varid       = SystemConfig.APUGpp5,
+        prompt      = STRING_TOKEN(STR_APU_GPP_ENABLED_STRING),
+        help        = STRING_TOKEN(STR_APU_GPP_ENABLED_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+
+    endform;
+    //
+    //  Form 0x207: APU GPP 6 Feature
+    //
+    form
+      formid = 0x207, title = STRING_TOKEN(STR_APU_GPP_06_FEATURE_STRING);
+
+      subtitle text = STRING_TOKEN(STR_APU_GPP_06_FEATURE_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      oneof
+        varid       = SystemConfig.APUGpp6,
+        prompt      = STRING_TOKEN(STR_APU_GPP_ENABLED_STRING),
+        help        = STRING_TOKEN(STR_APU_GPP_ENABLED_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+
+    endform;
+
+    //
+    //  Form 0x21: Boot Configuration
+    //
+    form
+      formid = 0x21, title = STRING_TOKEN(STR_BOOT_CONFIG_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BOOT_CONFIG_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+      oneof
+        varid       = SystemConfig.NumLock,
+        prompt      = STRING_TOKEN(STR_NUMLOCK_STRING),
+        help        = STRING_TOKEN(STR_NUMLOCK_HELP),
+        option text = STRING_TOKEN(STR_OFF_TEXT), value = 0, flags = DEFAULT;
+        option text = STRING_TOKEN(STR_ON_TEXT),  value = 1, flags = 0;
+      endoneof;
+
+
+#if !FeaturePcdGet(PcdH2OUsbSupported)
+      //
+      // Usb Zip Emulation as FDD or HDD
+      //
+      oneof
+        varid       = SystemConfig.UsbZipEmulation,
+        prompt      = STRING_TOKEN(STR_ZIP_EMULATION_STRING),
+        help        = STRING_TOKEN(STR_ZIP_EMULATION_HELP),
+        option text = STRING_TOKEN(STR_ZIP_EMU_FDDTYPE_TEXT),  value = 0, flags = DEFAULT;
+        option text = STRING_TOKEN(STR_ZIP_EMU_HDDTYPE_TEXT),  value = 1, flags = 0;
+      endoneof;
+#endif
+      endif;
+
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+      oneof
+        varid       = SystemConfig.FastRecoverySwitch,
+        prompt      = STRING_TOKEN(STR_FAST_RECOVERY_STRING),
+        help        = STRING_TOKEN(STR_FAST_RECOVERY_HELP),
+#if FeaturePcdGet(PcdBdsReoveryLongRun)
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+#else
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = 0;
+#endif
+      endoneof;
+      endif;
+
+#if FeaturePcdGet(PcdUseFastCrisisRecovery) == 0
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+      oneof
+        varid       = SystemConfig.PeiGop,
+        prompt      = STRING_TOKEN(STR_PEIGOP_STRING),
+        help        = STRING_TOKEN(STR_PEIGOP_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = 0;
+      endoneof;
+      endif;
+#endif
+
+    endform;
+
+    //
+    //  Form 0x22: Peripheral Configuration
+    //
+    form
+      formid = 0x22, title = STRING_TOKEN(STR_PERIP_CONFIG_STRING);
+
+
+      subtitle
+        text = STRING_TOKEN(STR_PERIP_CONFIG_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+#if FeaturePcdGet(PcdH2OTpmSupported) || FeaturePcdGet(PcdH2OTpm2Supported)
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+        oneof
+          varid   = SystemConfig.EnableTPM,
+          prompt  = STRING_TOKEN(STR_ENABLE_TPM_STRING),
+          help    = STRING_TOKEN(STR_ENABLE_TPM_HELP),
+          option text = STRING_TOKEN(STR_DISABLED_TEXT),    value = 0, flags = 0;
+          option text = STRING_TOKEN(STR_ENABLED_LPC_TEXT),  value = 1, flags = DEFAULT; //Arista Modify
+          option text = STRING_TOKEN(STR_ENABLED_FTPM_TEXT), value = 2, flags = 0;
+        endoneof;
+      endif;
+#endif
+
+      suppressif
+        ideqval SystemConfig.EnableTPM == 0
+         OR
+        ideqval SystemConfig.EnableTPM == 2;
+        oneof
+          varid   = SystemConfig.SpiOrLpcTPM,
+          prompt  = STRING_TOKEN(STR_LPC_OR_SPI_TPM_TEXT),
+          help    = STRING_TOKEN(STR_LPC_OR_SPI_TPM_TEXT),
+          option text = STRING_TOKEN(STR_ENABLED_LPCTPM_TEXT),    value = 0, flags = 0;
+          option text = STRING_TOKEN(STR_ENABLED_SPITPM_TEXT),  value = 1, flags = DEFAULT;
+        endoneof;
+      endif;
+
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+      oneof
+          varid   = SystemConfig.ErasefTPMNV,
+          prompt  = STRING_TOKEN(STR_ERASE_FTPMNV_STRING),
+          help    = STRING_TOKEN(STR_ERASE_FTPMNV_HELP),
+          option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+          option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+        endoneof;
+      endif;
+
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+      oneof
+        varid       = SystemConfig.Azalia,
+        prompt      = STRING_TOKEN(STR_AZALIA_STRING),
+        help        = STRING_TOKEN(STR_AZALIA_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_AUTO_TEXT),     value = 1, flags = DEFAULT;
+      endoneof;
+      endif;
+
+    endform;
+
+    //
+    //  Form 0x23: IDE Configuration
+    //
+    form
+      formid = 0x23, title = STRING_TOKEN(STR_IDE_CONFIG_STRING);
+
+
+      subtitle
+        text = STRING_TOKEN(STR_IDE_CONFIG_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+#ifdef  AMD_SIMNOW_ENABLE
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+
+        oneof
+          varid       = SystemConfig.Sata,
+          prompt      = STRING_TOKEN(STR_SATA_STRING),
+          help        = STRING_TOKEN(STR_SATA_HELP),
+          option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+          option text = STRING_TOKEN(STR_AUTO_TEXT),     value = 1, flags = DEFAULT;
+        endoneof;
+
+      suppressif
+        ideqval SystemConfig.Sata == 0;
+
+        oneof
+          varid       = SystemConfig.SataCnfigure,
+          prompt      = STRING_TOKEN(STR_SATA_CONFIGURE_TYPE_STRING),
+          help        = STRING_TOKEN(STR_SATA_CONFIGURE_TYPE_HELP),
+//
+// 0:IDE* 1:RAID	2:AHCI	3:Legacy IDE	4:IDE->AHCI	5:AMDAHCI 6:IDE->AMDAHCI
+//
+          option text = STRING_TOKEN(STR_SATA_TYPE_IDE_TEXT),   value = 0x00, flags = 0;
+#ifdef RAID_OPTION_ROM
+          option text = STRING_TOKEN(STR_SATA_TYPE_RAID_TEXT),  value = 0x01, flags = 0;
+#endif
+#if FeaturePcdGet(PcdH2OAhciSupported)
+          option text = STRING_TOKEN(STR_SATA_TYPE_AHCI_TEXT),  value = 0x02, flags = DEFAULT;
+#else
+  #ifdef AHCI_OPTION_ROM
+          option text = STRING_TOKEN(STR_SATA_TYPE_AHCI_TEXT),  value = 0x02, flags = DEFAULT;
+  #endif
+//           option text = STRING_TOKEN(STR_SATA_TYPE_LEGACY_IDE_TEXT),  value = 0x03, flags = 0;
+          option text = STRING_TOKEN(STR_SATA_TYPE_IDE_AHCI_TEXT),  value = 0x04, flags = 0;
+  #ifdef AMDTOAHCI_OPTION_ROM
+          option text = STRING_TOKEN(STR_SATA_TYPE_AMDTOAHCI_TEXT),  value = 0x05, flags = 0;
+  #endif
+          option text = STRING_TOKEN(STR_SATA_TYPE_IDETOAMDAHCI_TEXT),  value = 0x06, flags = 0;
+#endif
+        endoneof;
+      endif;
+      endif;
+
+#else
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+
+        oneof
+          varid       = SystemConfig.Sata,
+          prompt      = STRING_TOKEN(STR_SATA_STRING),
+          help        = STRING_TOKEN(STR_SATA_HELP),
+          option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+          option text = STRING_TOKEN(STR_AUTO_TEXT),     value = 1, flags = DEFAULT;
+        endoneof;
+
+      suppressif
+        ideqval SystemConfig.Sata == 0;
+
+        oneof
+          varid       = SystemConfig.SataCnfigure,
+          prompt      = STRING_TOKEN(STR_SATA_CONFIGURE_TYPE_STRING),
+          help        = STRING_TOKEN(STR_SATA_CONFIGURE_TYPE_HELP),
+//
+// 0:IDE* 1:RAID	2:AHCI	3:Legacy IDE	4:IDE->AHCI	5:AMDAHCI 6:IDE->AMDAHCI
+//
+          option text = STRING_TOKEN(STR_SATA_TYPE_IDE_TEXT),   value = 0x00, flags = 0;
+#ifdef RAID_OPTION_ROM
+          option text = STRING_TOKEN(STR_SATA_TYPE_RAID_TEXT),  value = 0x01, flags = 0;
+#endif
+#if FeaturePcdGet(PcdH2OAhciSupported)
+          option text = STRING_TOKEN(STR_SATA_TYPE_AHCI_TEXT),  value = 0x02, flags = DEFAULT;
+#else
+          option text = STRING_TOKEN(STR_SATA_TYPE_AHCI_TEXT),  value = 0x02, flags = DEFAULT;
+//           option text = STRING_TOKEN(STR_SATA_TYPE_LEGACY_IDE_TEXT),  value = 0x03, flags = 0;
+          option text = STRING_TOKEN(STR_SATA_TYPE_IDE_AHCI_TEXT),  value = 0x04, flags = 0;
+          option text = STRING_TOKEN(STR_SATA_TYPE_AMDTOAHCI_TEXT),  value = 0x05, flags = 0;
+          option text = STRING_TOKEN(STR_SATA_TYPE_IDETOAMDAHCI_TEXT),  value = 0x06, flags = 0;
+#endif
+        endoneof;
+      endif;
+      endif;
+#endif
+    grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+    suppressif
+		ideqvallist SystemConfig.SataCnfigure == 0 1 2 3 4 5 6;
+		oneof
+		  varid       = SystemConfig.AHCIMODE,
+		  prompt      = STRING_TOKEN(STR_AHCI_MODE_TEXT),
+		  help        = STRING_TOKEN(STR_AHCI_MODE_HELP_TEXT),
+		  option text = STRING_TOKEN(STR_AHCI_LEGACY_TEXT),    value = 0, flags = DEFAULT;
+		  option text = STRING_TOKEN(STR_AHCI_NATIVE_TEXT),    value = 1, flags = 0;
+		endoneof;
+    endif;
+    endif;
+
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+
+      suppressif
+        ideqvallist SystemConfig.SataCnfigure == 0 2 3 4 5 6;
+         oneof
+           varid       = SystemConfig.ForceRaid,
+           prompt      = STRING_TOKEN(STR_SATA_FORCERAID_STRING),
+           help        = STRING_TOKEN(STR_SATA_FORCERAID_HELP),
+           option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = DEFAULT;
+           option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = 0;
+         endoneof;
+      endif;
+      endif;
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+         oneof
+           varid       = SystemConfig.SataPort0Power,
+           prompt      = STRING_TOKEN(STR_SATA_PORT0_ENABLE_DISABLE_STRING),
+           help        = STRING_TOKEN(STR_SATA_PORT0_ENABLE_DISABLE_HELP),
+           option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 1, flags = 0;
+           option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 0, flags = DEFAULT;
+         endoneof;
+
+         oneof
+           varid       = SystemConfig.SataPort1Power,
+           prompt      = STRING_TOKEN(STR_SATA_PORT1_ENABLE_DISABLE_STRING),
+           help        = STRING_TOKEN(STR_SATA_PORT1_ENABLE_DISABLE_HELP),
+           option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 1, flags = 0;
+           option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 0, flags = DEFAULT;
+         endoneof;
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+     //
+     // IdeDvicex = 2 indicates this platform doesn't support this port
+     //
+     grayoutif
+       TRUE;
+     suppressif
+       ideqval AdvanceConfig.IdeDevice0 == 2;
+         goto SERIAL_ATA_PORT0_FORM_ID,
+           prompt = STRING_TOKEN(STR_SERIAL_ATA_PORT0_STRING),
+           help = STRING_TOKEN(STR_SERIAL_ATA_PORT0_STRING_HELP);
+     endif;
+     endif;
+
+     grayoutif
+       TRUE;
+     suppressif
+       ideqval AdvanceConfig.IdeDevice1 == 2;
+         goto SERIAL_ATA_PORT1_FORM_ID,
+           prompt = STRING_TOKEN(STR_SERIAL_ATA_PORT1_STRING),
+           help = STRING_TOKEN(STR_SERIAL_ATA_PORT1_STRING_HELP);
+     endif;
+     endif;
+
+     grayoutif
+       TRUE;
+     suppressif
+       ideqval AdvanceConfig.IdeDevice2 == 2;
+         goto SERIAL_ATA_PORT2_FORM_ID,
+           prompt = STRING_TOKEN(STR_SERIAL_ATA_PORT2_STRING),
+           help = STRING_TOKEN(STR_SERIAL_ATA_PORT2_STRING_HELP);
+     endif;
+     endif;
+
+     grayoutif
+       TRUE;
+     suppressif
+       ideqval AdvanceConfig.IdeDevice3 == 2;
+         goto SERIAL_ATA_PORT3_FORM_ID,
+           prompt = STRING_TOKEN(STR_SERIAL_ATA_PORT3_STRING),
+           help = STRING_TOKEN(STR_SERIAL_ATA_PORT3_STRING_HELP);
+     endif;
+     endif;
+
+     grayoutif
+       TRUE;
+     suppressif
+       ideqval AdvanceConfig.IdeDevice4 == 2;
+       goto SERIAL_ATA_PORT4_FORM_ID,
+         prompt = STRING_TOKEN(STR_SERIAL_ATA_PORT4_STRING),
+         help = STRING_TOKEN(STR_SERIAL_ATA_PORT4_STRING_HELP);
+     endif;
+     endif;
+
+     grayoutif
+       TRUE;
+     suppressif
+       ideqval AdvanceConfig.IdeDevice5 == 2;
+       goto SERIAL_ATA_PORT5_FORM_ID,
+         prompt = STRING_TOKEN(STR_SERIAL_ATA_PORT5_STRING),
+         help = STRING_TOKEN(STR_SERIAL_ATA_PORT5_STRING_HELP);
+     endif;
+     endif;
+
+     grayoutif
+       TRUE;
+     suppressif
+       ideqval AdvanceConfig.IdeDevice6 == 2;
+       goto CHANNEL_4_MASTER_FORM_ID,
+         prompt = STRING_TOKEN(STR_CHANNEL4_MASTER_STRING),
+         help = STRING_TOKEN(STR_BLANK_STRING);
+     endif;
+     endif;
+
+     grayoutif
+       TRUE;
+     suppressif
+       ideqval AdvanceConfig.IdeDevice7 == 2;
+       goto CHANNEL_4_SLAVE_FORM_ID,
+        prompt = STRING_TOKEN(STR_CHANNEL4_SLAVE_STRING),
+        help = STRING_TOKEN(STR_BLANK_STRING);
+     endif;
+     endif;
+
+     text
+      help   = STRING_TOKEN(STR_BLANK_STRING),
+      text   = STRING_TOKEN(STR_BLANK_STRING);
+
+      label IDE_UPDATE_LABEL;
+
+//
+// add these code is just for declaration that we can use these StringToken in C code.
+//
+      suppressif ideqvallist SystemConfig.SataCnfigure == 0 1 2 3 4 5 6;
+        text
+          help   = STRING_TOKEN(STR_SERIAL_ATA_PORT0_MODEL_NAME),
+          text   = STRING_TOKEN(STR_SERIAL_ATA_PORT1_MODEL_NAME);
+        text
+          help   = STRING_TOKEN(STR_SERIAL_ATA_PORT2_MODEL_NAME),
+          text   = STRING_TOKEN(STR_SERIAL_ATA_PORT3_MODEL_NAME);
+        text
+          help   = STRING_TOKEN(STR_SERIAL_ATA_PORT4_MODEL_NAME),
+          text   = STRING_TOKEN(STR_SERIAL_ATA_PORT5_MODEL_NAME);
+        text
+          help   = STRING_TOKEN(STR_CHANNEL4_MASTER_MODEL_NAME),
+          text   = STRING_TOKEN(STR_CHANNEL4_SLAVE_MODEL_NAME);
+      endif;
+
+    endform;
+
+    //
+    //  Form 0x25: Video Configuration
+    //
+    form
+      formid = 0x25, title = STRING_TOKEN(STR_VIDEO_CONFIG_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_VIDEO_CONFIG_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+        label PLUG_IN_DISPLAY_SELECTION_START_LABEL;
+        label PLUG_IN_DISPLAY_SELECTION_END_LABEL;
+      endif;
+
+    grayoutif
+      ideqval SystemConfig.UserAccessLevel == 2
+      AND
+      ideqval SystemConfig.SetUserPass == 1;
+      oneof
+        varid   = SystemConfig.EnableHDMIAudio,
+        prompt  = STRING_TOKEN(STR_HDMI_AUDIO_STRING),
+        help    = STRING_TOKEN(STR_HDMI_AUDIO_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT),    value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),     value = 1, flags = DEFAULT;
+      endoneof;
+    endif;
+
+    grayoutif
+      ideqval SystemConfig.UserAccessLevel == 2
+      AND
+      ideqval SystemConfig.SetUserPass == 1;
+      oneof
+        varid   = SystemConfig.BrightnessSwitch,
+        prompt  = STRING_TOKEN(STR_BRIGHTNESS_SWITCH_STRING),
+        help    = STRING_TOKEN(STR_BRIGHTNESS_SWITCH_HELP),
+        option text = STRING_TOKEN(STR_VIDEO_BIOS_TEXT),    value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_VGA_DRIVER_TEXT),    value = 1, flags = DEFAULT;
+      endoneof;
+    endif;
+
+    endform;
+
+    //
+    //  Form 0x26: USB Configuration
+    //
+    form
+      formid = 0x26, title = STRING_TOKEN(STR_USB_CONFIG_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_USB_CONFIG_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+      oneof
+        varid       = SystemConfig.Ehci0,
+        prompt      = STRING_TOKEN(STR_EHCI0_STRING),
+        help        = STRING_TOKEN(STR_EHCI0_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+
+#if FeaturePcdGet (PcdXhciSupported) == 1
+      oneof
+        varid       = SystemConfig.amdExternalUSBController,
+        prompt      = STRING_TOKEN(STR_EXTERNAL_USB_STRING),
+        help        = STRING_TOKEN(STR_EXTERNAL_USB_HELP),
+        option text = STRING_TOKEN(STR_DISABLE_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+#else
+      endif;
+
+      suppressif
+        ideqval SystemConfig.amdExternalUSBController == 0;
+      oneof
+        varid       = SystemConfig.amdExternalUSBController,
+        prompt      = STRING_TOKEN(STR_EXTERNAL_USB_STRING),
+        help        = STRING_TOKEN(STR_EXTERNAL_USB_HELP),
+        option text = STRING_TOKEN(STR_ENABLED_TEXT), value = 1, flags = 0;
+        option text = STRING_TOKEN(STR_DISABLE_TEXT),  value = 0, flags = DEFAULT;
+      endoneof;
+      endif;
+
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+#endif
+        suppressif ideqvallist SystemConfig.BootType == 0 1;
+          oneof
+            varid       = SystemConfig.LegacyUsbSupport,
+            prompt      = STRING_TOKEN ( STR_USB_SUPPORT_STRING ),
+            help        = STRING_TOKEN ( STR_USB_SUPPORT_UEFI_HELP ),
+            option text = STRING_TOKEN ( STR_DISABLED_TEXT ),            value = 0, flags = 0;
+            option text = STRING_TOKEN ( STR_ENABLED_TEXT ),             value = 1, flags = DEFAULT;
+          endoneof;
+        endif;
+
+        suppressif ideqval SystemConfig.BootType == 2;
+          oneof
+            varid       = SystemConfig.LegacyUsbSupport,
+            prompt      = STRING_TOKEN ( STR_USB_SUPPORT_STRING ),
+            help        = STRING_TOKEN ( STR_USB_SUPPORT_LEGACY_HELP ),
+            option text = STRING_TOKEN ( STR_DISABLED_TEXT ),            value = 0, flags = 0;
+            option text = STRING_TOKEN ( STR_ENABLED_TEXT ),             value = 1, flags = DEFAULT;
+            option text = STRING_TOKEN ( STR_UEFI_ONLY_TEXT ),           value = 2, flags = 0;
+          endoneof;
+        endif;
+        oneof
+          varid       = SystemConfig.HighSpeedUsb,
+          prompt      = STRING_TOKEN(STR_HIGH_SPEED_USB_STRING),
+          help        = STRING_TOKEN(STR_HIGH_SPEED_USB_HELP),
+          option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+          option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+        endoneof;
+      endif;
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+      oneof
+        varid       = SystemConfig.UsbPort0,
+        prompt      = STRING_TOKEN(STR_USB_PORT0_STRING),
+        help        = STRING_TOKEN(STR_USB_PORT0_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+      oneof
+        varid       = SystemConfig.UsbPort1,
+        prompt      = STRING_TOKEN(STR_USB_PORT1_STRING),
+        help        = STRING_TOKEN(STR_USB_PORT1_STRING),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+      oneof
+        varid       = SystemConfig.UsbPort2,
+        prompt      = STRING_TOKEN(STR_USB_PORT2_STRING),
+        help        = STRING_TOKEN(STR_USB_PORT2_STRING),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+      oneof
+        varid       = SystemConfig.UsbPort3,
+        prompt      = STRING_TOKEN(STR_USB_PORT3_STRING),
+        help        = STRING_TOKEN(STR_USB_PORT3_STRING),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+      oneof
+        varid       = SystemConfig.UsbPort4,
+        prompt      = STRING_TOKEN(STR_USB_PORT4_STRING),
+        help        = STRING_TOKEN(STR_USB_PORT4_STRING),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+      oneof
+        varid       = SystemConfig.UsbPort5,
+        prompt      = STRING_TOKEN(STR_USB_PORT5_STRING),
+        help        = STRING_TOKEN(STR_USB_PORT5_STRING),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+    endform;
+
+    //
+    //  Form 0x27: Chipset Configuration
+    //
+    form
+      formid = 0x27, title = STRING_TOKEN(STR_CHIPSET_CONFIG_STRING);
+
+      subtitle text = STRING_TOKEN(STR_CHIPSET_CONFIG_STRING);
+
+      subtitle
+        text = STRING_TOKEN(STR_BLANK_STRING);
+
+       grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+      oneof
+        varid       = SystemConfig.PciLatencyTimer,
+        prompt      = STRING_TOKEN(STR_PCI_LATENCY_TIMER_STRING),
+        help        = STRING_TOKEN(STR_PCI_LATENCY_TIMER_HELP),
+        option text = STRING_TOKEN(STR_32_TEXT),  value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_64_TEXT),  value = 1, flags = DEFAULT;
+        option text = STRING_TOKEN(STR_96_TEXT),  value = 2, flags = 0;
+        option text = STRING_TOKEN(STR_128_TEXT), value = 3, flags = 0;
+        option text = STRING_TOKEN(STR_160_TEXT), value = 4, flags = 0;
+        option text = STRING_TOKEN(STR_192_TEXT), value = 5, flags = 0;
+        option text = STRING_TOKEN(STR_224_TEXT), value = 6, flags = 0;
+        option text = STRING_TOKEN(STR_248_TEXT), value = 7, flags = 0;
+      endoneof;
+      endif;
+
+//       oneof
+//         varid       = SystemConfig.amdOddZeroPowerControl,
+//         prompt      = STRING_TOKEN(STR_AMDODDZP_STRING),
+//         help        = STRING_TOKEN(STR_AMDODDZP_HELP),
+//         option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = DEFAULT;
+//         option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = 0;
+//       endoneof;
+//
+//       oneof
+//         varid       = SystemConfig.Gpp0Mux,
+//         prompt      = STRING_TOKEN(STR_GPP0_MUX_STRING),
+//         help        = STRING_TOKEN(STR_GPP0_MUX_HELP),
+//         option text = STRING_TOKEN(STR_EXPRESS_CARD_TEXT),  value = 0, flags = 0;
+//         option text = STRING_TOKEN(STR_DT_X1_TEXT),         value = 1, flags = DEFAULT;
+//       endoneof;
+//
+//        oneof
+//          varid       = SystemConfig.IrActivityLedEn,
+//          prompt      = STRING_TOKEN(STR_IR_ACTIVITY_LED_STRING),
+//          help        = STRING_TOKEN(STR_IR_ACTIVITY_LED_HELP),
+//          option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = DEFAULT;
+//          option text = STRING_TOKEN(STR_ENABLED_TEXT),   value = 1, flags = 0;
+//       endoneof;
+
+      //
+      // STIBP Feature Table.
+      //
+      checkbox
+        varid   = SystemConfig.StibpStatus,
+        prompt  = STRING_TOKEN(STR_STIBP_STATUS_TEXT),
+        help    = STRING_TOKEN(STR_STIBP_STATUS_HELP),
+        flags   = INTERACTIVE,
+        default = 0,
+      endcheckbox;
+    endform;
+
+    //
+    //  Form 0x28: ACPI Table/Feature Control
+    //
+    form
+      formid = 0x28, title = STRING_TOKEN(STR_ACPI_TABLE_STRING);
+
+      subtitle  text = STRING_TOKEN(STR_ACPI_TABLE_STRING);
+      subtitle  text = STRING_TOKEN(STR_BLANK_STRING);
+
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+     oneof
+       varid       = SystemConfig.FacpC2LatencyValue,
+       prompt      = STRING_TOKEN(STR_FACP_C2_LATENCY_VALUE_STRING),
+       help        = STRING_TOKEN(STR_FACP_C2_LATENCY_VALUE_HELP),
+       option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+       option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+     endoneof;
+
+     oneof
+       varid       = SystemConfig.FacpC3LatencyValue,
+       prompt      = STRING_TOKEN(STR_FACP_C3_LATENCY_VALUE_STRING),
+       help        = STRING_TOKEN(STR_FACP_C3_LATENCY_VALUE_HELP),
+       option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+       option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+     endoneof;
+
+      oneof
+        varid       = SystemConfig.FacpRTCS4Wakeup,
+        prompt      = STRING_TOKEN(STR_FACP_RTC_S4_STRING),
+        help        = STRING_TOKEN(STR_FACP_RTC_S4__HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT), value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),  value = 1, flags = DEFAULT;
+      endoneof;
+
+      oneof
+        varid       = SystemConfig.IoApicMode,
+        prompt      = STRING_TOKEN(STR_IO_APIC_MODE_STRING),
+        help        = STRING_TOKEN(STR_IO_APIC_MODE_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),   value = 1, flags = DEFAULT;
+      endoneof;
+
+      oneof
+        varid       = SystemConfig.HPETSupport,
+        prompt      = STRING_TOKEN(STR_HPET_SUPPORT_STRING),
+        help        = STRING_TOKEN(STR_HPET_SUPPORT_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),   value = 1, flags = DEFAULT;
+      endoneof;
+
+      oneof
+        varid       = SystemConfig.OscSwitch,
+        prompt      = STRING_TOKEN(STR_OSC_SUPPORT_STRING),
+        help        = STRING_TOKEN(STR_OSC_SUPPORT_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = 0;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),   value = 1, flags = DEFAULT;
+      endoneof;
+      endif;
+
+    endform;
+     //
+     //  Form 0x29: CPU Related setting
+     //
+     form
+       formid = 0x29, title = STRING_TOKEN(STR_CPU_SETTING_STRING);
+
+       subtitle  text = STRING_TOKEN(STR_CPU_SETTING_STRING);
+       subtitle  text = STRING_TOKEN(STR_BLANK_STRING);
+
+
+      grayoutif
+        ideqval SystemConfig.UserAccessLevel == 2
+        AND
+        ideqval SystemConfig.SetUserPass == 1;
+         oneof
+             varid   = SystemConfig.CpuPstateSetting,
+             prompt  = STRING_TOKEN(STR_CPU_PSTATE_SETTING_STRING),
+             help    = STRING_TOKEN(STR_CPU_PSTATE_SETTING_HELP),
+             option text = STRING_TOKEN(STR_AUTO_TEXT), value = 0, flags = DEFAULT;
+             option text = STRING_TOKEN(STR_CPU_PSTATE_LOWEST_SPEED), value= 1, flags=0;
+         endoneof;
+         oneof
+             varid       = SystemConfig.EnableSVM,
+             prompt      = STRING_TOKEN(STR_SVM_SUPPORT_STRING),
+             help        = STRING_TOKEN(STR_SVM_SUPPORT_HELP),
+             option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = DEFAULT;
+             option text = STRING_TOKEN(STR_ENABLED_TEXT),   value = 1, flags = 0;
+         endoneof;
+         oneof
+             varid       = SystemConfig.SVMLock,
+             prompt      = STRING_TOKEN(STR_SVM_LOCK_STRING),
+             help        = STRING_TOKEN(STR_SVM_LOCK_HELP),
+             option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = 0;
+             option text = STRING_TOKEN(STR_ENABLED_TEXT),   value = 1, flags = DEFAULT;
+         endoneof;
+         oneof
+             varid       = SystemConfig.SMMCoreLock,
+             prompt      = STRING_TOKEN(STR_SMM_CODE_LOCK_STRING),
+             help        = STRING_TOKEN(STR_SMM_CODE_LOCK_HELP),
+             option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = 0;
+             option text = STRING_TOKEN(STR_ENABLED_TEXT),   value = 1, flags = DEFAULT;
+         endoneof;
+      endif;
+
+     endform;
+
+endformset;

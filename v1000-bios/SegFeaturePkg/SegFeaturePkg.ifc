@@ -1,0 +1,40 @@
+<Features>
+  <!-- Trunk feature -->
+  <Feature>
+    <Name>SegFeaturePkg</Name>
+    <Root>SegFeaturePkg</Root>
+    <Version>05.33.04</Version>
+    <Revision>2</Revision>
+    <Repository>
+      <Type>Svn</Type>
+      <Url>http://svn-tc.insydesw.com/H2O-SEG-Feature/SegFeaturePkg</Url>
+    </Repository>
+    <Dependency>
+      <Name>Kernel</Name>
+      <Version>05.32.28</Version>
+    </Dependency>
+    <Package>
+      <SourceDir>.</SourceDir>
+    </Package>
+    <File>
+      <SourcePath>SegFeaturePkg.ifc</SourcePath>
+    </File>
+  </Feature>
+  <!-- Version 0.0.0.1 feature -->
+  <Feature>
+    <Name>SegFeaturePkg</Name>
+    <Root>SegFeaturePkg</Root>
+    <Version>0.0.0.1</Version>
+    <Revision>2</Revision>
+    <Repository>
+      <Type>Svn</Type>
+      <Url>http://svn-tc.insydesw.com/H2O-SEG-Feature/SegFeaturePkg</Url>
+    </Repository>
+    <Package>
+      <SourceDir>.</SourceDir>
+    </Package>
+    <File>
+      <SourcePath>SegFeaturePkg.ifc</SourcePath>
+    </File>
+  </Feature>
+</Features>

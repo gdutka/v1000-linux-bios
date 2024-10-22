@@ -1,0 +1,105 @@
+    INF AgesaModulePkg/Debug/AmdIdsDebugPrintPei/AmdIdsDebugPrintPei.inf                        <ALL>
+
+    INF AgesaModulePkg/Psp/AmdPspPeiV1/AmdPspPeiV1.inf                                          <FAMILY15H>
+    INF AgesaModulePkg/Psp/AmdPspPeiV2/AmdPspPeiV2.inf                                          <ZP|RV>
+    INF AgesaModulePkg/Psp/AmdPspPeiV2Ssp/AmdPspPeiV2.inf                                       <SSP|MTS>
+    INF AgesaModulePkg/Psp/AmdPspFtpmPei/AmdPspFtpmPei.inf                                      <AM4|RV|SP3TR|SP3CP|SP4SM>
+    INF AgesaModulePkg/Psp/ApobDrv/ApobZpRvPei/ApobZpRvPei.inf                                  <AM4RV|FP5RV|AM4SM|SP4SM|FT5RV>
+    INF AgesaModulePkg/Psp/ApobDrv/ApobZpMcmPei/ApobZpMcmPei.inf                                <SP3ZP|SP4ZP|SP3TR>
+    INF AgesaModulePkg/Psp/ApobDrv/ApobSspPei/ApobSspPei.inf                                    <SSP|MTS>
+    INF AgesaModulePkg/Psp/ApobDrv/ApobDummyPei/ApobDummyPei.inf                                <FAMILY15H>
+
+#   ## MEM Pei Drivers
+    INF AgesaModulePkg/Mem/AmdMemAm4ZpPei/AmdMemAm4ZpPei.inf                                    <AM4BR|AM4RV|FP5RV|AM4SM|SP4SM|FT5RV>
+    INF AgesaModulePkg/Mem/AmdMemAm4SspPei/AmdMemAm4SspPei.inf                                  <AM4MTS>
+    INF AgesaModulePkg/Mem/AmdMemSspSp3Pei/AmdMemSspSp3Pei.inf                                  <SP3SSP|SP3CP>
+    INF AgesaModulePkg/Mem/AmdMemZpSp3Pei/AmdMemZpSp3Pei.inf                                    <SP3ZP|SP4ZP>
+    INF AgesaModulePkg/Mem/AmdMemZpSp3r2Pei/AmdMemZpSp3r2Pei.inf                                <SP3TR>
+    INF AgesaModulePkg/Mem/AmdMbistZpSp3Pei/AmdMbistPei.inf                                     <SP3ZP|SP4ZP>
+    INF AgesaModulePkg/Mem/AmdMbistSspPei/AmdMbistPei.inf                                       <SP3SSP>
+
+#   ## SOC Pei Drivers
+    INF AgesaModulePkg/Soc/AmdSocAm4BrPei/AmdSocAm4BrPei.inf                                    <AM4BR>
+    INF AgesaModulePkg/Soc/AmdSocAm4MtsPei/AmdSocAm4MtsPei.inf                                  <AM4MTS>
+    INF AgesaModulePkg/Soc/AmdSocAm4RnPei/AmdSocAm4RnPei.inf                                    <AM4RN>
+    INF AgesaModulePkg/Soc/AmdSocAm4RvPei/AmdSocAm4RvPei.inf                                    <AM4RV>
+    INF AgesaModulePkg/Soc/AmdSocAm4SmPei/AmdSocAm4SmPei.inf                                    <AM4SM>
+    INF AgesaModulePkg/Soc/AmdSocSp4SmPei/AmdSocSp4SmPei.inf                                    <SP4SM>
+    INF AgesaModulePkg/Soc/AmdSocFp6RnPei/AmdSocFp6RnPei.inf                                    <FP6RN>
+    INF AgesaModulePkg/Soc/AmdSocFp5RvPei/AmdSocFp5RvPei.inf                                    <FP5RV>
+    INF AgesaModulePkg/Soc/AmdSocSp3RmPei/AmdSocSp3RmPei.inf                                    <SP3SSP>
+    INF AgesaModulePkg/Soc/AmdSocSp3ZpPei/AmdSocSp3ZpPei.inf                                    <SP3ZP>
+    INF AgesaModulePkg/Soc/AmdSocSp4ZpPei/AmdSocSp4ZpPei.inf                                    <SP4ZP>
+    INF AgesaModulePkg/Soc/AmdSocSp3r2TrPei/AmdSocSp3r2TrPei.inf                                <SP3TR>
+    INF AgesaModulePkg/Soc/AmdSocSp3r3CpPei/AmdSocSp3r3CpPei.inf                                <SP3CP>
+    INF AgesaModulePkg/Soc/AmdSocFt5RvPei/AmdSocFt5RvPei.inf                                    <FT5RV>
+    INF AgesaModulePkg/Nbio/EarlyPhase/AmdNbioEarlyPhaseRVPei/AmdNbioEarlyPhaseRVPei.inf        <RV>
+    INF AgesaModulePkg/ErrorLog/AmdErrorLogPei/AmdErrorLogPei.inf                               <ALL>
+
+#   ## DF Pei Drivers
+    INF AgesaModulePkg/Fabric/ZP/FabricZpPei/AmdFabricZpPei.inf                                 <ZP>
+    INF AgesaModulePkg/Fabric/RV/FabricRvPei/AmdFabricRvPei.inf                                 <RV>
+    INF AgesaModulePkg/Fabric/XV/UnbXvPei/AmdUnbXvPei.inf                                       <FAMILY15H>
+    INF AgesaModulePkg/Fabric/SSP/FabricSspPei/AmdFabricSspPei.inf                              <SSP|MTS>
+
+#   ## Fch Pei Drivers
+    INF AgesaModulePkg/Fch/Kern/FchKernPei/FchPei.inf                                           <FAMILY15H>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanPei/FchPei.inf                                     <ZP>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanMultiFchPei/FchMultiFchPei.inf                     <ZP>
+    INF AgesaModulePkg/Fch/Kern/FchKernSmbusPei/Smbus.inf                                       <FAMILY15H>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanSmbusPei/Smbus.inf                                 <ZP>
+    INF AgesaModulePkg/Fch/Huashan/FchHuashanPei/FchPei.inf                                     <SSP|MTS|RN>
+    INF AgesaModulePkg/Fch/Huashan/FchHuashanSmbusPei/Smbus.inf                                 <SSP|MTS|RN>
+    INF AgesaModulePkg/Fch/Huashan/FchHuashanMultiFchPei/FchMultiFchPei.inf                     <SSP|MTS|RN>
+    INF AgesaModulePkg/Fch/Sandstone/FchSandstonePei/FchPei.inf                                 <RV>
+    INF AgesaModulePkg/Fch/Sandstone/FchSandstoneSmbusPei/Smbus.inf                             <RV>
+
+#   ## GNb Pei Drivers
+    INF AgesaModulePkg/Nbio/NbioBase/AmdNbioBaseCZPei/AmdNbioBaseCZPei.inf                      <FAMILY15H>
+    INF AgesaModulePkg/Nbio/NbioBase/AmdNbioBaseZPPei/AmdNbioBaseZPPei.inf                      <ZP>
+    INF AgesaModulePkg/Nbio/SMU/AmdNbioSmuV8Pei/AmdNbioSmuV8Pei.inf                             <FAMILY15H>
+    INF AgesaModulePkg/Nbio/SMU/AmdNbioSmuV9Pei/AmdNbioSmuV9Pei.inf                             <ZP>
+    INF AgesaModulePkg/Nbio/NbioBase/AmdNbioBaseRVPei/AmdNbioBaseRVPei.inf                      <RV>
+    INF AgesaModulePkg/Nbio/SMU/AmdNbioSmuV10Pei/AmdNbioSmuV10Pei.inf                           <RV>
+    INF AgesaModulePkg/Nbio/PCIe/AmdNbioPcieZPPei/AmdNbioPcieZPPei.inf                          <ZP>
+    INF AgesaModulePkg/Nbio/PCIe/AmdNbioPcieRVPei/AmdNbioPcieRVPei.inf                          <RV>
+    INF AgesaModulePkg/Nbio/GFX/AmdNbioGfxRVPei/AmdNbioGfxRVPei.inf                             <RV>
+    INF AgesaModulePkg/Nbio/IOMMU/AmdNbioIOMMUZPPei/AmdNbioIOMMUZPPei.inf                       <ZP|RV>
+    INF AgesaModulePkg/Nbio/NbioBase/SSP/PEI/AmdNbioBaseSspPei.inf                              <SSP|MTS>
+    INF AgesaModulePkg/Nbio/SMU/SSP/PEI/SmuV11PeiSsp.inf                                        <SSP|MTS>
+    INF AgesaModulePkg/Nbio/PCIe/SSP/PEI/AmdNbioPcieSspPei.inf                                  <SSP|MTS>
+    INF AgesaModulePkg/Nbio/IOMMU/SSP/PEI/AmdNbioIOMMUSspPei.inf                                <SSP|MTS>
+    INF AgesaModulePkg/Nbio/GFX/RN/PEI/AmdNbioGfxRNPei.inf                                      <RN>
+    INF AgesaModulePkg/Nbio/IOMMU/RN/PEI/AmdNbioIOMMURNPei.inf                                  <RN>
+    INF AgesaModulePkg/Nbio/NbioBase/RN/PEI/AmdNbioBaseRNPei.inf                                <RN>
+    INF AgesaModulePkg/Nbio/PCIe/RN/PEI/AmdNbioPcieRNPei.inf                                    <RN>
+    INF AgesaModulePkg/Nbio/SMU/RN/PEI/SmuV12PeiRN.inf                                          <RN>
+
+
+#   ## Ccx Pei Drivers
+    INF AgesaModulePkg/Ccx/Zen/CcxZenZpPei/AmdCcxZenZpPei.inf                                   <ZP>
+    INF AgesaModulePkg/Ccx/Zen/CcxZenRvPei/AmdCcxZenRvPei.inf                                   <RV>
+    INF AgesaModulePkg/Ccx/Vh/Pei/AmdCcxVhPei.inf                                               <SSP|MTS|RN>
+    INF AgesaModulePkg/Ccx/Xv/CcxXvPei/AmdCcxXvPei.inf                                          <FAMILY15H>
+
+#   ## Universal PEIM
+    INF AgesaModulePkg/Universal/Version/AmdVersionPei/AmdVersionPei.inf                        <ALL>
+
+#   ## MEM PEIMs
+    INF AgesaModulePkg/Mem/AmdMemFeatPei/AmdMemFeatPei.inf                                      <FAMILY15H>
+    INF AgesaModulePkg/Mem/AmdMemCzPei/AmdMemCzPei.inf                                          <FAMILY15H>
+    INF AgesaModulePkg/Mem/AmdMemChanXLatZpPei/MemChanXLatZpPei.inf                             <ZP|RV>
+    INF AgesaModulePkg/Mem/AmdMemChanXLatSspPei/MemChanXLatSspPei.inf                           <SSP|MTS>
+    INF AgesaModulePkg/Mem/AmdMemoryHobInfoPeimRv/AmdMemoryHobInfoPeim.inf                      <RV>
+    INF AgesaModulePkg/Mem/AmdMemoryHobInfoPeimZp/AmdMemoryHobInfoPeim.inf                      <ZP|AM4BR>
+    INF AgesaModulePkg/Mem/AmdMemoryHobInfoPeimV2/AmdMemoryHobInfoPeimV2.inf                    <SP3SSP|SP3CP|AM4MTS>
+    INF AgesaModulePkg/Mem/AmdMemSmbiosV2RvPei/MemSmbiosV2Pei.inf                               <RV>
+    INF AgesaModulePkg/Mem/AmdMemSmbiosV2ZpPei/MemSmbiosV2Pei.inf                               <AM4SM|SP4SM>
+    INF AgesaModulePkg/Mem/AmdMemSmbiosV2ZpMcmPei/MemSmbiosV2Pei.inf                            <SP3ZP|SP4ZP|SP3TR>
+    INF AgesaModulePkg/Mem/AmdMemSmbiosV2SspPei/MemSmbiosV2Pei.inf                              <SSP|MTS>
+    INF AgesaModulePkg/Mem/AmdMemRestorePei/MemRestorePei.inf                                   <FAMILY17H>
+
+#   ## PT Pei Drivers
+    INF AgesaModulePkg/Fch/Promontory/PromontoryPei/FchPromontoryPei.inf                        <AM4|SP3TR|SP3CP>
+    INF AgesaModulePkg/Fch/Promontory/PromontoryPei/FchPromontoryGpioPei.inf                    <AM4|SP3TR|SP3CP>
+    INF AgesaModulePkg/Fch/Promontory/PromontoryPei/FchPromontoryCbsPei.inf                     <AM4|SP3TR|SP3CP>

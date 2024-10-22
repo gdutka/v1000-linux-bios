@@ -1,0 +1,39 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SmmFabricTopologyServices2Lib
+  FILE_GUID                      = 6041E572-8BDB-410C-B5AF-4A26F0AAF0BF
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = SmmFabricTopologyServices2Lib
+
+[Sources]
+  FabricTopologyServices2Smm.c
+  FabricTopologyServices2Smm.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+
+[LibraryClasses]
+  SmmServicesTableLib
+  BaseFabricTopologyLib
+  IdsLib
+
+[Guids]
+
+[Protocols]
+  gAmdFabricTopologyServices2SmmProtocolGuid # PRODUCED
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+

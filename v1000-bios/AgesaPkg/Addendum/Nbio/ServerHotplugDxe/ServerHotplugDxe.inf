@@ -1,0 +1,30 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ServerHotplugDxe
+  FILE_GUID                      = FAFF8CA9-E515-44ed-B5F9-E2F6E5D902E3
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = HotplugDescEntry
+
+[Sources]
+  ServerHotplugDxe.c
+
+[Packages]
+  AgesaPkg/AgesaPkg.dec
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+
+[Protocols]
+  gAmdHotplugDescProtocolGuid    #Produced
+
+[Depex]
+TRUE
+

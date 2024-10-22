@@ -1,0 +1,56 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdiGpuVgaControlDxe
+  FILE_GUID                      = 6C9AA1EC-286E-4a0a-AA98-E2E530626F4D
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdiGpuVgaControlDxeInit 
+
+[sources.common]
+  AmdiGpuVgaControlDxe.c
+
+[sources.ia32]
+
+[sources.x64]
+
+[LibraryClasses.common.DXE_DRIVER]
+  BaseLib 
+  UefiLib
+  HobLib
+  PrintLib
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DebugLib
+  S3BootScriptLib
+
+[Guids]
+
+[Protocols]
+  gEfiPciRootBridgeIoProtocolGuid       #CONSUMED
+  gEfiPciIoProtocolGuid                 #Notify
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleMemPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[Depex]
+  gEfiPciRootBridgeIoProtocolGuid
+  #AND
+  #gEfiBootScriptSaveGuid
+
+[BuildOptions]
+

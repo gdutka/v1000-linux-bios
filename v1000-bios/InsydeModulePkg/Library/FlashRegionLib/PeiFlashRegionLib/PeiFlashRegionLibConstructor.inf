@@ -1,0 +1,81 @@
+## @file
+#
+#
+#******************************************************************************
+#* Copyright (c) 2022, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiFlashRegionLib
+  FILE_GUID                      = 967A8FFD-752E-4be3-83B8-39D97B4371B2
+  MODULE_TYPE                    = PEIM
+  LIBRARY_CLASS                  = FlashRegionLib
+  CONSTRUCTOR                    = PeiFlashRegionLibInit
+
+
+[Sources]
+  PeiFlashRegionLib.c
+  PeiFlashRegionLibConstructor.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeFlashDevicePkg/InsydeFlashDevicePkg.dec
+
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  BaseCryptLib
+  PeiServicesLib
+  MemoryAllocationLib
+  H2OFvHashLib
+  H2OCpLib
+  PerformanceLib
+  PostCodeLib
+  DebugLib
+  HobLib
+
+
+[Guids]
+  gInsydeTokenSpaceGuid
+  gH2OFlashMapRegionVarGuid
+  gH2OFlashMapRegionBootFvGuid
+  gH2OFlashMapRegionFvGuid
+  gH2OFlashMapRegionDxeFvGuid
+  gH2OFlashMapRegionPeiFvGuid
+  gH2OFlashMapRegionUnsignedFvGuid
+  gH2OFlashMapRegionFtwBackupGuid
+  gH2OFlashMapRegionFtwStateGuid
+  gH2OFlashMapRegionFlashMapGuid
+  gH2OFlashMapRegionFactoryCopyGuid
+  gH2OBaseCpVerifyFvGuid
+  gZeroGuid
+
+[PcdEx]
+  gInsydeTokenSpaceGuid.PcdH2OFlashDeviceMapStart
+  gInsydeTokenSpaceGuid.PcdH2OFlashDeviceMapSize
+
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OBaseCpVerifyFvSupported
+
+
+[Ppis]
+  gPcdPpiGuid
+  gGetPcdInfoPpiGuid
+  gEfiPeiMemoryDiscoveredPpiGuid
+  gEfiPeiLoadFilePpiGuid
+
+
+[Depex]
+  gPcdPpiGuid

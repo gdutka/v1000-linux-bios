@@ -1,0 +1,96 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  DEC_SPECIFICATION     = 0x00010005
+  PACKAGE_NAME          = AgesaPublicPkg
+  PACKAGE_GUID          = 1DB6EDBF-9646-4476-81B7-14FB9B872E88
+  PACKAGE_VERSION       = 0.1
+
+[Includes]
+
+
+[LibraryClasses]
+
+
+  ## CCX Lib
+  
+  ## DF Lib
+
+  ## GNB Lib
+  
+  ## FCH Lib
+  
+[Guids]
+  ## AmdAgesa package token space guid
+
+  ## PSP Recovery Detect HOB GUID
+  
+  ## PSP APOB Hob Guid
+  
+[Protocols]
+
+  ## Gnb Protocols
+  
+  ## Gnb Depex Protocols
+
+  ## Fch Protocols
+  
+  ## PSP Protocols
+  
+  ## Soc Depex Protocols List
+  
+  ## FCH
+  
+  ## PSP
+  
+  ## Memory
+  
+  ## NBIO
+  
+  ## CCX
+  
+  ## DF
+  
+  ## Error Log Protocols
+[Ppis]
+  ## SOC Depex Ppi list
+  
+  ## FCH
+  
+  ## PSP
+  
+  ## Memory
+  
+  ## NBIO
+  
+  ## CCX
+  
+  ## DF
+  
+  ## Error Log Ppis
+  
+  ## GNB Ppis
+  
+  ## GNB Depex Ppis
+  
+  ## Feature Guids
+
+[PcdsFeatureFlag]
+
+[PcdsFixedAtBuild]
+  ## Gnb Common Build Options
+  
+  ## Gnb CZ Build Options
+  
+  ## Gnb Build time Options for Common System Options.
+  
+  ## PSP Fixed PCDs
+  
+  ## Fch Fixed PCDs
+  
+[PcdsDynamic]
+  

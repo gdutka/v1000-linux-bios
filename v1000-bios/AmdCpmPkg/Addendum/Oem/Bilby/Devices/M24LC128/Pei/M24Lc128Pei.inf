@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = M24Lc128Pei
+  FILE_GUID             = F4C8869F-A6B4-4F6F-A3C7-2DEF22BD8225
+  MODULE_TYPE           = PEIM
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = M24Lc128PeiEntryPoint
+
+[Sources.common]
+  M24Lc128Pei.c
+  M24Lc128Pei.h
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[LibraryClasses]
+  PeimEntryPoint
+  DebugLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gEfiPeiI2cMasterPpiGuid
+  gM24Lc128PpiGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+
+[Depex]
+  gEfiPeiI2cMasterPpiGuid

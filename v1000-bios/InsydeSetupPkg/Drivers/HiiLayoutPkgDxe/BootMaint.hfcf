@@ -1,0 +1,113 @@
+/** @file
+  Layout and hot key definitions for Boot Maintenance and Boot From File
+
+;******************************************************************************
+;* Copyright (c) 2018, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+#define BOOT_MAINT_FORMSET_GUID     {0x642237c7, 0x35d4, 0x472d, 0x83, 0x65, 0x12, 0xe0, 0xcc, 0xf2, 0x7a, 0x22}
+#define FILE_EXPLORE_FORMSET_GUID   {0x1f2d63e1, 0xfebd, 0x4dc7, 0x9c, 0xc5, 0xba, 0x2b, 0x1c, 0xef, 0x9c, 0x5b}
+
+style .LtdeBootFromFileScreen                property {color : lightgray; background-color : black    ;} endstyle;
+style .LtdeBootFromFileTitle                 property {color : white    ; background-color : blue     ;} endstyle;
+style .LtdeBootFromFileSetupMenu             property {color : black    ; background-color : cyan     ;} endstyle;
+style .LtdeBootFromFileSetupPage             property {color : blue     ; background-color : lightgray;} endstyle;
+style .LtdeBootFromFileSetupPage :highlight  property {color : white    ;                              } endstyle;
+style .LtdeBootFromFileSetupPage :grayout    property {color : black    ;                              } endstyle;
+style .LtdeBootFromFileSetupPage :selectable property {color : blue     ;                              } endstyle;
+style .LtdeBootFromFileSetupPage :focus      property {color : white    ;                              } endstyle;
+style .LtdeBootFromFileHelpText              property {color : blue     ; background-color : lightgray;} endstyle;
+style .LtdeBootFromFileHelpText  :highlight  property {color : white    ;                              } endstyle;
+style .LtdeBootFromFileHelpText  :grayout    property {color : black    ;                              } endstyle;
+style .LtdeBootFromFileHelpText  :selectable property {color : blue     ; background-color : lightgray;} endstyle;
+style .LtdeBootFromFileHelpText  :focus      property {color : blue     ; background-color : lightgray;} endstyle;
+style .LtdeBootFromFileHotkey                property {color : lightgray; background-color : blue     ;} endstyle;
+style .LtdeBootFromFileHotkey    :highlight  property {color : white    ;                              } endstyle;
+style .LtdeBootFromFileHotkey    :grayout    property {color : darkgray ;                              } endstyle;
+style .LtdeBootFromFileHotkey    :selectable property {color : blue     ;                              } endstyle;
+style .LtdeBootFromFileHotkey    :focus      property {color : white    ;                              } endstyle;
+style .LtdeBootFromFileQuestion              property {color : lightgray; background-color : blue     ;} endstyle;
+style .LtdeBootFromFileQuestion  :help       property {color : blue     ; background-color : lightgray;} endstyle;
+style .LtdeBootFromFileQuestion  :highlight  property {color : white    ;                              } endstyle;
+style .LtdeBootFromFileQuestion  :grayout    property {color : darkgray ;                              } endstyle;
+style .LtdeBootFromFileQuestion  :selectable property {color : lightgray;                              } endstyle;
+style .LtdeBootFromFileQuestion  :focus      property {color : white    ; background-color : cyan     ;} endstyle;
+style .LtdeBootFromFileQuestion  :disabled   property {color : black    ; background-color : lightgray;} endstyle;
+style .LtdeBootFromFileQuestion  :enabled    property {color : white    ; background-color : black    ;} endstyle;
+
+style .LtdeBootFromFileScreen    panel property {visibility : hidden ; left :  0%; top :  0em; right :  0%; bottom :  1em;                    } endstyle;
+style .LtdeBootFromFileTitle     panel property {visibility : visible; left :  0%; top :  0em; right :  0%; bottom : -2em; border-width : 1em;} endstyle;
+style .LtdeBootFromFileSetupMenu panel property {visibility : hidden ;                                                                        } endstyle;
+style .LtdeBootFromFileSetupPage panel property {visibility : visible; left : 1em; top :  4em; right : 1em; bottom :  6em;                    } endstyle;
+style .LtdeBootFromFileHelpText  panel property {visibility : hidden ;                                                                        } endstyle;
+style .LtdeBootFromFileHotkey    panel property {visibility : visible; left :  0%; top : -4em; right :  0%; bottom :  1em; border-width : 1em;} endstyle;
+style .LtdeBootFromFileQuestion  panel property {visibility : hidden ; left :  0%; top :  0em; right :  0%; bottom :   0%; border-width : 1em;} endstyle;
+
+layout
+  layoutid          = BOOT_FROM_FILE_LAYOUT_ID,
+  displayengineguid = DISPLAY_ENGINE_LOCAL_TEXT_GUID;
+
+  panel panelid = SCREEN_PANEL_ID    , paneltype = H2O_PANEL_TYPE_SCREEN         ; style = .LtdeBootFromFileScreen   ; endpanel;
+  panel panelid = TITLE_PANEL_ID     , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LtdeBootFromFileTitle    ; endpanel;
+  panel panelid = SETUP_MENU_PANEL_ID, paneltype = H2O_PANEL_TYPE_SETUP_MENU     ; style = .LtdeBootFromFileSetupMenu; endpanel;
+  panel panelid = SETUP_PAGE_PANEL_ID, paneltype = H2O_PANEL_TYPE_SETUP_PAGE     ; style = .LtdeBootFromFileSetupPage; endpanel;
+  panel panelid = HOTKEY_PANEL_ID    , paneltype = H2O_PANEL_TYPE_HOTKEY         ; style = .LtdeBootFromFileHotkey   ; endpanel;
+  panel panelid = QUESTION_PANEL_ID  , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LtdeBootFromFileQuestion ; endpanel;
+endlayout;
+
+vfr
+  formset
+    guid   = FILE_EXPLORE_FORMSET_GUID;
+    layout = BOOT_FROM_FILE_LAYOUT_ID;
+    hotkey hotkeyid = 0x501;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SHOW_HELP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SHOW_HELP,
+           style    = .H2OHotKeyShowHelp;
+    endhotkey;
+    hotkey hotkeyid = 0x502;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_DISCARD_EXIT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_DISCARD_AND_EXIT,
+           style    = .H2OHotKeyDiscardAndExit;
+    endhotkey;
+    hotkey hotkeyid = 0x503;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_ITEM,
+           group    = 1,
+           style    = .H2OHotKeySelectPreviousItem;
+    endhotkey;
+    hotkey hotkeyid = 0x504;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_NEXT_ITEM,
+           group    = 1,
+           style    = .H2OHotKeySelectNextItem;
+    endhotkey;
+    hotkey hotkeyid = 0x505;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_ENTER),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_ENTER_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_ENTER_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_ENTER,
+           style    = .H2OHotKeyEnter;
+    endhotkey;
+  endformset;
+
+  formset
+    guid   = BOOT_MAINT_FORMSET_GUID;
+    layout = BOOT_FROM_FILE_LAYOUT_ID;
+  endformset;
+endvfr;
+

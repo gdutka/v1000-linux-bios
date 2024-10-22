@@ -1,0 +1,89 @@
+## @file
+#  Component description file for DASH module.
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2020, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DashDxe
+  FILE_GUID                      = 213A595C-F512-4935-90E3-2CEAD077C721
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DashEntry
+
+[Sources]
+  DashDxe.h
+  DashDxe.c
+  MctpBus.h
+  MctpBus.c
+  Mctp.h
+  Mctp.c
+  Pldm.h
+  Pldm.c
+  PldmSmbios.h
+  PldmSmbios.c
+  PldmBios.h
+  PldmBios.c
+  PldmPlatformMonitor.h
+  PldmPlatformMonitor.c
+  PushManagementData.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  MemoryAllocationLib
+  BaseMemoryLib
+  UefiLib
+  DebugLib
+  PrintLib
+  PcdLib
+  H2OCpLib
+
+[Protocols]
+  gEfiCpuArchProtocolGuid
+  gEfiCpuIo2ProtocolGuid
+  gEfiSmbusHcProtocolGuid
+  gDashIoCfgProtocolGuid
+  gMctpSmbusProtocolGuid
+  gMctpBusProtocolGuid
+  gMctpProtocolGuid
+  gPldmProtocolGuid
+  gSmbiosSensorExtensionProtocolGuid
+  gEfiSmbiosProtocolGuid
+
+[Guids]
+  gEfiSmbiosTableGuid
+  gEfiGlobalVariableGuid
+  gEfiSmbios3TableGuid
+  gBootOrderHookEnableGuid
+  gH2OBdsCpReadyToBootAfterGuid
+  gH2OBdsCpBootDeviceEnumAfterGuid
+
+[Depex]
+  gEfiCpuIo2ProtocolGuid AND
+  gEfiPciRootBridgeIoProtocolGuid AND
+  gEfiSmbusHcProtocolGuid AND
+  gMctpSmbusProtocolGuid AND
+  gDashIoCfgProtocolGuid
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSmbiosVersion   ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSmbiosEntryPointProvideMethod   ## CONSUMES
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpReadyToBootAfterSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpBootDeviceEnumAfterSupported

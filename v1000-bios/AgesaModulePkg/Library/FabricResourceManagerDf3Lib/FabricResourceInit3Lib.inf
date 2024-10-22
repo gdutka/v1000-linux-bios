@@ -1,0 +1,53 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FabricResourceInit3Lib
+  FILE_GUID                      = 851A1BD5-0196-47DF-ABA4-40FC4393FAB3
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = FabricResourceInitLib
+
+[Sources]
+  FabricResourceInitBasedOnNv3.c
+  FabricResourceInit3.c
+  FabricResourceManager3.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+  AmdS3SaveLib
+  AmdHeapLib
+  BaseFabricTopologyLib
+  FabricRegisterAccLib
+  IdsLib
+  PciLib
+  FabricResourceSizeForEachRbLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdBottomMmioReservedForPrimaryRb
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdMmioAbove4GLimit
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdMmioSizePerRbForNonPciDevice
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAbove4GMmioSizePerRbForNonPciDevice
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFabricResourceDefaultMap
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdFabricResourceDefaultSizePtr
+
+[Depex]
+

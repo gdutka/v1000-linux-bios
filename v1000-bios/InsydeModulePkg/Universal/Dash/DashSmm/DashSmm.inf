@@ -1,0 +1,52 @@
+## @file
+#  Component description file for DashSmm module
+#
+#******************************************************************************
+#* Copyright (c) 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DashSmm
+  FILE_GUID                      = 189641F9-4F75-423F-9427-6457E8ED095D
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DashSmmEntryPoint
+
+[Sources]
+  DashSmm.c
+  DashSmm.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  UefiBootServicesTableLib
+  DebugLib
+  MemoryAllocationLib
+
+[Protocols]
+  gEfiSmmSxDispatch2ProtocolGuid
+  gDashIoCfgProtocolGuid
+  gMctpSmbusProtocolGuid
+  gPldmProtocolGuid
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid AND
+  gDashIoCfgProtocolGuid AND
+  gMctpSmbusProtocolGuid AND
+  gPldmProtocolGuid AND
+  gEfiSmmSxDispatch2ProtocolGuid

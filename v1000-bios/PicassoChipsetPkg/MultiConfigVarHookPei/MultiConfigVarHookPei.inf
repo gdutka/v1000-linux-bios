@@ -1,0 +1,54 @@
+## @file
+#  This PEIM provides Setup variable default values if Setup variable does not exist
+#
+#******************************************************************************
+#* Copyright (c) 2013 - 2014, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = MultiConfigVarHookPei
+  FILE_GUID                      = 4F3EFF1E-C3A6-46fe-ABAC-5B9E1CB947E4
+  MODULE_TYPE                    = PEIM
+  ENTRY_POINT                    = MultiConfigVarHookPeiEntryPoint
+
+[Sources]
+  MultiConfigVarHookPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+
+[LibraryClasses]
+   PeimEntryPoint
+   PeiServicesLib
+   BaseMemoryLib
+   HobLib
+   KernelConfigLib
+   VariableLib
+   MultiConfigBaseLib
+   SCUVarInfoLib
+
+
+[Guids]
+  gSystemConfigurationGuid
+  gSetupDefaultHobGuid
+  gPeiDefaultSetupProviderGuid
+  gPeiMCVarHookGuid
+
+
+[Ppis]
+  gEfiPeiReadOnlyVariable2PpiGuid
+
+[Pcd]
+
+[Depex]
+  TRUE

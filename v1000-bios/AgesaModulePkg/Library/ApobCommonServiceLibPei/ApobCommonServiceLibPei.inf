@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = ApobCommonServiceLibPei
+  FILE_GUID                      = B34AC6F8-363B-4551-A5F2-EEA130DF02EB
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ApobCommonServiceLib|PEIM
+
+[Sources.common]
+  ApobCommonServiceLibPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+  PeiServicesTablePointerLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gApobCommonServicePpiGuid #Consume
+
+[Pcd]
+
+[Depex]
+  gApobCommonServicePpiGuid
+
+

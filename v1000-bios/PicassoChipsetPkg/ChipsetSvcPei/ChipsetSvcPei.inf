@@ -1,0 +1,130 @@
+## @file
+#  Implement the PEIM of PeiChipsetSvc.
+#
+#  ***************************************************************************
+#  * Copyright (c) 2016 - 2017, Insyde Software Corp. All Rights Reserved.
+#  *
+#  * You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#  * transmit, broadcast, present, recite, release, license or otherwise exploit
+#  * any part of this publication in any form, by any means, without the prior
+#  * written permission of Insyde Software Corporation.
+#  *
+#  ******************************************************************************
+#
+##
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = ChipsetSvcPei
+  FILE_GUID                 = FB3D20EE-CB5D-45ee-BBAE-C5AAA9C0FDFA
+  MODULE_TYPE               = PEIM
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = ChipsetSvcPeiEntryPoint
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  PcAtChipsetPkg/PcAtChipsetPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AmdCommonChipsetPkg/AmdCommonChipsetPkg.dec
+  AMD64ArchFamilyCpuPkg/AMD64ArchFamilyCpuPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+  AmdPspFeaturePkg/AmdPspFeaturePkg.dec
+
+[Sources]
+  ChipsetSvcPei.c
+  EnableFdWrites.c
+  LegacyRegionAccessCtrl.c
+  GetSleepState.c
+  HdaInitHook.c
+  PlatformStage1Init.c
+  Stage1MemoryDiscoverCallback.c
+  PlatformStage2Init.c
+  Stage2MemoryDiscoverCallback.c
+  ModifyMemoryRange.c
+  SetSetupVariableDefault.c
+  SetPlatformHardwareSwitch.c
+
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  MemoryAllocationLib
+  PciLib
+  BaseLib
+  IoLib
+  PostCodeLib
+  HobLib
+  PeiServicesTablePointerLib
+  PcdLib
+  PciExpressLib
+  KernelConfigLib
+  ChipsetConfigLib
+  BaseMemoryLib
+  VariableLib
+
+[Ppis]
+  gPeiCachePpiGuid
+  gH2OChipsetServicesPpiGuid
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gPeiWarmResetDetectedGuid
+  gPeiPlatformMemoryRangePpiGuid
+  gPeiInstallVerbTablePpiGuid
+  gEfiPeiMemoryDiscoveredPpiGuid
+  gEfiPeiStallPpiGuid
+
+  gEfiPeiResetPpiGuid
+  gPeiS3RestoreAcpiCallbackPpiGuid
+  gEfiEndOfPeiSignalPpiGuid
+  gPeiInstallAzaliaVerbTablePpiGuid
+  gAmdFchInitPpiGuid
+  gAmdPspFtpmFactoryResetPpiGuid
+
+[Guids]
+  gUmaExistHobGuid
+  gAmdMemoryInfoHobGuid
+  gAzaliaPolicyGuid
+  gPlatformHardwareSwitchGuid
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gChipsetPkgTokenSpaceGuid.PcdPciExpressSize
+  gPcAtChipsetPkgTokenSpaceGuid.PcdIoApicBaseAddress
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuLocalApicBaseAddress
+  gInsydeTokenSpaceGuid.PcdFlashAreaBaseAddress
+  gInsydeTokenSpaceGuid.PcdFlashAreaSize
+  gInsydeTokenSpaceGuid.PcdUseFastCrisisRecovery
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdHdaBaseAddress
+  gInsydeTokenSpaceGuid.PcdH2OTpmSupported
+  gInsydeTokenSpaceGuid.PcdH2OTpm2Supported
+  gChipsetPkgTokenSpaceGuid.PcdTpmType
+  gChipsetPkgTokenSpaceGuid.SpiOrLpcTPM
+  gEfiCpuTokenSpaceGuid.PcdSVMEnable
+  gEfiCpuTokenSpaceGuid.PcdSVMLock
+#[-start-210505-IB06070106-modify]#
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspSystemTpmConfig
+#[-end-210505-IB06070106-modify]#
+  gInsydeTokenSpaceGuid.PcdPeiTpmPolicy
+  gInsydeTokenSpaceGuid.PcdFlashFvMainSize
+  gInsydeTokenSpaceGuid.PcdFlashFvMainBase
+  gChipsetPkgTokenSpaceGuid.PcdBootFirmwareVolumeBase
+  gChipsetPkgTokenSpaceGuid.PcdBootFirmwareVolumeSize
+  gChipsetPkgTokenSpaceGuid.PcdH2OPreferDtpmBootSupported
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpmBaseAddress
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPortPowerPort0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPortPowerPort1
+  gChipsetPkgTokenSpaceGuid.PcdTsegSize
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdAmdPspFactoryReset
+  gInsydeTokenSpaceGuid.PcdUseFastCrisisRecovery
+#[-start-191001-IB06070053-add]#
+  gChipsetPkgTokenSpaceGuid.PcdPeiGopEnable
+#[-end-191001-IB06070053-add]#
+
+[Depex]
+  gAmdCcxPeiInitCompletePpiGuid

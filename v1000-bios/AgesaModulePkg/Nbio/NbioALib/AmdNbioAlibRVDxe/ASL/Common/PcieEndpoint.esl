@@ -1,0 +1,122 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: NBIO
+ * @e \$Revision: 61089 $   @e \$Date: 2011-10-31 10:31:02 -0700 (Mon, 31 Oct 2011) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+// Get Cap
+  Method (procPcieEpGetCap, 2) {
+    //Arg0 - func
+    //Arg1 - cap
+    if (LEqual (procPcieEpPciDwRd (Arg0, 0), 0xffffffff)) {
+      return (0)
+    }
+    Store (procPcieEpPciDwRd (Arg0, 0x34), Local0)
+    while (TRUE) {
+      Store (procPcieEpPciDwRd (Arg0, And (Local0, 0xff)), Local1)
+      if (LEqual (And (Local1, 0xff), Arg1)) {
+        return (And (Local0, 0xff))
+      }
+      And (ShiftRight (Local1, 8), 0xff, Local0)
+      if (LEqual(local0, 0)) {
+        return (Local0)
+      }
+    }
+  }
+
+ Name (AESP, Package(8) { 0, 0, 0, 0, 0, 0, 0, 0})
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Control ASPM on EP
+   *
+   *  Arg0 -  DISABLE/ENABLE
+   */
+  Method (procPcieEpAspm, 1) {
+    ALIB_DEBUG ("PcieEpAspm Enter")
+    Store (0, Local0)
+    if (LNotEqual (procPcieEpPciDwRd (Local0, 0), 0xffffffff)) {
+      And(procPcieEpPciDwRd (Local0, 0x8), 0x80, Local1)
+      if (LEqual (Local1, 0x80)) {
+        Store (7, Local7)
+      } else {
+        Store (0, Local7)
+      }
+      while (LLessEqual (Local0, Local7)) {
+        Store (procPcieEpGetCap (Local0, 0x10), Local1)
+        if (LEqual (Local1, 0x00)) {
+          Increment (Local0)
+          continue
+        }
+        if (LEqual (Arg0, DISABLE)) {
+          Store (procPcieEpPciDwRd (Local0, Add (Local1, 0x10)), Local2)
+          procPcieEpPciDwWr (Local0, Add (Local1, 0x10), And (Local2, Not (0x3)))
+          Store (Local2, Index (AESP, Local0))
+        } else {
+          Store (DerefOf(Index (AESP, Local0)), Local2)
+          procPcieEpPciDwWr (Local0, Add (Local1, 0x10), Local2)
+        }
+        Increment (Local0)
+      }
+    } else {
+      ALIB_DEBUG ("Endpoint not present")
+    }
+    ALIB_DEBUG ("PcieEpAspm Exit")
+  }
+
+ /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Write PCI config register through MMIO
+   *
+   *  Arg0 - Func
+   *  Arg1 - Register offset
+   *  Arg2 - Value
+   */
+
+  Method (procPcieEpPciDwWr, 3, Serialized) {
+    Add (AGRB, ShiftLeft (bfSecondaryBus, 20), Local0)
+    Add (Local0, ShiftLeft (Arg0, 12), Local0)
+    Add (Local0, Arg1, Local0)
+    OperationRegion(ADRB, SystemMemory, Local0, 0x4)
+      Field(ADRB, DWordAcc, NoLock, Preserve) {
+        Offset (0x0),
+        ADRR, 32,
+      }
+    Store (Arg2, ADRR)
+  }
+
+ /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Write PCI config register through MMIO
+   *
+   *  Arg0 - Func
+   *  Arg1 - Register offset
+   */
+
+  Method (procPcieEpPciDwRd, 2, Serialized) {
+    Add (AGRB, ShiftLeft (bfSecondaryBus, 20), Local0)
+    Add (Local0, ShiftLeft (Arg0, 12), Local0)
+    Add (Local0, Arg1, Local0)
+    OperationRegion(ADRB, SystemMemory, Local0, 0x4)
+      Field(ADRB, DWordAcc, NoLock, Preserve) {
+        Offset (0x0),
+        ADRR, 32,
+      }
+    return (ADRR)
+  }
+

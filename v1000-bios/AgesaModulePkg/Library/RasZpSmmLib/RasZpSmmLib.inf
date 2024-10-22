@@ -1,0 +1,33 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = RasZpSmmLib
+  FILE_GUID                      = 52D8B5C1-425E-42F4-4B1F-DBAF310BDF4D
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = RasZpSmmLib 
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+
+[Sources]
+  RasZpSmmLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaModuleRasPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  SmmServicesTableLib
+  PciExpressLib
+
+[BuildOptions]
+MSFT:*_*_*_CC_FLAGS = /W3
+
+

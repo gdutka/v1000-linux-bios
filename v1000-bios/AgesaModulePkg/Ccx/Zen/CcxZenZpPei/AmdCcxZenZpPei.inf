@@ -1,0 +1,77 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdCcxZenZpPei
+  FILE_GUID                      = 69000FC4-15E6-45cf-A6D4-73337A9B5958
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdCcxZenZpPeiInit
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  PeimEntryPoint
+  AmdBaseLib
+  IdsLib
+  CcxBaseX86Lib
+  CcxRolesLib
+  CcxResetTablesLib
+  AmdIdsHookLib
+  CcxZenZpIdsHookLibPei
+  FchBaseLib
+  AmdCapsuleLib
+  BaseCoreLogicalIdLib
+  ApobCommonServiceLib
+  BaseMemoryLib
+
+[sources]
+  AmdCcxZenZpPei.c
+  CcxZenZpBrandString.c
+  CcxZenZpBrandString.h
+  CcxZenZpCacheInit.c
+  CcxZenZpCacheInit.h
+  CcxZenZpDownCoreInit.c
+  CcxZenZpDownCoreInit.h
+
+[Guids]
+  gApSyncFlagNvVariableGuid
+
+[Protocols]
+
+[Ppis]
+  gAmdFabricTopologyServices2PpiGuid #CONSUMED
+  gAmdCcxPeiInitCompletePpiGuid      #PRODUCED
+  gAmdCoreTopologyServicesPpiGuid    #CONSUMED
+  gAmdNbioSmuServicesPpiGuid         #CONSUMED
+  gEfiPeiReset2PpiGuid               #CONSUMED
+  gEfiPeiReadOnlyVariable2PpiGuid    #CONSUMED
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDownCoreMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSmtMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiS3Support
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxCfgPFEHEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdScnLockNEnable
+
+[Depex]
+  gAmdCcxZenZpDepexPpiGuid AND
+  gAmdFabricTopologyServices2PpiGuid AND
+  gAmdCoreTopologyServicesPpiGuid AND
+  gAmdNbioSmuServicesPpiGuid AND
+  gEfiPeiReadOnlyVariable2PpiGuid
+

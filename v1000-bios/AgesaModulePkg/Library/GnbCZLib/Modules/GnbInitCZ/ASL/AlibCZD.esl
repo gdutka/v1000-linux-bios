@@ -1,0 +1,160 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: GNB
+ * @e \$Revision: 281175 $   @e \$Date: 2013-12-18 01:53:00 -0600 (Wed, 18 Dec 2013) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+DefinitionBlock (
+  "ALIB.aml",
+  "SSDT",
+  2,
+  "AMD",
+  "ALIB",
+  0x2
+  )
+{
+  Scope(\_SB) {
+    //-----------------------------------------------------------------
+    // Transfer data
+    //-----------------------------------------------------------------
+    Name (PcieBaseAddress, 0xffffffff)
+    //-----------------------------------------------------------------
+    Name (ADBG, Buffer (256) {})
+    //-----------------------------------------------------------------
+    // Transfer data block
+    //-----------------------------------------------------------------
+    include ("DataBlock.asl")
+    //-----------------------------------------------------------------
+    // ALIB interface
+    //-----------------------------------------------------------------
+    include ("Alib.asl")
+    //-----------------------------------------------------------------
+    // Hotplug API
+    //-----------------------------------------------------------------
+    External(\_SB.ALIC,  MethodObj)
+    include ("Hotplug.asl")
+    //-----------------------------------------------------------------
+    // ACDC objects
+    //-----------------------------------------------------------------
+    include ("Acdc.asl")
+    //-----------------------------------------------------------------
+    // PSPP objects
+    //-----------------------------------------------------------------
+    include ("Pspp.asl")
+    //-----------------------------------------------------------------
+    // CPU servcies
+    //-----------------------------------------------------------------
+    include ("CpuRegistersCZ.asl")
+    //-----------------------------------------------------------------
+    // GNB services
+    //-----------------------------------------------------------------
+    include ("GnbRegistersCZ.asl")
+    include ("GnbPcieCZ.asl")
+    include ("GnbCZ.asl")
+    include ("GnbDPTCiCZ.asl")
+    //-----------------------------------------------------------------
+    // SB servcies
+    //-----------------------------------------------------------------
+    include ("SbLib.asl")
+    //-----------------------------------------------------------------
+    // PCIe topology
+    //-----------------------------------------------------------------
+    include ("PcieTopologyCZ.asl")
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  AC/DC change event handler
+   *
+   *  PCIe speed cap can be recovered from PcieCurrentSpeed
+   */
+    Name (varBapmStatus, ON)
+    Name (varSwNbPstateLoDis, 0)
+
+    Method (APTS, 1) {
+      if (LEqual (Arg0, 3)) {
+        //
+        //  Put PSPP to sleep
+        //
+        // procPsppSleep (Arg0)
+        //
+        // Put BAPM to sleep
+        //
+        procBapmManage (OFF)
+        //
+        // Prepare Mem pstate
+        //
+        Store (procMemePSManage (OFF), varSwNbPstateLoDis)
+        //
+        // notify SMU enter into S3
+        //
+        procS3Entry (OFF)
+      }
+
+    }
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  AC/DC change event handler
+   *
+   *  PCIe speed cap can be recovered from PcieCurrentSpeed
+   */
+    Method (AWAK, 1) {
+      if (LEqual (Arg0, 3)) {
+        //
+        //  Wake PSPP
+        //
+        // procPsppWake (Arg0)
+        //
+        // Wake Mem PS
+        //
+        if (LEqual (varSwNbPstateLoDis, 0)) {
+          procMemePSManage (ON)
+        }
+      }
+    }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  AC/DC change event handler
+   *
+   *  PCIe speed cap can be recovered from PcieCurrentSpeed
+   */
+    Method (procAcDcChangeEvent, 0) {
+      //
+      // Process PSPP
+      //
+      // procPsppAcDc ()
+    }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  PCIe speed change event handler
+   *
+   *  AC/DC state can be recovered from AcDc.
+   *
+   *  Arg0 - Target PCIe speed, Arg0 - Current link speed
+   */
+    Method (procPcieSpeedChangeEvent, 2) {
+
+    }
+
+  } //End of Scope(\_SB)
+
+}   //End of DefinitionBlock
+
+

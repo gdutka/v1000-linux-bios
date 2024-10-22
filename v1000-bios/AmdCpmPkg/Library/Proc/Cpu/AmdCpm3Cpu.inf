@@ -1,0 +1,68 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AmdCpmCpuLib
+  FILE_GUID             = 852195D2-F3AE-4DC8-A2AA-D6CD018A2809
+  MODULE_TYPE           = BASE
+  VERSION_STRING        = 1.0
+  LIBRARY_CLASS         = AmdCpmCpuLib|PEIM DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER DXE_RUNTIME_DRIVER
+
+[Sources.common]
+  AmdCpmCpu.c
+  AmdCpmCpu.h
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[LibraryClasses]
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.ApuSupportMask
+  gAmdCpmPkgTokenSpaceGuid.PcieGfx0AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGfx1AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGfx2AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGfx3AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGfx4AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGpp0AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGpp1AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGpp2AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGpp3AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGpp4AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGpp5AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGpp6AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGpp7AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGpp8AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGpp9AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGppAAslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGppBAslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGppCAslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGppDAslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGppEAslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGppFAslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGp17AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGp18AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGp28AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGp38AslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGppGAslName
+  gAmdCpmPkgTokenSpaceGuid.PcieGppHAslName
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdGetRVFamilyOPN
+
+[Depex]

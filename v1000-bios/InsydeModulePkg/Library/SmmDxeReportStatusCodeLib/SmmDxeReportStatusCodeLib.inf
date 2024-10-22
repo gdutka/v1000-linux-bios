@@ -1,0 +1,66 @@
+## @file
+#  COMBINED_SMM_DXE report status code library.
+#
+#  Retrieve status code and report status code in SMM or DXE phase.
+#
+#******************************************************************************
+#* Copyright (c) 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SmmDxeReportStatusCodeLib
+  FILE_GUID                      = 4C5218EE-E3DB-4ed8-9316-CEC844EAE87A
+  MODULE_TYPE                    = COMBINED_SMM_DXE
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  LIBRARY_CLASS                  = ReportStatusCodeLib|COMBINED_SMM_DXE
+  CONSTRUCTOR                    = ReportStatusCodeLibConstructor
+  DESTRUCTOR                     = ReportStatusCodeLibDestructor
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  ReportStatusCodeLib.c
+  InternalReportStatusCodeLib.h
+  SmmReportStatusCodeLib.c
+  DxeReportStatusCodeLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  PcdLib
+  BaseMemoryLib
+  SmmServicesTableLib
+  DebugLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  DevicePathLib
+  ImageRelocationLib
+
+[Guids]
+  gEfiStatusCodeSpecificDataGuid                ## SOMETIMES_CONSUMES   ## UNDEFINED
+  gEfiStatusCodeDataTypeDebugGuid               ## SOMETIMES_CONSUMES   ## UNDEFINED
+  gEfiEventVirtualAddressChangeGuid             ## CONSUMES ## Event
+  gEfiEventExitBootServicesGuid                 ## CONSUMES ## Event
+
+[Protocols]
+  gEfiSmmStatusCodeProtocolGuid                 ## CONSUMES
+  gEfiStatusCodeRuntimeProtocolGuid
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask  ## CONSUMES

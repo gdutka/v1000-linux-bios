@@ -1,0 +1,45 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemPei
+  FILE_GUID                      = 0D1F5AFD-9E26-4a39-B5BF-8CFFC59EAEE7
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = PeiAmdMemEntry
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PeimEntryPoint
+  AmdBaseLib
+  AmdMemBaseLib
+  AmdMemMainLib
+  IdsLib
+  AmdMemServicesLib
+
+[sources]
+  AmdMemPei.c
+
+[Guids]
+  
+[Protocols]
+
+[Ppis]
+  gAmdMemoryInitializeAgesaMemoryPpiGuid    #Publish
+  gAmdMemoryInitCompletePpiGuid             #Publish
+  gAmdMemoryPoolPointerTablePpiGuid         #Publish
+  gAmdMemoryFamilyServicesPpiGuid           #Consumes
+
+[Pcd]
+
+[Depex]
+  TRUE

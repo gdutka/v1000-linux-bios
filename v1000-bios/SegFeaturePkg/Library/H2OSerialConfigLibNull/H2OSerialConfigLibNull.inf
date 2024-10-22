@@ -1,0 +1,38 @@
+## @file
+# Library description file for H2OSerialConfigLibNull module.
+#
+#******************************************************************************
+#* Copyright 2019 Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corp.
+#*
+#******************************************************************************
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = H2OSerialConfigLibNull
+  MODULE_UNI_FILE                = H2OSerialConfigLibNull.uni
+  FILE_GUID                      = 89FA5C13-EE6F-4DE1-B3D1-66DBD3360BC3
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = H2OSerialConfigLib
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  H2OSerialConfigLibNull.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+

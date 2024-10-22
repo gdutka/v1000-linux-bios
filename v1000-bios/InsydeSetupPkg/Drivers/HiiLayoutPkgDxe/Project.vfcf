@@ -1,0 +1,303 @@
+/** @file
+
+;******************************************************************************
+;* Copyright (c) 2012 - 2020, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+#include "HiiLayoutPkgDxeIdfDefs.h"
+#include "HiiLayoutPkgDxeStrDefs.h"
+#include <Guid/PropertyDef.h>
+
+#define DISPLAY_ENGINE_LOCAL_TEXT_GUID   { 0x7c808617, 0x7bc1, 0x4745, {0xa4, 0x58, 0x09, 0x28, 0xf8, 0xb9, 0x5e, 0x60} }
+#define DISPLAY_ENGINE_LOCAL_METRO_GUID  { 0xb9e329a2, 0xaba7, 0x4f41, {0x93, 0x98, 0x46, 0xde, 0xc0, 0xae, 0xc1, 0xf7} }
+
+//
+// format
+//
+format {
+  visibility              : keyword { visible, hidden, inherit };
+  enable                  : boolean;
+
+  left                    : coord;
+  top                     : coord;
+  right                   : coord;
+  bottom                  : coord;
+
+  height                  : size;
+  width                   : size;
+
+  display                 : keyword { none, inline, block, flex };
+
+  overflow-x              : keyword { auto, visible, hidden, scroll };
+  overflow-y              : keyword { auto, visible, hidden, scroll };
+
+  color                   : color;
+  border-color            : color;
+  background-color        : color;
+
+  border-width            : size;
+  single-dialog           : boolean;
+  display-order           : value;
+  //
+  // new property for hotkey definition
+  //
+  key-string              : string;
+}
+
+//
+// LTDE styles
+//
+style .LtdeScreen                property {color : lightgray; background-color : black    ;} endstyle;
+style .LtdeTitle                 property {color : black    ; background-color : cyan     ;} endstyle;
+style .LtdeTitle     :highlight  property {color : white    ;                              } endstyle;
+style .LtdeTitle     :grayout    property {color : darkgray ;                              } endstyle;
+style .LtdeTitle     :selectable property {color : blue     ;                              } endstyle;
+style .LtdeTitle     :focus      property {color : white    ;                              } endstyle;
+style .LtdeTitle     :disabled   property {color : blue     ; background-color : black    ;} endstyle;
+style .LtdeTitle     :enabled    property {color : white    ; background-color : black    ;} endstyle;
+style .LtdeSetupMenu             property {color : lightgray; background-color : blue     ;} endstyle;
+style .LtdeSetupMenu :highlight  property {color : blue     ; background-color : lightgray;} endstyle;
+style .LtdeSetupMenu :grayout    property {color : darkgray ;                              } endstyle;
+style .LtdeSetupMenu :selectable property {color : lightgray;                              } endstyle;
+style .LtdeSetupMenu :focus      property {color : blue     ; background-color : lightgray;} endstyle;
+style .LtdeSetupMenu :disabled   property {color : blue     ; background-color : black    ;} endstyle;
+style .LtdeSetupMenu :enabled    property {color : white    ; background-color : black    ;} endstyle;
+style .LtdeSetupPage             property {color : blue     ; background-color : lightgray;} endstyle;
+style .LtdeSetupPage :highlight  property {color : white    ;                              } endstyle;
+style .LtdeSetupPage :grayout    property {color : darkgray ;                              } endstyle;
+style .LtdeSetupPage :selectable property {color : blue     ;                              } endstyle;
+style .LtdeSetupPage :focus      property {color : white    ;                              } endstyle;
+style .LtdeSetupPage :disabled   property {color : blue     ;                              } endstyle;
+style .LtdeSetupPage :enabled    property {color : white    ;                              } endstyle;
+style .LtdeHelpText              property {color : blue     ; background-color : lightgray;} endstyle;
+style .LtdeHelpText  :highlight  property {color : white    ;                              } endstyle;
+style .LtdeHelpText  :grayout    property {color : darkgray ;                              } endstyle;
+style .LtdeHelpText  :selectable property {color : blue     ;                              } endstyle;
+style .LtdeHelpText  :focus      property {color : blue     ;                              } endstyle;
+style .LtdeHelpText  :disabled   property {color : blue     ;                              } endstyle;
+style .LtdeHelpText  :enabled    property {color : white    ; background-color : black    ;} endstyle;
+style .LtdeHotkey                property {color : black    ; background-color : cyan     ;} endstyle;
+style .LtdeHotkey    :highlight  property {color : white    ;                              } endstyle;
+style .LtdeHotkey    :grayout    property {color : darkgray ;                              } endstyle;
+style .LtdeHotkey    :selectable property {color : blue     ;                              } endstyle;
+style .LtdeHotkey    :focus      property {color : white    ;                              } endstyle;
+style .LtdeHotkey    :disabled   property {color : blue     ;                              } endstyle;
+style .LtdeHotkey    :enabled    property {color : white    ; background-color : black    ;} endstyle;
+style .LtdeQuestion              property {color : lightgray; background-color : blue     ;} endstyle;
+style .LtdeQuestion  :help       property {color : blue     ; background-color : lightgray;} endstyle;
+style .LtdeQuestion  :highlight  property {color : white    ;                              } endstyle;
+style .LtdeQuestion  :grayout    property {color : darkgray ;                              } endstyle;
+style .LtdeQuestion  :selectable property {color : lightgray;                              } endstyle;
+style .LtdeQuestion  :focus      property {color : white    ; background-color : cyan     ;} endstyle;
+style .LtdeQuestion  :disabled   property {color : black    ; background-color : lightgray;} endstyle;
+style .LtdeQuestion  :enabled    property {color : white    ; background-color : black    ;} endstyle;
+
+style .LtdeScreen    panel property {visibility : hidden ; left :  0%; top :  0em; right :  0%; bottom :   0%; border-color: blue; } endstyle;
+style .LtdeTitle     panel property {visibility : visible; left :  0%; top :  0em; right :  0%; bottom : -0em; border-color: blue; } endstyle;
+style .LtdeSetupMenu panel property {visibility : visible; left :  0%; top :  1em; right :  0%; bottom : -1em; border-color: lightgray; } endstyle;
+style .LtdeSetupPage panel property {visibility : visible; left :  0%; top :  2em; right : 33%; bottom :  2em; border-color: blue; border-width : 1em;} endstyle;
+style .LtdeHelpText  panel property {visibility : visible; left : 67%; top :  2em; right :  0%; bottom :  2em; border-color: blue; border-width : 1em;} endstyle;
+style .LtdeHotkey    panel property {visibility : visible; left :  0%; top : -1em; right :  0%; bottom :   0%; border-color: black;                   } endstyle;
+style .LtdeQuestion  panel property {visibility : hidden ; left :  0%; top :  0em; right :  0%; bottom :   0%; border-color: lightgray; border-width : 1em;} endstyle;
+
+//
+// LTDE layout
+//
+layout
+  layoutid          = COMMON_PAGE_LAYOUT_ID,
+  displayengineguid = DISPLAY_ENGINE_LOCAL_TEXT_GUID;
+
+  panel panelid = SCREEN_PANEL_ID    , paneltype = H2O_PANEL_TYPE_SCREEN         ; style = .LtdeScreen   ; endpanel;
+  panel panelid = TITLE_PANEL_ID     , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LtdeTitle    ; endpanel;
+  panel panelid = SETUP_MENU_PANEL_ID, paneltype = H2O_PANEL_TYPE_SETUP_MENU     ; style = .LtdeSetupMenu; endpanel;
+  panel panelid = SETUP_PAGE_PANEL_ID, paneltype = H2O_PANEL_TYPE_SETUP_PAGE     ; style = .LtdeSetupPage; endpanel;
+  panel panelid = HELP_TEXT_PANEL_ID , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LtdeHelpText ; endpanel;
+  panel panelid = HOTKEY_PANEL_ID    , paneltype = H2O_PANEL_TYPE_HOTKEY         ; style = .LtdeHotkey   ; endpanel;
+  panel panelid = QUESTION_PANEL_ID  , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .LtdeQuestion ; endpanel;
+endlayout;
+
+//
+// LMDE common page Styles
+//
+style .CommonPageLmdeOwnerDraw panel property {visibility : visible; left :  0%; top : 0em; right :  0%; bottom : 86%;} endstyle;
+style .CommonPageLmdeTitle     panel property {visibility : visible; left :  0%; top : 14%; right :  0%; bottom : 77%;} endstyle;
+style .CommonPageLmdeHelpText  panel property {visibility : visible; left : 65%; top : 23%; right :  0%; bottom : 13%;} endstyle;
+style .CommonPageLmdeHotkey    panel property {visibility : visible; left :  0%; top : 87%; right :  0%; bottom :  0%;} endstyle;
+style .CommonPageLmdeSetupPage panel property {visibility : visible; left :  0%; top : 23%; right : 35%; bottom : 13%;} endstyle;
+
+style .CommonPageLmdeSetupPage action      property {height : 60;} endstyle;
+style .CommonPageLmdeSetupPage checkbox    property {height : 50;} endstyle;
+style .CommonPageLmdeSetupPage date        property {height : 70;} endstyle;
+style .CommonPageLmdeSetupPage goto        property {height : 50;} endstyle;
+style .CommonPageLmdeSetupPage oneof       property {height : 70;} endstyle;
+style .CommonPageLmdeSetupPage numeric     property {height : 70;} endstyle;
+style .CommonPageLmdeSetupPage orderedlist property {height : 70;} endstyle;
+style .CommonPageLmdeSetupPage password    property {height : 70;} endstyle;
+style .CommonPageLmdeSetupPage string      property {height : 70;} endstyle;
+style .CommonPageLmdeSetupPage time        property {height : 70;} endstyle;
+style .CommonPageLmdeSetupPage text        property {height : 35;} endstyle;
+style .CommonPageLmdeSetupPage subtitle    property {height : 32;} endstyle;
+style .CommonPageLmdeSetupPage resetbutton property {height : 60;} endstyle;
+
+//
+// LMDE common page layout
+//
+layout
+  layoutid = COMMON_PAGE_LAYOUT_ID,
+  displayengineguid = DISPLAY_ENGINE_LOCAL_METRO_GUID;
+
+  panel panelid = OWNER_DRAW_PANEL_ID, paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .CommonPageLmdeOwnerDraw; endpanel;
+  panel panelid = TITLE_PANEL_ID     , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .CommonPageLmdeTitle    ; endpanel;
+  panel panelid = SETUP_PAGE_PANEL_ID, paneltype = H2O_PANEL_TYPE_SETUP_PAGE     ; style = .CommonPageLmdeSetupPage; endpanel;
+  panel panelid = HELP_TEXT_PANEL_ID , paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .CommonPageLmdeHelpText ; endpanel;
+  panel panelid = HOTKEY_PANEL_ID    , paneltype = H2O_PANEL_TYPE_HOTKEY         ; style = .CommonPageLmdeHotkey   ; endpanel;
+endlayout;
+
+//
+// Common styles
+//
+style .ChangePwInSingleDlg password property {single-dialog : true ;} endstyle;
+style .ChangePwInMultiDlg  password property {single-dialog : false;} endstyle;
+
+//
+// Hot key definitions
+//
+style .H2OHotKeyShowHelp                     hotkey property {visibility : visible; key-string : STRING(L"F1")   ;} endstyle;
+style .H2OHotKeyDiscardAndExit               hotkey property {visibility : visible; key-string : STRING(L"ESC")  ;} endstyle;
+style .H2OHotKeySelectPreviousItem           hotkey property {visibility : visible; key-string : STRING(L"up")   ;} endstyle;
+style .H2OHotKeySelectNextItem               hotkey property {visibility : visible; key-string : STRING(L"down") ;} endstyle;
+style .H2OHotKeyEnter                        hotkey property {visibility : visible; key-string : STRING(L"enter");} endstyle;
+style .H2OHotKeySelectPreviousMenu           hotkey property {visibility : visible; key-string : STRING(L"left") ;} endstyle;
+style .H2OHotKeySelectNextMenu               hotkey property {visibility : visible; key-string : STRING(L"right");} endstyle;
+style .H2OHotKeyModifyPreviousValue          hotkey property {visibility : visible; key-string : STRING(L"F5")   ;} endstyle;
+style .H2OHotKeyModifyNextValue              hotkey property {visibility : visible; key-string : STRING(L"F6")   ;} endstyle;
+style .H2OHotKeyModifyPreviousValueHiddenKey hotkey property {visibility : hidden ; key-string : STRING(L"-")    ;} endstyle;
+style .H2OHotKeyModifyNextValueHiddenKey     hotkey property {visibility : hidden ; key-string : STRING(L"+")    ;} endstyle;
+style .H2OHotKeyLoadDefault                  hotkey property {visibility : visible; key-string : STRING(L"F9")   ;} endstyle;
+style .H2OHotKeyLoadDefaultCallback          hotkey property {visibility : visible; key-string : STRING(L"F9")   ;} endstyle;
+style .H2OHotKeySaveAndExit                  hotkey property {visibility : visible; key-string : STRING(L"F10")  ;} endstyle;
+style .H2OHotKeySaveAndExitCallback          hotkey property {visibility : visible; key-string : STRING(L"F10")  ;} endstyle;
+style .H2OHotKeySave                         hotkey property {visibility : visible; key-string : STRING(L"F10")  ;} endstyle;
+style .H2OHotKeyShiftDown                    hotkey property {visibility : visible; key-string : STRING(L"F5")   ;} endstyle;
+style .H2OHotKeyShiftUp                      hotkey property {visibility : visible; key-string : STRING(L"F6")   ;} endstyle;
+style .H2OHotKeyShiftDownHiddenKey           hotkey property {visibility : hidden ; key-string : STRING(L"-")    ;} endstyle;
+style .H2OHotKeyShiftUpHiddenKey             hotkey property {visibility : hidden ; key-string : STRING(L"+")    ;} endstyle;
+
+vfr
+  formset
+    guid   = {0x00000000, 0x0000, 0x0000, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    layout = COMMON_PAGE_LAYOUT_ID;
+
+    hotkey hotkeyid = 0x101;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SHOW_HELP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SHOW_HELP,
+           style    = .H2OHotKeyShowHelp;
+    endhotkey;
+    hotkey hotkeyid = 0x102;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_DISCARD_EXIT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_DISCARD_AND_EXIT,
+           style    = .H2OHotKeyDiscardAndExit;
+    endhotkey;
+    hotkey hotkeyid = 0x103;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           group    = 1,
+           action   = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_ITEM,
+           style    = .H2OHotKeySelectPreviousItem;
+    endhotkey;
+    hotkey hotkeyid = 0x104;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           group    = 1,
+           action   = H2O_HOT_KEY_ACTION_SELECT_NEXT_ITEM,
+           style    = .H2OHotKeySelectNextItem;
+    endhotkey;
+    hotkey hotkeyid = 0x105;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_MENU_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_MENU_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_MENU_HELP_STRING),
+           group    = 2,
+           action   = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_MENU,
+           style    = .H2OHotKeySelectPreviousMenu;
+    endhotkey;
+    hotkey hotkeyid = 0x106;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_MENU_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_MENU_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_MENU_HELP_STRING),
+           group    = 2,
+           action   = H2O_HOT_KEY_ACTION_SELECT_NEXT_MENU,
+           style    = .H2OHotKeySelectNextMenu;
+    endhotkey;
+    hotkey hotkeyid = 0x107;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_PREVIOUS_VALUE_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           group    = 3,
+           action   = H2O_HOT_KEY_ACTION_MODIFY_PREVIOUS_VALUE,
+           style    = .H2OHotKeyModifyPreviousValue;
+    endhotkey;
+    hotkey hotkeyid = 0x108;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_NEXT_VALUE_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           group    = 3,
+           action   = H2O_HOT_KEY_ACTION_MODIFY_NEXT_VALUE,
+           style    = .H2OHotKeyModifyNextValue;
+    endhotkey;
+    hotkey hotkeyid = 0x109;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_ENTER),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_ENTER_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_ENTER_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_ENTER,
+           style    = .H2OHotKeyEnter;
+    endhotkey;
+    hotkey hotkeyid = 0x10A;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_LOAD_DEFAULT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_LOAD_DEFAULT_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_LOAD_DEFAULT_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_LOAD_DEFAULT,
+           style    = .H2OHotKeyLoadDefault;
+    endhotkey;
+    hotkey hotkeyid = 0x10B;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SAVE_AND_EXIT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SAVE_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SAVE_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SAVE,
+           style    = .H2OHotKeySave;
+    endhotkey;
+    hotkey hotkeyid = 0x10C;
+           action   = H2O_HOT_KEY_ACTION_MODIFY_PREVIOUS_VALUE,
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_PREVIOUS_VALUE_HIDDEN_KEY_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           style    = .H2OHotKeyModifyPreviousValueHiddenKey;
+    endhotkey;
+    hotkey hotkeyid = 0x10D;
+           action   = H2O_HOT_KEY_ACTION_MODIFY_NEXT_VALUE,
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_NEXT_VALUE_HIDDEN_KEY_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           style    = .H2OHotKeyModifyNextValueHiddenKey;
+    endhotkey;
+  endformset;
+endvfr;
+
+#include "FrontPage.hfcf"
+#include "BootManager.hfcf"
+#include "BootMaint.hfcf"
+#include "DeviceManager.hfcf"
+#include "SecureBootMgr.hfcf"
+#include "SetupUtility.hfcf"
+#include "VfrApp.hfcf"
+

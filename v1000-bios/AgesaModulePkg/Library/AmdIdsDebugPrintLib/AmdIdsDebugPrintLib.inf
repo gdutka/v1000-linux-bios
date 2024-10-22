@@ -1,0 +1,67 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdIdsDebugPrintLib
+  FILE_GUID                      = E87ACE1F-52DE-417C-BD23-C06A92354917
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdIdsDebugPrintLib
+  CONSTRUCTOR                    = AmdIdsDebugPrintLibConstructor
+
+[Sources.common]
+  AmdIdsDebugPrintLib.c
+  AmdIdsDebugPrintLocal.h
+  AmdIdsDpHdtOutLib.c
+  AmdIdsDpRedirectIo.c
+  AmdIdsDpSerial.c
+
+#[-start-240426-IB18160212-modify-]#
+[Sources.IA32]
+  Ia32/AmdHdtoutLib32.asm
+  Ia32/AmdHdtoutLib32.nasm
+
+[Sources.X64]
+  X64/AmdHdtoutLib64.asm
+  X64/AmdHdtoutLib64.nasm
+#[-end-240426-IB18160212-modify-]#
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+  PrintLib
+  PcdLib
+  AmdHeapLib
+  CcxRolesLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[FeaturePcd]
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintFilter
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintHdtOutEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdIdsDebugPort
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintRedirectIOEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintHdtOutForceEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintSerialPortEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintSerialPort
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintSerialPortDetectCableConnection
+
+[Depex]
+  TRUE
+
+

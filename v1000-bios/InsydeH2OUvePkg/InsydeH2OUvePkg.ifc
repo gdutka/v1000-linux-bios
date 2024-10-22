@@ -1,0 +1,40 @@
+<Features>
+  <!-- Trunk feature -->
+  <Feature>
+    <Name>InsydeH2OUvePkg</Name>
+    <Root>InsydeH2OUvePkg</Root>
+    <Version>05.33.04</Version>
+    <Revision>2</Revision>
+    <Repository>
+      <Type>Svn</Type>
+      <Url>http://svn-tc.insydesw.com/H2O-SEG-Feature/InsydeH2oUvePkg</Url>
+    </Repository>
+    <Dependency>
+      <Name>Kernel</Name>
+      <Version>05.32.28</Version>
+    </Dependency>
+    <Package>
+      <SourceDir>.</SourceDir>
+    </Package>
+    <File>
+      <SourcePath>InsydeH2OUvePkg.ifc</SourcePath>
+    </File>
+  </Feature>
+  <!-- Version 0.0.0.1 feature -->
+  <Feature>
+    <Name>InsydeH2OUvePkg</Name>
+    <Root>InsydeH2OUvePkg</Root>
+    <Version>0.0.0.1</Version>
+    <Revision>2</Revision>
+    <Repository>
+      <Type>Svn</Type>
+      <Url>http://svn-tc.insydesw.com/H2O-SEG-Feature/InsydeH2oUvePkg</Url>
+    </Repository>
+    <Package>
+      <SourceDir>.</SourceDir>
+    </Package>
+    <File>
+      <SourcePath>InsydeH2OUvePkg.ifc</SourcePath>
+    </File>
+  </Feature>
+</Features>

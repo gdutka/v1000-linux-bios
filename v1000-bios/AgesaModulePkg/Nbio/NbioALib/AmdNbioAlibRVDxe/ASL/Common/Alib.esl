@@ -1,0 +1,187 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: NBIO
+ * @e \$Revision: 61089 $   @e \$Date: 2011-10-31 10:31:02 -0700 (Mon, 31 Oct 2011) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+/*----------------------------------------------------------------------------------------*/
+/**
+ *  ALIB interface method
+ *
+ *  Arg0 - Function ID
+ *  Arg1 - Function specific data buffer
+ */
+Method (ALIB, 2, NotSerialized) {
+
+  if (Lequal (Arg0, 0x0)) {
+    // Define Arg1 for function 0
+    CreateWordField(Arg1, 0, varStructureSize)                          // Structure size field
+    CreateWordField(Arg1, 2, varInterfaceVersion)                       // Interface field
+    CreateDWordField(Arg1, 4, varSupportedFunctionsBitVector)           // Supported field
+
+    Store (Buffer (256) {}, Local0)
+    CreateWordField (Local0, 0x0, varReturnBufferLength)
+    Store (varStructureSize, varReturnBufferLength)
+    CreateWordField (Local0, 0x2, varReturn0)
+    Store (varInterfaceVersion, varReturn0)
+    CreateDWordField (Local0, 0x4, varReturn1)
+    Store (varSupportedFunctionsBitVector, varReturn1)
+    And (varReturn1, Not (0xF),varReturn1)
+    if (LGreater (PsppPolicy, FALSE)) {
+      Store (0x0F, Local1)
+    } else {
+      Store (0x01, Local1)
+    }
+    Or (varReturn1, Local1, varReturn1)
+    return (Local0)
+  }
+
+  if (Lequal (Arg0, 0x1)) {
+    Store (DeRefOf (Index (Arg1, 0x2)), Local0)
+    return (procAcDc (Local0))
+  }
+
+  if (LEqual (Arg0, 0x2)) {
+  #if PSPP_SUPPORT
+    return (procPsppPerfRequest (Arg1))
+  #else
+    Store (Buffer (256) {0x3, 0, 0}, Local0)
+    return (Local0)
+  #endif
+   }
+
+   if (LEqual (Arg0, 0x3)) {
+   #if PSPP_SUPPORT
+     Store (DerefOf (Index (Arg1, 0x2)), Local0)
+     return (procPsppManage (Local0))
+   #else
+     Store (Buffer (256) {0x3, 0, 0}, Local0)
+     return (Local0)
+   #endif
+   }
+/*
+   if (LEqual (Arg0, 0x4)) {
+     return (procPcieSetBusWidth (Arg1))
+   }
+   if (LEqual (Arg0, 0x5)) {
+     return (procAlibInit ())
+   }
+*/
+   if (LEqual (Arg0, 0x6)) {
+   #if HOTPLUG_SUPPORT
+     Store (DerefOf (Index (Arg1, 4)), Local0)
+     Store (DerefOf (Index (Arg1, 2)), Local1)
+     return (procHotplug (Local0, Local1))
+   #else
+     Store (Buffer (256) {0x3, 0, 0}, Local0)
+     return (Local0)
+   #endif
+   }
+   #ifdef DEBUG_OUT
+   // debug service to test sleep
+   if (LEqual (Arg0, 0x8)) {
+     Store (DeRefOf (Index (Arg1, 0x2)), Local0)
+     Store (DeRefOf (Index (Arg1, 0x3)), Local1)
+     if (LEqual (Local0, 1)) {
+       // Sleep
+       APTS (Local1)
+     } else {
+       AWAK (Local1)
+     }
+   }
+   // debug service to dump port data
+   if (LEqual (Arg0, 0x9)) {
+     Store (DeRefOf (Index (Arg1, 0x2)), Local0)
+     procPsppDebugDump (Local0)
+   }
+   #endif
+   if (Lequal (Arg0, 0xa)) {
+     Store (DeRefOf (Index (Arg1, 0x2)), Local0)
+     return (procDockUndock (Local0))
+   }
+
+   if (Lequal (Arg0, 0xB)) {
+     Store (DeRefOf (Index (Arg1, 0x2)), Local0)
+     Store (DeRefOf (Index (Arg1, 0x3)), Local1)
+
+     Store (DeRefOf (Index (Arg1, 0x4)), Local2)
+     Or (ShiftLeft (DeRefOf (Index (Arg1, 0x5)), 8), Local2, Local2)
+     Or (ShiftLeft (DeRefOf (Index (Arg1, 0x6)), 16), Local2, Local2)
+     Or (ShiftLeft (DeRefOf (Index (Arg1, 0x7)), 24), Local2, Local2)
+
+     Store (DeRefOf (Index (Arg1, 0x8)), Local3)
+     Or (ShiftLeft (DeRefOf (Index (Arg1, 0x9)), 8), Local3, Local3)
+     Or (ShiftLeft (DeRefOf (Index (Arg1, 0xA)), 16), Local3, Local3)
+     Or (ShiftLeft (DeRefOf (Index (Arg1, 0xB)), 24), Local3, Local3)
+
+     Store (DeRefOf (Index (Arg1, 0xC)), Local4)
+     Or (ShiftLeft (DeRefOf (Index (Arg1, 0xD)), 8), Local4, Local4)
+     Or (ShiftLeft (DeRefOf (Index (Arg1, 0xE)), 16), Local4, Local4)
+     Or (ShiftLeft (DeRefOf (Index (Arg1, 0xF)), 24), Local4, Local4)
+
+     return (procBBBManage (Local0, Local1, Local2, Local3, Local4))
+   }
+
+   if (Lequal (Arg0, 0xC)) {
+     procDPTCi (Arg1)
+   }
+
+   if (Lequal (Arg0, 0x10)) {
+      // Local7 as an input buffer and passed to procSmuServiceReq
+      Store (Buffer (24) {}, Local7)
+      CreateDWordField (Local7, 0,  varaSmuArg0)
+      CreateDWordField (Local7, 4,  varaSmuArg1)
+      CreateDWordField (Local7, 8,  varaSmuArg2)
+      CreateDWordField (Local7, 12, varaSmuArg3)
+      CreateDWordField (Local7, 16, varaSmuArg4)
+      CreateDWordField (Local7, 20, varaSmuArg5)
+
+      Store (0, varaSmuArg0)
+      Store (0, varaSmuArg1)
+      Store (0, varaSmuArg2)
+      Store (0, varaSmuArg3)
+      Store (0, varaSmuArg4)
+      Store (0, varaSmuArg5)
+
+     procSmuServiceReq (0x51, Local7)       // power down GFX.       0x51
+   }
+
+   if (Lequal (Arg0, 0x11)) {
+     Store (Buffer (24) {}, Local6)         // Local6 as an input buffer and passed to procGnbSmuServiceReq
+      CreateDWordField (Local6, 0,  varSmuArg0)
+      CreateDWordField (Local6, 4,  varSmuArg1)
+      CreateDWordField (Local6, 8,  varSmuArg2)
+      CreateDWordField (Local6, 12, varSmuArg3)
+      CreateDWordField (Local6, 16, varSmuArg4)
+      CreateDWordField (Local6, 20, varSmuArg5)
+
+      Store (0, varSmuArg0)
+      Store (0, varSmuArg1)
+      Store (0, varSmuArg2)
+      Store (0, varSmuArg3)
+      Store (0, varSmuArg4)
+      Store (0, varSmuArg5)
+
+     procSmuServiceReq (0x52, Local6)       // power up GFX.       0x52
+   }
+
+   return (0)
+}
+
+

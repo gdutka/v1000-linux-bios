@@ -1,0 +1,67 @@
+/** @file
+  Layout and hot key definitions for Front Page
+
+;******************************************************************************
+;* Copyright (c) 2018, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+#define FRONT_PAGE_FORMSET_GUID     {0x9e0c30bc, 0x3f06, 0x4ba6, 0x82, 0x88, 0x9 , 0x17, 0x9b, 0x85, 0x5d, 0xbe}
+
+style .FrontPageLmdeOwnerDraw panel property {visibility : visible; left : 0%; top : 0em; right : 0%; bottom : 86%;} endstyle;
+style .FrontPageLmdeSetupPage panel property {visibility : visible; left : 0%; top : 14%; right : 0%; bottom : 13%;} endstyle;
+style .FrontPageLmdeHotkey    panel property {visibility : visible; left : 0%; top : 87%; right : 0%; bottom :  0%;} endstyle;
+
+layout
+  layoutid          = FRONT_PAGE_LAYOUT_ID,
+  displayengineguid = DISPLAY_ENGINE_LOCAL_METRO_GUID;
+
+  panel panelid = OWNER_DRAW_PANEL_ID, paneltype = H2O_PANEL_TYPE_DISPLAY_ELEMENT; style = .FrontPageLmdeOwnerDraw; endpanel;
+  panel panelid = SETUP_PAGE_PANEL_ID, paneltype = H2O_PANEL_TYPE_SETUP_PAGE     ; style = .FrontPageLmdeSetupPage; endpanel;
+  panel panelid = HOTKEY_PANEL_ID    , paneltype = H2O_PANEL_TYPE_HOTKEY         ; style = .FrontPageLmdeHotkey   ; endpanel;
+endlayout;
+
+vfr
+  formset
+    guid   = FRONT_PAGE_FORMSET_GUID;
+    layout = FRONT_PAGE_LAYOUT_ID;
+
+    hotkey hotkeyid = 0x201;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SHOW_HELP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SHOW_HELP,
+           style    = .H2OHotKeyShowHelp;
+    endhotkey;
+    hotkey hotkeyid = 0x202;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           group    = 1,
+           action   = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_ITEM,
+           style    = .H2OHotKeySelectPreviousItem;
+    endhotkey;
+    hotkey hotkeyid = 0x203;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           group    = 1,
+           action   = H2O_HOT_KEY_ACTION_SELECT_NEXT_ITEM,
+           style    = .H2OHotKeySelectNextItem;
+    endhotkey;
+    hotkey hotkeyid = 0x204;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_ENTER),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_ENTER_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_ENTER_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_ENTER,
+           style    = .H2OHotKeyEnter;
+    endhotkey;
+  endformset;
+endvfr;
+

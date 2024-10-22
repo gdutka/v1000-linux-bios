@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = ApobCommonServiceLibDxe
+  FILE_GUID                      = 36653A94-0BA3-493A-B7BB-148B9D1A31AC
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ApobCommonServiceLib|DXE_DRIVER DXE_SMM_DRIVER UEFI_APPLICATION UEFI_DRIVER  DXE_CORE
+
+[Sources.common]
+  ApobCommonServiceLibDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+  UefiBootServicesTableLib
+
+[Guids]
+
+[Protocols]
+  gApobCommonServiceProtocolGuid
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+  gApobCommonServiceProtocolGuid
+
+

@@ -1,0 +1,119 @@
+/** @file
+  Layout and hot key definitions for Secure Boot Manager
+
+;******************************************************************************
+;* Copyright (c) 2018, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+#define SECURE_BOOT_FORMSET_GUID    {0xaa1305b9, 0x01f3, 0x4afb, 0x92, 0x0e, 0xc9, 0xb9, 0x79, 0xa8, 0x52, 0xfd}
+
+vfr
+  formset
+    guid   = SECURE_BOOT_FORMSET_GUID;
+    layout = COMMON_PAGE_LAYOUT_ID;
+
+    hotkey hotkeyid = 0x601;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SHOW_HELP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SHOW_HELP,
+           style    = .H2OHotKeyShowHelp;
+    endhotkey;
+    hotkey hotkeyid = 0x602;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_DISCARD_EXIT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_DISCARD_AND_EXIT,
+           style    = .H2OHotKeyDiscardAndExit;
+    endhotkey;
+    hotkey hotkeyid = 0x603;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_ITEM,
+           group    = 1,
+           style    = .H2OHotKeySelectPreviousItem;
+    endhotkey;
+    hotkey hotkeyid = 0x604;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_NEXT_ITEM,
+           group    = 1,
+           style    = .H2OHotKeySelectNextItem;
+    endhotkey;
+    hotkey hotkeyid = 0x605;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_MENU_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_MENU_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_MENU_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_MENU,
+           group    = 2,
+           style    = .H2OHotKeySelectPreviousMenu;
+    endhotkey;
+    hotkey hotkeyid = 0x606;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_MENU_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_MENU_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_MENU_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_NEXT_MENU,
+           group    = 2,
+           style    = .H2OHotKeySelectNextMenu;
+    endhotkey;
+    hotkey hotkeyid = 0x607;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_PREVIOUS_VALUE_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_MODIFY_PREVIOUS_VALUE,
+           group    = 3,
+           style    = .H2OHotKeyModifyPreviousValue;
+    endhotkey;
+    hotkey hotkeyid = 0x608;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_NEXT_VALUE_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_MODIFY_NEXT_VALUE,
+           group    = 3,
+           style    = .H2OHotKeyModifyNextValue;
+    endhotkey;
+    hotkey hotkeyid = 0x609;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_ENTER),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_ENTER_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_ENTER_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_ENTER,
+           style    = .H2OHotKeyEnter;
+    endhotkey;
+    hotkey hotkeyid = 0x60A;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_LOAD_DEFAULT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_LOAD_DEFAULT_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_LOAD_DEFAULT_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_LOAD_DEFAULT,
+           style    = .H2OHotKeyLoadDefault;
+    endhotkey;
+    hotkey hotkeyid = 0x60B;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SAVE_AND_EXIT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SAVE_AND_EXIT_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SAVE_AND_EXIT_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SAVE_AND_EXIT,
+           style    = .H2OHotKeySaveAndExit;
+    endhotkey;
+    hotkey hotkeyid = 0x60C;
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_PREVIOUS_VALUE_HIDDEN_KEY_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_MODIFY_PREVIOUS_VALUE,
+           style    = .H2OHotKeyModifyPreviousValueHiddenKey;
+    endhotkey;
+    hotkey hotkeyid = 0x60D;
+           action   = H2O_HOT_KEY_ACTION_MODIFY_NEXT_VALUE,
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_NEXT_VALUE_HIDDEN_KEY_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           style    = .H2OHotKeyModifyNextValueHiddenKey;
+    endhotkey;
+  endformset;
+endvfr;
+

@@ -1,0 +1,57 @@
+/** @file
+  TPM PEI Platform Hierarchy configuration library.
+
+;******************************************************************************
+;* Copyright (c) 2023, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+## @file
+# TPM Platform Hierarchy configuration library.
+#
+#   This library provides functions for customizing the TPM's Platform Hierarchy
+#   Authorization Value (platformAuth) and Platform Hierarchy Authorization
+#   Policy (platformPolicy) can be defined through this function.
+#
+# Copyright (c) 2019, Intel Corporation. All rights reserved.<BR>
+# Copyright (c) Microsoft Corporation.<BR>
+#
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+###
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiTpmPlatformHierarchyLib
+  FILE_GUID                      = E158F5CF-AFDF-46D8-9620-51F1275D8608
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = TpmPlatformHierarchyLib|PEIM
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  MemoryAllocationLib
+  PcdLib
+  RngLib
+  HobLib
+  Tpm2CommandLib
+  Tpm2DeviceLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  CryptoPkg/CryptoPkg.dec
+
+[Sources]
+  PeiTpmPlatformHierarchyLib.c
+
+[Pcd]
+  gEfiSecurityPkgTokenSpaceGuid.PcdRandomizePlatformHierarchy

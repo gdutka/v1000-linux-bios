@@ -1,0 +1,49 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdAgesaParameterGroupPei
+  FILE_GUID                      = 7166543F-3E35-41A2-9118-577BBA62C693
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdAgesaParameterGroupPeiInit
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PeimEntryPoint
+  DebugLib
+  AmdBaseLib
+  ChipsetConfigLib
+  AmdPbsConfigLib
+
+[Sources]
+  AmdAgesaParameterGroupPei.c
+  AmdAgesaParameterGroupPei.h
+
+[Guids]
+  gEfiAmdAgesaPkgTokenSpaceGuid                      #CONSUMED
+  gEfiAmdAgesaModulePkgTokenSpaceGuid                #CONSUMED
+  gAmdConfigurationParameterListAm4BrGuid            #CONSUMED
+  gAmdConfigurationParameterListAm4SmGuid            #CONSUMED
+  gAmdConfigurationParameterListFp4BrGuid            #CONSUMED
+
+[Protocols]
+
+[Ppis]
+  gAmdSocAgesaGroupIdentificationPpiGuid         #PRODUCED
+
+[Pcd]
+
+[Depex]
+  TRUE

@@ -1,0 +1,38 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = Mp2I2cLibDxe
+  FILE_GUID                      = 888DE4DB1-AEDF-401E-A665-A493F781CFCD
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = Mp2I2cLibPei|PEIM
+
+[Sources.common]
+  Mp2I2cLibPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec  
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  PeiServicesTablePointerLib
+  FchSandstonePeiLib  
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+

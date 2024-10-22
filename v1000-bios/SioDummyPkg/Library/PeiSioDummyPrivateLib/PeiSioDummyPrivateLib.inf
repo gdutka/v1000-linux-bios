@@ -1,0 +1,36 @@
+## @file
+# Component description file for SioXXXPrivateLib module
+#
+#******************************************************************************
+#* Copyright 2017 Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corp.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = PeiSioDummyPrivateLib
+  FILE_GUID         = 6b814ead-68ac-45dc-897f-78a4059cf9e9
+  MODULE_TYPE       = PEIM
+  VERSION_STRING    = 1.0
+  LIBRARY_CLASS     = SioDummyPrivateLib
+
+[Sources]
+  PeiSioDummyPrivateLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  SioDummyPkg/SioDummyPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  PcdLib
+  DebugLib
+  MemoryAllocationLib
+
+[Pcd]
+  gSioGuid.PcdH2OSioDummyChip1Supported

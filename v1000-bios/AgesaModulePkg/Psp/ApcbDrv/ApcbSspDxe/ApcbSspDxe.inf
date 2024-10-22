@@ -1,0 +1,52 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdApcbDxeSsp
+  FILE_GUID                      = 7BB483F6-F577-4dee-AAF1-E196B8B2964E
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdApcbSspDxeDriverEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  BaseMemoryLib
+  AmdBaseLib
+  IdsLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  DxeServicesTableLib
+  MemoryAllocationLib
+  ApcbSspLib
+
+[Sources]
+  ApcbSspDxe.c
+  ..\TokensSsp\ConfigTokens.c
+  ..\TokensSsp\CbsExtTokens.c
+
+[Guids]
+
+
+[Protocols]
+  gAmdApcbDxeServiceProtocolGuid  #publish
+
+
+[Pcd]
+
+
+[Depex]
+  gAmdApcbServiceSspDepexProtocolGuid
+
+

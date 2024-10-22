@@ -1,0 +1,37 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiSocBistRvLib
+  FILE_GUID                      = 09840168-4F87-4085-B957-528669E92E18
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PeiSocBistLib
+
+[Sources]
+  PeiSocBistRvLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+
+[LibraryClasses]
+  IdsLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gAmdNbioSmuServicesPpiGuid  # CONSUMED
+
+[Pcd]
+
+[Depex]
+

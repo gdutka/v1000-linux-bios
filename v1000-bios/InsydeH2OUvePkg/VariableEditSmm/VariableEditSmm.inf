@@ -1,0 +1,94 @@
+#/** @file
+#
+#  Component description file for Variable Editor Smm
+#  
+#;******************************************************************************
+#;* Copyright (c) 2016, Insyde Software Corporation. All Rights Reserved.
+#;*
+#;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#;* transmit, broadcast, present, recite, release, license or otherwise exploit
+#;* any part of this publication in any form, by any means, without the prior
+#;* written permission of Insyde Software Corporation.
+#;*
+#;******************************************************************************
+#*/
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = VariableEditSmm
+  FILE_GUID                 = 84945A3D-49C8-4059-8F34-6A4532D32A47
+  MODULE_TYPE               = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION  = 0x0001000A
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = SetupCallbackSyncEntryPoint
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  $(INSYDE_H2OUVE_PKG)/$(INSYDE_H2OUVE_PKG).dec
+
+[Sources]
+  VariableEditSmm.h
+  VariableEditSmm.c
+  IhisiH2OUve.c
+  IhisiH2OUve.h
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  MemoryAllocationLib
+  PrintLib
+  VariableLib
+  DebugLib
+  HobLib
+  DevicePathLib
+  PcdLib
+  CmosLib
+  BaseLib
+  SmmOemSvcKernelLibDefault
+
+[Protocols]
+  gEfiSmmVariableProtocolGuid       #always consume
+  gH2OIhisiProtocolGuid
+  gEfiSysPasswordServiceProtocolGuid
+
+[Pcd]
+  gH2OUvePkgTokenSpaceGuid.PcdH2OUveIhisiRegisterTable
+  gInsydeTokenSpaceGuid.PcdSysPasswordInCmos
+  gInsydeTokenSpaceGuid.PcdSysPasswordSupportUserPswd
+  gInsydeTokenSpaceGuid.PcdSecureSysPasswordSupported
+  gInsydeTokenSpaceGuid.PcdLegacyBootTypeOrder
+  gInsydeTokenSpaceGuid.PcdSecureSysPasswordSupported
+
+[FixedPcd]
+  gH2OUvePkgTokenSpaceGuid.PcdH2oUveSecurityLevelAllowed
+  gInsydeTokenSpaceGuid.PcdDefaultSysPasswordMaxLength
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OIhisiAuthSupported
+  
+[Guids]
+  gSystemConfigurationGuid
+  gH2OUveVarstoreGuid
+  gEfiSupervisorPwGuid
+  gEfiUserPwGuid
+  gInsydeSecureFirmwarePasswordGuid
+  gEfiHashAlgorithmSha256Guid
+  gInsydeSecureFirmwarePasswordHobGuid
+  gEfiSupervisorPwHobGuid
+  gEfiUserPwHobGuid
+
+[Protocols]
+  gH2OIhisiProtocolGuid
+  gEfiHashProtocolGuid
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid            AND
+  gEfiSmmAccess2ProtocolGuid          AND
+  gEfiSmmVariableProtocolGuid         AND
+  gEfiSetupUtilityProtocolGuid        AND
+  gH2OIhisiProtocolGuid
+
+[BuildOptions]

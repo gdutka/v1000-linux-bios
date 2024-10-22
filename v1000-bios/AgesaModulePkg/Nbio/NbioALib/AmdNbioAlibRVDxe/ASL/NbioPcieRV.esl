@@ -1,0 +1,208 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: NBIO
+ * @e \$Revision: 312749 $   @e \$Date: 2015-02-11 09:59:07 +0800 (Wed, 11 Feb 2015) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+/*----------------------------------------------------------------------------------------*/
+/**
+ *  Locate PCIe port
+ *
+ *  Arg0 - port index
+ *  Arg1 - BDF of child device
+ */
+Method (procPcieCheckPort, 2) {
+  ALIB_DEBUG (Concatenate (" procPcieCheckPort BDF   ", ToHexString (Arg1), ADBG))
+  #ifdef BR0
+    if (LEqual(Arg0, 0)) {
+      return (BR0.procPcieIsPort (Arg1))
+    }
+  #endif
+  #ifdef BR1
+    if (LEqual(Arg0, 1)) {
+      return (BR1.procPcieIsPort (Arg1))
+    }
+  #endif
+  #ifdef BR2
+    if (LEqual(Arg0, 2)) {
+      return (BR2.procPcieIsPort (Arg1))
+    }
+  #endif
+  #ifdef BR3
+    if (LEqual(Arg0, 3)) {
+      return (BR3.procPcieIsPort (Arg1))
+    }
+  #endif
+  #ifdef BR4
+    if (LEqual(Arg0, 4)) {
+      return (BR4.procPcieIsPort (Arg1))
+    }
+  #endif
+  #ifdef BR5
+    if (LEqual(Arg0, 5)) {
+      return (BR5.procPcieIsPort (Arg1))
+    }
+  #endif
+  #ifdef BR6
+    if (LEqual(Arg0, 6)) {
+      return (BR6.procPcieIsPort (Arg1))
+    }
+  #endif
+}
+
+/*----------------------------------------------------------------------------------------*/
+/**
+ *  PCIe port power management
+ *
+ *  Arg0 - port index
+ *  Arg1 - 1 = Enter_L23, 0 = Exit from RC port
+ */
+Method (procPCIePortPowerManagement, 2) {
+  ALIB_DEBUG (" procPCIePortPowerManagement Enter")
+  ALIB_DEBUG (Concatenate (" PCIe Port = ", ToHexString (Arg0), ADBG))
+  ALIB_DEBUG (Concatenate (" Arg1 = ", ToHexString (Arg1), ADBG))
+  if (LEqual(Arg1,1)) {
+    // Enter_L23 and exit
+    // IOHC::NB_PCI_ARB[PMETarget] = Logical Bridge {Device, Function}
+    // IOHC::NB_PCI_ARB[PMEMode] = 1
+    // IOHC::NB_PCI_ARB[PMETurnOff] = 1
+    // IOHC::NB_PCI_ARB[PMETurnOff] = 0 (clear it back to 0 for next cycle)
+    #ifdef BR0 // D1F1
+      if (LEqual(Arg0, 0)) {
+        Store (0x90300, Local0)  // PMETarget[23:16], PMETurnOff[9], PMEMode[8]
+      }
+    #endif
+    #ifdef BR1 // D1F2
+      if (LEqual(Arg0, 1)) {
+        Store (0xA0300, Local0)
+      }
+    #endif
+    #ifdef BR2 // D1F3
+      if (LEqual(Arg0, 2)) {
+        Store (0xB0300, Local0)
+      }
+    #endif
+    #ifdef BR3 // D1F4
+      if (LEqual(Arg0, 3)) {
+        Store (0xC0300, Local0)
+      }
+    #endif
+    #ifdef BR4 // D1F5
+      if (LEqual(Arg0, 4)) {
+        Store (0xD0300, Local0)
+      }
+    #endif
+    #ifdef BR5 // D1F6
+      if (LEqual(Arg0, 5)) {
+        Store (0xE0300, Local0)
+      }
+    #endif
+    #ifdef BR6 // D1F7
+      if (LEqual(Arg0, 6)) {
+        Store (0xF0300, Local0)
+      }
+    #endif
+    Store (bfIohcNbPciArb, Local1)
+    And (0xFF00FCFF, Local1, Local1)
+    Or (Local0, Local1, bfIohcNbPciArb)
+    Store (bfIohcNbPciArb, Local1)
+    And (0xFFFFFDFF, Local1, bfIohcNbPciArb)
+  } elseif (LEqual(Arg1,0)) {
+    // Exit from RC port
+    // PCIE_LC_CNTL_func::LC_WAKE_FROM_L23 = 1
+    // PCIE_LC_CNTL_func::LC_WAKE_FROM_L23 = 0
+    #ifdef BR0
+      if (LEqual(Arg0, 0)) {
+        Store (bfPciePort0PcieLcCntl, Local1)
+        Or (0x400000, Local1, bfPciePort0PcieLcCntl) // LC_WAKE_FROM_L23[22]
+        Store (bfPciePort0PcieLcCntl, Local1)
+        And (0xFFBFFFFF, Local1, bfPciePort0PcieLcCntl)
+      }
+    #endif
+    #ifdef BR1
+      if (LEqual(Arg0, 1)) {
+        Store (bfPciePort1PcieLcCntl, Local1)
+        Or (0x400000, Local1, bfPciePort1PcieLcCntl)
+        Store (bfPciePort1PcieLcCntl, Local1)
+        And (0xFFBFFFFF, Local1, bfPciePort1PcieLcCntl)
+      }
+    #endif
+    #ifdef BR2
+      if (LEqual(Arg0, 2)) {
+        Store (bfPciePort2PcieLcCntl, Local1)
+        Or (0x400000, Local1, bfPciePort2PcieLcCntl)
+        Store (bfPciePort2PcieLcCntl, Local1)
+        And (0xFFBFFFFF, Local1, bfPciePort2PcieLcCntl)
+      }
+    #endif
+    #ifdef BR3
+      if (LEqual(Arg0, 3)) {
+        Store (bfPciePort3PcieLcCntl, Local1)
+        Or (0x400000, Local1, bfPciePort3PcieLcCntl)
+        Store (bfPciePort3PcieLcCntl, Local1)
+        And (0xFFBFFFFF, Local1, bfPciePort3PcieLcCntl)
+      }
+    #endif
+    #ifdef BR4
+      if (LEqual(Arg0, 4)) {
+        Store (bfPciePort4PcieLcCntl, Local1)
+        Or (0x400000, Local1, bfPciePort4PcieLcCntl)
+        Store (bfPciePort4PcieLcCntl, Local1)
+        And (0xFFBFFFFF, Local1, bfPciePort4PcieLcCntl)
+      }
+    #endif
+    #ifdef BR5
+      if (LEqual(Arg0, 5)) {
+        Store (bfPciePort5PcieLcCntl, Local1)
+        Or (0x400000, Local1, bfPciePort5PcieLcCntl)
+        Store (bfPciePort5PcieLcCntl, Local1)
+        And (0xFFBFFFFF, Local1, bfPciePort5PcieLcCntl)
+      }
+    #endif
+    #ifdef BR6
+      if (LEqual(Arg0, 6)) {
+        Store (bfPciePort6PcieLcCntl, Local1)
+        Or (0x400000, Local1, bfPciePort6PcieLcCntl)
+        Store (bfPciePort6PcieLcCntl, Local1)
+        And (0xFFBFFFFF, Local1, bfPciePort6PcieLcCntl)
+      }
+    #endif
+  }
+}
+
+/*----------------------------------------------------------------------------------------*/
+/**
+ *  Nbio PCIe power management
+ *
+ *  Arg0 - 1 = Enter_L23, 0 = Exit from RC port
+ *  Arg1 - Port BDF
+ */
+
+Method (procNbioPCIePowerManagement, 2) {
+  ALIB_DEBUG (" procNbioPCIePowerManagement Enter")
+  Store (0, Local0)
+  while (LLess (Local0, NUM_OF_PORTS)) {
+    Store (procPcieCheckPort (Local0, Arg1), Local1)
+    if (LEqual (Local1, TRUE)) {
+      procPCIePortPowerManagement (Local0, Arg1)
+      break
+    }
+    Increment (Local0)
+  }
+}

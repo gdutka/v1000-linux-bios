@@ -1,0 +1,1947 @@
+#;*************************************************************************************************
+#;* Copyright (c) 2014 - 2017, Insyde Software Corporation. All Rights Reserved.
+#;*
+#;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#;* transmit, broadcast, present, recite, release, license or otherwise exploit
+#;* any part of this publication in any form, by any means, without the prior
+#;* written permission of Insyde Software Corporation.
+#;*
+#;*************************************************************************************************
+#; Revision History: 
+#; 
+#; Label#: 01.01.02.0008
+#; Status: Tag
+#;   Test Code Base: Kernel 05.33.44
+#; 
+#;   Notice: 1. This version only works in H2O Rev 5.3, code base 05.33.10 (or later versions).
+#;              If want to work in early version, the library, H2OSerialConfigLib is necessary.
+#;              Please refer solution IB07010777 (adapted on 05.33.10 in InsydeModulePkg) for detail information.
+#; 
+#; Tag#: 01.01.02.0008
+#; Issue#: IB05080000
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Sync code to tag 01.01.04.0008.
+#; RootCause: Update C.R. OPROM to version 1.54
+#; Description: None.
+#; Solution: None.
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. H2O5.3\ConfigUtility\CrConfigUtilDxe\CrConfigUtilStr.uni
+#;   2. H2O5.3\ConfigUtility\CrConfigUtilDxe\CrDevice.hfr
+#;   3. H2O5.3\ConfigUtility\CrConfigUtilDxe\CrDeviceMenu.c
+#;   4. H2O5.3\Csm\CrRom\CrRom.bin
+#;   5. H2O5.3\TerminalDxe\TerminalConIn.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 01.01.02.0007
+#; Status: Tag
+#;   Test Code Base: Kernel 05.33.44
+#; 
+#;   Notice: 1. This version only works in H2O Rev 5.3, code base 05.33.10 (or later versions).
+#;              If want to work in early version, the library, H2OSerialConfigLib is necessary.
+#;              Please refer solution IB07010777 (adapted on 05.33.10 in InsydeModulePkg) for detail information.
+#; 
+#; Tag#: 01.01.02.0006
+#; Issue#: IB05080000
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Sync code to tag 01.01.04.0007.
+#; RootCause: None. 
+#; Description: None
+#; Solution: None.
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. H2O5.3\ConfigUtility\CrConfigUtilDxe\CrCallback.c
+#;   2. H2O5.3\ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   3. H2O5.3\ConfigUtility\SolConfigUtility\SolConfigUtil.c
+#;   4. H2O5.3\Csm\CrRom\CrRom.bin
+#;   5. H2O5.3\Include\Protocol\FileSelectUI.h
+#;   6. H2O5.3\TerminalDxe\TerminalConIn.c
+#;   7. H2O5.3\Uart16550Devices\PciHsUartDxe\PciHsUartDxe.c
+#;   8. H2O5.3\Uart16550Devices\PciHsUartDxe\PciHsUartDxe.h
+#;   9. H2O5.3\Uart16550Devices\PciHsUartDxe\PciHsUartDxe.inf
+#;   10. H2O5.3\Uart16550SerialDxe\Uart16550Serial.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 01.01.02.0006
+#; Status: Tag
+#;   Test Code Base: Kernel 05.33.44
+#; 
+#;   Notice: 1. This version only works in H2O Rev 5.3, code base 05.33.10 (or later versions).
+#;              If want to work in early version, the library, H2OSerialConfigLib is necessary.
+#;              Please refer solution IB07010777 (adapted on 05.33.10 in InsydeModulePkg) for detail information.
+#; 
+#; Tag#: 01.01.02.0006
+#; Issue#: IB05080000
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Sync code to tag 01.01.04.0006.
+#; RootCause: None. 
+#; Description: None
+#; Solution: None.
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. H2O5.3\ConfigUtility\CrConfigUtilDxe\CrConfigUtilStr.uni
+#;   2. H2O5.3\Library\CrConfigDefaultLib\CrConfigDefaultLib.c
+#;   3. H2O5.3\TerminalDxe\Terminal.c
+#;   4. H2O5.3\TerminalDxe\Terminal.h
+#;   5. H2O5.3\TerminalDxe\TerminalConIn.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 01.01.02.0005
+#; Status: Tag
+#;   Test Code Base: Kernel 05.33.44
+#; 
+#;   Notice: 1. This version only works in H2O Rev 5.3, code base 05.33.10 (or later versions).
+#;              If want to work in early version, the library, H2OSerialConfigLib is necessary.
+#;              Please refer solution IB07010777 (adapted on 05.33.10 in InsydeModulePkg) for detail information.
+#; 
+#; Tag#: 01.01.02.0005
+#; Issue#: IB05080000
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Sync code to tag 01.01.04.0005.
+#; RootCause: None. 
+#; Description: None
+#; Solution: None.
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. H2O5.3\Library\CrDeviceVariableLib\CrDeviceVariableLib.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 01.01.02.0004
+#; Status: Tag
+#;   Test Code Base: Kernel 05.33.12
+#;                   Kernel 05.33.44
+#; 
+#;   Notice: 1. This version only works in H2O Rev 5.3, code base 05.33.10 (or later versions).
+#;              If want to work in early version, the library, H2OSerialConfigLib is necessary.
+#;              Please refer solution IB07010777 (adapted on 05.33.10 in InsydeModulePkg) for detail information.
+#; 
+#; Tag#: 01.01.02.0004
+#; Issue#: IB05080000
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Sync code to tag 01.01.04.0004.
+#; RootCause: None. 
+#; Description: None
+#; Solution: None.
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. H2O5.3\CrServiceDxe\CrLegacySupport.c
+#;   2. H2O5.3\Include\CrPolicyType.h
+#;   3. H2O5.3\Package.dsc
+#;   4. H2O5.3\TerminalDxe\TerminalConOutCommon.c
+#; 
+#; Tag#: 01.01.02.0003
+#; Issue#: IB05080000
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Sync code to tag 01.01.04.0003.
+#; RootCause: None.
+#; Description: None
+#; Solution: None.
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. H2O5.3\Csm\CrRom\CrRom.bin
+#;   2. H2O5.3\TerminalDxe\TerminalConIn.c
+#; 
+#; Tag#: 01.01.02.0002
+#; Issue#: IB05080000
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Sync code to tag 01.01.04.0002.
+#; RootCause: None.
+#; Description: None
+#; Solution: None.
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. H2O5.3\Csm\CrRom\CrRom.bin
+#;   2. H2O5.3\TerminalDxe\TerminalConIn.c
+#; 
+#; Label#: 05.33.44
+#; Status: For H2O5.3 use
+#; RelatedFiles:
+#; Added:
+#;   1. H2O5.3\
+#; 
+#; Tag#: 05.41.40
+#; Issue#: IB05080739
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: There is a warning C6001 reported by SCA build
+#; RootCause: None
+#; Description: None
+#; Solution: Bug fix
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\Terminal.c
+#; 
+#; Tag#: 05.41.40
+#; Issue#: IB05080738
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: Support sequence code <esc><ctrl><M> and others in EFI mode
+#; RootCause: Already support in legacy mode, but not work in EFI mode
+#; Description: None
+#; Solution: Since <ctrl><M>,<ctrl><H>,<ctrl><I>,<ctrl><J> is conflict with ASCII control code
+#; Using sequence code to provide <esc><ctrl><M>,<esc><ctrl><H>,<esc><ctrl><I>,<esc><ctrl><J> to replace it.
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\TerminalConIn.c
+#; 
+#; Tag#: 05.41.40
+#; Issue#: IB05080737
+#; Severity: Tweak
+#; Category: Console Redirection
+#; Symptom: Build faille with VC10 compiler
+#; RootCause: Local variable doesn't initial before using it
+#; Description: None
+#; Solution: Bug fix
+#; SolutionDependency: IB05080735
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. Uart16550SerialDxe\Uart16550Serial.c
+#; 
+#; Tag#: 05.41.36
+#; Issue#: IB05080736
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Removing SegFeaturePkg
+#; RootCause: None
+#; Description: None
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.h
+#;   2. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.inf
+#;   3. ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#;   4. ConfigUtility\SolConfigUtility\SolConfigUtil.h
+#;   5. ConfigUtility\SolConfigUtility\SolConfigUtil.inf
+#;   6. ConfigUtility\SolConfigUtility\SolConfigUtilVfr.vfr
+#;   7. CrServiceDxe\CrServiceDxe.inf
+#;   8. CrServiceSmm\CrServiceSmm.inf
+#;   9. Include\Library\CrConfigDefaultLib.h
+#;   10. Library\CrConfigDefaultLib\CrConfigDefaultLib.c
+#;   11. Library\CrConfigDefaultLib\CrConfigDefaultLib.inf
+#;   12. Uart16550Devices\IsaUartDxe\IsaUartDxe.inf
+#;   13. Uart16550SerialDxe\Uart16550SerialDxe.inf
+#; 
+#; Tag#: 05.41.36
+#; Issue#: IB05080735
+#; Severity: Tweak
+#; Category: Console Redirection
+#; Symptom: CPU exception when enable an non-exist serial device in SETUP in legacy boot mode
+#; RootCause: Bug fix
+#; Description: None
+#; Solution: Bug fix
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. Uart16550SerialDxe\Uart16550Serial.c
+#; 
+#; Tag#: 05.41.36
+#; Issue#: IB05080734
+#; Severity: Tweak
+#; Category: Console Redirection
+#; Symptom: Build faille with VC10 compiler
+#; RootCause: Local variable doesn't initial before using it
+#; Description: None
+#; Solution: Bug fix
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\Terminal.c
+#; 
+#; Tag#: 05.41.36
+#; Issue#: IB05080733
+#; Severity: Tweak
+#; Category: Console Redirection
+#; Symptom: Build faille with kernel 05.41.32
+#; RootCause: EDK2 removes Framework-style VFR support.
+#; Description: None
+#; Solution: Change to get VFR default value from varstore
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. Include\Library\CrConfigDefaultLib.h
+#;   2. Library\CrConfigDefaultLib\CrConfigDefaultLib.c
+#;   3. Library\CrConfigDefaultLib\CrConfigDefaultLib.inf
+#; 
+#; Tag#: 05.41.32
+#; Issue#: IB05080728
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: Terminal resolution does not match GOP driver
+#; RootCause: None
+#; Description: None
+#; Solution: 1. Sync terminal driver resolution with GOP driver
+#; 2. Remove IB05080712 solution
+#; 3. Change C.R. Text Mode Resolution default value to "Auto" in Setup
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; 
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#;   2. InsydeCrPkg.dec
+#;   3. Package.dsc
+#;   4. TerminalDxe\Terminal.c
+#;   5. TerminalDxe\Terminal.h
+#;   6. TerminalDxe\TerminalDxe.inf
+#; 
+#; Tag#: 05.41.28
+#; Issue#: IB05080727
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: Update SCU item help string
+#; RootCause: None
+#; Description: None
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB05080000 
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtilStr.uni
+#;   2. ConfigUtility\CrConfigUtilDxe\CrDevice.hfr
+#; 
+#; Tag#: 05.41.28
+#; Issue#: IB05080726
+#; Severity: Feature
+#; Category: Console Redirection
+#; Symptom: Support Ctrl combo key
+#; RootCause: None
+#; Description: Console send ASCII code 0x1 when press Ctrl-A, 0x2 for ctrl-B ...
+#; To support ctrl + alphabet hot-key, when receive ASCII control code between 0x1 and 0x1A,
+#; convert it to ASCII alphabet code and enable control pressed status bit on EFI key status.
+#; Note: since ASCII code 0x8, 0x9, 0xA and 0xD are EFI valid control character, will not convert these codes
+#; to control + alphabet. That's means ctrl-H, ctrl-I, ctrl-J and ctrl-M are not support.
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB05080000 
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\TerminalConIn.c
+#; 
+#; Tag#: 05.41.28
+#; Issue#: IB05080725
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: Free pool assert occurs when disconnect terminal driver
+#; RootCause: Bug fix
+#; Description: None
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\Terminal.c
+#; 
+#; Tag#: 05.41.28
+#; Issue#: IB05080724
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: Force CR device to use local setting when H2OGetSerialAttribsConfig return status is EFI_MEDIA_CHANGED
+#; RootCause: None
+#; Description: Change policy
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrVariableUpdate.c
+#; 
+#; Tag#: 05.41.24
+#; Issue#: IB05080723
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: Faille to build IA32 version BIOS
+#; RootCause: None
+#; Description: None
+#; Solution: Bug fix
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\Terminal.c
+#; 
+#; Tag#: 05.41.24
+#; Issue#: IB05080722
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: Create HII string too many times then use lots of memories
+#; RootCause: None
+#; Description: None
+#; Solution: Bug fix
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrDeviceMenu.c
+#; 
+#; Tag#: 05.41.24
+#; Issue#: IB05080000
+#; Severity: Tweak
+#; Category: Console Redirection
+#; Symptom: Code adjustment
+#; RootCause: None
+#; Description: Add individual form in SETUP for each console devices
+#; Solution: Merge chipset solutions IB07400110 and IB07400112
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Added:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrDevice.hfr
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrCallback.c
+#;   2. ConfigUtility\CrConfigUtilDxe\CrConfig.h
+#;   3. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.inf
+#;   4. ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#;   5. ConfigUtility\CrConfigUtilDxe\CrDeviceMenu.c
+#;   6. Include\Guid\CrConfigHii.h
+#; 
+#; Tag#: 05.41.20
+#; Issue#: IB05080721
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: Code enhancement
+#; RootCause: None
+#; Description: Remove SelfDebugLib
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Deleted:
+#;   1. Include\Library\SelfDebugLib.h
+#;   2. Library\SelfDebugLib\
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.h
+#;   2. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.inf
+#;   3. CrServiceDxe\CrServiceDxe.h
+#;   4. InsydeCrPkg.dec
+#;   5. Library\CrDeviceVariableLib\CrDeviceVariableLib.inf
+#;   6. Library\CrDeviceVariableLib\InternalCrDeviceVariableLib.h
+#;   7. Package.dsc
+#;   8. TerminalDxe\Terminal.h
+#;   9. TerminalDxe\TerminalDxe.inf
+#;   10. Uart16550SerialDxe\Uart16550Serial.h
+#;   11. Uart16550SerialDxe\Uart16550SerialDxe.inf
+#; 
+#; Tag#: 05.41.20
+#; Issue#: IB05080716
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: Code enhancement
+#; RootCause: None
+#; Description: To access MMIO address directly during POST and change to use SMI to access MMIO address under OS
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. Csm\CrRom\CrRom.bin
+#; 
+#; Tag#: 05.41.20
+#; Issue#: IB05080720
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: Remove unused code
+#; RootCause: None
+#; Description: None
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\TerminalConOutCommon.c
+#; 
+#; Tag#: 05.41.16
+#; Issue#: IB05080719
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: CR has assert message when run reconnect -r command on SHELL
+#; RootCause: 1. Using wrong protocol instance to find protocol private data
+#; 2. TerminalConsoleModeData is freed when disconnect driver
+#; Description: None
+#; Solution: bug fix
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\Terminal.c
+#;   2. Uart16550Devices\IsaUartDxe\IsaUartDxe.c
+#; 
+#; Tag#: 05.41.16
+#; Issue#: IB05080718
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: Terminal cursor position does not be updated when received backspace code
+#; RootCause: None.
+#; Description: None
+#; Solution: To sync terminal cursor position with VGA
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\TerminalConOutSync.c
+#; 
+#; Tag#: 05.33.12
+#; Issue#: IB05080717
+#; Severity: Feature
+#; Category: Console Redirection
+#; Symptom: Support centralized serial port settings
+#; RootCause: None.
+#; Description: Please refer IB07010777 solution which updated from kernel 05.33.10 for detail.
+#; Solution: None
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrServiceDxe.c
+#;   2. CrServiceDxe\CrServiceDxe.h
+#;   3. CrServiceDxe\CrServiceDxe.inf
+#;   4. CrServiceDxe\CrVariableUpdate.c
+#;   5. CrServiceDxe\CrVariableUpdate.h
+#; 
+#; Tag#: 05.33.08
+#; Issue#: IB04880253
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Terminal type LOGTERMTYPE still output ESC sequence code to serial device
+#; RootCause: SyncTerminal output sequence code to serial port directly.
+#; Description: None
+#; Solution: All ESC sequence code output change by OutputEscSquenceString to control it output.
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\TerminalConOutSync.c
+#; 
+#; Tag#: 05.33.08
+#; Issue#: IB05080712
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Enable Console Redirection will limit VGA resolution to 1024 x 768.
+#; RootCause: Current terminal driver only reports max support mode to 1024x768 resolution.
+#; Description: Code enhancement
+#; Solution: Add new PCD, gInsydeCrTokenSpaceGuid.PcdH2OCrConsoleModeData for user to add more support resolutions.
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:        
+#;   1. InsydeCrPkg.dec
+#;   2. Package.dsc
+#;   3. TerminalDxe\Terminal.c
+#;   4. TerminalDxe\TerminalDxe.inf
+#; 
+#; Tag#: 05.33.08
+#; Issue#: IB05080000
+#; Severity: Tweak
+#; Category: Console Redirection
+#; Symptom: (Rollback Solution).
+#; RootCause: (Rollback Solution).
+#; Description: Rollback IB05080711 solution
+#; Solution: (Rollback Solution).
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\Terminal.c
+#; 
+#; Tag#: 05.33.08
+#; Issue#: IB05080000
+#; Severity: Tweak
+#; Category: Console Redirection
+#; Symptom: Change policy.
+#; RootCause: Code adjustment.
+#; Description: Change AutoRefresh default to disable
+#; Solution: Code adjustment.
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#; 
+#; Tag#: 05.33.08
+#; Issue#: IB05080711
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Update default text mode table to support more resolutions.
+#; RootCause: Current terminal driver only supports to 1024x768 resolution.
+#; Description: None
+#; Solution: Update mDefaultConsoleModeData to support more resolutions.
+#; SolutionDependency: None
+#; Reviewer: IB05080000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\Terminal.c
+#; 
+#; Tag#: 05.33.04
+#; Issue#: IB04880252
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: H2OIDE utility need a .ifc file.
+#; RootCause: The InsydeCrPkg don't has InsydeCrPkg.ifc file.
+#; Description: None
+#; Solution: Add InsydeCrPkg.ifc file.
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Added:
+#;   1. InsydeCrPkg.ifc
+#; 
+#; Tag#: 05.33.04
+#; Issue#: IB04880251
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Invoke SmmControl2->Trigger had ASSERT issue in Wellsburg platform.
+#; RootCause: The Wellsburg RC code will check the DataPort point and the value must be '1' event though the SPEC say it is 'OPTINAL'
+#; Description: None
+#; Solution: Pass argument DataPort when invoke SmmControl2->Trigger.
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrLegacySupport.c
+#; 
+#; Tag#: 05.32.44
+#; Issue#: IB04880250
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: CrServiceSmm Driver crate a soft SMI to output data to MMIO device but this SMI service can access to any memory address. This has security issue. For detail please reference ITS#0050621
+#; RootCause: As above
+#; Description: This is security issue. Original service can access any memory address. The new code only can access the UART device registers. Other address is deny.
+#; Solution: CR Option ROM call the smi by pass Deivce No, Register Index, Value to the SMI service. So, this SMI service just can access UART device register.
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrLegacySupport.c
+#;   2. CrServiceDxe\CrLegacySupport.h
+#;   3. CrServiceDxe\CrServiceDxe.c
+#;   4. CrServiceDxe\CrServiceDxe.h
+#;   5. CrServiceDxe\CrServiceDxe.inf
+#;   6. CrServiceSmm\CrServiceSmm.c
+#;   7. CrServiceSmm\CrServiceSmm.h
+#;   8. CrServiceSmm\CrServiceSmm.inf
+#;   9. Csm\CrRom\CrRom.bin
+#;   10. Include\Protocol\ConsoleRedirectionService.h
+#;   11. Uart16550Devices\PchHsUartDxe\PchHsUartDxe.c
+#;   12. Uart16550SerialDxe\Uart16550Serial.c
+#; 
+#; Tag#: 05.32.36
+#; Issue#: IB10920058
+#; Severity: Feature
+#; Category: Setup
+#; Symptom: New Feature
+#; RootCause: New Feature
+#; Description: The platform Setup variable can has different value by SKU id setting
+#; Solution: None
+#; SolutionDependency: None
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrCallback.c
+#;   2. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   3. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.h
+#;   4. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.inf
+#;   5. ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#;   6. ConfigUtility\SolConfigUtility\SolConfigUtil.c
+#;   7. ConfigUtility\SolConfigUtility\SolConfigUtil.h
+#;   8. ConfigUtility\SolConfigUtility\SolConfigUtil.inf
+#;   9. ConfigUtility\SolConfigUtility\SolConfigUtilVfr.vfr
+#;   10. Include\Guid\CrConfigHii.h
+#;   11. Include\Guid\SolSetupConfigHii.h
+#; 
+#; Tag#: 05.32.36
+#; Issue#: IB08400649
+#; Severity: Feature
+#; Category: Terminal
+#; Symptom: H2O0344: Support pure debug log output
+#; RootCause: New feature.
+#; Description: New feature.
+#; Solution: 1. Create Log-term terminal type to control not to output sequence code.
+#; 2. Create PCD PcdH2OCrLogTermAcceptSequenceCode to control the input of accepting Sequence code under Log-term terminal.
+#; SolutionDependency: None.
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Added:
+#;   1. Include\Guid\CrTerminal.h
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtilStr.uni
+#;   2. ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#;   3. ConfigUtility\CrConfigUtilDxe\CrDeviceMenu.c
+#;   4. InsydeCrPkg.dec
+#;   5. Library\CrDeviceVariableLib\CrDeviceVariableMisc.c
+#;   6. Library\CrDeviceVariableLib\InternalCrDeviceVariableLib.h
+#;   7. TerminalDxe\Terminal.c
+#;   8. TerminalDxe\Terminal.h
+#;   9. TerminalDxe\TerminalConIn.c
+#;   10. TerminalDxe\TerminalConOutAsync.c
+#;   11. TerminalDxe\TerminalConOutCommon.c
+#;   12. TerminalDxe\TerminalConOutSync.c
+#;   13. TerminalDxe\TerminalDxe.inf
+#; 
+#; Tag#: 05.32.36
+#; Issue#: IB08400647
+#; Severity: Feature
+#; Category: Serial
+#; Symptom: H2O0345: Console redirection must provide alternate behavior when line-break condition is detected.
+#; RootCause: New feature.
+#; Description: New feature.
+#; Solution: Create PCD PcdH2OCrUart16550aSerialLineBreakToCtrlCSupported to control the this behavior.
+#;           If this PCD is TRUE, Line-break condition will translate to Ctrl-C.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Modified:
+#;   1. InsydeCrPkg.dec
+#;   2. Uart16550SerialDxe\Uart16550Serial.c
+#;   3. Uart16550SerialDxe\Uart16550SerialDxe.inf
+#; 
+#; Tag#: 05.32.32
+#; Issue#: IB08400637
+#; Severity: Medium
+#; Category: Compile
+#; Symptom: Fix the compiling issue by VS2017 code analysis.
+#; RootCause: 1. C4995: 'StrCpy': name was marked as #pragma deprecated.
+#;            2. C4995: 'StrCat': name was marked as #pragma deprecated.
+#;            3. C4995: 'UnicodeValueToString': name was marked as #pragma deprecated.
+#;            4. C6305: Potential mismatch between sizeof and countof quantities.		   
+#; Description: Code enhancement.
+#; Solution: 1. Use 'StrCpyS' to replace 'StrCpy'.
+#;           2. Use 'StrCatS' to replace 'StrCat'.
+#;           3. Use 'UnicodeValueToStringS' to replace 'UnicodeValueToString'.
+#;           4. Use '&Value[ValueStrLen]' to replace 'Value + ValueStrLen'.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\SolConfigUtility\SolConfigUtil.c
+#;   2. ConfigUtility\SolConfigUtility\SolConfigUtilDialog.c
+#;   3. ConfigUtility\SolConfigUtility\SolConfigUtilMisc.c
+#; 
+#; Tag#: 05.32.32
+#; Issue#: IB04880301
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: Redfish KeywordConfig protocol save CrConfig data cause CrConfig data crash.
+#; RootCause: CrConfig RouteConfig function expect the parameter has whole settings but Redfish KeyConfig just pass the modify data.
+#; Description: (None)
+#; Solution: Apply the modify data to self configuration data. The data no modified will use the current value.
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#; 
+#; Tag#: 05.32.32
+#; Issue#: IB04880300
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: Potential buffer overflow issue.
+#; RootCause: Pass the buffer size big than physical size to StrCpyS.
+#; Description: (None)
+#; Solution: Pass in the exist buffer length.
+#; SolutionDependency: None
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.28
+#; Status: Tag version
+#; 
+#; Tag#: 05.32.28
+#; Issue#: IB08400622
+#; Severity: Medium
+#; Category: Code analysis
+#; Symptom: Fix the issues from VS2017 code analysis.
+#; RootCause: Code enhancement
+#; Description: Code enhancement.
+#; Solution: Code enhancement.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   2. CrServiceDxe\CrBdaMemManager.c
+#;   3. CrServiceDxe\CrLegacySupport.c
+#;   4. Uart16550SerialDxe\ComponentName.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.24
+#; Status: Tag version
+#; 
+#; Tag#: 05.32.21
+#; Issue#: IB08400604
+#; Severity: Medium
+#; Category: Terminal
+#; Symptom: Set Terminal Asynchronize mode to Auto mode by default.
+#; RootCause: Set Synchronize mode and Asynchronize mode to change automatically.
+#; Description: Code Enhancement.
+#; Solution: Set the policy into PCD PcdH2OCrPolicy.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Modified:
+#;   1. Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.20
+#; Status: Tag version
+#; 
+#; Tag#: 05.32.20
+#; Issue#: IB08400600
+#; Severity: Medium
+#; Category: Setup
+#; Symptom: Build failure for Setup VFR by PcdGetPtr().
+#; RootCause: Need change PCD type to PcdsFixedAtBuild type for new VfrCompiler change.
+#; Description: Code enhancement.
+#; Solution: Change PCD type for the PCD which is used by PcdGetPtr() in VFR.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Modified:
+#;   1. Package.dsc
+#; 
+#; Tag#: 05.32.19
+#; Issue#: IB08400594
+#; Severity: Medium
+#; Category: Build code
+#; Symptom: Fix the build code issue under Linux build code environment for SEG features.
+#; Description: Fix bug.
+#; RootCause: Case-sensitive issue.
+#; Solution: Fix bug.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\SolConfigUtility\SolConfigUtil.h
+#; 
+#; Tag#: 05.32.18
+#; Issue#: IB08400591
+#; Severity: Medium
+#; Category: Setup
+#; Symptom: System will have assert when changing setup items and saving.
+#; Description: Fix bug.
+#; RootCause: RouteConfig() should initialize the output parameter *Progress, or it will be NULL and cause assert.
+#; Solution: Refer to Driver Sample code, assign parameter Configuration to *Progress.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   2. ConfigUtility\SolConfigUtility\SolConfigUtil.c
+#; 
+#; Tag#: 05.32.18
+#; Issue#: IB08400589
+#; Severity: Medium
+#; Category: SCT
+#; Symptom: The failed items of UEFI2.6 SCT Test:
+#;          1. HII_CONFIG_ACCESS_PROTOCOL.RouteConfig - RouteConfig() returns EFI_NOT_FOUND if no target was found with the routing data.
+#;          2. HII_CONFIG_ACCESS_PROTOCOL.RouteConfig - RouteConfig() returns EFI_INVALID_PARAMETER with Configuration been NULL.
+#;          3. HII_CONFIG_ACCESS_PROTOCOL.ExtractConfig - ExtractConfig() returns EFI_INVALID_PARAMETER with Request been <MultiConfigRequest> format.
+#;          4. HII_CONFIG_ACCESS_PROTOCOL.ExtractConfig - ExtractConfig() Check if Results is in <MultiConfigAltResp> format.
+#;          5. HII_CONFIG_ACCCES_PROTOCOL.ExtractConfig - ExtractConfig() returns EFI_SUCCESS with valid parameters and and Progress points to the Requests null terminator.		 
+#; RootCause: RouteConfig() and ExtractConfig() don't follow the UEFI spec.
+#; Description: Fix bug.
+#; Solution: Correct the issues by referring to UEFI Specification and Driver Sample code. 
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   2. ConfigUtility\SolConfigUtility\SolConfigUtil.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.16
+#; Status: Tag version
+#; 
+#; Tag#: 05.32.16
+#; Issue#: IB08400583
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: None.
+#; RootCause: None.
+#; Description: 1. Change definition STRING_REF to EFI_STRING_ID.
+#;              2. Set default control bit value of UART device.
+#;                 Bit0: Data Terminal Ready.
+#;                 Bit1: Request To Send.
+#; Solution: None.
+#; SolutionDependency: None.
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\SolConfigUtility\SolConfigUtilMisc.c
+#;   2. Uart16550SerialDxe\Uart16550Serial.c
+#; 
+#; Tag#: 05.32.06
+#; Issue#: IB14090148
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: None.
+#; RootCause: None.
+#; Description: Modify the Isa serial naming rule(same as SuperIO). (UID0->COM1, UID1->COM2)
+#; Solution: None.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. Package.dsc
+#;   2. Uart16550Devices\IsaUartDxe\IsaUartDxe.c
+#; 
+#; Tag#: 05.32.05
+#; Issue#: IB14090146
+#; Severity: Trivial
+#; Category: Console Redirection
+#; Symptom: None.
+#; RootCause: None.
+#; Description: Add comment.
+#; Solution: None.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.32.04
+#; Status: Tag version
+#; 
+#; Tag#: 05.32.04
+#; Issue#: IB14090143
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: 32-bit console redirection can not work.
+#; RootCause: The variable didn't set zero by 32-bit compiler.
+#; Description: (fix bug)
+#; Solution: Set variable to zero before used.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\TerminalConIn.c
+#; 
+#; Tag#: 05.32.04
+#; Issue#: IB08400560
+#; Severity: Minor
+#; Category: Terminal
+#; Symptom: Some border on terminal screen cannot be updated under Boot Manager and Device Management.
+#; RootCause: The attribute has been set to black when clear screen.
+#; Description: Fix bug.
+#; Solution: Set the attribute as the current mode setting.
+#; SolutionDependency: None.
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\TerminalConOutAsync.c
+#; 
+#; Tag#: 05.32.04
+#; Issue#: IB14090141
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: None.
+#; RootCause: None.
+#; Description: Add debug message.
+#; Solution: None.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\TerminalConOutSync.c
+#;   2. Uart16550SerialDxe\Uart16550Serial.c
+#; 
+#; Tag#: 05.32.04
+#; Issue#: IB14090140
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: When a terminal connect fails, the next terminal column and row values will be very large.
+#; RootCause: TerminalConsoleModeData is freed by the failed connect terminal.
+#; Description:(Fix bug)
+#; Solution: After the pool is freed, the pointer is also set to null.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\Terminal.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.52
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.50
+#; Issue#: IB14090137
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: 1.Fix feature definition. 2. Remove binary for Ia32 .
+#; Solution:  (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Deleted:
+#;   1. AdvanceTerminalDxe\Ia32\
+#;   2. CrBiosFlashDxe\Ia32\
+#;   3. CrFileTransferDxe\Ia32\
+#;   4. CrSrvManagerDxe\Ia32\
+#;   5. FileSelectUIDxe\Ia32\
+#;   6. SolDxe\Ia32\
+#;   7. UsbDevices\CrDdtCableDxe\Ia32\
+#;   8. UsbDevices\CrPl2303Dxe\Ia32\
+#;   9. UsbSerialDxe\Ia32\
+#; Modified:
+#;   1. AdvanceTerminalDxe\AdvanceTerminalDxe.inf
+#;   2. AdvanceTerminalDxe\X64\AdvanceTerminalDxe.efi
+#;   3. ConfigUtility\CrConfigUtilDxe\CrCallback.c
+#;   4. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   5. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.inf
+#;   6. ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#;   7. ConfigUtility\CrConfigUtilDxe\CrDeviceMenu.c
+#;   8. ConfigUtility\SolConfigUtility\SolConfigUtil.c
+#;   9. ConfigUtility\SolConfigUtility\SolConfigUtil.inf
+#;   10. ConfigUtility\SolConfigUtility\SolConfigUtilMisc.c
+#;   11. CrBiosFlashDxe\CrBiosFlashDxe.inf
+#;   12. CrBiosFlashDxe\X64\CrBiosFlashDxe.efi
+#;   13. CrFileTransferDxe\CrFileTransferDxe.inf
+#;   14. CrFileTransferDxe\X64\CrFileTransferDxe.efi
+#;   15. CrServiceDxe\CrLegacySupport.c
+#;   16. CrServiceDxe\CrServiceDxe.c
+#;   17. CrServiceDxe\CrServiceDxe.inf
+#;   18. CrServiceDxe\CrVariableUpdate.c
+#;   19. CrSrvManagerDxe\CrSrvManagerDxe.inf
+#;   20. CrSrvManagerDxe\X64\CrSrvManagerDxe.efi
+#;   21. FileSelectUIDxe\FileSelectUIDxe.inf
+#;   22. FileSelectUIDxe\X64\FileSelectUIDxe.efi
+#;   23. Include\CrPolicyType.h
+#;   24. Include\Guid\CrConfigHii.h
+#;   25. Include\Guid\InsydeConsole.h
+#;   26. Include\Guid\InsydeSolDriver.h
+#;   27. Include\Guid\SolSetupConfigHii.h
+#;   28. Include\Protocol\CROpROMInfo.h
+#;   29. Include\Protocol\ConsoleInfo.h
+#;   30. Include\Protocol\ConsoleRedirectionService.h
+#;   31. Include\Protocol\CrDeviceId.h
+#;   32. Include\Protocol\CrDeviceSupport.h
+#;   33. Include\Protocol\CrFileTransfer.h
+#;   34. Include\Protocol\CrSrvManager.h
+#;   35. Include\Protocol\FileSelectUI.h
+#;   36. Include\Protocol\TelnetProtocol.h
+#;   37. Include\Protocol\TerminalInfo.h
+#;   38. Include\Protocol\Uart16550Access.h
+#;   39. Include\Protocol\UsbSerialControllerIo.h
+#;   40. InsydeCrPkg.dec
+#;   41. Library\CrConfigDefaultLib\CrConfigDefaultLib.c
+#;   42. Library\CrConfigDefaultLib\CrConfigDefaultLib.inf
+#;   43. Library\CrDeviceVariableLib\CrDeviceVariableLib.c
+#;   44. Library\CrDeviceVariableLib\CrDeviceVariableLib.inf
+#;   45. Library\CrDeviceVariableLib\CrDeviceVariableMisc.c
+#;   46. Library\CrDeviceVariableLib\InternalCrDeviceVariableLib.h
+#;   47. Package.dsc
+#;   48. Package.fdf
+#;   49. SolDxe\SolDxe.inf
+#;   50. SolDxe\X64\SolDxe.efi
+#;   51. TelnetDxe\TelnetDxe.inf
+#;   52. TelnetDxe\X64\TelnetDxe.efi
+#;   53. TerminalDxe\Terminal.c
+#;   54. TerminalDxe\TerminalDxe.inf
+#;   55. Uart16550Devices\IsaUartDxe\IsaUartDxe.c
+#;   56. Uart16550Devices\IsaUartDxe\IsaUartDxe.inf
+#;   57. Uart16550Devices\PchHsUartDxe\PchHsUartDxe.c
+#;   58. Uart16550Devices\PchHsUartDxe\PchHsUartDxe.inf
+#;   59. Uart16550Devices\PciHsUartDxe\PciHsUartDxe.c
+#;   60. Uart16550Devices\PciHsUartDxe\PciHsUartDxe.inf
+#;   61. Uart16550Devices\PciUartDxe\PciUartDxe.c
+#;   62. Uart16550Devices\PciUartDxe\PciUartDxe.inf
+#;   63. Uart16550SerialDxe\ComponentName.c
+#;   64. Uart16550SerialDxe\Uart16550Serial.c
+#;   65. Uart16550SerialDxe\Uart16550SerialDxe.inf
+#;   66. UsbDevices\CrDdtCableDxe\CrDdtCableDxe.inf
+#;   67. UsbDevices\CrDdtCableDxe\X64\CrDdtCableDxe.efi
+#;   68. UsbDevices\CrPl2303Dxe\CrPl2303Dxe.inf
+#;   69. UsbDevices\CrPl2303Dxe\X64\CrPl2303Dxe.efi
+#;   70. UsbSerialDxe\UsbSerialDxe.inf
+#;   71. UsbSerialDxe\X64\UsbSerialDxe.efi
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.48
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.48
+#; Issue#: IB14090136
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: Feature build fail in kernel 5.3 tag 48.
+#; RootCause: Kernel remove IntelFrameworkModulePkg and IntelFrameworkPkg (IB07010655).
+#; Description: Let SEG feature can be compatible for both 05.31.48 former and later kernel base.
+#; Solution: Remove dependency of IntelFrameworkModulePkg and IntelFrameworkPkg.
+#; SolutionDependency: (None)
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility/CrConfigUtilDxe/CrConfigUtil.h
+#;   2. ConfigUtility/CrConfigUtilDxe/CrConfigUtil.inf
+#;   3. ConfigUtility/SolConfigUtility/SolConfigUtil.h
+#;   4. ConfigUtility/SolConfigUtility/SolConfigUtil.inf
+#;   5. CrServiceDxe/CrServiceDxe.inf
+#;   6. CrServiceSmm/CrServiceSmm.inf
+#;   7. CrSrvManagerDxe/CrSrvManagerDxe.inf
+#;   8. Uart16550Devices/IsaUartDxe/IsaUartDxe.h
+#;   9. Uart16550Devices/IsaUartDxe/IsaUartDxe.inf
+#;   10. Uart16550SerialDxe/Uart16550Serial.h
+#;   11. Uart16550SerialDxe/Uart16550SerialDxe.inf
+#; 
+#; Tag#: 05.31.48
+#; Issue#: IB14090132
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Supports serial devices on all PCI bridges.
+#; Solution:  (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. Package.dsc
+#; 
+#; Tag#: 05.31.47
+#; Issue#: IB14090127
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: When software flow control (XON / XOFF) is enabled, the serial device is changed to disabled.
+#; RootCause: When RemainingDevicePath has software flow control node, the Uart16550SerialDxe will return unsupported.
+#; Description: (Bug Fix)
+#; Solution: Let Uart16550SerialDxe support software flow control. And add max 10 device's space to save remote and host flow control state.  (Option ROM V1.48)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.inf
+#;   2. CrServiceDxe\CrBdaMemManager.c
+#;   3. CrServiceDxe\CrLegacySupport.c
+#;   4. CrServiceDxe\CrLegacySupport.h
+#;   5. Csm\CrRom\CrRom.bin
+#;   6. Include\Protocol\CROpROMInfo.h
+#;   7. Include\Protocol\ConsoleRedirectionService.h
+#;   8. Include\Protocol\Uart16550Access.h
+#;   9. Library\CrDeviceVariableLib\CrDeviceVariableLib.inf
+#;   10. TerminalDxe\TerminalDxe.inf
+#;   11. Uart16550Devices\IsaUartDxe\IsaUartDxe.c
+#;   12. Uart16550SerialDxe\Uart16550Serial.c
+#;   13. Uart16550SerialDxe\Uart16550Serial.h
+#;   14. Uart16550SerialDxe\Uart16550SerialDxe.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.46
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.46
+#; Issue#: IB14090124
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description:  Correct some debug level are not suitable.
+#; Solution:  (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   2. ConfigUtility\SolConfigUtility\SolConfigUtil.c
+#;   3. CrServiceDxe\CrLegacySupport.c
+#;   4. Include\Library\SelfDebugLib.h
+#;   5. Library\CrDeviceVariableLib\DebugPrint.c
+#; 
+#; Tag#: 05.31.45
+#; Issue#: IB14090123
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom:  1. The VGA does not display after loading the C.R. option ROM and boot to the shell. 2. Executive "exit" cmd After entering the frontPage, VGA back to normal.
+#; RootCause: C.R. saves the wrong original mode. After loading option ROM, C.R. recovers the wrong VGA mode (mode 3). Since Platformhooks () modifies video mode before C.R. saves the original mode. 
+#; Description: (Bug Fix)
+#; Solution: The kernel's Platformhooks function runs only when loading non-CR option ROMs.
+#; SolutionDependency: IB14090123 fixes side effect of IB14090115
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrLegacySupport.c
+#;   2. CrServiceDxe\CrLegacySupport.h
+#;   3. CrServiceDxe\CrServiceDxe.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.44
+#; Status: Tag version
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.40
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.40
+#; Issue#: IB14090116
+#; Severity: Medium
+#; Category: Console Redirection 
+#; Symptom: Using MMIO serial device. The debug message show garbled code after load CR option ROM.
+#; RootCause: The debug message interject the cmd of set baudrate divisor.
+#; Description: (Fix Bug) 
+#; Solution: Store the cmd of set baud rate divisor in SMM mode. And do these cmd together. (Option ROM V1.47)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceSmm\CrServiceSmm.c
+#;   2. CrServiceSmm\CrServiceSmm.h
+#;   3. Csm\CrRom\CrRom.bin
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.39
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.39
+#; Issue#: IB14090115
+#; Severity: Medium
+#; Category: Console Redirection 
+#; Symptom: 1. Select Uefi boot and set CSM on demand. 2.C.R. option ROM doesn't display both on VGA and terminal. 3.The shell screen is displayed only on the terminal.
+#; RootCause: C.R. calls the INT10 to save VGA mode before INT 10 was installed. So C.R. restore the fail mode value to VGA.
+#; Description: (Fix Bug) 
+#; Solution: Get/Set the VGA mode when platformhooks() invoke.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrLegacySupport.c
+#;   2. CrServiceDxe\CrLegacySupport.h
+#;   3. CrServiceDxe\CrServiceDxe.c
+#; 
+#; Tag#: 05.31.39
+#; Issue#: IB14090114
+#; Severity: Minor
+#; Category: Console Redirection 
+#; Symptom: When disable console redirection on SCU, there have an assert message about  mCrPolicyVar != ((void *) 0).
+#; RootCause: It just normal mechanism, the assert is not necessary.
+#; Description: (Code Enhancement) 
+#; Solution: Modify C.R disable policy. Check whether the policy variable exists to determine C.R. enable.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   2. CrServiceDxe\CrServiceDxe.c
+#;   3. CrServiceDxe\CrVariableUpdate.c
+#;   4. Include\CrPolicyType.h
+#;   5. TerminalDxe\Terminal.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.36
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.36
+#; Issue#: IB14090113
+#; Severity: Medium
+#; Category: Console Redirection 
+#; Symptom: When C.R. is set to sync mode, the C.R. option ROM message is printed twice per line.
+#; RootCause: When the C.R. option ROM calls the INT10 AH = 13 function, some VGA ROMs are re-entered with INT10.
+#; Description: (Fix Bug) 
+#; Solution: Add a flag to avoid INT10 re-entry. C.R. OPTION ROM version: v1.46
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. Csm\CrRom\CrRom.bin
+#; 
+#; Tag#: 05.31.34
+#; Issue#: IB14090112
+#; Severity: Medium
+#; Category: Console Redirection 
+#; Symptom: The CPU exception (or platform stuck) when setting CROpROMLoadOnESegment = TRUE and there is not enough memory in E-Segment.
+#; RootCause: After calling the LegacyBios function, the EFI_STATUS is not checked.
+#; Description: (Fix Bug) 
+#; Solution: When the LegacyBios function returns unsuccessful, the loading of the CR Option ROM is prohibited.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrLegacySupport.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.32
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.31
+#; Issue#: IB14090111
+#; Severity: Medium
+#; Category: Console Redirection 
+#; Symptom: On Purely, if boot type is UEFI as default and use legacy VGA card, the C.R. option ROM didn't redirection.
+#; RootCause: The TPL of TriggerCpConOutConnectBefore() is the same as GopHotPlugCallback(), so it will run after GopHotPlugCallback() cause the CR device didn't connect before load C.R option ROM.
+#; Description: (Fix Bug) 
+#; Solution: Raise TPL for TriggerCpConOutConnectBefore.
+#; SolutionDependency: IB14090084
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrServiceDxe.c
+#; 
+#; Tag#: 05.31.30
+#; Issue#: IB14090109
+#; Severity: Minor
+#; Category: Console Redirection 
+#; Symptom: Some platform didn't support PCICFGCTRL. So it only override the source to change uart access mode.
+#; RootCause: (code enhancement)
+#; Description:  (code enhancement)
+#; Solution: Support manual to assign PCD value to control uart access mode. 
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. Package.dsc
+#;   2. Uart16550Devices\PchHsUartDxe\PchHsUartDxe.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.29
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.29
+#; Issue#: IB14090108
+#; Severity: Medium
+#; Category: Console Redirection 
+#; Symptom: When override the PcdH2OAdvanceConsoleRedirectionSupported = TURE at Project.dsc, SOL still not import to BIOS bin file.
+#; RootCause: Some PCDs dependent on PcdH2OAdvanceConsoleRedirectionSupported. Those PCD didn't be overridden.
+#; Description: (Fix Bug)
+#; Solution: Remove the PCDs dependent.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. Package.dsc
+#;   2. Package.fdf
+#; 
+#; Tag#: 05.31.29
+#; Issue#: IB14090107
+#; Severity: Medium
+#; Category: Console Redirection 
+#; Symptom: 1. C.R resolution select limit 128x40. 2. The screen displays the location is not normal. 3.When enter to frontPage, the system will reboot. 
+#; RootCause: Platform need mode (100,31) but terminal only report (80,25) (80,50) (128,40)
+#; Description: Fix bug and enhance InitializeTerminalConsoleTextMode() function.
+#; Solution: When C.R resolution select limit 128x40, The terminal also report (100,31)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\Terminal.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.28
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.27
+#; Issue#: IB14090105
+#; Severity: Medium
+#; Category: Console Redirection 
+#; Symptom:  When using more than 7 C.R devices, the system will hang.
+#; RootCause: C.R ROM's memory pool is too small.
+#; Description: 1. Fix bug (CrROM v1.45)
+#;              2. Uniform the MAX_TERMINAL_DEVICE
+#;              3. Modify the device status judgment.
+#;              4. Modify the define at ProjectSetup.bat
+#; Solution: Increase the size of the memory pool.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. Csm\CrRom\CrRom.bin
+#; 
+#; Tag#: 05.31.27
+#; Issue#: IB14090106
+#; Severity: Medium
+#; Category: Console Redirection 
+#; Symptom: C.R can not be used in UEFI boot mode, but can be used in other modes.
+#; RootCause: The C.R legacy ROM always enable the DTR and RTS. If the ROM didn't load, the DTR and RTS only enable when flow control enable.
+#; Description: Customer redirection the screen from local COMA to remote FPGA device. The FPGA running on flow control mode. 
+#;              So if we didn't manual enable the flow control there are only work on legacy mode(because C.R legacy ROM always enable RTS and DTR).
+#; Solution: Enable the DTR and RTS both in legacy ROM and EFI drivers. It Let the same behavior in each boot mode.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. Uart16550SerialDxe\Uart16550Serial.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.26
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.26
+#; Issue#: IB14090104
+#; Severity: Medium
+#; Category: Console Redirection 
+#; Symptom: 1. Using the Pch High-Speed uart. After show the C.R ROM info the terminal reset very fast.
+#;          2. The Pch High-Speed uart didn't redirection the C.R option ROM information to terminal at some platform.
+#; RootCause: 1. Because Pch High-Speed uart have invalid IRQ. The IsUartModifyed() check will fail.
+#;            2. The int 0x1c service is triggered before option ROM creates terminal device.
+#; Description: Reference http://svn.insydesw.com/H2O-Kernel/OPROM/Trunk/CR_OPROM/Trunk, revision 432-445.(Option ROM V1.44)             
+#; Solution: 1. Do IsUartModifyed() only when IRQ is valid.
+#;           2. Do the TaskManagerStart() after creates terminal device.
+#;           3. When Pch High-Speed Uart didn't havd valid, show the invalid IRQ message on the help information.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. Csm\CrRom\CrRom.bin
+#; 
+#; Tag#: 05.31.25
+#; Issue#: IB14090102
+#; Severity: Medium
+#; Category: Console Redirection 
+#; Symptom:  If the platform does not have a VGA cable connected, the option ROM and the legacy OS screen are not redirected to Terminal.
+#; RootCause: On some platforms, when the VGA cable is not connected, SEQ1 [5] will be set to 1. Then the CR ROM does not execute the INT 1C task to send the screen.
+#; Description: Some platforms need output the screen when SEQ1 [5] = 1. And some platforms don't output screen when SEQ1 [5] = 1.
+#; Solution: Add new feature flag - CRScreenOffCheck to control this situation. The default setting of CRScreenOffCheck is FALSE. (CR OPTION ROM v1.43)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrLegacySupport.c
+#;   2. Csm\CrRom\CrRom.bin
+#;   3. Include\CrPolicyType.h
+#;   4. Include\Library\CrVfrConfigLib.h
+#;   5. Package.dsc
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.24
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.24
+#; Issue#: IB14090101
+#; Severity: Minor
+#; Category: Console Redirection 
+#; Symptom:  (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Support PCH high speed uart in option rom and legacy boot.
+#;              OPTION ROM version: v1.42
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrLegacySupport.c
+#;   2. Csm\CrRom\CrRom.bin
+#;   3. History.txt
+#;   4. Include\CrDeviceType.h
+#;   5. Package.dsc
+#;   6. Uart16550Devices\PchHsUartDxe\PchHsUartDxe.c
+#;   7. Uart16550Devices\PchHsUartDxe\PchHsUartDxe.h
+#; 
+#; Tag#: 05.31.21
+#; Issue#: IB14090098
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom:  System hang at notify gEndOfBdsBootSelectionProtocolGuid, when system disable all of C.R. devices.
+#; RootCause: When system do not have terminal devices, the mCurrentTermEvent will be NULL. Then the callback function using the fail pointer to work.
+#; Description: (Bug Fix)
+#; Solution: When terminal count = 0, then didn't do the callback function.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\Terminal.c
+#; 
+#; Tag#: 05.31.21
+#; Issue#: IB13080208
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: In graphics mode, the form title of platform information is wrong. It shows InsydeH2O Setup Utility.
+#; RootCause: Wrong form title.
+#; Description: (Bug fix)
+#; Solution: (Bug fix)
+#; SolutionDependency: None
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\SolConfigUtility\SolConfigUtilVfr.vfr
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.20
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.19
+#; Issue#: IB14090097
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: 1. Update help string of Text Mode Resolution.
+#;              2. Update ConfigAccessCallback () return value.
+#; Solution:  (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrCallback.c
+#;   2. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   3. ConfigUtility\CrConfigUtilDxe\CrConfigUtilStr.uni
+#;   4. ConfigUtility\SolConfigUtility\SolConfigUtil.c
+#; 
+#; Tag#: 05.31.19
+#; Issue#: IB14090096
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: When booting to EFI shell directly, the command line will always locate on row 25 if the printed messages exceed row 25.
+#; RootCause: The console redirection will always set terminal mode to 0 even if the platform hook function returns error status.
+#; Description: (Bug Fix)
+#; Solution: Return to the caller if the status of platform hook function is error.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrLegacySupport.c
+#; 
+#; Tag#: 05.31.19
+#; Issue#: IB14090095
+#; Severity: Medium
+#; Category: Console redirection
+#; Symptom: Text mode will be fixed on 80 x 25
+#; RootCause: The MaxMode is not update, when console redirection is disable.
+#; Description: When console redirection is disable and terminal connect from gPlatformConsole. Terminal only have mode 0.
+#; Solution: Always update MaxMode.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\Terminal.c
+#; 
+#; Tag#: 05.31.19
+#; Issue#: IB14090094
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Base on IB14090073. Using PcdH2OCrPolicy.CRAsyncTerm to contol force async or auto switch async/sync mode.
+#; [Auto]: Only SCU in async mode. Others in Sync mode. 
+#; [Force Async]: Only boot time in sync mode. Others in Async mode.
+#; Solution:  (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. Package.dsc
+#;   2. TerminalDxe\Terminal.c
+#;   3. TerminalDxe\Terminal.h
+#;   4. TerminalDxe\TerminalConOutAsync.c
+#;   5. TerminalDxe\TerminalConOutCommon.c
+#;   6. TerminalDxe\TerminalDxe.inf
+#; 
+#; Tag#: 05.31.17
+#; Issue#: IB14090093
+#; Severity: Medium
+#; Category: Console redirection
+#; Symptom: 1.Denberton will hang on CR 9600 baud rate. VGA and CR use the same IRQ system will hang-up.
+#;          2.Some platform can't build the TerminalDxe.inf
+#; RootCause: 1.CR serial device and VGA use the same IRQ. VBios shadow before CRROM. But CRROM ISR will not chain to the VGA ISR that cause VGA INT no ISR to reset it.
+#;            2.The ConsoleOutDevice GUID didn't find.
+#; Description: (Bug fix)
+#; Solution: 1. Modify CRROM ISR chain to old ISR. (CrRom v1.41)
+#;           2. Include the ConsoleOutDevice.h
+#; SolutionDependency: None.
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Modified:
+#;   1. Csm\CrRom\CrRom.bin
+#;   2. TerminalDxe\Terminal.h
+#; 
+#; Tag#: 05.31.17
+#; Issue#: IB14090092
+#; Severity: Medium
+#; Category: Console redirection
+#; Symptom: When using PXE boot. The panel is not displayed in full screen. Or the resolution is not the same as the panel.
+#; RootCause: Because consplitter select intersection of each console out device. And C.R. terminal didn't support the panel's resolution. So the resolution of the screen will be cut down.
+#; Description: (Bug fix)
+#; Solution: Before console redirection report the resolution mode. C.R. need to query the conosle out device mode. And report it.
+#; SolutionDependency: None.
+#; Reviewer: IB04880000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfig.h
+#;   2. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   3. ConfigUtility\CrConfigUtilDxe\CrConfigUtilStr.uni
+#;   4. ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#;   5. Include\CrPolicyType.h
+#;   6. Include\CrSetupConfig.h
+#;   7. Include\Library\CrVfrConfigLib.h
+#;   8. Package.dsc
+#;   9. TerminalDxe\Terminal.c
+#;   10. TerminalDxe\TerminalConIn.c
+#;   11. TerminalDxe\TerminalDxe.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.16
+#; Status: Tag version
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.12
+#; Status: Tag version
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.08
+#; Status: Tag version
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.31.04
+#; Status: Tag version
+#; 
+#; Tag#: 05.31.04
+#; Issue#: IB14090089
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Check is pointer NULL before close event.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. TerminalDxe\TerminalConOutAsync.c
+#; 
+#; Tag#: 05.22.03
+#; Issue#: IB14090087
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom:  It will build fail in some platform.
+#; RootCause: SelfDebugLib has some hardware dependence code.
+#; Description: (Bug Fix)
+#; Solution: SelfDebugLib is only used when debug. So driver does not use this library by default.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.inf
+#;   2. CrServiceDxe\CrServiceDxe.inf
+#;   3. Include\Library\SelfDebugLib.h
+#;   4. Library\CrDeviceVariableLib\CrDeviceVariableLib.inf
+#;   5. Library\SelfDebugLib\SelfDebugLib.inf
+#;   6. TerminalDxe\TerminalDxe.inf
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.48
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.45
+#; Issue#: IB14090085
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: Fix the Coverity static program analysis issue.
+#; Solution: (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. Library\CrDeviceVariableLib\CrDeviceVariableLib.c
+#;   2. Library\CrDeviceVariableLib\CrDeviceVariableMisc.c
+#;   3. TerminalDxe\Terminal.c
+#;   4. TerminalDxe\TerminalConOutAsync.c
+#;   5. TerminalDxe\TerminalConOutSync.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.44
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.44
+#; Issue#: IB14090084
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: In the platform of Purley. 
+#;          There have non-exist serial device description at PcdH2OCrDevice. 
+#;          And when UEFI boot mode is used, the system hang. But dual mode and legacy mode will not.
+#; RootCause: The platform call the gH2OBdsCpConOutConnectAfterProtocolGuid before the
+#;            gH2OBdsCpConInConnectBeforeProtocolGuid. This will cause console redirection get the wrong ConIn/ConOut
+#;            variables. The Console redirection counts the wrong number of serial devices.
+#; Description: (Bug Fix)
+#; Solution:  Update new number of serial devices after build CR information.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. CrServiceDxe\CrServiceDxe.c
+#; 
+#;------------------------------------------------------------------------------
+#; Label#: 05.21.40
+#; Status: Tag version
+#; 
+#; Tag#: 05.21.37
+#; Issue#: IB14090082
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: If there no serial device to support Console Redirection. The CR option ROM still wok.
+#; RootCause: The C.R. 2.0 architecture always create Crinfo, so CR option ROM always install. 
+#; Description: (Bug Fix)
+#; Solution:  1. Modify the condition of  install CR option ROM.
+#;            2. Show the warning message at SCU when no serial device support C.R.
+#;            3. Rename the "C.R. after post" to "C.R. after legacy boot"
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtilStr.uni
+#;   2. ConfigUtility\CrConfigUtilDxe\CrDeviceMenu.c
+#;   3. CrServiceDxe\CrServiceDxe.c
+#; 
+#; Tag#: 05.21.33
+#; Issue#: IB14090081
+#; Severity: Minor
+#; Category: Console Redirection
+#; Symptom: (Code Enhancement)
+#; RootCause: (Code Enhancement)
+#; Description: 1. The terminal VT100 only print ASCII Graphic char. VT100+ print the Line Draw Char.
+#;              2. Files rename.
+#;              3. Cr OPROM v1.40
+#; Solution:  (Code Enhancement)
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Added:
+#;   1. TerminalDxe\TerminalConOutAsync.c
+#;   2. TerminalDxe\TerminalConOutCommon.c
+#;   3. TerminalDxe\TerminalConOutSync.c
+#; Deleted:
+#;   1. TerminalDxe\AsyncTerminalConOut.c
+#;   2. TerminalDxe\Common.c
+#;   3. TerminalDxe\SyncTerminalConOut.c
+#; Modified:
+#;   1. Csm\CrRom\CrRom.bin
+#;   2. TerminalDxe\Terminal.h
+#;   3. TerminalDxe\TerminalDxe.inf
+#; 
+#; Tag#: 05.21.33
+#; Issue#: IB14090080
+#; Severity: Medium
+#; Category: Console Redirection
+#; Symptom: If select console redirection mode to 80X25. System will reboot. 
+#; RootCause: The setting of 80X25 overwrite others feature setting. 
+#; Description: (Bug Fix)
+#; Solution:  1. Fix 80x25 feature setting method.
+#;            2. Fix some error comments. 
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Modified:
+#;   1. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   2. Package.dsc
+#; 
+#; Issue#: IB14090000
+#; Severity: Feature
+#; Category: Console Redirection
+#; Symptom: Initial version.
+#; RootCause: None.
+#; Description: Initial version. 
+#; Solution: Create initial versions for Console Redirection features.
+#; SolutionDependency: None.
+#; Reviewer: IB14090000
+#; RelatedFiles:
+#; Added:
+#;   1. AdvanceTerminalDxe\
+#;   2. AdvanceTerminalDxe\AdvanceTerminalDxe.inf
+#;   3. AdvanceTerminalDxe\Ia32\
+#;   4. AdvanceTerminalDxe\Ia32\AdvanceTerminalDxe.efi
+#;   5. AdvanceTerminalDxe\X64\
+#;   6. AdvanceTerminalDxe\X64\AdvanceTerminalDxe.efi
+#;   7. ConfigUtility\
+#;   8. ConfigUtility\CrConfigUtilDxe\
+#;   9. ConfigUtility\CrConfigUtilDxe\CrCallback.c
+#;   10. ConfigUtility\CrConfigUtilDxe\CrCallback.h
+#;   11. ConfigUtility\CrConfigUtilDxe\CrConfig.h
+#;   12. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.c
+#;   13. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.h
+#;   14. ConfigUtility\CrConfigUtilDxe\CrConfigUtil.inf
+#;   15. ConfigUtility\CrConfigUtilDxe\CrConfigUtilStr.uni
+#;   16. ConfigUtility\CrConfigUtilDxe\CrConfigUtilVfr.vfr
+#;   17. ConfigUtility\CrConfigUtilDxe\CrDeviceMenu.c
+#;   18. ConfigUtility\CrConfigUtilDxe\CrDeviceMenu.h
+#;   19. ConfigUtility\SolConfigUtility\
+#;   20. ConfigUtility\SolConfigUtility\SolConfigUtil.c
+#;   21. ConfigUtility\SolConfigUtility\SolConfigUtil.h
+#;   22. ConfigUtility\SolConfigUtility\SolConfigUtil.inf
+#;   23. ConfigUtility\SolConfigUtility\SolConfigUtilDialog.c
+#;   24. ConfigUtility\SolConfigUtility\SolConfigUtilMisc.c
+#;   25. ConfigUtility\SolConfigUtility\SolConfigUtilMisc.h
+#;   26. ConfigUtility\SolConfigUtility\SolConfigUtilSetupConfig.h
+#;   27. ConfigUtility\SolConfigUtility\SolConfigUtilStr.uni
+#;   28. ConfigUtility\SolConfigUtility\SolConfigUtilVfr.vfr
+#;   29. CrBiosFlashDxe\
+#;   30. CrBiosFlashDxe\CrBiosFlashDxe.inf
+#;   31. CrBiosFlashDxe\Ia32\
+#;   32. CrBiosFlashDxe\Ia32\CrBiosFlashDxe.efi
+#;   33. CrBiosFlashDxe\X64\
+#;   34. CrBiosFlashDxe\X64\CrBiosFlashDxe.efi
+#;   35. CrFileTransferDxe\
+#;   36. CrFileTransferDxe\CrFileTransferDxe.inf
+#;   37. CrFileTransferDxe\Ia32\
+#;   38. CrFileTransferDxe\Ia32\CrFileTransferDxe.efi
+#;   39. CrFileTransferDxe\X64\
+#;   40. CrFileTransferDxe\X64\CrFileTransferDxe.efi
+#;   41. CrServiceDxe\
+#;   42. CrServiceDxe\CrBdaMemManager.c
+#;   43. CrServiceDxe\CrBdaMemManager.h
+#;   44. CrServiceDxe\CrLegacySupport.c
+#;   45. CrServiceDxe\CrLegacySupport.h
+#;   46. CrServiceDxe\CrServiceDxe.c
+#;   47. CrServiceDxe\CrServiceDxe.h
+#;   48. CrServiceDxe\CrServiceDxe.inf
+#;   49. CrServiceDxe\CrServiceMisc.c
+#;   50. CrServiceDxe\CrServiceMisc.h
+#;   51. CrServiceDxe\CrVariableUpdate.c
+#;   52. CrServiceDxe\CrVariableUpdate.h
+#;   53. CrServiceSmm\
+#;   54. CrServiceSmm\CrServiceSmm.c
+#;   55. CrServiceSmm\CrServiceSmm.h
+#;   56. CrServiceSmm\CrServiceSmm.inf
+#;   57. CrSrvManagerDxe\
+#;   58. CrSrvManagerDxe\CrSrvManagerDxe.inf
+#;   59. CrSrvManagerDxe\Ia32\
+#;   60. CrSrvManagerDxe\Ia32\CrSrvManagerDxe.efi
+#;   61. CrSrvManagerDxe\X64\
+#;   62. CrSrvManagerDxe\X64\CrSrvManagerDxe.efi
+#;   63. Csm\
+#;   64. Csm\CrRom\
+#;   65. Csm\CrRom\CrRom.bin
+#;   66. FileSelectUIDxe\
+#;   67. FileSelectUIDxe\FileSelectUIDxe.inf
+#;   68. FileSelectUIDxe\Ia32\
+#;   69. FileSelectUIDxe\Ia32\FileSelectUIDxe.efi
+#;   70. FileSelectUIDxe\X64\
+#;   71. FileSelectUIDxe\X64\FileSelectUIDxe.efi
+#;   72. Include\
+#;   73. Include\CrDeviceType.h
+#;   74. Include\CrPolicyType.h
+#;   75. Include\CrSetupConfig.h
+#;   76. Include\Guid\
+#;   77. Include\Guid\CrConfigHii.h
+#;   78. Include\Guid\InsydeConsole.h
+#;   79. Include\Guid\InsydeSolDriver.h
+#;   80. Include\Guid\SolSetupConfigHii.h
+#;   81. Include\Library\
+#;   82. Include\Library\CrBdsLib.h
+#;   83. Include\Library\CrConfigDefaultLib.h
+#;   84. Include\Library\CrDeviceVariableLib.h
+#;   85. Include\Library\CrVfrConfigLib.h
+#;   86. Include\Library\SelfDebugLib.h
+#;   87. Include\Protocol\
+#;   88. Include\Protocol\CROpROMInfo.h
+#;   89. Include\Protocol\CRPolicy.h
+#;   90. Include\Protocol\ConsoleInfo.h
+#;   91. Include\Protocol\ConsoleRedirectionService.h
+#;   92. Include\Protocol\CrDeviceId.h
+#;   93. Include\Protocol\CrDeviceSupport.h
+#;   94. Include\Protocol\CrFileTransfer.h
+#;   95. Include\Protocol\CrSrvManager.h
+#;   96. Include\Protocol\FileSelectUI.h
+#;   97. Include\Protocol\TelnetProtocol.h
+#;   98. Include\Protocol\TerminalInfo.h
+#;   99. Include\Protocol\Uart16550Access.h
+#;   100. Include\Protocol\UsbSerialControllerIo.h
+#;   101. Include\TerminalMessage.h
+#;   102. InsydeCrPkg.dec
+#;   103. Library\
+#;   104. Library\CrConfigDefaultLib\
+#;   105. Library\CrConfigDefaultLib\CrConfigDefaultLib.c
+#;   106. Library\CrConfigDefaultLib\CrConfigDefaultLib.inf
+#;   107. Library\CrDeviceVariableLib\
+#;   108. Library\CrDeviceVariableLib\CrDeviceVariableLib.c
+#;   109. Library\CrDeviceVariableLib\CrDeviceVariableLib.inf
+#;   110. Library\CrDeviceVariableLib\CrDeviceVariableMisc.c
+#;   111. Library\CrDeviceVariableLib\DebugPrint.c
+#;   112. Library\CrDeviceVariableLib\DebugPrint.h
+#;   113. Library\CrDeviceVariableLib\InternalCrDeviceVariableLib.h
+#;   114. Library\CrVfrConfigLib\
+#;   115. Library\CrVfrConfigLib\CrVfrConfigLib.c
+#;   116. Library\CrVfrConfigLib\CrVfrConfigLib.inf
+#;   117. Library\SelfDebugLib\
+#;   118. Library\SelfDebugLib\SelfDebugLib.c
+#;   119. Library\SelfDebugLib\SelfDebugLib.inf
+#;   120. Library\SelfDebugLib\UartDebug.c
+#;   121. Package.dsc
+#;   122. Package.fdf
+#;   123. SolDxe\
+#;   124. SolDxe\Ia32\
+#;   125. SolDxe\Ia32\SolDxe.efi
+#;   126. SolDxe\SolDxe.inf
+#;   127. SolDxe\X64\
+#;   128. SolDxe\X64\SolDxe.efi
+#;   129. TelnetDxe\
+#;   130. TelnetDxe\TelnetDxe.inf
+#;   131. TelnetDxe\X64\
+#;   132. TelnetDxe\X64\TelnetDxe.efi
+#;   133. TerminalDxe\
+#;   134. TerminalDxe\Ansi.c
+#;   135. TerminalDxe\AsyncTerminalConOut.c
+#;   136. TerminalDxe\Common.c
+#;   137. TerminalDxe\ComponentName.c
+#;   138. TerminalDxe\SyncTerminalConOut.c
+#;   139. TerminalDxe\Terminal.c
+#;   140. TerminalDxe\Terminal.h
+#;   141. TerminalDxe\TerminalConIn.c
+#;   142. TerminalDxe\TerminalDxe.inf
+#;   143. TerminalDxe\Vtutf8.c
+#;   144. Uart16550Devices\
+#;   145. Uart16550Devices\IsaUartDxe\
+#;   146. Uart16550Devices\IsaUartDxe\ComponentName.c
+#;   147. Uart16550Devices\IsaUartDxe\IsaUartDxe.c
+#;   148. Uart16550Devices\IsaUartDxe\IsaUartDxe.h
+#;   149. Uart16550Devices\IsaUartDxe\IsaUartDxe.inf
+#;   150. Uart16550Devices\PchHsUartDxe\
+#;   151. Uart16550Devices\PchHsUartDxe\PchHsUartDxe.c
+#;   152. Uart16550Devices\PchHsUartDxe\PchHsUartDxe.h
+#;   153. Uart16550Devices\PchHsUartDxe\PchHsUartDxe.inf
+#;   154. Uart16550Devices\PciHsUartDxe\
+#;   155. Uart16550Devices\PciHsUartDxe\ComponentName.c
+#;   156. Uart16550Devices\PciHsUartDxe\PciHsUartDxe.c
+#;   157. Uart16550Devices\PciHsUartDxe\PciHsUartDxe.h
+#;   158. Uart16550Devices\PciHsUartDxe\PciHsUartDxe.inf
+#;   159. Uart16550Devices\PciUartDxe\
+#;   160. Uart16550Devices\PciUartDxe\ComponentName.c
+#;   161. Uart16550Devices\PciUartDxe\PciUartDxe.c
+#;   162. Uart16550Devices\PciUartDxe\PciUartDxe.h
+#;   163. Uart16550Devices\PciUartDxe\PciUartDxe.inf
+#;   164. Uart16550SerialDxe\
+#;   165. Uart16550SerialDxe\ComponentName.c
+#;   166. Uart16550SerialDxe\Uart16550Serial.c
+#;   167. Uart16550SerialDxe\Uart16550Serial.h
+#;   168. Uart16550SerialDxe\Uart16550SerialDxe.inf
+#;   169. UsbDevices\
+#;   170. UsbDevices\CrDdtCableDxe\
+#;   171. UsbDevices\CrDdtCableDxe\CrDdtCableDxe.inf
+#;   172. UsbDevices\CrDdtCableDxe\Ia32\
+#;   173. UsbDevices\CrDdtCableDxe\Ia32\CrDdtCableDxe.efi
+#;   174. UsbDevices\CrDdtCableDxe\X64\
+#;   175. UsbDevices\CrDdtCableDxe\X64\CrDdtCableDxe.efi
+#;   176. UsbDevices\CrPl2303Dxe\
+#;   177. UsbDevices\CrPl2303Dxe\CrPl2303Dxe.inf
+#;   178. UsbDevices\CrPl2303Dxe\Ia32\
+#;   179. UsbDevices\CrPl2303Dxe\Ia32\CrPl2303Dxe.efi
+#;   180. UsbDevices\CrPl2303Dxe\X64\
+#;   181. UsbDevices\CrPl2303Dxe\X64\CrPl2303Dxe.efi
+#;   182. UsbSerialDxe\
+#;   183. UsbSerialDxe\Ia32\
+#;   184. UsbSerialDxe\Ia32\UsbSerialDxe.efi
+#;   185. UsbSerialDxe\UsbSerialDxe.inf
+#;   186. UsbSerialDxe\X64\
+#;   187. UsbSerialDxe\X64\UsbSerialDxe.efi
+#; 

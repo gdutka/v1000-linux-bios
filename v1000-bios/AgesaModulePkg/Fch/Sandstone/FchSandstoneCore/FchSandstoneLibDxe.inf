@@ -1,0 +1,140 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  LIBRARY_CLASS         = FchSandstoneDxeLib | DXE_DRIVER DXE_SMM_DRIVER DXE_RUNTIME_DRIVER
+  BASE_NAME             = FchSandstoneDxeLib
+  INF_VERSION           = 0x00010006
+  FILE_GUID             = a710f04f-44ad-404a-b133-046d4253ee83
+  MODULE_TYPE           = BASE
+  VERSION_STRING        = 1.0
+
+[Sources]
+  Fch.h
+  FchPage.h
+  FchPlatform.h
+  FchAoacLinkListData.h
+  Common/AcpiLib.c
+  Common/AcpiLib.h
+  Common/FchAoacLib.c
+  Common/FchAoacLib.h
+  Common/FchCommon.c
+  Common/FchCommonCfg.h
+  Common/FchCommonSmm.c
+  Common/FchDef.h
+  Common/FchInterface.h
+  Common/FchLib.c
+  Common/FchPeLib.c
+  Common/FchSmnLib.c
+  Common/MemLib.c
+  Common/PciLib.c
+  Sandstone/EnvDefSS.c
+  Sandstone/SSFch.h
+  Sandstone/ResetDefSS.c
+  Sandstone/SSeMMC/SSeMMCEnv.c
+  Sandstone/SSeMMC/SSeMMCMid.c
+  Sandstone/SSeMMC/SSeMMCLate.c
+  Sandstone/SSHwAcpi/SSHwAcpiEnv.c
+  Sandstone/SSHwAcpi/SSHwAcpiEnvService.c
+  Sandstone/SSHwAcpi/SSHwAcpiReset.c
+  Sandstone/SSHwAcpi/SSSSService.c
+  Sandstone/SSHwAcpi/SSHwAcpiLate.c
+  Sandstone/SSHwAcpi/SSHwAcpiLateService.c
+  Sandstone/SSHwAcpi/SSHwAcpiMid.c
+  Sandstone/SSHwAcpi/SSHwAcpiMidService.c
+  Sandstone/SSInterface/SSFchInitEnv.c
+  Sandstone/SSInterface/SSFchTaskLauncher.c
+  Sandstone/SSInterface/SSFchTaskLauncher.h
+  Sandstone/SSInterface/SSFchInitLate.c
+  Sandstone/SSInterface/SSFchInitMid.c
+  Sandstone/SSInterface/SSFchInitS3.c
+  Sandstone/SSPcie/SSAbEnv.c
+  Sandstone/SSPcie/SSAbEnvService.c
+  Sandstone/SSPcie/SSAbReset.c
+  Sandstone/SSPcie/SSAbResetService.c
+  Sandstone/SSPcie/SSAbService.c
+  Sandstone/SSPcie/SSAbLate.c
+  Sandstone/SSPcie/SSAbMid.c
+  Sandstone/SSSata/SSAhciEnv.c
+  Sandstone/SSSata/SSAhciLib.c
+  Sandstone/SSSata/SSRaidEnv.c
+  Sandstone/SSSata/SSRaidLib.c
+  Sandstone/SSSata/SSSataEnv.c
+  Sandstone/SSSata/SSSataEnvLib.c
+  Sandstone/SSSata/SSSataEnvService.c
+  Sandstone/SSSata/SSSataLib.c
+  Sandstone/SSSata/SSSataD3Lib.c
+  Sandstone/SSSata/SSSataReset.c
+  Sandstone/SSSata/SSSataResetService.c
+  Sandstone/SSSata/SSAhciLate.c
+  Sandstone/SSSata/SSAhciMid.c
+  Sandstone/SSSata/SSRaidLate.c
+  Sandstone/SSSata/SSRaidMid.c
+  Sandstone/SSSata/SSSataLate.c
+  Sandstone/SSSata/SSSataMid.c
+  Sandstone/SSSata/SSSataService.c
+  Sandstone/SSSd/SSSdEnv.c
+  Sandstone/SSSd/SSSdEnvService.c
+  Sandstone/SSSd/SSSdResetService.c
+  Sandstone/SSSd/SSSdLate.c
+  Sandstone/SSSd/SSSdMid.c
+  Sandstone/SSSd/SSSdService.c
+  Sandstone/SSSpi/SSLpcEnv.c
+  Sandstone/SSSpi/SSLpcEnvService.c
+  Sandstone/SSSpi/SSLpcReset.c
+  Sandstone/SSSpi/SSLpcResetService.c
+  Sandstone/SSSpi/SSSpiEnv.c
+  Sandstone/SSSpi/SSSpiReset.c
+  Sandstone/SSSpi/SSLpcLate.c
+  Sandstone/SSSpi/SSLpcMid.c
+  Sandstone/SSSpi/SSSpiLate.c
+  Sandstone/SSSpi/SSSpiMid.c
+  Sandstone/SSUsb/SSUsbEnv.c
+  Sandstone/SSUsb/SSUsbReset.c
+  Sandstone/SSUsb/SSXhciEnv.c
+  Sandstone/SSUsb/SSXhciRecovery.c
+  Sandstone/SSUsb/SSXhciReset.c
+  Sandstone/SSUsb/SSXhciResetService.c
+  Sandstone/SSUsb/SSUsbLate.c
+  Sandstone/SSUsb/SSUsbMid.c
+  Sandstone/SSUsb/SSXhciLate.c
+  Sandstone/SSUsb/SSXhciMid.c
+  Sandstone/SSUsb/SSXhciService.c
+  Sandstone/SSXgbe/SSXgbeEnv.c
+  Sandstone/SSXgbe/SSXgbeMid.c
+  Sandstone/SSXgbe/SSXgbeLate.c
+  Sandstone/SSXgbe/SSXgbeLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[LibraryClasses]
+#<Embedded_Override_Start>
+  PcdLib
+#<Embedded_Override_End>
+  AmdBaseLib
+  NbioHandleLib
+  NbioSmuV10Lib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+#<Embedded_Override_Start>
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdEspiIo80Enable
+#<Embedded_Override_End>
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdGetRVFamilyOPN
+
+[BuildOptions]
+
+
+

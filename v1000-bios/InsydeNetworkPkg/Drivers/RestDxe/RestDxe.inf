@@ -1,0 +1,66 @@
+## @file
+#  REST protocol implementation.
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+##
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = RestDxe
+  FILE_GUID                 = D54D3DBE-CE19-489f-8EDE-9FE2F7238650
+  MODULE_TYPE               = UEFI_DRIVER
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = RestDxeDriverEntryPoint
+  UNLOAD_IMAGE              = NetLibDefaultUnload
+  MODULE_UNI_FILE           = RestDxe.uni
+  BINARY_VERSION            = 05.31.41.1012
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeNetworkPkg/InsydeNetworkPkg.dec
+
+[Sources]
+  ComponentName.h
+  ComponentName.c
+  RestDriver.h
+  RestDriver.c
+  RestImpl.h
+  RestImpl.c
+  RestHttpClient.c
+  RestHttpClient.h
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  BaseLib
+  UefiLib
+  DebugLib
+  DpcLib
+  HttpLib
+  NetLib
+
+[Protocols]
+  gEfiHttpServiceBindingProtocolGuid
+  gEfiHttpProtocolGuid
+  gEfiRestProtocolGuid
+  gEfiIp4Config2ProtocolGuid
+  gEfiIp6ConfigProtocolGuid
+  gEfiDns4ProtocolGuid
+  gEfiDns4ServiceBindingProtocolGuid
+  gEfiDns6ProtocolGuid
+  gEfiDns6ServiceBindingProtocolGuid
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdH2ORestIPv6DnsPolicy
+

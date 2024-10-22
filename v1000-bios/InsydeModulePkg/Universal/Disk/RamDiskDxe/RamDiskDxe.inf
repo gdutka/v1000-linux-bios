@@ -1,0 +1,105 @@
+## @file
+#  Component description file for RAM Disk Module.
+#
+#******************************************************************************
+#* Copyright (c) 2015 - 2020, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION          = 0x00010005
+  BASE_NAME            = RamDiskDxeDriver
+  MODULE_UNI_FILE      = RamDiskDxe.uni
+  FILE_GUID            = 9AA27DAE-2E90-11E5-897D-6DFC1D5D46B0
+  MODULE_TYPE           = DXE_DRIVER
+  VERSION_STRING       = 1.0
+  ENTRY_POINT          = InitializeRamDiskDriver
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  RamDisk.c
+  RamDisk.h
+  RamDiskImpl.c
+  RamDiskProtocol.c
+  RamDiskFileExplorer.c
+  RamDiskImpl.h
+  RamDiskHii.vfr
+  RamDiskHiiStrings.uni
+  RamDiskNVData.h
+  FileExplorer.c
+
+[Packages]
+  InsydeModulePkg/InsydeModulePkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DevicePathLib
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  UefiLib
+  BaseLib
+  UefiDriverEntryPoint
+  DebugLib
+  UefiBootServicesTableLib
+  UefiHiiServicesLib
+  MemoryAllocationLib
+  HiiLib
+  FileExplorerLib
+  DevicePathLib
+  PrintLib
+  PcdLib
+  DxeServicesLib
+  GenericBdsLib
+  GenericUtilityLib
+
+[Guids]
+  gH2ORamDiskGuid                            #ALWAYS_CONSUME
+  gEfiIfrTianoGuid                               ## PRODUCES            ## GUID  # HII opcode
+  gEfiVirtualDiskGuid                            ## SOMETIMES_CONSUMES  ## GUID
+  gEfiFileInfoGuid                               ## SOMETIMES_CONSUMES  ## GUID  # Indicate the information type
+  gH2ORamDiskFormSetGuid
+  gRamDiskFormSetGuid
+
+[Protocols]
+  gEfiLoadedImageProtocolGuid                #ALWAYS_CONSUME
+  gEfiBlockIoProtocolGuid                    #ALWAYS_PRODUCE
+  gEfiDevicePathProtocolGuid                 #ALWAYS_PRODUCE
+  gH2ORamDiskServicesProtocolGuid            #ALWAYS_PRODUCE
+  gEfiRamDiskProtocolGuid                    #ALWAYS_CONSUME
+  gEfiHiiConfigAccessProtocolGuid                ## PRODUCES
+  gEfiDevicePathProtocolGuid                     ## PRODUCES
+  gEfiBlockIoProtocolGuid                        ## PRODUCES
+  gEfiSimpleFileSystemProtocolGuid               ## SOMETIMES_CONSUMES
+  gEfiLegacyBiosProtocolGuid
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdH2ORamDiskSize
+  gInsydeTokenSpaceGuid.PcdH2ORamDiskApiSupported
+  gInsydeTokenSpaceGuid.PcdH2ORamDiskAutoCreatedList
+
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId            ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId       ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision      ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId        ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorRevision  ## SOMETIMES_CONSUMES
+  gInsydeTokenSpaceGuid.PcdScuFormsetGuidList
+  gInsydeTokenSpaceGuid.PcdScuFormsetFlagList
+  gLinkBootTokenSpaceGuid.PcdH2ORamDiskFormsetGuid
+
+[Depex]
+  gEfiHiiConfigRoutingProtocolGuid  AND
+  gEfiHiiDatabaseProtocolGuid AND
+  gEfiRamDiskProtocolGuid

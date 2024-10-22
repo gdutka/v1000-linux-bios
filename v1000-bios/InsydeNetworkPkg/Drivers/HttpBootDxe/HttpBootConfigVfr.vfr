@@ -1,0 +1,66 @@
+/** @file
+  HTTP boot configuration related functions.
+
+;******************************************************************************
+;* Copyright (c) 2019 - 2019, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+/** @file
+  VFR file used by the HTTP Boot configuration component.
+
+  Copyright (c) 2016 - 2018, Intel Corporation. All rights reserved.<BR>
+
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+**/
+
+#include "HttpBootConfigNVDataStruc.h"
+
+formset
+  guid   = HTTP_BOOT_CONFIG_GUID,
+  title  = STRING_TOKEN(STR_HTTP_BOOT_CONFIG_FORM_TITLE),
+  help   = STRING_TOKEN(STR_HTTP_BOOT_CONFIG_FORM_HELP),
+
+  varstore HTTP_BOOT_CONFIG_IFR_NVDATA,
+    name = HTTP_BOOT_CONFIG_IFR_NVDATA,
+    guid = HTTP_BOOT_CONFIG_GUID;
+
+  form formid = FORMID_MAIN_FORM,
+    title = STRING_TOKEN(STR_HTTP_BOOT_CONFIG_FORM_TITLE);
+
+    subtitle text = STRING_TOKEN (STR_HTTP_BOOT_CONFIG_FORM_HELP);
+
+    oneof varid  = HTTP_BOOT_CONFIG_IFR_NVDATA.IpVersion,
+          prompt = STRING_TOKEN(STR_HTTP_BOOT_IP_VERSION_PROMPT),
+          help   = STRING_TOKEN(STR_HTTP_BOOT_IP_VERSION_HELP),
+          option text = STRING_TOKEN(STR_HTTP_BOOT_IP_VERSION_4),   value = HTTP_BOOT_IP_VERSION_4,   flags = DEFAULT;
+          option text = STRING_TOKEN(STR_HTTP_BOOT_IP_VERSION_6),   value = HTTP_BOOT_IP_VERSION_6,   flags = 0;
+    endoneof;
+
+    string  varid   = HTTP_BOOT_CONFIG_IFR_NVDATA.Uri,
+            prompt  = STRING_TOKEN(STR_BOOT_URI_PROMPT),
+            help    = STRING_TOKEN(STR_BOOT_URI_HELP),
+            flags   = INTERACTIVE,
+            key     = KEY_INITIATOR_URI,
+            minsize = URI_STR_MIN_SIZE,
+            maxsize = URI_STR_MAX_SIZE,
+    endstring;
+
+    text
+      help   = STRING_TOKEN(STR_HTTP_BOOT_ADD_URL),
+      text   = STRING_TOKEN(STR_HTTP_BOOT_ADD_URL),
+      text   = STRING_TOKEN(STR_HTTP_BOOT_ADD_URL),
+      flags  = INTERACTIVE,
+      key    = HTTP_BOOT_KEY_INITIATOR_URI;
+
+    label HTTP_BOOT_URL_LIST_START_ID;
+    label HTTP_BOOT_URL_LIST_END_ID;
+
+  endform;
+endformset;

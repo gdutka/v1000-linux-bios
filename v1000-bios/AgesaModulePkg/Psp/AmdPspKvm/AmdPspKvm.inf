@@ -1,0 +1,73 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdPspKvm
+  FILE_GUID                      = e8a0a79d-043f-4a36-93f2-6fa5c506e9ff
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = InitializeKvmDriver
+
+[Sources]
+  AmdPspKvm.h
+  AmdPspKvm.c
+  AmdPspKvmKbdTextIn.c
+  AmdPspKvmKeyboard.h
+  AmdPspKvmKeyboard.c
+  AmdPspKvmMouse.h
+  AmdPspKvmMouse.c
+  AmdPspKvmAbsoluteMouse.h
+  AmdPspKvmAbsoluteMouse.c
+  AmdPspKvmSimpleMouse.h
+  AmdPspKvmSimpleMouse.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[LibraryClasses]
+  MemoryAllocationLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  UefiLib
+  UefiDriverEntryPoint
+  BaseLib
+  BaseMemoryLib
+  PciLib
+  PcdLib
+  HobLib
+  AmdBaseLib
+  IdsLib
+  AmdPspBaseLibV2
+  AmdPspMboxLibV2
+
+[Protocols]
+  gEfiSimpleTextInProtocolGuid
+  gEfiSimpleTextInputExProtocolGuid
+  gEfiSimplePointerProtocolGuid
+  gEfiAbsolutePointerProtocolGuid
+  gEfiPciIoProtocolGuid
+  gAmdPspKvmServiceProtocolGuid  #publish
+
+[FeaturePcd]
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspKvmEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspKvmMouseProtocol
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspKvmMbox
+
+[Guids]
+  gEfiConsoleInDeviceGuid
+
+[Depex]
+  gEfiPciIoProtocolGuid
+

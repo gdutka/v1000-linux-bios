@@ -1,0 +1,58 @@
+## @file
+#  Implement the PEIM of PlatformNotifyDispatchPei.
+#
+#******************************************************************************
+#* Copyright (c) 2017 - 2018, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = EarlySetPlatformHardwareSwitchPei
+  FILE_GUID                 = 2A9A39D5-95D8-4e2e-9793-BFAAF0B6820C
+  MODULE_TYPE               = PEIM
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = EarlySetPlatformHardwareSwitchPeiEntryPoint
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[Sources]
+  EarlySetPlatformHardwareSwitchPei.c
+
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  BaseLib
+  HobLib
+  PeiOemSvcKernelLib
+
+[Ppis]
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gAmdCpmTablePpiGuid
+  gAmdCpmOverrideTablePpiGuid
+  gAmdCbsHookPpiGuid
+
+[Guids]
+  gPlatformHardwareSwitchGuid
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciUsb3PortDisable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciUsb2PortDisable
+
+[Depex]
+  TRUE

@@ -1,0 +1,44 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdErrorLogDxe
+  FILE_GUID                      = 8624F36D-6DE0-44C3-8322-74AD419D3A90
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdErrorLogDxeInit
+
+[sources]
+  AmdErrorLogDxe.c
+  AmdErrorLogDxe.h
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DebugLib
+  AmdErrorLogLib
+  HobLib
+
+[Guids]
+  gErrorLogHobGuid
+
+[Protocols]
+  gAmdErrorLogReadyProtocolGuid          #PRODUCED
+  gAmdErrorLogProtocolGuid               #PRODUCED
+  gAmdErrorLogServiceProtocolGuid        #PRODUCED
+  gAmdErrorLogFullProtocolGuid           #PRODUCED
+  gAmdErrorLogAvailableProtocolGuid      #PRODUCED
+  gAmdErrorLogDepexProtocolGuid          #CONSUMED
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  
+[Depex]
+  gAmdErrorLogDepexProtocolGuid
+
+

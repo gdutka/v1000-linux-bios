@@ -1,0 +1,151 @@
+;** @file
+;
+;******************************************************************************
+;* Copyright (c) 2015, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+
+;------------------------------------------------------------------------------
+;
+; Copyright (c) 2006 - 2012, Intel Corporation. All rights reserved.<BR>
+; This program and the accompanying materials
+; are licensed and made available under the terms and conditions of the BSD License
+; which accompanies this distribution.  The full text of the license may be found at
+; http://opensource.org/licenses/bsd-license.php.
+;
+; THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+; WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+;
+;------------------------------------------------------------------------------
+
+  SECTION .text
+
+DEFAULT REL
+
+;------------------------------------------------------------------------------
+;  VOID
+;  EFIAPI
+;  IoReadFifo8 (
+;    IN UINTN                  Port,              // rcx
+;    IN UINTN                  Size,              // rdx
+;    IN VOID                   *Buffer            // r8
+;    );
+;------------------------------------------------------------------------------
+;IoReadFifo8 PROC
+global ASM_PFX(IoReadFifo8)
+ASM_PFX(IoReadFifo8):
+    cld
+    xchg    rcx, rdx
+    xchg    rdi, r8             ; rdi: buffer address; r8: save rdi
+rep insb
+    mov     rdi, r8             ; restore rdi
+    ret
+;IoReadFifo8 ENDP
+
+;------------------------------------------------------------------------------
+;  VOID
+;  EFIAPI
+;  IoReadFifo16 (
+;    IN UINTN                  Port,              // rcx
+;    IN UINTN                  Size,              // rdx
+;    IN VOID                   *Buffer            // r8
+;    );
+;------------------------------------------------------------------------------
+;IoReadFifo16 PROC
+global ASM_PFX(IoReadFifo16)
+ASM_PFX(IoReadFifo16):
+    cld
+    xchg    rcx, rdx
+    xchg    rdi, r8             ; rdi: buffer address; r8: save rdi
+rep insw
+    mov     rdi, r8             ; restore rdi
+    ret
+;IoReadFifo16 ENDP
+
+;------------------------------------------------------------------------------
+;  VOID
+;  EFIAPI
+;  IoReadFifo32 (
+;    IN UINTN                  Port,              // rcx
+;    IN UINTN                  Size,              // rdx
+;    IN VOID                   *Buffer            // r8
+;    );
+;------------------------------------------------------------------------------
+;IoReadFifo32 PROC
+global ASM_PFX(IoReadFifo32)
+ASM_PFX(IoReadFifo32):
+    cld
+    xchg    rcx, rdx
+    xchg    rdi, r8             ; rdi: buffer address; r8: save rdi
+rep insd
+    mov     rdi, r8             ; restore rdi
+    ret
+;IoReadFifo32 ENDP
+
+;------------------------------------------------------------------------------
+;  VOID
+;  EFIAPI
+;  IoWriteFifo8 (
+;    IN UINTN                  Port,              // rcx
+;    IN UINTN                  Size,              // rdx
+;    IN VOID                   *Buffer            // r8
+;    );
+;------------------------------------------------------------------------------
+;IoWriteFifo8 PROC
+global ASM_PFX(IoWriteFifo8)
+ASM_PFX(IoWriteFifo8):
+    cld
+    xchg    rcx, rdx
+    xchg    rsi, r8             ; rsi: buffer address; r8: save rsi
+rep outsb
+    mov     rsi, r8             ; restore rsi
+    ret
+;IoWriteFifo8 ENDP
+
+;------------------------------------------------------------------------------
+;  VOID
+;  EFIAPI
+;  IoWriteFifo16 (
+;    IN UINTN                  Port,              // rcx
+;    IN UINTN                  Size,              // rdx
+;    IN VOID                   *Buffer            // r8
+;    );
+;------------------------------------------------------------------------------
+;IoWriteFifo16 PROC
+global ASM_PFX(IoWriteFifo16)
+ASM_PFX(IoWriteFifo16):
+    cld
+    xchg    rcx, rdx
+    xchg    rsi, r8             ; rsi: buffer address; r8: save rsi
+rep outsw
+    mov     rsi, r8             ; restore rsi
+    ret
+;IoWriteFifo16 ENDP
+
+;------------------------------------------------------------------------------
+;  VOID
+;  EFIAPI
+;  IoWriteFifo32 (
+;    IN UINTN                  Port,              // rcx
+;    IN UINTN                  Size,              // rdx
+;    IN VOID                   *Buffer            // r8
+;    );
+;------------------------------------------------------------------------------
+;IoWriteFifo32 PROC
+global ASM_PFX(IoWriteFifo32)
+ASM_PFX(IoWriteFifo32):
+    cld
+    xchg    rcx, rdx
+    xchg    rsi, r8             ; rsi: buffer address; r8: save rsi
+rep outsd
+    mov     rsi, r8             ; restore rsi
+    ret
+;IoWriteFifo32 ENDP
+
+    ;END
+

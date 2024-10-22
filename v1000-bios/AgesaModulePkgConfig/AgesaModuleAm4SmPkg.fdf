@@ -1,0 +1,9 @@
+## @file
+#  Platform Package Flash Description File
+#
+
+[FV.RECOVERYFV]
+!include AgesaModulePkg/AgesaAm4SmModulePkg.pei.inc.fdf
+
+[FV.DXEFV]
+!include AgesaModulePkg/AgesaAm4SmModulePkg.dxe.inc.fdf

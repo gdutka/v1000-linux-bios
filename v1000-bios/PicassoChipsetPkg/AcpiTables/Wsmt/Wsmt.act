@@ -1,0 +1,76 @@
+/** @file
+  
+
+;******************************************************************************
+;* Copyright (c) 2017, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+#include "Wsmt.h"
+
+EFI_ACPI_WSMT_TABLE Wsmt = {
+  {EFI_ACPI_WINDOWS_SMM_SECURITY_MITIGATION_TABLE_SIGNATURE,
+  sizeof (EFI_ACPI_WSMT_TABLE),
+  EFI_WSMT_TABLE_REVISION,
+
+  //
+  // Checksum will be updated at runtime
+  //
+  0x00,
+  
+  //
+  // OEM identification
+  //
+  {EFI_ACPI_OEM_ID},
+
+  //
+  // OEM table identification
+  //
+  EFI_ACPI_OEM_TABLE_ID,
+  
+  //
+  // OEM revision number
+  //
+  EFI_ACPI_OEM_REVISION,
+  
+  //
+  // ASL compiler vendor ID  
+  //
+  EFI_ACPI_CREATOR_ID,
+  
+  //
+  // ASL compiler revision number
+  //
+  EFI_ACPI_CREATOR_REVISION},
+  
+  //
+  // Protection Flags
+  //
+  0
+};
+
+#ifdef __GNUC__
+VOID*
+ReferenceAcpiTable (
+ VOID
+ )
+
+{
+ return (VOID*)&Wsmt;
+}
+#else
+VOID
+main (
+ VOID
+ )
+
+{
+  return;
+}
+#endif

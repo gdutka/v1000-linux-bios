@@ -1,0 +1,428 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: NBIO
+ * @e \$Revision: 61089 $   @e \$Date: 2011-10-31 10:31:02 -0700 (Mon, 31 Oct 2011) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+  //-----------------------------------------------------------------
+  // Transfer data
+  //-----------------------------------------------------------------
+
+
+  Name (PciePortMaxSpeed, 0)
+  Name (PciePortDcSpeed,  0)
+  Name (PciePortAcSpeed, 0)
+  Name (PciePortCurSpeed, 0)
+  Name (PcieSbPort, 0)
+  Name (PcieLinkSafeMode, 0)
+  Name (PcieLocalOverrideSpeed, 0)
+  Name (StartPhyLane, 0)
+  Name (EndPhyLane, 0)
+  Name (StartCoreLane, 0)
+  Name (EndCoreLane, 0)
+  Name (PortId, 0)
+  Name (LinkHotplug, 0)
+  Name (PciDev, 0)
+  Name (PciFun, 0)
+
+  include ("PciePortRegisters.asl")
+
+  include ("PcieRegisters.asl")
+  //-----------------------------------------------------------------
+  // Data
+  //-----------------------------------------------------------------
+
+  // Requested speed
+  Name (PciePortRequest, 0x0)
+
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Init data
+   *
+   *
+   */
+  Method (_INI, 0) {
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase,  0))), PciePortMaxSpeed)
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase,  1))), PciePortAcSpeed)
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase,  2))), PciePortDcSpeed)
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase,  3))), PciePortCurSpeed)
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase,  4))), PcieSbPort)
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase,  5))), PcieLinkSafeMode)
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase,  6))), PcieLocalOverrideSpeed)
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase,  7))), StartPhyLane)
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase,  8))), EndPhyLane)
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase,  9))), StartCoreLane)
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase, 10))), EndCoreLane)
+    Store (PORTID, PortId)
+    Store (DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase, 12))), LinkHotplug)
+    Store (PCIDEV, PciDev)
+    Store (PCIFUN, PciFun)
+  }
+
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Get port sped base on AC/Dc state
+   *
+   *
+   */
+  Method (procPcieGetPortTargetPolicySpeed, 0) {
+    Store (procPsppGetAcDc (), Local0)
+    if (LEqual (Local0, DC)) {
+      return (PciePortDcSpeed)
+    }
+    if (LEqual (Local0, AC)) {
+      return (PciePortAcSpeed)
+    }
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Check if port request global overrides
+   *
+   *
+   */
+  Method (procPcieGetPortGlobalOverrideSpeed, 0) {
+    if (LNotEqual (PciePortRequest, 0x0)) {
+      if (LEqual (PciePortRequest, 1)) {
+        return (GEN1)
+      }
+    }
+    return (0)
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Get port sped base on overrides
+   *
+   *
+   */
+  Method (procPcieGetPortLocalOverrideSpeed, 0) {
+    if (LNotEqual (PcieLocalOverrideSpeed, 0)) {
+      return (PcieLocalOverrideSpeed)
+    }
+    if (LGreater (PciePortRequest, 0x1)) {
+      return (Subtract (PciePortRequest, 1))
+    }
+    return (0)
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Get port target speed
+   *
+   *
+   */
+  Method (procPcieGetPortTargetSpeed, 0) {
+    //
+    // Policy stopped we need to apply max port speed
+    //
+    if (LEqual (ALIBSCOPE.PsppStatus, PSPP_STOP)) {
+      if (LNotEqual(PcieLocalOverrideSpeed, 0)) {
+        return (PcieLocalOverrideSpeed)
+      }
+      return (PciePortAcSpeed)
+    }
+    //
+    // get speed base on override
+    //
+    Store (procPcieGetPortLocalOverrideSpeed (), Local0)
+    if (LNotEqual (Local0, 0)) {
+      if (LGreater (Local0, PciePortMaxSpeed)) {
+        return (PciePortMaxSpeed)
+      } else {
+        return (Local0)
+      }
+    }
+    //
+    // Get speed base on regular policy
+    //
+    Store (procPcieGetPortTargetPolicySpeed (), Local0)
+    //
+    // Platform have global override
+    //
+    if (LNotEqual (ALIBSCOPE.PsppOverrideSpeed, 0)) {
+      if (LLess (ALIBSCOPE.PsppOverrideSpeed, Local0)) {
+        return (ALIBSCOPE.PsppOverrideSpeed)
+      }
+    }
+    return (Local0)
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Get port current speed
+   *
+   *
+   */
+  Method (procPcieGetPortCurrentSpeed, 0) {
+    return (PciePortCurSpeed)
+  }
+
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Get port max speed
+   *
+   *
+   */
+  Method (procPcieGetMaxPortSpeed, 0) {
+    return (PciePortMaxSpeed)
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Request port speed change
+   *
+   *  Arg0 -  speed to be set
+   */
+  Method (procPcieRequestPortSpeed, 1) {
+    ALIB_DEBUG (Concatenate (" PcieRequestPortSpeed Enter Speed: ", ToHexString (Arg0), ADBG))
+    Store (Arg0, PciePortCurSpeed)
+    //
+    // Set link speed
+    //
+    procPcieProgramLinkSpeed (Arg0)
+    //
+    // check if link alive
+    //
+    // if (LAnd (LGreaterEqual (bfLcCurrentState, 0x10), LEqual (bfLinkDis, 0))) {
+      //
+      // Special handling for registered ports
+      //
+      if (LNotEqual (PciePortRequest, 0)) {
+        //Registered port
+        // Store (0x0, bfLcInitSpdChgWithCsrEn)
+      } else {
+        // Store (0x1, bfLcInitSpdChgWithCsrEn)
+      }
+      //
+      // Disable ASPM on EP
+      //
+      procPcieEpAspm (DISABLE)
+      //
+      // Disable ASPM on RC
+      //
+      Name (varPmControl, 0)
+      // Store (bfPmControl, varPmControl)
+      // Store (0, bfPmControl)
+      //
+      // Retrain link to apply new link speed
+      //
+      // Store (TRUE, Local0)
+      // while (Local0) {
+      //   Store (0x1, bfRetrainLink)
+      //   while (LEqual (bfRetrainLink, 0x1)) {
+      //     Sleep (1)
+      //   }
+      //   while (LEqual (bfLinkTraining, 0x1)) {
+      //     Sleep (1)
+      //   }
+      //   if (LEqual(Arg0, GEN1)) {
+      //     // if (LEqual (bfLcCurrentDataRate, 0x0)) {
+      //     //   break
+      //     // }
+      //   } else {
+      //     break
+      //   }
+      // }
+      //
+      // Reenabel ASPM on RC
+      //
+      // Store (varPmControl, bfPmControl)
+      //
+      // Reenabel ASPM on EP
+      //
+      procPcieEpAspm (ENABLE)
+    // }
+    ALIB_DEBUG ("PcieRequestPortSpeed Exit")
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Set port request
+   *
+   *  Arg0 -  request data
+   */
+  Method (procPcieSetPortRequest, 1) {
+    ALIB_DEBUG (Concatenate (" Set Request : ", ToHexString (Arg0), ADBG))
+    Store (Arg0, PciePortRequest)
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Check if BDF belongs to port
+   *
+   *  Arg0 -  Endpoint BDF
+   */
+  Method (procPcieIsPortChild, 1) {
+    ShiftRight (Arg0, 8, Local0)
+    if (LAnd (LGreaterEqual (Local0, bfSecondaryBus), LLessEqual (Local0, bfSubBusNumber))) {
+      return (TRUE)
+    }
+    return (FALSE)
+  }
+
+ /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Check if BDF is actual port address
+   *
+   *  Arg0 -  BDF
+   */
+  Method (procPcieIsPort, 1) {
+    Or (PciFun, ShiftLeft (PciDev, 3), Local0)
+    if (LEqual (Arg0, Local0)) {
+      return (TRUE)
+    }
+    return (FALSE)
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Check if BDF belongs to port
+   *
+   *  Arg0 -  request data
+   */
+  Method (procPcieSetBootState, 0) {
+    Store (0, PciePortRequest)
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Program Link speed
+   *
+   *  Arg0 -  Speed
+   */
+  Method (procPcieProgramLinkSpeed, 1) {
+    if (LGreaterEqual (Arg0, GEN2)) {
+      // Store (1, bfLcGen2EnStrap)
+      // Store (0, bfLcGen3EnStrap)
+    }
+    if (LGreaterEqual (Arg0, GEN3)) {
+      // Store (1, bfLcGen2EnStrap)
+      // Store (1, bfLcGen3EnStrap)
+    }
+    if (LEqual (Arg0, GEN1)) {
+      // Store (1, bfHwAutonomousSpeedDisable)
+      // Store (0, bfLcGen2EnStrap)
+      // Store (0, bfLcGen3EnStrap)
+      // Store (0, bfLcInitSpeedNegInL1En)
+      if (LEqual (PcieLinkSafeMode, 1)) {
+        // Store (1, bfLcUpconfigureDis)
+      }
+    } else {
+      // Store (0, bfHwAutonomousSpeedDisable)
+      // Store (1, bfLcInitSpeedNegInL1En)
+      // Store (0, bfLcUpconfigureDis)
+    }
+    // Store (Arg0, bfTargetLinkSpeed)
+  }
+
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  A+A feature for PCIe port
+   *  SMC_MSG_SetGpuDeviceId      0x34
+   *  SMC_MSG_SetGpuApertureLow   0x28
+   *  SMC_MSG_SetGpuApertureHigh  0x29
+   *  SMC_MSG_EnableSmuFeatures   0x5
+   *  SMC_MSG_StartGpuLink        0x2A
+   *
+   *  Arg0 - port index
+   */
+  Method (procPciePortAPlusA, 0) {
+      ALIB_DEBUG ("procPciePortAPlusA Enter")
+      Store (0, Local0)  // Function number
+      Store (procPcieEpPciDwRd (Local0, 0), Local1)   // save DeviceID/VenderID to Local1
+      Store (procPcieEpPciDwRd (Local0, 8), Local2)   // save ClassCode to Local2
+      ALIB_DEBUG (Concatenate (" DID/VID:", ToHexString (Local1), ADBG))
+      ALIB_DEBUG (Concatenate (" ClassCode:", ToHexString (Local2), ADBG))
+      if (LNotEqual (Local1, 0xFFFFFFFF)) {
+        And (ShiftRight (Local1, 16), 0xffff, Local3) // Local3 = DeviceId, DeviceId= VendorDeviceId >> 16;
+        And (Local1, 0xffff, Local1)                  // Local1 = VendorId, VendorId = VendorDeviceId & 0xFFFF;
+        And (ShiftRight (Local2, 24), 0xff, Local2)   // Local2 = DeviceType, DeviceType >> 24
+        if (LEqual (Local2, 3)) {
+          if (LOr (LEqual (Local1, 0x1002), LEqual (Local1, 0x1022))) {
+            Store (0x10, Local0)
+            while (LLess (Local0, 0x30)) {
+              Store (procPcieEpPciDwRd (0, Local0), Local4)   // save DeviceApertureLo to Local4
+              ALIB_DEBUG (Concatenate (" DeviceApertureLo:", ToHexString (Local4), ADBG))
+              Store (0, Local5)                               // save DeviceApertureHi to Local5
+              if (LEqual(LAnd(Local4, 0x9), 0)) {
+                if (LEqual(LAnd(Local4, 0x6), 4)) {
+                  Add (Local0, 4, Local0)
+                  Store (procPcieEpPciDwRd (0, Local0), Local5)   // save DeviceApertureHi to Local5
+                  ALIB_DEBUG (Concatenate (" DeviceApertureHi:", ToHexString (Local5), ADBG))
+                }
+                procAPlusAServiceReq (0x34, Local3, 0x0)
+                Store (bfSmuMessageArgument0, Local6)
+                if (LEqual(Local6, 0x1)) {
+                  procAPlusAServiceReq (0x28, And (Local4, 0xfffffff0), 0x0)
+                  procAPlusAServiceReq (0x29, Local5, 0x0)
+                  procAPlusAServiceReq (0x5, 0x0, ShiftLeft(1, 10))
+                  procAPlusAServiceReq (0x2A, 0x0, 0x0)
+                  break
+                }
+              } else {
+                if (LEqual(LAnd(Local4, 0x6), 4)) {
+                  Add (Local0, 4, Local0)
+                }
+              }
+              Add (Local0, 4, Local0)
+            }
+          }
+        }
+      }
+    }
+
+#ifdef DEBUG_OUT
+  /*----------------------------------------------------------------------------------------*/
+  /**
+   *  Program Link speed
+   *
+   *  Arg0 -  Speed
+   */
+  Method (procPcieDebugDump, 0) {
+    ALIB_DEBUG ("--------------------------------------------------------")
+    ALIB_DEBUG (Concatenate (" Device                 : ", ToHexString (PciDev), ADBG))
+    ALIB_DEBUG (Concatenate (" Function               : ", ToHexString (PciFun), ADBG))
+    ALIB_DEBUG (Concatenate (" PciePortAcSpeed        : ", ToHexString (PciePortAcSpeed), ADBG))
+    ALIB_DEBUG (Concatenate (" PciePortMaxSpeed       : ", ToHexString (PciePortMaxSpeed), ADBG))
+    ALIB_DEBUG (Concatenate (" PciePortAcSpeed        : ", ToHexString (PciePortAcSpeed), ADBG))
+    ALIB_DEBUG (Concatenate (" PciePortDcSpeed        : ", ToHexString (PciePortDcSpeed), ADBG))
+    ALIB_DEBUG (Concatenate (" PciePortCurSpeed       : ", ToHexString (PciePortCurSpeed), ADBG))
+    ALIB_DEBUG (Concatenate (" PcieSbPort             : ", ToHexString (PcieSbPort), ADBG))
+    ALIB_DEBUG (Concatenate (" PcieLinkSafeMode       : ", ToHexString (PcieLinkSafeMode), ADBG))
+    ALIB_DEBUG (Concatenate (" PcieLocalOverrideSpeed : ", ToHexString (PcieLocalOverrideSpeed), ADBG))
+    ALIB_DEBUG (Concatenate (" StartPhyLane           : ", ToHexString (StartPhyLane), ADBG))
+    ALIB_DEBUG (Concatenate (" EndPhyLane             : ", ToHexString (EndPhyLane), ADBG))
+    ALIB_DEBUG (Concatenate (" StartCoreLane          : ", ToHexString (StartCoreLane), ADBG))
+    ALIB_DEBUG (Concatenate (" EndCoreLane            : ", ToHexString (EndCoreLane), ADBG))
+    ALIB_DEBUG (Concatenate (" PortId                 : ", ToHexString (PortId), ADBG))
+    ALIB_DEBUG (Concatenate (" LinkHotplug            : ", ToHexString (LinkHotplug), ADBG))
+    ALIB_DEBUG ("--------------------------------------------------------")
+  }
+
+#endif
+
+  include ("PcieEndpoint.asl")
+
+#if HOTPLUG_SUPPORT
+  include ("PciePortHotplug.asl")
+#endif
+

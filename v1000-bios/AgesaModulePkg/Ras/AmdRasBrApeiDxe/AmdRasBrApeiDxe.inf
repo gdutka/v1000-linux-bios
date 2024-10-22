@@ -1,0 +1,44 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdRasBrApeiDxe
+  FILE_GUID                      = 10D93A56-2D64-47d3-828D-7A5066915292
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdRasBrApeiDxeInit
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleRasPkg.dec
+  AgesaModulePkg/AgesaFamily15ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiDriverEntryPoint
+  DebugLib
+  RasBrBaseLib
+
+[sources]
+  AmdRasBrApeiDxe.c
+  AmdRasBrApeiDxe.h
+
+[Guids]
+  gEfiEventReadyToBootGuid
+
+[Protocols]
+#  gEfiAcpiTableProtocolGuid                 #CONSUMED
+#  gEfiAcpiSdtProtocolGuid                   #CONSUMED
+  gAmdRasApeiProtocolGuid                   #PRODUCED
+
+[Depex]
+#  gEfiAcpiTableProtocolGuid AND
+#  gEfiAcpiSdtProtocolGuid AND
+  gAmdMemCzDepexProtocolGuid
+

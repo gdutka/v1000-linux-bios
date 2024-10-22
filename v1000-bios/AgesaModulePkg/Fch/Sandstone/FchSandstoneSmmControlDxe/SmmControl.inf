@@ -1,0 +1,57 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdSmmControl
+  FILE_GUID                      = 7c604cbd-5440-46e1-97f7-a4df8dd09c1c
+  MODULE_TYPE                    = DXE_RUNTIME_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdInstallSmmControl
+
+[sources.common]
+  SmmControl.c
+  SmmControl.h
+
+[sources.ia32]
+
+[sources.x64]
+
+[LibraryClasses.common.DXE_RUNTIME_DRIVER]
+  BaseLib 
+  UefiLib
+  PrintLib
+  IoLib
+
+[LibraryClasses]
+  FchDxeLibV9
+
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DebugLib
+  DxeServicesTableLib
+  UefiRuntimeLib
+
+[Guids]
+  gEfiEventVirtualAddressChangeGuid     #CONSUMES #EVENT
+
+[Protocols]
+  gEfiSmmControl2ProtocolGuid           #PRODUCED
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[Depex]
+  gEfiPciRootBridgeIoProtocolGuid
+  AND
+  gEfiCpuIo2ProtocolGuid
+  AND
+  gEfiCpuArchProtocolGuid
+  AND
+  gAmdFchSSSmmControlDepexProtocolGuid
+

@@ -1,0 +1,20 @@
+// /** @file
+// Library description file for H2OSerialConfigLibNull module.
+//
+// ******************************************************************************
+// * Copyright 2019 Insyde Software Corp. All Rights Reserved.
+// *
+// * You may not reproduce, distribute, publish, display, perform, modify, adapt,
+// * transmit, broadcast, present, recite, release, license or otherwise exploit
+// * any part of this publication in any form, by any means, without the prior
+// * written permission of Insyde Software Corp.
+// *
+// ******************************************************************************
+//
+// **/
+
+
+#string STR_MODULE_ABSTRACT             #language en-US "Null instance of H2O Serial Port Configuration Library with empty functions"
+
+#string STR_MODULE_DESCRIPTION          #language en-US "Null instance of H2O Serial Port Configuration Library with empty functions"
+

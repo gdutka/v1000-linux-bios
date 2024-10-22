@@ -1,0 +1,102 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdNbioPcieRVPei
+  FILE_GUID                      = 2B9E5A05-686F-4e72-AF0A-2D7BAA61E918
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdNbioPcieRVPeiEntry
+
+[Sources]
+  AmdNbioPcieRVPei.c
+  DxioInitRV.c
+  PcieRemapRV.c
+  HidePortsRV.c
+  DeviceControlRV.c
+  PcieHotplugRV.c
+  AmdNbioPcieRVPei.h
+  DxioWorkaround.c
+  DxioCfgPointsRV.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+  PeimEntryPoint
+  PeiServicesLib
+  PcieConfigLib
+  PcdLib
+  HobLib
+  NbioHandleLib
+  NbioRegisterAccLib
+  DxioLibV1
+  AmdIdsHookLib
+  NbioIdsHookRVLib
+  PeiServicesTablePointerLib
+  NbioAzaliaLib
+  FabricResourceManagerLib
+  GnbMemAccLib
+  PcieMiscCommLib
+  BaseMemoryLib
+  SmnAccessLib
+
+[Guids]
+  gGnbPcieHobInfoGuid
+
+[Ppis]
+  gAmdNbioBaseServicesZpPpiGuid  #Consumed
+  gAmdNbioPcieServicesPpiGuid
+  gAmdNbioPcieTrainingDonePpiGuid
+  gAmdFabricTopologyServices2PpiGuid
+  gAmdNbioSmuServicesPpiGuid  #CONSUMED
+  gAmdNbioPcieComplexPpiGuid
+  gAmdMemoryInfoHobPpiGuid
+  gAmdSocLogicalIdPpiGuid     #CONSUMED
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgHdAudioEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSataPhyTuning
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdGppAtomicOps
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdGfxAtomicOps
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgAzaliaCodecVerbTable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgAzaliaSsid
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPCIeAEREnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPsppPolicy
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPcieSubsystemDeviceID
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPcieSubsystemVendorID
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgACSEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdNbioAudioSelect
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPcieAriSupport
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAcpController
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTTargetSpeed
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCfgGnbIGPUSSID
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCfgGnbHDAudioSSID
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPspccpSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgXgbeSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgSensorFusionHubEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgNbifRCSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdNbioReportEdbErrors
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSkipPspMessage
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgIgpuContorl
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCfgGnbIGPUAudioSSID
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgIommuSsid
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdGetRVFamilyOPN
+
+[Depex]
+  gAmdNbioPcieRVPeiDepexPpiGuid AND
+  gAmdNbioBaseServicesZpPpiGuid AND
+  gAmdFabricTopologyServices2PpiGuid AND
+  gAmdFchInitPpiGuid
+
+

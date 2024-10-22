@@ -1,0 +1,54 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PcieMiscCommLib
+  FILE_GUID                      = D72C7037-3E7E-4c21-A5CD-2543E7BAF6EC
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PcieMiscCommLib
+
+[Sources]
+  PcieAspmBlackListLib.c
+  PcieAspmExitLatencyLib.c
+  PcieAspmLib.c
+  PcieClkPmLib.c
+  PcieCommClkCfgLib.c
+  PcieMaxPayloadLib.c
+  PcieMaxCplPayloadLib.c
+  PcieAriLib.c
+  PcieAspmL1SSLib.c
+  PcieSlotPwrLimit.c
+  PcieMaxReadReqLib.c
+  PcieLTRLib.c
+  PcieAspmL1SSBlackListLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  PcdLib
+  PrintLib
+  IdsLib
+  BaseLib
+  DebugPrintErrorLevelLib
+  AmdBaseLib
+  PcieConfigLib
+  NbioRegisterAccLib
+  BaseLib
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgMaxPayloadEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPcieAspmBlackListEnableEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgMaxReadRequestSize
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPcieAriSupport
+

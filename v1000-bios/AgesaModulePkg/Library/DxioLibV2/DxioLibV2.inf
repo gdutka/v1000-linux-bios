@@ -1,0 +1,53 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxioLibV2
+  FILE_GUID                      = 9DBAA87A-838C-4DC2-964D-AB04E5CC984A
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DxioLibV2
+
+
+[Sources]
+  DxioLibV2.c
+  DxioAncDataV2.c
+  DxioParser.c
+  DxioDebugOut.c
+  DxioProcessResults.c
+  DxioMappingResults.c
+  DxioTrainingResults.c
+  DxioSupportFunctions.c
+  DxioLibLocal.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  PcdLib
+  PrintLib
+  BaseLib
+  DebugPrintErrorLevelLib
+  IdsLib
+  AmdBaseLib
+  NbioRegisterAccLib
+  OemGpioResetControlLib
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdDxioMajorRevision
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdDxioMinorRevision
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgSkipPspMessage
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdDxioPhyProgramming
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAfterResetDelay
+

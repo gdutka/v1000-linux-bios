@@ -1,0 +1,121 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdCcxZenRvDxe
+  FILE_GUID                      = 3C9A095D-C3CB-4302-96E1-7105A7C46A69
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdCcxZenRvDxeInit
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses.common.DXE_DRIVER]
+  BaseLib
+  UefiLib
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  UefiDriverEntryPoint
+  CcxBaseX86Lib
+  CcxMicrocodePatchLib
+  CcxRolesLib
+  CcxResetTablesLib
+  CcxSetMcaLib
+  AmdBaseLib
+  AmdHeapLib
+  AmdPspBaseLibV2
+  AmdIdsHookLib
+  CcxZenRvIdsHookLibDxe
+  CcxPstatesLib
+  CcxSmbiosLib
+  AmdPspApobLib
+  CcxHaltLib
+  FabricRegisterAccLib
+  AmdCapsuleLib
+  FchBaseLib
+  CcxSmmAccess2Lib
+  BaseCoreLogicalIdLib
+
+[Sources]
+  AmdCcxZenRvDxe.c
+  AmdCcxZenRvDxe.h
+  CcxZenRvAcpiServicesDxe.c
+  CcxZenRvAcpiServicesDxe.h
+  CcxZenRvC6.c
+  CcxZenRvC6.h
+  CcxZenRvCpb.c
+  CcxZenRvCpb.h
+  CcxZenRvMicrocodePatch.c
+  CcxZenRvMicrocodePatch.h
+  CcxZenRvPrefetch.c
+  CcxZenRvPrefetch.h
+  CcxZenRvSmbiosDxe.c
+  CcxZenRvSmbiosDxe.h
+
+[Sources.Ia32]
+#[start-240426-IB18160212-add]#
+  Ia32/ApAsm.nasm
+#[end-240426-IB18160212-add]#
+
+[Sources.x64]
+  x64/ApAsm.asm
+#[start-240426-IB18160212-add]#
+  x64/ApAsm.nasm
+#[end-240426-IB18160212-add]#
+
+[Guids]
+
+[Protocols]
+  gAmdCoreTopologyServicesProtocolGuid    #CONSUME
+  gAmdNbioSmuServicesProtocolGuid         #CONSUME
+  gAmdFabricTopologyServices2ProtocolGuid #CONSUME
+  gAmdCcxDxeInitCompleteProtocolGuid      #PRODUCED
+  gEfiMpServiceProtocolGuid               #CONSUME
+  gAmdCcxSmbiosServicesProtocolGuid       #PRODUCED
+  gAmdAcpiCpuSsdtServicesProtocolGuid     #PRODUCED
+  gAmdCcxAcpiCratServicesProtocolGuid     #PRODUCED
+  gAmdCcxAcpiSratServicesProtocolGuid     #PRODUCED
+  gAmdMpServicesPreReqProtocolGuid        #PRODUCED
+  gAmdFabricNumaServicesProtocolGuid      #CONSUME
+  gAmdCcxOcCompleteProtocolGuid           #PRODUCED
+  gAmdNbioSmuInitCompleteProtocolGuid     #CONSUME
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCStateMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAgesaPstatePolicy
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCStateIoBaseAddress
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCpbMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdHardwarePrefetchMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSoftwarePrefetchMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSmtMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiS3Support
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdS0i3Enable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCstC3
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuCstC1Latency
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuCstC2Latency
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiCpuCstC3Latency
+
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxS3SaveSmi
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxCfgPFEHEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdRedirectForReturnDis
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdStreamingStoresCtrl
+
+[Depex]
+  gAmdCcxZenRvDepexProtocolGuid AND
+  gAmdCoreTopologyServicesProtocolGuid AND
+  gAmdNbioSmuServicesProtocolGuid AND
+  gAmdFabricTopologyServices2ProtocolGuid
+

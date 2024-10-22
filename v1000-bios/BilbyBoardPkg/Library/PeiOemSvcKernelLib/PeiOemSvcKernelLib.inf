@@ -1,0 +1,96 @@
+## @file
+#  Component description file for PeiOemSvcKernelLib instance.
+#
+#******************************************************************************
+#* Copyright (c) 2012-2013, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiOemSvcKernelLib
+  FILE_GUID                      = BFCAACD2-EAC7-479b-800D-850E4D185893
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PeiOemSvcKernelLib|PEI_CORE PEIM
+
+[Sources]
+  OemSvcBootModeCreateFv.c
+#  OemSvcChangeBootMode.c
+#  OemSvcChipsetModifyClockGenInfo.c
+  OemSvcGetProtectTable.c
+  OemSvcDetectRecoveryRequest.c
+  OemSvcGetVerbTable.c
+#  OemSvcHookWhenRecoveryFail.c
+#  OemSvcInitMemoryDiscoverCallback.c
+  OemSvcInitPlatformStage1.c
+#  OemSvcInitPlatformStage2.c
+#  OemSvcIsBootWithNoChange.c
+#  OemSvcModifySetupVarPlatformStage2.c
+  OemSvcSetRecoveryRequest.c
+#  OemSvcSetPlatformHardwareSwitch.c
+#  OemSvcUpdateMemoryTypeInformation.c
+#  OemSvcGetWaitTimerAfterHdaInit.c
+#  OemSvcBeforeInitSioPei.c
+#  OemSvcRegSioPei.c
+#  OemSvcAfterInitSioPei.c
+#[-start-181222-IB09860036-add]#
+  OemSvcUpdateGpioCfg.c
+#[-end-181222-IB09860036-add]#
+
+[Ppis]
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gPeiRomCorruptPpiGuid
+
+[Pcd]
+  gPlatformPkgTokenSpaceGuid.PcdEmulationOnly  #EMULATION_ONLY
+  gAmdCpmPkgTokenSpaceGuid.OriginalPlatformId
+  gChipsetPkgTokenSpaceGuid.PcdTpmType
+  gChipsetPkgTokenSpaceGuid.SpiOrLpcTPM
+  gInsydeTokenSpaceGuid.PcdUnsignedFvSupported
+  gInsydeTokenSpaceGuid.PcdFlashUnsignedFvRegionBase
+  gInsydeTokenSpaceGuid.PcdFlashUnsignedFvRegionSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
+  gInsydeTokenSpaceGuid.PcdFlashNvStorageFactoryCopySize
+#>>EnableAbove4GBMmio++
+  gInsydeTokenSpaceGuid.Pcd64BitAmlSupported
+  gChipsetPkgTokenSpaceGuid.PcdMmioMem64Enable
+#<<EnableAbove4GBMmio++
+  gInsydeTokenSpaceGuid.PcdUseFastCrisisRecovery
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+  $(PROJECT_PKG)/Project.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+#[-start-181222-IB09860036-add]#
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+#[-end-181222-IB09860036-add]#
+
+[LibraryClasses]
+  ChipsetConfigLib
+  IoLib
+  CommonEcLib
+  EcLib
+  PeiServicesTablePointerLib
+  PcdLib
+  PciExpressLib
+  HobLib
+#>>EnableAbove4GBMmio++
+  DebugLib
+#<<EnableAbove4GBMmio++
+

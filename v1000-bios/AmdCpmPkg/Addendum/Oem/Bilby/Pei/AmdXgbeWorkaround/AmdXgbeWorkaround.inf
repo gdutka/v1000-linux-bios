@@ -1,0 +1,76 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010005
+  BASE_NAME             = AmdXgbeWorkaroundPei
+  FILE_GUID             = 9eade774-c736-493e-b2a1-9ce0415861fa
+  MODULE_TYPE           = PEIM
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = AmdXgbeWorkaroundPeiInit
+
+[Sources.common]
+  AmdXgbeWorkaround.c
+  AmdXgbeWorkaround.h
+  xGbEI2cLib.c
+  xGbEI2cLib.h
+
+[LibraryClasses]
+  BaseLib
+  HobLib
+  DebugLib
+  PeimEntryPoint
+  AmdCpmBaseLib
+  AmdCpmCpuLib
+  AmdCpmFchLib
+  AmdPbsConfigLib
+  IoLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  DebugLib
+  BaseLib
+  #NetLib
+  TimerLib
+  PcdLib
+  AmdBaseLib
+  IdsLib
+  CcxRolesLib
+  AmdHeapLib
+#  FchPeiLibV9
+  PciLib
+FchSandstonePeiLib
+
+[Guids]
+
+[Ppis]
+gEfiPeiStallPpiGuid
+gEfiPeiI2cMasterPpiGuid
+gEfiPeiReadOnlyVariable2PpiGuid
+gAmdFabricTopologyServices2PpiGuid
+gPeiPostScriptTablePpiGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+MdeModulePkg/MdeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+AgesaModulePkg/AgesaModuleDfPkg.dec 
+SecurityPkg/SecurityPkg.dec
+AgesaModulePkg/Fch/Sandstone/FchSandstone.dec  
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbeSfp
+  gAmdCpmPkgTokenSpaceGuid.PcdBoardRevision
+[Depex]
+gEfiPeiI2cMasterPpiGuid AND
+gAmdCpmTablePpiGuid AND
+gEfiPeiReadOnlyVariable2PpiGuid AND
+gAmdFabricTopologyServices2PpiGuid AND
+gEfiPeiMemoryDiscoveredPpiGuid
+ 

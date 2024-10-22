@@ -1,0 +1,47 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = CcxMpServicesSmmLib
+  FILE_GUID                      = CB8171AB-6B94-471E-AA32-80AFCDCFBD86
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CcxMpServicesLib|DXE_SMM_DRIVER SMM_CORE
+  CONSTRUCTOR                    = CcxMpServicesSmmLibConstructor
+
+[Sources.common]
+  CcxMpServicesSmmLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+  CcxRolesLib
+
+[Guids]
+
+[Protocols]
+  gEfiMpServiceProtocolGuid               #CONSUME
+  gAmdFabricTopologyServices2ProtocolGuid #CONSUME
+  gAmdCoreTopologyServicesProtocolGuid    #CONSUME
+  gAmdCoreTopologyServicesV2ProtocolGuid  #CONSUME
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+  gAmdFabricTopologyServices2ProtocolGuid AND
+  gAmdCoreTopologyServicesProtocolGuid OR gAmdCoreTopologyServicesV2ProtocolGuid
+

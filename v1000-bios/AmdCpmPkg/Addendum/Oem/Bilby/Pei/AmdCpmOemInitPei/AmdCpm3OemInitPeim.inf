@@ -1,0 +1,142 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdCpmOemInitPeim
+  FILE_GUID                      = D617467B-1FF7-403F-A87D-29F61C80EE7C
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdCpmOemInitPeimEntryPoint
+
+[Sources.common]
+
+[Sources.ia32]
+  AmdCpmOem.h
+  AmdCpmOemInitPeim.c
+  AmdCpmOemInitPeim.h
+  AmdCpmOemTable.c
+
+[Sources.x64]
+
+[BuildOptions]
+  *_*_*_CC_FLAGS = -DAGESA_V9
+
+[LibraryClasses]
+  BaseLib
+  HobLib
+  DebugLib
+  PeimEntryPoint
+  AmdCpmBaseLib
+  AmdCpmCpuLib
+  AmdCpmFchLib
+  AmdPbsConfigLib
+  IoLib
+  AmdBaseLib
+#[-start-181221-IB09860035-add]#
+  GpioCfgLib
+#[-end-181221-IB09860035-add]#
+#[-start-181222-IB09860036-add]#
+  PeiOemSvcKernelLibDefault
+#[-end-181222-IB09860036-add]#
+
+[Guids]
+  gAmdCpmTableHobGuid
+
+[Protocols]
+
+[Ppis]
+  gAmdCpmTablePpiGuid
+  gAmdCpmOemTablePpiGuid
+  gAmdCpmTableHobPpiGuid
+  gEfiPeiSmbus2PpiGuid
+  gEfiPeiMemoryDiscoveredPpiGuid
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gAmdCpmOverrideTablePpiGuid
+  gEfiPeiI2cMasterPpiGuid
+  gM24Lc128PpiGuid
+  gAmdNbioPcieComplexPpiGuid
+  gAmdCpmGpioInitFinishedPpiGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+#[-start-181221-IB09860035-add]#
+  $(PROJECT_PKG)/Project.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+#[-end-181221-IB09860035-add]#
+#[-start-181222-IB09860036-add]#
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+#[-end-181222-IB09860036-add]#
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.PcdSimpleSltSupport
+  gAmdCpmPkgTokenSpaceGuid.OriginalPlatformId
+  gAmdCpmPkgTokenSpaceGuid.CurrentPlatformId
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgAzaliaCodecVerbTable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSdConfig
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.FchRTDeviceEnableMap
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLegacyFree
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterBase
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gAmdCpmPkgTokenSpaceGuid.PcdSerialIoDecode
+  gAmdCpmPkgTokenSpaceGuid.EcRamBaseAddr
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbePort0MAC
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbePort1MAC
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbePort0Table
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbePort1Table
+  #gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspKvmEnable
+  #gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspKvmMouseProtocol
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbeMdio0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbeMdio1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbeSfp
+  gAmdCpmPkgTokenSpaceGuid.PcdFchUartPort
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintSerialPort
+  gAmdCpmPkgTokenSpaceGuid.PmicVersion
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdTelemetry_VddcrVddfull_Scale_Current
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdTelemetry_VddcrVddOffset
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdTelemetry_VddcrSocfull_Scale_Current
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdTelemetry_VddcrSocOffset
+  gAmdCpmPkgTokenSpaceGuid.PcdConnectStandbyEnable
+  gAmdCpmPkgTokenSpaceGuid.PcdReduceHardwareEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdMmioAbove4GLimit
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDpHbr2PhySel
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDpHbr2Version
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDpHbr2TableSize
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAtomDpHbr2TuningSetting
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDpHbr3PhySel
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDpHbr3Version
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDpHbr3TableSize
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAtomDpHbr3PhyDpSetting
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDpPhyOverride
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdEmmcEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPsppPolicy
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdGetRVFamilyOPN
+  gAmdCpmPkgTokenSpaceGuid.PcdIoPort80LpcDecodeEn
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgDp0RetimerRedriverTable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgDp1RetimerRedriverTable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbePort0ConfigEn
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbePort1ConfigEn
+  gAmdCpmPkgTokenSpaceGuid.PcdBoardRevision
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdVddOffVidCtrl
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdVddOffVid
+#[-start-181221-IB09860035-add]#
+  gChipsetPkgTokenSpaceGuid.PcdH2OGpioCfgSupported
+#[-end-181221-IB09860035-add]#
+
+[Depex]
+  gEfiPeiReadOnlyVariable2PpiGuid
+

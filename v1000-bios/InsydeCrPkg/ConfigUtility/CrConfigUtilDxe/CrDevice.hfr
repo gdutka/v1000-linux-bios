@@ -1,0 +1,118 @@
+/** @file
+
+  Console Redirection Configuration DXE VFR implementation.
+
+;******************************************************************************
+;* Copyright (c) 2019, Insyde Software Corporation. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+  //
+  // =========Form CR_DEVICE=============
+  //
+  form
+    formid = CONCATENATE3(CR_DEVICE_FORM_, CR_DEV_INDEX, _ID), title = STRING_TOKEN(CONCATENATE3(STR_CR_DEVICE_, CR_DEV_INDEX, _TITLE));
+
+    subtitle  text = STRING_TOKEN(CONCATENATE3(STR_CR_DEVICE_, CR_DEV_INDEX, _TITLE));
+    subtitle  text = STRING_TOKEN(STR_BLANK_STRING);
+
+    oneof
+      varid       = CrConfig.CrPortConfig[CR_DEV_INDEX].PortEnable,
+      questionid  = CONCATENATE2(KEY_PORT_ENABLE,CR_DEV_INDEX),
+      prompt      = STRING_TOKEN(STR_CR_PORT_ENABLE),
+      help        = STRING_TOKEN(STR_CR_PORT_ENABLE_HELP),
+      option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = INTERACTIVE | DEFAULT;
+      option text = STRING_TOKEN(STR_ENABLED_TEXT),   value = 1, flags = INTERACTIVE;
+    endoneof;
+
+    grayoutif
+      ideqval CrConfig.CrPortConfig[CR_DEV_INDEX].PortEnable == 0;
+
+      oneof
+        varid       = CrConfig.CrPortConfig[CR_DEV_INDEX].UseGlobalSetting,
+        questionid  = CONCATENATE2(KEY_USE_GLOBAL_SETTING,CR_DEV_INDEX),
+        prompt      = STRING_TOKEN(STR_CR_USE_GLOBAL_SETTING),
+        help        = STRING_TOKEN(STR_CR_CR_USE_GLOBAL_SETTING_HELP),
+        option text = STRING_TOKEN(STR_DISABLED_TEXT),  value = 0, flags = INTERACTIVE | DEFAULT;
+        option text = STRING_TOKEN(STR_ENABLED_TEXT),   value = 1, flags = INTERACTIVE;
+      endoneof;
+
+      suppressif
+        ideqval CrConfig.CrPortConfig[CR_DEV_INDEX].UseGlobalSetting == 1;
+
+        oneof
+          varid       = CrConfig.CrPortConfig[CR_DEV_INDEX].TerminalType,
+          questionid  = CONCATENATE2(KEY_TERMINAL_TYPE,CR_DEV_INDEX),
+          prompt      = STRING_TOKEN(STR_CR_TERMINAL_TYPE),
+          help        = STRING_TOKEN(STR_CR_TERMINAL_TYPE_HELP),
+          option text = STRING_TOKEN(STR_CR_TERMINAL_TYPE_VT100),  value = 0, flags = INTERACTIVE | DEFAULT;
+          option text = STRING_TOKEN(STR_CR_TERMINAL_TYPE_VT100P), value = 1, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_TERMINAL_TYPE_VTUTF8), value = 2, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_TERMINAL_TYPE_ANSI),   value = 3, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_TERMINAL_TYPE_LOG),    value = 4, flags = INTERACTIVE;
+        endoneof;
+
+        oneof
+          varid       = CrConfig.CrPortConfig[CR_DEV_INDEX].BaudRate,
+          questionid  = CONCATENATE2(KEY_BAUD_RATE,CR_DEV_INDEX),
+          prompt      = STRING_TOKEN(STR_CR_BAUD_RATE),
+          help        = STRING_TOKEN(STR_CR_BAUD_RATE_HELP),
+          option text = STRING_TOKEN(STR_CR_BAUD_RATE_115200), value = 7, flags = INTERACTIVE | DEFAULT;
+          option text = STRING_TOKEN(STR_CR_BAUD_RATE_57600),  value = 6, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_BAUD_RATE_38400),  value = 5, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_BAUD_RATE_19200),  value = 4, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_BAUD_RATE_9600),   value = 3, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_BAUD_RATE_4800),   value = 2, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_BAUD_RATE_2400),   value = 1, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_BAUD_RATE_1200),   value = 0, flags = INTERACTIVE;
+        endoneof;
+
+        oneof
+          varid       = CrConfig.CrPortConfig[CR_DEV_INDEX].DataBits,
+          questionid  = CONCATENATE2(KEY_DATA_BITS,CR_DEV_INDEX),
+          prompt      = STRING_TOKEN(STR_CR_DATA_BIT),
+          help        = STRING_TOKEN(STR_CR_DATA_BIT_HELP),
+          option text = STRING_TOKEN(STR_CR_DATA_BIT_7),  value = 7, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_DATA_BIT_8),  value = 8, flags = INTERACTIVE | DEFAULT;
+        endoneof;
+
+        oneof
+          varid       = CrConfig.CrPortConfig[CR_DEV_INDEX].Parity,
+          questionid  = CONCATENATE2(KEY_PARITY,CR_DEV_INDEX),
+          prompt      = STRING_TOKEN(STR_CR_PARITY),
+          help        = STRING_TOKEN(STR_CR_PARITY_HELP),
+          option text = STRING_TOKEN(STR_CR_PARITY_NONE), value = 1, flags = INTERACTIVE | DEFAULT;
+          option text = STRING_TOKEN(STR_CR_PARITY_EVEN), value = 2, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_PARITY_ODD),  value = 3, flags = INTERACTIVE;
+        endoneof;
+
+        oneof
+          varid       = CrConfig.CrPortConfig[CR_DEV_INDEX].StopBits,
+          questionid  = CONCATENATE2(KEY_STOP_BITS,CR_DEV_INDEX),
+          prompt      = STRING_TOKEN(STR_CR_STOP_BIT),
+          help        = STRING_TOKEN(STR_CR_STOP_BIT_HELP),
+          option text = STRING_TOKEN(STR_CR_STOP_BIT_1),  value = 1, flags = INTERACTIVE | DEFAULT;
+          option text = STRING_TOKEN(STR_CR_STOP_BIT_2),  value = 3, flags = INTERACTIVE;
+        endoneof;
+
+        oneof
+          varid       = CrConfig.CrPortConfig[CR_DEV_INDEX].FlowControl,
+          questionid  = CONCATENATE2(KEY_FLOW_CONTROL,CR_DEV_INDEX),
+          prompt      = STRING_TOKEN(STR_CR_FLOW_CONTROL),
+          help        = STRING_TOKEN(STR_CR_FLOW_CONTROL_HELP),
+          option text = STRING_TOKEN(STR_CR_FLOW_CONTROL_NONE),     value = 0, flags = INTERACTIVE | DEFAULT;
+          option text = STRING_TOKEN(STR_CR_FLOW_CONTROL_HARDWARE), value = 1, flags = INTERACTIVE;
+          option text = STRING_TOKEN(STR_CR_FLOW_CONTROL_SOFTWARE), value = 2, flags = INTERACTIVE;
+        endoneof;
+
+      endif;
+    endif;
+
+  endform;
+

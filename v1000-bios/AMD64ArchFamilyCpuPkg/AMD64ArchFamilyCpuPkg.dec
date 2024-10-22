@@ -1,0 +1,110 @@
+## @file
+# Package for support of AMD64 family processors
+#
+#*******************************************************************************
+#* Copyright (c) 2012 - 2013, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#*******************************************************************************
+
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = AMD64ArchFamilyCpuPkg
+  PACKAGE_GUID                   = 9BED1B01-76CD-4bb7-9641-C49B64BF7816
+  PACKAGE_VERSION                = 0.1
+
+[Includes]
+  Include
+
+[LibraryClasses]
+  CpuConfigLib|Include/Library/CpuConfigLib.h
+  CpuOnlyResetLib|Include/Library/CpuOnlyResetLib.h
+  PlatformSecLib|Include/Library/PlatformSecLib.h
+  
+[Guids]
+  gEfiHtBistHobGuid              = { 0xBE644001, 0xE7D4, 0x48B1, { 0xB0, 0x96, 0x8B, 0xA0, 0x47, 0xBC, 0x7A, 0xE7 }}
+  gEfiCpuTokenSpaceGuid          = { 0x2ADA836D, 0x0A3D, 0x43D6, { 0xA2, 0x5A, 0x38, 0x45, 0xCA, 0xD2, 0xD4, 0x00 }}
+
+[Ppis]
+  gPeiCachePpiGuid               = { 0xC153205A, 0xE898, 0x4C24, { 0x86, 0x89, 0xA4, 0xB4, 0xBC, 0xC5, 0xC8, 0xA2 }}
+
+[PcdsFeatureFlag]
+  gEfiCpuTokenSpaceGuid.PcdCpuMicrocodeUpdateFlag|TRUE|BOOLEAN|0x1000000D
+  gEfiCpuTokenSpaceGuid.PcdCpuMachineCheckFlag|TRUE|BOOLEAN|0x1000000E
+  gEfiCpuTokenSpaceGuid.PcdCpuSelectLfpAsBspFlag|FALSE|BOOLEAN|0x1000000F
+  gEfiCpuTokenSpaceGuid.PcdCpuSmmEnableBspElection|FALSE|BOOLEAN|0x32132106
+  gEfiCpuTokenSpaceGuid.PcdCpuLbrFlag|TRUE|BOOLEAN|0x10000017
+  gEfiCpuTokenSpaceGuid.PcdCpuSmmDebug|FALSE|BOOLEAN|0x1000001B
+  gEfiCpuTokenSpaceGuid.PcdCpuSmmStackGuard|FALSE|BOOLEAN|0x1000001C
+  gEfiCpuTokenSpaceGuid.PcdCpuSmmBlockStartupThisAp|TRUE|BOOLEAN|0x32132108
+
+[PcdsFixedAtBuild]
+  gEfiCpuTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber|128|UINT32|0x30000002
+  gEfiCpuTokenSpaceGuid.PcdCpuSmmApSyncTimeout|5000|UINT64|0x32132104
+  gEfiCpuTokenSpaceGuid.PcdCpuSmmStackSize|0x2000|UINT32|0x32132105
+
+  ##
+  #  Maximum number of Ppi is provided by SecCore.
+  ##
+  gEfiCpuTokenSpaceGuid.PcdSecCoreMaxPpiSupported|0x6|UINT32|0x10001010
+  gEfiCpuTokenSpaceGuid.PcdTemporaryRamBase|0xfef00000|UINT32|0x10001001                   
+  gEfiCpuTokenSpaceGuid.PcdTemporaryRamSize|0x2000|UINT32|0x10001002                       
+  gEfiCpuTokenSpaceGuid.PcdSecMaximumNumberOfProcessors|1|UINT32|0x10001000
+
+  #
+  # SEC Padding for EC boot image descriptor
+  # which base is addressed as 0xFFFF.FF00
+  #
+  gEfiCpuTokenSpaceGuid.PcdSecPad1Raw32|0x12345678|UINT32|0x10001005
+  gEfiCpuTokenSpaceGuid.PcdSecPad2Raw32|0xEDCBA987|UINT32|0x10001006
+
+  #
+  # CPU SMBIOS.Type4, Type7
+  #
+  gEfiCpuTokenSpaceGuid.PcdCpuSocketName|"Unknown"|VOID*|0x99900001
+  gEfiCpuTokenSpaceGuid.PcdCpuSerialNumber|"Unknown"|VOID*|0x99900002
+  gEfiCpuTokenSpaceGuid.PcdCpuAssetTag|"Unknown"|VOID*|0x99900003
+  gEfiCpuTokenSpaceGuid.PcdCpuPartNumber|"Unknown"|VOID*|0x99900004
+
+[PcdsFixedAtBuild, PcdsPatchableInModule]
+  ## Stack size in the temporary RAM.
+  #   0 means half of TemporaryRamSize.
+  gEfiCpuTokenSpaceGuid.PcdPeiTemporaryRamStackSize|0|UINT32|0x10001003
+
+[PcdsFixedAtBuild, PcdsPatchableInModule, PcdsDynamic, PcdsDynamicEx]
+  gEfiCpuTokenSpaceGuid.PcdCpuApInitTimeOutInMicroSeconds|50000|UINT32|0x30000001
+  gEfiCpuTokenSpaceGuid.PcdCpuApStackSize|0x8000|UINT32|0x30000003
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureUserConfiguration|0x00000400|UINT32|0x40000001
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureUserConfigurationEx1|0|UINT32|0x40000006
+
+  gEfiCpuTokenSpaceGuid.PcdPlatformType|0|UINT8|0x60000003
+  gEfiCpuTokenSpaceGuid.PcdPlatformCpuMaxCoreFrequency|0x0|UINT32|0x60000004
+  gEfiCpuTokenSpaceGuid.PcdPlatformCpuMaxFsbFrequency|0x0|UINT32|0x60000005
+
+  ## This PCD specifies the AP wait loop mode during POST.
+  #  The value is defined as below.
+  #  1: ApInHltLoop,   AP is in the Hlt-Loop state.
+  #  2: ApInMwaitLoop, AP is in the Mwait-Loop state.
+  #  3: ApInRunLoop,   AP is in the Run-Loop state.
+  gEfiCpuTokenSpaceGuid.PcdCpuApLoopMode|1|UINT8|0x60008006
+
+[PcdsDynamic, PcdsDynamicEx]
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureCapability|0|UINT32|0x40000002
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureSetting|0|UINT32|0x40000003
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureCapabilityEx1|0|UINT32|0x40000004
+  gEfiCpuTokenSpaceGuid.PcdCpuProcessorFeatureSettingEx1|0|UINT32|0x40000005
+  gEfiCpuTokenSpaceGuid.PcdCpuConfigContextBuffer|0x0|UINT64|0x50000001
+  gEfiCpuTokenSpaceGuid.PcdCpuCallbackSignal|0x0|UINT8|0x50000002
+  gEfiCpuTokenSpaceGuid.PcdPlatformCpuFrequencyLists|0x0|UINT64|0x60000006
+  gEfiCpuTokenSpaceGuid.PcdIsPowerOnReset|FALSE|BOOLEAN|0x6000000F
+  gEfiCpuTokenSpaceGuid.PcdCpuPageTableAddress|0x0|UINT64|0x6000000E
+  gEfiCpuTokenSpaceGuid.PcdCpuMtrrTableAddress|0x0|UINT64|0x6000000D
+  gEfiCpuTokenSpaceGuid.PcdCpuS3DataAddress|0x0|UINT64|0x60000010
+  gEfiCpuTokenSpaceGuid.PcdSVMEnable|0x0|UINT8|0x60000011
+  gEfiCpuTokenSpaceGuid.PcdSVMLock|0x0|UINT8|0x60000012
+

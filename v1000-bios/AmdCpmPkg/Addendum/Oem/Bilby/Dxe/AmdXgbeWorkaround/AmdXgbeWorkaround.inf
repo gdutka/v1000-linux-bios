@@ -1,0 +1,66 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010005
+  BASE_NAME             = AmdXgbeWorkaroundDxe
+  FILE_GUID             = c182fb38-0fe4-4bec-9270-a273e1ef2c80
+  MODULE_TYPE           = DXE_DRIVER
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = AmdXgbeWorkaroundDxeInit
+
+[Sources.common]
+  AmdXgbeWorkaround.c
+  AmdXgbeWorkaround.h
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  UefiDriverEntryPoint
+  IoLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  DebugLib
+  BaseLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  NetLib
+  TimerLib
+  PcdLib
+  AmdBaseLib
+  IdsLib
+  CcxRolesLib
+  AmdHeapLib
+  S3BootScriptLib
+
+[Guids]
+
+[Protocols]
+  gxGbEI2cMasterProtocolGuid #CONSUMED
+  gAmdFabricTopologyServices2ProtocolGuid #CONSUMED
+  gAmdCpmTableProtocolGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXgbeSfp
+  gAmdCpmPkgTokenSpaceGuid.PcdBoardRevision
+
+[Depex]
+  gEfiPciEnumerationCompleteProtocolGuid

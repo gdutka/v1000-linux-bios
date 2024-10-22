@@ -1,0 +1,68 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AmdCpmInitDxe
+  FILE_GUID             = 162793AA-0FE7-4010-9818-45F55C5CCC3E
+  MODULE_TYPE           = DXE_DRIVER
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = AmdCpmInitDxeEntryPoint
+
+[Sources.common]
+  AmdCpmInitDxe.c
+
+[Sources.ia32]
+
+[Sources.x64]
+
+
+[LibraryClasses]
+  BaseLib
+  HobLib
+  UefiDriverEntryPoint
+  AmdCpmBaseLib
+  AmdCpmCpuLib
+  AmdCpmFchLib
+
+[Guids]
+  gEfiEventReadyToBootGuid
+  gAmdCpmTableHobGuid
+  gAmdMemoryInfoHobGuid
+
+[Protocols]
+  gEfiSmbusHcProtocolGuid
+  gEfiAcpiTableProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid
+  gAmdCpmOemTableProtocolGuid
+  gAmdCpmTableProtocolGuid
+  gAmdCpmNvDataProtocolGuid
+  gAmdCpmDisplayFeatureProtocolGuid
+  gBootTimeRecordProtocolGuid
+
+[Ppis]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.OemCallBackAslName
+  gAmdCpmPkgTokenSpaceGuid.OemMLibAslName
+  gAmdCpmPkgTokenSpaceGuid.EcRamGpioOffset
+  gAmdCpmPkgTokenSpaceGuid.SwSmiCmdSetAutoUmaMode
+  gAmdCpmPkgTokenSpaceGuid.PcieGp18AslName
+  gAmdCpmPkgTokenSpaceGuid.PcdCpmIgnoreOemTableId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiTableHeaderOemId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdAcpiTableHeaderOemTableId
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAgesaTestPointEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAgesaTestPointWidth
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdIdsDebugPort
+
+[Depex]
+  TRUE

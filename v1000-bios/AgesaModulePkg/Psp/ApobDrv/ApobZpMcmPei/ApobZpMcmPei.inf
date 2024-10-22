@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ApobZpMcmPei
+  FILE_GUID                      = 1E621AC1-85A1-41D1-A9E5-F62C4911CFE2
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = ApobZpMcmPeiDriverEntry
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  PeimEntryPoint
+  ApobZpMcmLib
+
+[sources]
+  ApobZpMcmPei.c
+
+[Guids]
+
+
+[Ppis]
+  gApobCommonServicePpiGuid     #Publish
+
+[Pcd]
+
+[Depex]
+  gApobZpMcmPeiDepexPpiGuid

@@ -1,0 +1,130 @@
+/**
+ * @file
+ *
+ * ALIB ASL library
+ *
+ *
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:     AGESA
+ * @e sub-project: NBIO
+ * @e \$Revision: 61089 $   @e \$Date: 2011-10-31 10:31:02 -0700 (Mon, 31 Oct 2011) $
+ *
+ */
+/*
+*****************************************************************************
+*
+* Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+*
+* ***************************************************************************
+*
+*/
+
+
+#define  FALSE                          0
+#define  TRUE                           1
+#define  DISABLE                        0
+#define  ENABLE                         1
+#define  OFF                            0
+#define  ON                             1
+#define  AC                             0
+#define  DC                             1
+#define  GEN1                           1
+#define  GEN2                           2
+#define  GEN3                           3
+#define  PSPP_POLICY_PERFORMANCE        1
+#define  PSPP_POLICY_POWERSAVING        4
+#define  PSPP_STOP                      0
+#define  PSPP_START                     1
+#define  DOCKED                         0
+#define  UNDOCKED                       1
+
+#define  ALIBSCOPE                      \_SB
+#define  GNBSCOPE                       \_SB
+
+//
+//  Port data
+//
+#define  PciePortMaxSpeed               AB00
+#define  PciePortDcSpeed                AB01
+#define  PciePortCurSpeed               AB02
+#define  PcieSbPort                     AB03
+#define  PcieLinkSafeMode               AB04
+#define  PcieLocalOverrideSpeed         AB05
+#define  StartPhyLane                   AB06
+#define  EndPhyLane                     AB07
+#define  StartCoreLane                  AB08
+#define  EndCoreLane                    AB09
+#define  PortId                         AB0A
+#define  PORTID                         DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase, 11)))
+#define  LinkHotplug                    AB0B
+#define  PciDev                         AB0C
+#define  PCIDEV                         DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase, 13)))
+#define  PciFun                         AB0D
+#define  PCIFUN                         DerefOf (Index (ALIBSCOPE.ADAT, Add (PortBase, 14)))
+#define  PciePortAcSpeed                AB0E
+#define  PciePortRequest                AB10
+#define  PcieGlobalOverrideSpeed        AB11
+#define  PortBase                       AB12
+
+
+
+//Port methods
+
+#define  LinkStateReleaseTraining       1
+#define  LinkStateCheckPresence         3
+#define  LinkStateDeviceDetected        4
+#define  LinkStateDeviceNotPresent      5
+#define  LinkStateGen2Workaround        6
+#define  LinkStateL0                    7
+#define  LinkStateTrainingCompleted     8
+
+//
+//  PSPP data
+//
+#define  PcieCurrentSpeed               AP01
+#define  PcieTargetSpeed                AP02
+#define  PsppOverrideSpeed              AP03
+#define  PsppPolicy                     DerefOf (Index (ALIBSCOPE.ADAT, 0x0))
+#define  PsppStatus                     AP05
+#define  PerfRequestClientId            AP06
+#define  PerfRequestValidFlag           AP07
+#define  PerfRequestFlag                AP08
+#define  PerfRequestType                AP09
+#define  PerfRequestData                AP0A
+#define  PsppAcDcOverride               AP0B
+#define  PcieVidGen1                    DerefOf (Index (ALIBSCOPE.ADAT, 0x1))
+#define  PcieVidGen2                    DerefOf (Index (ALIBSCOPE.ADAT, 0x2))
+#define  PcieVidGen3                    DerefOf (Index (ALIBSCOPE.ADAT, 0x3))
+#define  DpmMask                        DerefOf (Index (ALIBSCOPE.ADAT, 0x4))
+#define  NumBoost                       DerefOf (Index (ALIBSCOPE.ADAT, 0x5))
+#define  DockedTdpHeadroom              DerefOf (Index (ALIBSCOPE.ADAT, 0x6))
+#define  DcTdpEnable                    DerefOf (Index (ALIBSCOPE.ADAT, 0x7))
+#define  PeApmEnable                    DerefOf (Index (ALIBSCOPE.ADAT, 0x8))
+#define  ForceSpeedChange               AP10
+
+//
+//  Power source
+//
+#define AcDc                            AD00
+
+//
+//  Dock status
+//
+#define DockUndock                      DK00
+
+//
+// NBIO
+//
+#define PcieBaseAddress                 AGRB
+
+//
+// DXIO Message
+//
+#define DXIO_MSG_RNTM_PCIEDISABLE       42
+
+#ifdef  DEBUG_OUT
+  #define ALIB_DEBUG(x) Store (x, Debug)
+#else
+  #define ALIB_DEBUG(x)
+#endif

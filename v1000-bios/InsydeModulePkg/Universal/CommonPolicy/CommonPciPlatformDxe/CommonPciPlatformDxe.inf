@@ -1,0 +1,70 @@
+## @file
+#  Component description file for CommonPciPlatformDxe driver.
+#
+#******************************************************************************
+#* Copyright (c) 2012 - 2020, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CommonPciPlatformDxe
+  FILE_GUID                      = B7358BEB-6A52-4D50-98F9-7EDD70B4B320
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = CommonPciPlatformDriverEntryPoint
+
+[Sources]
+  CommonPciPlatformDxe.c
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeOemServicesPkg/InsydeOemServicesPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  
+[LibraryClasses]
+  DebugLib
+  CommonPciLib
+  PciExpressLib
+  DxeServicesLib
+  S3BootScriptLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DxeOemSvcKernelLibDefault
+  DxeChipsetSvcLib   
+  PcdLib 
+  FlashRegionLib   
+  H2OCpLib
+  MemoryAllocationLib
+  VariableLib
+
+[Guids]
+  gAutoGenPciOptionRomListGuid
+  gH2OFlashMapRegionOptionRomGuid
+  gH2OFlashMapRegionOptionRomBdfGuid
+  gH2ODxeCpPciCheckSysOptionRomGuid
+  gZeroGuid
+  gSystemConfigurationGuid
+
+[Protocols]
+  gEfiPciIoProtocolGuid
+  gPciPolicyProtocolGuid
+  gEfiBdsArchProtocolGuid
+  gEfiPciPlatformProtocolGuid
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OMultiBoardPciOptionRomSupported
+  gInsydeTokenSpaceGuid.PcdH2ODxeCpPciCheckSysOptionRomSupported
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdH2OBoardId
+  gInsydeTokenSpaceGuid.PcdH2OPciOptionRomPreferPlugIn  
+
+[Depex]
+  gH2OChipsetServicesProtocolGuid

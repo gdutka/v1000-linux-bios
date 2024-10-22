@@ -1,0 +1,59 @@
+## @file
+#  Component description file for VerifyFvPei PEIM.
+#
+#******************************************************************************
+#* Copyright (c) 2013 - 2014, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = VerifyFvPei
+  FILE_GUID                      = B090128D-74FB-480f-BE85-7294209C3B3F
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = VerifyFvPeimEntry
+
+[Sources]
+  VerifyFvPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AmdPspFeaturePkg/AmdPspFeaturePkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  DebugLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  PerformanceLib
+  BaseCryptLib
+  PostCodeLib
+  HobLib
+  PcdLib
+
+[Ppis]
+  gEfiPeiFirmwareVolumeInfoPpiGuid
+  gEfiPeiFirmwareVolumeInfo2PpiGuid
+
+[Guids]
+  gEfiFirmwareFileSystem3Guid
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdFlashFvMainBase
+  gInsydeTokenSpaceGuid.PcdFlashFvMainSize
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashFvMainHashBase
+  gAmdPspFeaturePkgTokenSpaceGuid.PcdFlashFvMainHashSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdPeiCoreMaxFvSupported  
+
+[Depex]
+  gEfiPeiMasterBootModePpiGuid
+

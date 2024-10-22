@@ -1,0 +1,50 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ImportCA
+  FILE_GUID                      = B00E5F66-06FE-45ac-8737-FD9A08F188C9
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = ImportCAEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Sources]
+  TlsAuthConfigImpl.c
+  ImportCA.c
+  ImportCA.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ShellPkg/ShellPkg.dec
+  InsydeNetworkPkg/InsydeNetworkPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiBootServicesTableLib
+  UefiApplicationEntryPoint
+  UefiLib
+  ShellLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  DevicePathLib
+  DebugLib
+  PrintLib
+  TlsLib
+
+[Guids]
+  gEfiTlsCaCertificateGuid
+  gEfiCertX509Guid
+
+[Ppis]
+
+[Protocols]
+  gEfiSimpleFileSystemProtocolGuid              ## SOMETIMES_CONSUMES
+  gCryptoServicesProtocolGuid
+

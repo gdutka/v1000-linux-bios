@@ -1,0 +1,57 @@
+## @file
+#  PostCode package Declaration file
+#
+#******************************************************************************
+#* Copyright (c) 2016 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = InsydePostCodePkg
+  PACKAGE_GUID                   = 81892BCA-097D-422d-B3EF-97FC1D4DF9C1
+  PACKAGE_VERSION                = 0.1
+
+[Includes]
+  Include
+
+[LibraryClasses]
+  PostCodeConfigLib|Include/Library/PostCodeConfigLib.h
+  SerialPortPostCodeLib|Include/Library/SerialPortPostCodeLib.h
+  VgaPostCodeLib|Include/Library/VgaPostCodeLib.h
+  PostCodeMiscLib|Include/Library/PostCodeMiscLib.h
+  
+[Guids]
+  gH2OPostCodePkgTokenSpaceGuid = { 0x13ab8793, 0x4ba3, 0x4e29, { 0xaa, 0xa7, 0x1b, 0xa3, 0x4e, 0xdc, 0x6e, 0x2f } }
+  
+[Protocols]
+  gH2OPostCodeSmmDebugRegProtocolGuid = { 0xe3c14cce, 0x647e, 0x4f23, { 0x85, 0x4d, 0x53, 0x2a, 0x3d, 0x0b, 0x89, 0x35 } }
+  gH2OPostCodeVgaProtocolGuid = { 0x83b868fe, 0xac0c, 0x4fb9, { 0x87, 0x8e, 0x8f, 0x51, 0xcc, 0x94, 0xc, 0xac } }
+
+[PcdsFixedAtBuild]
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeSerialPortRegBase|0x03F8|UINT64|0x000ABF01
+  #
+  # The PPIs and/or Protocols which are registered a enable PostCode features notify function
+  #
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeTrapDebugPortNotifyList|{0}|VOID*|0x000ABF05
+  #
+  # The PPIs and/or Protocols which are registered a disable PostCode features notify function
+  #
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeNonTrapDebugPortNotifyList|{0}|VOID*|0x000ABF06
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeDebugPortAddress|0x0080|UINT16|0x000ABF07
+  #
+  # The length of the Post Code which is printed on Monitor and COM Port
+  # Valid value: 1, 2, 4 byte (Other values will be considered to be 1 byte) 
+  #
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeDisplayLength|0x02|UINT8|0x000ABF08
+  
+[PcdsFeatureFlag]
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeSupported|TRUE|BOOLEAN|0x000ABF02
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeSerialPortSupported|TRUE|BOOLEAN|0x000ABF03
+  gH2OPostCodePkgTokenSpaceGuid.PcdH2OPostCodeScreenSupported|TRUE|BOOLEAN|0x000ABF04
+  

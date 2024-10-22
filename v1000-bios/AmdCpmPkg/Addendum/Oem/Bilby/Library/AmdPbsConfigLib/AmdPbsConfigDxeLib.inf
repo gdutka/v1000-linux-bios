@@ -1,0 +1,40 @@
+##;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdPbsConfigDxeLib
+  FILE_GUID                      = 3EA22796-F8FC-4C5F-A05C-15190C555D71
+  MODULE_TYPE                    = DXE_DRIVER
+  LIBRARY_CLASS                  = AmdPbsConfigLib|DXE_DRIVER DXE_SMM_DRIVER UEFI_DRIVER
+
+[Sources]
+  AmdPbsConfigDxeLib.c
+  AmdPbsDefault.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+
+[LibraryClasses]
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  DebugLib
+  UefiLib
+
+[Guids]
+  gAmdPbsSystemConfigurationGuid
+
+[Protocols]
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.OriginalPlatformId
+  gAmdCpmPkgTokenSpaceGuid.CurrentPlatformId
+

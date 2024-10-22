@@ -1,0 +1,60 @@
+## @file
+#  Component description file for UsbLegacyControl Driver.
+#
+#*******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#*******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = UsbLegacyControl
+  FILE_GUID                      = 88EA1FCB-3A5D-4acf-A0B3-AACB36D4E90F
+  MODULE_TYPE                    = COMBINED_SMM_DXE
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = UsbLegacyControlDriverEntryPoint
+
+[Sources]
+  UsbLegacyControl.c
+  UsbLegacyControl.h
+
+[Packages]
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  PostCodeLib
+  PciExpressLib
+  SmmChipsetSvcLib
+  DevicePathLib
+  IoLib
+  BaseMemoryLib
+
+[Guids]
+
+
+[Protocols]
+  gEfiSmmUsbDispatch2ProtocolGuid
+  gEfiSmmBase2ProtocolGuid
+  gEfiUsbLegacyPlatformProtocolGuid
+
+[Pcd]
+
+[Depex]
+  <DXE_DEPEX>
+  gEfiSmmBase2ProtocolGuid AND
+  gEfiUsbLegacyPlatformProtocolGuid
+
+  <SMM_DEPEX>
+  gEfiSmmUsbDispatch2ProtocolGuid AND
+  gEfiUsbLegacyPlatformProtocolGuid

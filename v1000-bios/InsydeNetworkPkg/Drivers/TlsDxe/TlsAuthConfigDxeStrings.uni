@@ -1,0 +1,5 @@
+#string STR_TLS_CERTIFICATE_MANAGER                                                       #language en-US        "TLS Certificate Manager"
+#string STR_TLS_CERTIFICATE_MANAGER_HELP                                                  #language en-US        "Maintain certificate files for TLS processing"
+#string STR_TLS_CERTIFICATE_IMPORT                                                        #language en-US        "Import Certificate"
+#string STR_TLS_CERTIFICATE_DELETE                                                        #language en-US        "Delete Certificate"
+#string STR_TLS_CERTIFICATE_EXPORT                                                        #language en-US        "Export Certificate"

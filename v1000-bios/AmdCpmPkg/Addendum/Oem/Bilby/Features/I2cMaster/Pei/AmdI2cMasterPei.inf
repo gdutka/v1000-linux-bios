@@ -1,0 +1,40 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdI2CMasterPei
+  FILE_GUID                      = 2A0168CC-4320-452F-BACA-8BAEC7DAFBCA
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdI2cMasterPeiInit
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  DebugLib
+  IoLib
+  TimerLib
+
+[Sources.common]
+  AmdI2cMasterPei.c
+  AmdI2cMasterPei.h
+
+[Guids]
+  
+[Protocols]
+
+[Ppis]
+  gEfiPeiI2cMasterPpiGuid          #PRODUCED
+
+[Depex]
+  TRUE

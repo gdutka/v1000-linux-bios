@@ -1,0 +1,56 @@
+## @file
+#  Component description file for AmdMemContextSaveRestoreDxe DXE driver.
+#
+#*******************************************************************************
+#* Copyright (c) 2013 - 2018, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#*******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdMemContextSaveRestoreDxe
+  FILE_GUID                      = E2B98031-D743-4b10-A552-BD5B95B33062
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DxeInitAmdMemContextSaveRestore
+
+[Sources]
+  AmdMemContextSaveRestore.c
+
+[Packages]
+  InsydeModulePkg/InsydeModulePkg.dec
+  MdePkg/MdePkg.dec
+  AmdCommonChipsetPkg/AmdCommonChipsetPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  BaseLib
+  DebugLib
+  UefiLib
+  HobLib
+  AmdExtCmosLib
+
+[Guids]
+  gAmdMemContextSaveRestoreVariableGuid
+  gAmdMemoryContextSaveRestoreDataGuid
+
+[Protocols]
+  gAmdMemContextSaveRestoreProtocolGuid
+
+[FixedPcd]
+  gAmdCommonChipsetPkgTokenSpaceGuid.CmosAmdMemoryContextSaveRestore
+  gAmdCommonChipsetPkgTokenSpaceGuid.PostPassFlag
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashMctDataStoreBase
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashMctDataStoreSize
+  gAmdCommonChipsetPkgTokenSpaceGuid.CmosAmdMemoryContextSaveRestore
+
+[Depex]
+  gEfiVariableArchProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid
+

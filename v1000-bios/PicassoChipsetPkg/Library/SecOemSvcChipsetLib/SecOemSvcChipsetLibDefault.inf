@@ -1,0 +1,37 @@
+## @file
+#  Component description file for SEC OEM Services Chipset Lib Default instance.
+#
+#******************************************************************************
+#* Copyright (c) 2012, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SecOemSvcChipsetLibDefault
+  FILE_GUID                      = 73B9B76F-807D-41ab-BF84-C2A4A224DE48
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = SecOemSvcChipsetLibDefault|SEC
+
+[Sources.IA32]
+  OemSvcInitializeInsydeDebugger.c
+  OemSvcOemSecPlatformMain.c
+#[-start-240426-IB18160212-modify-]#
+#  OemSvcHookBeforePeiCoreEntryPoint.asm | MSFT
+  OemSvcHookBeforePeiCoreEntryPoint.nasm
+#[-end-240426-IB18160212-modify-]#
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+
+[LibraryClasses]
+  SecOemSvcChipsetLib
+  PlatformHookLib

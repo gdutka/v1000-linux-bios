@@ -1,0 +1,47 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdTableLib
+  FILE_GUID                      = FED76C46-22B5-48c0-B5C9-18883AD2AA0D
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdTableLib
+
+[Sources.common]
+  AmdTableLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+  GnbLib
+  IdsLib
+  CcxRolesLib
+  BaseCoreLogicalIdLib
+  PciLib
+  AmdTableSmnLib  # There're 3 instances of this LIB
+                  # AmdTableSmnPeiLib.inf --- For PEIM, would introduce depex on gAmdNbioSmuServicesPpiGuid AND gAmdFabricTopologyServices2PpiGuid
+                  # AmdTableSmnDxeLib.inf --- For DXE driver, would introduce depex on gAmdNbioSmuServicesProtocolGuid AND gAmdFabricTopologyServices2ProtocolGuid
+                  # AmdTableSmnNullLib.inf --- NULL LIB, no depex would be introduced
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdX2ApicMode
+
+[Depex]
+

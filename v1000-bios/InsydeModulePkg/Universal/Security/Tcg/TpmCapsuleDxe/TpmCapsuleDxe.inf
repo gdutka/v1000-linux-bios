@@ -1,0 +1,87 @@
+## @file
+#  Component description file for TPM Firmware Update Dxe module.
+#
+#******************************************************************************
+#* Copyright (c) 2017 - 2019, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = TpmCapsuleDxe
+  FILE_GUID                      = 3D64F384-CA32-42c6-A629-42A494B2CB4A
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DriverEntry
+
+[sources.common]
+  TpmCapsuleDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiLib
+  PcdLib
+  HobLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  BaseMemoryLib
+  MemoryAllocationLib
+  DevicePathLib
+  VariableLib
+  DebugLib
+  H2OCpLib
+  Tpm12DeviceLib
+  Tpm2DeviceLib
+  Tpm2CommandLib
+
+[Protocols]
+  gEfiTcgProtocolGuid
+  gEfiTcg2ProtocolGuid
+  gEfiFirmwareManagementProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid
+
+[Guids]
+  gEfiSystemResourceTableGuid
+  gEfiFmpCapsuleGuid
+  gEfiCertX509Guid
+  gSecureFlashInfoGuid
+  gEfiImageSecurityDatabaseGuid
+  gEfiTpmDeviceInstanceTpm12Guid
+  gEfiTpmDeviceInstanceTpm20DtpmGuid
+  gTpmErrorHobGuid
+  gH2OBdsCpDisplayBeforeProtocolGuid
+  gH2ODxeCpUpdateAcpiEsrtTpmFwVersionGuid
+
+[Pcd]
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpmInstanceGuid
+  gInsydeTokenSpaceGuid.PcdCapsuleMaxResult
+  gInsydeTokenSpaceGuid.PcdSecureFlashCertificateFile
+  gInsydeTokenSpaceGuid.PcdOsIndicationsSupported
+  gInsydeTokenSpaceGuid.PcdTpmHide
+  gInsydeTokenSpaceGuid.PcdDxeTpmPolicy
+  gInsydeTokenSpaceGuid.PcdH2OEsrtTpmFirmwareGuid
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpDisplayBeforeSupported
+  gInsydeTokenSpaceGuid.PcdH2ODxeCpUpdateAcpiEsrtTpmFwVersionSupported
+  gInsydeTokenSpaceGuid.PcdH2OCapsuleSignatureDatabaseSupported
+
+[FixedPcd]
+  gInsydeTokenSpaceGuid.PcdFirmwareResourceMaximum
+
+[Depex]
+  gEfiTcgProtocolGuid OR
+  gEfiTcg2ProtocolGuid
+

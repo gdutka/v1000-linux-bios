@@ -1,0 +1,31 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FchSmmLibV9
+  FILE_GUID                      = 5aea141c-22f3-45ac-a669-63492a299d3b
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = FchSmmLibV9 
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+
+[Sources]
+  FchSmmLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  SmmServicesTableLib
+
+[BuildOptions]
+MSFT:*_*_*_CC_FLAGS = /W3
+
+

@@ -1,0 +1,3963 @@
+                                Broadcom Corporation
+                               5300 California Avenue
+                                  Irvine, CA 92617
+
+                                   Release Notes
+                      Broadcom BCM570x Multiple Boot Agent (MBA)
+                         [ PXE, RPL, BOOTP, and iSCSI Boot ]
+
+                      Copyright (c) 2002-2017 Broadcom Limited 
+                               All rights reserved.
+  
+                                  August 18, 2017
+
+Revision History
+================
+
+Version 20.6.50 August 18, 2017
+-------------------------------
+    Fixes:
+    ======
+    1. Remove UMB relocation logic. (CTRL-24964)
+
+Version 20.6.1 February 14, 2017
+--------------------------------
+    Fixes:
+    ======
+    1. Update OEM specific branding. (CTRL-24709)
+    2. Update copyright to reflect year 2017.
+
+Version 20.6.0 August 2, 2016
+-----------------------------
+    Fixes:
+    ======
+    1. Update MBA ROM initialization to suppress CCM banner on certain OEM
+       systems. (CTRL-21523)
+
+Version 20.2.0 March 15, 2016
+-----------------------------
+    Fixes:
+    ======
+    1. Update driver to use Virtual MAC address if non-zero MAC address is
+       detected. (CTRL-20786)
+    2. Update copyright to reflect year 2016.
+
+Version 17.2.1 October 28, 2015
+-------------------------------
+    Fixes:
+    ======
+    1. Updated driver to correctly read NVRAM bit before registering sensor
+       and device information. (CTRL-21222)
+
+Version 17.2.0 April 10, 2015
+-----------------------------
+    Enhancements:
+    =============
+    1. Update driver version.
+
+Version 17.0.2 January 29, 2015
+-------------------------------
+    Enhancements:
+    =============
+    1. Updated driver to check new NVRAM bit before registering sensor
+       and device information.
+
+Version 17.0.1 September 29, 2014
+---------------------------------
+    Fixes:
+    ======
+    1. Updated driver to acquire mutex lock before accessing PHY registers
+       to avoid contention. (CQ#73820)
+
+Version 17.0.0 September 8, 2014
+--------------------------------
+    Enhancements:
+    =============  
+    1. Updated copyright banner to reflect year of 2015.  
+
+Version 16.8.1 September 8, 2014
+--------------------------------
+    Enhancements:
+    =============  
+    1. Update CLP logic to modify APE shared memory when processing MAC
+       address parameter.
+   
+    Impact: BCM5717, BCM5718, BCM5719, BCM5720, and BCM5724 controllers only.
+
+Version 16.8.0 July 16, 2014
+----------------------------
+    Fixes:
+    ======
+    1. Update CLP logic to handle OEM prefixes for show command.
+
+Version 16.6.0 April 14, 2014
+-----------------------------
+    Fixes:
+    ======
+    1. Problem : UNDI driver dropped packet if priority field is none-zero if 
+       VLAN is enabled. (CQ#73370)
+       
+       Change: Updated receive path code so that it masks out priority field of 
+       VLAN when performing VLAN filtering.
+
+Version 16.4.3 February 7, 2014
+-------------------------------
+    Enhancements:
+    =============  
+    1. Added support for Manufacturing mode for certain OEM platform. 
+       (CQ#70517)
+
+Version 16.4.2 January 29, 2014
+-------------------------------
+
+    Fixes:
+    ======
+    1. Problem : System hangs during POST on FW3.0 and Legacy PXE.
+       
+       Change: Updated to use CS overwrite instead of DS to store PMM entry
+       point.
+       
+    Enhancements:
+    =============  
+    1. Updated copyright banner to reflect year of 2014.  
+
+Version 16.4.1 October 24,2013
+------------------------------
+    Enhancements:
+    =============  
+    1. Enhanced Base Code to display GUID in standard format. (CQ#71543)
+
+Version 16.4.0 October 19, 2013
+-------------------------------
+  Enhancements:
+  =============
+  1. Driver to honor new control bit to disable Autoneg @ 1G Half Duplex
+     advertisement. (CQ#71394)
+
+     Impact:  BCM5717, BCM5718, BCM5719, and BCM5720 controllers only.
+
+Version 16.2.1 August 20, 2013
+------------------------------
+   Fixes:
+   ======
+   1. Problem: PXE caused systems with sensor device information to 
+               hang when OCSR signature is not valid.
+
+      Change: PXE exit gracefully when OCSR signature is not found.
+
+      Impact: BCM5717, BCM5718, BCM5719, and BCM5720 controllers.
+
+    Enhancements:
+    =============
+   1. Updated APE inter-processor interface code for BCM5762, BCM57767,
+      BCM57787, BCM57764, BCM5725, and BCM5727 controllers.
+
+Version 16.2.0 August 8, 2013
+-----------------------------
+   Fixes:
+   ======
+   1. Problem: PXE boot failed when BCM5762 devices links at 10Mbps/100Mbps.
+      (CQ#70541)
+
+      Change: Updated reset code to force GRC clock to run at 62.5MHz.
+
+Version 16.0.4 May 23, 2013
+---------------------------
+   Fixes:
+   ======
+   1. Fixed a problem where UNDI driver would fail to load if the loader
+      code is invoked from external software entities.
+
+Version 16.0.3 March 12, 2013
+-----------------------------
+    Enhancements:
+    =============
+    1. Added support for BCM5727. (CQ#68207)(CQ #68233)
+
+Version 16.0.2 January 16, 2013
+-------------------------------
+    Enhancements:
+    =============
+    1. Minimized usage of UMB after Option ROM Initialization.
+    2. Updated Copyright banner to reflect year of 2013.
+
+Version 16.0.1 November 06, 2012
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: PXE boot on BCM5717 C0 silicon used incorrect boot
+               protocol for second port. (CQ #66093)
+
+      Change:  Detect port number based upon ASIC revision for BCM5717.
+
+      Impact:  BCM5717 controllers only.
+
+    Enhancements:
+    =============
+    1. Added support for new PCI device ID (0x1665) of BCM5717 C0 silicon.
+
+Version 16.0.0 October 22, 2012
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: BCM57788 device disappeared after multiple iteration of
+               copy/compare test on some platforms. (CQ #66029)
+
+      Change:  Apply work-around after Chip Reset.
+
+      Impact:  BCM57788 controllers only.
+
+   Enhancements:
+   =============
+      1. Enhanced so that MBA no longer piggybacks CCM ROM binary.
+
+Version 15.8.1 October 15, 2012
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: Traffic LED does not light up. (CQ#65618)
+
+      Change: Driver sets Link Activiy LED BIT.
+      
+      Impact: BCM57764, BCM57767, BCM57787, BCM5725,
+              and BCM5762 controllers.
+
+   2. Problem: When Option Rom is Enabled and Boot Protocol is None, the 
+               Cntrl-S banner would displayed approximately 4 seconds
+               longer than the Banner Message Timeout setting time.
+      
+      Change:  Removed the delay time before exit when Boot Protocol is
+               not set.
+
+   Enhancements:
+   =============
+   1. Embedded CCM 7.8.2.
+   2. Added support for BCM5717 C0 silicon. (CQ#65498)
+
+Version 15.8.0 August 24, 2012
+------------------------------
+   Enhancements:
+   =============
+   1. Embedded CCM 7.8.0.
+   2. Added support for BCM57767,BCM57787,BCM57764, BCM5725, BCM5762, 
+      and BCM5725 controllers.
+
+Version 15.4.1 July 19, 2012
+----------------------------
+   Fixes:
+   ======
+   1. Problem: Exit from NIC Option ROM setting will mess up the following 
+      Smart Array message. (CQ#62967)
+
+      Change: Update CCM to send carriage return to console on exit.
+
+   Enhancements:
+   =============
+   1. Embedded CCM 7.4.8.
+   2. Remove EEE support for BCM57762, BCM57766, BCM57782, and 
+      BCM57786 controllers.
+
+      Impact:
+              BCM57762, BCM57766, BCM57782, and BCM57786 controllers.
+
+Version 15.4.0 May 8, 2012
+---------------------------
+    Fixes:
+    ======
+    1. Problem: Device is still active after issuing a shutdown if APE is 
+                not responsive. (CQ#62359)
+
+       Change : Update driver to issue GRC reset even if APE is not
+                responsive.
+
+    Enhancements:
+    =============
+    1. Embedded CCM 7.4.0.
+
+Version 15.2.50 April 23, 2012
+------------------------------
+  Fixes:
+  ======
+    1. Problem : A-rev 5720 NDC card can't PXE boot. (CQ#62699)
+
+       Cause: Some registers of DMA Read engine block can have bogus
+       values after power cycle.  This can cause DMA engine to stop 
+       DMAing Tx packets from the host.
+
+       Change: Implemented software workaround so that DMA Read engine
+       can ignore bogus values in these registers.
+
+      Impact: BCM5719 and BCM5720 controllers only.
+
+    Enhancements:
+    =============
+    1. Embedded CCM 7.2.50.
+
+Version 15.2.9 April 4, 2012
+----------------------------
+    Enhancements:
+    =============
+    1. Embedded CCM 7.2.14.
+    2. Updated CCM to hide DCB configuration for 1G ports. (CQ#62374)
+
+Version 15.2.8 March 23, 2012
+-----------------------------
+    Fixes:
+    ======
+    1. Problem: System programmed with LOM image would hang while invoking CCM
+       by pressing Control+S during POST.
+
+       Cause:   The driver didn't check CCM image type before invoking it.
+
+       Change:  Move the CCM type checking code to the code path that is common
+       to LOM and NIC images. 
+
+Version 15.2.7 March 12, 2012
+-----------------------------
+    Fixes:
+    ======
+    1. Problem: System hung up in CCM in some systems with very old BIOS.
+
+       Cause :  This is a BIOS bug where it provides PMM buffer
+       address in the BIOS stack area. This causes stack corruption.
+  
+       Change : Implemented a workaround for this BIOS problem so that
+       MBA will use a fixed/safe memory region if memory buffer returned 
+       by the BIOS is below 0x8000 (<32K region).
+
+    Enhancements:
+    =============
+    1. Embedded CCM v7.2.13.
+
+Version 15.2.6 February 29, 2012
+--------------------------------
+    Enhancements:
+    =============
+    1. Removed Temperature sensing support for BCM5717, BCM5718,
+       BCM5719, and BCM5720 controllers.(CQ#61854)
+
+Version 15.2.5 February 17, 2012
+--------------------------------
+    Fixes:
+    ======
+    1. Problem: EEE does not function when EEE is enabled
+       on BCM57762 and BCM57766 controllers.(CQ#61634)
+
+       Change: Excluded EEE PHY interoperability software
+       workaround for BCM57762 and BCM57766 controllers.
+       
+       Impact: BCM57762 and BCM57766 controllers only.
+
+    2. Problem:LEDs turned off when driver is loaded on
+       BCM57762 and BCM57766 controllers.(CQ#61123)
+      
+       Change: Driver sets Link Activiy LED BIT.
+      
+       Impact: BCM57762 and BCM57766 controllers only.
+
+Version 15.2.4 January 09, 2012
+-------------------------------
+    Fixes:
+    ======
+    1. Problem: CTRL+S menu Device List displayed incorrect MBA
+       and CCM version numbers for BCM57762, BCM57766, BCM57786,
+       and BCM57782. (CQ#60704)
+
+       Change: Updated Embedded CCM v7.2.4 
+
+    Note:
+    =====
+    1. Updated Copyright banner to reflect year of 2012.
+
+Version 15.2.3 December 20, 2011
+--------------------------------
+    Enhancements:
+    =============
+    1. Added support for BCM57786 and BCM57782 controllers.
+    2. Embedded CCM v7.2.3.
+
+Version 15.2.2 November 28, 2011
+---------------------------------
+  Fixes:
+  ======
+    1. Problem : PXE boot failure in an overnight power cycle test. (CQ#59486)
+
+       Cause: Some registers of DMA Read engine block can have bogus
+       values after power cycle.  This can cause DMA engine to stop 
+       DMAing Tx packets from the host.
+
+       Change: Implemented software workaround so that DMA Read engine
+       can ignore bogus values in these registers.
+
+    2. Problem : CCM made IP version field read-only in the iSCSI General 
+       parameter menu if there is one NIC in the system that has IPv4 or IPv6 
+       configuration only. (CQ#59391)
+
+       Change: Updated CCM to use toggle READ-ONLY flag correctly.
+
+    3. Problem: CLP interface could corrupt part of NVRAM if BIOS pushes
+       down CLP strings in 2 or more sessions on the same port.
+                   
+       Change: Updated CLP session termination code to update feature
+       configuration block only if one or more parameters has been 
+       updated.
+
+    4. Problem: PXE Option ROM failed to load phase 2 code with 
+       BCM57762 and BCM57766 controllers.
+
+       Cause: PXE Init code doesn't detect NVRAM type correctly.
+               
+       Change: Updated PXE init code to recognize NVRAM type
+       on BCM57762 and BCM57766 controllers correctly.
+
+   Enhancements:
+   =============
+    1. Added support for FlexAddressing per OEM specification.
+    2. Added support for BCM57762 and BCM57766 controllers.
+    3. Adjusted header structure to provide correct sensor and device 
+       information.
+    4. Embedded CCM v7.2.0.
+
+Version 15.0.11 August 12, 2011
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: iSCSI Boot reboot test intermittently failed at "Target
+      is not ready". (CQ#57787)
+
+      Cause: Link drop due to re-AutoNeg when EEE and NCSI are enabled.
+      This occurred during iSCSI login session caused a time-out.
+
+      Change: Driver not to re-AutoNeg if link was already setup by NCSI.
+
+      Impact: BCM5717, BCM5718, BCM5719, and BCM5720 controllers only.
+
+    Enhancements:
+    =============
+    1. Embedded CCM v7.0.7.
+
+Version 15.0.10 August 02, 2011
+-------------------------------
+   Enhancements:
+   =============
+   1. Implement software workaround for EEE PHY interoperability
+      issues for all EEE capable devices except for BCM5720.
+
+      Impact: BCM5717, BCM5718, BCM5719, BCM57761, BCM57765, BCM57781,
+              BCM57785, BCM57791, and BCM57795 controllers only.
+
+Version 15.0.9 August 01, 2011
+------------------------------
+    Enhancements:
+    =============
+    1. Changed default MBA VLAN ID value to 1. (CQ#57401)
+    2. Embedded CCM v7.0.5.
+
+Version 15.0.8 July 26, 2011
+----------------------------
+   Fixes:
+   ======
+   1. Problem: Link flap when EEE is enabled on BCM57761, BCM57765,
+      BCM57781, BCM57785, BCM57791, and BCM57795 controllers. (CQ#56473)
+
+      Change: Updated software workaround for EEE PHY interoperability
+      issues for EEE capable devices.
+
+      Impact: BCM57761, BCM57765, BCM57781, BCM57785, BCM57791, and
+      BCM57795 controllers only.
+
+   2. Problem: VLAN ID does not show the modified value on MBA menu.
+      (CQ #53898).
+
+      Change: Fix Display variable to obtain VLAN ID correctly.
+
+   3. Problem: Sensor data and device information logic generated NMI
+      when NCSI is disabled.
+
+      Change: Handle error condition exit correctly.
+
+Version 15.0.7 July 20, 2011
+----------------------------
+   Enhancements:
+   =============
+   1. Updated mechanism to provide sensor and device information for
+      BCM5719 using APE Events.
+
+Version 15.0.6 June 29, 2011
+----------------------------
+    Enhancements:
+    =============
+    1. Embedded CCM v7.0.4.
+
+Version 15.0.5 June 27, 2011
+----------------------------
+    Enhancements:
+    =============
+    1. Changed default CCM VLAN ID value to 1. (CQ#56075)
+    2. Embedded CCM v7.0.3.
+
+Version 15.0.4 June 08, 2011
+----------------------------
+   Fixes:
+   ======
+   1. Problem: Sensor data offset was miscalculated.
+
+      Change: Calculate the sensor data offset accordingly.
+
+Version 15.0.3 June 06, 2011
+----------------------------
+   Enhancements:
+   =============
+   1. Changed mechanism to provide sensor and device information
+      to be supported per device instead of per port.
+   2. Embedded CCM v7.0.1.
+
+Version 15.0.2 May 22, 2011
+---------------------------
+   Enhancements:
+   =============
+   1. Added a mechanism to provide sensor and device information.
+   2. Embedded CCM v7.0.0.
+
+Version 15.0.1 May 09, 2011
+---------------------------
+   Enhancements:
+   =============
+   1. Implement software workaround for EEE PHY interoperability
+      issues for EEE capable devices.
+
+Version 15.0.0 April 27, 2011
+-----------------------------
+   Fixes:
+   ======
+   1. Problem: CLP interface doesn't work correctly if the input/output 
+      buffers are specified in ESI where upper 16 bits are not zeros.
+
+      Change: Updated CLP interface to support input buffer that is 
+      specified in 32-bit ESI.
+
+   Enhancements:
+   =============
+   1. Embedded CCM v6.4.20.  
+
+Version 14.8.4 April 11, 2011
+-----------------------------
+   Fixes:
+   ======
+   1. Problem: Got the error message- "[iBoot-01]: Target us not ready"
+      when perform NCSI ping test during iBoot test. (CQ#54107)
+
+      Cause: Undi driver initialized APE Mutex Locks in the old APE
+             Mutex Registers block.
+
+      Change: Updated UNDI driver to obtain the correct APE Mutex
+              Registers. 
+
+   Enhancements:
+   =============
+   1. Undi driver to read the Hardware Configuration from shared memory
+      to Enable/Disable EEE mode in EEE capable devices. (CQ#54514)
+
+   2. Embedded CCM v6.4.15.  
+
+Version 14.8.3 March 7, 2011
+----------------------------
+   Fixes:
+   ======
+   1. Problem: Device didn't generate interrupt if device was previously 
+      loaded/unloaded in uEFI environment.
+
+      Change: Updated UNDI driver to initialize mailbox interrupt to a 
+      value of 0 during device initialization.
+
+   2. Problem: When system has more than totally 16 Broadcom PCI devices,
+      CCM will behave incorrectly. (CQ#53494, CQ#53498, CQ#53500)
+
+      Cause: CCM only supports maximum up to 16 PCI devices so far,
+      When system is install more than sixteen PCI devices, CCM did not
+      handle the case correctly and caused memory corruption.
+
+      Change: Increase maximum support PCI devices number from 16 to 32. 
+      When system has more than 32 PCI devices, show warning message
+      that only 32 PCI devices will be handled.
+
+    Enhancements:
+    =============
+   1. Embedded CCM v6.4.13.
+
+Version 14.8.2 March 1, 2011
+----------------------------
+  Fixes:
+  ======
+   1. Problem: BCM5720 - PXE reboot test failed to detect link within 1hr. 
+      (CQ#53123)
+
+      Cause: In EEE capable devices, Boot Code's link status polling frequency
+      intermittently collided with Driver during its initialization which 
+      caused UNDI drver to interpret as no cable is attached.
+
+      Change: Updated UNDI driver to acquire PHY access Mutex before issue GRC
+      reset.  This change also requires changes in Boot Code to reduce the link
+      status polling frequency in EEE capable devices. Please use boot code 
+      v1.02 or newer.
+
+      Impact: BCM5718 B0, BCM5719, and BCM5720 controllers only.
+
+   2. Problem: Driver did not read the NIC Config Data for BCM5718 B0, BCM5719,
+      and BCM5720 controllers.
+
+      Cause: This bug was introduced in v14.6.11 when implementing the read from
+      register instead from shared memory to determine Copper/Serdes
+      configuration.
+
+      Change: Driver to read NIC Config Data for BCM5718 B0, BCM5719, and 
+      BCM5720 controllers.
+
+      Impact: BCM5718 B0, BCM5719, and BCM5720 controllers only.
+
+Version 14.8.1 February 25, 2011
+--------------------------------
+   Enhancements:
+   =============
+   1. Enhanced CLP logic to support MAC address query command. (CQ#52290)
+
+   2. Enhanced Option ROM to remove itself from memory if MBA is disabled.
+
+   3. Embedded CCM v6.4.11.  
+
+Version 14.8.0 February 15, 2011
+--------------------------------
+  Fixes:
+  ======
+    1. Problem: Option ROM failed to relocate itself in a platform with PCI 
+       FW 3.1 compliant BIOS.
+
+       Cause: Option ROM only relocated run-time code when it detected 
+       PCI FW 3.0 BIOS.
+
+       Change: Updated Option ROM to relocate code if BIOS is PCI FW 3.0 
+       or newer.
+
+   Enhancements:
+   =============
+   1. Embedded CCM v6.4.7.
+
+Version 14.6.11 March 30, 2011
+------------------------------
+   Fixes:
+   ======
+   1. Problem: MBA configuration menu was invoked with any keystroke when
+      time out is configured to disabled. (CQ#54121)
+
+      Cause: Carry flag was not cleared correctly as return code in key 
+      detection routine
+
+      Change: Fixed key detection routine to clear flag correctly.
+
+   Enhancements: (Feb 15,2011)
+   =============
+   1. Driver to read from register instead from shared memory to determine
+      Copper/Serdes configuration.
+
+      Impact:
+              BCM5718 B0, BCM5719, and BCM5720 controllers only.
+
+Version 14.6.10 February 1, 2011
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: CCM might be invoked correctly in some platform when
+      low memory region is not cleared by the BIOS during POST.
+      (CQ#52598) 
+
+      Cause: BIOS doesn't clear low memory area (7c0:0) during POST.
+
+      Change: Added a sofrware workaround to use the lower memory area only 
+      when PMM Find API fails.
+
+   Enhancements:
+   =============
+   1. Embedded CCM v6.2.20.
+
+Version 14.6.9 December 23, 2010
+--------------------------------
+   Enhancements:
+   =============
+   1. Updated copyright banner to reflect year of 2011. (CQ#51886)
+
+   2. Embedded CCM v6.2.14.
+
+Version 14.6.8 December 16, 2010
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: LOM image with embedded CCM might hang on some platform when 
+      Ctrl-S is invoked. (CQ#51571)
+       
+      Cause: BIOS on some platforms copies the Option ROM image to UMB based on 
+      the image length in the PCI-R header instead of initializing length in the
+      ROM header.
+
+      Change: Fixed ROMHDR tool so that both initializing length and image length 
+      are updated when CCM image is appended to the tail of the image.
+
+   2. Fixed byte order of Ethernet class code in the ROM header.
+
+   Enhancements:
+   =============
+   1. Embedded CCM v6.2.11.
+
+Version 14.6.7 December 7, 2010
+-------------------------------
+ 
+   Enhancements:
+   =============
+   1. Add EEE support for BCM57761, BCM57765, BCM57781, BCM57785,
+      BCM57791, and BCM57795 controllers.
+
+      Impact:
+              BCM57761, BCM57765, BCM57781, BCM57785, BCM57791, and
+              BCM57795 controllers.
+
+Version 14.6.6 December 4, 2010
+-------------------------------
+   Fixes:
+   ======
+   1. Problem: CCM hangs system when saving modifications for BCM5719 devices.
+
+      Change: Embedded CCM v6.2.9.
+
+Version 14.6.5 November 30, 2010
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: iSCSI Boot failed to use correct iSCSI configuration 
+      block with BCM5719 NICs for port#1 to port#3.  This problem was
+      introduced in MBA v14.6.3.
+
+      Change: Fixed a problem in ROM initialization code to retrieve
+      channel number correctly.
+
+Version 14.6.4 November 29, 2010
+--------------------------------
+   Fixes:
+   ======
+   1. Problem: In certain PCs, CCM failed to save configuration and
+      corrupted configuration data. (CQ#51063)
+       
+      Cause: BIOS on these platforms has a bug where PMM Find function
+      doesn't work correctly.
+
+      Change: CCM was changed to maintain mapping of handle and physical
+      address of allocated blocks.
+
+   Enhancements:
+   =============
+   1. Embedded CCM v6.2.7.
+
+Version 14.6.3 November 24, 2010
+--------------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM5720 controller.
+
+Version 14.6.2 November 22, 2010
+--------------------------------
+   Enhancements:
+   =============
+   1. Added iSCSI boot capability for BCM5719.
+
+   2. Embedded CCM 6.2.6 for iSCSI configuration support on BCM5719.
+   
+Version 14.6.1 November 20, 2010
+--------------------------------
+   1. Problem:
+              Driver corrupts BCM5717, BCM5718, and BCM5719
+              controllers' MBA configuration data when updating
+              it while in SelfBoot mode.(CQ#51201)
+      Cause:
+              Driver does not support SelfBoot MBA configuration
+              format for BCM5717, BCM5718, and BCM5719.
+      Change:
+              Added support for SelfBoot MBA configuration format
+              for BCM5717, BCM5718, and BCM5719 controllers.
+      Impact:
+              BCM5717, BCM5718, and BCM5719 controllers in SelfBoot
+              mode only.
+
+Version 14.6.0 November 17, 2010
+--------------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM5719 controller.
+
+   Notes:
+   ======
+   1. Adjust version number for Software Rel 14.6
+   2. Embedded CCM v6.2.5.
+
+Version 14.4.6 December 7, 2010
+-------------------------------
+ 
+   Enhancements:
+   =============
+   1. Add EEE support for BCM57761, BCM57765, BCM57781, BCM57785,
+      BCM57791, and BCM57795 controllers.
+
+      Impact:
+              BCM57761, BCM57765, BCM57781, BCM57785, BCM57791, and
+              BCM57795 controllers.
+   Notes:
+   ======
+   1. Embedded CCM v6.2.9.
+
+Version 14.4.5 November 1, 2010
+-------------------------------
+ 
+   Enhancements:
+   =============
+   1. Remove EEE support for BCM57761, BCM57765, BCM57781, BCM57785,
+      BCM57791, and BCM57795 controllers.
+
+      Impact:
+              BCM57761, BCM57765, BCM57781, BCM57785, BCM57791, and
+              BCM57795 controllers.
+
+Version 14.4.4 October 22, 2010
+-------------------------------
+ 
+   Enhancements:
+   =============
+   1. Add EEE support for BCM5717, BCM5718, BCM57761, BCM57765, BCM57781,
+      BCM57785, BCM57791, and BCM57795 controllers.
+
+      Impact:
+              BCM5717, BCM5718, BCM57761, BCM57765, BCM57781, BCM57785,
+              BCM57791, and BCM57795 controllers.
+
+   2. Port over fixes in v14.2.5 for CQ #50447 - Incorrect link LED behavior
+      after Driver executed.
+
+      Impact:
+              BCM57761, BCM57765, BCM57781, BCM57785, BCM57791,
+              and BCM57795 controllers.
+
+Version 14.4.3 October 15, 2010
+-------------------------------
+
+   1. Problem:
+              Driver wipes out hardware configuration when in
+              Self-Boot configuration. (CQ#50409)
+      Change:
+              Updated reset code to do a read-modify-write when updates the
+              register to disable clkreg when in Self-Boot configuration.
+      Impact:
+              BCM57761, BCM57765, BCM57781, BCM57785, BCM57791,
+              and BCM57795 controllers Self-Boot configuration.
+
+   Enhancements:
+   =============
+    1. Embedded CCM v6.2.1.
+    2. Enhanced PnP product string to have "BRCM" as prefix. (CQ#50114)
+
+Version 14.4.2 October 07, 2010
+-------------------------------
+
+    1. Problem:
+               BCM5718 Fiber cannot pass traffic. (CQ#50276)
+       Change:
+               Add support for Fiber phy.
+       Impact:
+               BCM5718 controllers only.
+
+   Enhancements:
+   =============
+   1. Updated APE inter-processor interface code for BCM5717 and BCM5718
+      controllers.
+
+      Impact:
+              BCM5717 and BCM5718 controllers only.
+
+Version 14.4.1 September 24, 2010
+---------------------------------
+  Fixes:
+  ======
+   1. Problem : Fixed a problem where CCM doesn't get invoked if 
+      MBA/CCM is part of the BIOS and there is no NIC with MBA/CCM
+      found in the system. (CQ#50048)
+
+      Cause : CCM version checking code determined CCM version 
+      from the MBA in the NVRAM.  This logic would fail since 
+      MBA/CCM is part of the BIOS.
+
+      Change : Changed the CCM version checking logic to run CCM 
+      of running image if there is no other CCM found in the system.
+
+   Enhancements:
+   =============
+   1. Embedded CCM v6.0.8.
+
+Version 14.4.0 July 26, 2010
+----------------------------
+  Enhancements:
+  =============
+  1. Embedded CCM v2.0.6.
+
+Version 14.2.5 October 21, 2010
+-------------------------------
+  Fixes:
+  ======
+   1. Problem:
+              Driver wipes out hardware configuration when in
+              Self-Boot configuration. (CQ#50409)
+      Change:
+              Updated reset code to do a read-modify-write when updates the
+              register to disable clkreg when in Self-Boot configuration.
+      Impact:
+              BCM57761, BCM57765, BCM57781, BCM57785, BCM57791,
+              and BCM57795 controllers Self-Boot configuration.
+
+   2. Problem:
+              Incorrect link LED behavior after Driver executed. (CQ#50447)
+      Change:
+              Driver sets Link Activiy LED BIT.
+      Impact:
+              BCM57761, BCM57765, BCM57781, BCM57785, BCM57791,
+              and BCM57795 controllers.
+   Notes:
+   ======
+   1. No release for v14.2.4.
+
+Version 14.2.3 June 29, 2010
+----------------------------
+  Fixes:
+  ======
+   1. Problem: Some IBM platforms might hang after CCM exists. (CQ#48418)
+ 
+      Change: Changed MBA code so that it doesn't allocate scratch pad buffer
+              for decompression. This will guarantee that only PMM memory
+              is used.
+
+   Enhancements:
+   =============
+   1. Embedded CCM v2.0.3.
+
+Version 14.2.2 June 24, 2010
+----------------------------
+   Enhancements:
+   =============
+   1. Add NCSI support for BCM5717, BCM5718, and BCM5724 controllers(CQ#47962).
+
+      Impact:
+              BCM5717, BCM5718, and BCM5724 family controllers only.
+
+   2. Add EEE support for BCM5785 controller.
+
+      Impact:
+              BCM5785 controller only.
+
+Version 14.2.1 June 10, 2010
+----------------------------
+   1. Problem: PXE - Undi unable to complete boot for FSC system with 57780 LOM
+               using b57pxee later than v12.4.4.(CQ#47403)
+
+      Cause:   Code compression in MakeRom utility did not compress short
+               segment correctly.
+
+      Change:  Fix Code compression logic in MakeRom utility accordingly.
+
+Version 14.2.0 April 06, 2010
+-----------------------------
+   Enhancements:
+   =============
+   1. Added supports for SelfBoot/OTP Devices.
+
+   Notes:
+   ======
+   1. Adjust version number for Software Rel 14.2.
+
+Version 14.0.8 February 25, 2010
+-------------------------------
+   Fixes:
+   =============
+   1. Fixed display corruption in option rom configuration menu on certain 
+      types of mother board 
+
+Version 14.0.7 December 30, 2009
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for iSCSI code image compression and
+      run time decompression.
+
+Version 14.0.6 December 18, 2009
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for UNDI and BASE code image compression and
+      run time decompression.
+   
+   Fixes:
+   ======
+   1. Problem: In legacy code, F4 save will cause BIOS to hang.
+      Cause: BIOS in some motherboard has a bug which uses stream instruction without
+             set direction bit before use. Our MBA Code added recently happens to
+             use stream instruction leaving direction backward, which
+             caused BIOS bug to surface.
+      Changes: Cleared direction flag before returning control back to BIOS.
+
+Version 14.0.5 December 2, 2009
+-------------------------------
+   1. Problem: MBA caused system to hang when Firmware Management controller is
+               halted on BCM5761 device.
+
+      Cause:   MBA init code did not preserve the register value used for time-out
+               when waiting for Firmware Management to response. In turn, this
+               register never expired.
+
+      Change:  MBA init code to preserve the register used for time-out.
+
+Version 14.0.4 November 18, 2009
+--------------------------------
+   1. Problem: MBA configured same VLAN ID for both ports on BCM5717 and
+               BCM5718 controllers.
+
+      Cause:   MBA init code does not distinguish the ports.
+
+      Change: Changed MBA init code to identify second port correctly.
+
+Version 14.0.3 November 16, 2009
+--------------------------------
+   Enhancements:
+   =============
+   1. Added SelfBoot support for BCM57781, BCM57785, BCM57761, BCM57765, BCM57791,
+      BCM57795, BCM5717, BCM5718, and BCM5724 controllers.
+
+Version 14.0.2 October 21, 2009
+-------------------------------
+    1. Problem: System locked up when MBA is enabled on BCM57781, BCM57785,
+       BCM57761, BCM57765, BCM57791, and BCM57795 controllers that have a certain
+       NVRAM device.
+
+       Change: Changed MBA init code to support a certain NVRAM devices
+       correctly.
+
+Version 14.0.1 October 15, 2009
+-------------------------------
+    1. Problem: System locked up with family of BCM57760, BCM57780, BCM57788,
+       and BCM57790 devices.
+
+       Cause : There was an extra PUSH instruction.  This problem was
+       first introduced in v14.0.0.
+
+       Change: Changed MBA init code to remove extra PUSH instruction.
+
+Version 14.0.0 October 07, 2009
+-------------------------------
+   Enhancements:
+   =============
+   1. Added CLP support.
+
+   2. Enhanced Option ROM to pass bootstrap information to iSCSI Option
+      ROM so that it will return control to BIOS with RET instruction or 
+      INT18h.
+
+   3. Added support for BCM5717, BCM5718, and BCM5724 controllers.
+
+   4. Added support for BCM57781, BCM57785, BCM57761, BCM57765, BCM57791,
+      and BCM57795 controllers.
+
+Version 12.4.3 October 12, 2009
+-------------------------------
+
+    1. Problem: MBA failed to detect BBS if SMBIOS structure in the BIOS 
+               is below F000 segment.
+
+       Change: Changed MBA init code to search SMBIOS structure from 0xD000
+               segment.
+
+Version 12.4.2 October 12, 2009
+-------------------------------
+
+    1. Problem:
+               BCM57760, BCM57780, and BCM57790 LOM device disappeared
+               after multiple iteration of copy/compare test on some platforms
+               (CQ#43851).
+       Change:
+               Apply work-around after Chip Reset.
+       Impact:
+               BCM57760, BCM57780, and BCM57790 controllers only.
+
+Version 12.4.1 Oct. 2, 2009
+---------------------------
+  Fixes:
+   ======
+    1. Problem: When PXE speed is set to 10Mb, PXE links still at 1G.
+                (CQ#43891).
+
+       Cause : Problem introduced when a workaround was implemented for OTP
+               configuration in v12.0.2. Driver mistaken the MBA configure
+               setting link speed parameter as OTP configuration, which
+               can't be modified.
+
+       Change: Driver allows the MBA configure setting link speed to be
+               modified accordingly.
+
+Version 12.4.0 Aug. 3, 2009
+----------------------------
+   Enhancements:
+   =============
+   1. Added support for PCI Firmware Spec. 3.0
+   
+Version 12.2.5 July 9, 2009
+----------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM57788 devices.
+   2. Made a change to shutdown the UNDI interface if upper layer doesn't
+      call UNDI SHUTDOWN before calls STOP_UNDI.  
+
+Version 12.2.4 July 09, 2009
+----------------------------
+   Enhancements:
+   =============
+   1. Added support for AC131 PHY for BCM5785 controllers.
+
+Version 12.2.3 June 16, 2009
+---------------------------
+   Enhancements:
+   =============
+   1. Enhanced iSCSI ROM logic to support "One Time Disabled" Option for 
+      iSCSI Boot To Target option.
+
+Version 12.2.2 May 15, 2009
+---------------------------
+  Fixes:
+   ======
+    1. Problem: iSCSI MPIO mode doesn't work.
+
+       Cause : Incorrect FAR pointer to primary iSCSI block is not
+       passed to routine that locates secondary iSCSI block.  This 
+       issue was introduced in v12.2.1.
+
+       Change: Fixed UNDI loader code to pass correct FAR pointer 
+       to primary ISCSI block.
+
+Version 12.2.1 May 11, 2009
+----------------------------
+   Enhancements:
+   =============
+   1. Enhanced loader so that it can load iSCSI Boot driver IPv4 or IPv6 
+      based on the iSCSI boot configuration.
+
+Version 12.2.0 April 30, 2009
+-----------------------------
+  Fixes:
+   ======
+    1. Problem: Option ROM displays MBA configuration screen when 
+       ECX=0x46415354 and SI=1 on BCM57780/90 OTP configuration.
+
+       Change: Changed Option ROM initialization code so that it doesn't
+       check for the input keystroke in BCM57780/90 OTP configuration.
+
+   Enhancements:
+   =============
+   1. Enhanced Option ROM to not display copyright banner for BCM57780/90 OTP 
+      configuration. (CQ#40901)
+
+Version 12.0.3 April 16, 2009
+-----------------------------
+  Fixes:
+   ======
+    1. Problem: Link LED is not ON when UNDI driver is loaded on 
+       BCM57780/90 with OTP/selfboot configuration.
+
+       Cause : UNDI driver overwrote UART/LED bit of Local 
+       Control register.
+
+       Change: Changed driver initialization routine to set bit 4 
+       of Local Control register to select LED mode.
+
+Version 12.0.2 April 14, 2009
+-----------------------------
+  Fixes:
+   ======
+    1. Problem: PXE boot failed intermittently with BCM57780/90 with OTP 
+       configuration.
+
+       Cause : ROM code inside the device doesn't initialize feature 
+       configuration in the shared memory and therefore content of 
+       feature configuration will be intermitent.  This causes UNDI 
+       driver to use uninitialized configuration such as VLAN ID, etc...
+
+       Change: Implemented a workaround in the UNDI driver so that 
+       driver doesn't use feature configuration in the shared memory 
+       in an OTP configuration.
+
+Version 12.0.1 March 27, 2009
+-----------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM5785 10/100 controllers.
+
+Version 12.0.0 March 19, 2009
+-----------------------------
+  Fixes:
+   ======
+    1. Problem: TFTP timeout during PXE boot is too long if TFTP server
+       is not available. (CQ#39447)
+
+       Cause : Timeout value is not reset for each TFTP open.  Subsequent
+       TFTP open timeout will be the total timeout in the first TFTP open
+       which can be 35s delay.
+
+       Change: Fixed a problem in the Base Code to reset the timeout in 
+       the beginning of TFTP open.
+
+Version 11.9.7 January 5, 2009
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM5761S controllers.
+   2. Updated Copyright banner to reflect year of 2009.
+
+Version 11.9.6 November 19, 2008
+--------------------------------
+  Fixes:
+   ======
+    1. Problem: No LEDs are lit when after loading driver.(CQ#38565)
+
+       Cause: Driver did not preserve the Miscellaneous Local Control
+       register.
+               
+       Change: Driver performs read and modify when setting the Miscellaneous
+       Local Control register.
+
+Version 11.9.5 November 11, 2008
+--------------------------------
+  Fixes:
+   ======
+    1. Problem: SUT can not boot after program MBA firmware and
+       enable PXE on BCM5761.(CQ#38359)
+
+       Cause: SUT did not have APE/DASH management firmware in NVRAM.
+               
+       Change: PXE init code check for APE/DASH management firmware
+       is enabled for BCM5761.
+
+Version 11.9.4 October 30, 2008
+-------------------------------
+  Fixes:
+   ======
+    1. Problem: PXE links at 100Mbps with BCM57780 devices.
+
+       Cause: Device ID for BCM57790 (10/100) was mistakenly defined 
+       as BCM57780 device.
+               
+       Change: Corrected Device ID for BCM57790 device.
+
+   Enhancements:
+   =============
+   1. Made changes to notify APE firmware of BCM5761 that Option ROM
+      initialization starts.
+
+Version 11.9.3 October 24, 2008
+-------------------------------
+  Fixes:
+   ======
+    1. Problem: PXE Option ROM failed to load phase 2 code with 
+       BCM57760 devices. (CQ#38125)
+
+      Cause: PXE Init code doesn't detect NVRAM type correctly.
+               
+      Change: Updated PXE init code to recognize NVRAM type
+      on BCM57760 devices correctly.
+
+Version 11.9.2 October 23, 2008
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM57760 and BCM57790 controllers.
+
+Version 11.9.1 October 15, 2008
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for the 5785 controllers.
+
+Version 11.9.0 October 14, 2008
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for the 57780 controllers.
+
+Version 11.4.1 June 29, 2008
+----------------------------
+   Fixes:
+   ======
+    1. Problem:
+               MBA Ctrl+S setup screen, press F4 cannot save the changes.
+               (CQ#35281)
+      Cause:
+               During update NVRAM checksum, MBA mistaken the device has
+               Revision 2 Memory Map and written the check sum value to
+               MBA data area.        
+      Change:
+               MBA identifies for proper Revision number Memory Map and writes
+               the check sum value to its appropriate area.
+
+      Impact:
+               None.
+
+Version 11.4.0 May 30, 2008
+---------------------------
+   Fixes:
+   ======
+    1. Problem:
+               DASH processor stalls when the driver applies a GRC reset
+               while the DASH processor is also accessing the GRC reset register.
+
+      Cause:
+               A LSI bug is causing this behavior. This driver implements the
+               LSI recommended workaround.        
+
+      Change:
+               The workaround requires the driver to acquire a mutex register
+               before issuing the GRC reset.
+
+      Impact:
+               DASH firmware 0.96 or later is required for this fix to work.
+
+   2. Problem:
+               Failed to deploy O/S with latest Tivoli software on
+               BCM5704-based platforms.
+
+      Cause: 
+              There is race condition in L2 F/W Rx path firmware that 
+              can cause problem in enqueuing FTQ queue request to DMA write
+              engine.
+
+      Change:
+              Fixed race condition in L2 F/W and integrated F/W 
+              v1.17.0 with the UNDI driver.
+
+Version 11.0.14 March 12, 2008
+------------------------------
+   Fixes:
+   ======
+   1. Problem:
+               VLAN configuration was not taken effect immediately for iSCSI 
+               boot configuration. (CQ#34138)
+
+      Change:
+               Changed MBA configuration to update local copy of VLAN status.
+
+  Version 11.0.13 March 07, 2008
+------------------------------
+   Fixes:
+   ======
+   1. Problem:
+               PXE arp timeout and loss of mgmt fw connection when
+               PXE/DASH enabled.(CQ#33998)
+
+      Cause:
+               Driver did not implement the new DASH firmware setup rules
+               for the BCM5761/BCM5761E controllers.
+
+      Change:
+               Implemented required DASH firmware setup rules for the
+               BCM5761/BCM5761E controllers.
+
+Version 11.0.12 February 11, 2008
+---------------------------------
+   Fixes:
+   ======
+    1. Problem:
+                System might hang during driver bringup/shutdown if CLKREQ and 
+                ASPM L0s/L1 are enabled on PCI-E link control registers. (CQ#33808)
+
+      Cause:
+                Issuing a GRC reset with CLKREQ enabled is causing a global chip 
+                reset which causes PCI-E link to drop.
+
+      Change:
+                When ClkReq and L0s/L1 ASPM are enabled, driver will clear ClkReq 
+                enable bit before doing GRC reset and restore it after GRC reset.
+
+Version 11.0.11 January 29, 2008
+-------------------------------
+   Enhancements:
+   =============
+    1. Implemented GPHY software workaround so that 10Mb Rx only mode is turned
+       off before PHY is reset. This workaround only applies to 
+       BCM5784/BCM5764/BCM5723 B0 devices.
+
+Version 11.0.10 January 28, 2008
+-------------------------------
+   Enhancements:
+   =============
+    1. Removed support for BCM5784/BCM5764/BCM5723 Ax devices.
+    2. Implemented software workaround for AFE BW and Line Distortion problem
+       based on the content of One-Time-Program (OTP) memory on the device.
+    3. Updated APE inter-processor interface code to work with updated DASH
+       firmware for BCM5761/BCM5761E device.
+
+Version 11.0.9 January 14, 2008
+-------------------------------
+   Enhancements:
+   =============
+    1. Updated Copyright banner to reflect year of 2008.
+    2. Implemented software workaround for AFE BW and Line Distortion problem
+       with BCM5764/BCM5784/BCM5723 B0 devices.
+
+Version 11.0.8 December 7, 2007
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for the 5723 controllers.
+
+Version 11.0.7 November 8, 2007
+-------------------------------
+   Fixes:
+   ======
+   1. Problem : iSCSI Boot driver fails to establish TCP connection after
+      a warm reboot in iSCSI Boot to Linux configuration with BCM5764.
+      (CQ#32075)
+
+      Cause : This is caused by both Linux driver and MBA driver where 
+      software workaround was not implemented when GPHY is shutdown.
+
+      Change : Implemented required software workaround for BCM5764 A0/A1 
+      where driver configures clock policy for CPMU block.
+
+   Enhancements:
+   =============
+   1. Added software handshake with DASH firmware for the 5761/5761E 
+      controllers.  
+
+Version 11.0.6 November 1, 2007
+-------------------------------
+   Fixes:
+   ======
+   1. Problem : PXE protocol is used when BootP protocol is configured in 
+      BCM5784/BCM5764 self-boot configuration.
+
+      Change : Changed UNDI driver to fetch MBA configuration data 
+      from correct NVRAM offset.
+
+Version 11.0.5 October 26, 2007
+-------------------------------
+   Enhancements:
+   =============
+   1. Modifled ROM Initialization code to enable NVRAM access for BCM5761/61E
+      devices so that ROM code can access NVRAM data correctly.
+
+Version 11.0.4 October 23, 2007
+-------------------------------
+   Enhancements:
+   =============
+   1. Optimized Tx performance for BCM5764/BCM5784 A0 devices by programming 
+      Maximum Read Request size to 4K.
+
+Version 11.0.3 October 15, 2007
+-------------------------------
+   Fixes:
+   ======
+   1. Problem : PXE failed to load on BCM5764M when a certain Amtel 
+      flash is used. (CQ#31857)
+
+      Change : Changed the MBA initialization code to add support for 
+      all Atmel flash devices.
+
+Version 11.0.2 October 11, 2007
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for the 5761/5761E controllers.
+   2. Added software workaround for BCM5784/BCM5764 A0 activity LED
+      problem.
+
+Version 11.0.1 October 10, 2007
+-------------------------------
+   Enhancements:
+   =============
+   1. Added support for the 5764 controllers.
+   2. Added self-boot configuration support for 5784 and 5764 
+      controllers.
+
+Version 11.0.0 October 08, 2007
+-------------------------------
+   Enhancements:
+   =============
+   Added support for the 5784 controller.
+
+Version 10.7.5 September 06, 2007
+---------------------------------
+   Fixes:
+   ======
+   1. Problem : VLAN ID of secondary interface is not passed to iSCSI boot  
+      agent correctly when VLAN of secondary interface is not enabled.
+      (CQ#30083)
+
+      Cause :  When VLAN of secondary interface is disabled, MBA code 
+      doesn't initialize the VLAN ID field in the interface block.
+      
+      Change : Changed the MBA code to initialize VLAN ID field to zero
+      if VLAN admin state of secondary interface is disabled.
+
+   Enhancements:
+   ============
+   1. Enhanced ROM initilization code to display MAC address of the device
+      during POST. (CQ#28544)
+
+Version 10.7.4 July 9, 2007
+----------------------------
+   Fixes:
+   ======
+   1. Problem : Changing VLAN ID field in the MBA configuration menu doesn't
+      take effect immediately in the iSCSI Boot scenario.
+
+      Cause : Updated VLAN ID parameter is not passed to iSCSI Boot agent.
+      
+      Change : Changed MBA configuration saving routine to update 
+      VLAN parameter that is passed to iSCSI Boot agent.
+
+Version 10.7.3 July 2, 2007
+----------------------------
+   Enhancements:
+   ============
+   1. Enhanced UNDI driver to provide an API interface so that upper
+      layer can update iSCSI information on the secondary interface.
+
+Version 10.7.1 June 28, 2007
+----------------------------
+   Fixes:
+   ======
+   1. Problem : iSCSI Boot tried to boot on non-configured secondary
+      device of second set of MPIO if the first set of MPIO was
+      configured and failed to boot. (CQ#30280)
+
+      Cause : The low memory was used for scratchpad memory block.
+      This block was not cleared first.
+      
+      Change : Changed iSCSI loading logic to clear out the scrachpad
+      block.
+
+Version 10.7.0 June 13, 2007
+----------------------------
+    Enhancements:
+    ===========
+     1. Added logic to pass iSCSI boot configuration parameters of primary and 
+        secondary devices to iSCSI boot agent.
+
+Version 10.4.6 April 12, 2007
+-----------------------------
+    Enhancements:
+    ===========
+     1. Improve performance on PCI-express mobile devices when they are 
+        interconnected with a certain mobile Intel chipset.
+
+      Cause:
+        There is an interoperability issue between the Broadcom
+        LAN controllers and the Intel ICH7/8 that may cause the 
+        Rx-performance at 100 Mbps to be lower then expected when
+        L1 ASPM is enabled along with system CPU C3E, or C4, or C4E 
+        or higher state.
+
+      Change:
+        Changed the driver to disable L1 ASPM during initialization
+        and restore the configuration at the driver shutdown.
+
+Version 10.4.5 March 26, 2007
+-----------------------------
+    Fixes:
+    ======      
+    1. Problem : NDIS driver still uses VLAN ID from the preboot software   
+       configuration when iSCSI boot fails and system boots to local
+       Windows partition. (CQ#28878)
+
+       Change: Changed the UNDI driver so that it invalidate the iSCSI block
+       offset in the device's shared memory.
+
+Version 10.4.4 February 13, 2007
+--------------------------------
+    Fixes:
+    ======      
+    1. Problem : NDIS driver failed initialization on port#0 when SoL and 
+       iSCSI are enabled on the port#1 of BCM5704. (CQ#28268)
+
+       Cause: During UNDI driver initialization, UNDI driver needs to halt 
+       the RX and TX CPU so that it can load the light-weighted L2 firmware
+       to RX CPU's scratchpad.  At this time, bootcode might be loading the
+       ASF/IPMI firmware from the NVRAM to the scratchpad. In that scenario,
+       the bootcode still owns the arbitration.  NDIS driver will fail 
+       to acquire arbitration.
+
+       Change: Changed the UNDI driver so that it will clean up NVRAM access 
+       and release NVRAM arbitration#0 if NVRAM arbitration#0 is owned by the 
+       bootcode after RX-CPU is halted.
+
+Version 10.4.3 January 25, 2007
+------------------------------
+    Fixes:
+    ======      
+    1. Problem : Valid range for VLAN ID in MBA configuration menu is 
+       too small (0..1023). (CQ#28249)
+
+       Change: Changed MBA configuration code to increase valid VLAN 
+       range to (0..4095).
+
+Version 10.4.2 January 15, 2007
+------------------------------
+    Fixes:
+    ======      
+    1. Problem : PXE boot might fail in the following setup scenario  
+         (CQ#27953):
+         * DHCP relay agent is used since DHCP server is on
+           different subnet with respect to the PXE client.
+         * PXE server is on different subnet with respect 
+           to the PXE client. 
+         * IP address of relay agent and default router are different. 
+
+       Cause: Base Code used IGADDR in the bootp field as default gateway
+       IP address.  It should use Router DHCP option for default gateway
+       IP address.  This causes TFTP packets routed to the wrong path.
+
+       Change: Updated base code to initialize default gateway IP address  
+       from the Router DHCP option if it's present. The changes are in 
+       Base Code v1.0.9.
+
+Version 10.4.1 January 8, 2007
+------------------------------
+    Fixes:
+    ======      
+    1. Problem : MBA configuration menu doesn't save Preboot WoL correctly
+       for BCM5906M device. (CQ#28079)
+
+       Cause: Parameter saving routine doesn't set WoL parameters correctly.
+
+       Change: Fixed parameter saving routine for BCM5906M device so that 
+       WoL can be saved correctly.
+
+Version 10.4.0 January 4, 2007
+------------------------------
+    Fixes:
+    ======      
+    1. Problem : RMCP ping will timeout after SUT sits at the PXE menu
+       for a long period time (e.g. about 10+ minutes). (CQ#27679)
+
+       Cause: In the PXE menu, base code doesn't respond to ARP requests.
+
+       Change: Modified the base code to respond to ARP requests when it's
+       polling for keystrokes in the PXE menu.  The changes are in 
+       Base Code v1.0.8.
+
+    Enhancements:
+    =============
+    1. Updated copyright banner to reflect year Of 2007.
+    2. Added support for BCM5756 and BCM5722 family devices.
+
+Version 10.0.8 December 18, 2006
+--------------------------------
+    Fixes:
+    ======      
+    1. Problem : 5755M failing IEEE compliance on certain OEM platforms.
+       (CQ#27832)
+
+       Cause:
+        The PHY trim registers needed to be modified.
+
+       Change:
+        Modified the UNDI driver to program the PHY trim registers per
+        recommendation from phy engineering team.
+
+Version 10.0.7 December 4, 2006
+--------------------------------
+   Fixes:
+   ======
+   1. Problem : PXE doesn't work on BCM5787-based NICs which has buffered NVRAM.
+      (CQ#27730) 
+
+      Cause : There is a bug in the NVRAM initialization routine where it doesn't
+      detect buffered NVRAM correctly for BCM5787 devices.  This issue was 
+      introduced in PXE v10.0.6 after adding Microchip 24LC0x device support.
+
+      Change : Fixed NVRAM initialization routine.
+
+Version 10.0.6 November 16, 2006
+--------------------------------
+   Fixes:
+   ======
+   1. Problem : Saving parameters in MBA configuration menu might generate
+      invalid checksum for code patch block of BCM5787 selfboot code if
+      a newer version of selfboot firmware and the NVRAM device is Microchip 
+      24LC0x.
+
+      Cause : MBA driver didn't have support for Microchip 24LC0x devices
+      and it didn't handle the dynamic offset of MBA configuration parameter
+      correctly which depends on the number of code patches.
+
+      Change : Added support for Microchip serial EEPROM devices and changed 
+      the NVRAM initialization logic to determine dynamic offset of MBA
+      configuration word correctly.
+
+   2. Problem : MBA driver doesn't retrieve MBA configuration correctly when
+      newer version of BCM5787 selfboot code is used. One of the common 
+      symptoms is that MBA driver doesn't boot with configured boot 
+      protocol.
+
+      Change : Changed MBA code to determine dynamic offset of MBA configuration 
+      word correctly.
+
+   Enhancements:
+   =============
+   1. Removed support for BCM5756 and BCM5722 family devices.
+
+Version 10.0.5 November 13, 2006
+--------------------------------
+   Fixes:
+   ======
+   1. Problem : Netware Client32 driver does not transmit/receive on 
+      5722 when PXE is enabled. (CQ#26992)
+
+      Cause : PXE driver has a S/W workaround for BCM5721/51 A0 device 
+      where it slows down the core clock before a GRC reset.  This 
+      causes some problem with BCM5722 and BCM5756 devices. 
+
+      Change: Removed this workaround since BCM5721/51 A0 is no longer 
+      supported.
+
+Version 10.0.4 October 30, 2006
+-------------------------------
+   Fixes:
+   ======
+   1. Problem : MBA configuration menu fails to save parameters on the
+      BCM5906-based and BCM5787-based (self-boot)platform that has serial 
+      EEPROM protect. (CQ#27325)
+
+      Change : Changed the NVRAM saving routine to disable write protect
+      for BCM5906 devices and BCM5787-based (self-boot).
+
+   Enhancements:
+   =============
+   1. Enhanced MBA menu-driven configuration code so that it prompts user
+      to save changes if user presses ESC to exit when one or more changes
+      were made. (CQ#26965)
+
+Version 10.0.3 October 9, 2006
+------------------------------
+   Fixes:
+   ======
+   1. Problem : UNDI driver will display bogus data on the Boot Protocol 
+      Entry if it was configured to iSCSI Boot and image was configured 
+      so that boot protocol is not configurable.  This problem only occurs
+      with UNDI images.
+
+      Change : Fixed the mapping logic so that mapping index is correct
+      for UNDI images.
+
+Version 10.0.2 October 6, 2006
+------------------------------
+   Enhancements:
+   =============
+   1. Enhanced to display MAC address of the device being configured 
+      in the MBA configuration menu. (CQ#27029)
+
+Version 10.0.1 September 28, 2006
+---------------------------------
+   Enhancements:
+   =============
+   1. Enhanced ROM header utility (romhdr.exe) to allow user to configure 
+      Boot Protocol option to be not configurable. Version of this utility 
+      is v1.0.7.
+
+      For instance,
+
+      To disable MBA boot protocol configuration
+
+               romhdr -v 0x14e4 -d 0x1677 -c 1 -i b57undie.lom -o rom.lom
+
+
+      To enable MBA boot protocol configuration
+
+               romhdr -v 0x14e4 -d 0x1677 -c 0 -i b57undie.lom -o rom.lom
+
+
+   2. Updated MBA configuration menu code to lock MBA boot protocol 
+      configuration if it's enabled in the image.
+
+Version 10.0.0 September 19, 2006
+---------------------------------
+
+   Enhancements:
+   =============
+   1. Added support for BCM5906,BCM5756, and BCM5722 family devices.
+
+   2. Enabled AUTO-MDIX mode when the link is in forced speed.  This allows 
+      straight-through cable to be used in forced speed configuration.
+
+Version 9.7.10 September 15, 2006
+---------------------------------
+
+   Fixes:
+   ======
+   1. Problem : UNDI driver will hang up if BCM5714S/15S is connected to
+      Marvell media conversion module and with no cable attached on the
+      copper side. (CQ#26784)
+
+      Cause : Timeout mechanism was not implemented correctly.
+      
+      Change : Fixed the timeout mechanism.
+
+Version 9.7.9 August 25, 2006
+-----------------------------
+   Enhancements:
+   =============
+   1. Removed support for BCM5906 and BCM5756 family devices.
+
+   2. Changed MBA configuration menu to use "Ctrl-K" to invoke 
+      iSCSI configuration program.
+
+Version 9.7.8 August 14, 2006
+-----------------------------
+
+   Fixes:
+   ======
+   1. Problem : UNDI driver might not detect link correctly on BCM5714s/
+      BCM5715s then the link partner is Marvell media conversion 
+      module.
+
+      Cause : This particular Marvell serdes might take up to 3 or more 
+      seconds to AUTONEG  after a valid link is present.
+      
+      Change : Changed the UNDI driver so that the timeout for BCM5714s/
+      BCM5715s PHY link detection is increased from 500ms to 8 seconds.
+
+Version 9.7.7 August 10, 2006
+-----------------------------
+   Enhancements:
+   =============
+   1. Enhanced MBA configuration program to invoke iSCSI configuration 
+      program for channel#1 only if ISCSI Configuration block for channel#1 
+      exists.
+
+Version 9.7.6 August 7, 2006
+----------------------------
+   Fixes:
+   ======
+   1. Problem : Driver doesn't detect link correct when autonegotiation of 
+      link partner is disabled for BCM5906 devices.
+
+      Cause : BCM5906 PHY core doesn't report highest common denominator (HCD)
+      in PHY register 0x19 when AUTONEG is not enabled at link partner.
+
+      Change : For BCM5906 devices, if HCD is not available (value of zero),
+      then driver determines link speed by looking at other status bits that
+      are specific to BCM5706 PHY core.
+
+Version 9.7.5 August 1, 2006
+----------------------------
+   Fixes:
+   ======
+   1. Problem : Link timeout might be short and inaccurate for BCM5906 devices.
+
+      Cause : Free running timer in BCM5906 runs at a fixed-rate at 25MHz core
+      clock.
+
+      Change : Changed time calabrating routine to use correct scaling factor.
+
+   2. Problem : non-MBA images (b57pxee.lom, b57pxee.nic, etc...) don't display
+      iSCSI boot as boot protocol. (CQ#26121)
+
+      Change: Fixed to MBA init code not to overwrite boot protocol as PXE
+      in case of non-MBA images.
+
+Version 9.7.4 July 27, 2006
+---------------------------
+   Enhancements:
+   =============
+   1. Enhanced driver to enable Auto MDIX when link is forced at either
+      10Mbps or 100Mbps on BCM5906 devices. (CQ#25849)
+
+Version 9.7.3 July 14, 2006
+---------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM5756 devices.
+
+Version 9.7.2 July 13, 2006
+---------------------------
+   Enhancements:
+   =============
+   1. Enhanced UNDI initialization code so that it can be forced to run
+      on a particular device with a given PCI bus/device/function number.
+      This allows software quality group to test devices designed for 
+      LOM application only.
+
+Version 9.7.1 July 13, 2006
+---------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM5906 devices (LOM only).
+
+Version 9.7.0 June 29, 2006
+---------------------------
+   Enhancements: 
+   ============
+     1. Enhanced the bootstrap menu processing logic in the base code to
+        poll UNDI interface for Rx packets so that IPMI/ASF traffic is 
+        not blocked. The changes are in the Base Code v1.0.7.
+
+Version 9.4.5 May 25, 2006
+--------------------------
+   Enhancements: 
+   ============
+     1. Enhanced driver to initialize the PHY DSP parameters to resolve
+        an issue where link has problem  acquiring 1000T link when link 
+        partner jitter is above IEEE limit on 5755, 5754,and 5787 
+        controllers. (CQ#24525)
+
+Version 9.4.4 May 17, 2006
+--------------------------
+   Fixes:
+   ======
+   1. Problem : PXE failed to boot to server if Server IP address (option 54)
+      is different in DHCP and BINL phase. (CQ#24848)
+
+      Cause : During BINL (Boot Information Negotiation Layer) phase, base 
+      code checks to make sure Server IP address in the BINL response is the 
+      same as the Server IP address in DHCP phase.  If it's different, then 
+      it doesn't accept the BINL response.  This can be different and valid 
+      in some configurations.
+
+      Change : Changed the base code so that it doesn't have to validate the 
+      Server IP address in BINL phase.
+
+Version 9.4.3 May 11, 2006
+--------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM5786 device which is configured for self-boot ROM. 
+      (CQ#24528)
+
+Version 9.4.2 April 14, 2006
+----------------------------
+   Enhancements:
+   =============
+   1. Added VLAN support.
+
+   2. Enhanced DHCP logic in the base code so that it will only 
+      wait for up to 4 seconds to send out DHCP requests after one
+      or more DHCP offers are received.
+
+Version 9.4.1 March 21, 2006
+----------------------------
+   Enhancements:
+   =============
+   1. Added support for BCM5786 family devices.
+   
+   2. Enhanced PXE initialization code to display a warning message if 
+      the Device ID of the device doesn't match with the Devide ID field
+      in the PCI ROM header. (CQ#23958)
+
+Version 9.4.0 March 13, 2006
+----------------------------
+   Enhancements:
+   =============
+   1. Added back support for BCM5755 family devices.
+
+Version 9.0.12 February 27, 2006
+--------------------------------
+   Enhancements:
+   =============
+   1. Removed support for BCM5755 family devices.
+
+Version 9.0.11 February 9, 2006
+-------------------------------
+   Enhancements:
+   =============
+   1. Removed iSCSI support from PCI legacy device to keep the memory 
+      footprint small for PCI device binary images.
+
+Version 9.0.10 January 26, 2006
+-------------------------------
+   Fixes:
+   ======
+   1. Problem : Users cannot invoke iSCSI configuration program via "F7"
+      on some systems.
+
+      Cause : Some BIOS's don't return "F7" keystroke via INT16h services.
+
+      Change : Changed MBA configuration menu to use "Ctrl-I" to invoke 
+      iSCSI configuration program.
+
+   Enhancements:
+   =============
+   1. Enhanced MBA configuration menu so that it will load iSCSI 
+      configuration program to 5000:0 if system doesn't support 
+      PMM (Post Memory Manager).
+
+Version 9.0.9 January 23, 2006
+-------------------------------
+   Enhancements:
+   =============
+   1. Enhanced MBA configuration menu to load iSCSI configuration program 
+      if it's available in the NVRAM.
+
+Version 9.0.8 January 11, 2006
+-------------------------------
+
+   Enhancements:
+   =============
+   1. Changed PXE driver so that H/W fix for intermittent false link   
+      detection is not enabled for BCM5780S devices.  
+
+Version 9.0.7 January 10, 2006
+------------------------------
+
+   Enhancements:
+   =============
+   1. Updated Copyright banner to reflect year Of 2006.
+
+   Fixes:
+   ======
+   1. Problem : PXE intermittently doesn't detect link correctly in
+      BCM5714/15 Serdes device family.
+
+      Cause : It's a hardware problem where PHY status register 
+      doesn't indicate valid link intermittently.
+
+      Change : Changed PXE driver to enable the H/W fix and query
+      link status from the MAC status register.
+
+Version 9.0.6 November 14, 2005
+-------------------------------
+   Fixes:
+   ======
+   1. Problem : Saving of PXE configuration in Ctrl-S menu hangs on 
+      BCM5755/BCM5754/BCM5787 devices if the NVRAM type is ST Flash.
+
+      Cause : Nvram WRITE routine sends WREN to the flash which is 
+      not neccesary for the flash interface for these device families.
+
+      Change : Changed Nvram WRITE routine not to send WREN to these
+      families of devices.
+
+Version 9.0.5 November 1, 2005
+------------------------------
+   Fixes:
+   ======
+   1. Problem : Saving of PXE configuration in Ctrl-S menu hangs on 
+      BCM5714/BCM5715/BCM5780 devices if the NVRAM type is ST Flash.
+      (CQ#14536)
+
+      Cause : PXE initialization didn't support ST Flash and didn't 
+      reconfigure the Flash Interface for WRITE operation  when ST 
+      flash was detected.
+
+      Change : Changed PXE initialization code to support ST Flash
+      devices.
+
+Version 9.0.4 October 26, 2005
+------------------------------
+   Fixes:
+   ======
+   1. Problem : PXE hangs during PXE loading with 5754 devices.
+      (CQ#14464)
+
+      Cause : BCM5754's Flash interface is different from BCM5787's 
+      and the same as BCM5755's.
+
+      Change : Changed flash interface routine to use correct interface.
+
+Version 9.0.3 October 19, 2005
+------------------------------
+   Enhancements:
+   ============
+   1. Remove iSCSI ROM support for PCI devices to keep ROM size smaller.
+
+Version 9.0.2 October 18, 2005
+------------------------------
+   Enhancements:
+   ============
+   1. Removed PHY BER software workaround for BCM5755/BCM5787/BCM5754 
+      family devices.
+
+Version 9.0.1 October 18, 2005
+------------------------------
+   Enhancements:
+   ============
+   1. Added support for iSCSI as one of the boot protocol.  iSCSI option 
+      is only available if ISCSI image is found in the NVRAM.
+
+Version 9.0.0 October 17, 2005
+------------------------------
+   Enhancements:
+   =============
+   1. Request: Added support for BCM5755/BCM5787/BCM5714S/BCM5715S/
+      BCM5754 family devices.
+
+      Change : Changed PXE init code to support above devices.
+
+Version 8.3.7 October 17, 2005
+------------------------------
+   Enhancements:
+   =============
+   1. Request: Removed support for BCM5755/BCM5787/BCM5714S/BCM5715S 
+      family devices.
+
+      Change : Changed PXE init code to not support above devices.
+
+Version 8.3.6 September 28, 2005
+--------------------------------
+   Fixes:
+   ======
+   1. Problem : System hangs when ASF and PXE are enabled on BCM5755 A0
+      devices. (CQ#14192)
+
+      Cause : There is a bug in Firmware Resume Workaround routine which
+      doesn't clear out the GRC bus by reading a "zero" register before 
+      a Resume Signature is deposited. Current workaround routine reads
+      the "zero" register after the resume signature is deposited.
+
+      Change : Changed  Firmware Resume Workaround routine to
+      read a "zero" register before a Resume Signature is deposited.
+
+Version 8.3.5 September 26, 2005
+--------------------------------
+   Fixes:
+   ======
+   1. Problem : UNDI takes long time to determine presense of link.
+
+      Cause : Incorrect delay routine is called.  This problem was 
+      introduced in v8.3.4.
+
+      Change : Changed UNDI code to use correct/accurate delay routine.
+
+Version 8.3.4 September 22, 2005
+--------------------------------
+   Fixes:
+   ======
+   1. Problem : Link comes up at 10Mbps HD after PXE is loaded and before 
+      driver is loaded. (CQ#13704)
+
+      Cause : There is a timing issue in MDIO block where software doesn't 
+      read correct data when this block indicates that data is ready. This
+      causes driver to write invalid data to PHY register in a Read-Modify-
+      Write operation.
+
+      Change : Changed the PHY register reading routine to read MDIO 
+      register one more time after MDIO register indicates that data is
+      ready.
+
+Version 8.3.3 September 20, 2005
+--------------------------------
+   Enhancements:
+   =============
+   1. Request: Added support for BCM5755 family devices.
+
+      Change : Changed PXE init code to support above devices.
+
+Version 8.3.2 September 06, 2005
+--------------------------------
+   Enhancements:
+   =============
+   1. Request: Added support for BCM5787 family devices.
+
+      Change : Changed PXE init code to support above devices.
+
+Version 8.3.1 August 31, 2005
+-----------------------------
+   Enhancements:
+   =============
+   1. Request: Added support for BCM5903M.
+
+      Change : Changed PXE init code to support above devices.
+
+Version 8.3.0 August 25, 2005
+-----------------------------
+   Fixes:
+   ======
+   1. Problem: DOS UNDI might hang in some specific systems/environments
+      where it doesn't handle spurious interrupts. (CQ#13762)
+      
+      Cause: When optimization code path is taken, there is a bug in the
+      UNDI driver in which it might not claim it's the source of interrupt. 
+      It indicates to upper layer driver (e.g Universal NDIS2 driver) that 
+      it's not the source of interrupt.  In some systems, however, the last 
+      default handler (BIOS or O/S) of the interrupt handler chain doesn't 
+      send EOI (End-Of-Interrupt) to the PIC (Programmable Interrupt 
+      Controller).  This prevents the driver not getting any more 
+      interrupts even the device still generates interrupt.
+
+      Change: Implement logic so that it always claims its interrupt 
+      when optimization path is taken.
+
+   Enhancements:
+   =============
+    1. Enhanced to provide a way for the BIOS to select Boot protocol
+       during PXE ROM initialization. (CQ#13671)
+
+       BIOS sets up the following registers before passing control
+       to PXE initialization entry point:
+
+        AX    : Contains PCI bus/device/function number.
+        ES:DI : Pointer to System BIOS Plug and Play Installation Check 
+                Structure.
+        ECX   : 0x50524f54 ("PROT") 
+        SI    : bit 2..0 = 000b - PXE 
+                           001b - RPL 
+                           010b - BOOTP
+                           011b - iSCSI
+
+       If the signature in ECX is valid, this parameter overwrites the 
+       configuration in the NVRAM.
+
+   2. Request: Added support for BCM5714,BCM5714S,BCM5715, BCM5715S.
+      
+      Change : Changed PXE init code to support above devices.
+
+Version 8.2.6 July 20, 2005
+---------------------------
+
+   Enhancements:
+   =============
+   1. Request: Removed support for BCM5714,BCM5714S,BCM5715, BCM5715S.
+      
+      Change : Changed PXE init code to not support above devices.
+
+
+Version 8.2.5 June 10, 2005
+---------------------------
+
+   Fixes:
+   ======
+   1. Problem: Channel 1 of HTLE device doesn't boot based on configured
+      Boot Protocol. It instead boots with configured Boot Protocol of 
+      channel 0. (CQ#13114)
+
+      Change: Changed PXE init code to use correct configured Boot Protocol 
+      for channel 1.
+
+Version 8.2.4 June 1, 2005
+--------------------------
+
+   Fixes:
+   ======
+   1. Problem: PXE doesn't detect link with some of the switches 
+      that only advertise Half Duplex Capability in 
+      Fiber mode. This is definitely a bug in this OEM switch.  All
+      fiber ports shouldn't advertise Half Duplex capability ONLY.
+
+      Cause: By default, Serdes only advertises Full Duplex.
+
+      Change: Changed UNDI driver to advertise both Full and Half duplex
+      capability.  This is purely a S/W workaround for OEM's issue so 
+      that link can be accomplished.  Regardless it's established at 
+      Half or Full duplex, MAC still runs at Full duplex mode since it 
+      doesn't do CSMA at the MAC level when it's in Serdes mode.
+
+Version 8.2.3 May 27, 2005
+--------------------------
+
+   Fixes:
+   ======
+   1. Problem: ISCSI boot initiator cannot connect ISCSI target when it runs
+      over UNDI driver with BCM5704s. (CQ#13008)
+
+      Cause: Serdes autonegotiation is done in the PXE firmware.  When link 
+      partner is configured with AUTONEG off, when firmware takes about 1 to 
+      1.5 seconds to force the link up via fallback mechanism.  UNDI driver 
+      returns back to UNDI API users when it detects the cable is present and
+      doesn't wait until firmware to complete autoneg.  UNDI API users might 
+      transmit packets when link is not ready yet.  This causes packets to be 
+      dropped.
+
+      Change: Changed UNDI driver to wait until firmware to complete autoneg
+      before returning back to UNDI API users.
+
+Version 8.2.2 May 19, 2005
+--------------------------
+
+   Fixes:
+   ======
+   1. Problem: Base code doesn't process DHCP Vendor Specific option 
+      (option 43) if Class Identifier (DHCP option 60) option is 
+      after option 43.
+
+      Change: Changed the DHCP logic in the base code so that it will 
+      process Vendor Specific option regardless where Class Identifier 
+      in the DHCP packet.
+
+Version 8.2.1 May 18, 2005
+--------------------------
+
+   Enhancements:
+   =============
+   1. Enhance UNDI driver to terminate a network boot with media failure if 
+      cable (energy detect) is not detected on new generation of devices. 
+
+   2. Enhance ROM header utility (romhdr.exe) to display detailed descriptions
+      of a given image. Version of this utility is v1.6.
+       For instance,
+
+              romhdr -verbose -i b57undie.nic 
+
+      The output is :
+
+         Content of PCI Data Structure in ROM Image
+         ===========================================
+         Vendor ID          : 0x14e4
+         Device ID          : 0x1677
+         Code/Data Revision : 0x8201
+
+
+         Content of Vendor Data Structure in ROM Image
+         =============================================
+         Flags            : 0x5800 ( NIC PCI-E )
+         UNDI Code Size   : 17200
+         UNDI Data Size   : 14720
+         BC Code Size     : 0
+         BC Data Side     : 0
+         Version          : v8.2.1
+ 
+       This indicates that this UNDI driver is for PCI-E NIC device. The 
+       run-time memory footprint of this UNDI driver is about 31K.
+
+   Fixes:
+   ======
+   1. Problem: With Hamilton/HTLE Serdes, UNDI driver doesn't detect link if 
+      link partner has AUTONEG off. 
+    
+      Cause: Fallback mechanism doesn't work correctly.
+
+      Change: Fixed fallback mechanism so that UNDI driver brings the link up
+      if cable is attached and link partner is not sending config word.
+
+Version 8.2.0 May 17, 2005
+--------------------------
+
+   Enhancements:
+   =============
+   1. Add support for Hamilton and HTLE devices.
+
+   2. Request: Reduce driver image size.  See readme.txt for 
+      correct usage of PXE driver. (CQ#12531)
+      
+      Change : Generated specific set of driver for PCI Express devices
+      and PCI devices. Size of drivers for PCI express devices and 
+      PCI/PCI-X devices are deduced approximately 10Kbytes and 
+      2Kbytes, respectively. 
+
+Version 8.1.54 April 28, 2005
+--------------------------------
+
+   Fixes:
+   ======
+   1. Problem: TFTP download fails if TFTP responses are in multiple
+      IP fragments. (CQ#12778)     
+    
+      Cause: Base code doesn't support TFTP read when TFTP responses are 
+      in multiple IP fragments. 
+
+      Change: Added logic to handle IP reassembly when TFTP responses are 
+      in multiple IP fragments and set IP reassembly timeout to 1 second.
+
+Version 8.1.53 April 07, 2005
+--------------------------------
+   Enhancements:
+   =============
+   1. Remove support for Hamilton and HTLE devices.
+
+Version 8.1.52 March 25, 2005
+-----------------------------
+
+   Fixes:
+   ======
+   1. Problem: PXE driver causes causing policy error in bit 31:28 of 
+      register 0x7000.  This problem only occurs with Baxter devices 
+      when address lockout feature is enabled.
+    
+      Cause: When Address Lockout feature is enabled, the NVRAM Access 
+      register (0x7024) is not writable. If a write is attempted, a 
+      policy error 0x9 will be posted in bit 31:28 of 0x7000.
+    
+      Change: Changed PXE driver so that it doesn't write to register 0x7024
+      if address lockout feature is enabled on Baxter devices.
+    
+      Impact: This policy error status is originally designed for diagnostic 
+      purpose. However, TPM software may use this status and when there is an 
+      error, it shuts down the TPM software. This shutdown feature can be 
+      disabled via the OTP. When it is disabled, the policy error has no 
+      effect on operation of the device other than to make the most significant 
+      nibble of 0x7000 non-zero.
+
+Version 8.1.51 March 16, 2005
+-----------------------------
+
+   Enhancements:
+   =============
+   1. Add support for new device IDs, 5780 devices.  The Vendor/
+      Device IDs for 5780 and 5780s are 0x14e4/0x166a and 0x14e4/0x166b,
+      respectively.
+
+Version 8.1.50 March 15, 2005
+-----------------------------
+
+   Enhancements:
+   =============
+   1. Add back support for Hamilton, HTLE, and Baxter devices.
+
+Version 8.1.8 March 8, 2005
+----------------------------
+
+   Fixes:
+   ======
+   1. Problem: PXE processes DHCP Vendor Specific option (option 43) when 
+      Class Identifier (DHCP option 60) is not present or doesn't contain
+      "PXEClient".
+
+      Change: Changed the DHCP logic in the base code so that it only 
+      processes Vendor Specific option when Class Identifier is present 
+      and contains "PXEClient".
+
+Version 8.1.7 February 28, 2005
+--------------------------------
+
+   Enhancements:
+   =============
+   1. Remove support for Hamilton, HTLE, and Baxter devices.
+
+   2. Request : Change driver so that it doesn't disable ASF/IPMI fix (set bit 
+      18 of register 0x2018) for a problem where H/W generates double ACKs for
+      a single request.
+
+      Change : Change driver so that it doesn't write to register 0x2018 
+      for Shasta, Baxter, and Hamilton devices.  ASF/IPMI firmware can 
+      enable/disable this fix anytime by clearing/setting that bit.
+
+   3. Enhance utility romhdr.exe (v1.0.5) to allow users to dump current
+      Vendor/ID of given ROM image. 
+ 
+      For instance,
+         romhdr -verbose -i b57pxe.bin
+   
+      The output is shown as follows:
+
+         Content of PCI Data Structure in ROM Image
+         ===========================================
+         Vendor ID          : 0x14e4
+         Device ID          : 0x1645
+         Code/Data Revision : 0x8107
+         
+Version 8.1.6 February 25, 2005
+--------------------------------
+
+   Fixes:
+   ======
+   1. Problem: PXE hangs after BootIt utility to cycle through BIOS 
+      sequence. (CQ# 12247)
+
+      Cause : During the boot sequence, devices on PCI slots get
+      reset.  It causes the indirect access setting cleared.
+  
+      Change: Changed PXE init code to re-enable indirect access
+      before reloading run-time code from the NIC.
+
+Version 8.1.5 February 9, 2005
+--------------------------------
+
+   Fixes:
+   ======
+   1. Problem: MBA doesn't work with Hamilton/HTLE A1 or newer
+      devices.
+
+      Cause : ASIC IDs for Hamilton and HTLE A1 or newer have been  
+      changed from 5 to 9 and 8, respectively.
+  
+      Change: Changed PXE driver to accommodate the ASIC ID changes.
+
+Version 8.1.4 January 11, 2005
+--------------------------------
+
+   Fixes:
+   ======
+   1. Problem: MBA doesn't work with Hamilton devices.
+
+      Cause : There is an ASIC problem where the device misdetects
+      parity errors.  This causes DMA engine to halt after first 
+      DMA write transaction.
+  
+      Change: Added software workaround by disabling device's parity 
+      detection logic.
+
+Version 8.1.3 January 5, 2005
+--------------------------------
+
+   Fixes:
+   ======
+   1. Problem: Device still generates interrupts when device is in  
+      the CLOSE state when there is incoming traffic. This should only
+      occur with firmware-based PXE NICs such as BCM5701/02/03/04.
+      
+      Cause: In the receiving path, firmware doesn't check for value 
+      of mailbox before DMAing status block to the host memory.
+
+      Change: Changed PXE firmware to DMA status block to the host 
+      memory only when interrupt mailbox is zero.
+
+   2. Problem: MBA parameters are always retrieved/stored from/to NVRAM
+      of channel 0 region of Hamilton devices. (CQ#11806)
+      
+      Cause: Ctrl-S menu initializing routine doesn't consider Hamilton
+      as dual MAC device.    
+
+      Change: Changed Ctrl-S menu initializing routine so that it 
+      considers Hamilton as dual MAC device in addition to BCM5704.
+
+   Enhancements:
+   =============
+   1. Updated Copyright banner to reflect year Of 2005.
+
+Version 8.1.2 December 30, 2004
+--------------------------------
+
+   Fixes:
+   ======
+   1. Problem: UDP_WRITE API service sends out oversized packets during
+      IP fragmentation process if the datagram is larger than 1500.
+      (CQ#11775)
+      
+      Cause: UNDI driver incorrectly returns MTU field as 1514 instead of 
+      1500 in GET_ADAPTER_INFORMATION API.
+
+      Change: Changed UNDI driver to correcly return correct value for 
+      MTU field in GET_ADAPTER_INFORMATION API.
+
+Version 8.1.1 December 16, 2004
+--------------------------------
+
+   Enhancements:
+   =============
+   1. Request: Added support for Baxter family devices (BCM5752,BCM5752M)
+
+      Change : Changed PXE code to support Baxter hardware.
+
+Version 8.1.0 November 11, 2004
+--------------------------------
+
+   Enhancements:
+   =============
+   1. Request: Added support for Hamilton family devices (BCM5714,BCM5714S,
+      BCM5715, BCM5715S).
+      
+      Change : Changed PXE code to support Hamilton hardware.
+
+Version 7.7.2 November 10, 2004
+--------------------------------
+
+   Enhancements:
+   =============
+   1. Request: Minimize usage of UMB memory space.
+      
+      Change : Changed PXE initialization code to initialize ROM size to 
+      512-byte alignment instead of 2K-alignment when discarding unused
+      init code.  In addition, NVRAM driver code is reorganized so that 
+      programming and initializing code are discarded after ROM 
+      initialization is done.  Usage of UMB is reduced from 8K to 5.5K 
+      per NIC.
+
+   2. Request: Preserve content of lower 14-bit of Serdes control 
+      register which includes parameters of Predriver current, 
+      Tx driver current, and pre-emphasis coefficient.
+      
+      Change : Changed PXE firmware to preserve content of lower 14-bit 
+      of Serdes control when TX Serdes overwrite feature is enabled.
+
+Version 7.7.1 November 05, 2004
+--------------------------------
+
+   Enhancements:
+   =============
+   1. Request: Added ST M45PExxx/Saifun SA25Fxxx/AT25F512N support for 
+      Shasta family devices.
+
+        The following is the supported NVRAM summary:
+    
+       SO   :   Bit 25, Flash Size,     internal pull-up 
+       SI   :   Bit 24, Protected Mode, internal pull-down
+       SCLK :   Bit 1,  Buffered Mode,  internal pull-down
+       CS   :   Bit 0,  Flash Mode,     internal pull-down
+
+  [SO,SI,SCLK,CS] Device          Description
+  --------------- ------------  ----------------------
+     1000         AT24C512      SEEPROM, AT24Cxxx, any size              
+     0111         SA25F0xx      Saifun SA25F005/010/020 (512KB/1MB/2MB)
+     1011         AT45DB011B    Atmel Buffered 1MB Flash
+     1101         ST M45PEx0    ST M45PE80/M45PE40/M45PE20/M45PE10
+                                8/4/2/1MB Flash
+      
+      Change : Modified Flash driver to support above devices.  
+
+Version 7.7.0 September 23, 2004
+--------------------------------
+
+   Enhancements:
+   =============
+   1. Request: Added support for BCM5751 devices in 12x12 packages.
+  
+      Change : Changed PXE code to recognize devices with PCI vendor ID/device
+      ID of 0x14e4/0x16f7,0x14e4/0x16fd,0x14e4/0x16fe, and 0x14e4/0x16dd.
+
+   2k
+. Request: Added interface to support ISCSI boot.
+  
+      Change : Added EXTENDED INITIALIZE API to allow ISCSI boot software 
+      to initialize the device with ISCSI parameters.
+
+   Fixes:
+   ======
+   1. Problem:  IPMI-PT path doesn't work when PXE is initialized first time.
+
+      Cause : There is a synchronization issue between IPMI firmware and PXE in 
+      which PXE driver can overwrite the BMC MAC address which is previously
+      programmed by the IPMI firmware.
+
+      Change : Changed the PXE code to indicate to IPMI firmware when it's done
+      initialization and before polling for link state.
+
+   2. Problem:  PXE doesn't display PFN (PCI Function Number) correctly 
+      when PCI bus number contains HEX number. (CQ10831)
+  
+      Change : Fixed converting routine to handle HEX number correctly.
+
+Version 7.6.3 June 22, 2004
+---------------------------
+
+   Enhancements:
+   =============
+   1. Request: Enhanced PXE driver so that PHY is not always reset
+      when ASF is enabled.
+  
+      Change : Modified PXE code so that driver doesn't always reset 
+      PHY when ASF is enabled and restarts autoneg if PHY advertising
+      registers were not set to advertise maximum capability by 
+      running software entity before PXE.
+
+Version 7.6.2 June 17, 2004
+---------------------------
+
+   Enhancements:
+   =============
+   1. Request: Added Capacitive Coupling support for BCM5705 devices.
+  
+      Change : Changed PXE code to enable capacitive coupling feature on 
+      the PHY if this feature is administratively enabled.
+
+Version 7.6.1 June 1, 2004
+---------------------------
+
+   Enhancements:
+   =============
+   1. Request: Added support for BCM5789 devices.
+  
+      Change : Changed PXE code to recognize devices with PCI vendor ID/device
+      ID of 0x14e4/0x169d.
+
+
+Version 7.6.0 May 28, 2004
+---------------------------
+
+   Enhancements:
+   =============
+   1. Request: Added support for BCM5751F devices.
+  
+      Change : Changed PXE code to recognize devices with PCI vendor ID/device
+      ID of 0x14e4/0x167e.
+
+Version 7.5.15 May 13, 2004
+----------------------------
+
+   Fixes:
+   ======
+   1. Problem : CIOBE parts with multiple split transactions enabled may 
+      cause system to hang.
+
+      Cause : CIOBE has an errata related to the multiple split transaction 
+      feature.
+
+      Change:
+           Changed the UNDI driver to disable multiple split transaction 
+      feature in CIOBE parts.
+
+      Impact:
+            None.
+
+   2. Problem : PXE cannot returns control to BIOS when the BIOS stack is 
+      corrupted on some rare platforms.  This is a software workaround for
+      system BIOS issue.
+  
+      Cause : Some BIOS incorrectly setup processor stack space which is 
+      above 0:7c00.  It should setup the stack space below 0:7c00.  
+      NBP (Network Boot Program) might corrupt this stack space and then 
+      returns back to the PXE's Initial Program Loader.  Since BIOS stack 
+      is corrupted, PXE cannot return control back to the BIOS.
+
+      Change:  Changed the PXE's IPL code to detect if the BIOS stack is 
+      corrupted or not.  If it's corrupted, then PXE's IPL code returns 
+      control back to the system BIOS via INT 18h instead of a far return.
+
+Version 7.5.14 April 21, 2004
+-------------------------------
+
+   Fixes:
+   ======
+   1. Problem : TFTP download fails if TFTP server doesn't response to 
+      the first TFTP ACK. (CQ#9924)
+
+      Cause : This is a bug in the base code. Whenever the TFTP server 
+      doesn't response the first TFTP ack, the TFTP open code intends to 
+      send TFTP Read Request again with different UDP source port number 
+      (incremented by 1).  There is a bug in the code where it doesn't 
+      reinitialize the packet as TFTP Read Request packet.  Therefore, it 
+      sends out the packet as TFTP ACK packet since the last packet being 
+      sent was a TFTP ACK.
+
+      Change : Changed TFTP open routine to reinitialize the packet as TFTP
+      Read Request whenever a read request is transmitted. 
+
+   Enhancements:
+   =============
+   1. Change Base code banner to have Broadcom copyright and use standard
+      version number.
+
+Version 7.5.13 April 19, 2004
+-------------------------------
+
+   Enhancements:
+   =============
+   1. Enhance UNDI driver to have better a Bit Error Rate (BER) 
+      performance for BCM5705 and Shasta family devices.
+
+      Change : Changed UNDI driver to initialize the PHY core in 
+      order to adjust the bias current for the ADC but not the 
+      hybrid or DPLL.
+
+   Fixes:
+   ======
+   1. Problem: UNDI driver might not detect link if RJ-45 cable
+      has broken pairs with Shasta family devices.
+
+      Cause : Ethernet@WireSpeed is not enabled and UNDI doesn't
+      wait long enough before declaring no link.
+
+      Change : Changed UNDI driver to enable Ethernet@WireSpeed and
+      wait longer before declaring no link.
+
+Version 7.5.12 March 26, 2004
+-------------------------------
+
+   Fixes:
+   ======
+   1. Problem: Shasta shared traffic/link LED mode doesn't work.
+
+      Cause : There is a bug in Shasta A0/A1 (MAC block) where shared 
+      traffic/link LED mode doesn't work correctly.  
+
+      Change : Changed UNDI driver to program the device to use this feature
+      provided by the PHY block.
+
+      Impact :
+               None.
+
+Version 7.5.11 March 26, 2004
+-------------------------------
+
+   Fixes:
+   ======
+   1. Problem: RIS instalation fails with BCM5751 A1. (CQ#9619)
+
+      Cause : There is a bug in UNDI GET_NIC_TYPE API routine where it always
+      returns PCI revision ID with a value of 0.  
+ 
+      Change : Fixed GET_NIC_TYPE API routine so that it returns correct
+      revision ID of the device.
+
+      Impact :
+               None.
+
+   Enhancements:
+   =============
+
+   1. Enhanced so that UNDI driver doesn't program LED mode for Shasta family 
+      devices. LED mode is now programmed only by the boot code firmware.
+
+      Impact :
+               None.
+
+Version 7.5.10 March 1, 2004
+-------------------------------
+   Enhancements:
+   =============
+
+   1. Added support so that PXE can run concurrently with ASF for 
+      BCM575x/BCM572x.
+
+      Impact :
+               None.
+
+Version 7.5.9 Feburary 23, 2004
+-------------------------------
+   Enhancements:
+   =============
+   1. Enable H/W fixes for BCM5721/51.
+
+      Change : Changed PXE code to enable Rx FIFO fix.
+
+      Impact :
+               None.
+
+Version 7.5.8 Feburary 17, 2004
+-------------------------------
+
+   Fixes:
+   ======
+   1. Problem: PCI Express link drops after a GRC reset.
+
+      Change : BCM5721/51 A1 or new silicon has fixes so that PCI Express
+      link is maintained after a GRC reset.  Changed PXE code to enable this 
+      fix so that PCI express link doesn't drop.
+
+      Impact :
+               None.
+
+Version 7.5.7 January 28, 2004
+-------------------------------
+
+   Fixes:
+   ======
+   1. Problem: If Boot Protocol is configured to other than PXE, then
+      network boot will be PXE protocol in the second network boot
+      retry. (CQ#9305)
+
+      Cause  : Technically, this is a bug in the bootcode since it doesn't
+      put proper boot protocol information into shared memory under PXE
+      info after a software reset.  
+
+      Change : Changed PXE code to access NVRAM directly to extract boot
+      protocol information, PXE speed, etc...
+
+      Impact :
+               None.
+
+Version 7.5.6 January 23, 2004
+-------------------------------
+
+   Fixes:
+   ======
+   1. Problem: System generates a NMI whenever driver issues software 
+      GRC reset.  
+
+      Cause  : There is a bug in the BCM5751/21 A0 silicon where PCI-E
+      link drops whenever device GRC reset issued.  This causes device
+      not generating Completion TLP associated with the last Configuration
+      Write to the chipset. Due to this abnomality, the chipset will 
+      generate a NMI as fatal completion timeout error.
+
+      Change : Added a software workaround in PXE driver so that core clock
+      is slowed down to 6.25MHz which will give some time for the PCI-E block 
+      to send back Completion TLP to the chipset.
+
+      Impact :
+               None.
+
+Version 7.5.5 January 14, 2004
+-------------------------------
+
+   Enhancements:
+   =============
+   1. Request: After a GRC reset, link is dropped and therefore retrained 
+      with link partner.  Link retrain might take up to 500ms.  If device 
+      is accessed before link retrain is complete, system might lock up or 
+      encounter fatal errors. This change only applies to BCM5751/21 
+      (PCI express family) revision A0 devices..
+
+
+      Change: Changed chip reset routine to delay 500ms after A GRC reset.
+
+      Impact:
+             None.
+
+   2. Request: Update Copyright banner to reflect year Of 2004.
+
+      Change:  Changed Copyright banners.
+
+      Impact:
+             None.
+
+   3. Request: Add additional LED modes for BCM575x/2x family.
+
+      Change:  Changed to support new LED modes.
+
+      Impact:
+             None.
+
+
+Version 7.5.4 December 23, 2003
+-------------------------------
+
+   Fixes:
+   ======
+   1. Problem: Blink LED function doesn't work on a certain systems. (CQ#9054)
+
+      Cause  : Keyboard input buffer is flushed first in the blinking LED 
+      routine. However, keyboard buffer flushing routine might stuck in a 
+      loop if there is a key returned via INT 16h AH=1.
+
+      Change : Fixed the keyboard flushing routine so that INT 16h AH=0 is 
+      used to retrieve the key if a key is available via INT 16h AH=1.
+
+      Impact :
+               None.
+
+   Enhancements:
+   =============
+   1. Request: After a GRC reset, link is retrained with link partner.  Link 
+      retrain might take up to 300ms.  If device is accessed before link 
+      retrain is complete, system might lock up.
+
+      Change:  Changed chip reset routine to delay 300ms after a GRC reset.
+
+      Impact:
+             None.
+
+Version 7.5.3 November 24, 2003
+-------------------------------
+
+   Fixes:
+   ====== 
+   1. Problem: System locks up when PXE boot is aborted or PXE server is not 
+               found.  This problem only occurs with BCM5721/51-based 
+               NICs/LOMs and PCI-E system is v1.0. (CQ#8917)
+
+      Cause  : PXE exit code doesn't have the reset workaround for BCM5721/
+               51-based NICs/LOMs.
+
+      Change: Add reset workaround in PXE exit code.
+
+      Impact:
+               None.
+
+
+Version 7.5.2 November 19, 2003
+-------------------------------
+
+   Fixes:
+   ======
+   1. Problem: PXE loader cannot load phase 2 of PXE run-time image.  PXE displays
+               "!PXE structure was not found in UNDI driver code segment.".  This
+               problem only occurs in BCM575x-based NICs. (CQ#8892)
+
+      Cause  : NVRAM interface access has to enabled in order to read/write to 
+               NVRAM.  PXE init code enables access during init time but is turned
+               off later by the boot code.
+
+      Change: Enable NVRAM access on every NVRAM lock and disable NVRAM access 
+              on every NVRAM unlock.
+
+      Impact:
+               None.
+
+Version 7.5.1 November 18, 2003
+-------------------------------
+
+   Enhancements:
+   =============
+   1. Request: Add full support for BCM5751/21-based NICs/LOMs (PCI Express
+               interface).
+
+      Change:  Changed PXE to initialize proper register  setting for PCI express 
+               interface.
+
+      Impact:
+             None.
+   
+   2. Request: Add Shared/Link Led option for BCM575x family.
+
+      Change:  Initialize LED register based on NVRAM configuration.
+
+      Impact:
+             None.
+   
+
+Version 7.5.0 November 4, 2003
+-------------------------------
+
+   Fixes:
+   =====
+   1. Problem: Multicast MAC address is not filtered correctly if the most 
+               significant bit (bit 7) of any byte in the multicast MAC address 
+               is set. (CQ#8786)
+
+      Cause  : Multicast filtering function in BCM570x uses hashing scheme of 
+               CRC-32 value of the multicast MAC address.  There is a problem 
+               in the CRC-32 calculating routine when the most significant 
+               bit (bit 7) of any byte in byte stream is set.  
+
+      Change: Fixed CRC-32 calculating routine.
+
+      Impact:
+               None.
+
+
+   2. Problem: ASF/IPMI doesn't work if BIOS just calls UNDI interface to query
+               MAC address and doesn't call UNDI interface to initialize the 
+               interface for a network boot.
+
+      Cause  : When UNDI API UNDI_GET_INFO is called, UNDI code halts CPUs so that
+               there is no contention and PXE firmware will be loaded on.  
+
+      Change : Changed UNDI shutdown routine so that CPUs are reset in the above
+               scenario.
+
+      Impact :
+               None.
+
+   Enhancements:
+   =============
+   1. Request:
+             Add support for BCM575x-based NICs/LOMs.
+
+      Change:
+             Changed PXE code to recognize and support BCM575x-based 
+             NICs/LOMS.
+
+      Impact:
+             None.
+
+
+Version 7.0.2 September 22, 2003
+-------------------------------
+   Enhancements:
+   =============
+   1. Request:
+             Add support for BCM5705F-based NICs/LOMs.
+
+      Change:
+             Changed PXE code to recognize and support BCM5705F-based 
+             NICs/LOMS.
+
+      Impact:
+             None.
+
+
+Version 7.0.1 August 28, 2003
+----------------------------
+
+   Fixes:
+   =====
+   1. Problem: BCM5701-based NIC/LOM PXE might use zero MAC address 
+               when it's used with older version of boot code.  This 
+               will cause PXE to fail in network boot.  (CQ#8382)
+
+      Cause  : PXE assumes that MAC address are programmed by the bootcode.
+               However, older version of boot code doesn't program MAC
+               address correctly in a certain scenario. PXE v6.8.1 should
+               have fixed this problem. However, serial EEPROM driver has
+               a bug which causes MAC address in the serial EEPROM cannot
+               be read correctly.
+
+      Change: Fixed serial EEPROM driver so that MAC address can be read
+              correctly.
+
+      Impact:
+               None.
+
+Version 7.0.0 August 18, 2003
+----------------------------
+   Enhancements:
+   =============
+   1. Request:
+             Improve bit error performance of 5703AX and 5704AX when used
+             with long cable lengths.
+      Change:
+             Program the phy's ADC and Gamma registers to more optimum 
+             settings.
+      Impact:
+             None.
+
+   2. Request:
+             Improve Serdes drive levels on 5704s.
+      Change:
+             Programed the serdes config registers so that SerDes' drive 
+             transmission level is 1.2V.
+
+      Impact:
+             None. 
+
+   Fixes:
+   ======
+   1. Problem: UNDI initializing doesn't detect presence of base code if BIOS
+               doesn't load base code into 2K-boundary of UMB.  This should
+               only occur when split image is used.
+
+      Cause  : UNDI initializing code scans for presence of base code in 
+               2K-boundary.
+  
+      Change: UNDI initializing code is changed to scan for presence of
+              base code in 512 byte boundary.
+
+      Impact: None.
+
+
+Version 6.8.3 August 5, 2003
+----------------------------
+   Fixes:
+   ======
+   1. Problem: One of the hardware fixes in BCM5704 B0 causes problem in some 
+               of the PCI-X systems.
+  
+      Change: PXE driver is changed to disable this fix. 
+
+      Impact: None.
+
+Version 6.8.2 July 22, 2003
+----------------------------
+   Fixes:
+   ======
+   1. Problem: BCM5704-based LOM cannot be waken up after shutdown from DOS
+               during PXE boot. This problem can only occur on systems that 
+               don't issue a PCI reset to the LOM device during DOS shutdown. 
+  
+      Cause  : In SLIM PXE implementation, PXE firmware is loaded to the 
+               RX-CPU to handle RX path traffic and other miscellaneous 
+               management functions.  Boot code firmware, that monitors PCI
+               main power going away and setup WoL, running on Rx-CPU no 
+               longer runs.  
+
+      Change: PXE firmware is changed to monitor presence of main PCI power in
+              addition to its main function that handles Rx path traffic.
+              If main power is detected going away, PXE firmware issues a 
+              device reset so that bootcode can run again in order to setup WoL.
+
+      Impact:
+               None.
+
+   Enhancements:
+   =============
+   1. Request:
+               Enable hardware fixes in 5704_Bx parts for known 5704 Ax errata.
+      Change:
+               Added code to driver init routines to enable hardware fixes in
+               5704 B0 silicon.  See 5704 errata for more details info about
+               the changes/fixes in B0 silicon.
+
+      Impact:
+               None.
+
+Version 6.8.1 July 10, 2003
+----------------------------
+   Fixes:
+   ======
+   1. Problem: PXE might use zero MAC address when it's used with older 
+               version of boot code.  This will cause PXE to fail in 
+               network boot.  This should only happen on a certain 
+               LOM applications where WoL is disabled.
+  
+      Cause  : PXE assumes that MAC address are programmed by the bootcode.
+               However, older version of boot code doesn't program MAC
+               address correctly in a certain scenario.
+
+      Change: If MAC registers contain zero MAC address, PXE will retrieve
+              MAC address from the NVRAM directly.
+
+      Impact:
+               None.
+
+Version 6.8.0 May 29, 2003
+----------------------------
+   Enhancements:
+   =============
+   1. Request: Request to have RPL support only ROM image. (CQ#7895)
+
+      Change:  Created a set of binary image with RPL support only.  Users 
+               cannot configure Boot Protocol in Ctrl-S configuration menu.
+               See readme.txt for detailed descriptions of RPL binary 
+               images.
+
+      Impact:
+               None.
+
+
+Version 6.2.10 May 12, 2003
+----------------------------
+   Enhancements:
+   =============
+   1. Request: Allow users to turn off autonegotiation for fiber interface.
+
+      Change:  Changed driver and firmware to allow users to configure 
+               autonegotiation off.  This can be useful for some backplane
+               applications where backplane switching ASIC has fiber
+               AUTONEG turned off.
+
+      Impact:
+               None.
+
+   2. Request: Reduce DHCP timeout of the last retry to 4s.
+
+      Change:  Changed the base code so that DHCP timeout of the 
+               last retry to 4s.  The new timeout is 4s,8s,16s,32s,4s.
+
+      Impact:
+               None.
+
+Version 6.2.9 May 09, 2003
+----------------------------
+   Fixes:
+   ======
+   1. Problem: APITEST is intermittently slow with BCM5704 Serdes/
+               CIOBE Serdes.
+
+      Change:  Changed the firmware so that it will not perform
+               autonegotiation when link is up and hardware 
+               autonegotiation logic indicates AUTONEG complete.
+
+      Impact:
+               None.
+
+   2. Problem: Link detection intermittently fails when ASF is enabled. 
+               (CQ7759)
+
+      Change:  Changed to stop Rx/Tx CPU before accessing PHY during
+               initialization.  This is due to contention that 
+               ASF firmware also polls for PHY registers.
+
+      Impact:
+               None.
+
+Version 6.2.8 May 1, 2003
+----------------------------
+   Enhancements:
+   =============
+   1. Request: Optimize to improve both Tx and Rx performance.
+
+      Change:  Optimized code in the forwarding path.
+
+      Impact:
+               None.
+
+Version 6.2.7 April 30, 2003
+----------------------------
+   Fixes:
+   ======
+   1. Problem: Fixed a problem where dynamic 10/100 or 10/100/1000 phy auto-neg
+               advertising based on GPIO2 state might not work correctly.  
+               This issue was introduced in the phy workaround which was
+               added in v6.2.6.  This problem only occurs on the platform 
+               where GPIO2 state is used for dynamic PHY auto-neg.
+
+      Change:  Changed the PHY lockup workaround code so that it restores 
+               AUTONEG configuration.
+
+      Impact:
+               None.
+
+Version 6.2.6 April 29, 2003
+----------------------------
+   Fixes:
+   ======
+   1. Problem: In some extremely rare situations, 5702/03/04 Copper NICs
+               may not link up after a PHY reset.
+
+      Cause: On some 5702/03/04 PHY cores, there is a small probability of
+             lock up after a PHY reset.
+
+      Change: Added code to detect PHY lock up after a PHY reset and
+              reset again if lock up is detected.
+
+      Impact: The added lock up detection and recovery code affects
+              driver reset and link down events where PHY resets are
+              performed.
+
+   Enhancements:
+   =============
+   1. Request: Added PXE version information in the standard PCI
+               structure information.
+
+      Change:  Added PXE revision in the "Revision Level of Code/Data"
+               field of PCI data structure (offset 0x12).  This field
+               is a 16-bit quantity and is encoded as follows:
+                   bit 15..12 : Major version.
+                   bit 11..8  : Minor version.
+                   bit  7..0  : Build version.
+
+      Impact:
+               None.
+
+Version 6.2.5 April 25, 2003
+----------------------------
+   Fixes:
+   ======
+   1. Problem: Upper 16-bit of register EAX might be corrupted after a PXE 
+               API is called. (CQ #7617)
+
+      Change:  Added logic to save and restore upper 16-bit of register EAX
+               in PXE API routine.
+
+      Impact:
+               None.
+
+   2. Problem: Under heavy traffic conditions, clients might lose connection
+               intermittently during an overnight read/write test.  There is a 
+               small timing window where packets are not processed in a timing 
+               manner.  (CQ #7437)
+
+      Change:  Added logic in the interrupt service routine so that status 
+               block is checked again to see if any event pending before 
+               exiting.
+      Impact:
+               None.
+
+Version 6.2.4 April 22, 2003
+----------------------------
+   Enhancements:
+   =============
+   1. Request: Added support for dynamic 10/100 or 10/100/1000 phy auto-neg
+               advertising for certain platforms.
+
+      Change:  Added a check for the state of GPIO2 during link change events 
+               and adjust auto-neg capability advertising accordingly.
+
+      Impact:
+               None.
+
+Version 6.2.3 April 21, 2003
+----------------------------
+   Fixes:
+   ======
+   1. Problem: In some extremely rare situations, 5704 Copper NICs
+               may not link up after a PHY reset.
+
+      Cause: On some 5704 PHY cores, there is a small probability of
+             lock up after a PHY reset.
+
+      Change: Added code to detect PHY lock up after a PHY reset and
+              reset again if lock up is detected.
+
+      Impact: The added lock up detection and recovery code affects
+              driver reset and link down events where PHY resets are
+              performed.
+
+Version 6.2.2: 
+    1. Enhanced for a customer who doesn't want some particular 
+       fields configurable in MBA configuration menu. (CQ7515)
+
+Version 6.2.1:
+    1. Removed device description banner per customer's request.(CQ7431)
+    2. Fixed a problem where PXE client cannot connect to PXE server
+       when BCM5704s connects to 3COM SuperStack 4900SX.(CQ7486)
+    3. Fixed a problem in the base code where DHCP timeout doesn't 
+       adhere to PXE spec.  The original timeouts are 2s,4s,8s,16s.
+       The new timeouts are 4s,8s,16s,32s. (CQ7116)
+
+Version 6.2.0:
+    1. Added support for BCM5788.
+
+Version 6.1.3:
+    1. Fixed a problem where Ctrl-S doesn't work in remote keyboard 
+       application.  This application returns keystrokes via BIOS 
+       service INT 16h.  But it doesn't put keystrokes in keyboard 
+       buffer in the Bios Data Area (BDA).
+
+Version 6.1.2:
+    1. Fixed a problem where PXE fails to work on BCM5701. (CQ7123)
+
+Version 6.1.1:
+    1. Fixed a problem where configuration doesn't take effect 
+       immediately when boot protocol is changed from BOOTP to PXE or
+       RPL to BOOTP. (CQ7074)
+    2. Enhanced so that device description and device location (bus/
+       device/function) are displayed in the banner and MBA configuration
+       menu. (CQ7101)
+    3. Enhanced so that users can blink LEDs of the device that is being
+       configured in the MBA configuration Menu. (CQ4948)
+    4. Fixed a problem where GPIO configuration is overwritten.  This 
+       can cause a issue where preboot-WOL doesn't work in BCM5701-based 
+       application. (CQ6904)
+    5. Fixed a problem where system is locked up when parameters are 
+       saved via F4 in MBA configuration menu.  This problem only occurs 
+       in BCM5700 and BCM5701.
+    6. Enhanced so that UNDI_GET_INFORMATION API call doesn't affect
+       ASF and other firmware applications.  In some platforms, BIOS 
+       loads UNDI and then issues UNDI_GET_INFORMATION API call to 
+       retrieve adapter information without booting from the network
+       with PXE.
+    7. Enhanced romhdr.exe application so that it can handle image 
+       size up to 128K.
+
+Version 6.1.0:
+    1. Added native BOOTP support. (CQ7005)
+
+Version 6.0.3:
+    1. Fixed a problem where Novell login after RPL download might
+       cause system stack overflow in a certain systems. (CQ6534)
+    2. Added support for family of BCM5705 A3 and newer.
+
+Version 6.0.2:
+    1. Fixed a problem where BCM5704 fails on multicast TFTP test when
+       it's configured in half-duplex mode. There is a bug a in the base
+       code where base code can drop packets.  If two packets are 
+       received back-to-back, base-code will drop the second packet. 
+       In this scenario, unicast and multicast TFTP packets are received 
+       back-to-back.  UNDI indicates both packets to base code receive logic,
+       but it drops the MTFTP packet. The fix is now implemented in the 
+       base code (build 082f). (CQ6874)
+    2. Fixed a problem where link failure is not detected in a timely
+       manner if link is not configured to AUTONEG.  It might take up  
+       to 30 seconds instead of 8 seconds. (CQ6877)
+    3. Enhanced so that packet is always padded with 0's if the packet
+       length is less than minimum ethernet packet size.  The padding
+       is now padded by hardware ASICs instead of software.
+    4. Fixed a problem where a PCI configuration parameter (cache line
+       size and maximum latency timer) is not restored if PXE boot 
+       is terminated due to user's abort or boot failure.
+    5. Fixed a problem where RPL download might fail if other heavy 
+       non-IPX traffic on the network. (CQ6844)
+
+Version 6.0.1:
+    1. Fixed a problem where system hangs at POST with b57pxe.bin 
+       image. (CQ6802)
+
+Version 6.0.0:
+    1. Enhanced so that hot-key is configurable.  The choices for hot-keys 
+       are Ctrl-S or Ctrl-B (default is Ctrl-S).
+    2. Enhanced so that users can configure whether Setup Prompt is displayed
+       or not.
+    3. Fixed a typo in the copyright banner. (CQ6759)
+    4. Added BCM5704 support.
+
+Version 3.1.30:
+    1. Enhanced so that users are still able to invoke MBA configuration 
+       via Cltrl-S when timeout is set to 0 second. (CQ6598)
+    2. Updated copyright banner to reflect year of 2003.
+
+Version 3.1.29:
+    1. Added software workaround for PCI clock-run issue in mobile 
+       environment.
+
+Version 3.1.28:
+    1. Removed BCM5704 support.
+
+Version 3.1.27:
+    1. Fixed a problem where API test is slow when the link is configured 
+       to half-duplex mode. (CQ6086)
+    2. Fixed a problem where BCM5704 fiber link intermittently loses 
+       link on a certain systems. (CQ6465)
+
+Version 3.1.26:
+    1. Added support for new PCI devices (0x14e4/0x16c7,0x14e4/0x16c6,
+       0x14e4/0x1696).
+
+Version 3.1.25:
+    1. Fixed a problem where MBA configuration menu cannot be involked 
+       via Ctrl-S on a certain rare systems. (CQ6050)
+    2. Fixed a problem where cable presence is not correctly detected
+       when cable is broken (EthernetWireSpeed mode) and WOL is 
+       enabled. (CQ6147)
+    3. Added Broadcom revision to base code banner so that changes made
+       by Broadcom can be kept track of.
+
+Version 3.1.24:
+    1. Enhanced to provide a way for the BIOS to control MBA configuration
+       setup time. (CQ6069)
+       BIOS sets up the following registers before passing control
+       to PXE initialization entry point:
+
+        AX    : Contains PCI bus/device/function number.
+        ES:DI : Pointer to System BIOS Plug and Play Installation Check 
+                Structure.
+        ECX   : 0x46415354 if register SI is valid.
+        SI    : 1 - BIOS requests quiet boot (Not show PXE banner).
+                0 - BIOS request to show PXE banner and delay time is in 
+                    bit 4..1 of register SI.
+
+Version 3.1.23:
+    1. Fixed a problem where Fiber autonegotiation might fail on a  certain
+       switches. (CQ5923)
+    2. Fixed a problem where boot entry might not show up on a certain
+       system that don't support BBS. (CQ6146)
+    3. Fixed a problem where PXE doesn't work with BCM5704 A2 Fiber.
+
+Version 3.1.22:
+    1. Added support for Netware RPL.  This allows RPL clients connecting
+       to Netware server for remote booting/installation.
+
+Version 3.1.21:
+    1. Added support for BCM5705MFE.
+
+Version 3.1.20:
+    1. Added support CIOBE Serdes.
+    2. Fixed a problem where UNDI API test fails on some of the TYAN 
+       systems.
+
+Version 3.1.19: 
+    1. Fixed a problem where link speed doesn't take effect immediately
+       when it's configured in MBA configuration menu. (CQ5878)
+    2. Fixed a problem where UNDI might not work properly if UNDI APIs
+       are called in a mixed sequence of real mode and protected mode.
+
+Version 3.1.18: 
+    1. Fixed a problem where system fails to boot with multicast
+       TFTP on a certain system.  This is definitely a base code 
+       issue. If two packets are received back-to-back, base-code
+       will drop the second packet. In this scenerio, unicast and
+       multicast TFTP packets are received back-to-back.  UNDI
+       indicates both packets to base code receive logic, but it
+       drops the MTFTP packet.  Workaround is put into UNDI to
+       minimize impact on other UNDI implementation which might 
+       assume this base code behavior. (CQ5617)
+
+Version 3.1.17: 
+    1. Fixed a problem where RPL doesn't work in LOM application.
+       RPL logic is now in the UNDI code instead of the base code.
+    2. Enhanced so that 1000MBps Full/1000Mbps Half option is not
+       selectable in MBA configuration menu. (CQ5794)
+    3. Fixed a problem where RPL doesn't shutdown gratefully if 
+       download is not successful.
+
+Version 3.1.16: 
+    1. Added hot-key configuration menu support.  Configuration Menu can
+       be invoked with Ctrl-S.
+
+Version 3.1.15: 
+    1. Fixed a problem where PXE/RPL client waits for a long time if 
+       cable is not attached. (CQ5653 & CQ5588)
+    2. Enhanced so that Broadcom PXE PnP description will have 
+       version and PCI slot number (CQ 5552).
+    3. Enhanced to display unique string for images with RPL support. 
+      (CQ5553)
+
+Version 3.1.14: 
+    1. Added BCM5704 Fiber support.
+
+Version 3.1.13: 
+    1. Fixed a problem where PXE cannot establish link when it's 
+       connected to Gigabit-only switch and ASF is enabled. (CQ5530)
+
+Version 3.1.12: 
+    1. Fixed a problem where API test intermittently fails
+       with BCM5705. (CQ5006).
+
+Version 3.1.11: 
+    1. Fixed a problem where PXE doesn't work with RIS.
+    2. Fixed a problem where multicast packets are not filtered
+       correctly.
+
+Version 3.1.10: 
+    1. Fixed a problem in the base code where UDP_READ API routine
+       doesn't receive packets correctly if there is other UDP traffic
+       on the network. (CQ5403)
+
+Version 3.1.9: 
+    1. Fixed a problem in the base code so that GUID/UUID is displayed in
+       correct format (GUID in wire format).
+
+Version 3.1.8: 
+    1. Added BCM5705 support.
+    2. Fixed a problem where PXE hangs up in BCM5704 XBAR mode. (CQ5035)
+
+Version 3.1.7: 
+    1. Removed BCM5705 support.
+    2. Fixed a problem where link presence is not detected correctly on 
+       a certain systems. (CQ 5153)
+    3. Added PCI reset workaround for BCM5704 A1.
+
+Version 3.1.6: 
+    1. Added support for Mini-PCI NICs.
+
+Version 3.1.5: 
+    1. Added BCM5901 support.
+    2. Fixed a problem where UNDI code doesn't work with base code build 83
+       in DOSUNDI mode.
+    3. Fixed a problem where PXE might hang up if NVRAM ARB is not released  
+       by other entities (boot code or ROM code).  This happens when NVRAM
+       content is corrupted. (CQ4942)
+
+Version 3.1.4: 
+    1. Added BCM5705 support.
+
+Version 3.1.3: 
+    1. Enhanced to support BCM5703/BCM5703S.
+
+Version 3.1.2: 
+    1. Enhanced so that PXE download is exited immediately if no link 
+       is detected. (CQ3773)
+    2. Fixed a problem where system hangs if F1 is hitted to retry
+       when no flopy disk/harddisk (NIC only). (CQ4793)
+    3. Fixed a problem where it fails to detect BBS capability when
+       BBS version is newer than BBS v1.01.
+
+Version 3.1.1: 
+    1. Fixed a problem where PXE API test is slow on some IBM PCI-X systems.
+       (CQ4734)
+    2. Fixed a problem where some PCI-X systems reboots when running stress
+       testing with BCM5701-based NICs. (CQ4714)
+
+Version 3.1.0: 
+    1. Enhanced so that memory footprint for UNDI driver is significantly 
+       reduced.  (81K is down to 34K)
+    2. Fixed a problem where 10/100 half duplex fails API test. (CQ3371)
+
+Version 3.0.2: 
+    1. Fixed a problem where BBS capability is not properly detected 
+       if BIOS Information Type 0 is not the first entry of the SMBIOS
+       database.
+
+Version 3.0.1:
+    1. Added BCM5704 support.
+    2. Fixed a problem where PXE doesn't boot on the second port when
+       the first port fails on BCM5704. (CQ3952)
+    3. Fixed a problem where base code doesn't load correctly when
+       BIOS doesn't support PMM (Post Memory Manager).
+    4. Fixed a problem where PXE doesn't load correctly when NVRAM 
+       is blank.
+
+Version 2.2.8:
+    1. Enhanced so that it can run concurrently with ASF.
+
+Version 2.2.7:
+    1. Fixed a problem where it fails to boot if on some PCI-X systems.
+
+Version 2.2.6:
+    1. Fixed a problem where it fails to operate with a certain model 
+       of Cisco switches.  Whenever there is a link change, Cisco  
+       switch doesn't forward packets after 5 to 10 seconds even spanning
+       tree protocol is disabled.  It drops all packets during this 
+       period of time.  Base-code is changed to retry more times.
+       However, Cisco switch can be configure to work with previous
+       versions of PXE.  The workaround is to configure Cisco port, where 
+       PXE client is connected to, to portfast mode.  For instance,
+  
+             set spantree portfast 4/12 enable 
+
+    2. Enhanced so that wait time for physical link stability is shortened.
+
+Version 2.2.5:
+    1. Optimized phase2 loader and minimized serial EEPROM corruption
+       (This applies to NIC application ONLY).
+
+Version 2.2.4:
+    1. Added support for different LED configurations.
+
+Version 2.2.3:
+    1. Fixed a problem OEM hangs up during EFI initialization if 
+       PXE-enabled NIC is installed.  This problem is caused by a 
+       bug in EFI IA-64 core firmware where it passes invalid PCI 
+       bus/device/function parameter to UNDI.  
+       Workaround around is implemented by using initial parameter
+       passed during UNDI init. (CQ3534)
+    2. Fixed a problem where HPi2000 (IA-64 system) intermittently doesn't
+       boot if PXE-enabled NIC is installed. 
+
+Version 2.2.2:
+    1. Fixed a problem where AutoNeg of Fiber NIC might not work on a 
+       certain systems. (CQ3462)
+    2. Rebooted system if RPL downloading fails. (CQ3606)
+
+Version 2.2.1:
+    1. Added software workaround for high bit error rate with 5703S fiber.
+
+Version 2.2.0:
+    1. Added Remote Program Load (RPL) support.  Since it's implemented
+       based on IBM standard, it should interoperate with RPL service
+       running on popular O/S such as Windows NT and IBM OS/2.  However,
+       It will not work with Novell Netware yet since bootstrap (downloaded
+       via RPL) requires ODI driver interface to download the rest of
+       image with Netware protocol (Netware Core Protocol - NCP).
+       This features should allow users to remote/boot/install DOS/Win95/
+       Win98/OS2.
+    2. Fixed PXE version banner. (CQ3435).
+
+Version 2.1.8:
+    1. Added support for Ethernet WireSpeed feature for BCM5702/
+       BCM5703 NICs/LOMs.
+    2. Added support for NICs with device ID 0x16a6 and 0x16a7.
+    3. Fixed a problem where EFI UNDI core firmware detects
+       UNDI16 with zero MAC address (CQ3337).
+
+Version 2.1.7:
+    1. Added support for BCM5702/BCM5703 (Rev. A0 silicon).
+
+Version 2.1.6:
+    1. Changed so that PXE cannot be loaded if ASF is enabled.
+    2. Added scheme to prevent serial EEPROM corruption in BCM5702/BCM5703.
+
+Version 2.1.5:
+    1. Fixed a problem where DOSUNDI hangs up with BCM5703 NICs (CQ3113)
+    2. Fixed a problem where PXE performance is slow on BCM5702/BCM5703 
+       NICs (CQ3125).
+    3. Fixed a problem where PXE is slow then BCM5701 NICs is on the 
+       Dual AMD Tyan (CQ3165).
+    4. Fixed a problem where UNDI performance is slow when it's in 
+       some of OEM PCI-X systems. (CQ2800).
+
+Version 2.1.4:
+    1. Removed personized banner per OEM's request.
+    2. Added features to allow user to configure delay time for banner,
+       and boot strap type (BBS,INT18h, INT19h).
+
+Version 2.1.3:
+    1. Fixed a problem where PXE might lock up in some systems which implement
+       "Fast Boot Initiative".  This only happens on NICs but not LOMs.  
+       It's neccessary to have to use latest tools to upgrade PXE and latest 
+       boot code firmware.
+
+Version 2.1.2:
+    1. Fixed a problem where UNDI speed is very slow when BCM5701 Fiber
+       NICs/LOMs on a certain platform.
+
+Version 2.1.0:
+    1. Fixed a problem where PXE doesn't work with BCM5702/BCM5703 NICs.
+
+Version 2.0.11:
+    1. Fixed a problem where download with MTFTP fails. (CQ1793 & CQ2679)
+
+Version 2.0.10:
+    1. Added support for future BCM5702 and BCM5703 NICs/LOMs.
+
+Version 2.0.9:
+    1. Fixed a problem where PXE is not operatable if preboot WOL is 
+       enabled.
+
+Version 2.0.8:
+    1. Improve performance.
+
+Version 2.0.7:
+    1. Fixed a problem where Tx or Rx can be hung when it's in PCI-X.
+
+Version 2.0.6:
+    1. Fixed a problem where PXE is not detected by BIOS when it's in 
+       PCI-X slot.
+
+Version 2.0.5:
+    1. Fixed a problem where PXE might not boot in some systems which
+       have SMBIOS database built at preboot but don't support BBS.
+
+Version 2.0.4:
+    1. Enhanced so that BIOS's BBS capability can be detected though SMBIOS.
+
+Version 2.0.3:
+    1. Added support for BCM95701A12 NIC.
+    2. Enhanced to utilize shared memory interface for future compatibility.
+
+Version 2.0.2:
+    1. Added support for BCM95701A10 NIC.
+
+Version 2.0.1:
+    1. Added BCM5700 Fiber NIC support.
+    2. Added BCM5701 Fiber NIC support.
+    3. Added support for some OEM NICs.
+
+Version 2.0.0:
+    1. Added BCM5701 support.
+
+Version 1.06:
+    1. Added PCI-X workaround for B2 silicon.
+
+Version 1.05:
+    1. Changed to provide a scheme for users to boot via Int 18h, Int 19h, or 
+       BBS.
+       After the Broadcom banner is displayed, users have 4 seconds to select:
+         * Ctrl F8    : Int 18h
+         * Ctrl F9    : Int 19h
+         * Ctrl F10   : BBS
+
+   2. Changed to allow users to force PXE run at a certain speed.
+     
+Version 1.04:
+    1. Changed due to changes in ASIC version format in B1 silicon.
+
+Version 1.03:
+    1. Eliminated unused code to save more memory so that it works fine with 
+       IBM 300GL.
+    2. Changed to accomodate different LED configurations based on System 
+       Vendor ID.  
+
+Version 1.02:
+    1. Fixed a problem where client hangs up during setup phase of windows 2000
+       installation with RIS.
+    2. Fixed copyright banner string.
+
+Version 1.01:
+    1. Changed to accomodate different LED configurations.  
+
+Version 1.0:
+    1. Fixed a problem where base-code cannot be unloaded.
+    2. Fixed a problem where Linux Universal Driver crashes when it binds to
+       UNDI.  UNDI now can run in protected mode.
+
+Version 0.10:
+    1. Fixed a problem where some system might lock up if BIOS calls
+       UNDI API SHUTDOWN before call UNDI API INITIALIZE.    IBM 300PL
+       PC is one of them.  
+
+    2. Changed so that Broadcom copyright banner is displayed during
+       ROM initialization.
+
+    This version should fix SAR Prod0000344,and SAR Prod0000283
+
+Version 0.9:
+    1. Fixed a problem where PXE is not recognized is some systems where
+       BIOS don't support BBS (BIOS Boot Specification).  Logic is 
+       added to PXE initialization code to detect if BIOS support BBS or
+       not.  If not, then use Interrupt 18h for boot.  This should 
+       fix SAR Prod0000225,SAR Prod0000604, SAR Prod0000606.
+ 
+Version 0.8:
+    1. Fixed a problem where APITEST failed. (SAR Prod0000426)
+
+Version 0.7:
+    1. Fixed a problem where mapping a network drive can intermittently lock 
+       up the client system. (SAR Prod0000236)
+
+Version 0.6:  
+    1. Fixed a problem where PHY speed for Gigabit links are not displayed 
+       correctly.
+
+Version 0.5:  
+    1. Added support for B0 Silicon.
+    2. Fixed a problem where 10Mbps doesn't work.
+
+Version 0.4:  
+    1. Initial release.
+
+
+Revision History of Base Code 
+=============================
+Intel developed base code and distributed it as a part of PXE SDK 
+to the NIC hardware vendors who develop UNDI drivers for their 
+NIC products.  During testing and development process, Broadcom has 
+found various bugs and has provided appropriate fixes.  Details of
+various fixes are listed as follows:
+
+v1.1.1: 
+       Fixed an issue in the TFTP open routine where timeout is not
+       reset per call.  This causes a tremenous delay if TFTP server
+       is not available. (CQ#39447)
+
+v1.0.9: 
+       Base Code used IGADDR in the bootp field as default gateway
+       IP address.  It should use Router DHCP option for default gateway
+       IP address.  This causes TFTP packets routed to the wrong path.
+       Updated base code to initialize default gateway IP address  
+       from the Router DHCP option if it's present.
+v1.0.8: 
+      Modified the base code to respond to ARP requests when it's
+      polling for keystrokes in the PXE menu.  
+
+v1.0.7: 
+      Enhanced the bootstrap menu processing logic in the base code to
+      poll UNDI interface for Rx packets so that IPMI/ASF traffic is 
+      not blocked. 
+
+v1.0.6: 
+      During BINL (Boot Information Negotiation Layer) phase, base code 
+      checks to make sure Server IP address in the BINL response is the same as
+      the Server IP address in DHCP phase.  If it's different, then it doesn't 
+      accept the BINL response.  This can be different and valid in some 
+      configurations. Changed the base code so that it doesn't have to validate 
+      the Server IP address in BINL phase.
+
+v1.0.5:
+      Changed the DHCP logic in the base code so that it will only 
+      wait for up to 4 seconds to send out DHCP requests after one
+      or more DHCP offers are received.
+
+v1.0.4:
+      Changed the DHCP logic in the base code so that it will process
+      Vendor Specific option regardless where Class Identifier in the 
+      DHCP packet.
+
+v1.0.3: 
+      Added logic to handle IP reassembly when TFTP responses are 
+      in multiple IP fragments and set IP reassembly timeout to 1 second.
+
+v1.0.2:
+      Changed the DHCP logic in the base code so that it only 
+      processes Vendor Specific option when Class Identifier is present 
+      and contains "PXEClient".
+
+v1.0.1:
+      Changed to abort network boot if UNDI driver return status code
+      of PXENV_STATUS_UNDI_MEDIATEST_FAILED.
+
+v1.0.0: 
+    1. Changed to add Broadcom copyright.
+    2. Changed revision number to standard version number format.
+    3. Whenever the TFTP server doesn't response the first TFTP ack,
+       the TFTP open code intends to send TFTP Read Request again 
+       with different UDP source port number (incremented by 1).  
+       There is a bug in the code where it doesn't reinitialize the 
+       packet as TFTP Read Request packet.  Therefore, it sends out 
+       the packet as TFTP ACK packet since the last packet being 
+       sent was a TFTP ACK.
+
+Build 082k
+    1. TFTP service uses INT15h AH=87h (one of BIOS services) to copy
+       a block of memory from conventional memory to extended memory.
+       In some systems, this call intermittently fails the first time.  
+       Changed the base code to issue second try if this call fails 
+       the first time to work around these systems' issue.
+
+Build 082j
+    1. Fixed the basecode so that provided length field is used to 
+       nullify the filename which is used for TFTP/MTFTP download.
+       This causes PXE failing to boot with some PXE servers.
+       This PXE server provides filename of the boot image in
+       one of the DHCP option fields (OPTION 67) instead of filename 
+       field in the BOOTP major section. There is a bug in the base 
+       code where it doesn't use the provided length information for
+       filename string.
+
+Build 082i
+    1. Reduced DHCP timeout of the last retry to 4s.  The new timeout
+       is 4s,8s,16s,32s,4s.
+
+Build 082h
+    1. Fixed a problem in the base code where DHCP timeout doesn't <
+       adhere to PXE spec.  The original timeouts are 2s,4s,8s,16s.
+       The new timeouts are 4s,8s,16s,32s,32s.
+
+Build 082g  : 
+    1. Modified so that it can support native BOOTP request.  Some 
+       BOOTP servers don't send BOOTP reply if it's not native 
+       BOOTP request.
+
+Build 082f  : 
+    1. Fixed a problem where base code can drop packets if packets
+       are received back-to-back.  Specifically, if two packets are 
+       received back-to-back, base-code will drop the second packet. 
+       In a MTFTP test scenario, unicast and multicast TFTP packets 
+       are received back-to-back.  UNDI indicates both packets to base
+       code receive logic, but it drops the MTFTP packet. 
+
+Build 082e  : 
+    1. Added Broadcom revision to base code so that Broadcom can keep
+       track changes in the base code.
+
+Build 082 (shipped via MBA v3.1.10 and newer) :
+    1. Fixed a problem in the base code where UDP_READ API routine
+       doesn't receive packets correctly if there is other UDP traffic
+       on the network. 
+
+Build 082 (shipped via MBA v3.1.9 and newer) :
+    1. Fixed a problem so that GUID is displayed in correct format.
+
+Build 082 (shipped via MBA v3.0.1 and newer) :
+    1. Fixed a problem in the base code where it doesn't load correctly
+       when BIOS doesn't support PMM (Post Memory Manager).
+
+Build 082 (shipped via MBA v2.2.6 and newer) :
+    1. Changed DHCP timeout so that retry timeout is 2,4,8,16,32 seconds.
+
+

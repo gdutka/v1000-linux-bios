@@ -1,0 +1,43 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdIdsHookLibDxe
+  FILE_GUID                      = B606EAEA-A16E-47AC-809C-1801E11F54E0
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdIdsHookLib|DXE_DRIVER DXE_SMM_DRIVER UEFI_DRIVER
+
+[Sources.common]
+  AmdIdsHookLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  HobLib
+  PcdLib
+  AmdIdsHookExtLib
+  AmdHeapLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[FeaturePcd]
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsHookEnable
+
+[Depex]
+  TRUE
+
+[BuildOptions]

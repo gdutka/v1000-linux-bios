@@ -1,0 +1,59 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AmdCpmBaseLib
+  FILE_GUID             = A04F1ED1-72F1-4E57-894D-B54CDE38A518
+  MODULE_TYPE           = BASE
+  VERSION_STRING        = 1.0
+  LIBRARY_CLASS         = AmdCpmBaseLib|PEIM DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER DXE_RUNTIME_DRIVER
+
+[Sources.common]
+  AmdCpmBaseIo.c
+  AmdCpmBaseIo.h
+  AmdCpmTable.c
+  AmdCpmTable.h
+  AmdCpmBtrPei.c
+  AmdCpmBtrDxe.c
+  AmdCpmBtrSmm.c
+
+[Sources.ia32]
+  IA32/AmdLib32.asm
+  IA32/AmdLib32.nasm
+
+[Sources.x64]
+  x64/AmdLib64.asm
+  x64/AmdLib64.nasm
+
+[Sources.AArch64]
+  AArch64/AmdLibAArch64.c
+
+[LibraryClasses]
+  IoLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gBootTimeRecordPpiGuid
+  gPeiLastS3RestorePointPpiGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.X86IoRemapBase
+  gAmdCpmPkgTokenSpaceGuid.PciMmioBase
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAgesaTestPointEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAgesaTestPointWidth
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdIdsDebugPort
+
+[Depex]

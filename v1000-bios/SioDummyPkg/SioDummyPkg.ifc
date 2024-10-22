@@ -1,0 +1,40 @@
+<Features>
+  <!-- Trunk feature -->
+  <Feature>
+    <Name>SioDummyPkg</Name>
+    <Root>SioDummyPkg</Root>
+    <Version>00.00.02.0021</Version>
+    <Revision>2</Revision>
+    <Repository>
+      <Type>Svn</Type>
+      <Url>http://svn.insydesw.com/H2O-SEG-Feature/SEG_H2O-5.X_SIO</Url>
+    </Repository>
+    <Dependency>
+      <Name>Kernel</Name>
+      <Version>05.23.04</Version>
+    </Dependency>
+    <Package>
+      <SourceDir>.</SourceDir>
+    </Package>
+    <File>
+      <SourcePath>SioDummyPkg.ifc</SourcePath>
+    </File>
+  </Feature>
+  <!-- Version 0.0.0.1 feature -->
+  <Feature>
+    <Name>SioDummyPkg</Name>
+    <Root>SioDummyPkg</Root>
+    <Version>0.0.0.1</Version>
+    <Revision>2</Revision>
+    <Repository>
+      <Type>Svn</Type>
+      <Url>http://svn.insydesw.com/H2O-SEG-Feature/SEG_H2O-5.X_SIO</Url>
+    </Repository>
+    <Package>
+      <SourceDir>.</SourceDir>
+    </Package>
+    <File>
+      <SourcePath>SioDummyPkg.ifc</SourcePath>
+    </File>
+  </Feature>
+</Features>

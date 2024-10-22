@@ -1,0 +1,53 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FchSmmDiagDispatcher
+  FILE_GUID                      = c90d4f76-8147-4150-b5cd-e3aaf7ff9ce3
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = FchSmmDiagDispatcherEntry
+
+[sources]
+  FchSmmDiagDispatcher.c
+
+
+
+[sources.ia32]
+
+[sources.x64]
+
+[LibraryClasses]
+  FchSmmLibV9
+  UefiDriverEntryPoint
+  BaseMemoryLib
+  BaseLib
+  DebugLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  SmmServicesTableLib
+  DevicePathLib
+  MemoryAllocationLib
+
+[Guids]
+ gFchSmmDiagDispatchProtocolGuid
+[Protocols]
+  gEfiSmmConfigurationProtocolGuid          #CONSUMED
+  gEfiSmmBase2ProtocolGuid                  #CONSUMED
+  gEfiSmmCpuProtocolGuid                    #CONSUMED
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/Fch/Taishan/FchTaishan.dec
+
+[Depex]
+  gEfiSmmBase2ProtocolGuid
+  AND
+  gEfiSmmCpuProtocolGuid
+

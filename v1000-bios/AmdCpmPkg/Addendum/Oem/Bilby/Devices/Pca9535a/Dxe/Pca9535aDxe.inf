@@ -1,0 +1,36 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = Pca9535aDxe
+  FILE_GUID                      = 3BBF8B1D-4B2D-8602-6CC2-C781BACEBAC8
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = Pca9535aDxeInit
+
+
+[Sources.common]
+  Pca9535aDxe.c
+  Pca9535aDxe.h
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DebugLib
+
+[Guids]
+
+[Protocols]
+  gEfiI2cMasterProtocolGuid     #CONSUMED
+  gPca9535aProtocolGuid	        #PRODUCED
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+
+[Depex]
+  gEfiI2cMasterProtocolGuid
+

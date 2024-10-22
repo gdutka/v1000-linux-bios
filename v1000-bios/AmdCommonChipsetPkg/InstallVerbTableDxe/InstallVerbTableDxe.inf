@@ -1,0 +1,67 @@
+## @file
+#
+#
+#  ***************************************************************************
+#  * Copyright (c) 2013 - 2018, Insyde Software Corp. All Rights Reserved.
+#  *
+#  * You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#  * transmit, broadcast, present, recite, release, license or otherwise exploit
+#  * any part of this publication in any form, by any means, without the prior
+#  * written permission of Insyde Software Corporation.
+#  *
+#  ******************************************************************************
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = InstallVerbtableDxe
+  FILE_GUID                      = 48959D4F-4574-470E-AA4C-CF144D1C1678
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0  
+  ENTRY_POINT                    = InstallVerbtableDxeInitialize
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  InstallVerbTableDxe.c
+  InstallVerbTableDxe.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCommonChipsetPkg/AmdCommonChipsetPkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DebugLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  KernelConfigLib
+
+[Protocols]
+  gFchDxeCalloutProtocolGuid        ## PRODUCES
+
+[Guids]
+  gAzaliaPolicyGuid
+
+[Pcd]
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaSsid
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaPinCfg
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaSdin0
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaSdin1
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaSnoop
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaDummy
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdAzaliaFrontPanel
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFrontPanelDetected
+
+[Depex]
+  gEfiVariableArchProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid
+

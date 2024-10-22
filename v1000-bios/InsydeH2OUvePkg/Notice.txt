@@ -1,0 +1,10 @@
+1. Please use with 100.00.18.06 or newer H2OUVE Tool.
+
+2. This trunk is available on kernel 05.31.45 and later version.
+   If you use the older kernel, please choose one method from the following:
+     i. Use the code from "Branch\Kernel 5.2 or before Kernel 05.31.45".
+     ii. Merge the code with IB02960942 and IB02960941 from Kernel 5.3.
+
+3. Please check your BIOS if support PcdH2OIhisiAuthSupported or not before using this trunk.
+
+4. If BIOS enabled the security level mechanism (Set PcdH2OIhisiAuthSupported to TRUE), please use with 200.01.00.09 or newer H2OUVE Tool.

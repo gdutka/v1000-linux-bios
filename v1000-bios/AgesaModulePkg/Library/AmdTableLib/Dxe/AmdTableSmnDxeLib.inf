@@ -1,0 +1,43 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdTableSmnDxeLib
+  FILE_GUID                      = CA1E053B-3123-4AA0-BB1A-375A2D346AE7
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdTableSmnLib|DXE_DRIVER DXE_SMM_DRIVER UEFI_APPLICATION UEFI_DRIVER
+
+[Sources.common]
+  AmdTableSmnDxeLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  AmdBaseLib
+  IdsLib
+
+[Guids]
+
+[Protocols]
+  gAmdNbioSmuServicesProtocolGuid         #CONSUME
+  gAmdFabricTopologyServices2ProtocolGuid #CONSUME
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+  gAmdNbioSmuServicesProtocolGuid AND
+  gAmdFabricTopologyServices2ProtocolGuid
+

@@ -1,0 +1,36 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2015-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = xGbEI2cMasterDxe
+  FILE_GUID                      = 37B1100E-4C66-9B44-D736-9BBBF169CE2F
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = xGbEI2cMasterDxeInit
+
+[Sources.common]
+  xGbEI2cMasterDxe.c
+  xGbEI2cMasterDxe.h
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DebugLib
+  IoLib
+  TimerLib
+
+[Guids]
+
+[Protocols]
+  gxGbEI2cMasterProtocolGuid           #PRODUCED
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+
+[Depex]
+  TRUE

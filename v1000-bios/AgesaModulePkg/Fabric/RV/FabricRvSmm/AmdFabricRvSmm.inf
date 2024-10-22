@@ -1,0 +1,44 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdFabricRvSmm
+  FILE_GUID                      = C1B135AA-7ACB-45D0-80B7-862B8D5F0CD5
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = AmdFabricRvSmmDriverEntryPoint
+
+[Sources]
+  AmdFabricRvSmm.c
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaFamily17ModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  IdsLib
+  SmmFabricTopologyServices2Lib
+
+[Protocols]
+  gAmdFabricTopologyServices2SmmProtocolGuid  #PRODUCED
+
+[Guids]
+
+[Pcd]
+
+[Depex]
+  gAmdFabricRvDepexProtocolGuid
+
+

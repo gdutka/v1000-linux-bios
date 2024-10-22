@@ -1,0 +1,61 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdNbioSmuV10Pei
+  FILE_GUID                      = 7307BD0F-8B7A-4ba5-9AF6-3997D1E32786
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdNbioSmuV10PeiEntry
+
+[Sources]
+  AmdNbioSmuV10Pei.c
+  AmdNbioSmuV10Pei.h
+  AmdSmuServicesV10Ppi.c
+  SmuEarlyInit.c
+  AmdCoreLaunchServicePpi.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+  HobLib
+  PeimEntryPoint
+  PeiServicesLib
+  NbioHandleLib
+  GnbRegisterAccZpLib
+  NbioRegisterAccLib
+  NbioSmuV10Lib
+  AmdIdsHookLib
+  NbioIdsHookRVLib
+  SmnAccessLib      #Embedded_Override
+
+[Guids]
+  gGnbPcieHobInfoGuid
+  gEfiAmdAgesaPkgTokenSpaceGuid
+
+[Ppis]
+  gAmdCoreTopologyServicesPpiGuid
+  gAmdNbioSmuServicesPpiGuid
+  gAmdNbioBaseServicesZpPpiGuid
+  gAmdNbioPcieServicesPpiGuid
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPeiGopEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.Pcditemp #Embedded_Override
+[Depex]
+  gAmdNbioSmuV10PeiDepexPpiGuid AND
+  gAmdNbioPcieServicesPpiGuid AND #Consumed
+  gAmdNbioBaseServicesZpPpiGuid
+
+
+

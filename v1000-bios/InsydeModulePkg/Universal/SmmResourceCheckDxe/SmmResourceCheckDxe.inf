@@ -1,0 +1,56 @@
+## @file
+#  Component description file for SmmResourceCheckDxe module
+#
+#******************************************************************************
+#* Copyright (c) 2018 - 2021, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SmmResourceCheckDxe
+  FILE_GUID                      = E503CA98-B63E-4592-9BCD-5A4452355134
+  MODULE_TYPE                    = COMBINED_SMM_DXE
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = SmmResourceCheckEntryPoint
+
+[Sources]
+  SmmResourceCheckDxe.c
+  SmmResourceCheckDxe.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  DebugLib
+  BaseLib
+  UefiDriverEntryPoint
+  UefiLib
+  SmmServicesTableLib
+  PcdLib
+
+[Protocols]
+  gEfiSmmCommunicationProtocolGuid              # PROTOCOL ALWAYS_PRODUCED
+  gEfiSmmBase2ProtocolGuid
+  gEfiSmmAccess2ProtocolGuid
+  gH2ODialogProtocolGuid
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdH2OSmmMemorySizeCheckSupported
+  gInsydeTokenSpaceGuid.PcdH2OSmmMemorySizeThreshold
+
+[Depex]
+  <DXE_DEPEX>
+    TRUE
+  <SMM_DEPEX>
+    gEfiSmmAccess2ProtocolGuid

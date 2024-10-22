@@ -1,0 +1,48 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = CcxIdsCustomPstatesZenLib
+  FILE_GUID                      = C5B598CC-0C23-4085-AE4E-2529335B88D1
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CcxIdsCustomPstatesLib | DXE_DRIVER DXE_SMM_DRIVER
+
+[Sources.common]
+  CcxIdsCustomPstatesZenLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  IdsLib
+  ApobCommonServiceLib
+  CcxBaseX86Lib
+  CcxPstatesLib
+  CcxMpServicesLib
+
+[Guids]
+
+[Protocols]
+  gEfiMpServiceProtocolGuid #CONSUME
+  gAmdFabricTopologyServices2ProtocolGuid#CONSUME
+  gAmdCoreTopologyServicesProtocolGuid   #CONSUME
+  gAmdNbioSmuServicesProtocolGuid        #CONSUME
+
+[Ppis]
+
+[Pcd]
+
+[Depex]
+

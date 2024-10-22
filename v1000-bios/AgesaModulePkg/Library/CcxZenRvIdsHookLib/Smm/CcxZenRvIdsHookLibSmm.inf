@@ -1,0 +1,50 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = CcxZenRvIdsHookLibSmm
+  FILE_GUID                      = 6D96D743-792E-49B9-A7FF-948F1C760656
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CcxZenRvIdsHookLibSmm
+
+[Sources.common]
+  CcxZenRvIdsHookLibSmm.c
+  CcxZenRvIdsSyncMsrSmm.c
+  CcxZenRvIdsSyncMsrSmm.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  AmdBaseLib
+  SmmServicesTableLib
+  AmdIdsDebugPrintLib
+  IdsLib
+  CcxRolesLib
+
+[Guids]
+
+[Protocols]
+  gFchSmmSwDispatch2ProtocolGuid
+
+[Ppis]
+
+[FeaturePcd]
+
+[Pcd]
+
+[Depex]
+  gFchSmmSwDispatch2ProtocolGuid
+
+[BuildOptions]
+

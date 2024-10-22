@@ -1,0 +1,56 @@
+## @file
+#  Implement the PEIM of SpdDataReadPei.
+#  
+#  ***************************************************************************
+#  * Copyright (c) 2013, Insyde Software Corp. All Rights Reserved.
+#  *
+#  * You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#  * transmit, broadcast, present, recite, release, license or otherwise exploit
+#  * any part of this publication in any form, by any means, without the prior
+#  * written permission of Insyde Software Corporation.
+#  *
+#  ******************************************************************************
+#  
+##
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = SpdDataReadPei
+  FILE_GUID                 = 7872D787-4DAD-4496-BE61-EDB5B5F012E7
+  MODULE_TYPE               = PEIM
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = SpdDataReadPeiEntryPoint
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCommonChipsetPkg/AmdCommonChipsetPkg.dec
+
+[Sources]
+  SpdDataReadPei.c
+  
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  MemoryAllocationLib
+  HobLib
+  SmbusLib
+
+[Ppis]
+  gEfiPeiSmbus2PpiGuid
+  gSpdDataReadPpiGuid
+
+[Guids]
+  gDimmSmbusAddrHobGuid
+
+[Pcd]
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdMaxDimms
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashSpdDataStoreBase
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSizeOfSpd
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSpdDdr2ChkList
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSpdDdr3ChkList
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSpdDdr4ChkList
+  
+[Depex]
+  gEfiPeiSmbus2PpiGuid

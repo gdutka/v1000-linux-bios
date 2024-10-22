@@ -1,0 +1,42 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2017-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AodCbsLibZp
+  FILE_GUID             = 8F3EE5EE-AE14-49E1-8955-305526EC1160
+  MODULE_TYPE           = BASE
+  VERSION_STRING        = 1.0
+  LIBRARY_CLASS         = AodCbsLibZp|PEIM DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER DXE_RUNTIME_DRIVER
+
+[Sources.common]
+  AodCbsLibZp.c
+
+[LibraryClasses]
+  IoLib
+  PciLib
+  BaseMemoryLib
+
+[Guids]
+  gCbsSystemConfigurationGuid            #CONSUMED
+
+[Protocols]
+  gAodNvAreaUpdatedProtocolGuid          #CONSUMED
+  gEfiMetronomeArchProtocolGuid          #CONSUMED
+
+[Ppis]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+
+[Pcd]
+
+[Depex]

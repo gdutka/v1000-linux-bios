@@ -1,0 +1,61 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdPspP2CmboxV2
+  FILE_GUID                      = 4759E93E-8F44-448F-88A1-BD97FC47BEA5
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = AmdPspP2CmboxEntry
+
+[Sources]
+  AmdPspP2CmboxV2.c
+  AmdPspP2CmboxCmdV2.c
+  AmdPspP2CmboxV2.h
+  AmdPspFlashAccSmmHdlr.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  DebugLib
+  UefiDriverEntryPoint
+  SmmServicesTableLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  S3BootScriptLib
+  AmdBaseLib
+  AmdSocBaseLib
+  AmdPspMboxLibV2
+  AmdPspBaseLibV2
+  AmdPspFlashAccLib
+  SmmMemLib
+
+[Protocols]
+  gFchSmmMiscDispatchProtocolGuid   #Consume
+  gFchSmmSwDispatch2ProtocolGuid    #Consume
+  gPspMboxSmmBufferAddressProtocolGuid #Consume
+  gPspFlashAccSmmCommReadyProtocolGuid #Produced
+[Guids]
+  gPspSmmCommHandleGuid  #Consume
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspRomArmor2Enabled
+
+[Depex]
+  gAmdPspP2CmboxV2DepexProtocolGuid AND
+  gFchSmmMiscDispatchProtocolGuid AND
+  gFchSmmSwDispatch2ProtocolGuid AND
+  gPspMboxSmmBufferAddressProtocolGuid
+

@@ -1,0 +1,41 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiFabricResourceSizeForEachRbLib
+  FILE_GUID                      = D7AEEA3D-E0B7-40EC-A7E1-314DC5425D6C
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = FabricResourceSizeForEachRbLib | PEIM
+
+[Sources]
+  PeiFabricResourceSizeForEachRbLib.c
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  AmdBaseLib
+  IdsLib
+  PeiServicesTablePointerLib
+
+[Guids]
+  gAmdResourceSizeForEachRbGuid
+  gAmdResourceDistributionGuid
+
+[Protocols]
+
+[Ppis]
+  gEfiPeiReadOnlyVariable2PpiGuid
+
+[Pcd]
+
+[Depex]
+  gEfiPeiReadOnlyVariable2PpiGuid

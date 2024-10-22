@@ -1,0 +1,40 @@
+## @file
+#
+#******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SioInit
+  FILE_GUID                      = 50EE664D-7703-42c3-9E69-8C89DE70D1D5
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = SioInitPeim
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  BaseLib
+  DebugLib
+  IoLib
+  PostCodeLib
+
+[Sources]
+  SioInit.c
+
+[Ppis]
+  gPeiSioInitializedPpiGuid
+
+[Depex]
+ TRUE

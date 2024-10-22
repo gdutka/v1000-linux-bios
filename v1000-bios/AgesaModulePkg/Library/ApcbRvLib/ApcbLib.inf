@@ -1,0 +1,52 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = ApcbRvLib
+  FILE_GUID                      = 09635CFE-7CF0-4cf5-B4D9-1D73F375F036
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ApcbRvLib | DXE_DRIVER DXE_SMM_DRIVER DXE_RUNTIME_DRIVER DXE_CORE SMM_CORE UEFI_DRIVER 
+  CONSTRUCTOR                    = ApcbLibConstructor
+
+[Sources.common]
+  ApcbLib.c
+  ApcbReplaceType.c
+  GetSetParams.c
+  DramPostPackageRepair.c
+  UpdateShadowDimmConfig.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[LibraryClasses]
+  AmdPspBaseLibV2
+  UefiBootServicesTableLib
+  AmdPspFlashUpdateLib
+  ApobCommonServiceLib
+  AmdSocBaseLib
+  MemRestoreLib
+
+[Guids]
+
+[Protocols]
+  gEfiSmmBase2ProtocolGuid
+  gEdkiiSmmReadyToBootProtocolGuid
+  gSmmApcbRtShadowAddressProtocolGuid
+
+[Ppis]
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdApcbShadowAddress
+
+[Depex]
+
+

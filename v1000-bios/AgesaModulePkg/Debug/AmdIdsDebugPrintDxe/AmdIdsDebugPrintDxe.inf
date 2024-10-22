@@ -1,0 +1,50 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdIdsDebugPrintDxe
+  FILE_GUID                      = ABFE2830-855B-4A98-94D6-EEB23D1EBF45
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdIdsDebugPrintDxeDriverEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  AmdIdsDebugPrintLib
+  IdsMiscLib
+  BaseMemoryLib
+  PrintLib
+
+[sources]
+  AmdIdsDebugPrintDxe.c
+
+[Guids]
+
+
+[Protocols]
+  gAmdIdsDebugPrintProtocolGuid  #Produced
+
+[Ppis]
+
+[FeaturePcd]
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintFilter
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintHdtOutEnable
+
+[Depex]
+  TRUE

@@ -1,0 +1,50 @@
+## @file
+#
+#******************************************************************************
+#* Copyright (c) 2021, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  BASE_NAME                      = BaseTimeStampLib
+  FILE_GUID                      = 9814e800-e102-444e-8932-57fb6fbb12b1
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = BaseTimeStampLib
+  CONSTRUCTOR                    = BaseTimeStampLibConstructor
+
+[Sources]
+  BaseTimeStampLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  SegFeaturePkg/SegFeaturePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  CmosLib
+  DebugLib
+  HobLib
+  PcdLib
+  PrintLib
+  TimerLib
+
+[Guids]
+  gPerformanceCounterReadyHobGuid
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdRealTimeClockInitYear
+  gInsydeTokenSpaceGuid.PcdRealTimeClockInitMonth
+  gInsydeTokenSpaceGuid.PcdRealTimeClockInitDay
+  gInsydeTokenSpaceGuid.PcdRealTimeClockInitHour
+  gInsydeTokenSpaceGuid.PcdRealTimeClockInitMinute
+  gInsydeTokenSpaceGuid.PcdRealTimeClockInitSecond

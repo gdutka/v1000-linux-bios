@@ -1,0 +1,81 @@
+## @file
+# Front Page driver
+#
+#******************************************************************************
+#* Copyright (c) 2016 - 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FrontPageDxe
+  FILE_GUID                      = FF189B79-F558-4b6a-8A78-6FCD2B4B0E3C
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = FrontPageEntry
+
+[Sources]
+  Images/Image.idf
+
+  FrontPage.c
+  FrontPage.h
+  FrontPageVfr.vfr
+  FrontPageStrings.uni
+
+[Packages]
+  InsydeModulePkg/InsydeModulePkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiLib
+  BaseLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  DebugLib
+  HiiLib
+  PcdLib
+  GenericBdsLib
+  GenericUtilityLib
+  PlatformBdsLib
+  HobLib
+  H2OCpLib
+
+[Guids]
+  gEfiIfrTianoGuid
+  gH2OBdsCpInitGuid
+
+[Protocols]
+  gEfiHiiConfigAccessProtocolGuid
+  gEfiLoadFileProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiFormBrowser2ProtocolGuid
+  gEfiSmbiosProtocolGuid
+  gEfiConsoleControlProtocolGuid
+  gEfiBootLogoProtocolGuid
+
+[FeaturePcd]
+  gInsydeTokenSpaceGuid.PcdBootLogoOnlyEnable
+  gInsydeTokenSpaceGuid.PcdH2OFormBrowserLocalMetroDESupported
+  gInsydeTokenSpaceGuid.PcdH2OSecureBootSupported
+  gInsydeTokenSpaceGuid.PcdH2OBdsCpInitSupported
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultPlatformLangCodes
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultPlatformLang
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+  MSFT:*_*_*_VFRPP_FLAGS = /FI$(MODULE_NAME)IdfDefs.h
+  GCC:*_*_*_VFRPP_FLAGS  = --include $(DEST_DIR_DEBUG)/$(MODULE_NAME)IdfDefs.h

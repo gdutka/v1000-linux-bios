@@ -1,0 +1,59 @@
+## @file
+#  Component description file for SaveSpdToRom module.
+#
+#*******************************************************************************
+#* Copyright (c) 2013, Insyde Software Corporation. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#*******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SaveSpdToRomDxe
+  FILE_GUID                      = 3DA97FDE-2261-4cfb-A171-74CD5A9AE279
+  MODULE_TYPE                    = DXE_RUNTIME_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = SaveSpdToRomEntryPoint
+
+[sources]
+  SaveSpdToRomDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AmdCommonChipsetPkg/AmdCommonChipsetPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  HobLib
+  PcdLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  FdSupportLib 
+  FlashDevicesLib 
+  SmbusLib
+
+[Protocols]
+  gEfiSmbusHcProtocolGuid  
+
+[Guids]
+  gDimmSmbusAddrHobGuid
+  
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdSmbusAddrChA1
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashSpdDataStoreBase
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdFlashSpdDataStoreSize
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSizeOfSpd
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSpdDdr2ChkList
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSpdDdr3ChkList
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdSpdDdr4ChkList
+  gAmdCommonChipsetPkgTokenSpaceGuid.PcdMaxDimms
+
+[Depex]
+  gEfiVariableArchProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiSmbusHcProtocolGuid

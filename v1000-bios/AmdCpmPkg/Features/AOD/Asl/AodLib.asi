@@ -1,0 +1,61 @@
+/*****************************************************************************
+ *
+ * Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+ *
+ ******************************************************************************
+ */
+
+/*****************************************************************************
+ *
+ * This software package can be used to enable the Overclocking of certain
+ * AMD processors and its use is subject to the terms and conditions of the
+ * AMD Overclocking Waiver. Enabling overclocking through use of the low-level
+ * routines included in this package and operating an AMD processor outside of
+ * the applicable AMD product specifications will void any AMD warranty and can
+ * result in damage to the processor or the system into which the processor has
+ * been integrated. The user of this software assumes, and AMD disclaims, all
+ * risk, liability, costs and damages relating to or arising from the overclocking
+ * of AMD processors.
+ *
+ ******************************************************************************
+ */
+
+        //
+        //MethodName:CPTB
+        //Description:Copy OBIT to a Local buffer
+        //Input:arg0 Object ID arg1 local buffer reference
+        //Output: 0 OK 0xFF The invalid OBject ID
+        //Note:
+        //
+        Method(CPTB,2)
+        {
+            Name(LOID,0)
+            CreateDwordfield(arg1,0,buf0)	//ID
+            CreateDwordfield(arg1,4,buf1)	//MIN 
+            CreateDwordfield(arg1,8,buf2)	//MAX
+            CreateDwordfield(arg1,12,buf3)	//Step
+            store(0,Local0)
+            store(Derefof(index(OBIT,Local0)),LOID)
+
+            while(LOID)
+            {
+                if(Lequal(LOID,arg0))
+                {
+                    //Copy the line to local buffer 
+                    store(Derefof(index(OBIT,Add(Local0,0))),buf0)  // ID
+                    store(Derefof(index(OBIT,Add(Local0,1))),buf1)  // min
+                    store(Derefof(index(OBIT,Add(Local0,2))),buf2)  // max
+                    store(Derefof(index(OBIT,Add(Local0,3))),buf3)  // step
+                    break
+                }
+                add(Local0,4,Local0)
+                store(Derefof(index(OBIT,Local0)),LOID)
+            }
+            if(Lequal(LOID,0))
+            {
+                return(0xff)
+            }
+                return(0)
+        }
+
+

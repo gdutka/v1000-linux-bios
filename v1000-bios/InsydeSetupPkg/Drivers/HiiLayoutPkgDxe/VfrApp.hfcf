@@ -1,0 +1,597 @@
+/** @file
+  Layout and hot key definitions for VfrApp
+
+;******************************************************************************
+;* Copyright (c) 2018 - 2019, Insyde Software Corp. All Rights Reserved.
+;*
+;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+;* transmit, broadcast, present, recite, release, license or otherwise exploit
+;* any part of this publication in any form, by any means, without the prior
+;* written permission of Insyde Software Corporation.
+;*
+;******************************************************************************
+*/
+
+#define VFR_APP_FORMSET_GUID      {0xA04A27f4, 0xDF00, 0x1234, 0xB5, 0x52, 0x39, 0x51, 0x13, 0x02, 0x11, 0x3F}
+
+vfr
+  formset
+    guid   = VFR_APP_FORMSET_GUID;
+    layout = COMMON_PAGE_LAYOUT_ID;
+
+    hotkey hotkeyid = 0x1001;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SHOW_HELP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SHOW_HELP,
+           style    = .H2OHotKeyShowHelp;
+    endhotkey;
+    hotkey hotkeyid = 0x1002;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_DISCARD_EXIT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_DISCARD_AND_EXIT_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_DISCARD_AND_EXIT,
+           style    = .H2OHotKeyDiscardAndExit;
+    endhotkey;
+    hotkey hotkeyid = 0x1003;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_ITEM,
+           group    = 1,
+           style    = .H2OHotKeySelectPreviousItem;
+    endhotkey;
+    hotkey hotkeyid = 0x1004;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_ITEM_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_ITEM_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_ITEM_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_NEXT_ITEM,
+           group    = 1,
+           style    = .H2OHotKeySelectNextItem;
+    endhotkey;
+    hotkey hotkeyid = 0x1005;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_MENU_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_PREVIOUS_MENU_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_MENU_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_PREVIOUS_MENU,
+           group    = 2,
+           style    = .H2OHotKeySelectPreviousMenu;
+    endhotkey;
+    hotkey hotkeyid = 0x1006;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SELECT_MENU_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SELECT_NEXT_MENU_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SELECT_MENU_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SELECT_NEXT_MENU,
+           group    = 2,
+           style    = .H2OHotKeySelectNextMenu;
+    endhotkey;
+    hotkey hotkeyid = 0x1007;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_DOWN),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_PREVIOUS_VALUE_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_MODIFY_PREVIOUS_VALUE,
+           group    = 3,
+           style    = .H2OHotKeyModifyPreviousValue;
+    endhotkey;
+    hotkey hotkeyid = 0x1008;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_MODIFY_VALUE_UP),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_MODIFY_NEXT_VALUE_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_MODIFY_VALUE_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_MODIFY_NEXT_VALUE,
+           group    = 3,
+           style    = .H2OHotKeyModifyNextValue;
+    endhotkey;
+    hotkey hotkeyid = 0x1009;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_ENTER),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_ENTER_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_ENTER_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_ENTER,
+           style    = .H2OHotKeyEnter;
+    endhotkey;
+    hotkey hotkeyid = 0x100A;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_LOAD_DEFAULT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_LOAD_DEFAULT_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_LOAD_DEFAULT_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_LOAD_DEFAULT,
+           style    = .H2OHotKeyLoadDefault;
+    endhotkey;
+    hotkey hotkeyid = 0x100B;
+           image    = IMAGE_TOKEN(IMAGE_HOTKEY_SAVE_AND_EXIT),
+           prompt   = STRING_TOKEN(STR_HOT_KEY_SAVE_PROMPT_STRING),
+           help     = STRING_TOKEN(STR_HOT_KEY_SAVE_HELP_STRING),
+           action   = H2O_HOT_KEY_ACTION_SAVE,
+           style    = .H2OHotKeySave;
+    endhotkey;
+
+    //
+    // Discard
+    //
+    form formid = 0x4001; // VFR_APP_FORM_HOT_KEY_PANEL_DISCARD
+      hotkey hotkeyid = 0x1010;
+        action                      = H2O_HOT_KEY_ACTION_DISCARD,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_DISCARD_FORMSET_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_DISCARD_FORMSET_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F2");
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1011;
+        action                      = H2O_HOT_KEY_ACTION_DISCARD,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_DISCARD_FORM_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_DISCARD_FORM_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionform                  = 0x4001,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F3");
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1012;
+        action                      = H2O_HOT_KEY_ACTION_DISCARD,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_DISCARD_QUESTION_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_DISCARD_QUESTION_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionform                  = 0x4001,
+        actionquestion              = 0x4001,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F4");
+        }
+      endhotkey;
+    endform;
+
+    //
+    // Load Default
+    //
+    form formid = 0x4002; // VFR_APP_FORM_HOT_KEY_PANEL_LOAD_DEFAULT
+      hotkey hotkeyid = 0x1020;
+        action                      = H2O_HOT_KEY_ACTION_LOAD_DEFAULT,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_LOAD_DEFAULT_FORMSET_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_LOAD_DEFAULT_FORMSET_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F2");
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1021;
+        action                      = H2O_HOT_KEY_ACTION_LOAD_DEFAULT,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_LOAD_DEFAULT_FORM_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_LOAD_DEFAULT_FORM_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionform                  = 0x4002,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F3");
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1022;
+        action                      = H2O_HOT_KEY_ACTION_LOAD_DEFAULT,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_LOAD_DEFAULT_QUESTION_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_LOAD_DEFAULT_QUESTION_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionform                  = 0x4002,
+        actionquestion              = 0x4002,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F4");
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1023;
+        action                      = H2O_HOT_KEY_ACTION_LOAD_DEFAULT,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_LOAD_DEFAULT_MANUFACTURING_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_LOAD_DEFAULT_MANUFACTURING_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actiondefault               = 1,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F7");
+        }
+      endhotkey;
+    endform;
+
+    //
+    // Save
+    //
+    form formid = 0x4003; // VFR_APP_FORM_HOT_KEY_PANEL_SAVE
+      hotkey hotkeyid = 0x1030;
+        action                      = H2O_HOT_KEY_ACTION_SAVE,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SAVE_FORMSET_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SAVE_FORMSET_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F2");
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1031;
+        action                      = H2O_HOT_KEY_ACTION_SAVE,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SAVE_FORM_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SAVE_FORM_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionform                  = 0x4003,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F3");
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1032;
+        action                      = H2O_HOT_KEY_ACTION_SAVE,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SAVE_QUESTION_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SAVE_QUESTION_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionform                  = 0x4003,
+        actionquestion              = 0x4003,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F4");
+        }
+      endhotkey;
+    endform;
+
+    //
+    // Enter
+    //
+    form formid = 0x4004; // VFR_APP_FORM_HOT_KEY_PANEL_ENTER
+      hotkey hotkeyid = 0x1040;
+        action                      = H2O_HOT_KEY_ACTION_ENTER,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_ENTER_CURRENT_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_ENTER_CURRENT_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionform                  = 0x4004,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F2");
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1041;
+        action                      = H2O_HOT_KEY_ACTION_ENTER,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_ENTER_TARGET_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_ENTER_TARGET_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionform                  = 0x4004,
+        actionquestion              = 0x4004,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F3");
+        }
+      endhotkey;
+    endform;
+
+    //
+    // Callback
+    //
+    form formid = 0x4005; // H2O_HOT_KEY_ACTION_CALLBACK
+      hotkey hotkeyid = 0x1050;
+        action                      = H2O_HOT_KEY_ACTION_CALLBACK,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_CALLBACK_TARGET_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_CALLBACK_TARGET_HELP_STRING),
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F2");
+        }
+      endhotkey;
+    endform;
+
+    //
+    // GoTo
+    //
+    form formid = 0x4006; // H2O_HOT_KEY_ACTION_GOTO
+      hotkey hotkeyid = 0x1060;
+        action                      = H2O_HOT_KEY_ACTION_GOTO,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_GOTO_PARENT_PROMPT_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_GOTO_PARENT_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionform                  = 0x4000,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F2");
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1061;
+        action                      = H2O_HOT_KEY_ACTION_GOTO,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_GOTO_CHILD_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_GOTO_CHILD_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionform                  = 0x4100,
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F3");
+        }
+      endhotkey;
+    endform;
+
+    //
+    // Set Question Value
+    //
+    form formid = 0x4007; // H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE
+      hotkey hotkeyid = 0x1070;
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_STRING),
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4007,
+        actionvalue                 = UINT8(77),
+        property {
+          visibility                  : visible;
+          key-string                  : STRING(L"F2");
+        }
+      endhotkey;
+    endform;
+
+    //
+    // Test Form property can override Fromset property
+    //
+    form formid = 0x4101;
+      hotkey hotkeyid = 0x1001;
+        property {
+          enable                      : false;
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1002;
+        property {
+          visibility                  : hidden;
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1003;
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_OVERRIDE_SELECT_PREVIOUS_ITEM_STRING),
+        property {
+          key-string                  : STRING(L"F2");
+        }
+      endhotkey;
+
+      hotkey hotkeyid = 0x1004;
+        prompt                      = STRING_TOKEN(STR_VFR_APP_HOT_KEY_OVERRIDE_SELECT_NEXT_ITEM_STRING),
+        property {
+          key-string                  : STRING(L"F3");
+        }
+      endhotkey;
+    endform;
+
+    form formid = 0x4102;
+
+      hotkey hotkeyid = 0x1070;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_CTRL_A),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"ctrl-a");}
+      endhotkey;
+      hotkey hotkeyid = 0x1071;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_CTRL_F1),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"ctrl-F1");}
+      endhotkey;
+      hotkey hotkeyid = 0x1072;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_CTRL_1),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"ctrl-1");}
+      endhotkey;
+      hotkey hotkeyid = 0x1073;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_CTRL_DOT),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"ctrl-.");}
+      endhotkey;
+      hotkey hotkeyid = 0x1074;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_ALT_A),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"alt-a");}
+      endhotkey;
+      hotkey hotkeyid = 0x1075;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_ALT_F1),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"alt-F1");}
+      endhotkey;
+      hotkey hotkeyid = 0x1076;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_ALT_1),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"alt-1");}
+      endhotkey;
+      hotkey hotkeyid = 0x1077;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_ALT_DOT),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"alt-.");}
+      endhotkey;
+      hotkey hotkeyid = 0x1078;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_LOGO_A),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"logo-a");}
+      endhotkey;
+      hotkey hotkeyid = 0x1079;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_LOGO_F1),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"logo-F1");}
+      endhotkey;
+      hotkey hotkeyid = 0x107A;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_LOGO_1),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"logo-1");}
+      endhotkey;
+      hotkey hotkeyid = 0x107B;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_LOGO_DOT),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"logo-.");}
+      endhotkey;
+      hotkey hotkeyid = 0x107C;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_MENU_A),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"menu-a");}
+      endhotkey;
+      hotkey hotkeyid = 0x107D;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_MENU_F1),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"menu-F1");}
+      endhotkey;
+      hotkey hotkeyid = 0x107E;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_MENU_1),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"menu-1");}
+      endhotkey;
+      hotkey hotkeyid = 0x107F;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_MENU_DOT),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"menu-.");}
+      endhotkey;
+      hotkey hotkeyid = 0x1080;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_SYSREQ_A),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"sysreq-a");}
+      endhotkey;
+      hotkey hotkeyid = 0x1081;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_SYSREQ_F1),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"sysreq-F1");}
+      endhotkey;
+      hotkey hotkeyid = 0x1082;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_SYSREQ_1),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"sysreq-1");}
+      endhotkey;
+      hotkey hotkeyid = 0x1083;
+        prompt              = STRING_TOKEN(STR_VFR_APP_HOT_KEY_COMBIND_HOT_KEY_SYSREQ_DOT),
+        action                      = H2O_HOT_KEY_ACTION_SET_QUESTION_VALUE,
+        help                        = STRING_TOKEN(STR_VFR_APP_HOT_KEY_SET_QUESTION_VALUE_HELP_STRING),
+        actionformset               = VFR_APP_FORMSET_GUID,
+        actionquestion              = 0x4008,
+        actionvalue                 = UINT8(2),
+        style = .H2OHotKeyCombinedKeySetQValue;
+        property {key-string : STRING(L"sysreq-.");}
+      endhotkey;
+
+    endform;
+
+    form formid = 0x4200;
+      statement position = 0;
+        hotkey hotkeyid = 0x1080;
+          prompt              = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_PROMPT_STRING),
+          help                = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_HELP_STRING),
+          action              = H2O_HOT_KEY_ACTION_SHOW_HELP,
+          property {
+            visibility          : visible;
+            key-string          : STRING(L"F3");
+          }
+        endhotkey;
+      endstatement;
+
+      question questionid = 0x4009;
+        hotkey hotkeyid = 0x1081;
+          prompt              = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_PROMPT_STRING),
+          help                = STRING_TOKEN(STR_HOT_KEY_SHOW_HELP_HELP_STRING),
+          action              = H2O_HOT_KEY_ACTION_SHOW_HELP,
+          property {
+            visibility          : visible;
+            key-string          : STRING(L"F4");
+          }
+        endhotkey;
+      endquestion;
+    endform;
+
+  endformset;
+endvfr;
+

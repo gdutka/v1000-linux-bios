@@ -1,0 +1,38 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformMemoryConfigurationPei
+  FILE_GUID                      = FF30FA10-EE1D-455D-971F-34B97D20679C
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatformMemoryConfigurationPeiEntryPoint
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCpmPkg/Addendum/Oem/Bilby/AmdCpmOemPkg.dec
+
+[Sources]
+  PlatformMemoryConfigurationPei.c
+
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  AmdBaseLib
+
+[Ppis]
+
+[Guids]
+
+[Pcd]
+
+[Depex]
+  gAmdCpmTablePpiGuid

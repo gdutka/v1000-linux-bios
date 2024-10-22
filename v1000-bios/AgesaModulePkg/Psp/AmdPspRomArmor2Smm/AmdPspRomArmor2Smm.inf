@@ -1,0 +1,66 @@
+#/*****************************************************************************
+# *
+# * Copyright (C) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
+# *
+# *****************************************************************************/
+
+[Defines]
+  INF_VERSION               = 0x00010019
+  BASE_NAME                 = AmdPspRomArmor2Smm
+  FILE_GUID                 = DE223A35-931C-4C12-8E47-73B7A65C2B7A
+  MODULE_TYPE               = DXE_SMM_DRIVER
+  VERSION_STRING            = 0.1
+  PI_SPECIFICATION_VERSION  = 0x0001000A
+  ENTRY_POINT               = AmdPspRomArmor2SmmEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  SmmServicesTableLib
+  BaseLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  AmdPspMboxLibV2
+  IdsLib
+  PcdLib
+  HobLib
+
+[Sources]
+  AmdPspRomArmor2Smm.c
+  AmdPspRomArmor2Smm.h
+
+[Protocols]
+  gEfiSpiSmmNorFlashProtocolGuid             ## PROCUDES
+  gPspMboxSmmBufferAddressProtocolGuid
+  gFchSmmSwDispatch2ProtocolGuid             ## CONSUME
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase64    ## PRODUCES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase64  ## PRODUCES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase64    ## PRODUCES
+
+[FixedPcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase      ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize      ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize    ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize      ## CONSUMES
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemBeforePciRestoreSwSmi      ## CONSUMES
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemAfterSystemWakeSwSmi       ## CONSUMES
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdPspRomArmor2Enabled     ## CONSUMES
+
+[Guids]
+  gEdkiiEndOfS3ResumeGuid                    ## CONSUMES
+
+[Depex]
+  gPspMboxSmmBufferAddressProtocolGuid AND
+  gEfiSmmConfigurationProtocolGuid
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  AmdPspRomArmor2.uni

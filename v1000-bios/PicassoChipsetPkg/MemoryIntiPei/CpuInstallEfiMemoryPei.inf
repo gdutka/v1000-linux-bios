@@ -1,0 +1,89 @@
+## @file
+#  Implement the PEIM of CpuInstallEfiMemoryPei.
+#
+#  ***************************************************************************
+#  * Copyright (c) 2016-2018, Insyde Software Corp. All Rights Reserved.
+#  *
+#  * You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#  * transmit, broadcast, present, recite, release, license or otherwise exploit
+#  * any part of this publication in any form, by any means, without the prior
+#  * written permission of Insyde Software Corporation.
+#  *
+#  ******************************************************************************
+#
+##
+
+[Defines]
+  INF_VERSION               = 0x00010005
+  BASE_NAME                 = CpuInstallEfiMemoryPei
+  FILE_GUID                 = 0E511F9D-5B86-4389-9325-9F8217220FBB
+  MODULE_TYPE               = PEIM
+  VERSION_STRING            = 1.0
+  ENTRY_POINT               = CpuInstallEfiMemoryPeiEntryPoint
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  InsydeModulePkg/InsydeModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  $(CHIPSET_PKG)/$(CHIPSET_PKG).dec
+  AmdPspFeaturePkg/AmdPspFeaturePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleMemPkg.dec
+  AgesaModulePkg/Fch/Sandstone/FchSandstone.dec
+#[-start-231030-IB18160164-add]#
+  AmdCbsPkg/AmdCbsPkg.dec
+#[-end-231030-IB18160164-add]#
+
+[Sources]
+  CpuInstallEfiMemoryPei.c
+  InstallPeiMemory.c
+  InstallPeiMemoryInternal.h
+  ReportMemoryError.c
+  TurnOnSmram.c
+
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  ReportStatusCodeLib
+  BaseMemoryLib
+  PostCodeLib
+  DebugLib
+  BaseLib
+  PcdLib
+  HobLib
+  IoLib
+
+[Ppis]
+  gPeiCapsulePpiGuid
+  gPeiSpeakerInterfacePpiGuid
+  gPeiPlatformMemorySizePpiGuid
+  gPeiPlatformMemoryRangePpiGuid
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gPspSmmResumePpiGuid
+  gAmdMemoryInfoHobPpiGuid
+#[-start-231030-IB18160164-add]#
+  gEfiPeiReadOnlyVariable2PpiGuid
+#[-end-231030-IB18160164-add]#
+
+[Guids]
+  gUmaExistHobGuid
+  gAcpiVariableSetGuid
+  gEfiAcpiVariableGuid
+  gEfiMemoryTypeInformationGuid
+  gEfiSmmPeiSmramMemoryReserveGuid
+  gAmdMemoryInfoHobGuid
+#[-start-231030-IB18160164-add]#
+  gCbsSystemConfigurationGuid
+#[-end-231030-IB18160164-add]#
+
+[Pcd]
+  gInsydeTokenSpaceGuid.PcdUseFastCrisisRecovery
+  gChipsetPkgTokenSpaceGuid.PcdUmaBaseUpperThan4G
+  gChipsetPkgTokenSpaceGuid.PcdTsegSize
+
+[Depex]
+#[-start-231030-IB18160164-add]#
+  gEfiPeiReadOnlyVariable2PpiGuid AND
+#[-end-231030-IB18160164-add]#
+  gAmdMemoryInfoHobPpiGuid

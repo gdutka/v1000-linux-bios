@@ -1,0 +1,40 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CbsIdsHookExtLibPei
+  FILE_GUID                      = AF25B1B1-09A4-4045-A783-5EFBE1A0FCAD
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdIdsHookExtLib
+
+[sources.common]
+  CbsIdsLib/CbsIdsExtHookLibPei.c 
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  PcdLib
+  HobLib
+  PeimEntryPoint
+  DebugLib
+  PeiServicesTablePointerLib
+  PeiServicesLib
+  CbsPeiFuncLib
+
+[BuildOptions.Common]
+  MSFT:*_*_*_CC_FLAGS = /FAsc /Od /wd 4245
+
+[DEPEX]
+  gAmdCbsHookPpiGuid

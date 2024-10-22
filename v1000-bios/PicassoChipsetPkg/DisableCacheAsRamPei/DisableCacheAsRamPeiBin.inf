@@ -1,0 +1,30 @@
+## @file
+#
+# This PEIM is to expose the Disable CAR notification.
+#
+#******************************************************************************
+#* Copyright (c) 2017, Insyde Software Corp. All Rights Reserved.
+#*
+#* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+#* transmit, broadcast, present, recite, release, license or otherwise exploit
+#* any part of this publication in any form, by any means, without the prior
+#* written permission of Insyde Software Corporation.
+#*
+#******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DisableCacheAsRamPei
+  FILE_GUID                      = C79DD14B-C66D-4add-A5A1-CBE3FDF2BD72
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Binaries.Ia32]
+  PE32|UefiBinary/DisableCacheAsRamPei.efi
+  PEI_DEPEX|UefiBinary/DisableCacheAsRamPei.depex

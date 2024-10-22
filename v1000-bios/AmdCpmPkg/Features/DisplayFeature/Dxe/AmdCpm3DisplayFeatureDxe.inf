@@ -1,0 +1,58 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2012-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;*****************************************************************************
+
+[Defines]
+  INF_VERSION           = 0x00010006
+  BASE_NAME             = AmdCpmDisplayFeatureDxe
+  FILE_GUID             = 57E9EEE9-EB7D-4453-BBF7-6C138BF06458
+  MODULE_TYPE           = DXE_DRIVER
+  VERSION_STRING        = 1.0
+  ENTRY_POINT           = AmdCpmDisplayFeatureDxeEntryPoint
+
+[Sources.common]
+  AmdCpmDisplayFeatureDxe.c
+  AmdCpmDisplayFeatureInitLate.c
+  AmdCpmDisplayFeatureInitMid.c
+
+[Sources.ia32]
+
+[Sources.x64]
+
+[LibraryClasses]
+  BaseLib
+  UefiLib
+  UefiDriverEntryPoint
+  AmdCpmBaseLib
+
+[Guids]
+  gEfiEventReadyToBootGuid
+
+[Protocols]
+  gAmdCpmTableProtocolGuid
+  gAmdCpmNvDataProtocolGuid
+  gEfiPciIoProtocolGuid
+  gAmdCpmDisplayFeatureProtocolGuid
+  gAmdCpmAllPciIoProtocolsInstalledProtocolGuid
+  gBootTimeRecordProtocolGuid
+
+[Ppis]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+
+[Pcd]
+  gAmdCpmPkgTokenSpaceGuid.AcpiDisableDgpuAudioSwSmi
+  gAmdCpmPkgTokenSpaceGuid.PcdCpmDgpuSsid
+  gAmdCpmPkgTokenSpaceGuid.PcdCpmDgpuAudioSsid
+
+[Depex]
+  gAmdCpmTableProtocolGuid
+  AND
+  gAmdCpmNvDataProtocolGuid
+

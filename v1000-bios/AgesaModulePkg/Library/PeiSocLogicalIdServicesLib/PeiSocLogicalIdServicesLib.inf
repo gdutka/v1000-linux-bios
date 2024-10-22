@@ -1,0 +1,39 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+#For EDKII use Only
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiSocLogicalIdServicesLib
+  FILE_GUID                      = 8953DDE3-E1DE-488f-A817-699A69B32E45
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PeiSocLogicalIdServicesLib
+
+[Sources]
+  SocLogicalIdServicesPei.c
+  SocLogicalIdServicesPei.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+
+[LibraryClasses]
+  BaseFabricTopologyLib
+  BaseCoreLogicalIdLib
+  BaseSocketLogicalIdLib
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+  gAmdSocLogicalIdPpiGuid  #PRODUCED
+
+[Pcd]
+
+[Depex]
+

@@ -1,0 +1,22 @@
+//;******************************************************************************
+//;* Copyright (c) 2015, Insyde Software Corp. All Rights Reserved.
+//;*
+//;* You may not reproduce, distribute, publish, display, perform, modify, adapt,
+//;* transmit, broadcast, present, recite, release, license or otherwise exploit
+//;* any part of this publication in any form, by any means, without the prior
+//;* written permission of Insyde Software Corporation.
+//;*
+//;******************************************************************************
+//;
+//; Module Name:
+//;
+//;   BootManagerDxeImage.idf
+//;
+//; Abstract:
+//;
+//;   Images for BootManagerDxe
+//;
+
+!if gInsydeTokenSpaceGuid.PcdH2OFormBrowserLocalMetroDESupported
+#image IMAGE_BOOT_MANAGER_MENU       "ImageBootManagerMenu.png"
+!endif

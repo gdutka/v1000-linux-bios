@@ -1,0 +1,48 @@
+#;*****************************************************************************
+#;
+#; Copyright (C) 2008-2022 Advanced Micro Devices, Inc. All rights reserved.
+#;
+#;******************************************************************************
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdIdsDebugPrintPei
+  FILE_GUID                      = 239E812C-AD4A-4D5A-8BB9-169131C344BF
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = AmdIdsDebugPrintPeiDriverEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  PeimEntryPoint
+  AmdIdsDebugPrintLib
+  BaseMemoryLib
+  PrintLib
+
+[sources]
+  AmdIdsDebugPrintPei.c
+
+[Guids]
+
+
+[Protocols]
+
+[Ppis]
+  gAmdIdsDebugPrintPpiGuid  #Produced
+
+[FeaturePcd]
+
+[Pcd]
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintFilter
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintHdtOutEnable
+
+[Depex]
+  TRUE
