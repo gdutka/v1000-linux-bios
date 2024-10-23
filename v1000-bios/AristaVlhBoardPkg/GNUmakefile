@@ -24,6 +24,11 @@ export RAVEN_16M=$(word 4, $(shell grep 'RAVEN_16M'  Project.env))
 export BACKUP_BIOS=$(word 4, $(shell grep 'BACKUP_BIOS'  Project.env))
 FV_OUTPUT_PATH=$(WORKSPACE)/Build/$(PROJECT_PKG)/$(TARGET)_$(TOOL_CHAIN_TAG)/FV
 
+#
+#	Option Variable for gcc path if needed to use specific gcc version
+#
+export GCC_PATH=/usr/bin
+
 include $(WORKSPACE)/BaseTools/Conf/GNUmakefile
 
 buildcbs:

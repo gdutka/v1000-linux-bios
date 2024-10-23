@@ -22,6 +22,11 @@ export TARGET=$(word 3, $(shell grep 'TARGET ='  $(WORKSPACE)/Conf/target.txt))
 export TOOL_CHAIN_TAG=$(word 3, $(shell grep 'TOOL_CHAIN_TAG '  $(WORKSPACE)/Conf/target.txt))
 export RAVEN_16M=$(word 4, $(shell grep 'RAVEN_16M'  Project.env))
 
+#
+#	Option Variable for gcc path if needed to use specific gcc version
+#
+#export GCC_PATH=/usr/bin
+
 include $(WORKSPACE)/BaseTools/Conf/GNUmakefile
 
 buildcbs:

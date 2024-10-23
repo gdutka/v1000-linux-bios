@@ -1131,7 +1131,7 @@ gInsydeTokenSpaceGuid.PcdIhisiRegisterTable|{ \
     gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x2
     gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80000000
   <BuildOptions>
-    MSFT:*_*_*_CC_FLAGS = /UMDEPKG_NDEBUG
+    *_*_*_CC_FLAGS  = -UMDEPKG_NDEBUG
 !endif
   }
 !if $(AMD_APP_INSTEAD_EFI_SHELL_SUPPORT) == YES
@@ -1158,7 +1158,7 @@ gInsydeTokenSpaceGuid.PcdIhisiRegisterTable|{ \
     gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x2
 	gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80000000
   <BuildOptions>
-    MSFT:*_*_*_CC_FLAGS = /UMDEPKG_NDEBUG
+    *_*_*_CC_FLAGS  = -UMDEPKG_NDEBUG
 !endif
   <SOURCE_OVERRIDE_PATH>
     $(PROJECT_PKG)/Override/AmdCpmPkg/Addendum/Oem/$(CRB_NAME)/Pei/AmdCpmOemInitPei

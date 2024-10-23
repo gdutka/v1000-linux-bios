@@ -157,16 +157,17 @@ function BUILD_ALL_C_SOURCES() {
 	# dont't run linker, force 32 bit mode for correct alignment in APCB binary
 	C_FLAGS="-c -m32"
 	C_INCLUDE_PATH_FLAG="-I./Include -I../Inc -I../../Inc"
-	local gcc_prefix_var=${TOOL_CHAIN}_BIN
-	#CC=${!gcc_prefix_var}gcc
-    	CC=$(which gcc)
-	echo  Resulting GCC path: "$CC"
-	# --------------------------------------------------------------------
-	if [ ! -f "$CC" ]; then
-		echo ERROR: Cannot find GCC specified by TOOL_CHAIN env variable
-		echo   make sure it is set correctly. Resulting GCC path: "$CC"
+	if [ -z $GCC_PATH ]; then
+		CC="gcc"
+	else
+		CC=${GCC_PATH}/gcc
+		if [ ! -f "$CC" ]; then
+		echo ERROR: Cannot find GCC specified by GCC_PATH env variable
+		echo make sure it is set correctly. Resulting GCC path: "$CC"
 		ERR_END
+		fi
 	fi
+	# --------------------------------------------------------------------
 	if [ ! -d "$APCB_LOCAL_WORK_DIR/$BUILD_DIR" ]; then
 		mkdir "$APCB_LOCAL_WORK_DIR/$BUILD_DIR" || ERR_END
 	fi
