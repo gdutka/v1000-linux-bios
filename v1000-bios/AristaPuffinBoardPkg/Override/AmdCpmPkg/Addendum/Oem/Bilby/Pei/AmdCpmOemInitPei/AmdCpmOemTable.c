@@ -1,7 +1,81 @@
 /*****************************************************************************
  *
- * Copyright (C) 2016-2022 Advanced Micro Devices, Inc. All rights reserved.
+ * Copyright 2016 - 2020 ADVANCED MICRO DEVICES, INC.  All Rights Reserved.
  *
+ * AMD is granting You permission to use this software and documentation (if
+ * any) (collectively, the "Software") pursuant to the terms and conditions of
+ * the Software License Agreement included with the Software. If You do not have
+ * a copy of the Software License Agreement, contact Your AMD representative for
+ * a copy.
+ *
+ * You agree that You will not reverse engineer or decompile the Software, in
+ * whole or in part, except as allowed by applicable law.
+ *
+ * WARRANTY DISCLAIMER: THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+ * KIND. AMD DISCLAIMS ALL WARRANTIES, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+ * BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, QUALITY,
+ * FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT AND WARRANTIES
+ * ARISING FROM CUSTOM OF TRADE OR COURSE OF USAGE WITH RESPECT TO THE SOFTWARE,
+ * INCLUDING WITHOUT LIMITATION, THAT THE SOFTWARE WILL RUN UNINTERRUPTED OR
+ * ERROR-FREE. THE ENTIRE RISK ASSOCIATED WITH THE USE OF THE SOFTWARE IS
+ * ASSUMED BY YOU. Some jurisdictions do not allow the exclusion of implied
+ * warranties, so the above exclusion may not apply to You, but only to the
+ * extent required by law.
+ *
+ * LIMITATION OF LIABILITY AND INDEMNIFICATION: TO THE EXTENT NOT PROHIBITED BY
+ * APPLICABLE LAW, AMD AND ITS LICENSORS WILL NOT, UNDER ANY CIRCUMSTANCES BE
+ * LIABLE TO YOU FOR ANY PUNITIVE, DIRECT, INCIDENTAL, INDIRECT, SPECIAL OR
+ * CONSEQUENTIAL DAMAGES ARISING FROM POSSESSION OR USE OF THE SOFTWARE OR
+ * OTHERWISE IN CONNECTION WITH ANY PROVISION OF THIS AGREEMENT EVEN IF AMD AND
+ * ITS LICENSORS HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THIS
+ * INCLUDES, WITHOUT LIMITATION, DAMAGES DUE TO LOST OR MISAPPROPRIATED DATA,
+ * LOST PROFITS OR CONFIDENTIAL OR OTHER INFORMATION, FOR BUSINESS INTERRUPTION,
+ * FOR PERSONAL INJURY, FOR LOSS OF PRIVACY, FOR FAILURE TO MEET ANY DUTY
+ * INCLUDING OF GOOD FAITH OR REASONABLE CARE, FOR NEGLIGENCE AND FOR ANY OTHER
+ * PECUNIARY OR OTHER LOSS WHTSOEVER. In no event shall AMD's total liability to
+ * You for all damages, losses, and causes of action (whether in contract, tort
+ * (including negligence) or otherwise) exceed the amount of $50 USD. You agree
+ * to defend, indemnify and hold harmless AMD, its subsidiaries and affiliates
+ * and their respective licensors, directors, officers, employees, affiliates or
+ * agents from and against any and all loss, damage, liability and other
+ * expenses (including reasonable attorneys' fees), resulting from Your
+ * possession or use of the Software or violation of the terms and conditions of
+ * this Agreement.
+ *
+ * U.S. GOVERNMENT RESTRICTED RIGHTS: Notice to U.S. Government End Users. The
+ * Software and related documentation are "commercial items", as that term is
+ * defined at 48 C.F.R. Section 2.101, consisting of "commercial computer
+ * software" and "commercial computer software documentation", as such terms are
+ * used in 48 C.F.R. Section 12.212 and 48 C.F.R. Section 227.7202,
+ * respectively. Consistent with 48 C.F.R. Section 12.212 or 48 C.F.R. Sections
+ * 227.7202-1 through 227.7202-4, as applicable, the commercial computer
+ * software and commercial computer software documentation are being licensed to
+ * U.S. Government end users: (a) only as commercial items, and (b) with only
+ * those rights as are granted to all other end users pursuant to the terms and
+ * conditions set forth in this Agreement. Unpublished rights are reserved under
+ * the copyright laws of the United States.
+ *
+ * EXPORT RESTRICTIONS:  You shall adhere to all applicable U.S. import/export
+ * laws and regulations, as well as the import/export control laws and
+ * regulations of other countries as applicable. You further agree You will not
+ * export, re-export, or transfer, directly or indirectly, any product,
+ * technical data, software or source code received from AMD under this license,
+ * or the direct product of such technical data or software to any country for
+ * which the United States or any other applicable government requires an export
+ * license or other governmental approval without first obtaining such licenses
+ * or approvals, or in violation of any applicable laws or regulations of the
+ * United States or the country where the technical data or software was
+ * obtained. You acknowledges the technical data and software received will not,
+ * in the absence of authorization from U.S. or local law and regulations as
+ * applicable, be used by or exported, re-exported or transferred to: (i) any
+ * sanctioned or embargoed country, or to nationals or residents of such
+ * countries; (ii) any restricted end-user as identified on any applicable
+ * government end-user list; or (iii) any party where the end-use involves
+ * nuclear, chemical/biological weapons, rocket systems, or unmanned air
+ * vehicles.  For the most current Country Group listings, or for additional
+ * information about the EAR or Your obligations under those regulations, please
+ * refer to the website of the U.S. Bureau of Industry and Security at
+ * http://www.bis.doc.gov/.
  ******************************************************************************
  */
 
@@ -106,7 +180,7 @@ AMD_CPM_PRE_INIT_TABLE              gCpmPreInitTable = {
 //   UINT8  OrMask;   // OR mask
 //   UINT8  Stage;    // Stage number},
     {0x00, 0x03, 0xEA, 0xFE, 0x01, CPM_PRE_INIT_STAGE_0, NORMAL_PURPOSE}, // PM_RegEA[0]: PCIDisable = 1
-    {0xFF}
+    {0xFF},
   }
 };
 
@@ -130,7 +204,7 @@ AMD_CPM_GPIO_INIT_TABLE             gCpmGpioInitTable = {
     GPIO_DEFINITION (6,   GPIO_FUNCTION_0,  GPIO_INPUT,       GPIO_PD_EN,     GPIO_STICKY_DIS),   // AGPIO6 (Bilby: PCIe Slot Resets, Arista: BRD_ID1)
     GPIO_DEFINITION (7,   GPIO_FUNCTION_0,  GPIO_INPUT,       GPIO_PD_EN,     GPIO_STICKY_DIS),   // AGPIO7/FCH_ACP_I2S_SDIN  // Set to FCH_ACP_I2S_SDIN (Arista: BRD_ID2)
     GPIO_DEFINITION (8,   GPIO_FUNCTION_0,  GPIO_OUTPUT_HIGH,  GPIO_PU_EN,     GPIO_STICKY_DIS),   // AGPIO8/FCH_ACP_I2S_LRCLK // Set to FCH_ACP_I2S_LRCLK (arista: CPU_DEBUG_LED2_L)
-    GPIO_DEFINITION (9,   GPIO_FUNCTION_2,  GPIO_NA, 		  GPIO_PU_EN,     GPIO_STICKY_DIS),   // MDIO_SCLK1 
+    GPIO_DEFINITION (9,   GPIO_FUNCTION_2,  GPIO_NA, 		  GPIO_PU_EN,     GPIO_STICKY_DIS),   // MDIO_SCLK1
     GPIO_DEFINITION (10,  GPIO_FUNCTION_3,  GPIO_NA,          GPIO_PU_EN,     GPIO_STICKY_DIS),   // MDIO_SCLK0 (SFP+_SCLK or PHY0_MDIO_CLK)
     GPIO_DEFINITION (11,  GPIO_FUNCTION_0,  GPIO_OUTPUT_HIGH,  GPIO_PU_EN,     GPIO_STICKY_DIS),   // BLINK (Arista: CPU_DEBUG_LED3)
     GPIO_DEFINITION (12,  GPIO_FUNCTION_1,  GPIO_OUTPUT_LOW,  GPIO_PU_PD_DIS, GPIO_STICKY_DIS),   // AGPIO12 (VDDP_SET, 0 => 0.9, 1 => 0.8).
@@ -145,7 +219,7 @@ AMD_CPM_GPIO_INIT_TABLE             gCpmGpioInitTable = {
     GPIO_DEFINITION (23,  GPIO_FUNCTION_2,  GPIO_NA, 		  GPIO_PU_EN,     GPIO_STICKY_DIS),   // MDIO_SDAT1
     GPIO_DEFINITION (24,  GPIO_FUNCTION_1,  GPIO_INPUT,       GPIO_PU_EN,     GPIO_STICKY_DIS),   // USB_OC3# Arista: PCIE_INTR_L
     GPIO_DEFINITION (27,  GPIO_FUNCTION_0,  GPIO_OUTPUT_HIGH, GPIO_PU_PD_DIS, GPIO_STICKY_DIS),   // PHY RESET
-    GPIO_DEFINITION (29,  GPIO_FUNCTION_1,  GPIO_OUTPUT_HIGH, GPIO_PU_EN,     GPIO_STICKY_DIS),   // DISPLAY_SELECT2 
+    GPIO_DEFINITION (29,  GPIO_FUNCTION_1,  GPIO_OUTPUT_HIGH, GPIO_PU_EN,     GPIO_STICKY_DIS),   // DISPLAY_SELECT2
     GPIO_DEFINITION (31,  GPIO_FUNCTION_2,  GPIO_OUTPUT_HIGH, GPIO_PU_EN,     GPIO_STICKY_DIS),   // DISPLAY_SELECT1
     GPIO_DEFINITION (32,  GPIO_FUNCTION_2,  GPIO_INPUT,       GPIO_PU_EN,     GPIO_STICKY_DIS),   // (Arista: ALT_BOOT)
     GPIO_DEFINITION (39,  GPIO_FUNCTION_0,  GPIO_NA,          GPIO_PU_EN,     GPIO_STICKY_DIS),   // AGPIO39
@@ -162,18 +236,18 @@ AMD_CPM_GPIO_INIT_TABLE             gCpmGpioInitTable = {
     GPIO_DEFINITION (89,  GPIO_FUNCTION_2,  GPIO_INPUT,       GPIO_PU_EN,     GPIO_STICKY_DIS),   // APU_COMBO_GPP_SW => High=SATA, Low=x2  NVME (work with EGPIO42) (Arista: CPU_FPGA_TDI)
     GPIO_DEFINITION (90,  GPIO_FUNCTION_2,  GPIO_OUTPUT_HIGH, GPIO_PU_EN,     GPIO_STICKY_DIS),   // AGPIO90 => High, UART1 in 4-wire mode; LOW, UART1 in two-wire mode (Arista: CPU_FPGA_TDO)
     GPIO_DEFINITION (91,  GPIO_FUNCTION_0,  GPIO_OUTPUT_HIGH, GPIO_PD_EN,     GPIO_STICKY_DIS),   // PC_BEEP
-    GPIO_DEFINITION (92,  GPIO_FUNCTION_3,  GPIO_OUTPUT_LOW,  GPIO_PU_EN,     GPIO_STICKY_DIS),   // SSD_PEDET (Arista: PWR_CYCLE to FPGA) 
+    GPIO_DEFINITION (92,  GPIO_FUNCTION_3,  GPIO_OUTPUT_LOW,  GPIO_PU_EN,     GPIO_STICKY_DIS),   // SSD_PEDET (Arista: PWR_CYCLE to FPGA)
     GPIO_DEFINITION (108, GPIO_FUNCTION_1,  GPIO_NA,          GPIO_PU_PD_DIS, GPIO_STICKY_DIS),   // AGPIO108 - ESPI_ALERT_D1 for Arista
     GPIO_DEFINITION (115, GPIO_FUNCTION_1,  GPIO_INPUT,       GPIO_PU_EN,     GPIO_STICKY_DIS),   // FPAUD_PRESENCE#
     GPIO_DEFINITION (116, GPIO_FUNCTION_0,  GPIO_INPUT,       GPIO_PU_PD_DIS, GPIO_STICKY_DIS),   // INT_PCIE_SSD_CLKREQ#
-    GPIO_DEFINITION (120, GPIO_FUNCTION_1,  GPIO_INPUT,       GPIO_PU_EN,     GPIO_STICKY_DIS),   // PHY_P0_INTR#	
+    GPIO_DEFINITION (120, GPIO_FUNCTION_1,  GPIO_INPUT,       GPIO_PU_EN,     GPIO_STICKY_DIS),   // PHY_P0_INTR#
     GPIO_DEFINITION (121, GPIO_FUNCTION_1,  GPIO_OUTPUT_HIGH, GPIO_PU_EN,     GPIO_STICKY_DIS),   // AGPIO121 => High, UART0 in 4-wire mode; LOW, UART0 in two-wire mode
-    GPIO_DEFINITION (130, GPIO_FUNCTION_1,  GPIO_OUTPUT_HIGH, GPIO_PU_EN,     GPIO_STICKY_DIS),   // eMMC_RST for Arista		       
+    GPIO_DEFINITION (130, GPIO_FUNCTION_1,  GPIO_OUTPUT_HIGH, GPIO_PU_EN,     GPIO_STICKY_DIS),   // eMMC_RST for Arista
     GPIO_DEFINITION (131, GPIO_FUNCTION_0,  GPIO_INPUT,       GPIO_PD_EN,     GPIO_STICKY_DIS),   // INT_EVAL_CLKREQ#
     GPIO_DEFINITION (135, GPIO_FUNCTION_2,  GPIO_INPUT,       GPIO_PU_EN,     GPIO_STICKY_DIS),   // (Arista: PCIE_CONFIG_1)
     GPIO_DEFINITION (137, GPIO_FUNCTION_2,  GPIO_INPUT,       GPIO_PU_EN,     GPIO_STICKY_DIS),   // (Arista: PCIE_CONFIG_0)
     GPIO_DEFINITION (139, GPIO_FUNCTION_1,  GPIO_INPUT,       GPIO_PU_EN,     GPIO_STICKY_DIS),   // (Arista: PCIE_CONFIG_2)
-    GPIO_DEFINITION (142, GPIO_FUNCTION_2,  GPIO_OUTPUT_HIGH, GPIO_PU_EN,     GPIO_STICKY_DIS),   // (USB_PWR_EN)	
+    GPIO_DEFINITION (142, GPIO_FUNCTION_2,  GPIO_OUTPUT_HIGH, GPIO_PU_EN,     GPIO_STICKY_DIS),   // (USB_PWR_EN)
     {0xFF},
   }
 };
@@ -396,7 +470,7 @@ AMD_CPM_PCIE_CLOCK_TABLE    gCpmPcieClockTable = {
 //    PCIE_INCLK (0, 0,  GPP_CLK3,  CLK_REQ3,   DEVICE_ID_WIFI, 1,     5,       CLKPM_CHECK),     // WIFI
     //PCIE_INCLK (0, 0,  GPP_CLK4,  CLK_REQ4,   DEVICE_ID_DT,   1,     2,       CLKPM_CHECK), // DT X4 SLOT
     //PCIE_INCLK (0, 0,  GPP_CLK2,  CLK_REQ2,   DEVICE_ID_SSD,  1,     7,       CLKPM_CHECK), // SSD
-    {0xFF}
+    {0xFF},
   }
 };
 
@@ -427,7 +501,7 @@ AMD_CPM_PCIE_CLOCK_TABLE    gCpmPcieClockTable_RV2 = {
 //    PCIE_INCLK (0, 0,  GPP_CLK1,  CLK_REQ1,   DEVICE_ID_LAN,  1,     3,       CLKPM_CHECK), // GBE
     //PCIE_INCLK (0, 0,  GPP_CLK4,  CLK_REQ4,   DEVICE_ID_DT,   1,     2,       CLKPM_CHECK), // DT X4 SLOT
     //PCIE_INCLK (0, 0,  GPP_CLK2,  CLK_REQ2,   DEVICE_ID_SSD,  1,     5,       CLKPM_CHECK), // SSD
-    {0xFF}
+    {0xFF},
   }
 };
 
@@ -452,7 +526,7 @@ AMD_CPM_DXIO_TOPOLOGY_TABLE gCpmDxioTopologyTable = {
   {   // DXIO_PORT_DESCRIPTOR
 //  { UINT32  Flags;                    /**< Descriptor flags
 //    #define DXIO_ENGINE_DATA_INITIALIZER(mType, mStartLane, mEndLane, mHotplug, mGpioGroupId) {mType, mHotplug, 0, mStartLane, mEndLane, mGpioGroupId, 0, 0, 0}
-//    #define DXIO_PORT_DATA_INITIALIZER_PCIE(mPortPresent, mDevAddress, mDevFunction, mHotplug, mMaxLinkSpeed, mMaxLinkCap, mAspm, mAspmL1_1, mAspmL1_2,  mClkPmSupport) \
+//    #define DXIO_PORT_DATA_INITIALIZER_PCIE(mPortPresent, mDevAddress, mDevFunction, mHotplug, mMaxLinkSpeed, mMaxLinkCap, mAspm, mAspmL1_1, mAspmL1_2,  mClkPmSupport)
 //            {mPortPresent, mDevAddress, mDevFunction, mMaxLinkSpeed, mAspm, mAspmL1_1, mAspmL1_2, 0, mHotplug, {0, mMaxLinkCap, 0, mClkPmSupport}, {0, 0, 0}, DxioEndpointDetect}
     { // DEVICE_ID_MXM                        Entry 0
       0,
@@ -508,7 +582,7 @@ AMD_CPM_DXIO_TOPOLOGY_TABLE gCpmDxioTopologyTable = {
 //   UINT32 Attribute;        // Table attribute},
 //  { UINT32  Flags;                    /**< Descriptor flags
 //    #define DXIO_ENGINE_DATA_INITIALIZER(mType, mStartLane, mEndLane, mHotplug, mGpioGroupId) {mType, mHotplug, 0, mStartLane, mEndLane, mGpioGroupId, 0, 0, 0}
-//    #define DXIO_PORT_DATA_INITIALIZER_PCIE(mPortPresent, mDevAddress, mDevFunction, mHotplug, mMaxLinkSpeed, mMaxLinkCap, mAspm, mAspmL1_1, mAspmL1_2,  mClkPmSupport) \
+//    #define DXIO_PORT_DATA_INITIALIZER_PCIE(mPortPresent, mDevAddress, mDevFunction, mHotplug, mMaxLinkSpeed, mMaxLinkCap, mAspm, mAspmL1_1, mAspmL1_2,  mClkPmSupport)
 //  {mPortPresent, mDevAddress, mDevFunction, mMaxLinkSpeed, mAspm, mAspmL1_1, mAspmL1_2, 0, mHotplug, {0, mMaxLinkCap, 0, mClkPmSupport}, {0, 0, 0}, DxioEndpointDetect}
     { // DEVICE_ID_DT                       Entry 1
       0,
@@ -575,12 +649,12 @@ AMD_CPM_DXIO_TOPOLOGY_TABLE gCpmDxioTopologyTable = {
        DxioClkPmSupportDisabled             // Clock PM
        //CLK_REQ2              				 // CLKREQ#
        )
-    },	
+    },
     { // DEVICE_ID_SATA_EXPRESS    iSata     Entry 4
       0,
       DXIO_ENGINE_DATA_INITIALIZER (DxioUnusedEngine, 3, 3, HotPluggableDisabled, 1),
       DXIO_PORT_DATA_INITIALIZER_SATA_V2 (DxioPortDisabled, DxioSataChannelLong)    // Port Present
-      PHY_PARAMS_START                           // The SATA PHY tuning values must be configured to all DxioSATAEngine 
+      PHY_PARAMS_START                           // The SATA PHY tuning values must be configured to all DxioSATAEngine
         PHY_PARAM (GEN1_txX_eq_pre, 0),          // otherwise the values won't be changed in the register.
         PHY_PARAM (GEN1_txX_eq_main, 0x20),
         PHY_PARAM (GEN1_txX_eq_post, 0x06),
@@ -592,7 +666,7 @@ AMD_CPM_DXIO_TOPOLOGY_TABLE gCpmDxioTopologyTable = {
         PHY_PARAM (GEN3_txX_eq_post, 0x2C),
       PHY_PARAMS_END
     },
-    { // DEVICE_ID_SATA_EXPRESS    M.2 Sata  Entry 5  
+    { // DEVICE_ID_SATA_EXPRESS    M.2 Sata  Entry 5
       0,
       DXIO_ENGINE_DATA_INITIALIZER (DxioSATAEngine, 2, 2, HotPluggableDisabled, 1),
       DXIO_PORT_DATA_INITIALIZER_SATA_V2 (DxioPortEnabled, DxioSataChannelLong)    // Port Present
@@ -629,7 +703,7 @@ AMD_CPM_DXIO_TOPOLOGY_TABLE gCpmDxioTopologyTable = {
         0x2,  /// mSfpGpioMask, 	(xx1xb = RS not supported)
         0x3,  /// mSfpMux, 		    (Lower address of Mux PCA 9545 or 111b if SFP+ directly connected to I2C) //SFP+ TWI Multiplexer
         0x0,  /// mSfpBusSeg, 		(SFP BUS Segment. Downstream channels of PCA9545) //SFP+ TWI Bus Segment
-        0x1C, /// mSfpMuxUpAdd, 	(Upper address of Mux PCA 9545) 
+        0x1C, /// mSfpMuxUpAdd, 	(Upper address of Mux PCA 9545)
         0x0,  /// mRedriverAddress,
         0,    /// mRedriverInterface, 	(1 => I2C, 0 => MDIO)
         0,    /// mRedriverLane,
@@ -664,7 +738,7 @@ AMD_CPM_DXIO_TOPOLOGY_TABLE gCpmDxioTopologyTable = {
         0x2,  /// mSfpGpioMask, 	(xx1xb = RS not supported)
         0x3,  /// mSfpMux, 		    (Lower address of Mux PCA 9545 or 111b if SFP+ directly connected to I2C) //SFP+ TWI Multiplexer
         0x1,  /// mSfpBusSeg, 		(SFP BUS Segment. Downstream channels of PCA954) //SFP+ TWI Bus Segment
-        0x1C, /// mSfpMuxUpAdd, 	(Upper address of Mux PCA 9545) 
+        0x1C, /// mSfpMuxUpAdd, 	(Upper address of Mux PCA 9545)
         0x0,  /// mRedriverAddress,
         1,    /// mRedriverInterface, 	(1 => I2C, 0 => MDIO)
         0,    /// mRedriverLane,
@@ -770,12 +844,12 @@ AMD_CPM_DXIO_TOPOLOGY_TABLE gCpmDxioTopologyTable_RV2 = {
        DxioAspmL12Disabled,                  // ASPM L1.2  // 0:disabled, 1:Enabled
        DxioClkPmSupportDisabled             // Clock PM
        )
-    },	
+    },
     { // DEVICE_ID_SATA_EXPRESS    iSata     Entry 4
       0,
       DXIO_ENGINE_DATA_INITIALIZER (DxioUnusedEngine, 3, 3, HotPluggableDisabled, 1),
       DXIO_PORT_DATA_INITIALIZER_SATA_V2 (DxioPortDisabled, DxioSataChannelLong)    // Port Present
-      PHY_PARAMS_START                           // The SATA PHY tuning values must be configured to all DxioSATAEngine 
+      PHY_PARAMS_START                           // The SATA PHY tuning values must be configured to all DxioSATAEngine
         PHY_PARAM (GEN1_txX_eq_pre, 0),          // otherwise the values won't be changed in the register.
         PHY_PARAM (GEN1_txX_eq_main, 0x20),
         PHY_PARAM (GEN1_txX_eq_post, 0x06),
@@ -787,7 +861,7 @@ AMD_CPM_DXIO_TOPOLOGY_TABLE gCpmDxioTopologyTable_RV2 = {
         PHY_PARAM (GEN3_txX_eq_post, 0x2C),
       PHY_PARAMS_END
     },
-    { // DEVICE_ID_SATA_EXPRESS    M.2 Sata  Entry 5  
+    { // DEVICE_ID_SATA_EXPRESS    M.2 Sata  Entry 5
       0,
       DXIO_ENGINE_DATA_INITIALIZER (DxioSATAEngine, 2, 2, HotPluggableDisabled, 1),
       DXIO_PORT_DATA_INITIALIZER_SATA_V2 (DxioPortEnabled, DxioSataChannelLong)    // Port Present
@@ -823,7 +897,7 @@ AMD_CPM_DXIO_TOPOLOGY_TABLE gCpmDxioTopologyTable_RV2 = {
         0x2,  /// mSfpGpioMask, 	(xx1xb = RS not supported)
         0x3,  /// mSfpMux, 		    (Lower address of Mux PCA 9545 or 111b if SFP+ directly connected to I2C) //SFP+ TWI Multiplexer
         0x0,  /// mSfpBusSeg, 		(SFP BUS Segment. Downstream channels of PCA9545) //SFP+ TWI Bus Segment
-        0x1C, /// mSfpMuxUpAdd, 	(Upper address of Mux PCA 9545) 
+        0x1C, /// mSfpMuxUpAdd, 	(Upper address of Mux PCA 9545)
         0x0,  /// mRedriverAddress,
         0,    /// mRedriverInterface, 	(1 => I2C, 0 => MDIO)
         0,    /// mRedriverLane,
@@ -858,7 +932,7 @@ AMD_CPM_DXIO_TOPOLOGY_TABLE gCpmDxioTopologyTable_RV2 = {
         0x2,  /// mSfpGpioMask, 	(xx1xb = RS not supported)
         0x3,  /// mSfpMux, 		    (Lower address of Mux PCA 9545 or 111b if SFP+ directly connected to I2C) //SFP+ TWI Multiplexer
         0x1,  /// mSfpBusSeg, 		(SFP BUS Segment. Downstream channels of PCA954) //SFP+ TWI Bus Segment
-        0x1C, /// mSfpMuxUpAdd, 	(Upper address of Mux PCA 9545) 
+        0x1C, /// mSfpMuxUpAdd, 	(Upper address of Mux PCA 9545)
         0x0,  /// mRedriverAddress,
         1,    /// mRedriverInterface, 	(1 => I2C, 0 => MDIO)
         0,    /// mRedriverLane,
@@ -875,7 +949,7 @@ AMD_CPM_DXIO_TOPOLOGY_TABLE gCpmDxioTopologyTable_RV2 = {
     }
   },  // End of DXIO_PORT_DESCRIPTOR
   {   // DDI_DESCRIPTOR
-    // DDI2 is disconnected for R1000. Use DDI3 for 3rd Display	
+    // DDI2 is disconnected for R1000. Use DDI3 for 3rd Display
     { // DDI3 - DP
       DESCRIPTOR_TERMINATE_LIST,
       PCIE_DDI_DATA_INITIALIZER (ConnectorTypeDP, Aux4, Hdp4)
@@ -906,10 +980,10 @@ AMD_CPM_DEVICE_PATH_TABLE gCpmDevicePathTable = {
 //   UINT8                           DeviceId;    // Device Id to control GPIO
 //   UINT8                           Mode;        // Power mode
 //   UINT8                           DeviceIdVcc; // Device Id for Vcc when D3Cold is supported}
-    {{0x80000003}, 0x00, {8, 1}, {0, 0}, 0, 0, 0},                                                    // PowerXpress|HCF, iGPU, (0,8,1)/(0,0)
+    {{0x80000003}, 0x00, {8, 1}, {0, 0}},                                                    // PowerXpress|HCF, iGPU, (0,8,1)/(0,0)
     {{0x8000000B}, 0x01, {1, 1}, {0, 0}, DEVICE_ID_VGAMUXSEL, CPM_POWER_OFF, DEVICE_ID_MXM}, // PowerXpress|HCF, dGPU, (0,1,1)/(0,0)
-    {{0x80000000}, 0x01, {1, 2}, {0, 0}, 0, 0, 0},                                                    // dGPU, (0,1,2)/(0,0)
-    {{0x00000000}, 0x00, {0, 0}, {0, 0}, 0, 0, 0},
+    {{0x80000000}, 0x01, {1, 2}, {0, 0}},                                                    // dGPU, (0,1,2)/(0,0)
+    {{0x00000000}, 0x00, {0, 0}, {0, 0}},
   }
 };
 
@@ -1403,7 +1477,7 @@ RevADxioTableClkTableOverride (
   AMD_CPM_PCIE_CLOCK_TABLE          *PcieClockTablePtr
   )
 {
-  return; 
+  return;
   //DXIO_PORT_DESCRIPTOR              *DxioPort;
 
   //DXIO Table init
@@ -1508,7 +1582,7 @@ AmdCpmTableOverride (
   UINT16                            Value;
 
   //ATOM_14NM_DPPHY_DP_SETTING        *DpPtr;
-  //ATOM_14NM_DPPHY_DP_SETTING        *TempDpPtr;  
+  //ATOM_14NM_DPPHY_DP_SETTING        *TempDpPtr;
   //UINT32                            Count;
   //UINT32                            Value32;
 //[-start-181221-IB09860035-add]//
@@ -1693,7 +1767,7 @@ AmdCpmTableOverride (
   //  DEBUG((DEBUG_INFO, "OEM-PEI-AmdCpmTableOverride-if (PrimaryVideoAdaptor == 2)\n"));
   //  MainTablePtr->DisplayFeature.Config.IsDgpuPrimary = 1;
   //}
-  
+
   //if(AmdPbsConfiguration.DisplaySelect1 == 0)  // 0 => HDMI , 1 => DP (Default)
   //{
   //  Index = 0;
@@ -1707,15 +1781,15 @@ AmdCpmTableOverride (
   //    Index++;
   //  }
 
-  //  DdiPort = &(DxioTopologyTablePtr->Ddi[0]);	
+  //  DdiPort = &(DxioTopologyTablePtr->Ddi[0]);
   //  DdiPort[0].Ddi.ConnectorType = ConnectorTypeHDMI;
-  //  DdiPort[0].Ddi.Flags |= EXT_DISPLAY_PATH_CAPS_HDMI20_TISN65DP159RSBT;    
+  //  DdiPort[0].Ddi.Flags |= EXT_DISPLAY_PATH_CAPS_HDMI20_TISN65DP159RSBT;
   //  DEBUG((DEBUG_INFO, "OEM-PEI-AmdCpmTableOverride    DisplaySelect1 selected HDMI \n"));
 
   //  if(CheckRvOpn()) {
   //    TableAddress = (UINT32 *)&Hdmi0RetimerRedriverV1000[0];
   //    DEBUG((DEBUG_INFO, "OEM-PEI-AmdCpmTableOverride-PcdCfgDp0RetimerRedriverTable-TableAddress = %x\n", TableAddress));
-  //    PcdSet32 (PcdCfgDp0RetimerRedriverTable, (UINT32)TableAddress);	
+  //    PcdSet32 (PcdCfgDp0RetimerRedriverTable, (UINT32)TableAddress);
   //  } else {
   //    TableAddress = (UINT32 *)&Hdmi0RetimerRedriverR1000[0];
   //    DEBUG((DEBUG_INFO, "OEM-PEI-AmdCpmTableOverride-PcdCfgDp0RetimerRedriverTable-TableAddress = %x\n", TableAddress));
@@ -1724,7 +1798,7 @@ AmdCpmTableOverride (
   //}
   //if(AmdPbsConfiguration.DisplaySelect2 == 0) // 0 => HDMI , 1 => DP (Default)
   //{
-  //  Index = 0; 
+  //  Index = 0;
   //  while (GpioInitTablePtr->GpioList[Index].Pin != 0xFF) {
   //    if (GpioInitTablePtr->GpioList[Index].Pin == 29) {
   //      Value = GPIO_CONTROL_REG(GPIO_FUNCTION_1,  GPIO_OUTPUT_LOW, GPIO_PD_EN,     GPIO_STICKY_DIS);
@@ -1732,26 +1806,26 @@ AmdCpmTableOverride (
   //      GpioInitTablePtr->GpioList[Index].Setting.Raw = Value;
   //      break;
   //    }
-  //    Index++;	  
+  //    Index++;
   //  }
 
-  //  DdiPort = &(DxioTopologyTablePtr->Ddi[0]);	
+  //  DdiPort = &(DxioTopologyTablePtr->Ddi[0]);
   //  DdiPort[1].Ddi.ConnectorType = ConnectorTypeHDMI;
-  //  DdiPort[1].Ddi.Flags |= EXT_DISPLAY_PATH_CAPS_HDMI20_TISN65DP159RSBT;    
+  //  DdiPort[1].Ddi.Flags |= EXT_DISPLAY_PATH_CAPS_HDMI20_TISN65DP159RSBT;
   //  DEBUG((DEBUG_INFO, "OEM-PEI-AmdCpmTableOverride   DisplaySelect2 selected HDMI \n"));
 
   //  if(CheckRvOpn()) {
   //    TableAddress = (UINT32 *)&Hdmi1RetimerRedriverV1000[0];
   //    DEBUG((DEBUG_INFO, "OEM-PEI-AmdCpmTableOverride-PcdCfgDp1RetimerRedriverTable-TableAddress = %x\n", TableAddress));
-  //    PcdSet32 (PcdCfgDp1RetimerRedriverTable, (UINT32)TableAddress);	
+  //    PcdSet32 (PcdCfgDp1RetimerRedriverTable, (UINT32)TableAddress);
   //  } else {
   //    TableAddress = (UINT32 *)&Hdmi1RetimerRedriverR1000[0];
   //    DEBUG((DEBUG_INFO, "OEM-PEI-AmdCpmTableOverride-PcdCfgDp1RetimerRedriverTable-TableAddress = %x\n", TableAddress));
   //    PcdSet32 (PcdCfgDp1RetimerRedriverTable, (UINT32)TableAddress);
   //  }
   //}
-    
-  
+
+
 #ifdef CONNECTED_STANDBY_SUPPORT
   // Modern Standby Support
   MainTablePtr->ModernStandbyEn	= AmdPbsConfiguration.ModernStandbyEn;
@@ -1764,7 +1838,7 @@ AmdCpmTableOverride (
 #endif
 
 
-  
+
   // Clock control
   MainTablePtr->UnusedGppClkOffEn = 0;//AmdPbsConfiguration.UnusedGppClkOff;
 
@@ -1774,20 +1848,18 @@ AmdCpmTableOverride (
   if (BoardId >= 0x0008) {
     DEBUG((DEBUG_INFO, "Apply RV2 workaround\n"));
     PcdSet8 (PcdPsppPolicy, 0);
-  }  
+  }
   PcdSet8 (PcdPsppPolicy, 0);
-  //AmdPbsConfiguration.XgbePortPhySwitch = XGBE_PHY_MODE_RJ45;
-  AmdPbsConfiguration.XgbePort1PhySwitch = XGBE_PHY_MODE_RJ45;
-  //ConfigureEthernetDxioPorts (&DxioPort, AmdPbsConfiguration.XgbePortPhySwitch);
-  ConfigureEthernetDxioPorts (&DxioPort);
+  AmdPbsConfiguration.XgbePort0PhySwitch = XGBE_PHY_MODE_RJ45;
+  ConfigureEthernetDxioPorts (&DxioPort, AmdPbsConfiguration.XgbePort0PhySwitch);
   UpdateXgbeFchPcds(PeiServices, &DxioPort);
-  // 
+  //
   //  GPIO42    GPIO89	10G-XGbe  NVMe SSD   M.2 Sata   iSata-R1000  iSata-V1000
-  //    1        0		yes       No         No			Yes   			No       ( XGBE with x2NvMe on V1000 only)			
-  //    0        1		No        No         Yes        Yes  			No		 ( No settings Exposed)	
-  //    1        1      yes       No         Yes        Yes 			Yes		 ( XGBe and M.2 )	
+  //    1        0		yes       No         No			Yes   			No       ( XGBE with x2NvMe on V1000 only)
+  //    0        1		No        No         Yes        Yes  			No		 ( No settings Exposed)
+  //    1        1      yes       No         Yes        Yes 			Yes		 ( XGBe and M.2 )
   //    0        0      No        Yes        Np         Yes 			No       ( Select PCIeX2 or PCIe X4)
-  //    
+  //
 //  if ((AmdPbsConfiguration.XgbeVsPcieXn == 1) || (AmdPbsConfiguration.XgbeVsPcieXn == 2)) { // 0 => XGBE (default) , 1 => PCIeX2 , 2  => PCIeX4 , 3 = XGBE X2 and Pciex2
 //    Index = 0x0;
 //    while (GpioInitTablePtr->GpioList[Index].Pin != 0xFF) {
@@ -1795,15 +1867,15 @@ AmdCpmTableOverride (
 //        Value = GPIO_CONTROL_REG(GPIO_FUNCTION_0, GPIO_OUTPUT_LOW, GPIO_PU_EN, GPIO_STICKY_DIS);
 //        DEBUG((DEBUG_INFO, "OEM-PEI-AmdCpmTableOverride- XGBE to PCIE X2 Value = %x\n", Value));
 //        GpioInitTablePtr->GpioList[Index].Setting.Raw = Value;
-//        if(AmdPbsConfiguration.XgbeVsPcieXn == 1) {        
+//        if(AmdPbsConfiguration.XgbeVsPcieXn == 1) {
 //            DxioPort[2].EngineData.EngineType = DxioPcieEngine;   //Entry 2 Enable M.2 NVME X2
 //            DxioPort[3].Port.PortPresent = DxioPortDisabled;
 //        } else{
 //            DxioPort[3].EngineData.EngineType = DxioPcieEngine;   //Entry 3 Enable M.2 NVME X4
 //            DxioPort[2].Port.PortPresent = DxioPortDisabled;
 //        }
-        // Disable isata entry (Phy3) to enable NvMe - only for RV1 Silicon(v1000) . 
-//        if(CheckRvOpn()){ 
+        // Disable isata entry (Phy3) to enable NvMe - only for RV1 Silicon(v1000) .
+//        if(CheckRvOpn()){
 //          DEBUG((DEBUG_INFO, "OEM-PEI-AmdCpmTableOverride- V1000 iSata Disabled \n"));
 //          DxioPort[4].EngineData.EngineType = DxioUnusedEngine; // Entry 4 is iSata
 //          DxioPort[4].Port.PortPresent = DxioPortDisabled;
@@ -1812,7 +1884,7 @@ AmdCpmTableOverride (
 //        DxioPort[6].Port.PortPresent = DxioPortDisabled;
 //        DxioPort[7].EngineData.EngineType = DxioUnusedEngine; // Entry 7 is XGBE
 //        DxioPort[7].Port.PortPresent = DxioPortDisabled;
-//        PcdSetBool (PcdXgbePort0ConfigEn,0); 
+//        PcdSetBool (PcdXgbePort0ConfigEn,0);
 //        PcdSetBool (PcdXgbePort1ConfigEn,0);
 //      }
 //      if (GpioInitTablePtr->GpioList[Index].Pin == 89) {
@@ -1823,20 +1895,20 @@ AmdCpmTableOverride (
 //        DxioPort[5].Port.PortPresent      = DxioPortDisabled;
 //      }
 //      Index++;
-//    }  
+//    }
 //  } else {
 //      if ((AmdPbsConfiguration.XgbeVsPcieXn == 3)&&(CheckRvOpn())) {
 //        DEBUG((DEBUG_INFO, "Programming to Enable XGBE(Phy0,Phy1) and x2 NVME(Phy2,Phy3) on V1000 only\n"));
-        //Enable Pcie Lane Phy2 and Phy3 as NvMe 
+        //Enable Pcie Lane Phy2 and Phy3 as NvMe
 //        DxioPort[2].EngineData.EngineType = DxioPcieEngine;   //Entry 2 Enable M.2 x2 NVME
 //        DxioPort[3].Port.PortPresent = DxioPortDisabled;
-    
+
         //Disable the Pcie Lane  Phy3 as Sata Engine because NvMe is enabled
 //        DxioPort[4].EngineData.EngineType = DxioUnusedEngine; // Entry 4 is iSata
 //        DxioPort[4].Port.PortPresent = DxioPortDisabled;
-    
+
 //        DxioPort[5].EngineData.EngineType = DxioUnusedEngine; // Entry 5 is M.2 Sata
-//        DxioPort[5].Port.PortPresent      = DxioPortDisabled;	
+//        DxioPort[5].Port.PortPresent      = DxioPortDisabled;
 //        Index =0;
 //        while (GpioInitTablePtr->GpioList[Index].Pin != 0xFF) {
 //          if (GpioInitTablePtr->GpioList[Index].Pin == 89) {
@@ -1848,8 +1920,8 @@ AmdCpmTableOverride (
 //          Index++;
 //        }
 //      }
-//	  AmdPbsConfiguration.XgbePortPhySwitch = XGBE_PHY_MODE_RJ45;
-//      ConfigureEthernetDxioPorts (&DxioPort);
+//	  AmdPbsConfiguration.XgbePort0PhySwitch = XGBE_PHY_MODE_RJ45;
+//      ConfigureEthernetDxioPorts (&DxioPort, AmdPbsConfiguration.XgbePort0PhySwitch);
 //      UpdateXgbeFchPcds(PeiServices, &DxioPort);
 //  }
   //AGPIO86 High for LPC and Low for eMMC & SD (Need reworks for SD) . Default High selected in CpmOemTable
@@ -1861,11 +1933,11 @@ AmdCpmTableOverride (
         Value = GPIO_CONTROL_REG(GPIO_FUNCTION_1, GPIO_OUTPUT_LOW, GPIO_PD_EN, GPIO_STICKY_DIS);
         DEBUG((DEBUG_INFO, "OEM-PEI-AmdCpmTableOverride eMMC selected Value = %x\n", Value));
 //        GpioInitTablePtr->GpioList[Index].Setting.Raw = Value;
-      }  
+      }
       Index++;
-    } 
+    }
   }
- 
+
   //DEBUG((DEBUG_INFO, "OEM-PEI-AmdCpmTableOverride-DetectPcieDevices\n"));
   //DetectPcieDevices (AmdCpmTablePpi, DxioTopologyTablePtr, &AmdPbsConfiguration, &TravisStatus, BoardId);
 
@@ -1955,14 +2027,14 @@ AmdCpmTableOverride (
 //    }
 //    Index = 0;
 //    while (PcieClockTablePtr->Item[Index].ClkId != 0xFF) {
-//      DEBUG((DEBUG_INFO, "  Item[%X] Socket=%02X Die=%02X Bridge=%02X Miscid=%02X", Index, \
-//            (PcieClockTablePtr->Item[Index].SpecialFunctionId >> 24) & 0xF, (PcieClockTablePtr->Item[Index].SpecialFunctionId >> 20) & 0xF, \
+//      DEBUG((DEBUG_INFO, "  Item[%X] Socket=%02X Die=%02X Bridge=%02X Miscid=%02X", Index,
+//            (PcieClockTablePtr->Item[Index].SpecialFunctionId >> 24) & 0xF, (PcieClockTablePtr->Item[Index].SpecialFunctionId >> 20) & 0xF,
 //            (PcieClockTablePtr->Item[Index].SpecialFunctionId >> 16) & 0xF, (PcieClockTablePtr->Item[Index].SpecialFunctionId >> 28) & 0xF));
-//      DEBUG((DEBUG_INFO, " ClkId=%02X ClkReq=%02X ClkIdExt=%02X ClkReqExt=%02X DeviceId=%02X", \
-//            PcieClockTablePtr->Item[Index].ClkId,    PcieClockTablePtr->Item[Index].ClkReq, \
+//      DEBUG((DEBUG_INFO, " ClkId=%02X ClkReq=%02X ClkIdExt=%02X ClkReqExt=%02X DeviceId=%02X",
+//            PcieClockTablePtr->Item[Index].ClkId,    PcieClockTablePtr->Item[Index].ClkReq,
 //            PcieClockTablePtr->Item[Index].ClkIdExt, PcieClockTablePtr->Item[Index].ClkReqExt, PcieClockTablePtr->Item[Index].DeviceId));
-//      DEBUG((DEBUG_INFO, " Device=%02X Function=%02X SlotCheck=%02X SpecialFunctionId=%04X\n", \
-//            PcieClockTablePtr->Item[Index].Device,     PcieClockTablePtr->Item[Index].Function, \
+//      DEBUG((DEBUG_INFO, " Device=%02X Function=%02X SlotCheck=%02X SpecialFunctionId=%04X\n",
+//            PcieClockTablePtr->Item[Index].Device,     PcieClockTablePtr->Item[Index].Function,
 //            PcieClockTablePtr->Item[Index].SlotCheck, (PcieClockTablePtr->Item[Index].SpecialFunctionId & 0xFFFF)));
 //      Index++;
 //    }
@@ -1989,19 +2061,19 @@ AmdCpmTableOverride (
   //
 //  if (CheckRvOpn() == FALSE) {
 //    Status = (**PeiServices).AllocatePool (
-//                (CONST EFI_PEI_SERVICES**)PeiServices,
+//                PeiServices,
 //                sizeof (ATOM_14NM_DPPHY_DP_SETTING) * 10,
-//                (VOID**)&DpPtr
+//                &DpPtr
 //                );
-     
+
 //    if (!EFI_ERROR (Status)) {
 //      TempDpPtr = DpPtr;
-  
+
       //HBR3
 //      PcdSet8  (PcdAmdDpHbr3PhySel, 0xF);
 //      PcdSet8  (PcdAmdDpHbr3Version, 0x0);
 //      PcdSet16 (PcdAmdDpHbr3TableSize, 0x5);
-  
+
 //      Count = 0;
       ///0
 //      TempDpPtr[Count].dp_vs_pemph_level = 0x2;
@@ -2034,7 +2106,7 @@ AmdCpmTableOverride (
 //      TempDpPtr[Count].deemph_6db_4 = 0;
 //      TempDpPtr[Count].boostadj = 0x9F;
 //      Count++;
-  
+
 //      for (Index = Count; Index < 10; Index++) {
 //    	TempDpPtr[Index].dp_vs_pemph_level = 0xFF;
 //    	TempDpPtr[Index].margindeemph = 0;
@@ -2042,15 +2114,15 @@ AmdCpmTableOverride (
 //    	TempDpPtr[Index].boostadj = 0;
 //      }
 //    }
-  
+
 //    PcdSet32 (PcdAtomDpHbr3PhyDpSetting, (UINT32)(UINTN)&DpPtr[0]);
 //    PcdSet16 (PcdAmdDpPhyOverride, ATOM_ENABLE_DP_HBR3_TUNINGSET);
-//  }	
-  
+//  }
+
 //[-start-181222-IB09860036-add]//
-  CopyMem (&OemGpioList, \
-           &GpioInitTablePtr->GpioList, \
-           sizeof (GpioInitTablePtr->GpioList) \
+  CopyMem (&OemGpioList,
+           &GpioInitTablePtr->GpioList,
+           sizeof (GpioInitTablePtr->GpioList)
            );
   DEBUG ((DEBUG_INFO, "OemKernelServices Call: OemSvcUpdateGpioCfg \n"));
   Status = OemSvcUpdateGpioCfg (&OemGpioList);
@@ -2068,15 +2140,13 @@ AmdCpmTableOverride (
 EFI_STATUS
 EFIAPI
 ConfigureEthernetDxioPorts (
-  IN DXIO_PORT_DESCRIPTOR** DxioPort
+  IN DXIO_PORT_DESCRIPTOR** DxioPort,
+  IN UINT8 PhyMode
   )
 {
   DXIO_PORT_DESCRIPTOR* DxioPortList = (*DxioPort);
   AMD_PBS_SETUP_OPTION              AmdPbsConfiguration;
   EFI_STATUS                        Status;
-  UINT8                             PhyMode=0;
-  UINT32                            PortNum =0;
-
   DEBUG((DEBUG_INFO, "In ConfigureEthernetDxioPorts\n"));
 
   if (DxioPortList == NULL) {
@@ -2088,33 +2158,23 @@ ConfigureEthernetDxioPorts (
     DEBUG((DEBUG_INFO, "OEM-PEI-ConfigureEthernetDxioPorts-Status=%r\n", Status));
     return Status;
   }
-
-  PhyMode = AmdPbsConfiguration.XgbePort0PhySwitch;
-
   while(1) {
     if((DxioPortList->EngineData.EngineType == DxioEthernetEngine)) {
       DEBUG((DEBUG_INFO, "ConfigureEthernetDxioPorts, found DxioEthernetEngine\n"));
-      PortNum = DxioPortList->EtherNet.EthPortProp0.PortNum;
       if (PhyMode == XGBE_PHY_MODE_RJ45 || PhyMode == XGBE_PHY_MODE_BACKPLANE) {
         DxioPortList->EtherNet.PadMux1                = 0x0;
         DxioPortList->EtherNet.EthPortProp0.MdioId   = 0;
-        //DxioPortList->EtherNet.EthPortProp0.PlatConf  = XGBE_10G_1G_BACKPLANE;
         DxioPortList->EtherNet.EthPortProp0.PlatConf  = 3;
-		//DxioPortList->EtherNet.EthPortProp0.ConnType  = XGBE_BACKPLANE_CONNECTION;
         DxioPortList->EtherNet.EthPortProp0.ConnType  = 2;
-		//DxioPortList->EtherNet.EthPortProp0.SuppSpeed = (XGBE_PORT_SPEED_10G | XGBE_PORT_SPEED_1G | XGBE_PORT_SPEED_100M|XGBE_PORT_SPEED_10M);
         DxioPortList->EtherNet.EthPortProp0.SuppSpeed = (XGBE_PORT_SPEED_1G | XGBE_PORT_SPEED_100M);
-		//DxioPortList->EtherNet.PadMux0 = (DxioPortList->EtherNet.EthPortProp0.PortNum == ETH_PORT_0) ? 0x10 : 0x20;
         DxioPortList->EtherNet.PadMux0 = 0x20;
-        /*
-		if (PhyMode == XGBE_PHY_MODE_RJ45) {
+        /*if (PhyMode == XGBE_PHY_MODE_RJ45) {
           PcdSetBool(PcdXgbeMdio0, TRUE);
           PcdSetBool(PcdXgbeMdio1, TRUE);
         } else {
           PcdSetBool(PcdXgbeMdio0, FALSE);
           PcdSetBool(PcdXgbeMdio1, FALSE);
-        }
-		*/
+        }*/
 		PcdSetBool(PcdXgbeMdio1, TRUE);
 		PcdSetBool(PcdXgbeMdio0, FALSE);
         PcdSetBool(PcdXgbeSfp,   FALSE);
@@ -2136,58 +2196,29 @@ ConfigureEthernetDxioPorts (
         DxioPortList->EtherNet.EthPortProp3.ModAbs    = 0;
         DxioPortList->EtherNet.EthPortProp3.RxLoss    = 0;
         DxioPortList->EtherNet.EthPortProp4.SfpBusSeg = 0;
-        // 0 - 1G , 1 - 10G , 2 - 100Mbps , 3 = 10G/1G/100Mbps/10M, 4 = 2.5G, 5 = 10M
-        if (PortNum == ETH_PORT_0) {
-          if (AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x1 ) {
-            DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_10G ;
-          }else if (AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x2) {
-             DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_100M;
-          }else if (AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x3) {
-             DxioPortList->EtherNet.EthPortProp0.SuppSpeed = (XGBE_PORT_SPEED_10G | XGBE_PORT_SPEED_1G | XGBE_PORT_SPEED_100M);
-          }else if (AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x0) {
+        // 0 - 1G , 1 - 10G , 2 - 100Mbps , 3 = 10G/1G/100Mbps
+        if (AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x1) {
+          DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_10G ;
+        }else if (AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x2) {
+            DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_100M;
+        }else if (AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x3) {
+            DxioPortList->EtherNet.EthPortProp0.SuppSpeed = (XGBE_PORT_SPEED_10G | XGBE_PORT_SPEED_1G | XGBE_PORT_SPEED_100M);
+        }else if (AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x0) {
             DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_1G;
-          }else if (AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x4) {
+        }else if (AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x4) {
             DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_2_5G;
-          }else if (AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x5) {
-            DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_10M;
-          }else if ( AmdPbsConfiguration.XgbePort0SpeedSwitch == 0x6) {
-            DxioPortList->EtherNet.EthPortProp0.SuppSpeed = (XGBE_PORT_SPEED_10M | XGBE_PORT_SPEED_1G | XGBE_PORT_SPEED_100M);
-          }
-        } else if (PortNum == ETH_PORT_1) {
-          if (AmdPbsConfiguration.XgbePort1SpeedSwitch == 0x1) {
-            DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_10G ;
-          }else if (AmdPbsConfiguration.XgbePort1SpeedSwitch == 0x2) {
-             DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_100M;
-          }else if (AmdPbsConfiguration.XgbePort1SpeedSwitch == 0x3) {
-             DxioPortList->EtherNet.EthPortProp0.SuppSpeed = (XGBE_PORT_SPEED_10G | XGBE_PORT_SPEED_1G | XGBE_PORT_SPEED_100M);
-          }else if (AmdPbsConfiguration.XgbePort1SpeedSwitch == 0x0) {
-            DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_1G;
-          }else if ( AmdPbsConfiguration.XgbePort1SpeedSwitch == 0x4) {
-            DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_2_5G;
-          }else if ( AmdPbsConfiguration.XgbePort1SpeedSwitch == 0x5) {
-            DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_10M;
-          }else if ( AmdPbsConfiguration.XgbePort1SpeedSwitch == 0x6) {
-            DxioPortList->EtherNet.EthPortProp0.SuppSpeed = (XGBE_PORT_SPEED_10M | XGBE_PORT_SPEED_1G | XGBE_PORT_SPEED_100M);
-          }
         }
 //DxioPortList->EtherNet.EthPortProp0.SuppSpeed = XGBE_PORT_SPEED_1G;
 DxioPortList->EtherNet.EthPortProp0.SuppSpeed = (XGBE_PORT_SPEED_1G | XGBE_PORT_SPEED_100M);
-        /*
-		if( PhyMode == XGBE_PHY_MODE_BACKPLANE){
+        /*if( PhyMode == XGBE_PHY_MODE_BACKPLANE){
+
            DxioPortList->EtherNet.EthPortProp0.PlatConf = XGBE_10G_1G_BACKPLANE;
            DxioPortList->EtherNet.EthPortProp3.MdioReset = 0;
            DxioPortList->EtherNet.EthPortProp0.ConnType  = XGBE_BACKPLANE_CONNECTION;
 
            if(  DxioPortList->EtherNet.EthPortProp0.SuppSpeed == XGBE_PORT_SPEED_2_5G)
-		  		 DxioPortList->EtherNet.EthPortProp0.PlatConf = XGBE_2_5G_BACKPLANE;    
-        }
-        else {
-            DxioPortList->EtherNet.EthPortProp0.PlatConf = (PortNum == ETH_PORT_0)?AmdPbsConfiguration.XgbePort0RJ45Mode:AmdPbsConfiguration.XgbePort1RJ45Mode;
-            if(DxioPortList->EtherNet.EthPortProp0.PlatConf != XGBE_10G_1G_BACKPLANE){
-            DxioPortList->EtherNet.EthPortProp0.ConnType = XGBE_CONNECTION_MDIO_PHY;
-            }
-        }
-		*/
+		  		 DxioPortList->EtherNet.EthPortProp0.PlatConf = XGBE_2_5G_BACKPLANE;
+        }*/
 
         DEBUG((DEBUG_INFO, "PlatConf  = %x\n", DxioPortList->EtherNet.EthPortProp0.PlatConf));
         DEBUG((DEBUG_INFO, "ConnType  = %x\n", DxioPortList->EtherNet.EthPortProp0.ConnType));
@@ -2245,7 +2276,6 @@ DxioPortList->EtherNet.EthPortProp0.SuppSpeed = (XGBE_PORT_SPEED_1G | XGBE_PORT_
       break;
     }
     DxioPortList++;
-    PhyMode = AmdPbsConfiguration.XgbePort1PhySwitch;
   }
   return EFI_SUCCESS;
 }
@@ -2279,7 +2309,7 @@ UpdateXgbeFchPcds (
       DEBUG((DEBUG_INFO, "UpdateXgbeFchPcds, found DxioEthernetEngine\n"));
       if (DxioPortList->EtherNet.EthPortProp0.PortNum == ETH_PORT_0) {
         Status = (*PeiServices)->AllocatePool (
-                                   (CONST EFI_PEI_SERVICES**)PeiServices,
+                                   (const struct EFI_PEI_SERVICES **)PeiServices,
                                    sizeof(FCH_XGBE_PORT),
                                    (VOID**)&Port0
                                    );
@@ -2292,7 +2322,7 @@ UpdateXgbeFchPcds (
 
       if (DxioPortList->EtherNet.EthPortProp0.PortNum == ETH_PORT_1) {
         Status = (*PeiServices)->AllocatePool (
-                                   (CONST EFI_PEI_SERVICES**)PeiServices,
+                                   (const struct EFI_PEI_SERVICES **)PeiServices,
                                    sizeof(FCH_XGBE_PORT),
                                    (VOID**)&Port1
                                    );

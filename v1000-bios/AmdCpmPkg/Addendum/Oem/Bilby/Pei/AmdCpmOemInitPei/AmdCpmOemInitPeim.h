@@ -439,7 +439,8 @@ AmdCpmOemInitPeimNotifyCallback (
 EFI_STATUS
 EFIAPI
 ConfigureEthernetDxioPorts (
-  IN DXIO_PORT_DESCRIPTOR** DxioPort
+  IN DXIO_PORT_DESCRIPTOR** DxioPort,
+  IN UINT8 PhyMode
   );
 
 EFI_STATUS

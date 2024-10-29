@@ -25,7 +25,8 @@
   PE32|Ia32/Shell.efi|*
 
 [Binaries.X64]
-   PE32|X64/Aboot11-normal-0824-rev1.kernel|*
+   PE32|X64/Aboot11-kernel419-fallback-xgbe-0909-rev2.uki|*
+#   PE32|X64/Aboot11-normal-0824-rev1.kernel|*
 #  PE32|X64/Aboot11-0218-rev1.kernel
 #   PE32|X64/Shell.efi|*
 
