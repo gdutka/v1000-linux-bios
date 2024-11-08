@@ -3659,7 +3659,7 @@ formset
           prompt      = STRING_TOKEN (AMD_CBS_STR_SATA_CONTROLLER),
           help        = STRING_TOKEN (AMD_CBS_STR_SATA_CONTROLLER_HELP),
           option text = STRING_TOKEN (AMD_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED | INTERACTIVE;
-          option text = STRING_TOKEN (AMD_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED | INTERACTIVE;
+          option text = STRING_TOKEN (AMD_CBS_STR_ENABLED),         value = 1,    flags = DEFAULT | RESET_REQUIRED | INTERACTIVE;
           option text = STRING_TOKEN (AMD_CBS_STR_AUTO),            value = 0xf,  flags = 0 | RESET_REQUIRED | INTERACTIVE;
         endoneof;
 
@@ -4044,7 +4044,7 @@ formset
           varid       = CBS_CONFIG.CbsCmnFchXgbe0Enable,
           prompt      = STRING_TOKEN (AMD_CBS_STR_XGBE0_ENABLE),
           help        = STRING_TOKEN (AMD_CBS_STR_XGBE0_ENABLE_HELP),
-          option text = STRING_TOKEN (AMD_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (AMD_CBS_STR_ENABLED),         value = 1,    flags = DEFAULT | RESET_REQUIRED;
           option text = STRING_TOKEN (AMD_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
           option text = STRING_TOKEN (AMD_CBS_STR_AUTO),            value = 0xf,  flags = 0 | RESET_REQUIRED;
         endoneof;
